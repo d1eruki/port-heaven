@@ -1,0 +1,102 @@
+*::-webkit-scrollbar-thumb {
+	background: var(--white);
+}
+
+body {
+	color: var(--black);
+	background: var(--black);
+	background-image:	linear-gradient( var(--white01) 1px, transparent 1px),
+						linear-gradient(to right, var(--white01) 1px, transparent 1px);
+}
+
+header {
+	border-bottom: 1px var(--black) solid;
+	background: var(--white);
+	color: var(--black);
+}
+
+.active::first-letter {
+	background-color: var(--pink);
+}
+
+iframe:hover,
+video:hover,
+img:hover:not(.shadowless),
+.card img,
+#item:hover,
+.shirt {
+	/*box-shadow: 10px 10px 20px 5px var(--shadow);*/
+	box-shadow: 10px 10px var(--black);
+}
+
+#qrc {
+	box-shadow: 10px 10px var(--white);
+}
+
+.shirt {
+	background: var(--white);
+}
+
+.card legend {
+	background: var(--black);
+	color: var(--white);
+}
+
+.info h3 {
+	color: var(--white);
+}
+
+.info span {
+	background: var(--black);
+}
+
+.active{
+	color: var(--white);
+	background: var(--black);
+}
+
+#item {
+	background: var(--white);
+}
+
+#item:hover {
+	color: var(--black);
+}
+
+#item:hover h1::first-letter {
+	background: var(--pink);
+	color: var(--white);
+}
+
+#qrc {
+	background: var(--white);
+}
+
+#details {
+	background: var(--white);
+}
+
+::selection {
+	background: var(--white);
+	color: var(--black);
+}
+
+marquee {
+	/*background: var(--white);*/
+}
+
+marquee:before {
+	background: var(--black);
+}
+
+marquee::after {
+	background: var(--black);
+}
+
+.marquee:before {
+	background: linear-gradient(to right, var(--white) 10%, transparent 80%);
+}
+
+.marquee:after {
+	background: linear-gradient(to left, var(--white) 10%, transparent 80%);
+}
