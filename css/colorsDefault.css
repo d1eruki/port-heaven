@@ -10,9 +10,9 @@ body {
 }
 
 header {
-	border-bottom: 1px var(--black) solid;
-	background: var(--white);
-	color: var(--black);
+	/* border-bottom: 1px var(--black) solid; */
+	background: var(--black);
+	color: var(--white);
 }
 
 iframe:hover,
@@ -23,7 +23,7 @@ fieldset:not(.card fieldset)
 .card img,
 #item:hover,
 .shirt,*/ {
-	box-shadow: 10px 10px var(--white);
+	box-shadow: 10px 10px var(--pink02);
 }
 
 fieldset:not(.card fieldset) {
@@ -47,21 +47,29 @@ fieldset:not(.card fieldset) {
 	background: var(--black);
 }
 
-.active,
-.active:before,
+.active {
+	color: var(--white);
+	background: var(--black);
+}
+
 .active:after {
 	color: var(--white);
 	background: var(--black);
 }
 
-.active:before,
-.active:after {
-	text-shadow: 1px 0 var(--green);
+.active:before {
+	color: var(--white);
+	background: var(--black);
 }
 
 .active::first-letter {
-	background-color: var(--white);
-	color: var(--black)
+	color: var(--black);
+	background: var(--pink02);
+}
+
+.active:before,
+.active:after {
+	text-shadow: 1px 0 var(--pink02);
 }
 
 #item {
@@ -73,7 +81,7 @@ fieldset:not(.card fieldset) {
 }
 
 #item:hover h1::first-letter {
-	background: var(--green);
+	background: var(--pink02);
 }
 
 #qrc {
@@ -85,8 +93,8 @@ fieldset:not(.card fieldset) {
 }
 
 ::selection {
-	background: var(--white);
-	color: var(--black);
+	background: var(--black);
+	color: var(--white);
 }
 
 marquee {

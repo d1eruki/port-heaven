@@ -1,10 +1,16 @@
 @import url('css/colorsDefault.css');
 @import url('css/animations.css');
 @import url('css/screenMaxWidth393.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @font-face {
 	font-family: 'zaychek';
 	src: url('sources/fonts/Zaychik-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'dihjauti';
+	src: url(https://github.com/tchristopherwhite/Dihjauti/blob/main/Dihjauti-Bold.otf);
 }
 
 html {
@@ -12,7 +18,7 @@ html {
 }
 
 * {
-	font-family: 'IBM Plex Mono';
+	font-family: 'Roboto Slab', serif;
 	box-sizing: content-box;
 }
 
@@ -36,9 +42,10 @@ html {
 	--black03: hsl(0, 0%, 5%);
 	--white: hsl(0, 0%, 100%);
 	--white01: hsla(0, 0%, 100%, 0.1);
-	--white02: hsl(76, 92%, 90%);
+	--white02: hsl(0, 0%, 90%);
 	--blue: hsl(174, 52%, 60%);
 	--pink: hsl(314, 97%, 44%);
+	--pink02: hsl(321, 100%, 69%);
 	--green: hsl(134, 97%, 56%);
 	--shadow: hsla(0, 0%, 50%, 0.5);
 	--purple: hsl(253, 64%, 65%);

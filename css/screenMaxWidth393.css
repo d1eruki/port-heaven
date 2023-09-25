@@ -1,4 +1,11 @@
 @media screen and (max-width: 750px) {
+	#main {
+		margin: 0 10px 10px 0 !important;
+		grid-row-gap: 0 !important;
+		grid-column-gap: 0 !important;
+		width: fit-content !important;
+	}
+
 	#hider {
 		display: block;
 	}
@@ -17,8 +24,8 @@
 	}
 
 	header {
-		margin: 10%;
-		padding: 0 !important;
+		padding: 0 10px !important;
+		width: fit-content !important;
 	}
 
 	#left {
