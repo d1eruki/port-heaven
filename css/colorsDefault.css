@@ -15,22 +15,19 @@ header {
 	color: var(--black);
 }
 
-.active::first-letter {
-	background-color: var(--pink);
-}
-
 iframe:hover,
-video:hover,
 img:hover:not(.shadowless),
+#qrc,
+fieldset:not(.card fieldset)
+/*video:hover,
 .card img,
 #item:hover,
-.shirt {
-	/*box-shadow: 10px 10px 20px 5px var(--shadow);*/
-	box-shadow: 10px 10px var(--black);
+.shirt,*/ {
+	box-shadow: 10px 10px var(--white);
 }
 
-#qrc {
-	box-shadow: 10px 10px var(--white);
+fieldset:not(.card fieldset) {
+	background: var(--white);
 }
 
 .shirt {
@@ -50,9 +47,21 @@ img:hover:not(.shadowless),
 	background: var(--black);
 }
 
-.active{
+.active,
+.active:before,
+.active:after {
 	color: var(--white);
 	background: var(--black);
+}
+
+.active:before,
+.active:after {
+	text-shadow: 1px 0 var(--green);
+}
+
+.active::first-letter {
+	background-color: var(--white);
+	color: var(--black)
 }
 
 #item {
@@ -64,8 +73,7 @@ img:hover:not(.shadowless),
 }
 
 #item:hover h1::first-letter {
-	background: var(--pink);
-	color: var(--white);
+	background: var(--green);
 }
 
 #qrc {
@@ -82,7 +90,7 @@ img:hover:not(.shadowless),
 }
 
 marquee {
-	/*background: var(--white);*/
+	background: var(--black01);
 }
 
 marquee:before {
@@ -99,4 +107,8 @@ marquee::after {
 
 .marquee:after {
 	background: linear-gradient(to left, var(--white) 10%, transparent 80%);
+}
+
+.shadowless {
+	box-shadow: none !important;
 }

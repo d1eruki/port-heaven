@@ -155,17 +155,14 @@ fieldset:not(.card fieldset) > * {
 }
 
 legend:not(.card legend) {
-	/*box-shadow: 10px 10px var(--black);*/
 	background: var(--white);
 	border: var(--black) solid 1px;
 	padding: 0 10px;
 }
 
 fieldset:not(.card fieldset) {
-	background: var(--purple02);
-	border: var(--black) solid 1px;
 	padding: 0 20px;
-	box-shadow: 10px 10px var(--white);
+	border: var(--black) solid 1px;
 }
 
 header img:hover,
@@ -205,10 +202,6 @@ video {
 	filter: grayscale(100%);
 }
 
-.shadowless {
-	box-shadow: none !important;
-}
-
 legend {
 	padding-inline-start: 0px;
 	padding-inline-end: 0px;
@@ -219,8 +212,8 @@ legend {
 	width: 178px;
 	height: 178px;
 	margin: 0 0 20px;
-	animation: shake 2s;
-	animation-iteration-count: infinite;
+	/*animation: shake 2s;
+	animation-iteration-count: infinite;*/
 }
 
 .item-cardBox {
@@ -348,9 +341,6 @@ legend {
 	position: absolute;
 	left: 0;
 	top: 0;
-	text-shadow: 1px 0 var(--purple);
-	color: var(--white);
-	background: var(--black);
 	overflow: hidden;
 	clip-path: polygon(0 0);
 	animation: noise-animY-2 3s infinite linear alternate-reverse;
@@ -363,9 +353,6 @@ legend {
 	position: absolute;
 	left: 0;
 	top: 0;
-	text-shadow: -1px 0 var(--pink);
-	color: var(--white);
-	background: var(--black);
 	overflow: hidden;
 	clip-path: polygon(0 0);
 	animation: noise-animY 2s infinite linear alternate-reverse;
@@ -489,7 +476,6 @@ audio {
 marquee {
 	position: relative;
 	z-index: 1;
-	background: var(--yellow);
 }
 
 .nocursor,
@@ -536,6 +522,7 @@ marquee::after {
 }
 
 #back-text {
+	display: none;
 	position: fixed;
 	margin: 100px -100px;
 	z-index: -1;
