@@ -1,3 +1,10 @@
+import './style.css'
+
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
+
 $('[data-open-block]').on('click', function() {
 	$('[data-open-block]').children().removeClass('active');
 	$('[data-content]').removeClass('is-active');
@@ -21,7 +28,7 @@ $(document).ready(function(){
 
 function cheat() {
 	var cheatCode = document.getElementById('cheat').value;
-	var audio = new Audio('sources/sounds/phonk.wav');
+	var audio = new Audio('./sounds/phonk.wav');
 	audio.loop = true;
 	if (cheatCode == 'phonk') {
 		audio.play();
