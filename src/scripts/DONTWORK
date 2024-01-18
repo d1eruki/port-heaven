@@ -1,4 +1,8 @@
 
+<script src='https://code.jquery.com/jquery-3.6.1.js' integrity='sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=' crossorigin='anonymous'></script>
+<!--<script type='module' src='./src/jquery.qrcode.min.js'></script>-->
+
+
 $('[data-open-block]').on('click', function() {
     $('[data-open-block]').children().removeClass('active');
     $('[data-content]').removeClass('is-active');
