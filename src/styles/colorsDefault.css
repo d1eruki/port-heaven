@@ -17,7 +17,8 @@ header {
 
 iframe:hover,
 img:hover:not(.shadowless),
-#qrc:hover
+#qrc,
+fieldset:not(.card fieldset)
 /*video:hover,
 .card img,
 #item:hover,
@@ -29,13 +30,8 @@ fieldset:not(.card fieldset) {
 	background: var(--white);
 }
 
-
-fieldset:not(.card fieldset):hover {
-	box-shadow: 10px 10px var(--pink02);
-}
-
 .shirt {
-	background: var(--black);
+	background: var(--white);
 }
 
 .card legend {

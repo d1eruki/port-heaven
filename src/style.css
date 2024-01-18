@@ -64,12 +64,12 @@ body {
 #main {
 	width: -webkit-fill-available;
 	justify-content: center;
-	margin: 0 20% 20px;
+	margin: 0 27.5% 20px;
 	display: inline-grid;
 	grid-template-areas:
-	'left center right';
-	grid-template-rows: auto auto auto;
-	grid-template-columns: auto auto auto;
+	'left center';
+	grid-template-rows: auto auto;
+	grid-template-columns: auto auto;
 	grid-row-gap: 20px;
 	grid-column-gap: 30px;
 }
@@ -87,17 +87,16 @@ footer {
 	display: none;
 }
 
-#left {
-	grid-area: left;
-	width: min-content;
-	top: 55px;
-	height: fit-content;
-	position: sticky;
-	text-align: right;
+article {
+	grid-area: center;
 }
 
-#right {
-	grid-area: right;
+article fieldset {
+	margin-top: 20px;
+}
+
+#left {
+	grid-area: left;
 	width: min-content;
 	top: 55px;
 	height: fit-content;
@@ -156,7 +155,6 @@ fieldset {
 	padding-inline-start: 0;
 	padding-inline-end: 0;
 	padding-block-end: 0;
-	height: fit-content;
 }
 
 fieldset:not(.card fieldset) > * {
@@ -172,9 +170,6 @@ legend:not(.card legend) {
 fieldset:not(.card fieldset) {
 	padding: 0 20px;
 	border: var(--black) solid 1px;
-	margin-top: 20px;
-	/*border-radius: 10px;*/
-	transition: all 0.25s ease-in-out;
 }
 
 header img:hover,
@@ -266,7 +261,7 @@ legend {
 #logo {
 	width: 80%;
 	margin: auto;
-	/*filter: invert(100%) !important;*/
+	filter: invert(100%) !important;
 }
 
 .cardBox:hover .card {
@@ -421,7 +416,6 @@ legend {
 	bottom: -280px;
 	right: 2%;
 	z-index: 2;
-	transition: all 0.25s ease-in-out;
 }
 
 #qrc:hover {
@@ -438,7 +432,10 @@ legend {
 
 .content {
 	display: none;
-	grid-area: center;
+}
+
+#content {
+	text-align: left;
 }
 
 .content.is-active {
