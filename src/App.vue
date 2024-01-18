@@ -1,4 +1,4 @@
-<script setup>
+<script>
 
 </script>
 
@@ -351,5 +351,5 @@
 </template>
 
 <style scoped>
-	/*@import url('./style.css');*/
+
 </style>
