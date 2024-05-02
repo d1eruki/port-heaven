@@ -1,11 +1,11 @@
-@import url('./styles/colorsDefault.css');
-@import url('./styles/animations.css');
-@import url('./styles/screenMaxWidth393.css');
+@import url('css/colorsDefault.css');
+@import url('css/animations.css');
+@import url('css/screenMaxWidth393.css');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @font-face {
 	font-family: 'zaychek';
-	src: url('./fonts/Zaychik-Regular.ttf');
+	src: url('sources/fonts/Zaychik-Regular.ttf');
 }
 
 @font-face {
@@ -14,7 +14,7 @@
 }
 
 html {
-	cursor: url('./images/cursors/inactive.png'), auto;
+	cursor: url('sources/images/cursors/inactive.png'), auto;
 }
 
 * {
@@ -468,7 +468,7 @@ iframe,
 video,
 input,
 button {
-	cursor: url('./images/cursors/active.png'), auto !important;
+	cursor: url('sources/images/cursors/active.png'), auto !important;
 }
 
 audio {
