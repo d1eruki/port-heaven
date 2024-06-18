@@ -1,7 +1,7 @@
 @import url('css/colorsDefault.css');
 @import url('css/animations.css');
 @import url('css/screenMaxWidth393.css');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Caveat:wght@400..700&family=Press+Start+2P&family=Train+One&display=swap');
 
 @font-face {
 	font-family: 'zaychek';
@@ -18,7 +18,7 @@ html {
 }
 
 * {
-	font-family: 'Roboto Slab', serif;
+	font-family: 'Roboto', serif;
 	box-sizing: content-box;
 }
 
@@ -171,7 +171,7 @@ legend:not(.card legend) {
 
 fieldset:not(.card fieldset) {
 	padding: 0 20px;
-	border: var(--black) solid 1px;
+	/*border: var(--black) solid 1px;*/
 	margin-top: 20px;
 	/*border-radius: 10px;*/
 	transition: all 0.25s ease-in-out;
@@ -202,7 +202,6 @@ img:hover:not(.shadowless) {
 }
 
 #item:hover,
-#qrc,
 .shirt,
 .card {
 	border: var(--black) solid 1px;
@@ -217,6 +216,15 @@ video {
 legend {
 	padding-inline-start: 0px;
 	padding-inline-end: 0px;
+}
+
+header h1 div,
+legend h1,
+h3,
+#itemName h1,
+marquee h2,
+#qrc h1 {
+	font-family: "1", system-ui;
 }
 
 .cardBox {
@@ -235,6 +243,11 @@ legend {
 	margin: 0 0 20px;
 	animation: shake 2s;
 	animation-iteration-count: infinite;
+}
+
+.item-cardBox img {
+	max-width: 60px;
+	min-width: 60px;
 }
 
 .card,
@@ -382,7 +395,15 @@ legend {
 	grid-column-gap: 0;
 	padding: 10px;
 	align-items: start;
-	border: var(--black) 1px solid;
+	/*border: var(--black) 1px solid;*/
+}
+
+#item p {
+	display: none;
+}
+
+#item:hover > p {
+	display: inline !important;
 }
 
 #item img {
@@ -532,7 +553,9 @@ marquee::after {
 }
 
 #back-text {
-	display: none;
+	top: 200px;
+	text-align: center;
+	width: 100%;
 	position: fixed;
 	margin: 100px -100px;
 	z-index: -1;
