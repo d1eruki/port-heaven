@@ -563,5 +563,4 @@ marquee::after {
 	text-shadow: 10px 10px var(--white02);
 	transform: rotate(350deg);
 	/*animation: glitch 60s infinite;*/
-	display: none;
 }
