@@ -105,7 +105,7 @@ fieldset:not(.card fieldset):hover {
 }
 
 marquee {
-	background: var(--yellow);
+	background: var(--grey-darker);
 }
 
 marquee:before {
