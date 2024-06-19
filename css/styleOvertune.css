@@ -17,21 +17,24 @@ header {
 
 iframe:hover,
 img:hover:not(.shadowless),
-#qrc:hover
-/*video:hover,
+#qrc:hover,
+video:hover,
 .card img,
 #item:hover,
-.shirt,*/ {
-	box-shadow: 10px 10px var(--pink02);
+.shirt {
+	/*box-shadow: 10px 10px var(--pink02);*/
 }
 
 fieldset:not(.card fieldset) {
-	background: var(--white);
+	/*background: var(--white);*/
 }
 
+#left {
+	/*background: var(--white) url('../sources/images/fieldset-bg.png');*/
+}
 
 fieldset:not(.card fieldset):hover {
-	box-shadow: 10px 10px var(--pink02);
+	/*box-shadow: 10px 10px var(--pink02);*/
 }
 
 .shirt {
@@ -102,7 +105,7 @@ fieldset:not(.card fieldset):hover {
 }
 
 marquee {
-	background: var(--black01);
+	background: var(--yellow);
 }
 
 marquee:before {

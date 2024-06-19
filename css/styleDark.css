@@ -13,7 +13,7 @@ body {
 
 header {
 	border-bottom: 1px var(--black) solid;
-	background: var(--blue);
+	background: var(--aqua);
 	color: var(--black);
 }
 
