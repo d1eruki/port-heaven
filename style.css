@@ -43,7 +43,7 @@ p {
 body {
 	margin: 0;
 	font-size: 13px;
-	text-transform: lowercase;
+	/*text-transform: lowercase;*/
 	background-size: 25px 25px;
 }
 
@@ -89,6 +89,7 @@ footer {
 	height: fit-content;
 	position: sticky;
 	text-align: right;
+	display: none;
 }
 
 h1 {
@@ -180,7 +181,6 @@ img:hover:not(.shadowless),
 	filter: none;
 }
 
-#item:hover,
 video:hover,
 img:hover:not(.shadowless) {
 	animation: shake 0.5s;
@@ -191,7 +191,6 @@ img:hover:not(.shadowless) {
 	animation: none !important;
 }
 
-#item:hover,
 .shirt,
 .card {
 	border: var(--black) solid 1px;
@@ -376,15 +375,15 @@ legend {
 	grid-column-gap: 0;
 	padding: 10px;
 	align-items: start;
-	/*border: var(--black) 1px solid;*/
+	border: var(--black) solid 1px;
 }
 
 #item p {
-	display: none;
+	/*display: none;*/
 }
 
 #item:hover > p {
-	display: inline !important;
+	/*display: inline !important;*/
 }
 
 #item img {
@@ -410,6 +409,10 @@ legend {
 	width: 100%;
 }
 
+#itemName p {
+	display: none;
+}
+
 #stack-list {
 	display: grid;
 	grid-row-gap: 20px;
@@ -421,6 +424,7 @@ legend {
 	width: inherit;
 	padding: 20px;
 	background: var(--white);
+	border: var(--black) solid 1px;
 }
 
 #qrc {
@@ -472,8 +476,8 @@ video {
 }
 
 .youtube {
-	width: 400px;
-	height: 220px;
+	width: 350px;
+	height: 195px;
 	object-fit: cover;
 }
 
@@ -559,4 +563,5 @@ marquee::after {
 	text-shadow: 10px 10px var(--white02);
 	transform: rotate(350deg);
 	/*animation: glitch 60s infinite;*/
+	display: none;
 }

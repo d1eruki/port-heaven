@@ -1,6 +1,6 @@
 :root {
 	--black: hsl(0, 0%, 0%);
-	--black01: hsla(0, 0%, 0%, 0.15);
+	--black01: hsla(0, 0%, 0%, 0.05);
 	--black02: hsl(0, 0%, 7.5%);
 	--black03: hsl(0, 0%, 5%);
 	--white: hsl(0, 0%, 100%);
