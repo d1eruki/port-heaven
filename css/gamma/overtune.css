@@ -109,11 +109,11 @@ marquee {
 }
 
 marquee:before {
-	background: var(--black);
+	/*background: var(--black);*/
 }
 
 marquee::after {
-	background: var(--black);
+	/*background: var(--black);*/
 }
 
 .marquee:before {
