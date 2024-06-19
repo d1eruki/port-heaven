@@ -551,7 +551,8 @@ marquee::after {
 }
 
 #back-text {
-	top: 200px;
+	scale: 150%;
+	top: 150px;
 	text-align: center;
 	width: 100%;
 	position: fixed;
@@ -560,7 +561,7 @@ marquee::after {
 	font-family: 'zaychek' !important;
 	color: var(--grey) !important;
 	font-size: 800px !important;
-	text-shadow: 10px 10px var(--white02);
+	/*text-shadow: 10px 10px var(--white02);*/
 	transform: rotate(350deg);
 	/*animation: glitch 60s infinite;*/
 }
