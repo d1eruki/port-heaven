@@ -70,7 +70,7 @@ fieldset:not(.card fieldset):hover {
 }
 
 .active::first-letter {
-	color: var(--black);
+	color: var(--white);
 	background: var(--pink02);
 }
 
@@ -106,7 +106,7 @@ fieldset:not(.card fieldset):hover {
 
 marquee {
 	background: var(--black);
-	color: var(--white);
+	color: var(--black);
 }
 
 marquee:before {

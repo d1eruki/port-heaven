@@ -191,11 +191,6 @@ img:hover:not(.shadowless) {
 	animation: none !important;
 }
 
-.shirt,
-.card {
-	border: var(--black) solid 1px;
-}
-
 img,
 iframe,
 video {
@@ -348,8 +343,6 @@ legend {
 	top: 0;
 	overflow: hidden;
 	clip-path: polygon(0 0);
-	animation: noise-animY-2 3s infinite linear alternate-reverse;
-	-webkit-animation: noise-animY-2 3s infinite linear alternate-reverse;
 	width: 100%;
 }
 
@@ -363,11 +356,6 @@ legend {
 	animation: noise-animY 2s infinite linear alternate-reverse;
 	-webkit-animation: noise-animY-1 2s infinite linear alternate-reverse;
 	width: calc(100% - 4px);
-}
-
-.active-no:before,
-.active-no:after {
-	animation: none;
 }
 
 #item {
