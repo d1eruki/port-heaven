@@ -14,6 +14,12 @@
   src: url(https://github.com/tchristopherwhite/Dihjauti/blob/main/Dihjauti-Bold.otf);
 }
 
+@media screen and (max-width: 750px) {
+  header img:first-child {
+    width: 64px;
+  }
+}
+
 html {
   cursor: url('sources/images/cursors/inactive.png'), auto;
 }
@@ -42,7 +48,7 @@ p {
 
 body {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   /*text-transform: lowercase;*/
   background-size: 25px 25px;
 }
@@ -63,7 +69,6 @@ body {
 #main {
   width: -webkit-fill-available;
   justify-content: center;
-  margin: 0 20% 20px;
   display: inline-grid;
   grid-template-areas:
 	'left center right';
