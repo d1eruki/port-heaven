@@ -413,13 +413,6 @@ legend {
   display: none;
 }
 
-#stack-list {
-  display: grid;
-  grid-row-gap: 20px;
-  grid-column-gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
 .stack-item-desc {
   width: inherit;
   padding: 20px;
