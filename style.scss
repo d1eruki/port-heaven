@@ -1,16 +1,16 @@
-@import url('css/gamma/overtune.css');
-@import url('css/colors.css');
-@import url('css/animations.css');
-@import url('css/width/393.css');
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Caveat:wght@400..700&family=Press+Start+2P&family=Train+One&display=swap');
+@import url("css/gamma/overtune.css");
+@import url("css/colors.css");
+@import url("css/animations.css");
+@import url("css/width/393.css");
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Caveat:wght@400..700&family=Press+Start+2P&family=Train+One&display=swap");
 
 @font-face {
-  font-family: 'zaychek';
-  src: url('sources/fonts/Zaychik-Regular.ttf');
+  font-family: "zaychek";
+  src: url("sources/fonts/Zaychik-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'dihjauti';
+  font-family: "dihjauti";
   src: url(https://github.com/tchristopherwhite/Dihjauti/blob/main/Dihjauti-Bold.otf);
 }
 
@@ -21,7 +21,7 @@
 }
 
 html {
-  cursor: url('sources/images/cursors/inactive.png'), auto;
+  cursor: url("sources/images/cursors/inactive.png"), auto;
 }
 
 * {
@@ -30,7 +30,7 @@ html {
 }
 
 p {
-  font-family: 'Roboto', serif;
+  font-family: "Roboto", serif;
 }
 
 *::-webkit-scrollbar {
@@ -66,12 +66,12 @@ body {
 }
 
 
-#main {
+.main {
   width: -webkit-fill-available;
   justify-content: center;
   display: inline-grid;
   grid-template-areas:
-	'left center right';
+	"left center right";
   grid-template-rows: auto auto auto;
   grid-template-columns: auto auto auto;
   grid-row-gap: 20px;
@@ -91,7 +91,7 @@ footer {
   display: none;
 }
 
-#left {
+.left {
   grid-area: left;
   width: min-content;
   top: 55px;
@@ -100,7 +100,7 @@ footer {
   text-align: right;
 }
 
-#right {
+.right {
   grid-area: right;
   width: min-content;
   top: 55px;
@@ -113,43 +113,43 @@ footer {
 h1 {
   display: block;
   font-size: 2em;
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   font-weight: bold;
 }
 
 h2 {
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   padding: 0 10px;
 }
 
 h3 {
   font-size: 16px;
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   padding: 0 10px;
 }
 
 h4 {
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   padding: 10px 0;
 }
 
 p {
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   padding: 0;
 }
 
@@ -188,12 +188,12 @@ fieldset:hover,
   animation: none !important;
 }
 
-#item:hover img,
+.item:hover img,
 iframe:hover,
 video:hover,
 img:hover:not(.shadowless),
 .card img,
-#qrc,
+.qrc,
 .shirt,
 .filterless {
   filter: none;
@@ -216,8 +216,8 @@ video {
 }
 
 legend {
-  padding-inline-start: 0px;
-  padding-inline-end: 0px;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
 }
 
 .cardBox {
@@ -269,7 +269,7 @@ legend {
   display: flex;
 }
 
-#logo {
+.logo {
   width: 80%;
   margin: auto;
   /*filter: invert(100%) !important;*/
@@ -376,7 +376,7 @@ legend {
   width: calc(100% - 4px);
 }
 
-#item {
+.item {
   grid-row-gap: 20px;
   grid-column-gap: 0;
   padding: 10px;
@@ -384,38 +384,38 @@ legend {
   border: var(--black) solid 1px;
 }
 
-#item p {
+.item p {
   /*display: none;*/
 }
 
-#item:hover > p {
+.item:hover > p {
   /*display: inline !important;*/
 }
 
-#item img {
+.item img {
   max-width: 60px;
   min-width: 60px;
 }
 
-#item ul {
+.item ul {
   text-align: left;
   margin: 0 10px 0;
 }
 
-#itemName {
+.itemName {
   display: inline-flex;
   width: 100%;
 }
 
-#itemName > * {
+.itemName > * {
   margin: 0 10px 0 0;
 }
 
-#itemName h1 {
+.itemName h1 {
   width: 100%;
 }
 
-#itemName p {
+.itemName p {
   display: none;
 }
 
@@ -426,7 +426,7 @@ legend {
   border: var(--black) solid 1px;
 }
 
-#qrc {
+.qrc {
   position: fixed;
   padding: 20px;
   bottom: -280px;
@@ -436,15 +436,15 @@ legend {
   border: var(--black) 1px solid;
 }
 
-#qrc:hover {
+.qrc:hover {
   bottom: 0;
 }
 
-#qrc > * {
+.qrc > * {
   padding: 0 0 20px 0;
 }
 
-#qrc td {
+.qrc td {
   background: transparent;
 }
 
@@ -460,10 +460,10 @@ legend {
 ol {
   display: block;
   list-style-type: decimal;
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   padding-inline-start: 40px;
 }
 
@@ -481,12 +481,12 @@ video {
 }
 
 header h1,
-#item,
+.item,
 iframe,
 video,
 input,
 button {
-  cursor: url('sources/images/cursors/active.png'), auto !important;
+  cursor: url("sources/images/cursors/active.png"), auto !important;
 }
 
 audio {
@@ -497,7 +497,7 @@ audio {
   padding: 10px 0;
 }
 
-#scroll {
+.scroll {
   padding-bottom: 10px;
 }
 
@@ -507,22 +507,22 @@ marquee {
 }
 
 .nocursor,
-#qrc:hover,
+.qrc:hover,
 .cardBox:hover {
   cursor: none;
 }
 
-#cheatForm {
+.cheatForm {
   text-align: right;
   display: inline-flex;
   width: 100%;
 }
 
-#cheatForm > *:not(:last-child) {
+.cheatForm > *:not(:last-child) {
   margin: 0 10px 0 0;
 }
 
-#cheatForm input {
+.cheatForm input {
   width: 100%;
 }
 
@@ -534,7 +534,7 @@ input {
 marquee:before,
 marquee:after {
   z-index: 1;
-  content: '';
+  content: "";
   top: 0;
   width: 3px;
   height: 100%;
@@ -549,7 +549,7 @@ marquee::after {
   right: 0;
 }
 
-#back-text {
+.back-text {
   scale: 150%;
   top: 150px;
   text-align: center;
@@ -557,7 +557,7 @@ marquee::after {
   position: fixed;
   margin: 100px -100px;
   z-index: -1;
-  font-family: 'zaychek' !important;
+  font-family: "zaychek", serif !important;
   color: var(--grey) !important;
   font-size: 800px !important;
   /*text-shadow: 10px 10px var(--white02);*/
