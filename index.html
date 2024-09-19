@@ -11,7 +11,7 @@
 
 		<link href="https://fonts.googleapis.com/css?family=IBM Plex Mono" rel="stylesheet">
 
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="css/style.css">
 
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -31,9 +31,6 @@
 						<li data-open-block="about">
 							<div data-text="/about" class="px-2 active">/about</div>
 						</li>
-						<!--<li data-open-block="stack">
-							<div href="#" data-text="/stack" class="nav-link px-2 text-white">/stack</div>
-						</li>-->
 						<li data-open-block="design">
 							<div data-text="/design" class="px-2">/design</div>
 						</li>
@@ -57,7 +54,7 @@
 				dайруки
 			</div>
 			<div class="main">
-				<fieldset id="left">
+				<fieldset class="left">
 					<legend><h1>profile</h1></legend>
 					<div class="info">
 						<h3>
@@ -72,8 +69,7 @@
 								<fieldset><legend>.лиходей</legend></fieldset>
 							</div>
 							<div class="shirt">
-								<!--<div class="qrc1" class="nocursor"></div>-->
-								<img src="sources/images/dieruki.png" id="logo" class="shadowless" alt="Girl in a jacket">
+								<img src="sources/images/dieruki.png" class="logo" class="shadowless" alt="Girl in a jacket">
 							</div>
 						</div>
 						<h3>
@@ -129,18 +125,16 @@
 					<marquee behavior="scroll" scrollamount="10" onmouseover="this.stop()" onmouseout="this.start()">
 						<h2>* * * important content * * * important content * * * important content * * * important content * * *</h2>
 					</marquee>
-					<div class="grid gap-3">
-						<div class="g-col-4">
-							<div class="item">
-								<div class="itemName">
-									<img src="sources/images/figma.svg" class="shadowless" alt="Girl in a jacket">
-									<h1>figma</h1>
-									<p>middle</p>
-								</div>
-								<p>В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present</p>
+					<div class="grid d-grid gap-3">
+						<div class="g-col-4 item">
+							<div class="itemName">
+								<img src="sources/images/figma.svg" class="shadowless" alt="Girl in a jacket">
+								<h1>figma</h1>
+								<p>middle</p>
 							</div>
+							<p>В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present</p>
 						</div>
-						<div class="item">
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/psd.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>photoshop</h1>
@@ -148,7 +142,7 @@
 							</div>
 							<p>Увлекаюсь фотошопом со школьных лет, фотошопил друзей на аватарки вконтакте. Это баловство позволило в настоящее время крутить фотокарточками как захочется</p>
 						</div>
-						<div class="item">
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/ai.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>illustrator</h1>
@@ -156,7 +150,7 @@
 							</div>
 							<p>С иллюстратором до сих пор сложные отношения, я пытаю его он пытает меня</p>
 						</div>
-						<div class="item">
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/pp.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>premiere pro</h1>
@@ -164,7 +158,7 @@
 							</div>
 							<p>В студенческое время работал в сони вегасе, ленясь перекатываться на премьер, но приколы которые он умеет делать, особенно после вегаса, заставили восторгнуться</p>
 						</div>
-						<div class="item">
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/ae.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>after effects</h1>
@@ -172,7 +166,7 @@
 							</div>
 							<p>Увлекание эффектиком появилось когда перекатился на премьер. В коллекции уже есть пара прикольных заставок (⌐■_■)</p>
 						</div>
-						<div class="item">
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/au.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>audition</h1>
@@ -180,7 +174,7 @@
 							</div>
 							<p>этот продукт открываю крайне редко, только для рабочих целей, но навалить бассов, застрейчить диктора или почистить мусор могу</p>
 						</div>
-						<!--<div class="item">
+						<div class="g-col-4 item">
                             <div class="itemName">
                                 <img src="sources/images/adobe.svg" class="shadowless">
                                 <h1>adobe</h1>
@@ -191,8 +185,8 @@
                             ▶ premiere pro<br>
                             ▶ illustrator<br>
                             ▶ audition<br>
-                        </div>-->
-						<div class="item">
+                        </div>
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/unity.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>unity</h1>
@@ -200,7 +194,7 @@
 							</div>
 							<p>Ориентируюсь в интерфейсе, могу создать материал. Но в общем, есть опыт верстки игрового интерфейса на канвасах и uielements</p>
 						</div>
-						<div class="item">
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/css.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>css</h1>
@@ -208,7 +202,7 @@
 							</div>
 							<p>Последний раз серьезно занимался созданием сайтов в учебные годы, наверстываю упущенной, обмазываясь флексами и гридами</p>
 						</div>
-						<div class="item">
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/html.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>html</h1>
@@ -216,7 +210,7 @@
 							</div>
 							<p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
 						</div>
-						<div class="item">
+						<div class="g-col-4 item">
 							<div class="itemName">
 								<img src="sources/images/sv.svg" class="shadowless" alt="Girl in a jacket">
 								<h1>Sony Vegas</h1>
@@ -226,9 +220,6 @@
 						</div>
 					</div>
 				</fieldset>
-				<!--<fieldset class="content" data-content="stack">
-                    <legend><h1>Чем я пользуюсь</h1></legend>
-                </fieldset>-->
 				<fieldset class="content" data-content="design">
 					<legend><h1>Десигники</h1></legend>
 					<p>Я, блять, в своем познании настолько преисполнился, что я как будто бы уже сто триллионов миллиардов лет, блять, проживаю на триллионах и триллионах таких же планет, понимаешь? Как эта Земля. Мне уже этот мир абсолютно понятен, и я здесь ищу только одного, блять: покоя, умиротворения и вот этой гармонии от слияния с бесконечно вечным.</p>
@@ -313,7 +304,7 @@
 					</div>
 					<label>My field <input type="color" value="#8888ff" id="colorPicker"/></label>
 
-					<div id="cheatForm">
+					<div class="cheatForm">
 						<p>Введите чит</p>
 						<label>My field <input type= "text" id="cheat" placeholder="вводи"/></label>
 						<button class="cheatEnter" onclick="cheat()">ентер</button>
@@ -419,7 +410,7 @@
 						</div>
 					</div>
 				</fieldset>
-				<fieldset id="right">
+				<fieldset class="right">
 					<legend><h1>Нотис</h1></legend>
 				</fieldset>
 			</div>
@@ -440,7 +431,7 @@
 
 		<script type="text/javascript" src="src/jquery.qrcode.min.js"></script>
 
-		<script src="script.js"></script>
+		<script src="src/script.js"></script>
 
 	</body>
 </html>

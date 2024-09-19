@@ -1,27 +1,23 @@
-@import url("css/gamma/overtune.css");
-@import url("css/colors.css");
-@import url("css/animations.css");
-@import url("css/width/393.css");
+@import url("gamma/overtune.css");
+@import url("colors.css");
+@import url("animations.css");
+@import url("width/393.css");
 @import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Caveat:wght@400..700&family=Press+Start+2P&family=Train+One&display=swap");
-
 @font-face {
   font-family: "zaychek";
-  src: url("sources/fonts/Zaychik-Regular.ttf");
+  src: url("../sources/fonts/Zaychik-Regular.ttf");
 }
-
 @font-face {
   font-family: "dihjauti";
   src: url(https://github.com/tchristopherwhite/Dihjauti/blob/main/Dihjauti-Bold.otf);
 }
-
 @media screen and (max-width: 750px) {
   header img:first-child {
     width: 64px;
   }
 }
-
 html {
-  cursor: url("sources/images/cursors/inactive.png"), auto;
+  cursor: url("../sources/images/cursors/inactive.png"), auto;
 }
 
 * {
@@ -43,7 +39,7 @@ p {
 }
 
 *::-webkit-scrollbar-thumb {
-  border: none
+  border: none;
 }
 
 body {
@@ -53,25 +49,19 @@ body {
   background-size: 25px 25px;
 }
 
-////////////////bootstrap////////////////
-
 .container {
   width: 1372px;
 }
-
-////////////////size////////////////
 
 .width-64 {
   width: 64px;
 }
 
-
 .main {
   width: -webkit-fill-available;
   justify-content: center;
   display: inline-grid;
-  grid-template-areas:
-	"left center right";
+  grid-template-areas: "left center right";
   grid-template-rows: auto auto auto;
   grid-template-columns: auto auto auto;
   grid-row-gap: 20px;
@@ -248,7 +238,7 @@ legend {
   position: absolute;
   width: 100%;
   height: 100%;
-  transition: transform .5s ease;
+  transition: transform 0.5s ease;
   backface-visibility: hidden;
 }
 
@@ -257,7 +247,7 @@ legend {
   position: absolute;
   width: 100%;
   height: 100%;
-  transition: transform .5s ease;
+  transition: transform 0.5s ease;
   backface-visibility: hidden;
 }
 
@@ -315,12 +305,15 @@ legend {
 .card fieldset:nth-of-type(2) {
   transform: rotate(90deg);
 }
+
 .card fieldset:nth-of-type(3) {
   transform: rotate(180deg);
 }
-.card fieldset:nth-of-type(3)/*>legend*/ {
+
+.card fieldset:nth-of-type(3) {
   transform: rotate(180deg);
 }
+
 .card fieldset:nth-of-type(4) {
   transform: rotate(-90deg);
 }
@@ -330,9 +323,10 @@ legend {
 }
 
 @keyframes move {
-  100%	{margin-left: 70px;}
+  100% {
+    margin-left: 70px;
+  }
 }
-
 .info {
   display: grid;
   grid-template-columns: auto auto;
@@ -348,7 +342,7 @@ legend {
   padding: 0 5px 0 15px;
 }
 
-.active{
+.active {
   position: relative;
   text-align: center;
   height: 100%;
@@ -486,7 +480,7 @@ iframe,
 video,
 input,
 button {
-  cursor: url("sources/images/cursors/active.png"), auto !important;
+  cursor: url("../sources/images/cursors/active.png"), auto !important;
 }
 
 audio {
@@ -564,3 +558,5 @@ marquee::after {
   transform: rotate(350deg);
   /*animation: glitch 60s infinite;*/
 }
+
+/*# sourceMappingURL=style.css.map */
