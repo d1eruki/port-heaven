@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 function cheat() {
 	var cheatCode = document.getElementById("cheat").value;
-	var audio = new Audio("sources/sounds/phonk.wav");
+	var audio = new Audio("src/sounds/phonk.wav");
 	audio.loop = true;
 	if (cheatCode == "phonk") {
 		audio.play();

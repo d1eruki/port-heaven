@@ -6,12 +6,7 @@
 
 @font-face {
   font-family: "zaychek";
-  src: url("../sources/fonts/Zaychik-Regular.ttf");
-}
-
-@font-face {
-  font-family: "dihjauti";
-  src: url(https://github.com/tchristopherwhite/Dihjauti/blob/main/Dihjauti-Bold.otf);
+  src: url("../fonts/Zaychik-Regular.ttf");
 }
 
 @media screen and (max-width: 750px) {
@@ -21,16 +16,15 @@
 }
 
 html {
-  cursor: url("../sources/images/cursors/inactive.png"), auto;
+  cursor: url("../images/cursors/inactive.png"), auto;
 }
 
 * {
-  font-family: "1", system-ui;
+  font-family: "Roboto", serif;
   box-sizing: content-box;
 }
 
 p {
-  font-family: "Roboto", serif;
 }
 
 *::-webkit-scrollbar {
@@ -486,7 +480,7 @@ iframe,
 video,
 input,
 button {
-  cursor: url("../sources/images/cursors/active.png"), auto !important;
+  cursor: url("../images/cursors/active.png"), auto !important;
 }
 
 audio {

@@ -30,7 +30,7 @@ fieldset:not(.card fieldset) {
 }
 
 #left {
-	/*background: var(--white) url('../sources/images/fieldset-bg.png');*/
+	/*background: var(--white) url('../src/images/fieldset-bg.png');*/
 }
 
 fieldset:not(.card fieldset):hover {
