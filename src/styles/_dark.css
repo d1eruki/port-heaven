@@ -1,0 +1,79 @@
+*::-webkit-scrollbar-thumb,
+.shirt,
+#details {
+  background: var(--white);
+}
+
+body {
+  color: var(--white);
+  background: var(--black);
+  background-image: linear-gradient(var(--white01) 1px, transparent 1px), linear-gradient(to right, var(--white01) 1px, transparent 1px);
+}
+
+header {
+  border-bottom: 1px var(--black) solid;
+  background: var(--aqua);
+  color: var(--black);
+}
+
+.active::first-letter,
+.info span {
+  background: var(--pink);
+}
+
+#item:hover,
+iframe:hover,
+video:hover,
+img:hover:not(.shadowless),
+.card img,
+#qrc,
+.shirt {
+  /*box-shadow: 10px 10px 20px 5px var(--shadow);*/
+  box-shadow: 10px 10px var(--purple);
+}
+
+.card legend,
+.active {
+  background: var(--black);
+  color: var(--white);
+}
+
+#item:hover,
+#qrc {
+  background: var(--white);
+  color: var(--black);
+}
+
+.info h3 {
+  color: var(--white);
+}
+
+#item:hover h1 {
+  color: var(--black);
+}
+
+#item:hover h1::first-letter,
+::selection {
+  background: var(--pink);
+  color: var(--white);
+}
+
+marquee {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+marquee:before,
+marquee::after {
+  background: var(--black);
+}
+
+.marquee:before {
+  background: linear-gradient(to right, var(--white) 10%, transparent 80%);
+}
+
+.marquee:after {
+  background: linear-gradient(to left, var(--white) 10%, transparent 80%);
+}
+
+/*# sourceMappingURL=_dark.css.map */

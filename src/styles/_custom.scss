@@ -1,9 +1,7 @@
-// src/styles/_custom.scss
-
-@import url("gamma/overtune.css");
-@import url("colors.css");
-@import url("animations.css");
-@import url("width/393.css");
+@import "colors";
+@import "overtune";
+@import "animations";
+@import "393";
 @import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Caveat:wght@400..700&family=Press+Start+2P&family=Train+One&display=swap");
 
 @font-face {
@@ -24,9 +22,6 @@ html {
 * {
   font-family: "Roboto", serif;
   box-sizing: content-box;
-}
-
-p {
 }
 
 *::-webkit-scrollbar {
