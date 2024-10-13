@@ -1,9 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,js}'],
+  content: ['public/index.html', './src/**/*.{html,js,scss}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['zaychek', 'sans-serif'], // Заменить 'CustomFont' на твой кастомный шрифт
+        serif: ['Roboto', 'serif'],
+      },
+    },
   },
-  plugins: [],
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
 }
-

@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: "zaychek";
-  src: url("../fonts/Zaychik-Regular.ttf");
+  src: url("src/fonts/Zaychik-Regular.ttf");
 }
 
 @media screen and (max-width: 750px) {
@@ -16,7 +16,7 @@
 }
 
 html {
-  cursor: url("../images/cursors/inactive.png"), auto;
+  cursor: url("src/images/cursors/inactive.png"), auto;
 }
 
 * {
@@ -477,7 +477,7 @@ iframe,
 video,
 input,
 button {
-  cursor: url("../images/cursors/active.png"), auto !important;
+  cursor: url("src/images/cursors/active.png"), auto !important;
 }
 
 audio {
