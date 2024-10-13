@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['public/index.html', './src/**/*.{html,js,scss}'],
+  content: ['./src/**/*.{html,js,ts,jsx,tsx,scss}', './public/index.html'],
   theme: {
     extend: {
       fontFamily: {
@@ -9,8 +9,8 @@ module.exports = {
       },
     },
   },
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+  ],
 }
