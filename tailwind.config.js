@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['zaychek', 'sans-serif'], // Заменить 'CustomFont' на твой кастомный шрифт
-        serif: ['Roboto', 'serif'],
+        sans: ['Roboto', 'sans-serif'], // Заменить 'CustomFont' на твой кастомный шрифт
+        serif: ['Roboto','zaychek', 'serif'],
       },
     },
   },

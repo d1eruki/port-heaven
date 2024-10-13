@@ -526,7 +526,7 @@ marquee::after {
 }
 @font-face {
   font-family: "zaychek";
-  src: url("src/fonts/Zaychik-Regular.ttf");
+  src: url("../fonts/Zaychik-Regular.ttf");
 }
 @media screen and (max-width: 750px) {
   header img:first-child {
@@ -534,7 +534,7 @@ marquee::after {
   }
 }
 html {
-  cursor: url("src/images/cursors/inactive.png"), auto;
+  cursor: url("../images/cursors/inactive.png"), auto;
 }
 
 * {
