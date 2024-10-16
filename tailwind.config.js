@@ -2,15 +2,8 @@
 module.exports = {
   content: ['./src/**/*.{html,js,scss}'],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Roboto', 'sans-serif'], // Заменить 'CustomFont' на твой кастомный шрифт
-        serif: ['Roboto','zaychek', 'serif'],
-      },
-    },
+    extend: {},
   },
-  plugins: [
-    require('tailwindcss'),
-    require('autoprefixer'),
-  ],
+  plugins: [],
 }
+
