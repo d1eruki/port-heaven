@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss -i src/styles/main.scss -o dist/output.css --minify --watch"
+    "build:sass"    : "npx tailwindcss -i src/styles/input.scss -o dist/temp.css --minify --watch",
+    "build:postcss" : "npx postcss dist/temp.css -o dist/output.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,8 @@
     "postcss": "^8.4.47",
     "sass": "^1.79.5",
     "tailwindcss": "^3.4.14"
+  },
+  "dependencies": {
+    "postcss-cli": "^11.0.0"
   }
 }
