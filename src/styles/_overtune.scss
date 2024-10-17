@@ -5,8 +5,8 @@
 body {
   color: var(--black);
   background-color: var(--white);
-  background-image:	linear-gradient( var(--black01) 1px, transparent 1px),
-  linear-gradient(to right, var(--black01) 1px, transparent 1px);
+  background-image:	linear-gradient(to bottom, var(--black01) 1px, transparent 1px),
+                    linear-gradient(to right, var(--black01) 1px, transparent 1px);
 }
 
 header {
