@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:sass"    : "npx tailwindcss -i src/styles/input.scss -o dist/temp.css --minify --watch",
-    "build:postcss" : "npx postcss dist/temp.css -o dist/output.css --watch"
+    "build"    : "npx tailwindcss -i src/styles/input.scss -o dist/output.css --watch"
   },
   "keywords": [],
   "author": "",

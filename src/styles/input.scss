@@ -1,25 +1,109 @@
-@import '_colors.css';
-@import '_overtune.css';
-@import '_animations.css';
-@import '_393.css';
-@import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Caveat:wght@400..700&family=Press+Start+2P&family=Train+One&display=swap");
+@import 'animations';
+@import 'color-schemes/overtune';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Caveat:wght@400..700&family=Press+Start+2P&family=Train+One&display=swap");
+
 @font-face {
   font-family: "zaychek";
-  src: url("../fonts/Zaychik-Regular.ttf");
+  src: url("../src/fonts/Zaychik-Regular.ttf");
 }
 
 @media screen and (max-width: 750px) {
   header img:first-child {
     width: 64px;
   }
+
+  #main {
+    margin: 0 10px 10px 0;
+    grid-row-gap: 0;
+    grid-column-gap: 0;
+    width: fit-content;
+  }
+
+  #hider {
+    display: block;
+  }
+
+  body {
+    margin: 0 0 22.5px;
+  }
+
+  h1,
+  h3 {
+    font-size: 12px;
+  }
+
+  header img:first-child {
+    width: 75%;
+  }
+
+  header {
+    padding: 0 10px;
+    width: fit-content;
+  }
+
+  #left {
+    display: none;
+  }
+
+  #profile-internal,
+  #profile-legend {
+    display: block;
+  }
+
+  #center {
+    width: 92.5%;
+  }
+
+  legend h1 {
+    padding: 0;
+  }
+
+  .card img {
+    width: 100%;
+  }
+
+  .card fieldset {
+    width: 100%;
+    height: 100%;
+  }
+
+  fieldset,
+  .card legend {
+    animation: none;
+  }
+
+  #qrc {
+    display: none;
+  }
+
+  #stack-list {
+    display: block;
+  }
+
+  #item:not(:first-of-type),
+  iframe:not(:first-of-type),
+  video:not(:first-of-type) {
+    margin: 10px 0;
+  }
+
+  iframe:hover,
+  video:hover,
+  img:hover {
+    box-shadow: none;
+  }
+
+  .content {
+    margin: 10px;
+  }
 }
 
 html {
-  cursor: url("../images/cursors/inactive.png"), auto;
+  cursor: url("../src/images/cursors/inactive.png"), auto;
 }
 
 * {
@@ -57,7 +141,7 @@ body {
 
 
 .main {
-  width: -webkit-fill-available;
+  /*width: 100vw;*/
   justify-content: center;
   display: inline-grid;
   grid-template-areas:
@@ -159,14 +243,11 @@ fieldset:not(.card fieldset) > * {
 }
 
 legend:not(.card legend) {
-  background: var(--white);
-  border: var(--black) solid 1px;
   padding: 0 10px;
 }
 
 fieldset:not(.card fieldset) {
   padding: 0 20px;
-  /*border: var(--black) solid 1px;*/
   margin-top: 20px;
   /*border-radius: 25px;*/
   transition: all 0.25s ease-in-out;
@@ -175,7 +256,7 @@ fieldset:not(.card fieldset) {
 header img:hover,
 fieldset:hover,
 .card fieldset {
-  animation: none !important;
+  animation: none
 }
 
 .item:hover img,
@@ -196,7 +277,7 @@ img:hover:not(.shadowless) {
 }
 
 .shakeless {
-  animation: none !important;
+  animation: none
 }
 
 img,
@@ -262,7 +343,7 @@ legend {
 .logo {
   width: 80%;
   margin: auto;
-  /*filter: invert(100%) !important;*/
+  /*filter: invert(100%)*/
 }
 
 .cardBox:hover .card {
@@ -371,7 +452,6 @@ legend {
   grid-column-gap: 0;
   padding: 10px;
   align-items: start;
-  border: var(--black) solid 1px;
 }
 
 .item p {
@@ -379,7 +459,7 @@ legend {
 }
 
 .item:hover > p {
-  /*display: inline !important;*/
+  /*display: inline*/
 }
 
 .item img {
@@ -412,8 +492,6 @@ legend {
 .stack-item-desc {
   width: inherit;
   padding: 20px;
-  background: var(--white);
-  border: var(--black) solid 1px;
 }
 
 .qrc {
@@ -423,7 +501,6 @@ legend {
   right: 2%;
   z-index: 2;
   transition: all 0.25s ease-in-out;
-  border: var(--black) 1px solid;
 }
 
 .qrc:hover {
@@ -461,7 +538,7 @@ iframe,
 video {
   /*width: 100%;
   height: fit-content;*/
-  border: none !important;
+  border: none
 }
 
 .youtube {
@@ -476,7 +553,7 @@ iframe,
 video,
 input,
 button {
-  cursor: url("../images/cursors/active.png"), auto;
+  cursor: url("../src/images/cursors/active.png"), auto;
 }
 
 audio {
@@ -485,11 +562,6 @@ audio {
 
 .scroll {
   padding-bottom: 10px;
-}
-
-marquee {
-  position: relative;
-  z-index: 1;
 }
 
 .nocursor,
@@ -517,24 +589,6 @@ input {
   font-size: inherit;
 }
 
-marquee:before,
-marquee:after {
-  z-index: 1;
-  content: "";
-  top: 0;
-  width: 3px;
-  height: 100%;
-  position: absolute;
-}
-
-marquee:before {
-  left: 0;
-}
-
-marquee::after {
-  right: 0;
-}
-
 .back-text {
   scale: 150%;
   top: 150px;
@@ -543,10 +597,29 @@ marquee::after {
   position: fixed;
   margin: 100px -100px;
   z-index: -1;
-  font-family: "zaychek", serif !important;
-  color: var(--grey) !important;
-  font-size: 800px !important;
-  /*text-shadow: 10px 10px var(--white02);*/
+  font-family: "zaychek", serif;
+  font-size: 800px;
   transform: rotate(350deg);
   /*animation: glitch 60s infinite;*/
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }

@@ -1,0 +1,141 @@
+@import 'colors';
+
+*::-webkit-scrollbar-thumb {
+  background-color: $white;
+}
+
+body {
+  color: $black;
+  background-color: $white;
+  background-image:	linear-gradient(to bottom, $black01 1px, transparent 1px),
+                    linear-gradient(to right, $black01 1px, transparent 1px);
+}
+
+header {
+  /* border-bottom: 1px $black) solid; */
+  background-color: $black;
+  color: $white;
+}
+
+iframe:hover,
+img:hover:not(.shadowless),
+#qrc:hover,
+video:hover,
+.card img,
+#item:hover,
+.shirt {
+  /*box-shadow: 10px 10px $pink02;*/
+}
+
+fieldset:not(.card fieldset) {
+  /*background-color: $white;*/
+}
+
+#left {
+  /*background-color: $white url('../src/images/fieldset-bg.png');*/
+}
+
+fieldset:not(.card fieldset):hover {
+  /*box-shadow: 10px 10px $pink02;*/
+}
+
+.shirt {
+  background-color: $black;
+}
+
+.card legend {
+  background-color: $black;
+  color: $white;
+}
+
+.info h3 {
+  color: $white;
+}
+
+.info span {
+  background-color: $black;
+}
+
+.active {
+  color: $white;
+  background-color: $black;
+}
+
+.active:after {
+  color: $white;
+  background-color: $black;
+}
+
+.active:before {
+  color: $white;
+  background-color: $black;
+}
+
+.active::first-letter {
+  color: $white;
+  background-color: $pink02;
+}
+
+.active:before,
+.active:after {
+  text-shadow: 1px 0 $pink02;
+}
+
+#item {
+  background-color: $white;
+}
+
+#item:hover {
+  color: $black;
+}
+
+#item:hover h1::first-letter {
+  background-color: $pink02;
+}
+
+#qrc {
+  background-color: $white;
+}
+
+#details {
+  background-color: $white;
+}
+
+::selection {
+  background-color: $black;
+  color: $white;
+}
+
+.marquee {
+  background-color: $black;
+  color: $black;
+}
+
+.shadowless {
+  box-shadow: none;
+}
+
+.back-text {
+  color: $white;
+}
+
+legend:not(.card legend) {
+  background: $white;
+}
+
+legend:not(.card legend) {
+  border: $black solid 1px;
+}
+
+.item {
+  border: $black solid 1px;
+}
+
+.stack-item-desc {
+  background: $white;
+  border: $black solid 1px;
+}
+
+.qrc {
+  border: $black 1px solid;
+}
