@@ -6,7 +6,11 @@ module.exports = {
     './src/**/*.{html,js,scss}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        '[auto]': 'auto auto',
+      }
+    },
   },
   plugins: [],
 }
