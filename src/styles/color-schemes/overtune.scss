@@ -108,7 +108,7 @@ fieldset:not(.card fieldset):hover {
 
 .marquee {
   background-color: $black;
-  color: $black;
+  color: $white;
 }
 
 .shadowless {
@@ -116,7 +116,7 @@ fieldset:not(.card fieldset):hover {
 }
 
 .back-text {
-  color: $white;
+  color: $grey;
 }
 
 legend:not(.card legend) {
