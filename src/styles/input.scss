@@ -329,12 +329,16 @@ legend {
 .card fieldset:nth-of-type(2) {
   transform: rotate(90deg);
 }
+
 .card fieldset:nth-of-type(3) {
   transform: rotate(180deg);
 }
-.card fieldset:nth-of-type(3)/*>legend*/ {
+
+.card fieldset:nth-of-type(3) /*>legend*/
+{
   transform: rotate(180deg);
 }
+
 .card fieldset:nth-of-type(4) {
   transform: rotate(-90deg);
 }
@@ -344,7 +348,9 @@ legend {
 }
 
 @keyframes move {
-  100%	{margin-left: 70px;}
+  100% {
+    margin-left: 70px;
+  }
 }
 
 .info h3 {
@@ -354,7 +360,7 @@ legend {
   padding: 0 5px 0 15px;
 }
 
-.active{
+.active {
   position: relative;
   text-align: center;
   height: 100%;
@@ -384,7 +390,7 @@ legend {
 
 .item {
   padding: 10px;
-  transition: all .3s cubic-bezier(.65,.05,.36,1);
+  transition: all .3s cubic-bezier(.65, .05, .36, 1);
 
   &:hover {
     transform: translateY(10px) translateX(10px);

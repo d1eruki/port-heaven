@@ -4,6 +4,7 @@
   &::-webkit-scrollbar-thumb {
     background-color: $white;
   }
+
   &::selection {
     background-color: $black;
     color: $white;
@@ -79,6 +80,7 @@ header {
     background-color: $pink;
   }
 }
+
 .details {
   background-color: $white;
 }
