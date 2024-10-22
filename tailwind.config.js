@@ -6,6 +6,9 @@ module.exports = {
     './src/**/*.{html,js,scss}'
   ],
   theme: {
+    colors: {
+      '[secondary-025]': 'hsla(0, 0%, 12%, 0.25)',
+    },
     extend: {
       gridTemplateColumns: {
         '[auto]': 'auto auto',

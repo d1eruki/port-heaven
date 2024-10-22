@@ -1,19 +1,28 @@
-$black: hsl(0, 0%, 0%);
-$black01: hsla(0, 0%, 0%, 0.05);
-$black02: hsl(0, 0%, 7.5%);
-$black03: hsl(0, 0%, 5%);
-$white: hsl(0, 0%, 100%);
-$white01: hsla(0, 0%, 100%, 0.1);
-$white02: hsl(0, 0%, 90%);
-$grey: hsl(0, 0%, 95%);
-$grey-darker: hsl(0, 0%, 75%);
-$aqua: hsl(174, 52%, 60%);
-$sky: hsl(186, 67%, 61%);
-$pink: hsl(314, 97%, 44%);
-$pink02: hsl(321, 100%, 69%);
-$green: hsl(134, 97%, 56%);
-$shadow: hsla(0, 0%, 50%, 0.5);
-$purple: hsl(253, 64%, 65%);
-$purple02: hsla(248, 84%, 63%, 0.9);
-$yellow: hsl(68, 84%, 63%);
-$govno: hsl(33, 39%, 9%);
+//base
+
+$black: hsla(0 0% 0% / 1);
+$white: hsla(0 0% 100% / 1);
+$grey: hsla(0 0% 95% / 1);
+$grey-darker: hsla(0 0% 75% / 1);
+$sky: hsla(186 67% 61% / 1);
+$pink: hsla(314 97% 44% / 1);
+$green: hsla(134 97% 56% / 1);
+$shadow: hsla(0 0% 50% / .5);
+$yellow: hsla(68 84% 63% / 1);
+$govno: hsla(33 39% 9% / 1);
+
+/// overture
+
+$bg: linear-gradient(
+                to right top,
+                hsl(0, 0%, 0%),
+                hsl(0, 0%, 10%)
+);
+
+$primary: hsla(248 84% 63% / 1);
+$primary-darker: hsla(248deg 65% 50% / 1);
+
+$secondary: hsla(0deg 0% 12% / 1);
+$secondary-025: hsla(0deg 0% 12% / .25);
+$secondary-light: hsla(0 0% 25% / 1);
+$secondary-dark: hsla(0deg 0% 10% / 1);
