@@ -90,6 +90,12 @@ body {
   }
 }
 
+.active::first-letter {
+    background-color: $pink;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
 .item {
   /*background-color: $secondary-3;*/
   backdrop-filter: blur(10px);
@@ -103,15 +109,6 @@ body {
   &:hover h1::first-letter {
     background-color: $pink;
   }
-}
-
-.details {
-  background-color: $white;
-}
-
-.marquee {
-  background-color: $secondary;
-  color: $white;
 }
 
 .shadowless {
