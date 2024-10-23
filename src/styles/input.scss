@@ -1,89 +1,14 @@
 @import 'animations';
-@import 'color-schemes/overture';
+@import 'color-schemes/asthma';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic&family=Caveat:wght@400..700&family=Press+Start+2P&family=Train+One&display=swap");
-
-@font-face {
-  font-family: "zaychek";
-  src: url("../src/fonts/Zaychik-Regular.ttf");
-}
-
 @media screen and (max-width: 750px) {
-  header img:first-child {
-    width: 64px;
-  }
 
-  .hider {
-    display: block;
-  }
-
-  body {
-    margin: 0 0 22.5px;
-  }
-
-  h1,
-  h3 {
-    font-size: 12px;
-  }
-
-  header img:first-child {
-    width: 75%;
-  }
-
-  .left {
-    display: none;
-  }
-
-  .profile-internal,
-  .profile-legend {
-    display: block;
-  }
-
-  .center {
-    width: 92.5%;
-  }
-
-  legend h1 {
-    padding: 0;
-  }
-
-  .card img {
-    width: 100%;
-  }
-
-  .card fieldset {
-    width: 100%;
-    height: 100%;
-  }
-
-  fieldset,
-  .card legend {
-    animation: none;
-  }
-
-  .qrc {
-    display: none;
-  }
-
-  .item:not(:first-of-type),
-  iframe:not(:first-of-type),
-  video:not(:first-of-type) {
-    margin: 10px 0;
-  }
-
-  iframe:hover,
-  video:hover,
-  img:hover {
-    box-shadow: none;
-  }
-
-  .content {
-    margin: 10px;
-  }
 }
 
 html {
@@ -91,7 +16,8 @@ html {
 }
 
 * {
-  font-family: "Open Sans", serif;
+  font-family: Inter, sans-serif;
+  font-weight: 100;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -109,7 +35,7 @@ html {
 
 body {
   margin: 0;
-  font-size: 14px;
+  font-size: 1rem;
   text-transform: lowercase;
   /*background-size: 25px 25px;*/
   height: 100vh;
@@ -120,10 +46,6 @@ body {
   width: 64px;
 }
 
-footer {
-  display: none;
-}
-
 .right {
   grid-area: right;
   width: min-content;
@@ -132,40 +54,6 @@ footer {
   position: sticky;
   text-align: right;
   display: none;
-}
-
-h1 {
-  display: block;
-  font-size: 2em;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  font-weight: bold;
-}
-
-h2 {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding: 0 10px;
-}
-
-h4 {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding: 10px 0;
-}
-
-p {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding: 0;
 }
 
 fieldset {
@@ -358,36 +246,7 @@ legend {
 .info h3 {
   text-align: right;
   text-transform: uppercase;
-  font-weight: 800;
   padding: 0 5px 0 15px;
-}
-
-.active {
-  position: relative;
-  text-align: center;
-  height: 100%;
-
-  &:before {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    clip-path: polygon(0 0);
-    width: 100%;
-  }
-
-  &:after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    clip-path: polygon(0 0);
-    animation: noise-animY 2s infinite linear alternate-reverse;
-    -webkit-animation: noise-animY-1 2s infinite linear alternate-reverse;
-    width: calc(100% - 4px);
-  }
 }
 
 .item {
@@ -520,21 +379,6 @@ audio {
 button,
 input {
   font-size: inherit;
-}
-
-.back-text {
-  scale: 150%;
-  top: 150px;
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  margin: 100px -100px;
-  z-index: -1;
-  font-family: "zaychek", serif;
-  font-size: 800px;
-  transform: rotate(350deg);
-  display: none;
-  /*animation: glitch 60s infinite;*/
 }
 
 .marquee {

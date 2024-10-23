@@ -9,8 +9,6 @@
 
     <link href="../src/images/favicon.ico" rel="icon">
 
-    <link href="https://fonts.googleapis.com/css?family=IBM Plex Mono" rel="stylesheet">
-
     <link href="../dist/output.css" rel="stylesheet">
 
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/da22173e3b.js"></script>
@@ -22,27 +20,27 @@
     <script defer src="../src/scripts/script.js"></script>
 </head>
 <body>
-<header class="sticky top-0 z-40">
-    <!--			<a href="#">-->
-    <!--				<img src="../src/images/logo.jpg" class="width-64" alt="Girl in a jacket">-->
-    <!--			</a>-->
-    <div class="md:container flex flex-wrap md:mx-auto">
-        <h1 class="active" data-open-block="about" data-text="/about">/about</h1>
-        <h1 data-open-block="stack" data-text="/stack">/stack</h1>
-        <h1 data-open-block="design" data-text="/design">/design</h1>
-        <h1 data-open-block="video" data-text="/video">/video</h1>
-        <h1 data-open-block="pic" data-text="/pic">/pic</h1>
-        <h1 data-open-block="dev" data-text="/dev">/dev</h1>
+<header class="sticky top-0 z-40 bg-[black]">
+    <div class="md:container flex flex-wrap md:mx-auto items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <a href="#">
+                <img alt="Girl in a jacket" class="w-16" src="../src/images/logo.jpg">
+            </a>
+            <span>d1eruki</span>
+        </div>
+        <div class="space-x-10">
+            <span class="active" data-open-block="about" data-text="/about">/about</span>
+            <span data-open-block="stack" data-text="/stack">/stack</span>
+            <span data-open-block="design" data-text="/design">/design</span>
+            <span data-open-block="video" data-text="/video">/video</span>
+            <span data-open-block="pic" data-text="/pic">/pic</span>
+        </div>
     </div>
 </header>
 
-<div class="md:container md:mx-auto">
-    <div class="back-text">
-        dайруки
-    </div>
+<div class="md:container md:mx-auto flex flex-col h-[100vh-64]">
     <div class="flex gap-4 mt-4">
-        <fieldset class="sticky top-10 md:!block hidden">
-            <legend><h1>profile</h1></legend>
+        <div class="sticky top-10 md:!block hidden">
             <div class="info grid grid-cols-[auto] gap-x-4">
                 <h3>phot</h3>
                 <div class="nocursor cardBox">
@@ -86,9 +84,8 @@
                     помогите
                 </p>
             </div>
-        </fieldset>
-        <fieldset class="content is-active bg-[secondary-025] p-4" data-content="about">
-            <legend><h1>Нет цели, есть только путь</h1></legend>
+        </div>
+        <div class="content is-active" data-content="about">
             <p class="text-wrap">Привет! Меня зовут <b>Артем</b>, и я увлекаюсь <b>UI/UX дизайном</b>. На данный момент
                 я работаю в компании <b>VARWIN</b>, где занимаюсь созданием прототипов и дизайнов в <b>фигме</b>. Помимо
                 этого, несмотря на то, что это не моя основная направленность, я занимаюсь тестированием, немного
@@ -118,12 +115,8 @@
                 <br>
                 <br>
                 <b>Этот текст был написан с помощью НЕЙРОсетей!</b></p>
-            <div class="marquee">
-                <span>* * * important content * * * important content * * * important content * * * important content * * *</span>
-            </div>
-        </fieldset>
-        <fieldset class="content bg-[secondary-025] p-4" data-content="stack">
-            <legend><h1>стаки</h1></legend>
+        </div>
+        <div class="content" data-content="stack">
             <div class="grid grid-cols-3 gap-4">
                 <div class="item">
                     <div class="itemName">
@@ -224,16 +217,12 @@
                     <p>Делал на нем видосики в шараге</p>
                 </div>
             </div>
-        </fieldset>
-        <fieldset class="content bg-[secondary-025] p-4" data-content="design">
-            <legend><h1>Десигники</h1></legend>
+        </div>
+        <div class="content" data-content="design">
             <p>Я, блять, в своем познании настолько преисполнился, что я как будто бы уже сто триллионов миллиардов лет,
                 блять, проживаю на триллионах и триллионах таких же планет, понимаешь? Как эта Земля. Мне уже этот мир
                 абсолютно понятен, и я здесь ищу только одного, блять: покоя, умиротворения и вот этой гармонии от
                 слияния с бесконечно вечным.</p>
-            <div class="marquee">
-                <span>* * * important content * * * important content * * * important content * * * important content * * *</span>
-            </div>
             <div class="grid grid-cols-3 gap-4">
                 <div class="item">
                     <a href="https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/COMPONENTS%2FXRMS?node-id=1300-11069&t=5Ejig4D5VSVSHd6f-1">
@@ -245,264 +234,16 @@
                     </div>
                 </div>
             </div>
-        </fieldset>
-        <fieldset class="content bg-[secondary-025] p-4" data-content="video">
-            <legend><h1>видосвы</h1></legend>
-            <p>От созерцания этого великого фрактального подобия и от вот этого вот замечательного всеединства существа
-                бесконечно вечного – куда ни посмотри: хоть в глубь – бесконечно малое, хоть ввысь – бесконечно большое,
-                понимаешь? А ты мне опять со своими там это. Иди суетись дальше, твое распределение – это твой путь и
-                твой горизонт познания, ощущения и твоей природы. И он несоизмеримо мелок по сравнению с моим,
-                понимаешь? Я как будто уже глубокий старец бессмертный или там уже почти бессмертный, который на этой
-                планете от её самого зарождения, еще когда только солнце еще только-только сформировалось как звезда и
-                вот это газопылевое облако… после взрыва Солнца, когда оно вспыхнуло, как звезда и начало формировать
-                консерваты-планеты, понимаешь? Я на этой Земле уже как будто пять миллиардов лет, блять, живу и знаю её
-                вдоль и поперек, этот весь мир. А ты мне там какие-то эти. Мне похуй на твои тачки, на твои, блять,
-                нахуй, яхты, на твои квартиры там, на твое благо, понимаешь? Я был на этой планете или бесконечном
-                множестве и круче Цезаря, и круче Гитлера, блять, и круче всех великих, понимаешь? А где-то был конченым
-                говном, еще хуже, чем здесь. Потому что я множество этих состояний чувствую. Где-то я был больше подобен
-                растению, где-то был больше подобен птице, там червю. Где-то просто был сгусток камня. Это все есть
-                душа, понимаешь? Она вот имеет грани подобия совершенно многообразные, бесконечное множество. Но тебе
-                этого не понять, поэтому ты езжай себе, блять. Мы в этом мире как бы живем разными ощущениями, разными
-                стремлениями. Соответственно разное наше и место, разное наше распределение. Тебе я желаю, чтоб все
-                самые крутые тачки были у тебя и все самые лучшие самки, чтобы раздвигали перед тобой ноги там, все свои
-                щели шиворот-навыворот, блять, перед тобой, как ковер раскрывали и растлевали, растлали. И ты их чтоб
-                ебал до посинения, до красна, как солнца закатного. Чтоб на лучших яхтах, на самолетах летал и кончал
-                прямо с иллюминатора и все что только может в голову прийти или не прийти. Если мало идей – обращайся ко
-                мне, я тебе на каждую твою идею еще сотни триллионов подскажу как, что делать. Ну а я, что? Я иду как
-                глубокий старец, узревший вечное, прикоснувшийся к божественному, сам стал богоподобен и устремлен в это
-                бесконечное. Который в умиротворении, покое, гармонии, благодати, в этом сокровенном блаженстве
-                пребывает, вовлеченный во все и во вся, понимаешь? Вот и все. В этом наша разница, так сказать. Я иду
-                любоваться мирозданием, а ты идешь какой-то преисполняться в гранях каких-то. Вот и вся разница,
-                понимаешь? Ты не зришь это вечное бесконечное, оно тебе не нужно. Но зато ты, так сказать, более
-                активен, как вот этот дятел долбящий или муравей, который вот очень активен в своей стезе, вот и все.
-                Поэтому давай, наши пути здесь, так сказать, имеют, конечно, грани подобия, потому что все едино, но ты
-                меня... Я-то тебя прекрасно понимаю, а вот ты – вряд ли, потому что как бы я, ты и как бы я тебя в себе
-                содержу – всю твою природу. Она составляет одну маленькую там песчиночку от того, что есть во мне,
-                понимаешь? Вот и все. Поэтому давай ступай, езжай, а я пошел наслаждаться, нахуй, блять, прекрасным
-                осенним закатом, блять, на берегу теплой южной реки. Все, пиздуй-борозду и я попиздил нахуй.</p>
-            <div class="marquee">
-                <span>* * * important content * * * important content * * * important content * * * important content * * *</span>
-            </div>
-            <div class="stack-list">
-                <div class="stack-item">
-                    <a href="https://www.youtube.com/watch?v=uLF0e0o2VN0">
-                        <img alt="Girl in a jacket" class="youtube"
-                             src="https://i.ytimg.com/vi_webp/uLF0e0o2VN0/sddefault.webp">
-                    </a>
-                    <div class="stack-item-desc">
-                        "Varwin VR Такелаж Lab | Зачем VR в цехах? Что такое VR Такелаж Lab и что в него входит?"
-                    </div>
-                </div>
-                <div class="stack-item">
-                    <a href="https://www.youtube.com/watch?v=osFWI0nA_3M">
-                        <img alt="Girl in a jacket" class="youtube"
-                             src="https://i.ytimg.com/vi_webp/osFWI0nA_3M/sddefault.webp">
-                    </a>
-                    <div class="stack-item-desc">
-                        "VR-тренажер для осуществления работ по зачистке емкости от нефтешлама"
-                    </div>
-                </div>
-                <div class="stack-item">
-                    <a href="https://www.youtube.com/watch?v=1oAmhhBRJ7Q">
-                        <img alt="Girl in a jacket" class="youtube"
-                             src="https://i.ytimg.com/vi_webp/MqbIweA8ISM/sddefault.webp">
-                    </a>
-                    <div class="stack-item-desc">
-                        "VR для горно-обогатительного сектора | Кейс TAPP Group"
-                    </div>
-                </div>
-                <div class="stack-item">
-                    <a href="https://www.youtube.com/watch?v=5a4NMcGTX2M">
-                        <img alt="Girl in a jacket" class="youtube"
-                             src="https://i.ytimg.com/vi_webp/ln-OxWhzVGE/sddefault.webp">
-                    </a>
-                    <div class="stack-item-desc">
-                        "VR-решение для маркетологов и мерчандайзеров | Автоматические планограммы"
-                    </div>
-                </div>
-                <div class="stack-item">
-                    <a href="https://www.youtube.com/watch?v=8Kb8mZhst5g">
-                        <img alt="Girl in a jacket" class="youtube"
-                             src="https://i.ytimg.com/vi_webp/Wt1czyC4Wyk/sddefault.webp">
-                    </a>
-                    <div class="stack-item-desc">
-                        "VR-тренажер 360 по ОТиПБ: фиксация нарушений на производстве"
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="content bg-[secondary-025] p-4" data-content="pic">
-            <legend><h1>Пиктуресы</h1></legend>
-            <p>От созерцания этого великого фрактального подобия и от вот этого вот замечательного всеединства существа
-                бесконечно вечного – куда ни посмотри: хоть в глубь – бесконечно малое, хоть ввысь – бесконечно большое,
-                понимаешь? А ты мне опять со своими там это. Иди суетись дальше, твое распределение – это твой путь и
-                твой горизонт познания, ощущения и твоей природы. И он несоизмеримо мелок по сравнению с моим,
-                понимаешь? Я как будто уже глубокий старец бессмертный или там уже почти бессмертный, который на этой
-                планете от её самого зарождения, еще когда только солнце еще только-только сформировалось как звезда и
-                вот это газопылевое облако… после взрыва Солнца, когда оно вспыхнуло, как звезда и начало формировать
-                консерваты-планеты, понимаешь? Я на этой Земле уже как будто пять миллиардов лет, блять, живу и знаю её
-                вдоль и поперек, этот весь мир. А ты мне там какие-то эти. Мне похуй на твои тачки, на твои, блять,
-                нахуй, яхты, на твои квартиры там, на твое благо, понимаешь? Я был на этой планете или бесконечном
-                множестве и круче Цезаря, и круче Гитлера, блять, и круче всех великих, понимаешь? А где-то был конченым
-                говном, еще хуже, чем здесь. Потому что я множество этих состояний чувствую. Где-то я был больше подобен
-                растению, где-то был больше подобен птице, там червю. Где-то просто был сгусток камня. Это все есть
-                душа, понимаешь? Она вот имеет грани подобия совершенно многообразные, бесконечное множество. Но тебе
-                этого не понять, поэтому ты езжай себе, блять. Мы в этом мире как бы живем разными ощущениями, разными
-                стремлениями. Соответственно разное наше и место, разное наше распределение. Тебе я желаю, чтоб все
-                самые крутые тачки были у тебя и все самые лучшие самки, чтобы раздвигали перед тобой ноги там, все свои
-                щели шиворот-навыворот, блять, перед тобой, как ковер раскрывали и растлевали, растлали. И ты их чтоб
-                ебал до посинения, до красна, как солнца закатного. Чтоб на лучших яхтах, на самолетах летал и кончал
-                прямо с иллюминатора и все что только может в голову прийти или не прийти. Если мало идей – обращайся ко
-                мне, я тебе на каждую твою идею еще сотни триллионов подскажу как, что делать. Ну а я, что? Я иду как
-                глубокий старец, узревший вечное, прикоснувшийся к божественному, сам стал богоподобен и устремлен в это
-                бесконечное. Который в умиротворении, покое, гармонии, благодати, в этом сокровенном блаженстве
-                пребывает, вовлеченный во все и во вся, понимаешь? Вот и все. В этом наша разница, так сказать. Я иду
-                любоваться мирозданием, а ты идешь какой-то преисполняться в гранях каких-то. Вот и вся разница,
-                понимаешь? Ты не зришь это вечное бесконечное, оно тебе не нужно. Но зато ты, так сказать, более
-                активен, как вот этот дятел долбящий или муравей, который вот очень активен в своей стезе, вот и все.
-                Поэтому давай, наши пути здесь, так сказать, имеют, конечно, грани подобия, потому что все едино, но ты
-                меня... Я-то тебя прекрасно понимаю, а вот ты – вряд ли, потому что как бы я, ты и как бы я тебя в себе
-                содержу – всю твою природу. Она составляет одну маленькую там песчиночку от того, что есть во мне,
-                понимаешь? Вот и все. Поэтому давай ступай, езжай, а я пошел наслаждаться, нахуй, блять, прекрасным
-                осенним закатом, блять, на берегу теплой южной реки. Все, пиздуй-борозду и я попиздил нахуй.</p>
-            <div class="marquee">
-                <span>* * * important content * * * important content * * * important content * * * important content * * *</span>
-            </div>
-            <div class="marquee">
-                <img alt="Girl in a jacket" src="../src/images/placeholder.svg">
-            </div>
-        </fieldset>
-        <fieldset class="content bg-[secondary-025] p-4" data-content="dev">
-            <legend><h1>Разрабочески</h1></legend>
-            <div class="toggle">
-                Mode
-                <label>My field <input checked class="toggle" id="toggle" type="checkbox"></label>
-            </div>
-            <label>My field <input id="colorPicker" type="color" value="#8888ff"/></label>
-
-            <div class="cheatForm">
-                <p>Введите чит</p>
-                <label>My field <input id="cheat" placeholder="вводи" type="text"/></label>
-                <button class="cheatEnter" onclick="cheat()">ентер</button>
-            </div>
-            <div class="stack-list">
-                <div class="nocursor item-cardBox">
-                    <div class="item-card">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/psd.svg">
-                        <h1>photoshop</h1>
-                    </div>
-                    <div class="item-shirt">
-                        <div class="item">
-                            <div class="itemName">
-                                <p>mid</p>
-                            </div>
-                            <p>Увлекаюсь фотошопом со школьных лет, фотошопил друзей на аватарки вконтакте. Это
-                                баловство позволило в настоящее время крутить фотокарточками как захочется</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/ai.svg">
-                        <h1>illustrator</h1>
-                        <p>jun</p>
-                    </div>
-                    <p>С иллюстратором до сих пор сложные отношения, я пытаю его он пытает меня</p>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/pp.svg">
-                        <h1>premiere pro</h1>
-                        <p>mid</p>
-                    </div>
-                    <p>В студенческое время работал в сони вегасе, ленясь перекатываться на премьер, но приколы которые
-                        он умеет делать, особенно после вегаса, заставили восторгнуться</p>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/ae.svg">
-                        <h1>after effects</h1>
-                        <p>jun</p>
-                    </div>
-                    <p>Увлекание эффектиком появилось когда перекатился на премьер. В коллекции уже есть пара прикольных
-                        заставок (⌐■_■)</p>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/au.svg">
-                        <h1>audition</h1>
-                        <p>jun</p>
-                    </div>
-                    <p>этот продукт открываю крайне редко, только для рабочих целей, но навалить бассов, застрейчить
-                        диктора или почистить мусор могу</p>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/adobe.svg">
-                        <h1>adobe</h1>
-                        <p>middle</p>
-                    </div>
-                    ▶ photoshop<br>
-                    ▶ after effects<br>
-                    ▶ premiere pro<br>
-                    ▶ illustrator<br>
-                    ▶ audition<br>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/figma.svg">
-                        <h1>figma</h1>
-                        <p>middle</p>
-                    </div>
-                    <p>В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present</p>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/unity.svg">
-                        <h1>unity</h1>
-                        <p>jun</p>
-                    </div>
-                    <p>Ориентируюсь в интерфейсе, могу создать материал. Но в общем, есть опыт верстки игрового
-                        интерфейса на канвасах и uielements</p>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/css.svg">
-                        <h1>css</h1>
-                        <p>middle</p>
-                    </div>
-                    <p>Последний раз серьезно занимался созданием сайтов в учебные годы, наверстываю упущенной,
-                        обмазываясь флексами и гридами</p>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/html.svg">
-                        <h1>html</h1>
-                        <p>middle</p>
-                    </div>
-                    <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-                </div>
-                <div class="item">
-                    <div class="itemName">
-                        <img alt="Girl in a jacket" class="shadowless" src="../src/images/sv.svg">
-                        <h1>Sony Vegas</h1>
-                        <p>middle</p>
-                    </div>
-                    <p>Делал на нем видосики в шараге</p>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="right">
-            <legend><h1>Нотис</h1></legend>
-        </fieldset>
+        </div>
     </div>
-    <div class="nocursor qrc">
-        <h1>scamme!</h1>
-    </div>
-    <footer>
-        <audio autoplay controls loop preload src="../src/sounds/phonk.wav"></audio>
+    <footer class="mt-auto">
         ну я сделал да
     </footer>
 </div>
+
+<div class="nocursor qrc">
+    <h1>scamme!</h1>
+</div>
+
 </body>
 </html>

@@ -18,32 +18,6 @@ $("[data-open-block]").on("click", function () {
     }
 });
 
-function cheat() {
-    const cheatCode = $("#cheat").val()?.toLowerCase(); // Получаем значение и приводим к нижнему регистру
-    if (!cheatCode) return; // Если cheatCode пустой, выходим из функции
-
-    const audio = new Audio("src/sounds/phonk.wav");
-    audio.loop = true;
-
-    switch (cheatCode) {
-        case "phonk":
-            audio.play();
-            break;
-        case "phonkstop":
-            audio.pause();
-            audio.currentTime = 0; // Сбрасываем время воспроизведения
-            break;
-        case "cheats":
-            if (!$("header h1").length) { // Проверяем, не добавлен ли уже заголовок
-                $("header").append("<h1>Cheats Activated</h1>");
-            }
-            break;
-        default:
-            console.log("Unknown cheat code");
-            break;
-    }
-}
-
 jQuery(".qrc").qrcode({
     render: "table",
     text: "https://t.me/d1eruki"
