@@ -1,32 +1,50 @@
-$("[data-open-block]").on("click", function() {
-	var $this = $(this);
-	var target = $this.data("open-block");
+$("[data-open-block]").on("click", function () {
+    const $this = $(this);
+    const target = $this.data("open-block");
 
-	// Удаляем активные классы только один раз
-	$("[data-open-block].active").removeClass("active");
-	$("[data-content].is-active").removeClass("is-active");
+    // Кэшируем активные элементы
+    const $activeBlock = $("[data-open-block].active");
+    const $activeContent = $("[data-content].is-active");
+    const $targetContent = $(`[data-content="${target}"]`);
 
-	// Добавляем активные классы
-	$this.addClass("active");
-	$(`[data-content="${target}"]`).addClass("is-active");
+    // Удаляем активные классы, только если активный элемент отличается
+    if (!$this.is($activeBlock)) {
+        $activeBlock.removeClass("active");
+        $activeContent.removeClass("is-active");
+
+        // Добавляем активные классы
+        $this.addClass("active");
+        $targetContent.addClass("is-active");
+    }
 });
 
 function cheat() {
-	var cheatCode = $("#cheat").val(); // Получаем значение input с id "cheat"
-	var audio = new Audio("src/sounds/phonk.wav");
-	audio.loop = true;
+    const cheatCode = $("#cheat").val()?.toLowerCase(); // Получаем значение и приводим к нижнему регистру
+    if (!cheatCode) return; // Если cheatCode пустой, выходим из функции
 
-	if (cheatCode === "phonk") {
-		audio.play();
-	} else if (cheatCode === "phonkstop") {
-		audio.pause();
-		audio.currentTime = 0; // Устанавливаем время воспроизведения на 0, если нужно остановить
-	} else if (cheatCode === "cheats") {
-		$("header").append("<h1>Cheats Activated</h1>");
-	}
+    const audio = new Audio("src/sounds/phonk.wav");
+    audio.loop = true;
+
+    switch (cheatCode) {
+        case "phonk":
+            audio.play();
+            break;
+        case "phonkstop":
+            audio.pause();
+            audio.currentTime = 0; // Сбрасываем время воспроизведения
+            break;
+        case "cheats":
+            if (!$("header h1").length) { // Проверяем, не добавлен ли уже заголовок
+                $("header").append("<h1>Cheats Activated</h1>");
+            }
+            break;
+        default:
+            console.log("Unknown cheat code");
+            break;
+    }
 }
 
 jQuery(".qrc").qrcode({
-	render	: "table",
-	text	: "https://t.me/d1eruki"
+    render: "table",
+    text: "https://t.me/d1eruki"
 });
