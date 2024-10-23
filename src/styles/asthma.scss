@@ -28,6 +28,7 @@ $yellow: hsla(68 84% 63% / 1);
 
 * {
   color: #a8a8a8;
+
   &::-webkit-scrollbar-thumb {
     background-color: $white;
   }
@@ -40,11 +41,13 @@ $yellow: hsla(68 84% 63% / 1);
 
 body {
   color: $white;
-  background-image:	linear-gradient(to bottom, $black 1px, transparent 1px),
-                    linear-gradient(to right, $black 1px, transparent 1px);
-
+  background: linear-gradient(270deg, #000000, #1a1a1a);
   background-size: 400% 400%;
   animation: animateBg 30s ease infinite;
+}
+
+h3 {
+  color: $white;
 }
 
 .shirt {
@@ -53,12 +56,6 @@ body {
 
 .card legend {
   background-color: $black;
-  color: $white;
-}
-
-.info h3 {
-  color: $white;
-  background-color: $secondary;
 }
 
 .info span {
@@ -75,12 +72,9 @@ body {
 }
 
 .item {
-  /*background-color: $secondary-3;*/
-  backdrop-filter: blur(10px);
+  border-radius: 15px;
 
   &:hover {
-    background-color: $white;
-    color: $black;
     box-shadow: -10px -10px 0px 0px $secondary;
   }
 
@@ -102,6 +96,11 @@ legend:not(.card legend) {
   border: $black solid 1px;
 }
 
-.qrc {
-  background-color: $secondary;
+.me {
+  -webkit-filter: drop-shadow(5px 5px 5px $black);
+  filter: drop-shadow(5px 5px 5px $black) !important;
+
+  border: 2px solid $pink;
+  box-shadow: 0 0 20px $pink, inset 0 0 10px $pink;
+  text-shadow: 0 0 8px $pink;
 }
