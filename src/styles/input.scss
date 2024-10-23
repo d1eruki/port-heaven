@@ -30,6 +30,12 @@ html {
   }
 }
 
+h1 {
+  font-size: 2rem;
+  color: $white;
+  text-transform: uppercase;
+}
+
 b {
   color: $white;
   font-weight: 500;
@@ -55,8 +61,8 @@ fieldset {
   }
 }
 
-legend:not(.card legend) {
-  padding: 0 10px;
+legend {
+  padding: 5px 10px;
 }
 
 header img:hover,
@@ -79,11 +85,6 @@ img,
 iframe,
 video {
   filter: grayscale(100%);
-}
-
-legend {
-  padding-inline-start: 0;
-  padding-inline-end: 0;
 }
 
 .cardBox {
@@ -144,7 +145,7 @@ legend {
 
 .card legend {
   line-height: 10px;
-  animation: move 3s infinite linear alternate;
+  animation: move 5s infinite linear alternate;
 }
 
 .card fieldset:nth-of-type(2) {
@@ -161,12 +162,6 @@ legend {
 
 .card img {
   width: 180px;
-}
-
-@keyframes move {
-  100% {
-    margin-left: 70px;
-  }
 }
 
 .info h3 {
@@ -301,15 +296,6 @@ input {
   animation: marquee 10s linear infinite;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
 .сhess {
   width: 180px;
   height: 180px;
@@ -327,7 +313,7 @@ input {
 .black {
   height: 10px;
   width: 10px;
-  background-color: #cccccc;
+  background-color: #acacac;
 }
 
 .me {

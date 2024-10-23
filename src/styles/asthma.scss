@@ -40,29 +40,11 @@ $yellow: hsla(68 84% 63% / 1);
 
 body {
   color: $white;
-  /*background-image: $bg;*/
-  /*background-image:	linear-gradient(to bottom, $black 1px, transparent 1px),
-                    linear-gradient(to right, $black 1px, transparent 1px);*/
-}
+  background-image:	linear-gradient(to bottom, $black 1px, transparent 1px),
+                    linear-gradient(to right, $black 1px, transparent 1px);
 
-body {
-  /*background: linear-gradient(270deg, #000000, #1a1a1a);*/
-  background-color: $black;
   background-size: 400% 400%;
-
   animation: animateBg 30s ease infinite;
-}
-
-@keyframes animateBg {
-  0% {
-    background-position: 0 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0 50%
-  }
 }
 
 .shirt {
