@@ -27,6 +27,7 @@ $shadow: hsla(0 0% 50% / .5);
 $yellow: hsla(68 84% 63% / 1);
 
 * {
+  color: #a8a8a8;
   &::-webkit-scrollbar-thumb {
     background-color: $white;
   }
@@ -83,17 +84,12 @@ body {
 }
 
 .active {
+  color: $white;
+
   &:first-letter {
     background-color: $pink;
     font-weight: bold;
-    font-size: 1.5rem;
   }
-}
-
-.active::first-letter {
-    background-color: $pink;
-    font-weight: bold;
-    font-size: 1.5rem;
 }
 
 .item {
@@ -126,8 +122,4 @@ legend:not(.card legend) {
 
 .qrc {
   background-color: $secondary;
-}
-
-.qrc table {
-  background-color: transparent !important;
 }
