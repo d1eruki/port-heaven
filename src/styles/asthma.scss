@@ -112,3 +112,7 @@ legend:not(.card legend) {
   box-shadow: 0 0 20px $pink, inset 0 0 10px $pink;
   text-shadow: 0 0 8px $pink;
 }
+
+.header-scrolled {
+  background-color: black; /* Непрозрачный черный фон при прокрутке */
+}

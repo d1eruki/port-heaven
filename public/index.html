@@ -20,23 +20,25 @@
     <script defer src="../src/scripts/script.js"></script>
 </head>
 <body class="md:!px-0 px-4">
-<header class="sticky top-0 z-40 items-center py-5 md:container flex flex-wrap md:mx-auto justify-between">
-    <div class="flex items-center space-x-4">
-        <a href="#">
-            <img alt="Girl in a jacket" class="shadowless w-36" src="../src/images/dieruki.png">
-        </a>
-    </div>
-    <div class="flex space-x-10 flex-wrap">
-        <span class="active" data-open-block="about" data-text="/about">/about</span>
-        <span data-open-block="stack" data-text="/stack">/stack</span>
-        <span data-open-block="design" data-text="/design">/design</span>
-        <span data-open-block="video" data-text="/video">/video</span>
-        <span data-open-block="pic" data-text="/pic">/pic</span>
+<header id ="header" class="sticky top-0 z-40 py-5 md:mx-auto">
+    <div class="md:container md:mx-auto items-center flex flex-wrap justify-between">
+        <div class="flex items-center space-x-4">
+            <a href="#">
+                <img alt="Girl in a jacket" class="shadowless w-36" src="../src/images/dieruki.png">
+            </a>
+        </div>
+        <div class="flex space-x-10 flex-wrap">
+            <span class="active" data-open-block="about" data-text="/about">/about</span>
+            <span data-open-block="stack" data-text="/stack">/stack</span>
+            <span data-open-block="design" data-text="/design">/design</span>
+            <span data-open-block="video" data-text="/video">/video</span>
+            <span data-open-block="pic" data-text="/pic">/pic</span>
+        </div>
     </div>
 </header>
 
 <div class="md:container m-auto flex items-center" id="height-target">
-    <div class="flex gap-x-10 content is-active" data-content="about">
+    <div class="flex gap-x-10 content is-active mb-20" data-content="about">
         <div class="info h-fit md:!grid hidden grid-cols-[auto] gap-x-10">
             <h3>phot</h3>
             <div class="nocursor cardBox">
@@ -93,8 +95,13 @@
                 PRODUCTS, YOU’VE COME TO THE RIGHT PLACE.</p>
         </div>
     </div>
-    <div class="flex flex-col gap-10 content" data-content="stack">
-        <h1>design</h1>
+    <div class="flex flex-col gap-10 content mb-20" data-content="stack">
+        <div>
+            <h1>design</h1>
+            <p>
+                В своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.
+            </p>
+        </div>
         <div class="grid grid-cols-3 gap-4">
             <div class="item">
                 <div class="itemName">
@@ -104,9 +111,6 @@
                 </div>
                 <p>В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present</p>
             </div>
-        </div>
-        <h1>adobe</h1>
-        <div class="grid grid-cols-3 gap-4">
             <div class="item">
                 <div class="itemName">
                     <img alt="Girl in a jacket" class="shadowless" src="../src/images/psd.svg">
@@ -124,6 +128,40 @@
                 </div>
                 <p>С иллюстратором до сих пор сложные отношения, я пытаю его он пытает меня</p>
             </div>
+        </div>
+        <hr>
+        <div>
+            <h1>web</h1>
+            <p>
+                asd
+            </p>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+            <div class="item">
+                <div class="itemName">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/css.svg">
+                    <h1>css</h1>
+                    <p>middle</p>
+                </div>
+                <p>Последний раз серьезно занимался созданием сайтов в учебные годы, наверстываю упущенной,
+                    обмазываясь флексами и гридами</p>
+            </div>
+            <div class="item">
+                <div class="itemName">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/html.svg">
+                    <h1>html</h1>
+                    <p>middle</p>
+                </div>
+                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h1>video</h1>
+            <p>
+                В своей работе я использую современные инструменты для видеомонтажа. Adobe Premiere Pro — основной инструмент для редактирования видео, обеспечивающий точное управление монтажом. Также активно применяю After Effects для создания визуальных эффектов и анимации, а Audition — для обработки и улучшения звука.</p>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
             <div class="item">
                 <div class="itemName">
                     <img alt="Girl in a jacket" class="shadowless" src="../src/images/pp.svg">
@@ -151,8 +189,22 @@
                 <p>этот продукт открываю крайне редко, только для рабочих целей, но навалить бассов, застрейчить
                     диктора или почистить мусор могу</p>
             </div>
+            <div class="item">
+                <div class="itemName">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/sv.svg">
+                    <h1>Sony Vegas</h1>
+                    <p>middle</p>
+                </div>
+                <p>Делал на нем видосики в шараге</p>
+            </div>
         </div>
-        <h1>Unity</h1>
+        <hr>
+        <div>
+            <h1>other experience</h1>
+            <p>
+                asd
+            </p>
+        </div>
         <div class="grid grid-cols-3 gap-4">
             <div class="item">
                 <div class="itemName">
@@ -163,40 +215,17 @@
                 <p>Ориентируюсь в интерфейсе, могу создать материал. Но в общем, есть опыт верстки игрового
                     интерфейса на канвасах и uielements</p>
             </div>
-        </div>
-        <h1>web</h1>
-        <div class="grid grid-cols-3 gap-4">
             <div class="item">
                 <div class="itemName">
-                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/css.svg">
-                    <h1>css</h1>
-                    <p>middle</p>
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/testing_2.png">
+                    <h1>manual testing</h1>
+                    <p>jun</p>
                 </div>
-                <p>Последний раз серьезно занимался созданием сайтов в учебные годы, наверстываю упущенной,
-                    обмазываясь флексами и гридами</p>
-            </div>
-            <div class="item">
-                <div class="itemName">
-                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/html.svg">
-                    <h1>html</h1>
-                    <p>middle</p>
-                </div>
-                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-            </div>
-        </div>
-        <h1>video</h1>
-        <div class="grid grid-cols-3 gap-4">
-            <div class="item">
-                <div class="itemName">
-                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/sv.svg">
-                    <h1>Sony Vegas</h1>
-                    <p>middle</p>
-                </div>
-                <p>Делал на нем видосики в шараге</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaa</p>
             </div>
         </div>
     </div>
-    <div class="content" data-content="design">
+    <div class="content mb-4" data-content="design">
         <p>Я, блять, в своем познании настолько преисполнился, что я как будто бы уже сто триллионов миллиардов лет,
             блять, проживаю на триллионах и триллионах таких же планет, понимаешь? Как эта Земля. Мне уже этот мир
             абсолютно понятен, и я здесь ищу только одного, блять: покоя, умиротворения и вот этой гармонии от
@@ -215,13 +244,12 @@
     </div>
 </div>
 
-<footer class="flex items-center md:container mx-auto">
+<footer class="flex items-center md:container mx-auto justify-between">
     ну я сделал да
+    <div class="nocursor qrc">
+        <h1>scamme!</h1>
+    </div>
 </footer>
-
-<div class="nocursor qrc">
-    <h1>scamme!</h1>
-</div>
 
 </body>
 </html>

@@ -93,6 +93,17 @@ for (let i = 0; i < 324; i++) {
 
 /////////////////////////////////////////////////////
 
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 25) { // Если прокрутка больше 50px
+        header.classList.add('header-scrolled');
+    } else {
+        header.classList.remove('header-scrolled');
+    }
+});
+
+/////////////////////////////////////////////////////
+
 jQuery(".qrc").qrcode({
     render: "table",
     text: "https://t.me/d1eruki"
