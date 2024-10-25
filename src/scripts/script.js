@@ -104,6 +104,21 @@ window.addEventListener('scroll', function() {
 
 /////////////////////////////////////////////////////
 
+document.querySelectorAll(".item-iframe").forEach(container => {
+    const originalContent = container.innerHTML; // Сохраняем оригинальное содержимое контейнера
+
+    container.addEventListener("mouseenter", function() {
+        const iframeSrc = this.getAttribute("data-src");
+        this.innerHTML = `<iframe src="${iframeSrc}" style="width:100%; height:100%; border:none;"></iframe>`;
+    });
+
+    container.addEventListener("mouseleave", function() {
+        this.innerHTML = originalContent; // Восстанавливаем оригинальное содержимое при уходе курсора
+    });
+});
+
+/////////////////////////////////////////////////////
+
 jQuery(".qrc").qrcode({
     render: "table",
     text: "https://t.me/d1eruki"
