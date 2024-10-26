@@ -79,14 +79,22 @@ h3 {
   }
 }
 
-.item,
-.item-iframe {
+.item {
   &:hover {
     box-shadow: -10px -10px 0px 0px $secondary;
   }
 
   &:hover h1::first-letter {
     background-color: $pink;
+  }
+}
+
+.item-iframe {
+  background-color: $secondary;
+
+  &:hover {
+    box-shadow: -10px -10px 0px 0px $secondary;
+    background-color: $white;
   }
 }
 

@@ -11,7 +11,8 @@ module.exports = {
     },
     extend: {
       gridTemplateColumns: {
-        '[auto]': 'auto auto',
+        '[auto-2]': 'auto auto',
+        '[auto-3]': 'auto auto auto',
       },
       height: {
         '[100vh-64]': 'calc(100vh - 64px)',

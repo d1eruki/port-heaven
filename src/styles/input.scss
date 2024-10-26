@@ -181,6 +181,8 @@ video {
 .item img {
   max-width: 60px;
   min-width: 60px;
+  padding: 10px;
+  border-radius: 15px;
 }
 
 .item ul {
@@ -228,12 +230,8 @@ video {
   background: transparent;
 }
 
-.content {
-  display: none;
-}
-
-.content.is-active {
-  display: flex;
+.is-active {
+  display: grid;
 }
 
 iframe {

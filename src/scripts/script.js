@@ -109,7 +109,7 @@ document.querySelectorAll(".item-iframe").forEach(container => {
 
     container.addEventListener("mouseenter", function() {
         const iframeSrc = this.getAttribute("data-src");
-        this.innerHTML = `<iframe src="${iframeSrc}" style="width:100%; height:100%; border:none;"></iframe>`;
+        this.innerHTML = `<iframe src="${iframeSrc}" style="width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe>`;
     });
 
     container.addEventListener("mouseleave", function() {
