@@ -133,7 +133,11 @@ window.addEventListener('scroll', function () {
 
 /////////////////////////////////////////////////////
 
-jQuery(".qrc").qrcode({
-    render: "table",
-    text: "https://t.me/d1eruki"
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: "https://t.me/d1eruki",
+    width: 128,
+    height: 128,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
 });
