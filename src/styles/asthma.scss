@@ -122,3 +122,15 @@ legend:not(.card legend) {
 .header-scrolled {
   background-color: black; /* Непрозрачный черный фон при прокрутке */
 }
+
+.white {
+  background-color: $white;
+}
+
+.black {
+  background-color: $grey-darker;
+}
+
+.progress-bar {
+  background-color: $pink;
+}
