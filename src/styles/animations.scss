@@ -1,5 +1,8 @@
 @keyframes move {
-  100% {
+  from {
+    margin-left: 0;
+  }
+  to {
     margin-left: 50%;
   }
 }

@@ -1,8 +1,6 @@
 @import 'animations';
 @import 'asthma';
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,33 +9,37 @@ html {
   cursor: url("../src/images/cursors/inactive.png"), auto;
 }
 
+a,
+header span,
+.item {
+  cursor: url("../src/images/cursors/active.png"), pointer;
+}
+
 * {
   font-family: Inter, sans-serif;
   font-weight: 300;
   text-align: justify;
 
   &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border: none
+    display: none;
   }
 }
 
+body {
+  visibility: hidden;
+}
+
+body.loaded {
+  visibility: visible;
+}
+
+
 h1 {
   font-size: 2rem;
-  color: $white;
   text-transform: uppercase;
 }
 
 b {
-  color: $white;
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -165,7 +167,7 @@ video {
 }
 
 .item,
-.item-iframe{;
+.item-iframe {;
   border-radius: 15px;
   transition: all .3s cubic-bezier(.65, .05, .36, 1);
 
@@ -243,23 +245,14 @@ video {
   border: none
 }
 
-header h1,
-.item,
-iframe,
-video,
-input,
-button {
-  cursor: url("../src/images/cursors/active.png"), auto;
-}
-
-audio {
-  width: 100%;
-}
-
 .nocursor,
 .qrc:hover,
 .cardBox:hover {
   cursor: none;
+}
+
+audio {
+  width: 100%;
 }
 
 .cheatForm > *:not(:last-child) {
@@ -299,4 +292,11 @@ input {
   height: 10px;
   width: 10px;
   background-color: $grey-darker;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: $pink;
+  width: 0; /* Изначально ширина 0 */
+  transition: width 0.1s ease; /* Плавный переход */
 }

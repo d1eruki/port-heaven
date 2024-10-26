@@ -35,18 +35,6 @@ $yellow: hsla(68 84% 63% / 1);
   }
 }
 
-*::-webkit-scrollbar {
-  width: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: $white;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: transparent;
-}
-
 body {
   color: $white;
   background: linear-gradient(270deg, #000000, #1a1a1a);
@@ -54,8 +42,18 @@ body {
   animation: animateBg 30s ease infinite;
 }
 
-h3 {
+h1,
+h3,
+a,
+b {
   color: $white;
+}
+
+a {
+
+  &:hover {
+    color: $white;
+  }
 }
 
 .shirt {

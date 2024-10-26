@@ -18,6 +18,9 @@ const setHeight = () => {
     heightTarget.style.height = isScrollable
         ? 'auto'
         : `calc(100vh - ${headerHeight}px - ${headerHeight}px)`;
+
+    // Показываем контент после установки высоты
+    document.body.classList.add('loaded'); // Добавляем класс для отображения контента
 };
 
 // Функция для переключения контента
@@ -26,10 +29,12 @@ const toggleContent = (target) => {
     const $activeContent = $("[data-content].is-active");
     const $targetContent = $(`[data-content="${target}"]`);
 
+    // Проверяем, что целевой контент отличается от активного
     if (!$activeBlock.is($(`[data-open-block][data-open-block="${target}"]`))) {
         $activeBlock.removeClass("active");
         $activeContent.removeClass("is-active");
 
+        // Добавляем активные классы
         $(`[data-open-block][data-open-block="${target}"]`).addClass("active");
         $targetContent.addClass("is-active");
 
@@ -37,27 +42,15 @@ const toggleContent = (target) => {
     }
 };
 
-// Инициализация
-document.addEventListener('DOMContentLoaded', setHeight);
+// Инициализация высоты при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    setHeight(); // Устанавливаем высоту при первой загрузке
 
-// Обновляем высоту при изменении размера окна
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(setHeight, 100);
-});
-
-// Обновляем высоту при переключении контента
-$("[data-open-block]").on("click", function () {
-    const target = $(this).data("open-block");
-    toggleContent(target);
-});
-
-// Используем MutationObserver для отслеживания изменений в heightTarget
-const observer = new MutationObserver(setHeight);
-observer.observe(heightTarget, {
-    childList: true,
-    subtree: true
+    // Установка обработчика событий на кнопки переключения
+    $("[data-open-block]").on("click", function () {
+        const target = $(this).data("open-block");
+        toggleContent(target); // Вызов функции переключения контента
+    });
 });
 
 /////////////////////////////////////////////////////
@@ -93,7 +86,7 @@ for (let i = 0; i < 324; i++) {
 
 /////////////////////////////////////////////////////
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const header = document.getElementById('header');
     if (window.scrollY > 25) { // Если прокрутка больше 50px
         header.classList.add('header-scrolled');
@@ -104,18 +97,38 @@ window.addEventListener('scroll', function() {
 
 /////////////////////////////////////////////////////
 
-document.querySelectorAll(".item-iframe").forEach(container => {
-    const originalContent = container.innerHTML; // Сохраняем оригинальное содержимое контейнера
+window.onscroll = function() {
+    const progressBar = document.getElementById('progress-bar');
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = (window.scrollY / totalHeight) * 100; // Процент прокрутки
+    progressBar.style.width = progress + '%'; // Установка ширины прогресс-бара
+};
 
-    container.addEventListener("mouseenter", function() {
-        const iframeSrc = this.getAttribute("data-src");
-        this.innerHTML = `<iframe src="${iframeSrc}" style="width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe>`;
-    });
+/////////////////////////////////////////////////////
 
-    container.addEventListener("mouseleave", function() {
-        this.innerHTML = originalContent; // Восстанавливаем оригинальное содержимое при уходе курсора
-    });
-});
+// document.querySelectorAll(".item-iframe").forEach(container => {
+//     const originalContent = container.innerHTML; // Сохраняем оригинальное содержимое контейнера
+//
+//     container.addEventListener("mouseenter", function () {
+//         // Проверяем, есть ли уже iframe, чтобы избежать повторного создания
+//         if (!this.querySelector("iframe")) {
+//             const iframeSrc = this.getAttribute("data-src");
+//             const iframe = document.createElement("iframe");
+//             iframe.src = iframeSrc;
+//             iframe.style.width = "100%";
+//             iframe.style.height = "100%";
+//             iframe.style.border = "none";
+//             iframe.allowFullscreen = true; // Добавляем атрибут allowfullscreen
+//             iframe.loading = "lazy"; // Добавляем атрибут loading="lazy"
+//             this.innerHTML = ""; // Очищаем контейнер
+//             this.appendChild(iframe); // Добавляем iframe
+//         }
+//     });
+//
+//     container.addEventListener("mouseleave", function () {
+//         this.innerHTML = originalContent; // Восстанавливаем оригинальное содержимое при уходе курсора
+//     });
+// });
 
 /////////////////////////////////////////////////////
 
