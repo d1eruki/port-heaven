@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "scss": "sass src/styles:src/styles --watch",
-    "tw": "tailwindcss -i src/styles/input.css -o dist/output.css --minify --watch",
-    "build": "scss && tw"
+    "dev-scss": "sass src/styles:src/styles --watch",
+    "dev-tw": "tailwindcss -i src/styles/input.css -o dist/output.css --watch",
+    "dev-build": "npm-run-all --parallel dev-scss dev-tw",
+
+    "prod-scss": "sass src/styles:src/styles",
+    "prod-tw": "tailwindcss -i src/styles/input.css -o dist/style.css --minify",
+    "prod-build": "npm-run-all --serial prod-scss prod-tw"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +23,7 @@
   },
   "dependencies": {
     "fs": "^0.0.1-security",
+    "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "postcss-cli": "^11.0.0"
   }
