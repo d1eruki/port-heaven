@@ -2,6 +2,7 @@
 const header = document.querySelector('header');
 const footer = document.querySelector('footer');
 const heightTarget = document.getElementById('height-target');
+const progressBar = document.getElementById('progress-bar');
 
 // Функция для установки высоты
 const setHeight = () => {
@@ -10,10 +11,7 @@ const setHeight = () => {
     const headerHeight = header.offsetHeight;
     footer.style.height = `${headerHeight}px`;
 
-    const isScrollable = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) > window.innerHeight;
-
-    console.log('Header Height:', headerHeight);
-    console.log('Is Scrollable:', isScrollable);
+    const isScrollable = document.body.scrollHeight > window.innerHeight;
 
     heightTarget.style.height = isScrollable
         ? 'auto'
@@ -29,29 +27,41 @@ const toggleContent = (target) => {
     const $activeContent = $("[data-content].is-active");
     const $targetContent = $(`[data-content="${target}"]`);
 
-    // Проверяем, что целевой контент отличается от активного
     if (!$activeBlock.is($(`[data-open-block][data-open-block="${target}"]`))) {
         $activeBlock.removeClass("active");
         $activeContent.removeClass("is-active");
 
-        // Добавляем активные классы
         $(`[data-open-block][data-open-block="${target}"]`).addClass("active");
         $targetContent.addClass("is-active");
 
-        setHeight(); // Обновляем высоты после изменения контента
+        setHeight();       // Обновляем высоты после изменения контента
+        window.scrollTo(0, 0); // Сбрасываем прокрутку наверх
+
+        requestAnimationFrame(updateProgressBar);
     }
 };
 
-// Инициализация высоты при загрузке страницы
+// Функция для обновления прогресс-бара
+const updateProgressBar = () => {
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    progressBar.style.width = totalHeight > 0
+        ? `${(window.scrollY / totalHeight) * 100}%` // Рассчитываем ширину прогресс-бара
+        : '0%'; // Сбрасываем, если нет прокрутки
+};
+
+// Инициализация высоты и прогресс-бара при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
-    setHeight(); // Устанавливаем высоту при первой загрузке
+    setHeight();         // Устанавливаем высоту при первой загрузке
+    updateProgressBar(); // Обновляем прогресс-бар при первой загрузке
 
     // Установка обработчика событий на кнопки переключения
     $("[data-open-block]").on("click", function () {
-        const target = $(this).data("open-block");
-        toggleContent(target); // Вызов функции переключения контента
+        toggleContent($(this).data("open-block")); // Вызов функции переключения контента
     });
 });
+
+// Обновление прогресс-бара при прокрутке
+window.onscroll = updateProgressBar;
 
 /////////////////////////////////////////////////////
 
@@ -94,15 +104,6 @@ window.addEventListener('scroll', function () {
         header.classList.remove('header-scrolled');
     }
 });
-
-/////////////////////////////////////////////////////
-
-window.onscroll = function() {
-    const progressBar = document.getElementById('progress-bar');
-    const totalHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (window.scrollY / totalHeight) * 100; // Процент прокрутки
-    progressBar.style.width = progress + '%'; // Установка ширины прогресс-бара
-};
 
 /////////////////////////////////////////////////////
 
