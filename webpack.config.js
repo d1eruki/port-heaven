@@ -1,5 +1,5 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/scripts/scripts.js', // Входной файл (твой основной файл JS)
@@ -8,9 +8,16 @@ module.exports = {
         path: path.resolve(__dirname, 'docs'), // Папка для выхода, например, "dist"
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html', // путь к шаблону index.html
-            filename: 'index.html', // выходное имя файла
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src'), // копируем всю папку src
+                    to: path.resolve(__dirname, 'docs'), // в папку docs
+                    globOptions: {
+                        ignore: ['**/*.js', '**/*.scss'], // исключаем index.html и js (если они собираются)
+                    },
+                },
+            ],
         }),
     ],
     mode: 'production' // Используем "production" для минификации кода
