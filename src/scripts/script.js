@@ -23,16 +23,21 @@ const setHeight = () => {
 
 // Функция для переключения контента
 const toggleContent = (target) => {
-    const $activeBlock = $("[data-open-block].active");
-    const $activeContent = $("[data-content].is-active");
-    const $targetContent = $(`[data-content="${target}"]`);
+    const activeBlock = document.querySelector("[data-open-block].active");
+    const activeContent = document.querySelector("[data-content].is-active");
+    const targetContent = document.querySelector(`[data-content="${target}"]`);
 
-    if (!$activeBlock.is($(`[data-open-block][data-open-block="${target}"]`))) {
-        $activeBlock.removeClass("active");
-        $activeContent.removeClass("is-active");
+    if (!activeBlock || activeBlock.getAttribute('data-open-block') !== target) {
+        if (activeBlock) {
+            activeBlock.classList.remove("active");
+        }
+        if (activeContent) {
+            activeContent.classList.remove("is-active");
+        }
 
-        $(`[data-open-block][data-open-block="${target}"]`).addClass("active");
-        $targetContent.addClass("is-active");
+        const newActiveBlock = document.querySelector(`[data-open-block][data-open-block="${target}"]`);
+        newActiveBlock.classList.add("active");
+        targetContent.classList.add("is-active");
 
         setHeight();       // Обновляем высоты после изменения контента
         window.scrollTo(0, 0); // Сбрасываем прокрутку наверх
@@ -55,8 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressBar(); // Обновляем прогресс-бар при первой загрузке
 
     // Установка обработчика событий на кнопки переключения
-    $("[data-open-block]").on("click", function () {
-        toggleContent($(this).data("open-block")); // Вызов функции переключения контента
+    document.querySelectorAll("[data-open-block]").forEach(button => {
+        button.addEventListener("click", function () {
+            toggleContent(this.getAttribute("data-open-block")); // Вызов функции переключения контента
+        });
     });
 });
 
@@ -132,12 +139,3 @@ window.addEventListener('scroll', function () {
 // });
 
 /////////////////////////////////////////////////////
-
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-    text: "https://t.me/d1eruki",
-    width: 128,
-    height: 128,
-    colorDark : "#000000",
-    colorLight : "#ffffff",
-    correctLevel : QRCode.CorrectLevel.H
-});
