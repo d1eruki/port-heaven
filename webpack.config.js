@@ -30,6 +30,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html', // исходный HTML
             filename: 'index.html',
+            inject: true, // Вставляет скрипты и стили автоматически
         }),
         new CopyWebpackPlugin({
             patterns: [
