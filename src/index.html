@@ -10,16 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
           rel="stylesheet">
 
-    <link href="images/favicon.ico" rel="icon">
+    <link href="../src/images/favicon.ico" rel="icon">
 
-    <link href="../dist/output.css" rel="stylesheet">
+    <link href="../docs/styles.css" rel="stylesheet">
 
-    <script defer src="scripts/script.js"></script>
+    <script defer src="../docs/scripts.js"></script>
 
 </head>
 <body>
-<header id="header" class="sticky top-0 z-40 md:mx-auto">
-    <div id="progress-bar" class="progress-bar"></div>
+<header class="sticky top-0 z-40 md:mx-auto" id="header">
+    <div class="progress-bar" id="progress-bar"></div>
     <div class="2xl:container mx-auto 2xl:!px-0 px-10 py-4 items-center flex flex-wrap justify-between gap-10">
         <a href="#">d1eruki</a>
         <div class="flex flex-wrap gap-10">
@@ -32,7 +32,7 @@
     </div>
 </header>
 
-<div id="height-target" class="2xl:container 2xl:!px-0 px-10 m-auto flex items-center">
+<div class="2xl:container 2xl:!px-0 px-10 m-auto flex items-center" id="height-target">
     <div class="hidden w-full grid-rows-1 grid-cols-[auto-2] is-active md:!gap-10 gap-0" data-content="about">
         <div class="info h-fit md:!grid hidden grid-cols-[auto-2] gap-x-10">
             <h3>phot</h3>
@@ -40,7 +40,7 @@
                 <div class="card">
                     <div class="сhess absolute"></div>
                     <img alt="Girl in a jacket" class="me filterless absolute z-10 drop-shadow-2xl"
-                         src="images/me_trn.png">
+                         src="../src/images/me_trn.png">
                     <fieldset>
                         <legend>.вредина</legend>
                     </fieldset>
@@ -55,7 +55,7 @@
                     </fieldset>
                 </div>
                 <div class="shirt flex">
-                    <img alt="Girl in a jacket" class="shadowless" src="images/dieruki.png">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/dieruki.png">
                 </div>
             </div>
             <h3>name</h3>
@@ -101,14 +101,14 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>figma</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/figma.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/figma.svg">
                 </div>
                 <p>В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present</p>
             </div>
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>photoshop</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/psd.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/psd.svg">
                 </div>
                 <p>Увлекаюсь фотошопом со школьных лет, фотошопил друзей на аватарки вконтакте. Это баловство
                     позволило в настоящее время крутить фотокарточками как захочется</p>
@@ -116,7 +116,7 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>illustrator</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/ai.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/ai.svg">
                 </div>
                 <p>С иллюстратором до сих пор сложные отношения, я пытаю его он пытает меня</p>
             </div>
@@ -134,14 +134,14 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>html</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/html.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/html.svg">
                 </div>
                 <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
             </div>
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>css</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/css.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/css.svg">
                 </div>
                 <p>Последний раз серьезно занимался созданием сайтов в учебные годы, наверстываю упущенной,
                     обмазываясь флексами и гридами</p>
@@ -149,35 +149,35 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>js</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/javascript.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/javascript.svg">
                 </div>
                 <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
             </div>
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>sass</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/sass.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/sass.svg">
                 </div>
                 <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
             </div>
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>tailwind</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/tailwind.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/tailwind.svg">
                 </div>
                 <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
             </div>
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>vue</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/vue.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/vue.svg">
                 </div>
                 <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
             </div>
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>bootstrap</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/bootstrap.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/bootstrap.svg">
                 </div>
                 <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
             </div>
@@ -195,7 +195,7 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>premiere pro</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/pp.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/pp.svg">
                 </div>
                 <p>В студенческое время работал в сони вегасе, ленясь перекатываться на премьер, но приколы которые
                     он умеет делать, особенно после вегаса, заставили восторгнуться</p>
@@ -203,7 +203,7 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>after effects</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/ae.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/ae.svg">
                 </div>
                 <p>Увлекание эффектиком появилось когда перекатился на премьер. В коллекции уже есть пара прикольных
                     заставок (⌐■_■)</p>
@@ -211,7 +211,7 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>audition</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/au.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/au.svg">
                 </div>
                 <p>Этот продукт открываю крайне редко, только для рабочих целей, но навалить бассов, застрейчить
                     диктора или почистить мусор могу</p>
@@ -219,7 +219,7 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>Sony Vegas</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/sv.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/sv.svg">
                 </div>
                 <p>Делал на нем видосики в шараге</p>
             </div>
@@ -235,7 +235,7 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>unity</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/unity.svg">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/unity.svg">
                 </div>
                 <p>Ориентируюсь в интерфейсе, могу создать материал. Но в общем, есть опыт верстки игрового
                     интерфейса на канвасах и uielements</p>
@@ -243,7 +243,7 @@
             <div class="item flex flex-col">
                 <div class="itemName flex justify-between items-center mb-4">
                     <h2>manual testing</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="images/testing_2.png">
+                    <img alt="Girl in a jacket" class="shadowless" src="../src/images/testing_2.png">
                 </div>
                 <p>aaaaaaa</p>
             </div>
