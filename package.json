@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev-wb": "webpack --config webpack.config.js --watch",
     "dev-scss": "sass src/styles:src/styles --watch",
     "dev-tw": "tailwindcss -i src/styles/styles.css -o docs/styles.css --watch",
-    "dev-wb": "webpack --watch",
-    "dev-build": "npm-run-all --parallel dev-scss dev-tw dev-wb",
+    "dev-build": "npm-run-all --parallel dev-wb dev-scss dev-tw",
+    "prod-wb": "webpack --config webpack.config.js",
     "prod-scss": "sass src/styles:src/styles",
     "prod-tw": "tailwindcss -i src/styles/styles.css -o docs/styles.css --minify",
-    "prod-wb": "webpack --config webpack.config.js",
-    "prod-build": "npm-run-all --serial prod-scss prod-tw prod-wb"
+    "prod-build": "npm-run-all --serial prod-wb prod-scss prod-tw"
   },
   "keywords": [],
   "author": "",
