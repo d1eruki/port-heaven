@@ -7,7 +7,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'), // Папка для выхода, например, "dist"
         filename: 'scripts.js', // Имя выходного файла
-        publicPath: '/', // этот путь будет добавлен к каждому ресурсу
+        //publicPath: '/', // этот путь будет добавлен к каждому ресурсу
         clean: true, // очищает выходную папку перед сборкой
     },
     module: {
