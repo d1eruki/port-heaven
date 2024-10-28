@@ -1,28 +1,49 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: '/src/js/scripts.js', // Входной файл (твой основной файл JS)
+    entry: './src/js/scripts.js', // Входной файл (твой основной файл JS)
     output: {
-        path: path.resolve(__dirname, 'docs'), // Папка для выхода, например, "docs"
-        filename: 'src/js/scripts.js', // Имя выходного файла
+        path: path.resolve(__dirname, 'dist'), // Папка для выхода, например, "dist"
+        filename: 'scripts.js', // Имя выходного файла
         publicPath: '/', // этот путь будет добавлен к каждому ресурсу
         clean: true, // очищает выходную папку перед сборкой
     },
     module: {
         rules: [
             {
-                test: /\.(png|jpe?g|gif|svg|ico)$/i, // изображения
-                type: 'asset/resource', // автоматически копирует в выходную папку и генерирует путь
-                generator: {
-                    filename: 'assets/images/[name][ext]', // настройка папки для изображений
-                },
+                test: /\.scss$/i, // обработка SCSS файлов
+                use: [
+                    MiniCssExtractPlugin.loader, // Извлечение CSS в отдельный файл
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    require('autoprefixer'), // Используйте autoprefixer
+                                    require('tailwindcss'),
+                                ],
+                            },
+                        },
+                    },
+                    'sass-loader' // компилирует Sass в CSS
+                ],
             },
             {
-                test: /\.css$/i,
-                exclude: /exclude-this-file\.css$/, // Укажите файл или паттерн, который нужно исключить
-                use: ['style-loader', 'css-loader'],
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader, // Извлечение CSS в отдельный файл
+                    'css-loader',
+                    'postcss-loader',
+                ],
+            },
+            {
+                test: /\.(png|jpg|gif|svg|ico)$/i, // изображения
+                generator: {
+                    filename: 'assets/[hash][name][ext]', // настройка папки для изображений
+                },
             },
         ],
     },
@@ -30,13 +51,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'src/index.html', // исходный HTML
             filename: 'index.html',
-            inject: false, // Вставляет скрипты и стили автоматически
+            inject: true, // Вставляет скрипты и стили автоматически
         }),
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: 'src/assets', to: 'src/assets' }, // Копирование изображений
-            ],
+        new MiniCssExtractPlugin({ // Настройка плагина
+            filename: 'styles.css', // Имя выходного CSS файла
         }),
     ],
-    mode: 'production' // Используем "production" для минификации кода
+    mode: 'production', // Используем "production" для минификации кода
+    devServer: {
+        static: path.join(__dirname, 'dist'), // Корневая папка для сервера
+        port: 8080, // Порт для сервера
+        open: false, // Открывает браузер при запуске
+    }
 };
