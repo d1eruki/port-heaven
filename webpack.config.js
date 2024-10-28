@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/js/scripts.js', // Входной файл (твой основной файл JS)
@@ -39,12 +40,6 @@ module.exports = {
                     'postcss-loader',
                 ],
             },
-            {
-                test: /\.(png|jpg|gif|svg|ico)$/i, // изображения
-                generator: {
-                    filename: 'assets/[hash][name][ext]', // настройка папки для изображений
-                },
-            },
         ],
     },
     plugins: [
@@ -55,6 +50,11 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({ // Настройка плагина
             filename: 'styles.css', // Имя выходного CSS файла
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/assets/images', to: 'assets/images' }, // Копирование изображений из src в dist
+            ],
         }),
     ],
     mode: 'production', // Используем "production" для минификации кода
