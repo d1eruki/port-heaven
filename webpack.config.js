@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader'); // Импортируем из vue-loader
 
 module.exports = {
     entry: './src/js/scripts.js', // Входной файл (твой основной файл JS)
@@ -11,8 +12,34 @@ module.exports = {
         //publicPath: '/', // этот путь будет добавлен к каждому ресурсу
         clean: true, // очищает выходную папку перед сборкой
     },
+    mode: 'production', // Используем "production" для минификации кода
+    devServer: {
+        static: path.join(__dirname, 'dist'), // Корневая папка для сервера
+        port: 8080, // Порт для сервера
+        open: false, // Открывает браузер при запуске
+    },
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.esm-bundler.js' // использование полной версии Vue
+        },
+        extensions: ['.js', '.vue', '.json'], // разрешаемые расширения файлов
+    },
     module: {
         rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
             {
                 test: /\.scss$/i, // обработка SCSS файлов
                 use: [
@@ -43,6 +70,7 @@ module.exports = {
         ],
     },
     plugins: [
+        new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template: 'src/index.html', // исходный HTML
             filename: 'index.html',
@@ -57,10 +85,4 @@ module.exports = {
             ],
         }),
     ],
-    mode: 'production', // Используем "production" для минификации кода
-    devServer: {
-        static: path.join(__dirname, 'dist'), // Корневая папка для сервера
-        port: 8080, // Порт для сервера
-        open: false, // Открывает браузер при запуске
-    }
 };

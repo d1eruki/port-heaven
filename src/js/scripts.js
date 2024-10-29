@@ -1,5 +1,10 @@
 import '../css/styles.scss'; // ваш Sass файл
 
+import { createApp } from 'vue';
+import App from './App.vue';
+
+createApp(App).mount('#app');
+
 // Получаем элементы
 const header = document.querySelector('header');
 const footer = document.querySelector('footer');
