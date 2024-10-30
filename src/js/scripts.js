@@ -1,9 +1,12 @@
 import '../css/styles.scss'; // ваш Sass файл
 
-import { createApp } from 'vue';
-import App from './App.vue';
+/////////////////////////////////////////////////////
 
-createApp(App).mount('#app');
+import { createApp } from 'vue';
+import DesignItem from './components/DesignItem.vue';
+createApp(DesignItem).mount('#DesignItem');
+
+/////////////////////////////////////////////////////
 
 // Получаем элементы
 const header = document.querySelector('header');
