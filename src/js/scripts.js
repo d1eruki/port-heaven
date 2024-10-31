@@ -82,37 +82,6 @@ window.onscroll = updateProgressBar;
 
 /////////////////////////////////////////////////////
 
-// Находим элемент с классом сhess
-const сhess = document.querySelector('.сhess');
-
-// Создаем пустую строку для хранения всех div
-let htmlContent = '';
-
-// Переменная для отслеживания текущего цвета
-let currentColor = 'white';
-
-// Генерируем 324 div-ов
-for (let i = 0; i < 324; i++) {
-    // Каждые 18 строк нужно повторить предыдущий цвет
-    if (i > 0 && i % 18 === 0) {
-        // Повторяем предыдущий цвет
-        htmlContent += `<div class="${currentColor}"></div>`;
-    } else {
-        // Чередуем цвета white и black
-        if (currentColor === 'white') {
-            currentColor = 'black';
-        } else {
-            currentColor = 'white';
-        }
-        htmlContent += `<div class="${currentColor}"></div>`;
-    }
-}
-
-// Вставляем все div-ы за один раз
-сhess.innerHTML = htmlContent;
-
-/////////////////////////////////////////////////////
-
 window.addEventListener('scroll', function () {
     const header = document.getElementById('header');
     if (window.scrollY > 25) { // Если прокрутка больше 50px
@@ -121,31 +90,3 @@ window.addEventListener('scroll', function () {
         header.classList.remove('header-scrolled');
     }
 });
-
-/////////////////////////////////////////////////////
-
-// document.querySelectorAll(".item-iframe").forEach(container => {
-//     const originalContent = container.innerHTML; // Сохраняем оригинальное содержимое контейнера
-//
-//     container.addEventListener("mouseenter", function () {
-//         // Проверяем, есть ли уже iframe, чтобы избежать повторного создания
-//         if (!this.querySelector("iframe")) {
-//             const iframeSrc = this.getAttribute("data-src");
-//             const iframe = document.createElement("iframe");
-//             iframe.src = iframeSrc;
-//             iframe.style.width = "100%";
-//             iframe.style.height = "100%";
-//             iframe.style.border = "none";
-//             iframe.allowFullscreen = true; // Добавляем атрибут allowfullscreen
-//             iframe.loading = "lazy"; // Добавляем атрибут loading="lazy"
-//             this.innerHTML = ""; // Очищаем контейнер
-//             this.appendChild(iframe); // Добавляем iframe
-//         }
-//     });
-//
-//     container.addEventListener("mouseleave", function () {
-//         this.innerHTML = originalContent; // Восстанавливаем оригинальное содержимое при уходе курсора
-//     });
-// });
-
-/////////////////////////////////////////////////////

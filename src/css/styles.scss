@@ -254,24 +254,6 @@ input {
   animation: marquee 10s linear infinite;
 }
 
-.сhess {
-  width: 180px;
-  height: 180px;
-  display: grid;
-  grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows:     1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-.white {
-  height: 10px;
-  width: 10px;
-}
-
-.black {
-  height: 10px;
-  width: 10px;
-}
-
 .progress-bar {
   height: 5px;
   width: 0; /* Изначально ширина 0 */
