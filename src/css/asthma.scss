@@ -120,7 +120,8 @@ legend:not(.card legend) {
 }
 
 .header-scrolled {
-  background-color: black; /* Непрозрачный черный фон при прокрутке */
+  backdrop-filter: blur(2px);
+  background-color: hsl(0deg 0% 0% / 75%);
 }
 
 .white {

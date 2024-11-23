@@ -15,7 +15,7 @@ module.exports = {
       },
       height: {
         '[100vh-64]': 'calc(100vh - 64px)',
-      },
+      }
     },
   },
   plugins: [],

@@ -111,11 +111,11 @@ for (let i = 0; i < 324; i++) {
 /////////////////////////////////////////////////////
 
 window.addEventListener('scroll', function () {
-    const header = document.getElementById('header');
+    const headerScrolled = document.getElementById('header');
     if (window.scrollY > 25) { // Если прокрутка больше 50px
-        header.classList.add('header-scrolled');
+        headerScrolled.classList.add('header-scrolled');
     } else {
-        header.classList.remove('header-scrolled');
+        headerScrolled.classList.remove('header-scrolled');
     }
 });
 
