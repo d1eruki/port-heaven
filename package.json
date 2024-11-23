@@ -9,7 +9,7 @@
   "directories": {},
   "scripts": {
     "start": "webpack serve --hot --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
