@@ -5,10 +5,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-    entry: './src/js/scripts.js',
+    entry: './src/js/script.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'scripts.js',
+        filename: 'script.js',
         publicPath: '/',
         clean: true,
     },
