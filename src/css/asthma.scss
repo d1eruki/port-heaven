@@ -62,7 +62,8 @@ a {
 }
 
 .card legend {
-  background-color: $black;
+  background-color: $white;
+  color: $black;
 }
 
 .info span {
@@ -110,26 +111,18 @@ legend:not(.card legend) {
   border: $black solid 1px;
 }
 
-.me {
-  -webkit-filter: drop-shadow(5px 5px 5px $black);
-  filter: drop-shadow(5px 5px 5px $black) !important;
-
-  border: 2px solid $pink;
-  box-shadow: 0 0 20px $pink, inset 0 0 10px $pink;
-  text-shadow: 0 0 8px $pink;
-}
+//.me {
+//  -webkit-filter: drop-shadow(5px 5px 5px $black);
+//  filter: drop-shadow(5px 5px 5px $black) !important;
+//
+//  border: 2px solid $pink;
+//  box-shadow: 0 0 20px $pink, inset 0 0 10px $pink;
+//  text-shadow: 0 0 8px $pink;
+//}
 
 .header-scrolled {
   backdrop-filter: blur(2px);
   background-color: hsl(0deg 0% 0% / 75%);
-}
-
-.white {
-  background-color: $white;
-}
-
-.black {
-  background-color: $grey-darker;
 }
 
 .progress-bar {
