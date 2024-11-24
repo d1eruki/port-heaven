@@ -2,7 +2,7 @@ import '../css/styles.scss';
 import { setHeight, toggleContent, updateProgressBar } from './ui';
 import { generateChessboard } from './chessboard';
 import { updateHeaderOnScroll } from './scroll-header';
-import './vue'
+import './vue';
 
 document.addEventListener('DOMContentLoaded', () => {
     setHeight();

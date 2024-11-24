@@ -1,6 +1,6 @@
 <template>
   <div class="item flex flex-col md:pointer-events-auto pointer-events-none">
-    <div class="itemName flex justify-between items-center mb-4">
+    <div class="flex justify-between items-center mb-4">
       <h2>{{ itemName }}</h2>
       <img class="shadowless" :src="itemImage" :alt="itemImgAlt">
     </div>
