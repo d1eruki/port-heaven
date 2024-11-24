@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-    entry: './src/js/script.js',
+    entry: './src/script.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'script.js',
@@ -84,7 +84,7 @@ module.exports = {
             inject: true,
         }),
         new MiniCssExtractPlugin({
-            filename: 'styles.css',
+            filename: 'style.css',
         }),
         new CopyWebpackPlugin({
             patterns: [

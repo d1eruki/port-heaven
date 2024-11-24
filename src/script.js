@@ -1,8 +1,8 @@
-import '../css/styles.scss';
-import { setHeight, toggleContent, updateProgressBar } from './ui';
-import { generateChessboard } from './chessboard';
-import { updateHeaderOnScroll } from './scroll-header';
-import './vue';
+import './style.scss';
+import { setHeight, toggleContent, updateProgressBar } from './js/ui';
+import { generateChessboard } from './js/chessboard';
+import { updateHeaderOnScroll } from './js/scroll-header';
+import './js/vue';
 
 document.addEventListener('DOMContentLoaded', () => {
     setHeight();

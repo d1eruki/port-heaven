@@ -1,18 +1,18 @@
-@use './animations';
-@use './asthma';
+@use 'css/animations';
+@use 'css/asthma';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-  cursor: url("../assets/images/inactive.png"), auto;
+  cursor: url("./assets/images/inactive.png"), auto;
 }
 
 a,
 header span,
 .item {
-  cursor: url("../assets/images/active.png"), pointer;
+  cursor: url("./assets/images/active.png"), pointer;
 }
 
 * {
