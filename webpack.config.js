@@ -2,30 +2,37 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader'); // Импортируем из vue-loader
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-    entry: './src/js/scripts.js', // Входной файл (твой основной файл JS)
+    entry: './src/js/scripts.js',
     output: {
-        path: path.resolve(__dirname, 'dist'), // Папка для выхода, например, "dist"
-        filename: 'scripts.js', // Имя выходного файла
-        //publicPath: '/', // этот путь будет добавлен к каждому ресурсу
-        clean: true, // очищает выходную папку перед сборкой
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'scripts.js',
+        publicPath: '/',
+        clean: true,
     },
-    mode: 'production', // Используем "production" для минификации кода
-    devServer: {
-        static: path.join(__dirname, 'dist'), // Корневая папка для сервера
-        port: 8080, // Порт для сервера
-        open: false, // Открывает браузер при запуске
-    },
+    mode: 'production',
+    devServer: process.env.NODE_ENV === 'development' ? {
+        static: path.join(__dirname, 'dist'),
+        port: 8080,
+        open: true,
+    } : {},
     resolve: {
         alias: {
-            vue: 'vue/dist/vue.esm-bundler.js' // использование полной версии Vue
+            vue: 'vue/dist/vue.esm-bundler.js'
         },
-        extensions: ['.js', '.vue', '.json'], // разрешаемые расширения файлов
+        extensions: ['.js', '.vue', '.json'],
     },
     module: {
         rules: [
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/images/[name][ext]',
+                },
+            },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
@@ -41,47 +48,40 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/i, // обработка SCSS файлов
+                test: /\.(scss|css)$/i,
                 use: [
-                    MiniCssExtractPlugin.loader, // Извлечение CSS в отдельный файл
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
                                 plugins: [
-                                    require('autoprefixer'), // Используйте autoprefixer
+                                    require('autoprefixer'),
                                     require('tailwindcss'),
                                 ],
                             },
                         },
                     },
-                    'sass-loader' // компилирует Sass в CSS
+                    // Добавляем sass-loader только для SCSS файлов
+                    ...( /\.scss$/i.test('dist') ? ['sass-loader'] : [] ),
                 ],
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader, // Извлечение CSS в отдельный файл
-                    'css-loader',
-                    'postcss-loader',
-                ],
-            },
+            }
         ],
     },
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            template: 'src/index.html', // исходный HTML
+            template: 'src/index.html',
             filename: 'index.html',
-            inject: true, // Вставляет скрипты и стили автоматически
+            inject: true,
         }),
-        new MiniCssExtractPlugin({ // Настройка плагина
-            filename: 'styles.css', // Имя выходного CSS файла
+        new MiniCssExtractPlugin({
+            filename: 'styles.css',
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'src/assets/images', to: 'assets/images' }, // Копирование изображений из src в dist
+                { from: 'src/assets/images', to: 'assets/images' },
             ],
         }),
     ],
