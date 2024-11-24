@@ -27,3 +27,11 @@
     background-position: 0 50%
   }
 }
+
+.item {;
+  transition: all .3s cubic-bezier(.65, .05, .36, 1);
+
+  &:hover {
+    transform: translateY(10px) translateX(10px);
+  }
+}

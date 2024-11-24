@@ -171,24 +171,9 @@ video {
   text-transform: uppercase;
 }
 
-.item,
-.item-iframe {;
-  border-radius: 15px;
-  transition: all .3s cubic-bezier(.65, .05, .36, 1);
-
-  &:hover {
-    transform: translateY(10px) translateX(10px);
-  }
-}
-
-.item {
-  padding: 10px
-}
-
 .item img {
   max-width: 60px;
   min-width: 60px;
-  border-radius: 15px;
 }
 
 .qrc {
@@ -274,6 +259,6 @@ input {
 
 .progress-bar {
   height: 5px;
-  width: 0; /* Изначально ширина 0 */
-  transition: width 0.1s ease; /* Плавный переход */
+  width: 0;
+  transition: width 0.1s ease;
 }

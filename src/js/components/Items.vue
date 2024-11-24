@@ -1,8 +1,8 @@
 <template>
-  <div class="item flex flex-col md:pointer-events-auto pointer-events-none">
-    <div class="flex justify-between items-center mb-4">
+  <div class="item rounded-xl p-4 flex flex-col md:pointer-events-auto pointer-events-none">
+    <div class="flex justify-between items-center mb-4 gap-1">
       <h2>{{ itemName }}</h2>
-      <img class="shadowless" :src="itemImage" :alt="itemImgAlt">
+      <img class="shadowless rounded-xl" :src="itemImage" :alt="itemImgAlt">
     </div>
     <p>{{ itemDesc }}</p>
   </div>
