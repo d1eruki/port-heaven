@@ -48,7 +48,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(scss|css)$/i,
+                test: /\.scss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
@@ -63,10 +63,17 @@ module.exports = {
                             },
                         },
                     },
-                    // Добавляем sass-loader только для SCSS файлов
-                    ...( /\.scss$/i.test('dist') ? ['sass-loader'] : [] ),
+                    'sass-loader'
                 ],
-            }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                ],
+            },
         ],
     },
     plugins: [
