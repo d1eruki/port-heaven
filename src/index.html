@@ -91,39 +91,25 @@
                 обработки графики и Illustrator для создания векторных элементов.
             </p>
         </div>
-        <div class="grid lg:!grid-cols-3 gap-4 -m-2.5">
-            <div id="DesignItem">
-                <template>
-                    <DesignItem
-                        itemName="figma"
-                        itemDesc="В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present"
-                        itemImage="assets/images/figma.svg"
-                        itemImgAlt="Figma Logo">
-                    </DesignItem>
-                </template>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>figma</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/figma.svg">
-                </div>
-                <p>В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>photoshop</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/psd.svg">
-                </div>
-                <p>Увлекаюсь фотошопом со школьных лет, фотошопил друзей на аватарки вконтакте. Это баловство
-                    позволило в настоящее время крутить фотокарточками как захочется</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>illustrator</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/ai.svg">
-                </div>
-                <p>С иллюстратором до сих пор сложные отношения, я пытаю его он пытает меня</p>
-            </div>
+        <div id="design-item" class="grid lg:!grid-cols-3 gap-4 -m-2.5">
+            <design-item
+                    item-name="figma"
+                    item-desc="В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present"
+                    item-image="assets/images/figma.svg"
+                    item-img-alt="figma Logo">
+            </design-item>
+            <design-item
+                    item-name="photoshop"
+                    item-desc="Увлекаюсь фотошопом со школьных лет, фотошопил друзей на аватарки вконтакте. Это баловство позволило в настоящее время крутить фотокарточками как захочется"
+                    item-image="assets/images/psd.svg"
+                    item-img-alt="photoshop Logo">
+            </design-item>
+            <design-item
+                    item-name="illustrator"
+                    item-desc="С иллюстратором до сих пор сложные отношения, я пытаю его он пытает меня"
+                    item-image="assets/images/ai.svg"
+                    item-img-alt="illustrator Logo">
+            </design-item>
         </div>
         <hr>
         <div>
@@ -134,64 +120,55 @@
                 адаптивных интерфейсов. Для динамических элементов применяю Vue.js.
             </p>
         </div>
-        <div class="grid lg:!grid-cols-3 gap-4 -m-2.5">
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>html</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/html.svg">
-                </div>
-                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>css</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/css.svg">
-                </div>
-                <p>Последний раз серьезно занимался созданием сайтов в учебные годы, наверстываю упущенной,
-                    обмазываясь флексами и гридами</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>js</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/javascript.svg">
-                </div>
-                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>sass</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/sass.svg">
-                </div>
-                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>tailwind</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/tailwind.svg">
-                </div>
-                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>bootstrap</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/bootstrap.svg">
-                </div>
-                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>vue</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/vue.svg">
-                </div>
-                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>webpack</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/webpack.svg">
-                </div>
-                <p>Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати</p>
-            </div>
+        <div id="web-item" class="grid lg:!grid-cols-3 gap-4 -m-2.5">
+            <web-item
+                    item-name="html"
+                    item-desc="Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати"
+                    item-image="assets/images/html.svg"
+                    item-img-alt="html Logo">
+            </web-item>
+            <web-item
+                    item-name="css"
+                    item-desc="Последний раз серьезно занимался созданием сайтов в учебные годы, наверстываю упущенной, обмазываясь флексами и гридами"
+                    item-image="assets/images/css.svg"
+                    item-img-alt="css Logo">
+            </web-item>
+            <web-item
+                    item-name="js"
+                    item-desc="Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати"
+                    item-image="assets/images/javascript.svg"
+                    item-img-alt="js Logo">
+            </web-item>
+            <web-item
+                    item-name="sass"
+                    item-desc="Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати"
+                    item-image="assets/images/sass.svg"
+                    item-img-alt="sass Logo">
+            </web-item>
+            <web-item
+                    item-name="tailwind"
+                    item-desc="Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати"
+                    item-image="assets/images/tailwind.svg"
+                    item-img-alt="tailwind Logo">
+            </web-item>
+            <web-item
+                    item-name="bootstrap"
+                    item-desc="Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати"
+                    item-image="assets/images/bootstrap.svg"
+                    item-img-alt="bootstrap Logo">
+            </web-item>
+            <web-item
+                    item-name="vue"
+                    item-desc="Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати"
+                    item-image="assets/images/vue.svg"
+                    item-img-alt="vue Logo">
+            </web-item>
+            <web-item
+                    item-name="webpack"
+                    item-desc="Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати"
+                    item-image="assets/images/webpack.svg"
+                    item-img-alt="webpack Logo">
+            </web-item>
         </div>
         <hr>
         <div>
@@ -202,38 +179,31 @@
                 Effects, а для обработки звука — Audition.
             </p>
         </div>
-        <div class="grid lg:!grid-cols-3 gap-4 -m-2.5">
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>premiere pro</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/pp.svg">
-                </div>
-                <p>В студенческое время работал в сони вегасе, ленясь перекатываться на премьер, но приколы которые
-                    он умеет делать, особенно после вегаса, заставили восторгнуться</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>after effects</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/ae.svg">
-                </div>
-                <p>Увлекание эффектиком появилось когда перекатился на премьер. В коллекции уже есть пара прикольных
-                    заставок (⌐■_■)</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>audition</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/au.svg">
-                </div>
-                <p>Этот продукт открываю крайне редко, только для рабочих целей, но навалить бассов, застрейчить
-                    диктора или почистить мусор могу</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>Sony Vegas</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/sv.svg">
-                </div>
-                <p>Делал на нем видосики в шараге</p>
-            </div>
+        <div id="video-item" class="grid lg:!grid-cols-3 gap-4 -m-2.5">
+            <video-item
+                    item-name="premiere pro"
+                    item-desc="В студенческое время работал в сони вегасе, ленясь перекатываться на премьер, но приколы которые он умеет делать, особенно после вегаса, заставили восторгнуться"
+                    item-image="assets/images/pp.svg"
+                    item-img-alt="premiere pro Logo">
+            </video-item>
+            <video-item
+                    item-name="after effects"
+                    item-desc="Увлекание эффектиком появилось когда перекатился на премьер. В коллекции уже есть пара прикольных заставок (⌐■_■)"
+                    item-image="assets/images/ae.svg"
+                    item-img-alt="after effects Logo">
+            </video-item>
+            <video-item
+                    item-name="audition"
+                    item-desc="Этот продукт открываю крайне редко, только для рабочих целей, но навалить бассов, застрейчить диктора или почистить мусор могу"
+                    item-image="assets/images/au.svg"
+                    item-img-alt="audition Logo">
+            </video-item>
+            <video-item
+                    item-name="Sony Vegas"
+                    item-desc="Делал на нем видосики в шараге"
+                    item-image="assets/images/sv.svg"
+                    item-img-alt="Sony Vegas Logo">
+            </video-item>
         </div>
         <hr>
         <div>
@@ -242,22 +212,19 @@
                 asd
             </p>
         </div>
-        <div class="grid lg:!grid-cols-3 gap-4 -m-2.5">
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>unity</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/unity.svg">
-                </div>
-                <p>Ориентируюсь в интерфейсе, могу создать материал. Но в общем, есть опыт верстки игрового
-                    интерфейса на канвасах и uielements</p>
-            </div>
-            <div class="item flex flex-col">
-                <div class="itemName flex justify-between items-center mb-4">
-                    <h2>manual testing</h2>
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/testing_2.png">
-                </div>
-                <p>aaaaaaa</p>
-            </div>
+        <div id="other-item" class="grid lg:!grid-cols-3 gap-4 -m-2.5">
+            <other-item
+                    item-name="unity"
+                    item-desc="Ориентируюсь в интерфейсе, могу создать материал. Но в общем, есть опыт верстки игрового интерфейса на канвасах и uielements"
+                    item-image="assets/images/unity.svg"
+                    item-img-alt="unity Logo">
+            </other-item>
+            <other-item
+                    item-name="manual testing"
+                    item-desc="aaaaaaa"
+                    item-image="assets/images/testing_2.png"
+                    item-img-alt="manual testing Logo">
+            </other-item>
         </div>
     </div>
     <div class="hidden w-full gap-10" data-content="design">

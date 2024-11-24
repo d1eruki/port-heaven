@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "DesignItem",
+  name: "Items",
   props: {
     itemName: {
       type: String,
@@ -33,5 +33,5 @@ export default {
       default: 'Default Image Description'
     }
   }
-}
+};
 </script>
