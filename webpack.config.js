@@ -10,7 +10,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'script.js',
-        publicPath: '/',
         clean: true,
     },
     mode: 'production',
