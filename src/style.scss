@@ -1,38 +1,87 @@
-@use 'css/animations';
-@use 'css/asthma';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  cursor: url("./assets/images/inactive.png"), auto;
+$black: hsl(0 0% 0%);
+$white: hsl(0 0% 100%);
+$primary: hsl(314 97% 44%);
+$primary-darker: hsl(248 65% 50%);
+$secondary: hsl(0 0% 12%);
+$secondary-light: hsl(0 0% 25%);
+$secondary-dark: hsl(0 0% 10%);
+
+@keyframes move {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 50%;
+  }
 }
 
-a,
-header span,
-.item {
-  cursor: url("./assets/images/active.png"), pointer;
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes animateBg {
+  0% {
+    background-position: 0 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0 50%
+  }
 }
 
 * {
   font-family: Inter, sans-serif;
   font-weight: 300;
   text-align: justify;
+  color: rgba($white, .5);
+  cursor: url("./assets/images/inactive.png"), auto;
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  &::selection {
+    background-color: $white;
+    color: $black;
   }
 }
 
 body {
   visibility: hidden;
+  background: linear-gradient(270deg, $black, $secondary-dark);
+  background-size: 400% 400%;
+  animation: animateBg 30s ease infinite;
 }
 
 body.loaded {
   visibility: visible;
 }
 
+h1,
+h2,
+h3,
+b {
+  color: $white;
+}
+
+a {
+  cursor: url("./assets/images/active.png"), pointer;
+
+  &:hover {
+    color: $white;
+  }
+}
 
 h1 {
   font-size: 2rem;
@@ -49,33 +98,12 @@ b {
   text-transform: uppercase;
 }
 
-fieldset {
-  border: none;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding-block-start: 0;
-  padding-inline-start: 0;
-  padding-inline-end: 0;
-  padding-block-end: 0;
-  height: fit-content;
-
-  &:not(.card fieldset) > * {
-    margin: 0 0 20px 0;
-  }
-
-  &:not(.card fieldset) {
-    transition: all 0.25s ease-in-out;
-  }
-}
-
 legend {
   padding: 5px 10px;
-}
 
-header img:hover,
-fieldset:hover,
-.card fieldset {
-  animation: none
+  &:not(.card legend) {
+    background: $secondary;
+  }
 }
 
 img,
@@ -86,6 +114,24 @@ video,
 
   &:hover {
     filter: none;
+  }
+}
+
+.item {;
+  transition: all .3s cubic-bezier(.65, .05, .36, 1);
+
+  &:hover {
+    transform: translateY(10px) translateX(10px);
+    box-shadow: -10px -10px 0px 0px $secondary;
+  }
+
+  &:hover h2::first-letter {
+    background-color: $primary-darker;
+  }
+
+  img {
+    max-width: 60px;
+    min-width: 60px;
   }
 }
 
@@ -100,20 +146,54 @@ video,
   min-width: 60px;
 }
 
-.card,
 .shirt {
   width: 100%;
   height: 100%;
   transition: transform .5s ease;
   backface-visibility: hidden;
+  background-color: $secondary;
+  transform: rotateY(180deg);
+
+  img {
+    width: 80%;
+  }
 }
 
-.shirt img {
-  width: 80%;
+.card {
+  width: 100%;
+  height: 100%;
+  transition: transform .5s ease;
+  backface-visibility: hidden;
+
+  fieldset {
+    width: 180px;
+    height: 180px;
+  }
+
+  legend {
+    background-color: $black;
+    line-height: 10px;
+    animation: move 5s infinite linear alternate;
+  }
+
+  fieldset:nth-of-type(2) {
+    transform: rotate(90deg);
+  }
+
+  fieldset:nth-of-type(3) {
+    transform: rotate(180deg);
+  }
+
+  fieldset:nth-of-type(4) {
+    transform: rotate(-90deg);
+  }
+
+  img {
+    width: 180px;
+  }
 }
 
 .cardBox {
-
   &:hover .card {
     transform: rotateY(180deg);
   }
@@ -123,88 +203,73 @@ video,
   }
 }
 
-.shirt {
-  transform: rotateY(180deg);
+.info {
+  h3 {
+    text-align: right;
+    text-transform: uppercase;
+    background-color: $primary-darker;
+  }
 }
 
-.card fieldset {
-  width: 180px;
-  height: 180px;
-}
+.item-iframe {
+  background-color: $secondary;
 
-.card legend {
-  line-height: 10px;
-  animation: move 5s infinite linear alternate;
-}
-
-.card fieldset:nth-of-type(2) {
-  transform: rotate(90deg);
-}
-
-.card fieldset:nth-of-type(3) {
-  transform: rotate(180deg);
-}
-
-.card fieldset:nth-of-type(4) {
-  transform: rotate(-90deg);
-}
-
-.card img {
-  width: 180px;
-}
-
-.info h3 {
-  text-align: right;
-  text-transform: uppercase;
-}
-
-.item img {
-  max-width: 60px;
-  min-width: 60px;
+  &:hover {
+    box-shadow: -10px -10px 0px 0px $secondary;
+    background-color: $white;
+  }
 }
 
 .is-active {
   display: grid;
 }
 
-iframe {
-  border-radius: 15px;
+.active {
+  color: $white;
+
+  &:first-letter {
+    background-color: $primary-darker;
+    font-weight: bold;
+  }
 }
 
 iframe,
 video {
+  border-radius: 15px;
   border: none
-}
-
-audio {
-  width: 100%;
-}
-
-button,
-input {
-  font-size: inherit;
 }
 
 .chess {
   width: 180px;
   height: 180px;
-  display: grid;
   grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows:     1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-.white {
-  height: 10px;
-  width: 10px;
-}
-
-.black {
-  height: 10px;
-  width: 10px;
 }
 
 .progress-bar {
   height: 5px;
   width: 0;
   transition: width 0.1s ease;
+}
+
+.neon-pink-shadow {
+  border: 2px solid $primary-darker;
+  box-shadow: 0 0 20px $primary-darker, inset 0 0 10px $primary-darker;
+}
+
+.header-scrolled {
+  backdrop-filter: blur(2px);
+  background-color: rgba($black, 0.75);
+}
+
+.cube-one {
+  background-color: $black;
+}
+
+.cube-two {
+  background-color: $secondary-dark;
+}
+
+.progress-bar {
+  background-color: $primary-darker;
 }
