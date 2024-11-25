@@ -27,7 +27,7 @@ $shadow: hsla(0 0% 50% / .5);
 $yellow: hsla(68 84% 63% / 1);
 
 * {
-  color: #a8a8a8;
+  color: $grey-darker;
 
   &::selection {
     background-color: $white;
@@ -97,26 +97,13 @@ a {
   }
 }
 
-.shadowless {
-  box-shadow: none;
-}
-
 legend:not(.card legend) {
   background: $secondary;
 }
 
-.stack-item-desc {
-  background: $white;
-  border: $black solid 1px;
-}
-
-.me {
-  -webkit-filter: drop-shadow(5px 5px 5px $black);
-  filter: drop-shadow(5px 5px 5px $black) !important;
-
+.neon-pink-shadow {
   border: 2px solid $pink;
   box-shadow: 0 0 20px $pink, inset 0 0 10px $pink;
-  text-shadow: 0 0 8px $pink;
 }
 
 .header-scrolled {
@@ -124,12 +111,12 @@ legend:not(.card legend) {
   background-color: hsl(0deg 0% 0% / 75%);
 }
 
-.white {
-  background-color: $white;
+.cube-one {
+  background-color: $black;
 }
 
-.black {
-  background-color: $grey-darker;
+.cube-two {
+  background-color: $secondary-dark;
 }
 
 .progress-bar {

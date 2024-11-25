@@ -18,11 +18,11 @@
     <div class="2xl:container mx-auto 2xl:!px-0 px-10 py-4 items-center flex flex-wrap justify-between gap-x-10">
         <a href="#">d1eruki</a>
         <div class="flex flex-wrap gap-1 md:gap-10 md:w-fit">
-            <span class="active" data-open-block="about" data-text="/about">/about</span>
-            <span data-open-block="stack" data-text="/stack">/stack</span>
-            <span data-open-block="design" data-text="/design">/design</span>
-            <span data-open-block="video" data-text="/video">/video</span>
-            <span data-open-block="pic" data-text="/pic">/pic</span>
+            <a class="active" data-open-block="about" data-text="/about">/about</a>
+            <a data-open-block="stack" data-text="/stack">/stack</a>
+            <a data-open-block="design" data-text="/design">/design</a>
+            <a data-open-block="video" data-text="/video">/video</a>
+            <a data-open-block="pic" data-text="/pic">/pic</a>
         </div>
     </div>
 </header>
@@ -31,26 +31,25 @@
     <div class="hidden w-full grid-rows-1 grid-cols-[auto-2] is-active md:!gap-10 gap-0" data-content="about">
         <div class="info h-fit md:!grid hidden grid-cols-[auto-2] gap-x-10 w-min">
             <h3>phot</h3>
-            <div class="nocursor cardBox">
-                <div class="card">
+            <div class="cursor-none cardBox relative">
+                <div class="absolute card">
                     <div class="chess absolute"></div>
-                    <img alt="Girl in a jacket" class="me filterless absolute z-10 drop-shadow-2xl"
-                         src="assets/images/me_trn.png">
-                    <fieldset>
+                    <img alt="Girl in a jacket" class="absolute z-10 !filter-none" src="assets/images/me.png">
+                    <fieldset class="absolute">
                         <legend>.вредина</legend>
                     </fieldset>
-                    <fieldset>
+                    <fieldset class="absolute">
                         <legend>.негодяй</legend>
                     </fieldset>
-                    <fieldset>
+                    <fieldset class="absolute">
                         <legend>.злюка</legend>
                     </fieldset>
-                    <fieldset>
+                    <fieldset class="absolute">
                         <legend>.лиходей</legend>
                     </fieldset>
                 </div>
-                <div class="shirt flex">
-                    <img alt="Girl in a jacket" class="shadowless" src="assets/images/dieruki.png">
+                <div class="absolute shirt flex">
+                    <img class="m-auto" alt="Girl in a jacket" src="assets/images/dieruki.png">
                 </div>
             </div>
             <h3>name</h3>
