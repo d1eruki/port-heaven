@@ -9,6 +9,7 @@ $primary-darker: hsl(248 65% 50%);
 $secondary: hsl(0 0% 12%);
 $secondary-light: hsl(0 0% 25%);
 $secondary-dark: hsl(0 0% 10%);
+$transparent: hsla(0, 0%, 0%, 0);
 
 @keyframes move {
   from {
@@ -29,14 +30,11 @@ $secondary-dark: hsl(0 0% 10%);
 }
 
 @keyframes animateBg {
-  0% {
-    background-position: 0 50%
+  0%, 100% {
+    background-position: 0 50%;
   }
   50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0 50%
+    background-position: 100% 50%;
   }
 }
 
@@ -62,16 +60,13 @@ body {
   background: linear-gradient(270deg, $black, $secondary-dark);
   background-size: 400% 400%;
   animation: animateBg 30s ease infinite;
+
+  &.loaded {
+    visibility: visible;
+  }
 }
 
-body.loaded {
-  visibility: visible;
-}
-
-h1,
-h2,
-h3,
-b {
+h1, h2, h3, b {
   color: $white;
 }
 
@@ -106,10 +101,7 @@ legend {
   }
 }
 
-img,
-iframe,
-video,
-.item {
+img, iframe, video, .item {
   filter: grayscale(100%);
 
   &:hover {
@@ -117,16 +109,16 @@ video,
   }
 }
 
-.item {;
+.item {
   transition: all .3s cubic-bezier(.65, .05, .36, 1);
 
   &:hover {
-    transform: translateY(10px) translateX(10px);
+    transform: translate(10px, 10px);
     box-shadow: -10px -10px 0px 0px $secondary;
-  }
 
-  &:hover h2::first-letter {
-    background-color: $primary-darker;
+    h2::first-letter {
+      background-color: $primary-darker;
+    }
   }
 
   img {
@@ -138,19 +130,27 @@ video,
 .cardBox {
   width: 180px;
   height: 180px;
-  margin: 0 0 20px;
+  margin-bottom: 20px;
+
+  &:hover {
+    .card {
+      transform: rotateY(180deg);
+    }
+
+    .shirt {
+      transform: rotateY(0);
+    }
+  }
 }
 
-.item-cardBox img {
-  max-width: 60px;
-  min-width: 60px;
-}
-
-.shirt {
+.shirt, .card {
   width: 100%;
   height: 100%;
   transition: transform .5s ease;
   backface-visibility: hidden;
+}
+
+.shirt {
   background-color: $secondary;
   transform: rotateY(180deg);
 
@@ -160,11 +160,6 @@ video,
 }
 
 .card {
-  width: 100%;
-  height: 100%;
-  transition: transform .5s ease;
-  backface-visibility: hidden;
-
   fieldset {
     width: 180px;
     height: 180px;
@@ -193,22 +188,10 @@ video,
   }
 }
 
-.cardBox {
-  &:hover .card {
-    transform: rotateY(180deg);
-  }
-
-  &:hover .shirt {
-    transform: rotateY(0);
-  }
-}
-
-.info {
-  h3 {
-    text-align: right;
-    text-transform: uppercase;
-    background-color: $primary-darker;
-  }
+.info h3 {
+  text-align: right;
+  text-transform: uppercase;
+  background-color: $primary-darker;
 }
 
 .item-iframe {
@@ -233,23 +216,23 @@ video,
   }
 }
 
-iframe,
-video {
+iframe, video {
   border-radius: 15px;
-  border: none
+  border: none;
 }
 
 .chess {
   width: 180px;
   height: 180px;
-  grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows:     1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: repeat(18, 1fr);
 }
 
 .progress-bar {
   height: 5px;
   width: 0;
   transition: width 0.1s ease;
+  background-color: $primary-darker;
 }
 
 .neon-pink-shadow {
@@ -263,13 +246,9 @@ video {
 }
 
 .cube-one {
-  background-color: $black;
+  background-color: $transparent;
 }
 
 .cube-two {
-  background-color: $secondary-dark;
-}
-
-.progress-bar {
-  background-color: $primary-darker;
+  background-color: $white;
 }
