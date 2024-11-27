@@ -83,8 +83,8 @@ port-heaven персональный проект-портфолио для де
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone git@github.com:d1eruki/home-work-js.git
-   cd home-work-js
+   git clone git@github.com:d1eruki/port-heaven.git
+   cd port-heaven
    ```
 
 2. Установите зависимости:
