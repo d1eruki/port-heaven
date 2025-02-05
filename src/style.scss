@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@use "tailwindcss";
 
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);

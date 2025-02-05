@@ -57,8 +57,8 @@ module.exports = {
                         options: {
                             postcssOptions: {
                                 plugins: [
+                                    require('@tailwindcss/postcss'),
                                     require('autoprefixer'),
-                                    require('tailwindcss'),
                                 ],
                             },
                         },
@@ -71,7 +71,17 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'postcss-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    require('@tailwindcss/postcss'),
+                                    require('autoprefixer'),
+                                ],
+                            },
+                        },
+                    },
                 ],
             },
         ],
