@@ -1,20 +1,10 @@
 export const setHeight = () => {
-    const header = document.querySelector('header');
     const footer = document.querySelector('footer');
-    const heightTarget = document.getElementById('height-target');
+    const header = document.querySelector('header');
 
-    if (!header || !footer) return;
+    if (!footer || !header) return;
 
-    const headerHeight = header.offsetHeight;
-    footer.style.height = `${headerHeight}px`;
-
-    const isScrollable = document.body.scrollHeight > window.innerHeight;
-
-    heightTarget.style.height = isScrollable
-        ? 'auto'
-        : `calc(100vh - ${headerHeight}px - ${headerHeight}px)`;
-
-    document.body.classList.add('loaded');
+    footer.style.height = `${header.offsetHeight}px`;
 };
 
 export const toggleContent = (target) => {
@@ -24,16 +14,17 @@ export const toggleContent = (target) => {
 
     if (!activeBlock || activeBlock.getAttribute('data-open-block') !== target) {
         if (activeBlock) activeBlock.classList.remove("active");
-        if (activeContent) activeContent.classList.remove("is-active");
 
         const newActiveBlock = document.querySelector(`[data-open-block][data-open-block="${target}"]`);
-        newActiveBlock.classList.add("active");
-        targetContent.classList.add("is-active");
-
-        setHeight();       // Обновляем высоты после изменения контента
-        window.scrollTo(0, 0); // Сбрасываем прокрутку наверх
+        if (newActiveBlock) newActiveBlock.classList.add("active");
     }
 };
+
+document.querySelectorAll("[data-open-block]").forEach(button => {
+    button.addEventListener("click", function () {
+        toggleContent(this.getAttribute("data-open-block"));
+    });
+});
 
 export const updateProgressBar = () => {
     const progressBar = document.getElementById('progress-bar');

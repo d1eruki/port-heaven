@@ -53,15 +53,14 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  visibility: hidden;
   background: linear-gradient(270deg, $black, $secondary-dark);
   background-size: 400% 400%;
   animation: animateBg 30s ease infinite;
-
-  &.loaded {
-    visibility: visible;
-  }
 }
 
 h1, h2, h3, b {
@@ -201,10 +200,6 @@ img, iframe, video, .item {
   }
 }
 
-.is-active {
-  display: grid;
-}
-
 .active {
   color: $white;
 
@@ -239,7 +234,7 @@ iframe, video {
 }
 
 .header-scrolled {
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(16px);
   background-color: rgba($black, 0.75);
 }
 
