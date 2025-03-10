@@ -1,5 +1,6 @@
 import './style.scss';
-import { setHeight, updateProgressBar } from './js/ui';
+import { setHeight } from './js/menu-swap';
+import { updateProgressBar } from './js/progress-bar';
 import { generateChessboard } from './js/chessboard';
 import { updateHeaderOnScroll } from './js/scroll-header';
 import './js/vue';
