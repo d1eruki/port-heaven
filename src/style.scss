@@ -53,15 +53,14 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  visibility: hidden;
   background: linear-gradient(270deg, $black, $secondary-dark);
   background-size: 400% 400%;
   animation: animateBg 30s ease infinite;
-
-  &.loaded {
-    visibility: visible;
-  }
 }
 
 h1, h2, h3, b {
@@ -99,16 +98,14 @@ legend {
   }
 }
 
-img, iframe, video, .item {
-  filter: grayscale(100%);
-
-  &:hover {
-    filter: none;
-  }
-}
-
 .item {
   transition: all .3s cubic-bezier(.65, .05, .36, 1);
+
+  img {
+    filter: grayscale(100%);
+    max-width: 60px;
+    min-width: 60px;
+  }
 
   &:hover {
     transform: translate(10px, 10px);
@@ -117,11 +114,10 @@ img, iframe, video, .item {
     h2::first-letter {
       background-color: $primary-darker;
     }
-  }
 
-  img {
-    max-width: 60px;
-    min-width: 60px;
+    img {
+      filter: none;
+    }
   }
 }
 
@@ -149,7 +145,6 @@ img, iframe, video, .item {
 }
 
 .shirt {
-  background-color: $secondary;
   transform: rotateY(180deg);
 
   img {
@@ -201,10 +196,6 @@ img, iframe, video, .item {
   }
 }
 
-.is-active {
-  display: grid;
-}
-
 .active {
   color: $white;
 
@@ -239,7 +230,7 @@ iframe, video {
 }
 
 .header-scrolled {
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(16px);
   background-color: rgba($black, 0.75);
 }
 
