@@ -8,6 +8,8 @@
     --spacing: 0.25rem;
     --radius-xl: 0.75rem;
     --aspect-video: 16 / 9;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -226,8 +228,8 @@
     height: -moz-fit-content;
     height: fit-content;
   }
-  .h-screen {
-    height: 100vh;
+  .min-h-screen {
+    min-height: 100vh;
   }
   .w-full {
     width: 100%;
@@ -235,6 +237,12 @@
   .w-min {
     width: -moz-min-content;
     width: min-content;
+  }
+  .scale-75 {
+    --tw-scale-x: 75%;
+    --tw-scale-y: 75%;
+    --tw-scale-z: 75%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
   }
   .transform {
     transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z) var(--tw-skew-x) var(--tw-skew-y);
@@ -276,6 +284,9 @@
     -moz-column-gap: calc(var(--spacing) * 10);
          column-gap: calc(var(--spacing) * 10);
   }
+  .justify-self-center {
+    justify-self: center;
+  }
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
@@ -300,6 +311,11 @@
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .transition {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
   .sm\:\!grid-cols-2 {
     @media (width >= 40rem) {
@@ -452,7 +468,7 @@ b {
 legend {
   padding: 5px 10px;
 }
-legend:not(.card legend) {
+legend:not(.profile legend) {
   background: hsl(0,0%,12%);
 }
 .item {
@@ -473,18 +489,18 @@ legend:not(.card legend) {
 .item:hover img {
   filter: none;
 }
-.cardBox {
+.profile-box {
   width: 180px;
   height: 180px;
   margin-bottom: 20px;
 }
-.cardBox:hover .card {
+.profile-box:hover .profile {
   transform: rotateY(180deg);
 }
-.cardBox:hover .shirt {
+.profile-box:hover .shirt {
   transform: rotateY(0);
 }
-.shirt,.card {
+.shirt,.profile {
   width: 100%;
   height: 100%;
   transition: transform .5s ease;
@@ -496,25 +512,25 @@ legend:not(.card legend) {
 .shirt img {
   width: 80%;
 }
-.card fieldset {
+.profile fieldset {
   width: 180px;
   height: 180px;
 }
-.card legend {
+.profile legend {
   background-color: #000;
   line-height: 10px;
   animation: move 5s infinite linear alternate;
 }
-.card fieldset:nth-of-type(2) {
+.profile fieldset:nth-of-type(2) {
   transform: rotate(90deg);
 }
-.card fieldset:nth-of-type(3) {
+.profile fieldset:nth-of-type(3) {
   transform: rotate(180deg);
 }
-.card fieldset:nth-of-type(4) {
+.profile fieldset:nth-of-type(4) {
   transform: rotate(-90deg);
 }
-.card img {
+.profile img {
   width: 180px;
 }
 .info h3 {
@@ -566,6 +582,33 @@ iframe,video {
 }
 .cube-two {
   background-color: #fff;
+}
+.card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.card img {
+  filter: grayscale(100%) brightness(0.9) contrast(1.1);
+  transition: all .3s ease;
+}
+.card img:hover {
+  filter: grayscale(0%) brightness(0.9) contrast(1.1);
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
 }
 @property --tw-rotate-x {
   syntax: "*";
@@ -648,6 +691,9 @@ iframe,video {
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
       --tw-rotate-x: rotateX(0);
       --tw-rotate-y: rotateY(0);
       --tw-rotate-z: rotateZ(0);
