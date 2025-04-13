@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cards.forEach(card => {
             VanillaTilt.init(card, {
                 speed: 1000,
+                max: 10,
                 easing: "cubic-bezier(0.23, 1, 0.32, 1)",
                 transition: true,
                 glare: true,
