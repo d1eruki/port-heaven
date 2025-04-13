@@ -93,7 +93,7 @@ b {
 legend {
   padding: 5px 10px;
 
-  &:not(.card legend) {
+  &:not(.profile legend) {
     background: $secondary;
   }
 }
@@ -121,13 +121,13 @@ legend {
   }
 }
 
-.cardBox {
+.profile-box {
   width: 180px;
   height: 180px;
   margin-bottom: 20px;
 
   &:hover {
-    .card {
+    .profile {
       transform: rotateY(180deg);
     }
 
@@ -137,7 +137,7 @@ legend {
   }
 }
 
-.shirt, .card {
+.shirt, .profile {
   width: 100%;
   height: 100%;
   transition: transform .5s ease;
@@ -152,7 +152,7 @@ legend {
   }
 }
 
-.card {
+.profile {
   fieldset {
     width: 180px;
     height: 180px;
@@ -242,7 +242,7 @@ iframe, video {
   background-color: $white;
 }
 
-.pok {
+.card {
   position: relative;
   width: 300px;
   height: 450px;
@@ -250,7 +250,7 @@ iframe, video {
   overflow: hidden;
 }
 
-.pok img {
+.card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
