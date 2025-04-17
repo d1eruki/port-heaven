@@ -9,6 +9,8 @@ $secondary-light: hsl(0 0% 25%);
 $secondary-dark: hsl(0 0% 10%);
 $transparent: hsla(0, 0%, 0%, 0);
 
+$transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+
 @keyframes move {
   from {
     margin-left: 0;
@@ -28,7 +30,8 @@ $transparent: hsla(0, 0%, 0%, 0);
 }
 
 @keyframes animateBg {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0 50%;
   }
   50% {
@@ -37,10 +40,10 @@ $transparent: hsla(0, 0%, 0%, 0);
 }
 
 * {
-  font-family: Inter, sans-serif;
-  font-weight: 300;
+  font-family: "Geologica", sans-serif;
+  font-weight: 100;
   text-align: justify;
-  color: rgba($white, .5);
+  color: rgba($white, 0.5);
   cursor: url("./assets/images/inactive.png"), auto;
 
   &::-webkit-scrollbar {
@@ -63,7 +66,10 @@ body {
   animation: animateBg 30s ease infinite;
 }
 
-h1, h2, h3, b {
+h1,
+h2,
+h3,
+b {
   color: $white;
 }
 
@@ -99,7 +105,7 @@ legend {
 }
 
 .item {
-  transition: all .3s cubic-bezier(.65, .05, .36, 1);
+  transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   img {
     filter: grayscale(100%);
@@ -137,10 +143,11 @@ legend {
   }
 }
 
-.shirt, .profile {
+.shirt,
+.profile {
   width: 100%;
   height: 100%;
-  transition: transform .5s ease;
+  transition: transform 0.5s ease;
   backface-visibility: hidden;
 }
 
@@ -152,7 +159,7 @@ legend {
   }
 }
 
-.profile {
+.profile-box {
   fieldset {
     width: 180px;
     height: 180px;
@@ -198,14 +205,12 @@ legend {
 
 .active {
   color: $white;
-
-  &:first-letter {
-    background-color: $primary-darker;
-    font-weight: bold;
-  }
+  font-weight: bold;
+  transition: $transition;
 }
 
-iframe, video {
+iframe,
+video {
   border-radius: 15px;
   border: none;
 }
@@ -226,7 +231,9 @@ iframe, video {
 
 .neon-pink-shadow {
   border: 2px solid $primary-darker;
-  box-shadow: 0 0 20px $primary-darker, inset 0 0 10px $primary-darker;
+  box-shadow:
+    0 0 20px $primary-darker,
+    inset 0 0 10px $primary-darker;
 }
 
 .header-scrolled {
@@ -250,7 +257,7 @@ iframe, video {
 
 .card img {
   filter: grayscale(100%) brightness(0.9) contrast(1.1);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     filter: grayscale(0%) brightness(0.9) contrast(1.1);
