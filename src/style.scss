@@ -238,7 +238,7 @@ video {
 
 .header-scrolled {
   backdrop-filter: blur(16px);
-  background-color: rgba($black, 0.75);
+  transition: $transition;
 }
 
 .cube-one {
