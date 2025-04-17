@@ -12,13 +12,13 @@ module.exports = {
       },
       container: {
         center: true,
-        padding: '1rem',
+        padding: "1rem",
         screens: {
-          sm: '640px',
-          md: '768px',
-          lg: '1024px',
-          xl: '1280px',
-          '2xl': '1440px', // максимальная ширина для 2xl
+          sm: "640px",
+          md: "768px",
+          lg: "1024px",
+          xl: "1280px",
+          "2xl": "1440px", // максимальная ширина для 2xl
         },
       },
     },
