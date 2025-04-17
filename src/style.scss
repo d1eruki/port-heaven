@@ -1,5 +1,28 @@
 @use "tailwindcss";
 
+@theme {
+  --height-100vh-64: calc(100vh - 64px);
+}
+
+@utility container {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+  @media (min-width: 1024px) {
+    max-width: 1024px;
+  }
+  @media (min-width: 1280px) {
+    max-width: 1280px;
+  }
+  @media (min-width: 1440px) {
+    max-width: 1440px;
+  }
+}
+
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);
 $primary: hsl(314 97% 44%);
