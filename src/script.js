@@ -1,7 +1,6 @@
 import "./style.scss";
 import "./js/menu-swap";
 import "./js/vue";
-import "./js/card-rotate";
 import "./js/scroll-to-section";
 import { setHeight } from "./js/header-footer-height";
 import { updateProgressBar } from "./js/progress-bar";
