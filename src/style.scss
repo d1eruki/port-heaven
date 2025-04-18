@@ -72,7 +72,14 @@ footer {
 }
 
 body {
-  background: linear-gradient(270deg, $black, $secondary-dark);
+  background-image:
+          linear-gradient($secondary-dark 1px, transparent 1px),
+          linear-gradient(to right, $secondary-dark 1px, transparent 1px),
+          linear-gradient(to left, $black, $secondary-dark);
+  background-size:
+          100px 100px,
+          100px 100px,
+          100% 100%;
 }
 
 h1,
