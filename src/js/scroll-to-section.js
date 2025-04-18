@@ -6,7 +6,6 @@ const sections = Array.from(headerLinks).map((link) => {
 });
 
 let isScrolling = false;
-let scrollTimeout;
 
 function setActiveLink(targetLink) {
   headerLinks.forEach((link) => link.classList.remove("active"));
@@ -31,12 +30,6 @@ headerLinks.forEach((link) => {
         top: targetY,
         behavior: "smooth",
       });
-
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        isScrolling = false;
-        onScroll(); // Обновляем вручную
-      }, 150);
     }
   });
 });
@@ -45,15 +38,22 @@ function onScroll() {
   if (isScrolling) return;
 
   const SCROLL_OFFSET = header.offsetHeight * 2;
-  const scrollPos = window.scrollY + SCROLL_OFFSET + 1;
+  const scrollPos = window.scrollY + SCROLL_OFFSET;
 
   let current = sections[0];
-  for (let i = 0; i < sections.length; i++) {
-    const sectionTop = sections[i].offsetTop;
-    if (scrollPos >= sectionTop) {
-      current = sections[i];
-    } else {
-      break;
+
+  if (scrollPos < sections[0].offsetTop) {
+    current = sections[0];
+  } else {
+    for (let i = 0; i < sections.length; i++) {
+      const sectionTop = sections[i].offsetTop;
+      const sectionBottom = sectionTop + sections[i].offsetHeight;
+
+      if (scrollPos >= sectionTop) {
+        current = sections[i];
+      } else {
+        break;
+      }
     }
   }
 
@@ -69,12 +69,35 @@ function onScroll() {
   });
 }
 
-window.addEventListener("scroll", () => {
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
+function handleScrollEnd() {
+  if (isScrolling) {
     isScrolling = false;
     onScroll();
-  }, 150);
+  }
+}
+
+if ("onscrollend" in window) {
+  window.addEventListener("scrollend", handleScrollEnd);
+} else {
+  headerLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      setTimeout(() => {
+        isScrolling = false;
+        onScroll();
+      }, 600);
+    });
+  });
+}
+
+window.addEventListener("scroll", () => {
+  if (isScrolling && !("onscrollend" in window)) {
+    const scrollTimeout = setTimeout(() => {
+      isScrolling = false;
+      onScroll();
+    }, 100);
+    window.addEventListener("scroll", () => clearTimeout(scrollTimeout), { once: true });
+  }
+  onScroll();
 });
 
 window.addEventListener("load", onScroll);
