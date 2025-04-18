@@ -49,9 +49,7 @@ module.exports = {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: [
-                  require("@tailwindcss/postcss"),
-                ],
+                plugins: [require("@tailwindcss/postcss")],
               },
             },
           },

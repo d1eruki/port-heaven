@@ -6,9 +6,7 @@ export const toggleContent = (target) => {
   if (!activeBlock || activeBlock.getAttribute("data-open-block") !== target) {
     if (activeBlock) activeBlock.classList.remove("active");
 
-    const newActiveBlock = document.querySelector(
-      `[data-open-block][data-open-block="${target}"]`,
-    );
+    const newActiveBlock = document.querySelector(`[data-open-block][data-open-block="${target}"]`);
     if (newActiveBlock) newActiveBlock.classList.add("active");
   }
 };
