@@ -1,18 +1,14 @@
 import { createApp } from "vue";
 import Items from "./components/Items.vue";
 
-const designItem = createApp({});
-designItem.component("design-item", Items);
-designItem.mount("#design-item");
+const designApp = createApp({});
+designApp.component("design-item", Items);
+designApp.mount("#design-app");
 
-const webItem = createApp({});
-webItem.component("web-item", Items);
-webItem.mount("#web-item");
+const webApp = createApp({});
+webApp.component("web-item", Items);
+webApp.mount("#web-app");
 
-const videoItem = createApp({});
-videoItem.component("video-item", Items);
-videoItem.mount("#video-item");
-
-const otherItem = createApp({});
-otherItem.component("other-item", Items);
-otherItem.mount("#other-item");
+const videoApp = createApp({});
+videoApp.component("video-item", Items);
+videoApp.mount("#video-app");
