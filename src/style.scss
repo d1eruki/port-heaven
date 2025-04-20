@@ -21,6 +21,14 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
+.fustat-700 {
+  font-family: "Fustat", sans-serif;
+  font-size: 2.5rem; //40px
+  font-weight: 700;
+  color: $white;
+  letter-spacing: -4px;
+}
+
 @keyframes move {
   from {
     margin-left: 0;
@@ -136,6 +144,10 @@ legend {
   &:not(.profile legend) {
     background: $secondary;
   }
+}
+
+#header-logo {
+  transition: $transition;
 }
 
 .item {
