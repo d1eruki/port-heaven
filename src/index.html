@@ -31,7 +31,7 @@
 
     <div class="d-flex container mx-auto flex flex-col items-center gap-50 px-5">
       <!--about-->
-      <div id="about" class="inline-flex min-h-screen flex-col gap-10 self-start md:flex-row md:items-center md:gap-40">
+      <div id="about" class="inline-flex min-h-screen flex-col gap-10 self-start md:flex-row md:items-center md:gap-50">
         <div class="profile-box relative cursor-none">
           <img alt="who" class="shirt absolute" src="assets/images/me.png" />
           <img alt="logo" class="profile absolute" src="assets/images/logo-big.png" />
@@ -42,12 +42,12 @@
       </div>
 
       <!--stack-->
-      <div id="stack" class="grid min-h-screen gap-10">
+      <div id="stack" class="grid min-h-screen content-start gap-10">
         <h2>stack</h2>
         <hr />
         <div id="design-app" class="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div class="row-span-2">
-            <h3>design</h3>
+            <h3 class="mb-5">design</h3>
             <p>В своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
           </div>
           <design-item item-desc="В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present" item-image="assets/images/figma.svg" item-img-alt="figma Logo" item-name="figma"></design-item>
@@ -57,7 +57,7 @@
         <hr />
         <div id="web-app" class="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div class="row-span-4">
-            <h3>web</h3>
+            <h3 class="mb-5">web</h3>
             <p>Для веб-разработки я использую современные и эффективные инструменты. Основу работы составляют HTML и CSS для верстки и стилизации. Sass помогает организовать код, а Tailwind и Bootstrap ускоряют разработку адаптивных интерфейсов. Для динамических элементов применяю Vue.js.</p>
           </div>
           <web-item item-desc="Очень старый дядя, дай бог ему здоровья, шо тут можно еще сказати" item-image="assets/images/html.svg" item-img-alt="html Logo" item-name="html"></web-item>
@@ -72,7 +72,7 @@
         <hr />
         <div id="video-app" class="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div class="row-span-2">
-            <h3>video</h3>
+            <h3 class="mb-5">video</h3>
             <p>В процессе видеомонтажа я использую профессиональные инструменты. Adobe Premiere Pro — главный редактор для точного и детализированного монтажа видео. Для анимации и визуальных эффектов я применяю After Effects, а для обработки звука — Audition.</p>
           </div>
           <video-item item-desc="В студенческое время работал в сони вегасе, ленясь перекатываться на премьер, но приколы которые он умеет делать, особенно после вегаса, заставили восторгнуться" item-image="assets/images/pp.svg" item-img-alt="premiere pro Logo" item-name="premiere pro"></video-item>
@@ -82,12 +82,10 @@
       </div>
 
       <!--design-->
-      <div id="design" class="grid min-h-screen gap-10">
-        <div>
-          <h1>design</h1>
-          <p>В своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
-        </div>
-        <div class="grid gap-4 sm:!grid-cols-2 lg:!grid-cols-3">
+      <div id="design" class="grid min-h-screen content-start gap-10">
+        <h1>design</h1>
+        <p>В своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
+        <div class="grid gap-10 sm:!grid-cols-2 lg:!grid-cols-3">
           <a class="item-iframe flex aspect-video items-center justify-center" href="https://embed.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/COMPONENTS%2FXRMS?node-id=1239-2&embed-host=share" target="_blank">
             <p>Varwin XRMS COMPONENTS</p>
           </a>
@@ -101,20 +99,16 @@
       </div>
 
       <!--video-->
-      <div id="video" class="grid min-h-screen">
-        <div>
-          <h1>video</h1>
-          <p>В своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
-        </div>
+      <div id="video" class="grid min-h-screen content-start gap-10">
+        <h1>video</h1>
+        <p>В своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
       </div>
 
       <!--pic-->
-      <div id="pic" class="grid min-h-screen">
-        <div class="mb-4">
-          <h1>posters</h1>
-          <p>Создаю поздравительные постеры в виде открыток на дни рождения и праздники. Это не просто макеты — это визуальные истории про людей, для которых они сделаны. Балансирую между юмором, эстетикой и смыслом, чтобы получилось не «дежурное поздравление», а вещь, которую хочется сохранить. Работаю с фирменным стилем, подстраиваюсь под формат и аудиторию. Для создания использую Photoshop и Illustrator.</p>
-        </div>
-        <div class="grid gap-4 sm:!grid-cols-2 lg:!grid-cols-3">
+      <div id="pic" class="grid min-h-screen content-start gap-10">
+        <h1>posters</h1>
+        <p>Создаю поздравительные постеры в виде открыток на дни рождения и праздники. Это не просто макеты — это визуальные истории про людей, для которых они сделаны. Балансирую между юмором, эстетикой и смыслом, чтобы получилось не «дежурное поздравление», а вещь, которую хочется сохранить. Работаю с фирменным стилем, подстраиваюсь под формат и аудиторию. Для создания использую Photoshop и Illustrator.</p>
+        <div class="grid gap-10 sm:!grid-cols-2 lg:!grid-cols-3">
           <div class="card aspect-video justify-self-center">
             <img alt="post-card" src="assets/images/postcards/2025-artem-yakovenko.png" />
           </div>
