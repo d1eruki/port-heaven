@@ -47,7 +47,6 @@ function onScroll() {
   } else {
     for (let i = 0; i < sections.length; i++) {
       const sectionTop = sections[i].offsetTop;
-      const sectionBottom = sectionTop + sections[i].offsetHeight;
 
       if (scrollPos >= sectionTop) {
         current = sections[i];

@@ -1,5 +1,5 @@
 const path = require("path");
-const webpack = require("webpack");
+const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -71,8 +71,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: "src/assets/images", to: "assets/images" }],
     }),
-    new webpack.DefinePlugin({
-      __VUE_OPTIONS_API__: JSON.stringify(true),
+    new DefinePlugin({
+      __VUE_OPTIONS_API__: JSON.stringify(false),
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),
     }),

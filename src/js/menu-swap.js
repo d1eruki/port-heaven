@@ -1,7 +1,5 @@
 export const toggleContent = (target) => {
   const activeBlock = document.querySelector("[data-open-block].active");
-  const activeContent = document.querySelector("[data-content].is-active");
-  const targetContent = document.querySelector(`[data-content="${target}"]`);
 
   if (!activeBlock || activeBlock.getAttribute("data-open-block") !== target) {
     if (activeBlock) activeBlock.classList.remove("active");

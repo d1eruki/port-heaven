@@ -8,30 +8,27 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Items",
-  props: {
-    itemName: {
-      type: String,
-      required: true,
-      default: "Default Title",
-    },
-    itemDesc: {
-      type: String,
-      required: true,
-      default: "Default Description",
-    },
-    itemImage: {
-      type: String,
-      required: true,
-      default: "assets/images/default.svg",
-    },
-    itemImgAlt: {
-      type: String,
-      required: true,
-      default: "Default Image Description",
-    },
+<script setup>
+defineProps({
+  itemName: {
+    type: String,
+    required: true,
+    default: "Default Title",
   },
-};
+  itemDesc: {
+    type: String,
+    required: true,
+    default: "Default Description",
+  },
+  itemImage: {
+    type: String,
+    required: true,
+    default: "assets/images/default.svg",
+  },
+  itemImgAlt: {
+    type: String,
+    required: true,
+    default: "Default Image Description",
+  },
+});
 </script>

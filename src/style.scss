@@ -254,38 +254,11 @@ video {
   border: none;
 }
 
-.chess {
-  width: 180px;
-  height: 180px;
-  grid-template-columns: repeat(18, 1fr);
-  grid-template-rows: repeat(18, 1fr);
-}
-
 .progress-bar {
   height: 5px;
   width: 0;
   transition: width 0.1s ease;
   background-color: $primary-darker;
-}
-
-.neon-pink-shadow {
-  border: 2px solid $primary-darker;
-  box-shadow:
-    0 0 20px $primary-darker,
-    inset 0 0 10px $primary-darker;
-}
-
-.header-scrolled {
-  backdrop-filter: blur(16px);
-  transition: $transition;
-}
-
-.cube-one {
-  background-color: $transparent;
-}
-
-.cube-two {
-  background-color: $white;
 }
 
 .card {
