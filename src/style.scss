@@ -21,12 +21,14 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
-.fustat-700 {
+.fustat {
   font-family: "Fustat", sans-serif;
-  font-size: 2.5rem; //40px
-  font-weight: 700;
   color: $white;
   letter-spacing: -4px;
+}
+
+.biryani {
+  font-family: "Biryani", sans-serif;
 }
 
 @keyframes move {
@@ -55,7 +57,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
 * {
   font-family: "Geologica", sans-serif;
-  font-weight: 100;
   color: rgba($white, 0.5);
   text-wrap: balance;
   cursor: url("./assets/images/cursor-inactive.png"), auto;
@@ -72,6 +73,10 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
 html {
   scroll-behavior: smooth;
+}
+
+p {
+  font-weight: 100;
 }
 
 header,

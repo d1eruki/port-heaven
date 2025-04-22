@@ -13,12 +13,13 @@
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@200;300;400;600;700;800;900&family=Geologica:wght@100..900&display=swap" rel="stylesheet" />
   </head>
   <body>
     <header id="header" class="fixed z-1 w-screen backdrop-blur-lg">
       <div id="progress-bar" class="progress-bar absolute"></div>
       <div class="container mx-auto flex h-full flex-wrap items-center justify-between gap-x-10 p-5">
-        <p id="header-logo" class="fustat-700">artem tresckow</p>
+        <span id="header-logo" class="fustat text-[40px] font-[700]">artem tresckow</span>
         <div class="flex flex-wrap gap-1 md:w-fit md:gap-10">
           <a class="active" data-open-block="about" href="#about">about</a>
           <a data-open-block="design" href="#design">design</a>
@@ -29,16 +30,40 @@
       </div>
     </header>
 
-    <div class="d-flex container mx-auto flex flex-col items-center gap-50 px-5">
+    <div class="container mx-auto flex flex-col items-center gap-50 px-5">
       <img alt="1" class="absolute fixed -right-150 -bottom-200 -z-1 scale-50 opacity-10 contrast-25" src="assets/images/soma.png" />
       <!--about-->
-      <div id="about" class="inline-flex min-h-screen flex-col gap-10 self-start md:flex-row md:items-center md:gap-50">
-        <div class="profile-box relative cursor-none">
-          <img alt="who" class="shirt absolute" src="assets/images/me.png" />
-          <img alt="logo" class="profile absolute" src="assets/images/logo-big.png" />
+      <div id="about" class="flex min-h-screen w-full flex-col gap-50">
+        <div class="inline-flex min-h-screen flex-col gap-10 self-start md:flex-row md:items-center md:gap-50">
+          <div class="profile-box relative cursor-none">
+            <img alt="who" class="shirt absolute" src="assets/images/me.png" />
+            <img alt="logo" class="profile absolute" src="assets/images/logo-big.png" />
+          </div>
+          <div class="w-full md:w-sm lg:w-lg">
+            <p class="text-wrap">Помогаю стартапам и бизнесу создавать сильный визуал. Эстетичный, понятный и рабочий. Специализируюсь на дизайне и прототипах, которые упрощают путь пользователя и помогают брендам достигать своих целей. Дизайн должен быть не только красивым, но и умным.</p>
+          </div>
         </div>
-        <div class="w-full md:w-sm lg:w-lg">
-          <p class="text-wrap">Помогаю стартапам и бизнесу создавать сильный визуал. Эстетичный, понятный и рабочий. Специализируюсь на дизайне и прототипах, которые упрощают путь пользователя и помогают брендам достигать своих целей. Дизайн должен быть не только красивым, но и умным.</p>
+        <div class="min-h-screen">
+          <h2>я помогу вам с</h2>
+          <div class="flex justify-between gap-10">
+            <div class="flex flex-1 flex-col gap-10">
+              <p class="biryani text-[172px]">01</p>
+              <h3>дизайном</h3>
+              <p>я делаю веб дизайны, которые привлекут аудиторию к вашему бренду</p>
+            </div>
+            <div class="inline-block h-[250px] min-h-[1em] w-0.5 self-stretch bg-neutral-100 dark:bg-white/10"></div>
+            <div class="flex flex-1 flex-col gap-10">
+              <p class="biryani text-[172px]">02</p>
+              <h3>разработкой</h3>
+              <p>Разработаю веб сайт по своему или вашему макету</p>
+            </div>
+            <div class="inline-block h-[250px] min-h-[1em] w-0.5 self-stretch bg-neutral-100 dark:bg-white/10"></div>
+            <div class="flex flex-1 flex-col gap-10">
+              <p class="biryani text-[172px]">03</p>
+              <h3>сопровождением</h3>
+              <p>Сопровождение готового продукта по договоренности</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -46,7 +71,7 @@
       <div id="design" class="grid min-h-screen content-start gap-10">
         <h2>design</h2>
         <hr />
-        <div id="design-app" class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div id="design-app" class="gri-cols-1 grid gap-10 md:grid-cols-3">
           <p class="row-span-2">В своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
           <design-item item-desc="В процессе полного изучения. Сейчас осваиваю компоненты и кнопку present" item-image="assets/images/figma.svg" item-img-alt="figma Logo" item-name="figma"></design-item>
           <design-item item-desc="Увлекаюсь фотошопом со школьных лет, фотошопил друзей на аватарки вконтакте. Это баловство позволило в настоящее время крутить фотокарточками как захочется" item-image="assets/images/psd.svg" item-img-alt="photoshop Logo" item-name="photoshop"></design-item>
