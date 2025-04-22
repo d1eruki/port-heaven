@@ -21,6 +21,17 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
+:root {
+  --black: $black;
+  --white: $white;
+  --primary: $primary;
+  --primary-darker: $primary-darker;
+  --secondary: $secondary;
+  --secondary-light: $secondary-light;
+  --secondary-dark: $secondary-dark;
+  --transparent: $transparent;
+}
+
 .fustat {
   font-family: "Fustat", sans-serif;
   color: $white;
