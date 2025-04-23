@@ -1,15 +1,5 @@
 @use "tailwindcss";
 
-@theme {
-  --height-100vh-64: calc(100vh - 64px);
-  --breakpoint-xs: 40rem; //640
-  --breakpoint-md: 48rem; //768
-  --breakpoint-lg: 64rem; //1024
-  --breakpoint-xl: 80rem; //1280
-  --breakpoint-2xl: 90rem; //1440
-  --colonnetitulus: 6rem; //96
-}
-
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);
 $primary: hsl(314 97% 44%);
@@ -22,14 +12,24 @@ $transparent: hsla(0, 0%, 0%, 0);
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
 :root {
-  --black: $black;
-  --white: $white;
-  --primary: $primary;
-  --primary-darker: $primary-darker;
-  --secondary: $secondary;
-  --secondary-light: $secondary-light;
-  --secondary-dark: $secondary-dark;
-  --transparent: $transparent;
+  --primary: #{$primary};
+  --black: #{$black};
+  --white: #{$white};
+  --primary-darker: #{$primary-darker};
+  --secondary: #{$secondary};
+  --secondary-light: #{$secondary-light};
+  --secondary-dark: #{$secondary-dark};
+  --transparent: #{$transparent};
+}
+
+@theme {
+  --height-100vh-64: calc(100vh - 64px);
+  --breakpoint-xs: 40rem; //640
+  --breakpoint-md: 48rem; //768
+  --breakpoint-lg: 64rem; //1024
+  --breakpoint-xl: 80rem; //1280
+  --breakpoint-2xl: 90rem; //1440
+  --colonnetitulus: 6rem; //96
 }
 
 .fustat {
