@@ -66,11 +66,20 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 }
 
+hr {
+  color: var(--secondary);
+}
+
 * {
   font-family: "Geologica", sans-serif;
   color: rgba($white, 0.5);
   text-wrap: balance;
   cursor: url("./assets/images/cursor-inactive.png"), auto;
+
+  a,
+  &.item > * {
+    cursor: url("./assets/images/cursor-active.png"), pointer;
+  }
 
   &::-webkit-scrollbar {
     display: none;
@@ -107,8 +116,6 @@ b {
 }
 
 a {
-  cursor: url("./assets/images/cursor-active.png"), pointer;
-
   &:hover {
     color: $white;
   }
