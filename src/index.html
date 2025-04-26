@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@200;300;400;600;700;800;900&family=Geologica:wght@100..900&display=swap" rel="stylesheet" />
   </head>
-  <body>
+  <body id="item-app">
     <header id="header" class="fixed z-10 w-screen backdrop-blur-lg">
       <div id="progress-bar" class="progress-bar absolute bg-(--primary-darker)"></div>
       <div class="container mx-auto flex h-full flex-wrap items-center justify-between gap-x-10 p-5">
@@ -31,13 +31,13 @@
     </header>
 
     <div class="container mx-auto flex flex-col items-center gap-50 px-5">
-      <img alt="1" class="absolute fixed -right-150 -bottom-350 -z-1 scale-50 opacity-10 contrast-25" src="assets/images/soma.png" />
+      <img alt="" class="absolute fixed -right-150 -bottom-350 -z-1 scale-50 opacity-10 contrast-25" src="assets/images/soma.png" />
 
       <!--about-->
       <div id="about" class="inline-flex min-h-screen flex-col gap-10 self-start md:flex-row md:items-center md:gap-50">
         <div class="profile-box relative cursor-none">
-          <img alt="who" class="shirt absolute" src="assets/images/me.png" />
-          <img alt="logo" class="profile absolute" style="filter: drop-shadow(0px 0px 200px #ffffff)" src="assets/images/logo-big.svg" />
+          <img alt="" class="shirt absolute" src="assets/images/me.png" />
+          <img alt="" class="profile absolute" style="filter: drop-shadow(0px 0px 200px #ffffff)" src="assets/images/logo-big.svg" />
         </div>
         <div class="w-full md:w-sm lg:w-lg">
           <p class="text-wrap">Помогаю стартапам и бизнесу создавать сильный визуал. Эстетичный, понятный и рабочий. Специализируюсь на дизайне и прототипах, которые упрощают путь пользователя и помогают брендам достигать своих целей. Дизайн должен быть не только красивым, но и умным.</p>
@@ -76,23 +76,15 @@
         <div class="inline-flex justify-between">
           <h2>design</h2>
           <div class="inline-flex w-fit gap-5">
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/figma.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/photoshop.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/illustrator.svg" alt="itemImgAlt" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/figma.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/photoshop.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/illustrator.svg" alt="" />
           </div>
         </div>
         <hr />
-        <div id="design-app" class="gri-cols-1 grid gap-10 md:grid-cols-3">
+        <div class="gri-cols-1 grid gap-10 md:grid-cols-3">
           <p class="row-span-2">своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
-          <a class="item flex flex-col rounded-xl p-4 aspect-video" href="https://embed.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/COMPONENTS%2FXRMS?node-id=1239-2&embed-host=share" target="_blank">
-            <h4>Varwin XRMS COMPONENTS</h4>
-          </a>
-          <a class="item flex flex-col rounded-xl p-4 aspect-video" href="https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Marketplace?node-id=2044-2839&t=L5mVJuTKkce5OCaw-1" target="_blank">
-            <h4>Varwin XRMS COMPONENTS</h4>
-          </a>
-          <a class="item flex flex-col rounded-xl p-4 aspect-video" href="https://embed.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/COMPONENTS%2FXRMS?node-id=1239-2&embed-host=share" target="_blank">
-            <h4>Varwin XRMS COMPONENTS</h4>
-          </a>
+          <item item-name="Varwin Website" item-url="https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1" item-img-alt=""></item>
         </div>
       </div>
 
@@ -101,18 +93,18 @@
         <div class="inline-flex justify-between">
           <h2>web</h2>
           <div class="inline-flex w-fit gap-5">
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/html.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/css.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/javascript.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/sass.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/tailwind.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/bootstrap.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/vue.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/webpack.svg" alt="itemImgAlt" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/html.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/css.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/javascript.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/sass.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/tailwind.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/bootstrap.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/vue.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/webpack.svg" alt="" />
           </div>
         </div>
         <hr />
-        <div id="web-app" class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
           <p class="row-span-4">Для веб-разработки я использую современные и эффективные инструменты. Основу работы составляют HTML и CSS для верстки и стилизации. Sass помогает организовать код, а Tailwind и Bootstrap ускоряют разработку адаптивных интерфейсов. Для динамических элементов применяю Vue.js.</p>
         </div>
       </div>
@@ -122,19 +114,15 @@
         <div class="inline-flex justify-between">
           <h2>video</h2>
           <div class="inline-flex w-fit gap-5">
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/premier-pro.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/after-effect.svg" alt="itemImgAlt" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/audition.svg" alt="itemImgAlt" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/premier-pro.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/after-effect.svg" alt="" />
+            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/audition.svg" alt="" />
           </div>
         </div>
         <hr />
-        <div id="video-app" class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
           <p class="row-span-2">В процессе видеомонтажа я использую профессиональные инструменты. Adobe Premiere Pro — главный редактор для точного и детализированного монтажа видео. Для анимации и визуальных эффектов я применяю After Effects, а для обработки звука — Audition.</p>
-          <video-item item-name="Premiere Pro" youtube-url="https://www.youtube.com/watch?v=8Kb8mZhst5g" item-img-alt="Premiere Pro Video Thumbnail"></video-item>
-          <a class="item flex flex-col rounded-xl p-4" href="https://www.youtube.com/watch?v=8Kb8mZhst5g" target="_blank">
-            <img src="img here" alt="">
-            <h4>Varwin XRMS COMPONENTS</h4>
-          </a>
+          <item item-name="Premiere Pro" item-url="https://www.youtube.com/watch?v=8Kb8mZhst5g" item-img-alt=""></item>
         </div>
       </div>
 
@@ -144,43 +132,43 @@
         <p>Создаю поздравительные постеры в виде открыток на дни рождения и праздники. Это не просто макеты — это визуальные истории про людей, для которых они сделаны. Балансирую между юмором, эстетикой и смыслом, чтобы получилось не «дежурное поздравление», а вещь, которую хочется сохранить</p>
         <div class="grid gap-10 sm:!grid-cols-2 lg:!grid-cols-3">
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2025-artem-yakovenko.png" />
+            <img alt="" src="assets/images/postcards/2025-artem-yakovenko.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2024-kirill-popov.png" />
+            <img alt="" src="assets/images/postcards/2024-kirill-popov.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2023-serega-grebenuk.png" />
+            <img alt="" src="assets/images/postcards/2023-serega-grebenuk.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2025-egor-vunder.png" />
+            <img alt="" src="assets/images/postcards/2025-egor-vunder.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2024-vlad-lobanovsky.png" />
+            <img alt="" src="assets/images/postcards/2024-vlad-lobanovsky.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2024-serega-grebenuk.png" />
+            <img alt="" src="assets/images/postcards/2024-serega-grebenuk.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2022-daniil-bayazitov.png" />
+            <img alt="" src="assets/images/postcards/2022-daniil-bayazitov.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2024-lesha-golubev.png" />
+            <img alt="" src="assets/images/postcards/2024-lesha-golubev.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2024-artem-yakovenko.png" />
+            <img alt="" src="assets/images/postcards/2024-artem-yakovenko.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2024-nastya-chernysheva.png" />
+            <img alt="" src="assets/images/postcards/2024-nastya-chernysheva.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2024-vanya-dobryakov.png" />
+            <img alt="" src="assets/images/postcards/2024-vanya-dobryakov.png" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2023-daniil-bayazitov.jpg" />
+            <img alt="" src="assets/images/postcards/2023-daniil-bayazitov.jpg" />
           </div>
           <div class="card aspect-video justify-self-center">
-            <img alt="post-card" src="assets/images/postcards/2024-semyon-lukanov.png" />
+            <img alt="" src="assets/images/postcards/2024-semyon-lukanov.png" />
           </div>
         </div>
       </div>
