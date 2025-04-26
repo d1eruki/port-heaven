@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   itemName: {
@@ -26,15 +26,27 @@ const props = defineProps({
   },
 });
 
-const thumbnailUrl = computed(() => {
-  const youtubeRegex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-  const youtubeMatch = props.itemUrl.match(youtubeRegex);
-  if (youtubeMatch) {
-    const videoId = youtubeMatch[1];
-    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-  }
+const thumbnailUrl = ref('');
 
-  const figmaRegex = /figma\.com\/(?:file|design)\/([a-zA-Z0-9_-]{22})/;
-  const figmaMatch = props.itemUrl.match(figmaRegex);
-});
+watch(
+  () => props.itemUrl,
+  async (newUrl) => {
+    const youtubeRegex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const youtubeMatch = newUrl.match(youtubeRegex);
+    if (youtubeMatch) {
+      const videoId = youtubeMatch[1];
+      thumbnailUrl.value = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/meta-image?url=${encodeURIComponent(newUrl)}`);
+      const data = await response.json();
+      thumbnailUrl.value = data.image || '';
+    } catch (error) {
+      thumbnailUrl.value = '';
+    }
+  },
+  { immediate: true }
+);
 </script>
