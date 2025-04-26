@@ -1,9 +1,7 @@
 <template>
-  <a :href="youtubeUrl" target="_blank" class="item flex flex-col rounded-xl p-4 aspect-video">
-    <div class="mb-4 flex items-center justify-between gap-1">
-      <h4>{{ itemName }}</h4>
-      <img class="rounded-xl drop-shadow-none" :src="thumbnailUrl" :alt="itemImgAlt" />
-    </div>
+  <a :href="youtubeUrl" target="_blank" class="item flex flex-col rounded-xl aspect-video relative">
+    <h4 class="z-5 p-4 hidden">{{ itemName }}</h4>
+    <img class="rounded-xl drop-shadow-none absolute grayscale hover:grayscale-0" :src="thumbnailUrl" :alt="itemImgAlt" />
   </a>
 </template>
 
