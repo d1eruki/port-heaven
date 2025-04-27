@@ -12,15 +12,12 @@ module.exports = {
     filename: "script.js",
     clean: true,
   },
-  mode: "production",
-  devServer:
-    process.env.NODE_ENV === "development"
-      ? {
-          static: path.join(__dirname, "dist"),
-          port: 8080,
-          open: true,
-        }
-      : {},
+  mode: process.env.NODE_ENV === "development" ? "development" : "production",
+  devServer: {
+    static: path.join(__dirname, "dist"),
+    port: 8080,
+    open: true,
+  },
   resolve: {
     alias: {
       vue: "vue/dist/vue.esm-bundler.js",
