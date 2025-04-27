@@ -1,11 +1,11 @@
 const headerLogo = document.getElementById("header-logo");
-const aboutSection = document.getElementById("about");
+const startSection = document.getElementById("start");
 
 function updateHeaderLogoText() {
   const SCROLL_OFFSET = document.querySelector("header").offsetHeight * 2;
   const scrollPos = window.scrollY + SCROLL_OFFSET;
-  const sectionTop = aboutSection.offsetTop;
-  const sectionBottom = sectionTop + aboutSection.offsetHeight;
+  const sectionTop = startSection.offsetTop;
+  const sectionBottom = sectionTop + startSection.offsetHeight;
   const isInView = scrollPos >= sectionTop && scrollPos < sectionBottom;
 
   const newText = isInView ? "artem tresckow" : "dieruki";
