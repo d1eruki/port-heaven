@@ -16,7 +16,7 @@ module.exports = {
   devServer: {
     static: path.join(__dirname, "dist"),
     port: 8080,
-    open: true,
+    open: false,
   },
   resolve: {
     alias: {
