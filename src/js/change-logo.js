@@ -19,6 +19,5 @@ function updateHeaderLogoText() {
   }
 }
 
-// Вызываем на скролл и при загрузке
 window.addEventListener("scroll", updateHeaderLogoText);
 window.addEventListener("load", updateHeaderLogoText);

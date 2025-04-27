@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@200;300;400;600;700;800;900&family=Geologica:wght@100..900&display=swap" rel="stylesheet" />
   </head>
-  <body id="item-app">
+  <body id="app">
     <header id="header" class="fixed z-10 w-screen backdrop-blur-lg">
       <div id="progress-bar" class="progress-bar absolute bg-(--primary-darker)"></div>
       <div class="container mx-auto flex h-full flex-wrap items-center justify-between gap-x-10 p-5">
@@ -73,56 +73,53 @@
 
       <!--design-->
       <div id="design" class="grid min-h-screen content-start gap-10">
-        <div class="inline-flex justify-between">
-          <h2>design</h2>
-          <div class="inline-flex w-fit gap-5">
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/figma.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/photoshop.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/illustrator.svg" alt="" />
-          </div>
-        </div>
+        <h2>design</h2>
         <hr />
         <div class="gri-cols-1 grid gap-10 md:grid-cols-3">
-          <p class="row-span-2">своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
+          <div class="row-span-2 flex flex-col gap-10">
+            <p>своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
+            <div class="inline-flex gap-5">
+              <icon item-image="assets/images/figma.svg"></icon>
+              <icon item-image="assets/images/photoshop.svg"></icon>
+              <icon item-image="assets/images/illustrator.svg"></icon>
+            </div>
+          </div>
           <item item-name="Varwin Website" item-url="https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1" item-img-alt=""></item>
         </div>
       </div>
 
       <!--web-->
       <div id="web" class="grid min-h-screen content-start gap-10">
-        <div class="inline-flex justify-between">
-          <h2>web</h2>
-          <div class="inline-flex w-fit gap-5">
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/html.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/css.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/javascript.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/sass.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/tailwind.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/bootstrap.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/vue.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/webpack.svg" alt="" />
-          </div>
-        </div>
+        <h2>web</h2>
         <hr />
         <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
-          <p class="row-span-4">Для веб-разработки я использую современные и эффективные инструменты. Основу работы составляют HTML и CSS для верстки и стилизации. Sass помогает организовать код, а Tailwind и Bootstrap ускоряют разработку адаптивных интерфейсов. Для динамических элементов применяю Vue.js.</p>
+          <div class="row-span-4 flex flex-col gap-10">
+            <p>Для веб-разработки я использую современные и эффективные инструменты. Основу работы составляют HTML и CSS для верстки и стилизации. Sass помогает организовать код, а Tailwind и Bootstrap ускоряют разработку адаптивных интерфейсов. Для динамических элементов применяю Vue.js.</p>
+            <div class="inline-flex gap-5">
+              <icon item-image="assets/images/html.svg"></icon>
+              <icon item-image="assets/images/css.svg"></icon>
+              <icon item-image="assets/images/sass.svg"></icon>
+              <icon item-image="assets/images/tailwind.svg"></icon>
+              <icon item-image="assets/images/bootstrap.svg"></icon>
+            </div>
+          </div>
           <item item-name="Premiere Pro" item-url="https://varwin.com/ru/education/projects" item-img-alt=""></item>
         </div>
       </div>
 
       <!--video-->
       <div id="video" class="grid min-h-screen content-start gap-10">
-        <div class="inline-flex justify-between">
-          <h2>video</h2>
-          <div class="inline-flex w-fit gap-5">
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/premier-pro.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/after-effect.svg" alt="" />
-            <img class="h-[72px] w-[72px] rounded-xl drop-shadow-none grayscale" src="assets/images/audition.svg" alt="" />
-          </div>
-        </div>
+        <h2>video</h2>
         <hr />
         <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
-          <p class="row-span-2">В процессе видеомонтажа я использую профессиональные инструменты. Adobe Premiere Pro — главный редактор для точного и детализированного монтажа видео. Для анимации и визуальных эффектов я применяю After Effects, а для обработки звука — Audition.</p>
+          <div class="row-span-2 flex flex-col gap-10">
+            <p>В процессе видеомонтажа я использую профессиональные инструменты. Adobe Premiere Pro — главный редактор для точного и детализированного монтажа видео. Для анимации и визуальных эффектов я применяю After Effects, а для обработки звука — Audition.</p>
+            <div class="inline-flex w-fit items-center gap-5">
+              <icon item-image="assets/images/premier-pro.svg"></icon>
+              <icon item-image="assets/images/after-effect.svg"></icon>
+              <icon item-image="assets/images/audition.svg"></icon>
+            </div>
+          </div>
           <item item-name="Premiere Pro" item-url="https://www.youtube.com/watch?v=8Kb8mZhst5g" item-img-alt=""></item>
         </div>
       </div>
@@ -131,8 +128,6 @@
       <div id="pic" class="grid min-h-screen content-start gap-10">
         <div class="inline-flex justify-between">
           <h2>posters</h2>
-          <div class="inline-flex w-fit gap-5">
-          </div>
         </div>
         <hr />
         <div class="grid grid-cols-1 gap-10 md:grid-cols-3">

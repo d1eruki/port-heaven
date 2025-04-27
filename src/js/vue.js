@@ -1,6 +1,8 @@
 import { createApp } from "vue";
-import Items from "./components/Items.vue";
+import Items from "./components/items.vue";
+import Icons from "./components/section-icons.vue";
 
-const itemApp = createApp({});
-itemApp.component("item", Items);
-itemApp.mount("#item-app");
+const app = createApp({});
+app.component("item", Items);
+app.component("icon", Icons);
+app.mount("#app");

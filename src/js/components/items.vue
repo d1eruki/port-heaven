@@ -26,7 +26,7 @@ const props = defineProps({
   },
 });
 
-const thumbnailUrl = ref('');
+const thumbnailUrl = ref("");
 
 watch(
   () => props.itemUrl,
@@ -42,11 +42,11 @@ watch(
     try {
       const response = await fetch(`http://localhost:3000/meta-image?url=${encodeURIComponent(newUrl)}`);
       const data = await response.json();
-      thumbnailUrl.value = data.image || '';
+      thumbnailUrl.value = data.image || "";
     } catch (error) {
-      thumbnailUrl.value = '';
+      thumbnailUrl.value = "";
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>
