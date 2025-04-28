@@ -561,6 +561,7 @@ legend:not(.profile legend) {
   filter: grayscale(100%);
   transition: all .3s cubic-bezier(0.65, 0.05, 0.36, 1);
   color: hsla(0,0%,100%,.5);
+  height: fit-content;
 }
 .item img {
   border-radius: var(--radius-xl);
