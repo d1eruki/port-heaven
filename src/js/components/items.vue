@@ -1,7 +1,7 @@
 <template>
   <a :href="itemUrl" target="_blank" :class="['item relative flex aspect-video flex-col rounded-xl', showThumbnail ? '' : 'border']">
     <h4 v-if="!isYoutube" class="z-10 p-4">{{ itemName }}</h4>
-    <img v-if="showThumbnail && thumbnailUrl" class="absolute top-0 left-0 h-full w-full rounded-xl object-cover drop-shadow-none grayscale hover:grayscale-0" :src="thumbnailUrl" :alt="itemImgAlt" @error="handleImageError" />
+    <img v-if="showThumbnail && thumbnailUrl" class="absolute top-0 left-0 h-full w-full object-cover drop-shadow-none" :src="thumbnailUrl" :alt="itemImgAlt" @error="handleImageError" />
   </a>
 </template>
 

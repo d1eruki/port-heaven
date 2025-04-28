@@ -72,7 +72,7 @@ hr {
 
 * {
   font-family: "Geologica", sans-serif;
-  color: rgba($white, 0.5);
+  color: $white;
   text-wrap: balance;
   cursor: url("./assets/images/cursor-inactive.png"), auto;
 
@@ -159,18 +159,17 @@ legend {
 }
 
 .item {
+  filter: grayscale(100%);
   transition: $transition;
+
+  img {
+    border-radius: var(--radius-xl);
+  }
 
   &:hover {
     transform: translate(10px, 10px);
-
-    img {
-      filter: none;
-    }
-
-    h4 {
-      color: $white;
-    }
+    filter: grayscale(0%);
+    color: $white;
   }
 }
 
