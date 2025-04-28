@@ -165,6 +165,7 @@ legend {
   filter: grayscale(100%);
   transition: $transition;
   color: rgba($white, 0.5);
+  height: fit-content;
 
   img {
     border-radius: var(--radius-xl);
