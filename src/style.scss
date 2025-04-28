@@ -72,7 +72,6 @@ hr {
 
 * {
   font-family: "Geologica", sans-serif;
-  color: $white;
   text-wrap: balance;
   cursor: url("./assets/images/cursor-inactive.png"), auto;
 
@@ -107,6 +106,7 @@ footer {
 
 body {
   background-color: $black;
+  color: $white;
 }
 
 h1,
@@ -117,6 +117,8 @@ b {
 }
 
 a {
+  color: rgba($white, 0.5);
+
   &:hover {
     color: $white;
   }
@@ -162,6 +164,7 @@ legend {
 .item {
   filter: grayscale(100%);
   transition: $transition;
+  color: rgba($white, 0.5);
 
   img {
     border-radius: var(--radius-xl);
