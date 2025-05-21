@@ -93,6 +93,47 @@ body {
   color: $white;
 }
 
+.grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateZ(0);
+
+  &:before {
+    content: "";
+    top: -10rem;
+    left: -10rem;
+    width: calc(100% + 20rem);
+    height: calc(100% + 20rem);
+    position: fixed;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
+    opacity: 0.15;
+    pointer-events: none;
+    -webkit-animation: noise 1s steps(2) infinite;
+    animation: noise 1s steps(2) infinite;
+  }
+
+  @-webkit-keyframes noise {
+    to { transform: translate3d(-7rem,0,0) }
+  }
+
+  @keyframes noise {
+    0% { transform: translate3d(0,9rem,0) }
+    10% { transform: translate3d(-1rem,-4rem,0) }
+    20% { transform: translate3d(-8rem,2rem,0) }
+    30% { transform: translate3d(9rem,-9rem,0) }
+    40% { transform: translate3d(-2rem,7rem,0) }
+    50% { transform: translate3d(-9rem,-4rem,0) }
+    60% { transform: translate3d(2rem,6rem,0) }
+    70% { transform: translate3d(7rem,-8rem,0) }
+    80% { transform: translate3d(-9rem,1rem,0) }
+    90% { transform: translate3d(6rem,-5rem,0) }
+    to { transform: translate3d(-7rem,0,0) }
+  }
+}
+
 h1 {
   font-size: 4rem;
   text-transform: uppercase;
@@ -142,14 +183,6 @@ a {
   }
 }
 
-legend {
-  padding: 5px 10px;
-
-  &:not(.profile legend) {
-    background: $secondary;
-  }
-}
-
 #header-logo {
   transition: $transition;
 }
@@ -159,7 +192,6 @@ legend {
   transition: $transition;
   color: rgba($white, 0.5);
   height: fit-content;
-  background-color: $black;
 
   img {
     border-radius: var(--radius-xl);
@@ -169,67 +201,6 @@ legend {
     transform: translate(10px, 10px);
     filter: grayscale(0%);
     color: $white;
-  }
-}
-
-.profile-box {
-  width: 180px;
-  height: 180px;
-  margin-bottom: 20px;
-
-  &:hover {
-    .profile {
-      transform: rotateY(180deg);
-    }
-
-    .shirt {
-      transform: rotateY(0);
-    }
-  }
-}
-
-.shirt,
-.profile {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s ease;
-  backface-visibility: hidden;
-}
-
-.shirt {
-  transform: rotateY(180deg);
-
-  img {
-    width: 80%;
-  }
-}
-
-.profile-box {
-  fieldset {
-    width: 180px;
-    height: 180px;
-  }
-
-  legend {
-    background-color: $black;
-    line-height: 10px;
-    animation: move 5s infinite linear alternate;
-  }
-
-  fieldset:nth-of-type(2) {
-    transform: rotate(90deg);
-  }
-
-  fieldset:nth-of-type(3) {
-    transform: rotate(180deg);
-  }
-
-  fieldset:nth-of-type(4) {
-    transform: rotate(-90deg);
-  }
-
-  img {
-    width: 180px;
   }
 }
 
