@@ -18,7 +18,7 @@
   <body id="app">
     <header id="header" class="fixed z-10 w-screen backdrop-blur-lg">
       <div id="progress-bar" class="progress-bar absolute bg-(--primary-darker)"></div>
-      <div class="container mx-auto flex h-full flex-wrap items-center justify-between gap-x-10 p-5">
+      <div class="container mx-auto flex h-fit flex-wrap items-center justify-between gap-x-10 p-5 md:h-(--colonnetitulus)">
         <a id="header-logo" class="active fustat text-[40px] font-[700]" data-open-block="start" href="#start"></a>
         <div class="flex flex-wrap gap-1 md:w-fit md:gap-10">
           <a data-open-block="about" href="#about">about</a>
@@ -34,7 +34,7 @@
       <img alt="" class="absolute fixed -right-150 -bottom-350 -z-1 scale-50 opacity-10 contrast-25" src="assets/images/soma.png" />
 
       <!--start-->
-      <div id="start" class="inline-flex min-h-screen flex-col gap-10 self-start md:flex-row md:items-center md:gap-50">
+      <div id="start" class="inline-flex min-h-screen flex-col justify-center gap-10 self-start md:flex-row md:items-center md:gap-50">
         <div class="profile-box relative cursor-none">
           <img alt="" class="shirt absolute" src="assets/images/me.png" />
           <img alt="" class="profile absolute" style="filter: drop-shadow(0px 0px 200px #ffffff)" src="assets/images/logo-big.svg" />
@@ -46,25 +46,25 @@
 
       <!--about-->
       <div id="about" class="flex min-h-screen flex-col gap-20">
-        <div class="inline-flex items-center gap-5">
+        <div class="grid items-center gap-5 md:inline-flex">
           <div class="h-fit rounded-lg bg-[var(--color-white)] px-5 py-2 !text-[var(--color-black)]">для работодателей</div>
           <h2>я помогу вам с</h2>
         </div>
-        <div class="flex justify-between gap-10">
+        <div class="grid justify-between gap-10 md:flex">
           <div class="flex flex-1 flex-col gap-10">
-            <p class="biryani text-[172px] !font-normal !text-[var(--secondary)]">01</p>
+            <span class="biryani text-[172px] !font-normal !text-[var(--secondary)]">01</span>
             <h3>дизайном</h3>
             <p>Я делаю веб дизайны, которые привлекут аудиторию к вашему бренду</p>
           </div>
           <div class="inline-block w-0.5 self-stretch bg-(--secondary)"></div>
           <div class="flex flex-1 flex-col gap-10">
-            <p class="biryani text-[172px] !font-normal !text-[var(--secondary)]">02</p>
+            <span class="biryani text-[172px] !font-normal !text-[var(--secondary)]">02</span>
             <h3>разработкой</h3>
             <p>Разработаю веб сайт по своему или вашему макету</p>
           </div>
           <div class="inline-block w-0.5 self-stretch bg-(--secondary)"></div>
           <div class="flex flex-1 flex-col gap-10">
-            <p class="biryani text-[172px] !font-normal !text-[var(--secondary)]">03</p>
+            <span class="biryani text-[172px] !font-normal !text-[var(--secondary)]">03</span>
             <h3>сопровождением</h3>
             <p>Сопровождение готового продукта по договоренности</p>
           </div>
@@ -78,7 +78,7 @@
         <div class="gri-cols-1 grid gap-10 md:grid-cols-3">
           <div class="row-span-3 flex flex-col gap-10">
             <p>В своей работе я использую современные инструменты для дизайна. Figma — основной инструмент для создания интерфейсов и прототипов с удобным командным взаимодействием. Также активно применяю Adobe Photoshop для обработки графики и Illustrator для создания векторных элементов.</p>
-            <div class="inline-flex gap-5">
+            <div class="grid grid-flow-col gap-5">
               <icon item-image="assets/images/figma.svg"></icon>
               <icon item-image="assets/images/photoshop.svg"></icon>
               <icon item-image="assets/images/illustrator.svg"></icon>
@@ -100,7 +100,7 @@
         <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div class="row-span-4 flex flex-col gap-10">
             <p>Для веб-разработки я использую современные и эффективные инструменты. Основу работы составляют HTML и CSS для верстки и стилизации. Sass помогает организовать код, а Tailwind и Bootstrap ускоряют разработку адаптивных интерфейсов. Для динамических элементов применяю Vue.js.</p>
-            <div class="inline-flex gap-5">
+            <div class="grid grid-flow-col gap-5">
               <icon item-image="assets/images/html.svg"></icon>
               <icon item-image="assets/images/css.svg"></icon>
               <icon item-image="assets/images/sass.svg"></icon>
@@ -120,7 +120,7 @@
         <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div class="row-span-2 flex flex-col gap-10">
             <p>В процессе видеомонтажа я использую профессиональные инструменты. Adobe Premiere Pro — главный редактор для точного и детализированного монтажа видео. Для анимации и визуальных эффектов я применяю After Effects, а для обработки звука — Audition.</p>
-            <div class="inline-flex w-fit items-center gap-5">
+            <div class="grid grid-flow-col gap-5">
               <icon item-image="assets/images/premier-pro.svg"></icon>
               <icon item-image="assets/images/after-effect.svg"></icon>
               <icon item-image="assets/images/audition.svg"></icon>
@@ -181,6 +181,6 @@
       </div>
     </div>
 
-    <footer class="container mx-auto mt-50 flex items-center justify-between p-5"><p>ну я сделал да</p></footer>
+    <footer class="container mx-auto mt-50 flex h-fit items-center justify-between p-5 md:h-(--colonnetitulus)"><p>ну я сделал да</p></footer>
   </body>
 </html>

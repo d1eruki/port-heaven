@@ -60,12 +60,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 }
 
-@media (max-width: 48rem) {
-  #about {
-    padding-top: calc(2 * var(--colonnetitulus));
-  }
-}
-
 hr {
   color: var(--secondary);
 }
@@ -94,34 +88,9 @@ html {
   scroll-behavior: smooth;
 }
 
-p {
-  font-weight: 100;
-  color: rgba($white, 0.5);
-}
-
-header,
-footer {
-  height: var(--colonnetitulus);
-}
-
 body {
   background-color: $black;
   color: $white;
-}
-
-h1,
-h2,
-h3,
-b {
-  color: $white;
-}
-
-a {
-  color: rgba($white, 0.5);
-
-  &:hover {
-    color: $white;
-  }
 }
 
 h1 {
@@ -144,9 +113,29 @@ h4 {
   text-transform: uppercase;
 }
 
+p {
+  font-weight: 100;
+  color: rgba($white, 0.5);
+}
+
 b {
   font-weight: 500;
   text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+b {
+  color: $white;
+}
+
+a {
+  color: rgba($white, 0.5);
+
+  &:hover {
+    color: $white;
+  }
 }
 
 legend {
@@ -276,5 +265,31 @@ video {
 
   &:hover {
     filter: grayscale(0%) brightness(0.9) contrast(1.1);
+  }
+}
+
+@media (max-width: 48rem) {
+  #about {
+    padding-top: calc(2 * var(--colonnetitulus));
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.75rem;
   }
 }
