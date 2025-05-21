@@ -18,7 +18,7 @@
   <body id="app">
     <header id="header" class="fixed z-10 w-screen backdrop-blur-lg">
       <div id="progress-bar" class="progress-bar absolute bg-(--primary-darker)"></div>
-      <div class="container mx-auto flex min-h-fit flex-wrap items-center justify-between gap-x-10 p-5 h-(--colonnetitulus)">
+      <div class="container mx-auto flex h-(--colonnetitulus) min-h-fit flex-wrap items-center justify-between gap-x-10 p-5">
         <a id="header-logo" class="active fustat text-[40px] font-[700]" data-open-block="start" href="#start"></a>
         <div class="flex flex-wrap gap-1 md:w-fit md:gap-10">
           <a data-open-block="about" href="#about">about</a>
@@ -31,10 +31,9 @@
     </header>
 
     <div class="container mx-auto flex flex-col items-center gap-50 px-5">
-
       <!--start-->
       <div id="start" class="inline-flex min-h-screen flex-col justify-center gap-10 self-start md:flex-row md:items-center md:gap-50">
-        <img alt="" style="filter: drop-shadow(0px 0px 200px #ffffff)" src="assets/images/logo-big.svg" />
+        <img alt="" class="w-[50%]" style="filter: drop-shadow(0px 0px 200px #ffffff)" src="assets/images/logo-big.svg" />
         <div class="w-full md:w-sm lg:w-lg">
           <p class="text-wrap">Помогаю стартапам и бизнесу создавать сильный визуал. Эстетичный, понятный и рабочий. Специализируюсь на дизайне и прототипах, которые упрощают путь пользователя и помогают брендам достигать своих целей. Дизайн должен быть не только красивым, но и умным.</p>
         </div>
@@ -87,7 +86,7 @@
         <h2>frontend</h2>
         <hr />
         <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
-          <p class="row-span-4 ">Для веб-разработки я использую современные и эффективные инструменты. Основу работы составляют HTML и CSS для верстки и стилизации. Sass помогает организовать код, а Tailwind и Bootstrap ускоряют разработку адаптивных интерфейсов. Для динамических элементов применяю Vue.js.</p>
+          <p class="row-span-4">Для веб-разработки я использую современные и эффективные инструменты. Основу работы составляют HTML и CSS для верстки и стилизации. Sass помогает организовать код, а Tailwind и Bootstrap ускоряют разработку адаптивных интерфейсов. Для динамических элементов применяю Vue.js.</p>
           <item item-name="Реестр проектов пользователей" item-url="https://varwin.com/ru/education/projects" item-desc="Реализованная по макету страница с пользовательскими проектами" item-img-alt=""></item>
           <item item-name="Страница скачивания Varwin XRMS" item-url="https://varwin.com/ru/education/download-xrms" item-desc="Реализованная по макету страница скачивания Varwin XRMS" item-img-alt="123"></item>
         </div>
@@ -98,7 +97,7 @@
         <h2>video</h2>
         <hr />
         <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
-          <p class="row-span-2 ">В процессе видеомонтажа я использую профессиональные инструменты. Adobe Premiere Pro — главный редактор для точного и детализированного монтажа видео. Для анимации и визуальных эффектов я применяю After Effects, а для обработки звука — Audition.</p>
+          <p class="row-span-2">В процессе видеомонтажа я использую профессиональные инструменты. Adobe Premiere Pro — главный редактор для точного и детализированного монтажа видео. Для анимации и визуальных эффектов я применяю After Effects, а для обработки звука — Audition.</p>
           <item item-name="" item-url="https://www.youtube.com/watch?v=8Kb8mZhst5g" item-desc="" item-img-alt=""></item>
         </div>
       </div>
@@ -154,8 +153,8 @@
       </div>
     </div>
 
-    <footer class="container mx-auto mt-50 flex h-fit items-center justify-between p-5 min-h-(--colonnetitulus)"><p>ну я сделал да</p></footer>
+    <footer class="container mx-auto mt-50 flex h-fit min-h-(--colonnetitulus) items-center justify-between p-5"><p>ну я сделал да</p></footer>
     <div class="grain -z-1"></div>
-    <img alt="" class="fixed right-75 bottom-0 h-[75%] -z-1 opacity-1" src="assets/images/soma.png" />
+    <img alt="" class="fixed right-75 bottom-0 -z-1 h-[75%] opacity-1" src="assets/images/soma.png" />
   </body>
 </html>
