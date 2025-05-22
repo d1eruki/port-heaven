@@ -3,22 +3,24 @@
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);
 $primary: hsl(314 97% 44%);
-$primary-darker: hsl(248 65% 50%);
-$secondary: hsl(0 0% 12%);
-$secondary-light: hsl(0 0% 25%);
-$secondary-dark: hsl(0 0% 10%);
+$secondary: hsl(248 65% 50%);
+$tertiary: hsl(73, 100%, 50%);
+$grey: hsl(0 0% 12%);
+$grey-light: hsl(0 0% 25%);
+$grey-dark: hsl(0 0% 10%);
 $transparent: hsla(0, 0%, 0%, 0);
 
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
 :root {
-  --primary: #{$primary};
   --black: #{$black};
   --white: #{$white};
-  --primary-darker: #{$primary-darker};
+  --primary: #{$primary};
   --secondary: #{$secondary};
-  --secondary-light: #{$secondary-light};
-  --secondary-dark: #{$secondary-dark};
+  --tertiary: #{$tertiary};
+  --grey: #{$grey};
+  --grey-light: #{$grey-light};
+  --grey-dark: #{$grey-dark};
   --transparent: #{$transparent};
 }
 
@@ -61,7 +63,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
 hr {
-  color: var(--secondary);
+  color: var(--grey);
 }
 
 * {
@@ -226,12 +228,6 @@ a {
     filter: grayscale(0%);
     color: $white;
   }
-}
-
-.info h3 {
-  text-align: right;
-  text-transform: uppercase;
-  background-color: $primary-darker;
 }
 
 .active {
