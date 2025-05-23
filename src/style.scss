@@ -93,6 +93,9 @@ html {
 body {
   background-color: $black;
   color: $white;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .grain {
@@ -163,25 +166,21 @@ body {
 h1 {
   font-size: 4rem;
   text-transform: uppercase;
-  word-break: break-all;
 }
 
 h2 {
   font-size: 3rem;
   text-transform: uppercase;
-  word-break: break-all;
 }
 
 h3 {
   font-size: 2rem;
   text-transform: uppercase;
-  word-break: break-all;
 }
 
 h4 {
   font-size: 1.5rem;
   text-transform: uppercase;
-  word-break: break-all;
 }
 
 p {
