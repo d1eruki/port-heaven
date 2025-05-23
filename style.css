@@ -409,11 +409,6 @@
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
     backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
   }
-  .md\:col-span-3 {
-    @media (width >= 48rem) {
-      grid-column: span 3 / span 3;
-    }
-  }
   .md\:flex {
     @media (width >= 48rem) {
       display: flex;
@@ -534,6 +529,9 @@ html {
 body {
   background-color: #000;
   color: #fff;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 .grain {
   position: fixed;
@@ -599,22 +597,18 @@ body {
 h1 {
   font-size: 4rem;
   text-transform: uppercase;
-  word-break: break-all;
 }
 h2 {
   font-size: 3rem;
   text-transform: uppercase;
-  word-break: break-all;
 }
 h3 {
   font-size: 2rem;
   text-transform: uppercase;
-  word-break: break-all;
 }
 h4 {
   font-size: 1.5rem;
   text-transform: uppercase;
-  word-break: break-all;
 }
 p {
   font-weight: 100;
