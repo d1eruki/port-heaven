@@ -15,6 +15,8 @@
     --radius-xl: 0.75rem;
     --blur-lg: 16px;
     --aspect-video: 16 / 9;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --colonnetitulus: 6rem;
@@ -166,6 +168,9 @@
   }
 }
 @layer utilities {
+  .visible {
+    visibility: visible;
+  }
   .absolute {
     position: absolute;
   }
@@ -180,6 +185,9 @@
   }
   .top-0 {
     top: calc(var(--spacing) * 0);
+  }
+  .right-0 {
+    right: calc(var(--spacing) * 0);
   }
   .right-\[5\%\] {
     right: 5%;
@@ -408,6 +416,11 @@
     --tw-backdrop-blur: blur(var(--blur-lg));
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
     backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  }
+  .transition {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
   .md\:flex {
     @media (width >= 48rem) {
@@ -689,6 +702,22 @@ iframe,video {
   p {
     font-size: .75rem;
   }
+}
+#scroll-to-top {
+  visibility: hidden;
+  left: auto;
+  right: 48px;
+  bottom: 48px;
+  transition: opacity .3s,visibility .3s,background-color .3s;
+}
+#scroll-to-top:hover {
+  cursor: pointer;
+}
+#scroll-to-top .icon {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+#scroll-to-top .icon:hover {
+  box-shadow: 0 0 2rem hsl(0,0%,12%);
 }
 @property --tw-rotate-x {
   syntax: "*";
