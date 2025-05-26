@@ -72,6 +72,7 @@ hr {
   cursor: url("./assets/images/cursor-inactive.png"), auto;
 
   a,
+  &.pointer-active,
   &.item > * {
     cursor: url("./assets/images/cursor-active.png"), pointer;
   }
@@ -273,24 +274,20 @@ video {
 }
 
 #scroll-to-top {
-  visibility: hidden;
   left: auto;
   right: 48px;
   bottom: 48px;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
   transition:
     opacity 0.3s,
     visibility 0.3s,
     background-color 0.3s;
 
-  &:hover {
-    cursor: pointer;
-  }
-
-  .icon {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-
-    &:hover {
-      box-shadow: 0 0 2rem $grey;
-    }
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
 }
