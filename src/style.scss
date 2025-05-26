@@ -293,14 +293,17 @@ video {
   left: auto;
   right: 48px;
   bottom: 48px;
-  transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s,
+    background-color 0.3s;
 
   &:hover {
     cursor: pointer;
   }
 
   .icon {
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
     &:hover {
       box-shadow: 0 0 2rem $grey;
