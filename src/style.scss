@@ -200,11 +200,15 @@ b {
   color: $white;
 }
 
-a {
+header a {
   color: rgba($white, 0.5);
+}
+
+a {
+  color: $white;
 
   &:hover {
-    color: $white;
+    font-weight: bold;
   }
 }
 
@@ -265,26 +269,6 @@ video {
 @media (max-width: 48rem) {
   #about {
     padding-top: calc(2 * var(--colonnetitulus));
-  }
-
-  h1 {
-    font-size: 3rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  h4 {
-    font-size: 1rem;
-  }
-
-  p {
-    font-size: 0.75rem;
   }
 }
 
