@@ -99,6 +99,10 @@ body {
   hyphens: auto;
 }
 
+.glow {
+  filter: drop-shadow(0px 0px 200px #ffffff)
+}
+
 .grain {
   position: fixed;
   top: 0;
