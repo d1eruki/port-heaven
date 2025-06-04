@@ -91,7 +91,7 @@ hr {
   }
 
   &::selection {
-    background-color: $grey-dark;
+    background-color: $grey-light;
     color: $floralWhite;
   }
 }
@@ -268,7 +268,6 @@ video {
 }
 
 @media (max-width: 48rem) {
-
   h1 {
     font-size: 3rem;
     text-transform: uppercase;
@@ -315,4 +314,14 @@ video {
     opacity: 1;
     pointer-events: auto;
   }
+}
+
+.star {
+  fill: $grey-light;
+}
+
+polygon.star {
+  fill: $grey-light;
+  transform-origin: center center;
+  transform-box: fill-box;
 }
