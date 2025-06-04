@@ -8,7 +8,7 @@ function updateHeaderLogoText() {
   const sectionBottom = sectionTop + startSection.offsetHeight;
   const isInView = scrollPos >= sectionTop && scrollPos < sectionBottom;
 
-  const newText = isInView ? "artem tresckow" : "dieruki";
+  const newText = isInView ? "dieruki" : "artem tresckow";
 
   if (headerLogo.textContent !== newText) {
     headerLogo.style.opacity = 0;
