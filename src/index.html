@@ -12,12 +12,13 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@200;300;400;600;700;800;900&family=Geologica:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app">
-    <header id="header" class="fixed z-10 w-screen mix-blend-difference">
-      <div id="progress-bar" class="progress-bar absolute hidden bg-(--white) md:inline"></div>
+    <header id="header" class="fixed z-10 w-screen">
+      <div id="progress-bar" class="progress-bar absolute hidden bg-(--grey) md:inline"></div>
       <div class="container mx-auto flex h-(--colonnetitulus) min-h-fit flex-wrap items-center justify-between gap-x-10 p-5">
         <a id="header-logo" class="active fustat text-[40px] font-[700]" data-open-block="start" href="#start"></a>
         <div class="flex flex-wrap gap-1 md:w-fit md:gap-10">
@@ -33,31 +34,35 @@
     <div class="container mx-auto flex flex-col items-center gap-50 px-5">
       <!--start-->
       <div id="start" class="inline-flex min-h-screen flex-col justify-center gap-10 self-start lg:flex-row lg:items-center lg:gap-25">
-        <span class="fustat text-[50px] leading-[50px] lg:text-[100px] font-[800] glow lg:leading-[100px]">Portfolio<br />Tresckow</span>
+        <div class="flex flex-col gap-5">
+          <span> artem tresckow</span>
+          <span class="SGEO text-[50px] leading-[50px] font-[800] lg:text-[150px] lg:leading-[135px]">—port<br />folio </span>
+        </div>
         <p class="w-full lg:w-90">Работаю на стыке дизайна, продукта и фронта. Дизайн для меня — это инструмент решения бизнес-задач, а не только визуал. Думаю как пользователь, считаю как продукт, структурирую как инженер. Понимаю метрики, MVP-подход и ограничения разработки. Цель — запустить, протестировать и улучшить.<br /><br />Телеграм: <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
       </div>
 
       <!--about-->
       <div id="about" class="flex min-h-screen flex-col gap-20">
         <div class="grid items-center gap-5 md:inline-flex">
-          <div class="hidden h-fit rounded-lg bg-[var(--color-white)] px-5 py-2 !text-[var(--color-black)]">для заказчиков</div>
+          <div class="hidden h-fit rounded-lg px-5 py-2">для заказчиков</div>
           <h2>я помогу вам с</h2>
         </div>
         <div class="grid justify-between gap-10 md:flex">
-          <div class="flex flex-1 flex-col gap-10">
-            <span class="biryani text-[172px] !font-normal !text-[var(--grey)]">01</span>
+          <div class="inline-block w-0.5 self-stretch bg-(--grey)"></div>
+          <div class="flex flex-1 flex-col gap-2 md:gap-10">
+            <span class="biryani numbers !text-[var(--grey)]">01</span>
             <h3>дизайном</h3>
             <p>Я делаю веб дизайны, которые привлекут аудиторию к вашему бренду</p>
           </div>
           <div class="inline-block w-0.5 self-stretch bg-(--grey)"></div>
-          <div class="flex flex-1 flex-col gap-10">
-            <span class="biryani text-[172px] !font-normal !text-[var(--grey)]">02</span>
+          <div class="flex flex-1 flex-col gap-2 md:gap-10">
+            <span class="biryani numbers !text-[var(--grey)]">02</span>
             <h3>разработкой</h3>
             <p>Разработаю веб сайт по своему или вашему макету</p>
           </div>
           <div class="inline-block w-0.5 self-stretch bg-(--grey)"></div>
-          <div class="flex flex-1 flex-col gap-10">
-            <span class="biryani text-[172px] !font-normal !text-[var(--grey)]">03</span>
+          <div class="flex flex-1 flex-col gap-2 md:gap-10">
+            <span class="biryani numbers !text-[var(--grey)]">03</span>
             <h3>сопровождением</h3>
             <p>Сопровождение готового продукта по договоренности</p>
           </div>
@@ -157,6 +162,6 @@
       <p class="w-full text-center">© 2025 Артем Тресков — <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
     </footer>
     <div class="grain -z-1"></div>
-    <img alt="" class="fixed right-[5%] bottom-0 -z-1 opacity-2.5 md:h-[85%]" src="assets/images/soma.png" />
+    <img alt="" class="fixed right-[5%] bottom-0 -z-1 opacity-3 md:h-[85%]" src="assets/images/soma.png" />
   </body>
 </html>

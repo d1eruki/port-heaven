@@ -2,12 +2,15 @@
 
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);
-$primary: hsl(314 97% 44%);
-$secondary: hsl(248 65% 50%);
-$tertiary: hsl(73, 100%, 50%);
+$pink: hsl(314 97% 44%);
+$purple: hsl(248 65% 50%);
+$yellow: hsl(73, 100%, 50%);
 $grey: hsl(0 0% 12%);
 $grey-light: hsl(0 0% 25%);
 $grey-dark: hsl(0 0% 10%);
+$floralWhite: hsl(40, 100%, 97%);
+$floralWhite-light: hsl(40, 100%, 99%);
+$floralWhite-dark: hsl(40, 100%, 90%);
 $transparent: hsla(0, 0%, 0%, 0);
 
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
@@ -15,12 +18,15 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 :root {
   --black: #{$black};
   --white: #{$white};
-  --primary: #{$primary};
-  --secondary: #{$secondary};
-  --tertiary: #{$tertiary};
+  --pink: #{$pink};
+  --purple: #{$purple};
+  --yellow: #{$yellow};
   --grey: #{$grey};
   --grey-light: #{$grey-light};
   --grey-dark: #{$grey-dark};
+  --floralWhite: #{$floralWhite};
+  --floralWhite-light: #{$floralWhite-light};
+  --floralWhite-dark: #{$floralWhite-dark};
   --transparent: #{$transparent};
 }
 
@@ -36,12 +42,15 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
 .fustat {
   font-family: "Fustat", sans-serif;
-  color: $white;
   letter-spacing: -4px;
 }
 
 .biryani {
   font-family: "Biryani", sans-serif;
+}
+
+.SGEO {
+  font-family: "Special Gothic Expanded One", sans-serif;
 }
 
 @keyframes move {
@@ -82,8 +91,8 @@ hr {
   }
 
   &::selection {
-    background-color: $white;
-    color: $black;
+    background-color: $grey-dark;
+    color: $floralWhite;
   }
 }
 
@@ -92,15 +101,15 @@ html {
 }
 
 body {
-  background-color: $black;
-  color: $white;
+  background-color: $floralWhite;
+  color: $grey-light;
   word-break: normal;
   overflow-wrap: break-word;
   hyphens: auto;
 }
 
 .glow {
-  filter: drop-shadow(0px 0px 150px #ffffff)
+  filter: drop-shadow(0px 0px 150px $white);
 }
 
 .grain {
@@ -188,9 +197,12 @@ h4 {
   text-transform: uppercase;
 }
 
+.numbers {
+  font-size: 10.75rem;
+}
+
 p {
   font-weight: 100;
-  color: rgba($white, 0.5);
 }
 
 b {
@@ -198,20 +210,7 @@ b {
   text-transform: uppercase;
 }
 
-h1,
-h2,
-h3,
-b {
-  color: $white;
-}
-
-header a {
-  color: rgba($white, 0.5);
-}
-
 a {
-  color: $white;
-
   &:hover {
     font-weight: bold;
   }
@@ -224,7 +223,6 @@ a {
 .item {
   filter: grayscale(100%);
   transition: $transition;
-  color: rgba($white, 0.5);
   height: fit-content;
 
   img {
@@ -234,12 +232,10 @@ a {
   &:hover {
     transform: translate(10px, 10px);
     filter: grayscale(0%);
-    color: $white;
   }
 }
 
 .active {
-  color: $white;
   font-weight: bold;
   transition: $transition;
 }
@@ -272,6 +268,31 @@ video {
 }
 
 @media (max-width: 48rem) {
+
+  h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  h4 {
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  .numbers {
+    font-size: 7.75rem;
+  }
+
   #about {
     padding-top: calc(2 * var(--colonnetitulus));
   }
