@@ -8,9 +8,9 @@ $white: hsl(0 0% 100%);
 $pink: hsl(314 97% 44%);
 $purple: hsl(248 65% 50%);
 $yellow: hsl(73, 100%, 50%);
-$grey: hsl(0 0% 12%);
-$grey-light: hsl(0 0% 25%);
-$grey-dark: hsl(0 0% 10%);
+$grey: hsl(0 0% 50%);
+$grey-light: hsl(0 0% 70%);
+$grey-dark: hsl(0 0% 20%);
 $floralWhite: hsl(40, 100%, 95%);
 $floralWhite-light: hsl(40, 100%, 99%);
 $floralWhite-dark: hsl(40, 100%, 90%);
@@ -61,6 +61,14 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   .progress-bar {
     background-color: $grey-light;
   }
+
+  p {
+    color: $grey-light;
+  }
+
+  .hero {
+    color: $grey-light;
+  }
 }
 
 [data-theme="dark"] {
@@ -95,6 +103,22 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   .progress-bar {
     background-color: $white;
+  }
+
+  p {
+    color: $grey;
+  }
+
+  .hero {
+    color: $white;
+  }
+
+  footer * p {
+    color: $white;
+  }
+
+  header * p {
+    color: $white;
   }
 }
 
@@ -255,7 +279,7 @@ h2 {
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   text-transform: uppercase;
 }
 
