@@ -38,14 +38,14 @@ function onScroll() {
 
   const scrollPos = window.scrollY + SCROLL_OFFSET;
 
-  let current = sections[0];
+  let current = null;
 
+  // Если скролл меньше верхней границы первой секции — ничего не выделяем
   if (scrollPos < sections[0].offsetTop) {
-    current = sections[0];
+    current = null;
   } else {
     for (let i = 0; i < sections.length; i++) {
       const sectionTop = sections[i].offsetTop;
-
       if (scrollPos >= sectionTop) {
         current = sections[i];
       } else {
@@ -54,11 +54,9 @@ function onScroll() {
     }
   }
 
-  const currentId = current.getAttribute("id");
-
   headerLinks.forEach((link) => {
     const href = link.getAttribute("href").replace("#", "");
-    if (href === currentId) {
+    if (current && href === current.getAttribute("id")) {
       link.classList.add("active");
     } else {
       link.classList.remove("active");
