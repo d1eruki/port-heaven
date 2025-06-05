@@ -1,7 +1,7 @@
 <template>
-  <div class="inline-block w-0.5 self-stretch dark:bg-(--grey-dark) light:bg-(--grey-light)"></div>
+  <div class="light:bg-(--grey-light) inline-block w-0.5 self-stretch dark:bg-(--grey-dark)"></div>
   <div class="flex flex-1 flex-col gap-2 lg:gap-10">
-    <span class="biryani numbers dark:text-(--grey-dark) light:text-(--grey-light)">{{ number }}</span>
+    <span class="biryani numbers light:text-(--grey-light) dark:text-(--grey-dark)">{{ number }}</span>
     <h3>{{ title }}</h3>
     <p>{{ text }}</p>
   </div>
