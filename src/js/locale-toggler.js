@@ -1,16 +1,12 @@
-const langBtn = document.getElementById("lang-btn");
-const greeting = document.getElementById("greeting");
+import i18n from "./i18n";
 
-let currentLang = "ru";
-
-langBtn.addEventListener("click", () => {
-  if (currentLang === "ru") {
-    greeting.textContent = "Hello!";
-    langBtn.textContent = "Русский";
-    currentLang = "en";
-  } else {
-    greeting.textContent = "Привет!";
-    langBtn.textContent = "English";
-    currentLang = "ru";
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("lang-toggle");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const current = i18n.global.locale.value;
+      i18n.global.locale.value = current === "ru" ? "en" : "ru";
+      btn.textContent = current === "ru" ? "Русский" : "English";
+    });
   }
 });
