@@ -208,12 +208,12 @@ hr {
 * {
   font-family: "Geologica", sans-serif;
   text-wrap: balance;
-  cursor: url("./assets/images/cursor-inactive.png"), auto;
+  cursor: url("assets/images/cursors/cursor-inactive.png"), auto;
 
   a,
   &.pointer-active,
   &.item > * {
-    cursor: url("./assets/images/cursor-active.png"), pointer;
+    cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }
 
   &::-webkit-scrollbar {
