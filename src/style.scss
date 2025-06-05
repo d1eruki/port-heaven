@@ -35,39 +35,59 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 [data-theme="light"] {
   * {
     &::selection {
-      background-color: $grey-light;
+      background-color: $grey-dark;
       color: $floralWhite;
     }
   }
 
   body {
     background-color: $floralWhite;
-    color: $grey-light;
+    color: $grey-dark;
   }
 
   polygon.star {
-    fill: $grey-light;
+    fill: $grey-dark;
   }
 
   #theme-toggle {
-    fill: $grey-light;
+    fill: $grey-dark;
   }
 
   .active {
-    background-color: $grey-light;
+    background-color: $grey-dark;
     color: $floralWhite;
   }
 
   .progress-bar {
-    background-color: $grey-light;
+    background-color: $grey-dark;
   }
 
   p {
-    color: $grey-light;
+    color: $grey;
   }
 
   .hero {
-    color: $grey-light;
+    color: $grey-dark;
+  }
+
+  footer * p {
+    color: $grey-dark;
+  }
+
+  header * p {
+    color: $grey-dark;
+  }
+
+  .item {
+    color: $grey;
+
+    &:hover {
+      color: $grey-dark;
+
+      p {
+        color: $grey-dark;
+      }
+    }
   }
 }
 
@@ -119,6 +139,18 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   header * p {
     color: $white;
+  }
+
+  .item {
+    color: $grey;
+
+    &:hover {
+      color: $white;
+
+      p {
+        color: $white;
+      }
+    }
   }
 }
 
@@ -315,10 +347,6 @@ a {
   filter: grayscale(100%);
   transition: $transition;
   height: fit-content;
-
-  img {
-    border-radius: var(--radius-xl);
-  }
 
   &:hover {
     transform: translate(10px, 10px);
