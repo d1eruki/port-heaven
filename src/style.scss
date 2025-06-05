@@ -8,7 +8,7 @@ $yellow: hsl(73, 100%, 50%);
 $grey: hsl(0 0% 12%);
 $grey-light: hsl(0 0% 25%);
 $grey-dark: hsl(0 0% 10%);
-$floralWhite: hsl(40, 100%, 97%);
+$floralWhite: hsl(40, 100%, 95%);
 $floralWhite-light: hsl(40, 100%, 99%);
 $floralWhite-dark: hsl(40, 100%, 90%);
 $transparent: hsla(0, 0%, 0%, 0);
@@ -30,13 +30,20 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   --transparent: #{$transparent};
 }
 
+$breakpoint-xs: calc(40rem - 12rem); //640
+$breakpoint-md: calc(48rem - 12rem); //768
+$breakpoint-lg: calc(64rem - 12rem); //1024
+$breakpoint-xl: calc(80rem - 12rem); //1280
+$breakpoint-2xl: calc(90rem - 12rem); //1440
+$colonnetitulus: 6rem; //96
+
 @theme {
-  --breakpoint-xs: 40rem; //640
-  --breakpoint-md: 48rem; //768
-  --breakpoint-lg: 64rem; //1024
-  --breakpoint-xl: 80rem; //1280
-  --breakpoint-2xl: 90rem; //1440
-  --colonnetitulus: 6rem; //96
+  --breakpoint-xs: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 90rem;
+  --colonnetitulus: $colonnetitulus;
 }
 
 .fustat {
@@ -270,7 +277,33 @@ video {
   }
 }
 
-@media (max-width: 48rem) {
+#scroll-to-top {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s,
+    background-color 0.3s;
+
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.star {
+  fill: $grey-light;
+}
+
+polygon.star {
+  fill: $grey-light;
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+
+@media (max-width: 64rem) {
   .hero {
     font-size: 3rem;
   }
@@ -297,33 +330,4 @@ video {
   #about {
     padding-top: calc(2 * var(--colonnetitulus));
   }
-}
-
-#scroll-to-top {
-  left: auto;
-  right: 48px;
-  bottom: 48px;
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 0.3s,
-    visibility 0.3s,
-    background-color 0.3s;
-
-  &.visible {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-.star {
-  fill: $grey-light;
-}
-
-polygon.star {
-  fill: $grey-light;
-  transform-origin: center center;
-  transform-box: fill-box;
 }
