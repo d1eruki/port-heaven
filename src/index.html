@@ -17,15 +17,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app">
-    <div id="progress-bar" class="progress-bar fixed hidden bg-(--grey-light) lg:inline"></div>
-    <header id="header" class="fixed z-10 flex h-(--colonnetitulus) min-h-fit w-screen flex-col gap-0 p-5 lg:w-fit lg:gap-10">
-      <a id="header-logo" class="active fustat text-[40px] font-[700]" data-open-block="start" href="#start">portfolio <button id="theme-toggle">Сменить тему</button></a>
+    <div id="progress-bar" class="progress-bar fixed z-50 hidden bg-(--grey-light) lg:inline"></div>
+    <header id="header" class="fixed z-10 flex h-(--colonnetitulus) min-h-fit w-screen flex-col gap-0 p-5 backdrop-blur-lg md:backdrop-filter-none lg:w-fit lg:gap-10">
+      <a id="header-logo" class="active fustat !bg-[--transparent] !px-0 text-[40px] font-[700]" data-open-block="start" href="#start">portfolio</a>
       <div class="flex flex-row flex-wrap gap-1 lg:w-fit lg:flex-col lg:gap-5">
-        <a data-open-block="about" href="#about">about</a>
-        <a data-open-block="design" href="#design">design</a>
-        <a data-open-block="stack" href="#frontend">frontend</a>
-        <a data-open-block="video" href="#video">video</a>
-        <a data-open-block="pic" href="#pic">posters</a>
+        <a data-open-block="about" class="w-fit" href="#about">about</a>
+        <a data-open-block="design" class="w-fit" href="#design">design</a>
+        <a data-open-block="stack" class="w-fit" href="#frontend">frontend</a>
+        <a data-open-block="video" class="w-fit" href="#video">video</a>
+        <a data-open-block="pic" class="w-fit" href="#pic">posters</a>
       </div>
     </header>
 
@@ -34,7 +34,7 @@
       <p>email <a href="mailto:stapps90@gmail.com" target="_blank">stapps90</a></p>
     </div>
 
-    <div class="container mx-auto flex flex-col gap-50 px-5 lg:px-[12rem]">
+    <div class="container mx-auto my-[--colonnetitulus] flex flex-col gap-50 px-5 lg:px-[12rem]">
       <!--start-->
       <div id="start" class="flex min-h-screen w-full flex-col justify-center gap-10 self-start lg:flex-row lg:items-center lg:gap-25">
         <p class="SGEO glow hero leading-[50px] lg:leading-[100px]">artem<br />tresckow</p>
@@ -172,16 +172,19 @@
       </div>
     </div>
 
-    <div class="pointer-active fixed right-0 bottom-0 p-5" id="scroll-to-top">Вверх</div>
+    <div class="fixed right-0 bottom-0 z-10 flex items-center gap-5 p-5">
+      <div class="pointer-active" id="scroll-to-top">Вверх</div>
+      <button class="pointer-active" id="theme-toggle"><img alt="" src="assets/images/theme-toggler.svg" /></button>
+    </div>
 
-    <footer class="fixed bottom-0 h-fit p-5">
-      <p class="w-full text-center">© 2025 Артем Тресков</p>
+    <footer class="fixed bottom-0 h-fit w-full p-5 backdrop-blur-lg md:w-fit md:backdrop-filter-none">
+      <p>© 2025 Артем Тресков</p>
       <div class="md:hidden">
         <p>telegram <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
         <p>email <a href="mailto:stapps90@gmail.com" target="_blank">stapps90</a></p>
       </div>
     </footer>
     <div class="grain -z-1"></div>
-    <img alt="" class="fixed right-[5%] bottom-0 -z-1 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />
+    <img alt="" class="light:hidden fixed right-[5%] bottom-0 -z-1 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />
   </body>
 </html>
