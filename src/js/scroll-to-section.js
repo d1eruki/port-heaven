@@ -1,4 +1,3 @@
-const header = document.querySelector("header");
 const headerLinks = document.querySelectorAll("a[data-open-block]");
 const sections = Array.from(headerLinks).map((link) => {
   const id = link.getAttribute("href");
@@ -6,6 +5,7 @@ const sections = Array.from(headerLinks).map((link) => {
 });
 
 let isScrolling = false;
+const SCROLL_OFFSET = 80;
 
 function setActiveLink(targetLink) {
   headerLinks.forEach((link) => link.classList.remove("active"));
@@ -18,7 +18,6 @@ headerLinks.forEach((link) => {
 
     const targetId = this.getAttribute("href");
     const targetEl = document.querySelector(targetId);
-    const SCROLL_OFFSET = header.offsetHeight * 2;
 
     if (targetEl) {
       const targetY = targetEl.offsetTop - SCROLL_OFFSET;
@@ -37,7 +36,6 @@ headerLinks.forEach((link) => {
 function onScroll() {
   if (isScrolling) return;
 
-  const SCROLL_OFFSET = header.offsetHeight * 2;
   const scrollPos = window.scrollY + SCROLL_OFFSET;
 
   let current = sections[0];

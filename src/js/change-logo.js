@@ -8,12 +8,12 @@ function updateHeaderLogoText() {
   const sectionBottom = sectionTop + startSection.offsetHeight;
   const isInView = scrollPos >= sectionTop && scrollPos < sectionBottom;
 
-  const newText = isInView ? "dieruki" : "artem tresckow";
+  const newText = isInView ? "dieruki" : "artem<br>tresckow";
 
-  if (headerLogo.textContent !== newText) {
+  if (headerLogo.innerHTML !== newText) {
     headerLogo.style.opacity = 0;
     setTimeout(() => {
-      headerLogo.textContent = newText;
+      headerLogo.innerHTML = newText;
       headerLogo.style.opacity = 1;
     }, 200);
   }

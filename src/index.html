@@ -17,38 +17,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app">
-    <header id="header" class="fixed z-10 w-screen">
-      <div id="progress-bar" class="progress-bar absolute hidden bg-(--grey-light) md:inline"></div>
-      <div class="container mx-auto flex h-(--colonnetitulus) min-h-fit flex-wrap items-center justify-between gap-x-10 p-5">
-        <a id="header-logo" class="active fustat text-[40px] font-[700]" data-open-block="start" href="#start"></a>
-        <div class="flex flex-wrap gap-1 md:w-fit md:gap-10">
-          <a data-open-block="about" href="#about">about</a>
-          <a data-open-block="design" href="#design">design</a>
-          <a data-open-block="stack" href="#frontend">frontend</a>
-          <a data-open-block="video" href="#video">video</a>
-          <a data-open-block="pic" href="#pic">posters</a>
-        </div>
+    <div id="progress-bar" class="progress-bar fixed hidden bg-(--grey-light) md:inline"></div>
+    <header id="header" class="fixed z-10 flex h-(--colonnetitulus) min-h-fit w-screen flex-col gap-0 p-5 md:w-fit md:gap-10">
+      <a id="header-logo" class="active fustat text-[40px] leading-[25px] font-[700]" data-open-block="start" href="#start"></a>
+      <div class="flex flex-row flex-wrap gap-1 md:w-fit md:flex-col md:gap-5">
+        <a data-open-block="about" href="#about">about</a>
+        <a data-open-block="design" href="#design">design</a>
+        <a data-open-block="stack" href="#frontend">frontend</a>
+        <a data-open-block="video" href="#video">video</a>
+        <a data-open-block="pic" href="#pic">posters</a>
       </div>
     </header>
 
-    <div class="container mx-auto flex flex-col items-center md:items-start gap-50 px-5">
+    <div class="top-0 right-0 hidden md:fixed p-5 text-end">
+      <p>telegram <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
+      <p>email <a href="mailto:stapps90@gmail.com" target="_blank">stapps90</a></p>
+    </div>
+
+    <div class="container mx-auto flex flex-col items-center gap-50 px-5 md:items-start">
       <!--start-->
-      <div id="start" class="inline-flex min-h-screen flex-col justify-center gap-10 self-start lg:flex-row lg:items-center lg:gap-25">
-        <div class="flex flex-col gap-5">
-          <span> artem tresckow</span>
-          <span class="SGEO text-[50px] leading-[50px] font-[800] lg:text-[150px] lg:leading-[135px]">—port<br />folio </span>
-        </div>
-        <p class="w-full lg:w-90">Работаю на стыке дизайна, продукта и фронта. Дизайн для меня — это инструмент решения бизнес-задач, а не только визуал. Думаю как пользователь, считаю как продукт, структурирую как инженер. Понимаю метрики, MVP-подход и ограничения разработки. Цель — запустить, протестировать и улучшить.<br /><br />Телеграм: <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
+      <div id="start" class="flex min-h-screen w-full flex-col justify-center gap-10 self-start lg:flex-row lg:items-center lg:gap-25">
+        <p class="SGEO hero leading-[50px] lg:leading-[100px]">artem<br />tresckow</p>
+        <p>Работаю на стыке дизайна, продукта и фронта. Дизайн для меня — это инструмент решения бизнес-задач, а не только визуал. Думаю как пользователь, считаю как продукт, структурирую как инженер. Понимаю метрики, MVP-подход и ограничения разработки. Цель — запустить, протестировать и улучшить.</p>
       </div>
 
-      <div class="flex min-h-screen w-[75%] flex-col gap-20">
+      <div class="flex min-h-screen w-full flex-col gap-20">
         <h2>Обо мне и мой подход</h2>
-        <div class="items-center gap-10 flex flex-col items-start">
-          <p> Я — UI/UX-дизайнер с глубоким пониманием бизнес-процессов и технической реализации. Моя цель — создавать интерфейсы, которые не просто красиво выглядят, а работают на результат и приносят деньги. Мой дизайн — это инструмент решения бизнес-задач, направленный на конверсии и масштабируемые решения. Я превращаю цели бизнеса в понятный и эффективный интерфейс, строю логичные пользовательские сценарии и дизайн-системы, учитывая реалии разработки и тестирования. Расту в сторону полного цикла: понимаю, как думает продукт и как пишет фронтенд, поэтому создаю дизайн, который легко реализуется и масштабируется. Умею объяснить, зачем нужен каждый пиксель и какой эффект он даёт. </p>
-          <div class="gap-2 flex flex-col items-start">
-            <p>
-              Ключевые навыки и возможности:
-            </p>
+        <div class="flex flex-col items-center items-start gap-10">
+          <p>Я — UI/UX-дизайнер с глубоким пониманием бизнес-процессов и технической реализации. Моя цель — создавать интерфейсы, которые не просто красиво выглядят, а работают на результат и приносят деньги. Мой дизайн — это инструмент решения бизнес-задач, направленный на конверсии и масштабируемые решения. Я превращаю цели бизнеса в понятный и эффективный интерфейс, строю логичные пользовательские сценарии и дизайн-системы, учитывая реалии разработки и тестирования. Расту в сторону полного цикла: понимаю, как думает продукт и как пишет фронтенд, поэтому создаю дизайн, который легко реализуется и масштабируется. Умею объяснить, зачем нужен каждый пиксель и какой эффект он даёт.</p>
+          <div class="flex flex-col items-start gap-2">
+            <p>Ключевые навыки и возможности:</p>
             <bullet text="Дизайн, который продаёт, а не просто красиво выглядит"></bullet>
             <bullet text="Пользовательский опыт, направленный на конверсии"></bullet>
             <bullet text="Быстрая работа с акцентом на MVP и тестирование"></bullet>
@@ -174,10 +172,14 @@
       </div>
     </div>
 
-    <div class="pointer-active fixed right-0 bottom-0" id="scroll-to-top">Вверх</div>
+    <div class="pointer-active fixed right-0 bottom-0 p-5" id="scroll-to-top">Вверх</div>
 
-    <footer class="container mx-auto mt-50 flex h-fit min-h-(--colonnetitulus) items-center p-5">
-      <p class="w-full text-center">© 2025 Артем Тресков — <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
+    <footer class="fixed bottom-0 h-fit p-5">
+      <p class="w-full text-center">© 2025 Артем Тресков</p>
+      <div class="md:hidden">
+        <p>telegram <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
+        <p>email <a href="mailto:stapps90@gmail.com" target="_blank">stapps90</a></p>
+      </div>
     </footer>
     <div class="grain -z-1"></div>
     <img alt="" class="fixed right-[5%] bottom-0 -z-1 opacity-3 md:h-[85%]" src="assets/images/soma.png" />

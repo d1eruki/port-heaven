@@ -8,7 +8,7 @@ $yellow: hsl(73, 100%, 50%);
 $grey: hsl(0 0% 12%);
 $grey-light: hsl(0 0% 25%);
 $grey-dark: hsl(0 0% 10%);
-$floralWhite: hsl(40, 100%, 97%);
+$floralWhite: hsl(40, 100%, 95%);
 $floralWhite-light: hsl(40, 100%, 99%);
 $floralWhite-dark: hsl(40, 100%, 90%);
 $transparent: hsla(0, 0%, 0%, 0);
@@ -30,14 +30,55 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   --transparent: #{$transparent};
 }
 
+$breakpoint-xs: 40rem - 12rem; //640
+$breakpoint-md: 48rem - 12rem; //768
+$breakpoint-lg: 64rem - 12rem; //1024
+$breakpoint-xl: 80rem - 12rem; //1280
+$breakpoint-2xl: 90rem - 12rem; //1440
+$colonnetitulus: 6rem; //96
+
 @theme {
-  --height-100vh-64: calc(100vh - 64px);
-  --breakpoint-xs: 40rem; //640
-  --breakpoint-md: 48rem; //768
-  --breakpoint-lg: 64rem; //1024
-  --breakpoint-xl: 80rem; //1280
-  --breakpoint-2xl: 90rem; //1440
-  --colonnetitulus: 6rem; //96
+  --breakpoint-xs: $breakpoint-xs; //640
+  --breakpoint-md: $breakpoint-md; //768
+  --breakpoint-lg: $breakpoint-lg; //1024
+  --breakpoint-xl: $breakpoint-xl; //1280
+  --breakpoint-2xl: $breakpoint-2xl; //1440
+  --colonnetitulus: $colonnetitulus; //96
+}
+
+@media (max-width: $breakpoint-md) {
+
+  .hero {
+    font-size: 3rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  .numbers {
+    font-size: 7.75rem;
+  }
+
+  #about {
+    padding-top: calc(2 * var(--colonnetitulus));
+  }
+}
+
+.container {
+  max-width: var(--breakpoint-xl);
 }
 
 .fustat {
@@ -177,6 +218,10 @@ body {
   }
 }
 
+.hero {
+  font-size: 6.25rem;
+}
+
 h1 {
   font-size: 4rem;
   text-transform: uppercase;
@@ -236,7 +281,7 @@ a {
 }
 
 .active {
-  font-weight: bold;
+  font-weight: 900;
   transition: $transition;
 }
 
@@ -267,40 +312,7 @@ video {
   }
 }
 
-@media (max-width: 48rem) {
-  h1 {
-    font-size: 3rem;
-    text-transform: uppercase;
-  }
-
-  h2 {
-    font-size: 2rem;
-    text-transform: uppercase;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-    text-transform: uppercase;
-  }
-
-  h4 {
-    font-size: 1rem;
-    text-transform: uppercase;
-  }
-
-  .numbers {
-    font-size: 7.75rem;
-  }
-
-  #about {
-    padding-top: calc(2 * var(--colonnetitulus));
-  }
-}
-
 #scroll-to-top {
-  left: auto;
-  right: 48px;
-  bottom: 48px;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
