@@ -1,8 +1,9 @@
 {
   "logo": "dieruki",
 
-  "hero": "артем тресков",
+  "hero": "— Артем\nТресков",
 
+  "menu-who": "кто",
   "menu-about": "обо мне",
   "menu-design": "дизайн",
   "menu-frontend": "фронтенд",
@@ -29,7 +30,7 @@
   "design-item-xrms-text": "Основной раздел с компонентами и прототипами для визуализации нововведений в платформе Varwin XRMS",
   "design-item-projects-title": "Реестр проектов",
   "design-item-projects-text": "Макет страницы сайта для демонстрации и скачивания пользовательских проектов",
-  "design-item-download-title": "Страница скачивания Varwin XRM",
+  "design-item-download-title": "Страница скачивания Varwin XRMS",
   "design-item-download-text": "Обновленная страница скачивания платформы Varwin XRMS",
   "design-item-subscout-title": "Subscout",
   "design-item-subscout-text": "Мобильное приложение для добавления и отслеживания подписок пользователя на платные сервисы",

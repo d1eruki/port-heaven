@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       const current = i18n.global.locale.value;
       i18n.global.locale.value = current === "ru" ? "en" : "ru";
-      btn.textContent = current === "ru" ? "Русский" : "English";
+      btn.textContent = current === "ru" ? "русский" : "english";
     });
   }
 });

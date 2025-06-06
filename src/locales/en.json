@@ -1,8 +1,9 @@
 {
   "logo": "dieruki",
 
-  "hero": "Artem Tresckow",
+  "hero": "— Artem\nTresckow",
 
+  "menu-who": "who",
   "menu-about": "about me",
   "menu-design": "design",
   "menu-frontend": "frontend",

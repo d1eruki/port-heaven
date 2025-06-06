@@ -45,11 +45,8 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $grey-dark;
   }
 
-  polygon.star {
-    fill: $grey-dark;
-  }
-
-  #theme-toggle {
+  polygon,
+  path {
     fill: $grey-dark;
   }
 
@@ -64,10 +61,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   p {
     color: $grey;
-  }
-
-  .hero {
-    color: $grey-dark;
   }
 
   footer * p {
@@ -108,17 +101,9 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     filter: drop-shadow(0px 0px 150px $white);
   }
 
-  polygon.star {
+  polygon,
+  path {
     fill: $white;
-  }
-
-  #theme-toggle {
-    fill: $white;
-  }
-
-  .active {
-    background-color: $white;
-    color: $black;
   }
 
   .progress-bar {
@@ -129,15 +114,15 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $grey;
   }
 
-  .hero {
-    color: $white;
+  a[data-open-block] {
+    color: $grey;
   }
 
-  footer * p {
-    color: $white;
+  .active {
+    color: $white !important;
   }
 
-  header * p {
+  a {
     color: $white;
   }
 
@@ -170,17 +155,20 @@ $colonnetitulus: 6rem; //96
   --colonnetitulus: 6rem;
 }
 
-.fustat {
-  font-family: "Fustat", sans-serif;
-  letter-spacing: -4px;
-}
-
-.biryani {
-  font-family: "Biryani", sans-serif;
+@font-face {
+  font-family: "Actay";
+  src: url("./assets/fonts/ActayWide-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 .jost {
   font-family: "Jost", sans-serif;
+}
+
+.Actay {
+  font-family: "Actay", sans-serif;
 }
 
 @keyframes move {
@@ -206,7 +194,7 @@ hr {
 }
 
 * {
-  font-family: "Geologica", sans-serif;
+  font-family: "Jost", sans-serif;
   text-wrap: balance;
   cursor: url("assets/images/cursors/cursor-inactive.png"), auto;
 
@@ -296,13 +284,8 @@ body {
   }
 }
 
-.hero {
-  font-size: 6.25rem;
-  text-transform: uppercase;
-}
-
 h1 {
-  font-size: 4rem;
+  font-size: 7rem;
   text-transform: uppercase;
 }
 
@@ -325,21 +308,6 @@ h4 {
   font-size: 10.75rem;
 }
 
-p {
-  font-weight: 100;
-}
-
-b {
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-a {
-  &:hover {
-    font-weight: bold;
-  }
-}
-
 #header-logo {
   transition: $transition;
 }
@@ -356,9 +324,7 @@ a {
 }
 
 .active {
-  font-weight: 900;
   transition: $transition;
-  padding: 0 5px;
 }
 
 iframe,
@@ -410,9 +376,6 @@ polygon.star {
 }
 
 @media (max-width: 64rem) {
-  .hero {
-    font-size: 3rem;
-  }
   h1 {
     font-size: 2.5rem;
   }
