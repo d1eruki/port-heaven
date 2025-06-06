@@ -14,15 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="whitespace-pre-line">
-
-    <div id="banner" class="justify-center light:bg-[color:var(--yellow)] fixed z-50 flex h-[40px] w-full items-center dark:bg-[color:var(--purple)]">
+    <div id="banner" class="light:bg-[color:var(--yellow)] fixed z-50 flex h-[40px] w-full items-center justify-center dark:bg-[color:var(--purple)]">
       <p id="marquee-container" class="flex text-[20px] leading-[40px]">{{ t('development') }}</p>
     </div>
 
     <div id="progress-bar" class="progress-bar fixed z-51 block"></div>
 
     <div id="left-menu" class="fixed top-0 left-0 z-50 flex h-fit w-full flex-row items-center justify-between gap-5 p-5 backdrop-blur-lg md:h-full md:w-75 md:flex-col md:items-start md:p-10 md:backdrop-filter-none">
-      <a class="jost w-fit tracking-widest dark:text-[color:var(--white)]">{{ t('logo') }}</a>
+      <p class="jost w-fit tracking-widest dark:text-[color:var(--white)]">{{ t('logo') }}</p>
       <div class="hidden flex-col gap-1 md:flex lg:w-fit lg:gap-5">
         <a data-open-block="who" class="w-fit text-[30px]" href="#who">{{ t('menu-who') }}</a>
         <a data-open-block="what" class="w-fit text-[30px]" href="#what">{{ t('menu-what') }}</a>
@@ -40,9 +39,9 @@
     </div>
 
     <div id="right-menu" class="align-center fixed right-0 bottom-0 z-50 flex h-fit w-full flex-row items-center justify-between gap-5 p-5 backdrop-blur-lg md:top-0 md:h-full md:w-75 md:flex-col md:items-end md:p-10 md:backdrop-filter-none">
-      <div class="flex flex-col text-end">
-        <a href="https://t.me/d1eruki" target="_blank">{{ t('contacts-telegram') }} </a>
-        <a href="mailto:stapps90@gmail.com" target="_blank">{{ t('contacts-email') }} </a>
+      <div class="flex flex-col items-end">
+        <a class="w-fit" href="https://t.me/d1eruki" target="_blank">{{ t('contacts-telegram') }} </a>
+        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">{{ t('contacts-email') }} </a>
       </div>
       <a id="lang-toggle">english</a>
       <div class="flex flex-row items-center gap-5 md:mb-5">
