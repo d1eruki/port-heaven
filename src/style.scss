@@ -57,12 +57,9 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $grey;
   }
 
-  footer * p {
-    color: $grey-dark;
-  }
-
-  header * p {
-    color: $grey-dark;
+  #left-menu * p,
+  #right-menu * p {
+    color: $black;
   }
 
   .item {
@@ -108,15 +105,17 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $grey;
   }
 
-  a[data-open-block] {
-    color: $grey;
-  }
-
   .active {
-    color: $white !important;
+    background-color: $white;
+    color: $black;
   }
 
   a {
+    color: $white;
+  }
+
+  #left-menu * p,
+  #right-menu * p {
     color: $white;
   }
 

@@ -1,15 +1,33 @@
 function adjustOffsets() {
-  const banner = document.getElementById('banner');
-  const header = document.getElementById('header');
-  const progress = document.getElementById('progress-bar');
+  const banner = document.getElementById("banner");
+  const leftMenu = document.getElementById("left-menu");
+  const rightMenu = document.getElementById("right-menu");
+  const progress = document.getElementById("progress-bar");
 
-  if (!banner || !header) return;
+  if (!banner) return;
 
-  const offset = banner.offsetHeight + 'px';
+  const offset = banner.offsetHeight + "px";
+  const isDesktop = window.innerWidth >= 768;
 
-  header.style.top = offset;
-  if (progress) progress.style.top = offset;
+  if (leftMenu) {
+    leftMenu.style.top = offset;
+    leftMenu.style.bottom = "";
+  }
+
+  if (rightMenu) {
+    if (isDesktop) {
+      rightMenu.style.top = offset;
+      rightMenu.style.bottom = "";
+    } else {
+      rightMenu.style.top = "";
+      rightMenu.style.bottom = "0";
+    }
+  }
+
+  if (progress) {
+    progress.style.top = offset;
+  }
 }
 
-window.addEventListener('load', adjustOffsets);
-window.addEventListener('resize', adjustOffsets); // если баннер может менять высоту
+window.addEventListener("load", adjustOffsets);
+window.addEventListener("resize", adjustOffsets);

@@ -15,28 +15,41 @@
   </head>
   <body lang="ru" id="app" class="whitespace-pre-line">
     <div id="banner" class="light:bg-[color:var(--yellow)] fixed z-50 h-[40px] w-full dark:bg-[color:var(--purple)]">under heavy development</div>
-    <div id="progress-bar" class="progress-bar fixed z-50 hidden lg:block"></div>
+    <div id="progress-bar" class="progress-bar fixed z-51 block"></div>
 
-    <div class="fixed top-[50%] left-10 flex translate-y-[-50%] flex-row flex-wrap gap-1 lg:w-fit lg:flex-col lg:gap-5">
-      <a data-open-block="who" class="w-fit text-[30px]" href="#who">{{ t('menu-who') }}</a>
-      <a data-open-block="what" class="w-fit text-[30px]" href="#what">{{ t('menu-what') }}</a>
-      <a data-open-block="design" class="w-fit text-[30px]" href="#design">{{ t('menu-design') }}</a>
-      <a data-open-block="stack" class="w-fit text-[30px]" href="#frontend">{{ t('menu-frontend') }}</a>
-      <a data-open-block="video" class="w-fit text-[30px]" href="#video">{{ t('menu-video') }}</a>
-      <a data-open-block="pic" class="w-fit text-[30px]" href="#pic">{{ t('menu-posters') }}</a>
+    <div id="left-menu" class="items-center gap-5 fixed top-0 left-0 z-50 flex h-fit w-full flex-row md:items-start justify-between p-5 backdrop-blur-lg md:h-full md:w-75 md:flex-col md:p-10 md:backdrop-filter-none">
+      <a class="jost w-fit tracking-widest dark:text-[color:var(--white)]">{{ t('logo') }}</a>
+      <div class="md:flex hidden gap-1 lg:w-fit flex-col lg:gap-5">
+        <a data-open-block="who" class="w-fit text-[30px]" href="#who">{{ t('menu-who') }}</a>
+        <a data-open-block="what" class="w-fit text-[30px]" href="#what">{{ t('menu-what') }}</a>
+        <a data-open-block="design" class="w-fit text-[30px]" href="#design">{{ t('menu-design') }}</a>
+        <a data-open-block="stack" class="w-fit text-[30px]" href="#frontend">{{ t('menu-frontend') }}</a>
+        <a data-open-block="video" class="w-fit text-[30px]" href="#video">{{ t('menu-video') }}</a>
+        <a data-open-block="pic" class="w-fit text-[30px]" href="#pic">{{ t('menu-posters') }}</a>
+      </div>
+      <div class="flex flex-row items-center md:mb-5">
+        <p class="light:text-[color:var(--grey-dark)] dark:text-[color:var(--white)]">{{ t('footer-copyright') }}</p>
+        <svg class="hidden md:inline" viewBox="-150 -150 300 300" style="width: 48px; height: 48px">
+          <polygon class="star" points=""></polygon>
+        </svg>
+      </div>
     </div>
 
-    <a class="fixed top-[50%] right-10 translate-y-[-50%]" id="lang-toggle">english</a>
-
-    <header id="header" class="fixed flex h-fit w-full justify-between p-5 backdrop-blur-lg md:p-10 md:backdrop-filter-none">
-      <a class="jost w-fit tracking-widest dark:text-[color:var(--white)]">{{ t('logo') }}</a>
-      <div class="hidden flex-col text-end md:flex">
-        <p>{{ t('contacts-telegram') }} <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
-        <p>{{ t('contacts-email') }} <a href="mailto:stapps90@gmail.com" target="_blank">stapps90</a></p>
+    <div id="right-menu" class="items-center gap-5 align-center fixed right-0 bottom-0 z-50 flex h-fit w-full flex-row md:items-end justify-between p-5 backdrop-blur-lg md:top-0 md:h-full md:w-75 md:flex-col md:p-10 md:backdrop-filter-none">
+      <div class="flex flex-col text-end">
+        <a href="https://t.me/d1eruki" target="_blank">{{ t('contacts-telegram') }} </a>
+        <a href="mailto:stapps90@gmail.com" target="_blank">{{ t('contacts-email') }} </a>
       </div>
-    </header>
+      <a id="lang-toggle">english</a>
+      <div class="flex flex-row items-center gap-5 md:mb-5">
+        <div class="pointer-active" id="scroll-to-top">{{ t('footer-scroll-up') }}</div>
+        <svg id="theme-toggle" class="pointer-active" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 7C23.4478 7 26.7544 8.36964 29.1924 10.8076C31.6304 13.2456 33 16.5522 33 20C33 23.4478 31.6304 26.7544 29.1924 29.1924C26.7544 31.6304 23.4478 33 20 33V7ZM20 4C15.7565 4 11.6869 5.68571 8.68629 8.68629C5.68571 11.6869 4 15.7565 4 20C4 24.2435 5.68571 28.3131 8.68629 31.3137C11.6869 34.3143 15.7565 36 20 36C24.2435 36 28.3131 34.3143 31.3137 31.3137C34.3143 28.3131 36 24.2435 36 20C36 15.7565 34.3143 11.6869 31.3137 8.68629C28.3131 5.68571 24.2435 4 20 4Z" fill="white" />
+        </svg>
+      </div>
+    </div>
 
-    <div class="container mx-auto my-[--colonnetitulus] flex flex-col gap-50 px-5 lg:px-[12rem]">
+    <div class="container mx-auto my-[--colonnetitulus] flex flex-col gap-50 px-5 md:px-50">
       <!--who-->
       <div id="who" class="flex min-h-screen w-full flex-col items-start justify-center gap-10 self-start lg:gap-25">
         <h1 class="Actay glow leading-[50px] lg:leading-[100px]">{{ t('hero') }}</h1>
@@ -103,25 +116,6 @@
         </div>
       </div>
     </div>
-
-    <footer class="fixed bottom-0 flex h-fit w-full items-center justify-between p-5 backdrop-blur-lg md:p-10 md:backdrop-filter-none">
-      <div class="flex items-center">
-        <p>{{ t('footer-copyright') }}</p>
-        <svg class="hidden md:inline" viewBox="-150 -150 300 300" style="width: 48px; height: 48px">
-          <polygon class="star" points=""></polygon>
-        </svg>
-        <div class="md:hidden">
-          <p>{{ t('contacts-telegram') }} <a href="https://t.me/d1eruki" target="_blank">@d1eruki</a></p>
-          <p>{{ t('contacts-email') }} <a href="mailto:stapps90@gmail.com" target="_blank">stapps90</a></p>
-        </div>
-      </div>
-      <div class="hidden flex-row items-center gap-5 md:flex">
-        <div class="pointer-active" id="scroll-to-top">{{ t('footer-scroll-up') }}</div>
-        <svg id="theme-toggle" class="pointer-active" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 7C23.4478 7 26.7544 8.36964 29.1924 10.8076C31.6304 13.2456 33 16.5522 33 20C33 23.4478 31.6304 26.7544 29.1924 29.1924C26.7544 31.6304 23.4478 33 20 33V7ZM20 4C15.7565 4 11.6869 5.68571 8.68629 8.68629C5.68571 11.6869 4 15.7565 4 20C4 24.2435 5.68571 28.3131 8.68629 31.3137C11.6869 34.3143 15.7565 36 20 36C24.2435 36 28.3131 34.3143 31.3137 31.3137C34.3143 28.3131 36 24.2435 36 20C36 15.7565 34.3143 11.6869 31.3137 8.68629C28.3131 5.68571 24.2435 4 20 4Z" fill="white" />
-        </svg>
-      </div>
-    </footer>
     <div class="noise light:hidden -z-1 block"></div>
     <div class="dotted-grid fixed top-0 -z-1 block h-full w-full dark:hidden"></div>
     <img alt="" class="light:hidden fixed right-[5%] bottom-0 -z-1 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />
