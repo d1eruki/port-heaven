@@ -1,0 +1,60 @@
+{
+  "logo": "dieruki",
+
+  "hero": "— Artem\nTresckow",
+
+  "development": "under heavy development",
+
+  "menu-who": "who",
+  "menu-what": "what",
+  "menu-design": "design",
+  "menu-frontend": "frontend",
+  "menu-video": "video",
+  "menu-posters": "posters",
+
+  "contacts-telegram": "telegram",
+  "contacts-email": "email",
+
+  "intro": "I’m a UI/UX designer who creates not just beautiful, but effective design that solves business problems, boosts conversions, and scales easily. I work at the intersection of design, product, and frontend: I understand how product managers think and how developers write code, taking metrics, MVP, and development constraints into account. I think like a user, calculate like a product manager, and structure like an engineer — turning business goals into clear, logical, and implementable interfaces.",
+
+  "about-title": "About me and my approach",
+  "about-efficiency-title": "Efficiency",
+  "about-efficiency-text": "Design that solves problems, not just looks nice. The user experience is optimized for conversion growth. Focused on speed: MVPs, launches, testing — all to quickly learn what actually works.",
+  "about-system-title": "System Thinking",
+  "about-system-text": "Creating design systems that are easy to scale and maintain. I consider technical constraints, understand frontend, and work in a way that doesn't make development painful.",
+  "about-strategy-title": "Strategy",
+  "about-strategy-text": "I see the product as a whole: from idea and structure to final implementation. I join at all stages to make sure the result is not random, but deliberate and strong.",
+
+  "design-title": "design",
+  "design-paragraph": "In my work, I use modern design tools. Figma is my main tool for creating interfaces and prototypes with smooth team collaboration. I also actively use Adobe Photoshop for graphic editing and Illustrator for creating vector elements.",
+
+  "design-item-xrms-title": "Varwin XRMS",
+  "design-item-xrms-text": "Main section with components and prototypes visualizing updates for the Varwin XRMS platform",
+  "design-item-projects-title": "Projects Registry",
+  "design-item-projects-text": "Website layout for showcasing and downloading user projects",
+  "design-item-download-title": "Varwin XRMS Download Page",
+  "design-item-download-text": "Updated download page for the Varwin XRMS platform",
+  "design-item-subscout-title": "Subscout",
+  "design-item-subscout-text": "Mobile app for adding and tracking user subscriptions to paid services",
+  "design-item-baikal-title": "Time to Hike",
+  "design-item-baikal-text": "Landing page redesign for the ‘Time to Hike’ travel club offering trips to Lake Baikal",
+  "design-item-pioner-title": "Pioner",
+  "design-item-pioner-text": "Landing page redesign for a power machinery plant",
+
+  "frontend-title": "frontend",
+  "frontend-paragraph": "For web development, I use modern and efficient tools. The foundation is HTML and CSS for layout and styling. Sass helps organize the code, while Tailwind and Bootstrap speed up responsive UI development. For dynamic elements, I use Vue.js.",
+
+  "frontend-item-projects-title": "Projects Registry",
+  "frontend-item-projects-text": "Implemented page for user projects based on the design layout",
+  "frontend-item-download-title": "Varwin XRMS Download Page",
+  "frontend-item-download-text": "Implemented download page for Varwin XRMS based on the design layout",
+
+  "video-title": "video",
+  "video-paragraph": "For video editing, I use professional tools. Adobe Premiere Pro is my main editor for precise, detailed editing. I use After Effects for animation and visual effects, and Audition for sound processing.",
+
+  "posters-title": "posters",
+  "posters-paragraph": "I create posters in a postcard format — visual mini-stories about people. Through composition, color, and detail, I convey character, mood, and context. These aren’t just pretty pictures — they’re personal pieces that stick with you.",
+
+  "footer-copyright": "© 2025 Artem Tresckow",
+  "footer-scroll-up": "Scroll up"
+}

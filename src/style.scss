@@ -1,47 +1,181 @@
 @use "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);
-$primary: hsl(314 97% 44%);
-$secondary: hsl(248 65% 50%);
-$tertiary: hsl(73, 100%, 50%);
-$grey: hsl(0 0% 12%);
-$grey-light: hsl(0 0% 25%);
-$grey-dark: hsl(0 0% 10%);
+$pink: hsl(314 97% 44%);
+$purple: hsl(248 65% 50%);
+$yellow: hsl(73, 100%, 50%);
+$grey: hsl(0 0% 50%);
+$grey-light: hsl(0 0% 70%);
+$grey-dark: hsl(0 0% 20%);
 $transparent: hsla(0, 0%, 0%, 0);
-
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
 :root {
   --black: #{$black};
   --white: #{$white};
-  --primary: #{$primary};
-  --secondary: #{$secondary};
-  --tertiary: #{$tertiary};
+  --pink: #{$pink};
+  --purple: #{$purple};
+  --yellow: #{$yellow};
   --grey: #{$grey};
   --grey-light: #{$grey-light};
   --grey-dark: #{$grey-dark};
   --transparent: #{$transparent};
 }
 
+[data-theme="light"] {
+  * {
+    &::selection {
+      background-color: $grey-dark;
+      color: $white;
+    }
+  }
+
+  body {
+    background-color: $white;
+    color: $grey-dark;
+  }
+
+  polygon,
+  path {
+    fill: $grey-dark;
+  }
+
+  .active {
+    background-color: $grey-dark;
+    color: $white;
+  }
+
+  .progress-bar {
+    background-color: $grey-dark;
+  }
+
+  p {
+    color: $grey;
+  }
+
+  #left-menu,
+  #right-menu {
+    p {
+      color: $black;
+    }
+  }
+
+  .item {
+    color: $grey;
+
+    &:hover {
+      color: $grey-dark;
+
+      p {
+        color: $grey-dark;
+      }
+    }
+  }
+
+  #banner {
+    p {
+      color: $black;
+    }
+  }
+}
+
+[data-theme="dark"] {
+  * {
+    &::selection {
+      background-color: $white;
+      color: $black;
+    }
+  }
+
+  body {
+    background-color: $black;
+    color: $white;
+  }
+
+  .glow {
+    filter: drop-shadow(0px 0px 150px $white);
+  }
+
+  polygon,
+  path {
+    fill: $white;
+  }
+
+  .progress-bar {
+    background-color: $white;
+  }
+
+  p {
+    color: $grey;
+  }
+
+  .active {
+    background-color: $white;
+    color: $black;
+  }
+
+  a {
+    color: $white;
+  }
+
+  #left-menu * p,
+  #right-menu * p {
+    color: $white;
+  }
+
+  .item {
+    color: $grey;
+
+    &:hover {
+      color: $white;
+
+      p {
+        color: $white;
+      }
+    }
+  }
+
+  #banner {
+    p {
+      color: $white;
+    }
+  }
+}
+
+$breakpoint-xs: calc(40rem - 12rem); //640
+$breakpoint-md: calc(48rem - 12rem); //768
+$breakpoint-lg: calc(64rem - 12rem); //1024
+$breakpoint-xl: calc(80rem - 12rem); //1280
+$breakpoint-2xl: calc(90rem - 12rem); //1440
+$colonnetitulus: 6rem; //96
+
 @theme {
-  --height-100vh-64: calc(100vh - 64px);
-  --breakpoint-xs: 40rem; //640
-  --breakpoint-md: 48rem; //768
-  --breakpoint-lg: 64rem; //1024
-  --breakpoint-xl: 80rem; //1280
-  --breakpoint-2xl: 90rem; //1440
-  --colonnetitulus: 6rem; //96
+  --breakpoint-xs: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 90rem;
+  --colonnetitulus: 6rem;
 }
 
-.fustat {
-  font-family: "Fustat", sans-serif;
-  color: $white;
-  letter-spacing: -4px;
+@font-face {
+  font-family: "Actay";
+  src: url("./assets/fonts/ActayWide-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-.biryani {
-  font-family: "Biryani", sans-serif;
+.jost {
+  font-family: "Jost", sans-serif;
+}
+
+.Actay {
+  font-family: "Actay", sans-serif;
 }
 
 @keyframes move {
@@ -67,23 +201,18 @@ hr {
 }
 
 * {
-  font-family: "Geologica", sans-serif;
+  font-family: "Jost", sans-serif;
   text-wrap: balance;
-  cursor: url("./assets/images/cursor-inactive.png"), auto;
+  cursor: url("assets/images/cursors/cursor-inactive.png"), auto;
 
   a,
   &.pointer-active,
   &.item > * {
-    cursor: url("./assets/images/cursor-active.png"), pointer;
+    cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  &::selection {
-    background-color: $white;
-    color: $black;
   }
 }
 
@@ -92,14 +221,17 @@ html {
 }
 
 body {
-  background-color: $black;
-  color: $white;
   word-break: normal;
   overflow-wrap: break-word;
   hyphens: auto;
 }
 
-.grain {
+.dotted-grid {
+  background-image: radial-gradient($grey-light 1px, $transparent 0);
+  background-size: 40px 40px;
+}
+
+.noise {
   position: fixed;
   top: 0;
   left: 0;
@@ -165,7 +297,7 @@ body {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 7rem;
   text-transform: uppercase;
 }
 
@@ -175,7 +307,7 @@ h2 {
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   text-transform: uppercase;
 }
 
@@ -184,33 +316,8 @@ h4 {
   text-transform: uppercase;
 }
 
-p {
-  font-weight: 100;
-  color: rgba($white, 0.5);
-}
-
-b {
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-h3,
-b {
-  color: $white;
-}
-
-header a {
-  color: rgba($white, 0.5);
-}
-
-a {
-  color: $white;
-
-  &:hover {
-    font-weight: bold;
-  }
+.numbers {
+  font-size: 10.75rem;
 }
 
 #header-logo {
@@ -220,23 +327,15 @@ a {
 .item {
   filter: grayscale(100%);
   transition: $transition;
-  color: rgba($white, 0.5);
   height: fit-content;
-
-  img {
-    border-radius: var(--radius-xl);
-  }
 
   &:hover {
     transform: translate(10px, 10px);
     filter: grayscale(0%);
-    color: $white;
   }
 }
 
 .active {
-  color: $white;
-  font-weight: bold;
   transition: $transition;
 }
 
@@ -267,16 +366,7 @@ video {
   }
 }
 
-@media (max-width: 48rem) {
-  #about {
-    padding-top: calc(2 * var(--colonnetitulus));
-  }
-}
-
 #scroll-to-top {
-  left: auto;
-  right: 48px;
-  bottom: 48px;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
@@ -289,5 +379,36 @@ video {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+  }
+}
+
+polygon.star {
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+
+@media (max-width: 64rem) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  .numbers {
+    font-size: 7.75rem;
+  }
+
+  #about {
+    padding-top: calc(2 * var(--colonnetitulus));
   }
 }

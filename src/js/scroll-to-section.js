@@ -1,72 +1,67 @@
-const header = document.querySelector("header");
 const headerLinks = document.querySelectorAll("a[data-open-block]");
 const sections = Array.from(headerLinks).map((link) => {
   const id = link.getAttribute("href");
   return document.querySelector(id);
 });
 
+const SCROLL_OFFSET = 80;
 let isScrolling = false;
 
 function setActiveLink(targetLink) {
   headerLinks.forEach((link) => link.classList.remove("active"));
-  targetLink.classList.add("active");
+  if (targetLink) targetLink.classList.add("active");
 }
-
-headerLinks.forEach((link) => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const targetId = this.getAttribute("href");
-    const targetEl = document.querySelector(targetId);
-    const SCROLL_OFFSET = header.offsetHeight * 2;
-
-    if (targetEl) {
-      const targetY = targetEl.offsetTop - SCROLL_OFFSET;
-
-      setActiveLink(this);
-      isScrolling = true;
-
-      window.scrollTo({
-        top: targetY,
-        behavior: "smooth",
-      });
-    }
-  });
-});
 
 function onScroll() {
   if (isScrolling) return;
 
-  const SCROLL_OFFSET = header.offsetHeight * 2;
-  const scrollPos = window.scrollY + SCROLL_OFFSET;
+  const viewportMiddle = window.scrollY + window.innerHeight / 2;
+  let currentSectionIndex = -1;
 
-  let current = sections[0];
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    if (!section) continue;
+    const sectionTop = section.offsetTop - SCROLL_OFFSET;
+    const sectionBottom = sectionTop + section.offsetHeight;
 
-  if (scrollPos < sections[0].offsetTop) {
-    current = sections[0];
-  } else {
-    for (let i = 0; i < sections.length; i++) {
-      const sectionTop = sections[i].offsetTop;
-
-      if (scrollPos >= sectionTop) {
-        current = sections[i];
-      } else {
-        break;
-      }
+    if (viewportMiddle >= sectionTop && viewportMiddle < sectionBottom) {
+      currentSectionIndex = i;
+      break;
     }
   }
 
-  const currentId = current.getAttribute("id");
+  // Если не нашли секцию — определяем ближайшую
+  if (currentSectionIndex === -1) {
+    if (viewportMiddle < (sections[0]?.offsetTop ?? 0)) {
+      currentSectionIndex = 0;
+    } else if (viewportMiddle >= (sections.at(-1)?.offsetTop ?? 0) + (sections.at(-1)?.offsetHeight ?? 0)) {
+      currentSectionIndex = sections.length - 1;
+    }
+  }
 
-  headerLinks.forEach((link) => {
-    const href = link.getAttribute("href").replace("#", "");
-    if (href === currentId) {
+  headerLinks.forEach((link, i) => {
+    if (i === currentSectionIndex) {
       link.classList.add("active");
     } else {
       link.classList.remove("active");
     }
   });
 }
+
+headerLinks.forEach((link) => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href");
+    const targetEl = document.querySelector(targetId);
+
+    if (targetEl) {
+      const targetY = targetEl.offsetTop - SCROLL_OFFSET;
+      setActiveLink(this);
+      isScrolling = true;
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+    }
+  });
+});
 
 function handleScrollEnd() {
   if (isScrolling) {
@@ -88,13 +83,14 @@ if ("onscrollend" in window) {
   });
 }
 
+let scrollTimeout;
 window.addEventListener("scroll", () => {
   if (isScrolling && !("onscrollend" in window)) {
-    const scrollTimeout = setTimeout(() => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
       isScrolling = false;
       onScroll();
     }, 100);
-    window.addEventListener("scroll", () => clearTimeout(scrollTimeout), { once: true });
   }
   onScroll();
 });
