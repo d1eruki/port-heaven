@@ -57,9 +57,11 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $grey;
   }
 
-  #left-menu * p,
-  #right-menu * p {
-    color: $black;
+  #left-menu,
+  #right-menu {
+    p {
+      color: $black;
+    }
   }
 
   .item {
@@ -71,6 +73,12 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
       p {
         color: $grey-dark;
       }
+    }
+  }
+
+  #banner {
+    p {
+      color: $black;
     }
   }
 }
@@ -128,6 +136,12 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
       p {
         color: $white;
       }
+    }
+  }
+
+  #banner {
+    p {
+      color: $white;
     }
   }
 }
