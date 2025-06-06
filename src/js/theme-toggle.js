@@ -2,7 +2,7 @@
   // Устанавливаем тему до загрузки стилей и DOM
   const root = document.documentElement;
   if (!root.getAttribute("data-theme")) {
-    root.setAttribute("data-theme", "dark");
+    root.setAttribute("data-theme", "light");
   }
 
   // После загрузки DOM навешиваем обработчик на кнопку

@@ -6,6 +6,7 @@ import "./js/scroll-to-top";
 import "./js/draw-elements";
 import "./js/theme-toggle";
 import "./js/locale-toggler";
+import "./js/banner-offset";
 import { updateProgressBar } from "./js/progress-bar";
 
 window.onscroll = updateProgressBar;

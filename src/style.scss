@@ -11,9 +11,6 @@ $yellow: hsl(73, 100%, 50%);
 $grey: hsl(0 0% 50%);
 $grey-light: hsl(0 0% 70%);
 $grey-dark: hsl(0 0% 20%);
-$floralWhite: hsl(40, 100%, 95%);
-$floralWhite-light: hsl(40, 100%, 99%);
-$floralWhite-dark: hsl(40, 100%, 90%);
 $transparent: hsla(0, 0%, 0%, 0);
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
@@ -26,9 +23,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   --grey: #{$grey};
   --grey-light: #{$grey-light};
   --grey-dark: #{$grey-dark};
-  --floralWhite: #{$floralWhite};
-  --floralWhite-light: #{$floralWhite-light};
-  --floralWhite-dark: #{$floralWhite-dark};
   --transparent: #{$transparent};
 }
 
@@ -36,12 +30,12 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   * {
     &::selection {
       background-color: $grey-dark;
-      color: $floralWhite;
+      color: $white;
     }
   }
 
   body {
-    background-color: $floralWhite;
+    background-color: $white;
     color: $grey-dark;
   }
 
@@ -52,7 +46,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   .active {
     background-color: $grey-dark;
-    color: $floralWhite;
+    color: $white;
   }
 
   .progress-bar {
@@ -219,7 +213,12 @@ body {
   hyphens: auto;
 }
 
-.grain {
+.dotted-grid {
+  background-image: radial-gradient($grey-light 1px, $transparent 0);
+  background-size: 40px 40px;
+}
+
+.noise {
   position: fixed;
   top: 0;
   left: 0;

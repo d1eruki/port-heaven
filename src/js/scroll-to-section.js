@@ -1,5 +1,5 @@
 const headerLinks = document.querySelectorAll("a[data-open-block]");
-const sections = Array.from(headerLinks).map(link => {
+const sections = Array.from(headerLinks).map((link) => {
   const id = link.getAttribute("href");
   return document.querySelector(id);
 });
@@ -8,7 +8,7 @@ const SCROLL_OFFSET = 80;
 let isScrolling = false;
 
 function setActiveLink(targetLink) {
-  headerLinks.forEach(link => link.classList.remove("active"));
+  headerLinks.forEach((link) => link.classList.remove("active"));
   if (targetLink) targetLink.classList.add("active");
 }
 
@@ -34,7 +34,7 @@ function onScroll() {
   if (currentSectionIndex === -1) {
     if (viewportMiddle < (sections[0]?.offsetTop ?? 0)) {
       currentSectionIndex = 0;
-    } else if (viewportMiddle >= ((sections.at(-1)?.offsetTop ?? 0) + (sections.at(-1)?.offsetHeight ?? 0))) {
+    } else if (viewportMiddle >= (sections.at(-1)?.offsetTop ?? 0) + (sections.at(-1)?.offsetHeight ?? 0)) {
       currentSectionIndex = sections.length - 1;
     }
   }
@@ -48,8 +48,8 @@ function onScroll() {
   });
 }
 
-headerLinks.forEach(link => {
-  link.addEventListener("click", function(e) {
+headerLinks.forEach((link) => {
+  link.addEventListener("click", function (e) {
     e.preventDefault();
     const targetId = this.getAttribute("href");
     const targetEl = document.querySelector(targetId);
@@ -73,8 +73,8 @@ function handleScrollEnd() {
 if ("onscrollend" in window) {
   window.addEventListener("scrollend", handleScrollEnd);
 } else {
-  headerLinks.forEach(link => {
-    link.addEventListener("click", function() {
+  headerLinks.forEach((link) => {
+    link.addEventListener("click", function () {
       setTimeout(() => {
         isScrolling = false;
         onScroll();
