@@ -579,6 +579,11 @@
       background-color: var(--purple);
     }
   }
+  .dark\:bg-\[var\(--black\)\] {
+    &:where([data-theme="dark"], [data-theme="dark"] *) {
+      background-color: var(--black);
+    }
+  }
   .dark\:bg-\[var\(--purple\)\] {
     &:where([data-theme="dark"], [data-theme="dark"] *) {
       background-color: var(--purple);
@@ -601,6 +606,13 @@
       }
     }
   }
+  .dark\:md\:bg-\[var\(--white\)\] {
+    &:where([data-theme="dark"], [data-theme="dark"] *) {
+      @media (width >= 48rem) {
+        background-color: var(--white);
+      }
+    }
+  }
   .light\:hidden {
     &:where([data-theme="light"], [data-theme="light"] *) {
       display: none;
@@ -616,6 +628,11 @@
       background-color: var(--yellow);
     }
   }
+  .light\:bg-\[var\(--white\)\] {
+    &:where([data-theme="light"], [data-theme="light"] *) {
+      background-color: var(--white);
+    }
+  }
   .light\:bg-\[var\(--yellow\)\] {
     &:where([data-theme="light"], [data-theme="light"] *) {
       background-color: var(--yellow);
@@ -629,6 +646,13 @@
   .light\:text-\[color\:var\(--grey-dark\)\] {
     &:where([data-theme="light"], [data-theme="light"] *) {
       color: var(--grey-dark);
+    }
+  }
+  .light\:md\:bg-\[var\(--grey-dark\)\] {
+    &:where([data-theme="light"], [data-theme="light"] *) {
+      @media (width >= 48rem) {
+        background-color: var(--grey-dark);
+      }
     }
   }
   .light\:md\:bg-\[var\(--transparent\)\] {
@@ -664,9 +688,6 @@
 [data-theme=light] .active {
   background-color: #333;
   color: #fff;
-}
-[data-theme=light] .progress-bar {
-  background-color: #fff;
 }
 [data-theme=light] p {
   color: hsl(0,0%,50%);
@@ -705,9 +726,6 @@
 }
 [data-theme=dark] polygon,[data-theme=dark] path {
   fill: #fff;
-}
-[data-theme=dark] .progress-bar {
-  background-color: #fff;
 }
 [data-theme=dark] p {
   color: hsl(0,0%,50%);
