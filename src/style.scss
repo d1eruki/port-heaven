@@ -50,7 +50,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .progress-bar {
-    background-color: $grey-dark;
+    background-color: $white;
   }
 
   p {
@@ -64,15 +64,25 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     }
   }
 
+  a {
+    &:hover {
+      background-color: $grey-dark;
+      color: $white;
+    }
+
+    &:hover polygon,
+    &:hover path {
+      background-color: $transparent;
+      fill: $black;
+    }
+  }
+
   .item {
+    background-color: $white;
     color: $grey;
 
     &:hover {
-      color: $grey-dark;
-
-      p {
-        color: $grey-dark;
-      }
+      color: $white;
     }
   }
 
@@ -120,22 +130,25 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   a {
     color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
   }
 
-  #left-menu * p,
-  #right-menu * p {
-    color: $white;
+  #left-menu,
+  #right-menu {
+    p {
+      color: $white;
+    }
   }
 
   .item {
     color: $grey;
 
     &:hover {
-      color: $white;
-
-      p {
-        color: $white;
-      }
+      color: $black;
     }
   }
 
@@ -387,7 +400,7 @@ polygon.star {
   transform-box: fill-box;
 }
 
-@media (max-width: 64rem) {
+@media (max-width: 80rem) {
   h1 {
     font-size: 2.5rem;
   }
