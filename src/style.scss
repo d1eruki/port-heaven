@@ -49,10 +49,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $white;
   }
 
-  .progress-bar {
-    background-color: $white;
-  }
-
   p {
     color: $grey;
   }
@@ -113,10 +109,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   polygon,
   path {
     fill: $white;
-  }
-
-  .progress-bar {
-    background-color: $white;
   }
 
   p {
