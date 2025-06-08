@@ -18,17 +18,15 @@
       <p id="marquee-container" class="flex text-[20px] leading-[40px]">{{ t('development') }}</p>
     </div>
 
-    <div id="progress-bar" class="progress-bar light:md:bg-[var(--grey-dark)] light:bg-[var(--white)] dark:md:bg-[var(--white)] dark:bg-[var(--black)]  fixed z-51 block"></div>
+    <div id="progress-bar" class="progress-bar light:md:bg-[var(--grey-dark)] light:bg-[var(--white)] fixed z-51 block dark:bg-[var(--black)] dark:md:bg-[var(--white)]"></div>
 
     <div id="left-menu" class="fixed top-0 left-0 z-50 flex h-fit w-full flex-row items-center justify-between gap-5 p-5 invert backdrop-blur-lg md:h-full md:w-75 md:flex-col md:items-start md:p-10 md:invert-0 md:backdrop-filter-none">
       <p class="jost w-fit tracking-widest dark:text-[color:var(--white)]">{{ t('logo') }}</p>
-      <div class="hidden flex-col gap-1 md:flex lg:w-fit lg:gap-5">
+      <div class="hidden flex-col gap-5 md:flex lg:w-fit">
         <a data-open-block="who" class="w-fit text-[30px]" href="#who">{{ t('menu-who') }}</a>
         <a data-open-block="what" class="w-fit text-[30px]" href="#what">{{ t('menu-what') }}</a>
         <a data-open-block="design" class="w-fit text-[30px]" href="#design">{{ t('menu-design') }}</a>
         <a data-open-block="stack" class="w-fit text-[30px]" href="#frontend">{{ t('menu-frontend') }}</a>
-        <a data-open-block="video" class="w-fit text-[30px]" href="#video">{{ t('menu-video') }}</a>
-        <a data-open-block="pic" class="w-fit text-[30px]" href="#pic">{{ t('menu-posters') }}</a>
       </div>
       <div class="flex flex-row items-center md:mb-5">
         <svg class="hidden md:inline" viewBox="-150 -150 300 300" style="width: 48px; height: 48px">
@@ -79,7 +77,7 @@
       </div>
     </div>
 
-    <div class="container mx-auto my-[--colonnetitulus] mb-40 flex flex-col gap-20 px-5 md:gap-50 md:px-64">
+    <div class="container mb-40 md:mb-0 flex flex-col gap-20 px-5 md:gap-50 md:px-75 max-w-full">
       <!--who-->
       <div id="who" class="flex min-h-screen w-full flex-col items-start justify-center gap-10 self-start lg:gap-25">
         <h1 class="Actay glow leading-[50px] xl:leading-[100px]">{{ t('hero') }}</h1>
@@ -119,30 +117,6 @@
           <p class="row-span-4">{{ t('frontend-paragraph') }}</p>
           <item :item-name="t('frontend-item-projects-title')" item-url="https://varwin.com/ru/education/projects" :item-desc="t('frontend-item-projects-text')" item-img-alt=""></item>
           <item :item-name="t('frontend-item-download-title')" item-url="https://varwin.com/ru/education/download-xrms" :item-desc="t('frontend-item-download-text')" item-img-alt="123"></item>
-        </div>
-      </div>
-
-      <!--video-->
-      <div id="video" class="grid min-h-screen content-start gap-10">
-        <h2>{{ t('video-title') }}</h2>
-        <hr />
-        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-          <p class="row-span-2">{{ t('video-paragraph') }}</p>
-          <item item-name="" item-url="https://www.youtube.com/watch?v=8Kb8mZhst5g" item-desc="" item-img-alt=""></item>
-        </div>
-      </div>
-
-      <!--pic-->
-      <div id="pic" class="grid min-h-screen content-start gap-10">
-        <div class="inline-flex justify-between">
-          <h2>{{ t('posters-title') }}</h2>
-        </div>
-        <hr />
-        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-          <p>{{ t('posters-paragraph') }}</p>
-          <div class="item">
-            <img alt="" src="assets/images/postcards/2025-artem-yakovenko.png" />
-          </div>
         </div>
       </div>
     </div>
