@@ -191,6 +191,9 @@
   .right-20 {
     right: calc(var(--spacing) * 20);
   }
+  .right-\[5\%\] {
+    right: 5%;
+  }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
   }
@@ -372,6 +375,9 @@
   .pt-10 {
     padding-top: calc(var(--spacing) * 10);
   }
+  .pb-5 {
+    padding-bottom: calc(var(--spacing) * 5);
+  }
   .text-3xl {
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
@@ -379,10 +385,6 @@
   .text-9xl {
     font-size: var(--text-9xl);
     line-height: var(--tw-leading, var(--text-9xl--line-height));
-  }
-  .leading-10 {
-    --tw-leading: calc(var(--spacing) * 10);
-    line-height: calc(var(--spacing) * 10);
   }
   .tracking-widest {
     --tw-tracking: var(--tracking-widest);
@@ -393,6 +395,9 @@
   }
   .opacity-3 {
     opacity: 3%;
+  }
+  .opacity-6 {
+    opacity: 6%;
   }
   .mix-blend-difference {
     mix-blend-mode: difference;
@@ -442,11 +447,6 @@
       margin: calc(var(--spacing) * 0);
     }
   }
-  .lg\:mb-5 {
-    @media (width >= 64rem) {
-      margin-bottom: calc(var(--spacing) * 5);
-    }
-  }
   .lg\:flex {
     @media (width >= 64rem) {
       display: flex;
@@ -465,6 +465,11 @@
   .lg\:w-75 {
     @media (width >= 64rem) {
       width: calc(var(--spacing) * 75);
+    }
+  }
+  .lg\:w-150 {
+    @media (width >= 64rem) {
+      width: calc(var(--spacing) * 150);
     }
   }
   .lg\:w-fit {
@@ -538,6 +543,12 @@
       gap: calc(var(--spacing) * 10);
     }
   }
+  .xl\:leading-30 {
+    @media (width >= 80rem) {
+      --tw-leading: calc(var(--spacing) * 30);
+      line-height: calc(var(--spacing) * 30);
+    }
+  }
   .\32 xl\:grid-cols-3 {
     @media (width >= 96rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -546,12 +557,6 @@
   .\32 xl\:flex-row {
     @media (width >= 96rem) {
       flex-direction: row;
-    }
-  }
-  .\32 xl\:leading-20 {
-    @media (width >= 96rem) {
-      --tw-leading: calc(var(--spacing) * 20);
-      line-height: calc(var(--spacing) * 20);
     }
   }
   .\33 xl\:px-150 {
@@ -915,7 +920,7 @@ polygon.star {
   transform-origin: center center;
   transform-box: fill-box;
 }
-@media (max-width: 96rem) {
+@media (max-width: 80rem) {
   h1 {
     font-size: 2.5rem;
   }
@@ -953,10 +958,6 @@ polygon.star {
   syntax: "*";
   inherits: false;
   initial-value: solid;
-}
-@property --tw-leading {
-  syntax: "*";
-  inherits: false;
 }
 @property --tw-tracking {
   syntax: "*";
@@ -1020,6 +1021,10 @@ polygon.star {
   syntax: "*";
   inherits: false;
 }
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -1029,7 +1034,6 @@ polygon.star {
       --tw-skew-x: initial;
       --tw-skew-y: initial;
       --tw-border-style: solid;
-      --tw-leading: initial;
       --tw-tracking: initial;
       --tw-outline-style: solid;
       --tw-blur: initial;
@@ -1045,6 +1049,7 @@ polygon.star {
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
+      --tw-leading: initial;
     }
   }
 }
