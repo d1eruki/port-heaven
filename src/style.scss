@@ -44,26 +44,26 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     fill: $black;
   }
 
-  .active {
-    background-color: $black;
-    color: $white;
-  }
-
   p {
     color: $grey;
   }
 
   #left-menu,
   #right-menu {
-    p {
+    * {
       color: $black;
+    }
+
+    .active {
+      background-color: $black;
+      color: $white;
     }
   }
 
   a {
     &:hover {
       background-color: $black;
-      color: $white;
+      color: $white !important;
     }
 
     &:hover polygon,
@@ -79,12 +79,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
     &:hover {
       color: $white;
-    }
-  }
-
-  #banner {
-    p {
-      color: $black;
     }
   }
 }
@@ -115,14 +109,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $grey;
   }
 
-  .active {
-    background-color: $white;
-    color: $black;
-  }
-
   a {
-    color: $white;
-
     &:hover {
       background-color: $white;
       color: $black;
@@ -131,7 +118,13 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   #left-menu,
   #right-menu {
-    p {
+    * {
+      color: $white;
+    }
+
+
+    .active {
+      background-color: $black;
       color: $white;
     }
   }

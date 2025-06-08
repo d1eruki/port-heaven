@@ -1,8 +1,8 @@
 <template>
-  <a :href="itemUrl" target="_blank" :class="['item relative flex aspect-video flex-col justify-between', showThumbnail ? '' : 'outline']">
-    <h4 v-if="!isYoutube" class="z-10 p-4">{{ itemName }}</h4>
+  <a :href="itemUrl" target="_blank" :class="['-z-2 item relative flex aspect-video flex-col justify-between', showThumbnail ? '' : 'outline']">
+    <h4 v-if="!isYoutube" class="p-4">{{ itemName }}</h4>
     <img v-if="showThumbnail && thumbnailUrl" class="absolute top-0 left-0 h-full w-full object-cover drop-shadow-none" :src="thumbnailUrl" :alt="itemImgAlt" @error="handleImageError" />
-    <p v-if="!isYoutube" class="z-10 p-4">{{ itemDesc }}</p>
+    <p v-if="!isYoutube" class="p-4">{{ itemDesc }}</p>
   </a>
 </template>
 
