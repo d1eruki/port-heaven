@@ -14,13 +14,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="whitespace-pre-line">
-    <div id="banner" class="light:text-[var(--black)] light:bg-[var(--yellow)] fixed 50 flex h-10 w-full items-center justify-center dark:bg-[var(--purple)]">
+    <div id="banner" class="light:text-[var(--black)] light:bg-[var(--yellow)] fixed flex h-10 w-full items-center justify-center dark:bg-[var(--purple)]">
       <p id="marquee-container" class="light:text-[var(--black)]! dark:text-[var(--white)]!">{{ t('development') }}</p>
     </div>
 
-    <div id="progress-bar" class="progress-bar light:bg-[var(--black)] fixed top-10 51 block mix-blend-difference invert-100 dark:bg-[var(--black)]"></div>
+    <div id="progress-bar" class="progress-bar light:bg-[var(--black)] fixed top-10 block mix-blend-difference invert-100 dark:bg-[var(--black)]"></div>
 
-    <div id="left-menu" class="fixed top-10 left-0 50 flex h-fit w-full flex-row items-center justify-between p-5 lg:h-auto lg:w-75 lg:flex-col lg:items-start lg:p-10 lg:mix-blend-difference light:bg-[var(--white)] lg:invert-100">
+    <div id="left-menu" class="fixed top-10 left-0 flex h-fit w-full flex-row items-center justify-between p-5 lg:h-auto lg:w-75 lg:flex-col lg:items-start lg:p-10 lg:mix-blend-difference light:bg-[var(--white)] lg:invert-100">
       <p class="jost w-fit tracking-widest">{{ t('logo') }}</p>
       <div class="hidden flex-col gap-5 lg:flex lg:w-fit">
         <a data-open-block="who" class="w-fit text-3xl" href="#who">{{ t('menu-who') }}</a>
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div id="right-menu" class="align-center light:bg-[var(--yellow)] lg:bg-transparent! fixed right-0 bottom-0 left-0 50 m-[12px] flex h-[98px] flex-row items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:top-10 lg:right-0 lg:left-auto lg:m-0 lg:h-auto lg:w-75 lg:flex-col lg:items-end lg:rounded-none lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
+    <div id="right-menu" class="align-center light:bg-[var(--yellow)] lg:bg-transparent! fixed right-0 bottom-0 left-0 m-[12px] flex h-[98px] flex-row items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:top-10 lg:right-0 lg:left-auto lg:m-0 lg:h-auto lg:w-75 lg:flex-col lg:items-end lg:rounded-none lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
       <div class="flex flex-row items-end gap-5">
         <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
           <Icons icon="telegram"></Icons>
