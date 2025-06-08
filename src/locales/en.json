@@ -2,11 +2,12 @@
   "logo": "dieruki",
 
   "hero": "— Artem\nTresckow",
+  "portfolio": "portfolio",
 
   "development": "under heavy development",
 
-  "menu-who": "who",
-  "menu-what": "what",
+  "menu-who": "im",
+  "menu-what": "my focus",
   "menu-design": "design",
   "menu-frontend": "frontend",
   "menu-video": "video",
@@ -17,7 +18,6 @@
 
   "intro": "I’m a UI/UX designer who creates not just beautiful, but effective design that solves business problems, boosts conversions, and scales easily. I work at the intersection of design, product, and frontend: I understand how product managers think and how developers write code, taking metrics, MVP, and development constraints into account. I think like a user, calculate like a product manager, and structure like an engineer — turning business goals into clear, logical, and implementable interfaces.",
 
-  "about-title": "About me and my approach",
   "about-efficiency-title": "Efficiency",
   "about-efficiency-text": "Design that solves problems, not just looks nice. The user experience is optimized for conversion growth. Focused on speed: MVPs, launches, testing — all to quickly learn what actually works.",
   "about-system-title": "System Thinking",

@@ -4,7 +4,6 @@ const sections = Array.from(headerLinks).map((link) => {
   return document.querySelector(id);
 });
 
-const SCROLL_OFFSET = 80;
 let isScrolling = false;
 
 function setActiveLink(targetLink) {
@@ -21,7 +20,7 @@ function onScroll() {
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
     if (!section) continue;
-    const sectionTop = section.offsetTop - SCROLL_OFFSET;
+    const sectionTop = section.offsetTop;
     const sectionBottom = sectionTop + section.offsetHeight;
 
     if (viewportMiddle >= sectionTop && viewportMiddle < sectionBottom) {
@@ -30,7 +29,6 @@ function onScroll() {
     }
   }
 
-  // Если не нашли секцию — определяем ближайшую
   if (currentSectionIndex === -1) {
     if (viewportMiddle < (sections[0]?.offsetTop ?? 0)) {
       currentSectionIndex = 0;
@@ -55,7 +53,11 @@ headerLinks.forEach((link) => {
     const targetEl = document.querySelector(targetId);
 
     if (targetEl) {
-      const targetY = targetEl.offsetTop - SCROLL_OFFSET;
+      // Получаем scroll-margin-top из CSS и вычитаем его
+      const computedStyle = getComputedStyle(targetEl);
+      const scrollMarginTop = parseFloat(computedStyle.scrollMarginTop) || 0;
+      const targetY = targetEl.offsetTop - scrollMarginTop;
+
       setActiveLink(this);
       isScrolling = true;
       window.scrollTo({ top: targetY, behavior: "smooth" });

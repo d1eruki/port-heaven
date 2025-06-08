@@ -14,80 +14,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="whitespace-pre-line">
-    <div id="banner" class="light:bg-[color:var(--yellow)] fixed z-50 flex h-[40px] w-full items-center justify-center dark:bg-[color:var(--purple)]">
-      <p id="marquee-container" class="flex text-[20px] leading-[40px]">{{ t('development') }}</p>
+    <div id="banner" class="light:text-[var(--black)] light:bg-[var(--yellow)] fixed flex h-10 w-full items-center justify-center dark:bg-[var(--purple)]">
+      <p id="marquee-container" class="light:text-[var(--black)]! dark:text-[var(--white)]!">{{ t('development') }}</p>
     </div>
 
-    <div id="progress-bar" class="progress-bar light:md:bg-[var(--grey-dark)] light:bg-[var(--white)] fixed z-51 block dark:bg-[var(--black)] dark:md:bg-[var(--white)]"></div>
+    <div id="progress-bar" class="progress-bar light:bg-[var(--black)] fixed top-10 block mix-blend-difference invert-100 dark:bg-[var(--black)]"></div>
 
-    <div id="left-menu" class="fixed top-0 left-0 z-50 flex h-fit w-full flex-row items-center justify-between gap-5 p-5 invert backdrop-blur-lg md:h-full md:w-75 md:flex-col md:items-start md:p-10 md:invert-0 md:backdrop-filter-none">
-      <p class="jost w-fit tracking-widest dark:text-[color:var(--white)]">{{ t('logo') }}</p>
-      <div class="hidden flex-col gap-5 md:flex lg:w-fit">
-        <a data-open-block="who" class="w-fit text-[30px]" href="#who">{{ t('menu-who') }}</a>
-        <a data-open-block="what" class="w-fit text-[30px]" href="#what">{{ t('menu-what') }}</a>
-        <a data-open-block="design" class="w-fit text-[30px]" href="#design">{{ t('menu-design') }}</a>
-        <a data-open-block="stack" class="w-fit text-[30px]" href="#frontend">{{ t('menu-frontend') }}</a>
+    <div id="left-menu" class="light:bg-[var(--white)] fixed top-10 bottom-auto left-0 flex h-fit w-full flex-row items-center justify-between p-5 md:bottom-0 lg:h-auto lg:w-75 lg:flex-col lg:items-start lg:p-10 lg:mix-blend-difference lg:invert-100">
+      <p class="jost w-fit tracking-widest">{{ t('logo') }}</p>
+      <div class="hidden flex-col gap-5 lg:flex lg:w-fit">
+        <a data-open-block="who" class="w-fit text-3xl" href="#who">{{ t('menu-who') }}</a>
+        <a data-open-block="what" class="w-fit text-3xl" href="#what">{{ t('menu-what') }}</a>
+        <a data-open-block="design" class="w-fit text-3xl" href="#design">{{ t('menu-design') }}</a>
+        <a data-open-block="stack" class="w-fit text-3xl" href="#frontend">{{ t('menu-frontend') }}</a>
       </div>
-      <div class="flex flex-row items-center md:mb-5">
-        <svg class="hidden md:inline" viewBox="-150 -150 300 300" style="width: 48px; height: 48px">
-          <polygon class="star" points=""></polygon>
-        </svg>
-        <p class="light:text-[color:var(--grey-dark)] dark:text-[color:var(--white)]">{{ t('footer-copyright') }}</p>
+      <div class="flex flex-row items-center">
+        <p>{{ t('footer-copyright') }}</p>
       </div>
     </div>
 
-    <div id="right-menu" class="align-center light:bg-[var(--yellow)] light:md:bg-[var(--transparent)] fixed right-0 bottom-0 left-0 z-50 m-[12px] flex h-[98px] flex-row items-center justify-between rounded-[42px] px-[21px] py-[19px] md:top-0 md:right-0 md:left-auto md:m-0 md:h-full md:w-75 md:flex-col md:items-end md:rounded-none md:p-10 dark:bg-[var(--purple)] dark:md:bg-[var(--transparent)]">
+    <div id="right-menu" class="align-center light:bg-[var(--yellow)] fixed right-0 bottom-0 left-0 m-[12px] flex h-[98px] flex-row items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:top-10 lg:right-0 lg:left-auto lg:m-0 lg:h-auto lg:w-75 lg:flex-col lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
       <div class="flex flex-row items-end gap-5">
         <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
-          <svg width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_318_75)">
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24ZM24.8601 17.7179C22.5257 18.6888 17.8603 20.6984 10.8638 23.7466C9.72766 24.1984 9.13251 24.6404 9.07834 25.0726C8.98677 25.803 9.90142 26.0906 11.1469 26.4822C11.3164 26.5355 11.4919 26.5907 11.6719 26.6492C12.8973 27.0475 14.5457 27.5135 15.4026 27.5321C16.1799 27.5489 17.0475 27.2284 18.0053 26.5707C24.5423 22.158 27.9168 19.9276 28.1286 19.8795C28.2781 19.8456 28.4852 19.803 28.6255 19.9277C28.7659 20.0524 28.7521 20.2886 28.7372 20.352C28.6466 20.7383 25.0562 24.0762 23.1982 25.8036C22.619 26.3421 22.2081 26.724 22.1242 26.8113C21.936 27.0067 21.7443 27.1915 21.56 27.3692C20.4215 28.4667 19.5678 29.2896 21.6072 30.6336C22.5873 31.2794 23.3715 31.8135 24.1539 32.3463C25.0084 32.9282 25.8606 33.5085 26.9632 34.2313C27.2442 34.4155 27.5125 34.6068 27.7738 34.7931C28.7681 35.5019 29.6615 36.1388 30.7652 36.0373C31.4065 35.9782 32.0689 35.3752 32.4053 33.5767C33.2004 29.3263 34.7633 20.1169 35.1244 16.3219C35.1561 15.9895 35.1163 15.5639 35.0843 15.3771C35.0523 15.1904 34.9855 14.9242 34.7427 14.7272C34.4552 14.4939 34.0113 14.4447 33.8127 14.4482C32.91 14.4641 31.5251 14.9456 24.8601 17.7179Z"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_318_75">
-                <rect width="48" height="48" fill="white" style="fill: white; fill-opacity: 1" />
-              </clipPath>
-            </defs>
-          </svg>
+          <Icons icon="telegram"></Icons>
         </a>
         <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">
-          <svg width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_17_74)">
-              <path d="M23.9996 19.6363V28.9309H36.916C36.3488 31.9199 34.6468 34.4509 32.0941 36.1527L39.8831 42.1964C44.4213 38.0075 47.0395 31.8547 47.0395 24.5456C47.0395 22.8438 46.8868 21.2073 46.6031 19.6366L23.9996 19.6363Z" />
-              <path d="M10.5494 28.5681L8.79263 29.9128L2.57434 34.7564C6.52342 42.589 14.6174 48 23.9991 48C30.4789 48 35.9116 45.8618 39.8826 42.1965L32.0936 36.1528C29.9554 37.5928 27.2281 38.4656 23.9991 38.4656C17.7591 38.4656 12.4575 34.2547 10.5592 28.5819L10.5494 28.5681Z" />
-              <path d="M2.57436 13.2437C0.938084 16.4726 0 20.1163 0 23.9999C0 27.8834 0.938084 31.5271 2.57436 34.7561C2.57436 34.7778 10.5599 28.5597 10.5599 28.5597C10.08 27.1197 9.79624 25.5926 9.79624 23.9996C9.79624 22.4067 10.08 20.8795 10.5599 19.4395L2.57436 13.2437Z" />
-              <path d="M23.9996 9.55636C27.5342 9.55636 30.676 10.7781 33.1851 13.1345L40.0577 6.2619C35.8904 2.37833 30.4797 0 23.9996 0C14.6179 0 6.52342 5.38908 2.57434 13.2437L10.5597 19.44C12.4578 13.7672 17.7596 9.55636 23.9996 9.55636Z" />
-            </g>
-            <defs>
-              <clipPath id="clip0_17_74">
-                <rect width="48" height="48" fill="white" style="fill: white; fill-opacity: 1" />
-              </clipPath>
-            </defs>
-          </svg>
+          <Icons icon="google-mail"></Icons>
         </a>
       </div>
       <a id="lang-toggle">english</a>
-      <div class="flex flex-row items-center gap-5 md:mb-5">
+      <div class="flex hidden flex-row items-center gap-5 lg:mb-5">
         <div class="pointer-active" id="scroll-to-top">{{ t('footer-scroll-up') }}</div>
-        <svg id="theme-toggle" class="pointer-active" width="25" height="25" viewBox="4 4 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7a13 13 0 0 1 0 26zm0 -3a16 16 0 1 0 0 32A16 16 0 0 0 20 4" fill="white" /></svg>
+        <Icons icon="theme-toggler"></Icons>
       </div>
     </div>
 
-    <div class="container mb-40 md:mb-0 flex flex-col gap-20 px-5 md:gap-50 md:px-75 max-w-full">
+    <div class="container mb-40 flex max-w-full flex-col md:mb-0">
       <!--who-->
-      <div id="who" class="flex min-h-screen w-full flex-col items-start justify-center gap-10 self-start lg:gap-25">
-        <h1 class="Actay glow leading-[50px] xl:leading-[100px]">{{ t('hero') }}</h1>
+      <div id="who" class="3xl:px-150 4xl:px-175 mt-10 flex min-h-screen w-full flex-col items-start justify-center gap-10 self-start px-5 lg:gap-25 lg:px-75">
+        <div class="flex flex-wrap place-items-end gap-x-5">
+          <h1 class="Actay glow leading-10 2xl:leading-20">{{ t('hero') }}</h1>
+          <Icons icon="star" class="hidden"></Icons>
+          <h4>{{ t('portfolio')}}</h4>
+        </div>
         <p>{{ t('intro') }}</p>
       </div>
 
       <!--about-->
-      <div id="what" class="flex min-h-screen flex-col gap-5 md:gap-20">
-        <h2>{{ t('menu-what') }}</h2>
-        <div class="grid justify-between gap-10 xl:flex">
+      <div id="what" class="light:bg-[var(--black)] 3xl:px-150 4xl:px-175 flex min-h-screen scroll-mt-5 flex-col gap-10 px-5 pt-10 lg:px-75 xl:gap-10">
+        <h2 class="light:text-[var(--white)]">{{ t('menu-what') }}</h2>
+        <div class="flex flex-col justify-between justify-center gap-10 2xl:flex-row">
           <futures :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></futures>
           <futures :title="t('about-system-title')" :text="t('about-system-text')" number="02"></futures>
           <futures :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></futures>
@@ -95,10 +71,10 @@
       </div>
 
       <!--design-->
-      <div id="design" class="grid min-h-screen content-start gap-10">
+      <div id="design" class="3xl:px-150 4xl:px-175 grid min-h-screen scroll-mt-5 content-start gap-10 px-5 pt-10 lg:px-75 xl:gap-10">
         <h2>{{ t('design-title') }}</h2>
         <hr />
-        <div class="gri-cols-1 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div class="gri-cols-1 grid gap-10 xl:grid-cols-2 2xl:grid-cols-3">
           <p class="row-span-3">{{ t('design-paragraph') }}</p>
           <item :item-name="t('design-item-projects-title')" :item-desc="t('design-item-projects-text')" item-url="https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1" item-img-alt=""></item>
           <item :item-name="t('design-item-download-title')" :item-desc="t('design-item-download-text')" item-url="https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1" item-img-alt=""></item>
@@ -110,18 +86,18 @@
       </div>
 
       <!--frontend-->
-      <div id="frontend" class="grid min-h-screen content-start gap-10">
+      <div id="frontend" class="3xl:px-150 4xl:px-175 grid min-h-screen scroll-mt-5 content-start gap-10 px-5 pt-10 lg:px-75 xl:gap-10">
         <h2>{{ t('frontend-title') }}</h2>
         <hr />
-        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-10 xl:grid-cols-2 2xl:grid-cols-3">
           <p class="row-span-4">{{ t('frontend-paragraph') }}</p>
           <item :item-name="t('frontend-item-projects-title')" item-url="https://varwin.com/ru/education/projects" :item-desc="t('frontend-item-projects-text')" item-img-alt=""></item>
           <item :item-name="t('frontend-item-download-title')" item-url="https://varwin.com/ru/education/download-xrms" :item-desc="t('frontend-item-download-text')" item-img-alt="123"></item>
         </div>
       </div>
     </div>
-    <div class="noise light:hidden -z-1 block"></div>
-    <div class="dotted-grid fixed top-0 -z-1 block h-full w-full dark:hidden"></div>
-    <img alt="" class="light:hidden fixed right-[5%] bottom-0 -z-1 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />
+    <div class="light:hidden noise -1 block"></div>
+    <div class="dotted-grid fixed top-0 -z-3 block h-full w-full dark:hidden"></div>
+    <img alt="" class="light:hidden fixed top-10 right-20 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />
   </body>
 </html>
