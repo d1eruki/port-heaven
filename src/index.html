@@ -14,11 +14,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="whitespace-pre-line">
-    <div id="banner" class="light:text-[var(--black)] light:bg-[var(--yellow)] fixed flex h-10 w-full items-center justify-center dark:bg-[var(--purple)]">
+    <div id="banner" class="light:text-[var(--black)] light:bg-[var(--yellow)] fixed flex z-50 h-10 w-full items-center justify-center dark:bg-[var(--purple)]">
       <p id="marquee-container" class="light:text-[var(--black)]! dark:text-[var(--white)]!">{{ t('development') }}</p>
     </div>
 
-    <div id="progress-bar" class="progress-bar light:bg-[var(--black)] fixed top-10 block mix-blend-difference invert-100 dark:bg-[var(--black)]"></div>
+    <div id="progress-bar" class="progress-bar light:bg-[var(--black)] z-50 fixed top-10 block mix-blend-difference invert-100 dark:bg-[var(--black)]"></div>
 
     <div id="left-menu" class="light:bg-[var(--white)] fixed top-10 bottom-auto left-0 flex h-fit w-full flex-row items-center justify-between p-5 md:bottom-0 lg:h-auto lg:w-75 lg:flex-col lg:items-start lg:p-10 lg:mix-blend-difference lg:invert-100">
       <p class="jost w-fit tracking-widest">{{ t('logo') }}</p>
@@ -72,7 +72,7 @@
 
       <!--design-->
       <div id="design" class="3xl:px-150 4xl:px-175 grid min-h-screen scroll-mt-5 content-start gap-10 px-5 pt-10 lg:px-75 xl:gap-10">
-        <h2>{{ t('design-title') }}</h2>
+        <h2>{{ t('menu-design') }}</h2>
         <hr />
         <div class="gri-cols-1 grid gap-10 xl:grid-cols-2 2xl:grid-cols-3">
           <p class="row-span-3">{{ t('design-paragraph') }}</p>
@@ -87,7 +87,7 @@
 
       <!--frontend-->
       <div id="frontend" class="3xl:px-150 4xl:px-175 grid min-h-screen scroll-mt-5 content-start gap-10 px-5 pt-10 lg:px-75 xl:gap-10">
-        <h2>{{ t('frontend-title') }}</h2>
+        <h2>{{ t('menu-frontend') }}</h2>
         <hr />
         <div class="grid grid-cols-1 gap-10 xl:grid-cols-2 2xl:grid-cols-3">
           <p class="row-span-4">{{ t('frontend-paragraph') }}</p>
@@ -97,7 +97,7 @@
       </div>
     </div>
     <div class="light:hidden noise -1 block"></div>
-    <div class="dotted-grid fixed top-0 -z-3 block h-full w-full dark:hidden"></div>
+    <div class="dotted-grid fixed top-0 -z-1 block h-full w-full dark:hidden"></div>
     <img alt="" class="light:hidden fixed top-10 right-20 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />
   </body>
 </html>
