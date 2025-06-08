@@ -122,7 +122,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
       color: $white;
     }
 
-
     .active {
       background-color: $black;
       color: $white;
@@ -144,19 +143,12 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 }
 
-$breakpoint-xs: calc(40rem - 12rem); //640
-$breakpoint-md: calc(48rem - 12rem); //768
-$breakpoint-lg: calc(64rem - 12rem); //1024
-$breakpoint-xl: calc(80rem - 12rem); //1280
-$breakpoint-2xl: calc(90rem - 12rem); //1440
+$breakpoint-3xl: 120rem; //1920
+$breakpoint-4xl: 160rem; //2560
 
 @theme {
-  --breakpoint-xs: 40rem;
-  --breakpoint-md: 48rem;
-  --breakpoint-lg: 64rem;
-  --breakpoint-xl: 80rem;
-  --breakpoint-2xl: 90rem;
-  --colonnetitulus: 6rem;
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 160rem;
 }
 
 @font-face {
