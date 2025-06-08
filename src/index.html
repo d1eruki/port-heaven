@@ -20,7 +20,7 @@
 
     <div id="progress-bar" class="progress-bar light:bg-[var(--black)] z-50 fixed top-10 block mix-blend-difference invert-100 dark:bg-[var(--black)]"></div>
 
-    <div id="left-menu" class="light:bg-[var(--white)] fixed top-10 bottom-auto left-0 flex h-fit w-full flex-row items-center justify-between p-5 md:bottom-0 lg:h-auto lg:w-75 lg:flex-col lg:items-start lg:p-10 lg:mix-blend-difference lg:invert-100">
+    <div id="left-menu" class="light:bg-[var(--white)] z-50 fixed top-10 bottom-auto left-0 flex h-fit w-full flex-row items-center justify-between p-5 md:bottom-0 lg:h-auto lg:w-75 lg:flex-col lg:items-start lg:p-10 lg:mix-blend-difference lg:invert-100">
       <p class="jost w-fit tracking-widest">{{ t('logo') }}</p>
       <div class="hidden flex-col gap-5 lg:flex lg:w-fit">
         <a data-open-block="who" class="w-fit text-3xl" href="#who">{{ t('menu-who') }}</a>
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div id="right-menu" class="align-center light:bg-[var(--yellow)] fixed right-0 bottom-0 left-0 m-[12px] flex h-[98px] flex-row items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:top-10 lg:right-0 lg:left-auto lg:m-0 lg:h-auto lg:w-75 lg:flex-col lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
+    <div id="right-menu" class="align-center z-50 light:bg-[var(--yellow)] fixed right-0 bottom-0 left-0 m-[12px] flex h-[98px] flex-row items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:top-10 lg:right-0 lg:left-auto lg:m-0 lg:h-auto lg:w-75 lg:flex-col lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
       <div class="flex flex-row items-end gap-5">
         <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
           <Icons icon="telegram"></Icons>
@@ -43,31 +43,31 @@
         </a>
       </div>
       <a id="lang-toggle">english</a>
-      <div class="flex hidden flex-row items-center gap-5 lg:mb-5">
-        <div class="pointer-active" id="scroll-to-top">{{ t('footer-scroll-up') }}</div>
-        <Icons icon="theme-toggler"></Icons>
-      </div>
+
+      <div class="pointer-active" id="scroll-to-top">{{ t('footer-scroll-up') }}</div>
+      <Icons icon="theme-toggler" class="hidden"></Icons>
     </div>
 
     <div class="container mb-40 flex max-w-full flex-col md:mb-0">
       <!--who-->
       <div id="who" class="3xl:px-150 4xl:px-175 mt-10 flex min-h-screen w-full flex-col items-start justify-center gap-10 self-start px-5 lg:gap-25 lg:px-75">
         <div class="flex flex-wrap place-items-end gap-x-5">
-          <h1 class="Actay glow leading-10 2xl:leading-20">{{ t('hero') }}</h1>
+          <h1 class="Actay glow xl:leading-30">{{ t('hero') }}</h1>
           <Icons icon="star" class="hidden"></Icons>
-          <h4>{{ t('portfolio')}}</h4>
+          <h4 class="pb-5">{{ t('portfolio')}}</h4>
         </div>
         <p>{{ t('intro') }}</p>
       </div>
 
       <!--about-->
-      <div id="what" class="light:bg-[var(--black)] 3xl:px-150 4xl:px-175 flex min-h-screen scroll-mt-5 flex-col gap-10 px-5 pt-10 lg:px-75 xl:gap-10">
+      <div id="what" class="relative light:bg-[var(--black)] 3xl:px-150 4xl:px-175 flex min-h-screen scroll-mt-5 flex-col gap-10 px-5 pt-10 lg:px-75 xl:gap-10">
         <h2 class="light:text-[var(--white)]">{{ t('menu-what') }}</h2>
         <div class="flex flex-col justify-between justify-center gap-10 2xl:flex-row">
           <futures :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></futures>
           <futures :title="t('about-system-title')" :text="t('about-system-text')" number="02"></futures>
           <futures :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></futures>
         </div>
+        <img alt="" class="opacity-6 bottom-0 right-[5%] lg:w-150 absolute" src="assets/images/soma.png" />
       </div>
 
       <!--design-->
