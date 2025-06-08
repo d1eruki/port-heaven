@@ -369,6 +369,9 @@
   .px-\[21px\] {
     padding-inline: 21px;
   }
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
+  }
   .py-\[19px\] {
     padding-block: 19px;
   }
