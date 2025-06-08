@@ -4,7 +4,6 @@ import "./js/scroll-to-section";
 import "./js/scroll-to-top";
 import "./js/theme-toggle";
 import "./js/locale-toggler";
-import "./js/banner-offset";
 import "./js/marquee";
 import { updateProgressBar } from "./js/progress-bar";
 

@@ -29,23 +29,23 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 [data-theme="light"] {
   * {
     &::selection {
-      background-color: $grey-dark;
+      background-color: $black;
       color: $white;
     }
   }
 
   body {
     background-color: $white;
-    color: $grey-dark;
+    color: $black;
   }
 
   polygon,
   path {
-    fill: $grey-dark;
+    fill: $black;
   }
 
   .active {
-    background-color: $grey-dark;
+    background-color: $black;
     color: $white;
   }
 
@@ -62,7 +62,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   a {
     &:hover {
-      background-color: $grey-dark;
+      background-color: $black;
       color: $white;
     }
 
@@ -75,7 +75,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
   .item {
     background-color: $white;
-    color: $grey;
+    color: $black;
 
     &:hover {
       color: $white;
@@ -391,7 +391,7 @@ polygon.star {
   transform-box: fill-box;
 }
 
-@media (max-width: 80rem) {
+@media (max-width: 96rem) {
   h1 {
     font-size: 2.5rem;
   }
@@ -406,13 +406,5 @@ polygon.star {
 
   h4 {
     font-size: 1rem;
-  }
-
-  .numbers {
-    font-size: 7.75rem;
-  }
-
-  #about {
-    padding-top: calc(2 * var(--colonnetitulus));
   }
 }
