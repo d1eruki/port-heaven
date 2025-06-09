@@ -1,7 +1,6 @@
 import "./style.scss";
 import "./js/vue";
-import "./js/scroll-to-section";
-import "./js/scroll-to-top";
+import "./js/scroll";
 import "./js/theme-toggle";
 import "./js/locale-toggler";
 import "./js/marquee";
