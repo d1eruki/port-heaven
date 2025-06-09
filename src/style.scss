@@ -196,7 +196,9 @@ hr {
 
   a,
   &.pointer-active,
-  &.item > * {
+  &.item > *,
+  #lang-toggle,
+  #scroll-to-top {
     cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }
 
@@ -286,31 +288,37 @@ body {
 }
 
 h1 {
+  font-family: "Actay", sans-serif;
   font-size: 7rem;
   text-transform: uppercase;
 }
 
 h2 {
+  font-family: "Actay", sans-serif;
   font-size: 3rem;
   text-transform: uppercase;
 }
 
 h3 {
+  font-family: "Actay", sans-serif;
   font-size: 1.75rem;
   text-transform: uppercase;
 }
 
 h4 {
+  font-family: "Actay", sans-serif;
   font-size: 1.5rem;
   text-transform: uppercase;
 }
 
-.numbers {
-  font-size: 10.75rem;
+p,
+a {
+  font-size: 1.25rem;
+  font-weight: 300;
 }
 
-#header-logo {
-  transition: $transition;
+#left-menu * a {
+  font-size: 2rem;
 }
 
 .item {

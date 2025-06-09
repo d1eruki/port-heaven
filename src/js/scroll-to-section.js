@@ -16,7 +16,7 @@ const sections = Array.from(headerLinks)
 
 console.log(`Found ${sections.length} valid sections`);
 
-const bannerElement = document.getElementById('banner');
+const bannerElement = document.getElementById("banner");
 const bannerHeight = bannerElement ? bannerElement.offsetHeight : 0;
 console.log(`Banner element height: ${bannerHeight}px`);
 
