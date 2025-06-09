@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // === Элементы ===
+  const SCROLL_TIMEOUT = 1000;
+
   const scrollIcon = document.querySelector("#scroll-to-top");
   const headerLinks = document.querySelectorAll("a[data-open-block]");
   const sections = Array.from(headerLinks)
@@ -11,14 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .filter(Boolean);
 
-  const bannerElement = document.getElementById("banner");
-  const bannerHeight = bannerElement ? bannerElement.offsetHeight : 0;
+  if (!headerLinks.length || !sections.length) return;
 
-  // === Переменные состояния ===
-  let lastScrollY = window.scrollY;
-  let suppressAutoScroll = false;
+  function getBannerHeight() {
+    const banner = document.getElementById("banner");
+    return banner ? banner.offsetHeight : 0;
+  }
 
-  // === Вспомогательные функции ===
   function isMobileDevice() {
     const isMobileWidth = window.innerWidth <= 768;
     const userAgent = navigator.userAgent.toLowerCase();
@@ -35,12 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!section) return;
     suppressAutoScroll = true;
 
-    const targetY = section.offsetTop - bannerHeight;
+    const targetY = section.offsetTop - getBannerHeight();
     window.scrollTo({ top: targetY, behavior: "smooth" });
 
     setTimeout(() => {
       suppressAutoScroll = false;
-    }, 1000);
+    }, SCROLL_TIMEOUT);
   }
 
   function getCurrentSectionIndex() {
@@ -58,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
     return currentIndex;
   }
 
-  // === Кнопка "вверх" ===
+  let lastScrollY = window.scrollY;
+  let suppressAutoScroll = false;
+
   if (scrollIcon) {
     function toggleScrollButton() {
       if (window.scrollY > 300) {
@@ -72,18 +74,17 @@ document.addEventListener("DOMContentLoaded", function () {
       suppressAutoScroll = true;
       window.scrollTo({ top: 0, behavior: "smooth" });
 
-      setActiveLinkByIndex(0); // Устанавливаем активную первую ссылку
+      setActiveLinkByIndex(0);
 
       setTimeout(() => {
         suppressAutoScroll = false;
-      }, 1000);
+      }, SCROLL_TIMEOUT);
     });
 
     toggleScrollButton();
     window.addEventListener("scroll", toggleScrollButton);
   }
 
-  // === Автопереход при обычном скролле (только на десктопе) ===
   window.addEventListener("scroll", () => {
     if (suppressAutoScroll || isMobileDevice()) return;
 
@@ -94,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentIndex = getCurrentSectionIndex();
     let targetIndex = currentIndex;
     const currentSection = sections[currentIndex];
-
     if (!currentSection) return;
 
     const sectionTop = currentSection.offsetTop;
@@ -116,7 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setActiveLinkByIndex(targetIndex);
   });
 
-  // === Клики по ссылкам ===
   headerLinks.forEach((link, i) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
@@ -129,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // === Установка активной ссылки при загрузке ===
   window.addEventListener("load", () => {
     const currentIndex = getCurrentSectionIndex();
     setActiveLinkByIndex(currentIndex);
