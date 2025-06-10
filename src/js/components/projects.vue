@@ -7,12 +7,14 @@
         <p>{{ projectDescription }}</p>
       </div>
       <div class="flex w-full flex-row justify-end">
-        <Button :url="projectDesignUrl" :name="t('projects-button-design')"></Button>
-        <Button :url="projectSiteUrl" :name="t('projects-button-site')"></Button>
+        <Button v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
       </div>
     </div>
-    <div class="light:bg-[var(--yellow)] hidden w-full flex-col gap-10 p-10 md:flex">
+    <div class="light:bg-[var(--yellow)] hidden w-full flex-col justify-between gap-10 p-10 md:flex">
       <h4>{{ t("projects-stat-after-launch") }}</h4>
+      <div>
+        <p>{{ projectStatistic }}</p>
+      </div>
       <p>{{ projectStatistic }}</p>
     </div>
   </div>
@@ -39,15 +41,10 @@ const props = defineProps({
     required: true,
     default: "Default Description",
   },
-  projectDesignUrl: {
-    type: String,
+  projectLinks: {
+    type: Array,
     required: true,
-    default: "https://www.youtube.com/",
-  },
-  projectSiteUrl: {
-    type: String,
-    required: false,
-    default: "https://www.youtube.com/",
+    default: () => [],
   },
 });
 </script>

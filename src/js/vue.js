@@ -14,10 +14,10 @@ const app = createApp({
   },
 });
 
-app.component("project", Projects);
-app.component("bullet", Bullets);
-app.component("futures", Features);
-app.component("icons", Icons);
-app.component("button", Buttons);
+app.component("Project", Projects);
+app.component("Bullet", Bullets);
+app.component("Futures", Features);
+app.component("Icons", Icons);
+app.component("Button", Buttons);
 app.use(i18n);
 app.mount("#app");

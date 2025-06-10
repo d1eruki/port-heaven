@@ -5,6 +5,7 @@
 </template>
 
 <script setup>
+
 const props = defineProps({
   url: {
     type: String,
