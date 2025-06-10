@@ -52,6 +52,15 @@
   "projects-registry-stats-5": "3 positive reviews from the sales team",
   "projects-registry-stats-6": "A/B test: new version outperformed the old in 7 out of 8 metrics",
 
+  "design-xrms-title": "Varwin XRMS",
+  "design-xrms-text": "The main section with components and prototypes for visualizing innovations in the Varwin XRMS platform",
+  "design-subscout-title": "Subscout",
+  "design-subscout-text": "A mobile app for adding and tracking user subscriptions to paid services",
+  "design-baikal-title": "Time to Hike",
+  "design-baikal-text": "Redesign of the landing page for the ‘Time to Hike’ travel club, offering trips to Baikal",
+  "design-pioner-title": "Pioner",
+  "design-pioner-text": "Redesign of the landing page for a power machinery factory",
+
   "footer-copyright": "© 2025\nArtem Tresckow",
   "footer-scroll-up": "Scroll up"
 }
