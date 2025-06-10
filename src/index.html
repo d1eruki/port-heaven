@@ -84,14 +84,6 @@
         <div class="swiper mySwiper h-fit w-full">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <Project
-                :projectName="t('projects-download-page-title')"
-                :projectDescription="t('projects-download-page-paragraph')"
-                :projectStatistic="t('projects-download-page-stats')"
-                :projectLinks="[
-    { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
-    { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
-  ]"></Project>
               <project
                 :projectName="t('projects-download-page-title')"
                 :projectDescription="t('projects-download-page-paragraph')"
@@ -99,23 +91,12 @@
                 :projectLinks="[
     { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
     { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
-  ]"></project>
+  ]"
+              ></project>
             </div>
           </div>
 
           <div class="swiper-pagination light:bg-[var(--yellow)] relative! bottom-0! px-10 py-2"></div>
-        </div>
-
-        <div class="gri-cols-1 grid gap-10 xl:grid-cols-2 2xl:grid-cols-3">
-          <item :item-name="t('design-item-projects-title')" :item-desc="t('design-item-projects-text')" item-url="https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1" item-img-alt=""></item>
-
-          <item :item-name="t('design-item-download-title')" :item-desc="t('design-item-download-text')" item-url="https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1" item-img-alt=""></item>
-          <item :item-name="t('design-item-subscout-title')" :item-desc="t('design-item-subscout-text')" item-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/7-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-Subscout?node-id=8201-5919&t=ppyJz1Pd15phVZQ3-1" item-img-alt=""></item>
-          <item :item-name="t('design-item-baikal-title')" :item-desc="t('design-item-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></item>
-          <item :item-name="t('design-item-pioner-title')" :item-desc="t('design-item-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/3-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9F%D0%B8%D0%BE%D0%BD%D0%B5%D1%80?node-id=22-20&t=wfIEsNfXeRBmDyeO-1" item-img-alt=""></item>
-          <item :item-name="t('design-item-xrms-title')" :item-desc="t('design-item-xrms-text')" item-url="https://www.figma.com/files/project/243436550" item-img-alt=""></item>
-          <item :item-name="t('frontend-item-projects-title')" item-url="https://varwin.com/ru/education/projects" :item-desc="t('frontend-item-projects-text')" item-img-alt=""></item>
-          <item :item-name="t('frontend-item-download-title')" item-url="https://varwin.com/ru/education/download-xrms" :item-desc="t('frontend-item-download-text')" item-img-alt="123"></item>
         </div>
       </div>
     </div>
