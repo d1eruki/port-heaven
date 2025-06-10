@@ -82,21 +82,45 @@
         <p class="3xl:px-150 4xl:px-175 lg:px-75 xl:gap-10">{{ t('projects-paragraph') }}</p>
 
         <div class="swiper mySwiper h-fit w-full">
+          <div class="swiper-pagination light:bg-[var(--yellow)] relative! bottom-0! px-10 py-2"></div>
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <project
-                :projectName="t('projects-download-page-title')"
-                :projectDescription="t('projects-download-page-paragraph')"
-                :projectStatistic="t('projects-download-page-stats')"
-                :projectLinks="[
-    { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
-    { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
-  ]"
-              ></project>
+                :project-name="t('projects-downloadPage-title')"
+                :project-description="t('projects-downloadPage-paragraph')"
+                :project-statistic="[
+        t('projects-downloadPage-stats-1'),
+        t('projects-downloadPage-stats-2'),
+        t('projects-downloadPage-stats-3'),
+        t('projects-downloadPage-stats-4'),
+        t('projects-downloadPage-stats-5'),
+        t('projects-downloadPage-stats-6'),
+      ]"
+                :project-links="[
+        { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
+        { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
+      ]"
+               :project-result="t('projects-downloadPage-result')"></project>
+            </div>
+            <div class="swiper-slide">
+              <project
+                :project-name="t('projects-registry-title')"
+                :project-description="t('projects-registry-paragraph')"
+                :project-statistic="[
+        t('projects-registry-stats-1'),
+        t('projects-registry-stats-2'),
+        t('projects-registry-stats-3'),
+        t('projects-registry-stats-4'),
+        t('projects-registry-stats-5'),
+        t('projects-registry-stats-6'),
+      ]"
+                :project-links="[
+        { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
+        { url: 'https://varwin.com/ru/education/projects', name: t('projects-button-site') }
+      ]"
+               :project-result="t('projects-registry-result')"></project>
             </div>
           </div>
-
-          <div class="swiper-pagination light:bg-[var(--yellow)] relative! bottom-0! px-10 py-2"></div>
         </div>
       </div>
     </div>

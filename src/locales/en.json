@@ -30,8 +30,8 @@
   "projects-button-design": "design",
   "projects-button-site": "site",
 
-  "projects-download-page-title": "Varwin XRMS download page",
-  "projects-download-page-paragraph": "The goal of the project was to increase conversion rates and update an outdated page. I started from scratch: I conducted short interviews with marketing, identified user needs, collected UX tasks and made a mockup. After corridor tests and edits, I built the final version on Bootstrap 4.\n\nThe result is a concise interface with a focus on action and a clean visual presentation. The page became clearer and more efficient for the user.",
+  "projects-downloadPage-title": "Varwin XRMS download page",
+  "projects-downloadPage-paragraph": "The goal of the project was to increase conversion rates and update an outdated page. I started from scratch: I conducted short interviews with marketing, identified user needs, collected UX tasks and made a mockup. After corridor tests and edits, I built the final version on Bootstrap 4.\n\nThe result is a concise interface with a focus on action and a clean visual presentation. The page became clearer and more efficient for the user.",
 
   "footer-copyright": "© 2025\nArtem Tresckow",
   "footer-scroll-up": "Scroll up"
