@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   const scrollIcon = document.querySelector("#scroll-to-top");
   const headerLinks = document.querySelectorAll("a[data-open-block]");
   const sections = Array.from(headerLinks)
