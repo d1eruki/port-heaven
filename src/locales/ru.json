@@ -52,6 +52,15 @@
   "projects-registry-stats-5": "3 положительных отзыва от отдела продаж",
   "projects-registry-stats-6": "A/B-тест: новая версия обыграла старую в 7 из 8 метрик",
 
+  "design-xrms-title": "Varwin XRMS",
+  "design-xrms-text": "Основной раздел с компонентами и прототипами для визуализации нововведений в платформе Varwin XRMS",
+  "design-subscout-title": "Subscout",
+  "design-subscout-text": "Мобильное приложение для добавления и отслеживания подписок пользователя на платные сервисы",
+  "design-baikal-title": "Пора в поход",
+  "design-baikal-text": "Обновление лэндинга для туристического клуба «Пора в поход», который предлагает путевку на Байкал",
+  "design-pioner-title": "Пионер",
+  "design-pioner-text": "Обновление лэндинга для завода силовых машин",
+
   "footer-copyright": "© 2025\nАртем Тресков",
   "footer-scroll-up": "Вверх"
 }
