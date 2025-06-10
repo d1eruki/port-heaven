@@ -1,5 +1,7 @@
 <template>
-  <a class="button px-10 py-2" :href="url" target="_blank">{{ name }}</a>
+  <a class="button px-10 py-2" :href="url" target="_blank"
+    ><span>{{ name }}</span></a
+  >
 </template>
 
 <script setup>
