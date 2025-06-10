@@ -7,17 +7,19 @@
         <p>{{ projectDescription }}</p>
       </div>
       <div class="flex w-full flex-row justify-end">
-        <a class="light:bg-[var(--white)] light:text-[var(--black)]! px-10 py-2" :href="projectDesignUrl" target="_blank">макет</a>
-        <a class="light:bg-[var(--white)] light:text-[var(--black)]! px-10 py-2" :href="projectSiteUrl" target="_blank">сайт</a>
+        <Button :url="projectDesignUrl" :name="t('projects-button-design')"></Button>
+        <Button :url="projectSiteUrl" :name="t('projects-button-site')"></Button>
       </div>
     </div>
-    <div class="light:bg-[var(--yellow)] hidden w-full p-10 md:block">
-      <p class="light:text-[var(--black)]!">{{ projectStatistic }}</p>
+    <div class="light:bg-[var(--yellow)] hidden w-full flex-col gap-10 p-10 md:flex">
+      <h4>{{ t("projects-stat-after-launch") }}</h4>
+      <p>{{ projectStatistic }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
+import Button from "./button.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 

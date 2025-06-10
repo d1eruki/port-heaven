@@ -6,8 +6,8 @@
 
   "development": "under heavy development",
 
-  "menu-who": "me",
-  "menu-what": "my focus",
+  "menu-who": "about me",
+  "menu-what": "principles",
   "menu-stack": "instruments",
   "menu-projects": "key projects",
 
@@ -27,6 +27,8 @@
 
   "projects-paragraph": "Each of these projects is not just a set of screens. They are thoughtful solutions based on user needs, clear logic and visual expression. I went all the way from the first sketches and mistakes to the final pixel and working interface. In each project - my approach, my style and my responsibility for the result.",
   "projects-project": "project",
+  "projects-button-design": "design",
+  "projects-button-site": "site",
 
   "projects-download-page-title": "Varwin XRMS download page",
   "projects-download-page-paragraph": "The goal of the project was to increase conversion rates and update an outdated page. I started from scratch: I conducted short interviews with marketing, identified user needs, collected UX tasks and made a mockup. After corridor tests and edits, I built the final version on Bootstrap 4.\n\nThe result is a concise interface with a focus on action and a clean visual presentation. The page became clearer and more efficient for the user.",
