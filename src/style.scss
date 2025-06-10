@@ -39,25 +39,21 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $black;
   }
 
+  .container {
+    p {
+      color: $grey;
+    }
+  }
+
   polygon,
   path {
     fill: $black;
   }
 
-  p {
-    color: $grey;
-  }
-
-  #left-menu,
-  #right-menu {
-    * {
-      color: $black;
-    }
-
-    .active {
-      background-color: $black;
-      color: $white;
-    }
+  .active {
+    background-color: $black;
+    color: $white;
+    padding: 10px 0;
   }
 
   a {
@@ -76,6 +72,15 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   .item {
     background-color: $white;
     color: $black;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .button {
+    color: $black;
+    background-color: $white;
 
     &:hover {
       color: $white;
