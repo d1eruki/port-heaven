@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!headerLinks.length || !sections.length) return;
 
+  let isProgrammaticScroll = false; // Флаг для программного скролла
+
   function getBannerHeight() {
     const banner = document.getElementById("banner");
     return banner ? banner.offsetHeight : 0;
@@ -25,11 +27,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function scrollToSection(section) {
     if (!section) return;
+    isProgrammaticScroll = true; // Устанавливаем флаг
     const targetY = section.offsetTop - getBannerHeight();
     window.scrollTo({ top: targetY, behavior: "smooth" });
+
+    // Сбрасываем флаг после завершения скролла
+    window.addEventListener(
+      "scrollend",
+      () => {
+        isProgrammaticScroll = false;
+      },
+      { once: true }
+    );
   }
 
-  // Подсветка активной ссылки при скролле (без автоскролла)
+  // Подсветка активной ссылки при скролле
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     let currentIndex = 0;
@@ -53,22 +65,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     scrollIcon.addEventListener("click", function () {
+      isProgrammaticScroll = true;
       window.scrollTo({ top: 0, behavior: "smooth" });
-      setActiveLinkByIndex(0);
+      window.addEventListener(
+        "scrollend",
+        () => {
+          isProgrammaticScroll = false;
+        },
+        { once: true }
+      );
     });
 
     toggleScrollButton();
     window.addEventListener("scroll", toggleScrollButton);
   }
 
-  headerLinks.forEach((link, i) => {
+  headerLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       const targetId = this.getAttribute("href");
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
         scrollToSection(targetEl);
-        setActiveLinkByIndex(i);
       }
     });
   });
