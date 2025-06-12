@@ -260,8 +260,8 @@
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
   }
-  .mb-40 {
-    margin-bottom: calc(var(--spacing) * 40);
+  .mb-55 {
+    margin-bottom: calc(var(--spacing) * 55);
   }
   .ml-10 {
     margin-left: calc(var(--spacing) * 10);
