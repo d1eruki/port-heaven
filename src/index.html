@@ -51,7 +51,7 @@
 
     <div class="relative top-24 container mb-40 flex max-w-full flex-col md:mb-0 lg:top-0">
       <!--who-->
-      <div id="who" class="3xl:mx-150 4xl:mx-175 relative mx-5 mt-10 flex min-h-screen w-auto flex-col items-start justify-center gap-10 self-start lg:mx-75 lg:gap-25">
+      <div id="who" class="3xl:mx-150 4xl:mx-175 relative mx-5 mt-10 flex min-h-screen w-auto flex-col justify-center gap-10 self-start lg:mx-75 lg:gap-25">
         <div class="flex flex-wrap place-items-end gap-x-5">
           <h1 class="glow xl:leading-30">{{ t('hero') }}</h1>
           <Icons icon="star" class="hidden"></Icons>
@@ -64,8 +64,8 @@
       </div>
 
       <!--about-->
-      <div id="what" class="light:bg-[var(--black)] relative min-h-screen">
-        <div class="3xl:mx-150 4xl:mx-175 mx-5 my-10 flex scroll-mt-5 flex-col justify-center gap-10 lg:mx-75 xl:gap-10">
+      <div id="what" class="light:bg-[var(--black)] relative min-h-screen content-center ">
+        <div class="3xl:mx-150 4xl:mx-175 mx-5 my-10 flex scroll-mt-5 flex-col gap-10 lg:mx-75 xl:gap-10">
           <h2 class="light:text-[var(--white)]">{{ t('menu-what') }}</h2>
           <div class="flex flex-col justify-between justify-center gap-10 2xl:flex-row">
             <futures :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></futures>
@@ -83,7 +83,7 @@
       </div>
 
       <!--projects-->
-      <div id="projects" class="grid min-h-screen scroll-mt-5 content-start gap-10 pt-10">
+      <div id="projects" class="grid min-h-screen scroll-mt-5 content-center gap-10 pt-10">
         <h2 class="3xl:mx-150 4xl:mx-175 mx-5 lg:mx-75 xl:gap-10">{{ t('menu-projects') }}</h2>
         <p class="3xl:mx-150 4xl:mx-175 mx-5 lg:mx-75 xl:gap-10">{{ t('projects-paragraph') }}</p>
 
