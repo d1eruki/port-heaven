@@ -39,43 +39,46 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $black;
   }
 
+  .container {
+    p {
+      color: $grey;
+    }
+  }
+
   polygon,
   path {
     fill: $black;
   }
 
-  p {
-    color: $grey;
-  }
-
-  #left-menu,
-  #right-menu {
-    * {
-      color: $black;
-    }
-
-    .active {
-      background-color: $black;
-      color: $white;
-    }
+  .active {
+    background-color: $black;
+    color: $white;
   }
 
   a {
     &:hover {
       background-color: $black;
-      color: $white !important;
+      color: $white;
     }
 
     &:hover polygon,
     &:hover path {
-      background-color: $transparent;
-      fill: $black;
+      fill: $yellow;
     }
   }
 
   .item {
     background-color: $white;
     color: $black;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .button {
+    color: $black;
+    background-color: $white;
 
     &:hover {
       color: $white;
@@ -196,7 +199,9 @@ hr {
 
   a,
   &.pointer-active,
-  &.item > * {
+  &.item > *,
+  #lang-toggle,
+  #scroll-to-top {
     cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }
 
@@ -286,31 +291,37 @@ body {
 }
 
 h1 {
+  font-family: "Actay", sans-serif;
   font-size: 7rem;
   text-transform: uppercase;
 }
 
 h2 {
+  font-family: "Actay", sans-serif;
   font-size: 3rem;
   text-transform: uppercase;
 }
 
 h3 {
+  font-family: "Actay", sans-serif;
   font-size: 1.75rem;
   text-transform: uppercase;
 }
 
 h4 {
+  font-family: "Actay", sans-serif;
   font-size: 1.5rem;
   text-transform: uppercase;
 }
 
-.numbers {
-  font-size: 10.75rem;
+p,
+a {
+  font-size: 1.25rem;
+  font-weight: 300;
 }
 
-#header-logo {
-  transition: $transition;
+#left-menu * a {
+  font-size: 2rem;
 }
 
 .item {
@@ -392,4 +403,21 @@ polygon.star {
   h4 {
     font-size: 1rem;
   }
+}
+
+.swiper-pagination-bullet {
+  width: 24px !important;
+  height: 24px !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  background: $white !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: $black !important;
+}
+
+.custom-invert {
+  mix-blend-mode: difference;
+  filter: invert(100%);
 }
