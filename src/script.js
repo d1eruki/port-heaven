@@ -18,7 +18,7 @@ new Swiper(".mySwiper", {
     clickable: true,
   },
   autoplay: {
-    delay: 100000,
+    delay: 20000,
     disableOnInteraction: false,
   },
 });
