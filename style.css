@@ -348,17 +348,11 @@
   .content-center {
     align-content: center;
   }
-  .content-start {
-    align-content: flex-start;
-  }
   .items-center {
     align-items: center;
   }
   .items-end {
     align-items: flex-end;
-  }
-  .items-start {
-    align-items: flex-start;
   }
   .justify-between {
     justify-content: space-between;
