@@ -14,9 +14,9 @@
     <div class="light:bg-[var(--yellow)] w-[50%]">
       <div class="3xl:mr-150 4xl:mr-175 my-10 ml-10 hidden flex-col justify-between gap-10 md:flex lg:mr-75">
         <h3>{{ t("projects-stat-after-launch") }}</h3>
-        <p>{{ projectResult }}</p>
+        <p class="text-[var(--black)]!">{{ projectResult }}</p>
         <div>
-          <p v-for="(statistic, index) in projectStatistic" :key="index">{{ statistic }}</p>
+          <p class="text-[var(--black)]!" v-for="(statistic, index) in projectStatistic" :key="index">{{ statistic }}</p>
         </div>
       </div>
     </div>
