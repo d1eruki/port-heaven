@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       () => {
         isProgrammaticScroll = false;
       },
-      { once: true }
+      { once: true },
     );
   }
 
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         () => {
           isProgrammaticScroll = false;
         },
-        { once: true }
+        { once: true },
       );
     });
 

@@ -58,13 +58,13 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   a {
     &:hover {
       background-color: $black;
-      color: $white !important;
+      color: $white;
     }
 
     &:hover polygon,
     &:hover path {
       background-color: $transparent;
-      fill: $black;
+      fill: red;
     }
   }
 
@@ -404,4 +404,27 @@ polygon.star {
   h4 {
     font-size: 1rem;
   }
+}
+
+svg > * {
+  &:hover {
+    fill: red;
+  }
+}
+
+.swiper-pagination-bullet {
+  width: 24px !important;
+  height: 24px !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  background: $white !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: $black !important;
+}
+
+.custom-invert {
+  mix-blend-mode: difference;
+  filter: invert(100%);
 }

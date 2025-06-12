@@ -13,9 +13,12 @@ window.onscroll = updateProgressBar;
 new Swiper(".mySwiper", {
   direction: "horizontal",
   slidesPerView: 1,
-  mousewheel: true,
   pagination: {
     el: ".swiper-pagination",
-    type: "fraction",
+    clickable: true,
+  },
+  autoplay: {
+    delay: 100000,
+    disableOnInteraction: false,
   },
 });
