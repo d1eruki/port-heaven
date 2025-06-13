@@ -82,15 +82,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
       color: $white;
     }
   }
-
-  .custom-button {
-    background-color: $black;
-    color: $white;
-
-    &:hover {
-      color: $yellow;
-    }
-  }
 }
 
 [data-theme="dark"] {

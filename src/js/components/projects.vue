@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-1">
-    <div class="light:bg-[var(--yellow)] flex aspect-square flex-col justify-between p-5 outline">
+    <div class="light:bg-[var(--yellow)] flex aspect-square flex-col justify-between p-5">
       <h3 class="light:text-[var(--black)]">{{ projectName }}</h3>
       <p class="light:text-[var(--black)]!">{{ projectDescription }}</p>
     </div>
@@ -16,14 +16,14 @@
         </div>
       </div>
       <div class="flex w-full justify-end gap-1 lg:gap-0">
-        <SourceButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
+        <CustomButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import SourceButton from "./source-button.vue";
+import CustomButton from "./custom-button.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
