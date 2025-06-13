@@ -14,14 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="whitespace-pre-line">
-    <div class="container grid max-w-full lg:grid-cols-4 grid-cols-1">
+    <div class="container grid max-w-full grid-cols-1 lg:grid-cols-4">
       <!--me-->
-      <div id="me" class="light:bg-[var(--black)] relative col-span-1 lg:col-span-4 min-h-screen content-end">
+      <div id="me" class="light:bg-[var(--black)] relative col-span-1 min-h-screen content-end lg:col-span-4">
         <h1 class="light:text-[color:var(--white)] px-5 xl:leading-45">{{ t('hero') }}</h1>
         <img alt="" class="absolute right-[5%] bottom-0 opacity-6 lg:w-150" src="assets/images/soma.png" />
       </div>
 
-      <header class="sticky top-0 z-1 col-span-1 lg:col-span-4 h-fit w-full">
+      <header class="sticky top-0 z-1 col-span-1 h-fit w-full lg:col-span-4">
         <p id="banner" class="light:bg-[var(--yellow)] flex hidden h-10 w-full items-center justify-center">{{ t('development') }}</p>
         <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute z-2"></div>
         <div class="light:bg-[var(--black)] flex w-full flex-col items-center justify-between pl-5 md:h-20 md:flex-row">
@@ -36,7 +36,7 @@
         </div>
       </header>
 
-      <div class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 lg:col-span-2 flex aspect-2/1 flex-col gap-5 p-10 outline">
+      <div class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-10 outline lg:col-span-2">
         <h2>{{ t('menu-me') }}</h2>
         <p class="">{{ t('me-paragraph') }}</p>
       </div>
@@ -54,21 +54,21 @@
       </div>
 
       <!--principles-->
+      <h2 id="principles" class="px-5 py-10">{{ t('menu-principles') }}</h2>
       <Principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></Principles>
       <Principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></Principles>
       <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
-      <h2 id="principles" class="px-5 py-10">{{ t('menu-principles') }}</h2>
 
       <!--tools-->
       <div class="light:bg-[var(--yellow)]"></div>
-      <img alt="" class="hidden aspect-square w-full grayscale" src="assets/images/figma.svg" />
+      <img alt="" class="hidden w-full grayscale" src="assets/images/figma.svg" />
       <h2 id="tools" class="p-5">{{ t('menu-tools') }}</h2>
-      <p class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 lg:col-span-2 flex aspect-2/1 flex-col gap-5 p-10 outline">{{ t('tools-paragraph') }}</p>
+      <p class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-10 outline lg:col-span-2">{{ t('tools-paragraph') }}</p>
 
       <!--projects-->
       <div></div>
       <div></div>
-      <div id="projects" class="light:bg-[var(--black)] light:text-[color:var(--white)] flex aspect-square flex-col justify-between p-5">
+      <div id="projects" class="light:bg-[var(--black)] light:text-[color:var(--white)] flex flex-col justify-between p-5">
         <h2>{{ t('menu-projects') }}</h2>
         <p>{{ t('projects-paragraph') }}</p>
       </div>
@@ -123,7 +123,7 @@
       <div></div>
       <div></div>
       <div></div>
-      <div id="design" class="aspect-square p-5">
+      <div id="design" class="p-5">
         <h2>{{ t('menu-design') }}</h2>
         <p>{{ t('design-paragraph') }}</p>
       </div>
@@ -132,7 +132,7 @@
       <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></items>
       <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/3-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9F%D0%B8%D0%BE%D0%BD%D0%B5%D1%80?node-id=22-20&t=wfIEsNfXeRBmDyeO-1" item-img-alt=""></items>
 
-      <footer class="align-center light:bg-[var(--yellow)] col-span-1 lg:col-span-4 m-[12px] flex h-[98px] items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:m-0 lg:h-auto lg:w-75 lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
+      <footer class="align-center light:bg-[var(--yellow)] col-span-1 m-[12px] flex h-[98px] items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:col-span-4 lg:m-0 lg:h-auto lg:w-75 lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
         <div class="flex items-center">
           <p>{{ t('footer-copyright') }}</p>
           <p id="lang-toggle">english</p>

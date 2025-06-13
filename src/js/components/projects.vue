@@ -1,23 +1,19 @@
 <template>
-  <div class="grid grid-cols-1">
-    <div class="light:bg-[var(--yellow)] flex aspect-square flex-col justify-between p-5">
-      <h3 class="light:text-[var(--black)]">{{ projectName }}</h3>
+  <div class="light:bg-[var(--white)] flex flex-col gap-10">
+    <h3 class="light:text-[var(--black)] light:bg-[var(--yellow)] p-5">{{ projectName }}</h3>
+    <div class="flex flex-col gap-10 p-5">
       <p class="light:text-[var(--black)]!">{{ projectDescription }}</p>
-    </div>
-    <div class="light:bg-[var(--white)] flex aspect-square flex-col justify-between outline">
-      <div class="flex flex-col gap-5 p-5">
-        <h3>{{ t("projects-stat-after-launch") }}</h3>
-        <p class="text-[var(--black)]!">{{ projectResult }}</p>
-        <div class="flex flex-col gap-2">
-          <div v-for="(statistic, index) in projectStatistic" :key="index" class="flex items-center gap-3">
-            <Icons icon="star"></Icons>
-            <p class="text-[var(--black)]!">{{ statistic }}</p>
-          </div>
+      <h4>{{ t("projects-stat-after-launch") }}</h4>
+      <p class="text-[var(--black)]!">{{ projectResult }}</p>
+      <div class="flex flex-col gap-2">
+        <div v-for="(statistic, index) in projectStatistic" :key="index" class="flex items-center gap-3">
+          <Icons icon="star"></Icons>
+          <p class="text-[var(--black)]!">{{ statistic }}</p>
         </div>
       </div>
-      <div class="flex w-full justify-end gap-1 lg:gap-0">
-        <CustomButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
-      </div>
+    </div>
+    <div class="flex w-full justify-end gap-1 lg:gap-0 h-fit">
+      <CustomButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
     </div>
   </div>
 </template>
