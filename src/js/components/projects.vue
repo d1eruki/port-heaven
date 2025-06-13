@@ -7,7 +7,7 @@
           <p>{{ projectDescription }}</p>
         </div>
         <div class="flex w-full flex-row justify-end gap-1 lg:gap-0">
-          <Button v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
+          <SourceButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import Button from "./button.vue";
+import SourceButton from "./source-button.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 

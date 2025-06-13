@@ -14,48 +14,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="whitespace-pre-line">
-    <div id="banner" class="light:bg-[var(--yellow)] fixed top-0 z-50 flex h-10 w-full items-center justify-center dark:bg-[var(--purple)]">
-      <p id="marquee-container" class="dark:text-[var(--white)]!">{{ t('development') }}</p>
-    </div>
+    <div class="container flex max-w-full flex-col">
+      <header class="fixed top-0 z-1 h-fit w-full">
+        <p id="banner" class="light:bg-[var(--yellow)] flex hidden h-10 w-full items-center justify-center">{{ t('development') }}</p>
+        <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute z-2"></div>
+        <div class="light:bg-[var(--black)] flex md:h-20 w-full flex-col items-center justify-between p-5 md:flex-row">
+          <p class="jost hidden md:block tracking-widest">{{ t('logo') }}</p>
+          <div class="flex flex-wrap gap-y-0 gap-x-5 lg:w-fit">
+            <a data-open-block="who" class="w-fit" href="#who">{{ t('menu-who') }}</a>
+            <a data-open-block="what" class="w-fit" href="#what">{{ t('menu-what') }}</a>
+            <a data-open-block="stack" class="w-fit" href="#stack">{{ t('menu-stack') }}</a>
+            <a data-open-block="projects" class="w-fit" href="#projects">{{ t('menu-projects') }}</a>
+            <a data-open-block="design" class="w-fit" href="#design">{{ t('menu-design') }}</a>
+          </div>
+        </div>
+      </header>
 
-    <div id="progress-bar" class="progress-bar light:bg-[var(--black)] fixed top-10 z-50 block mix-blend-difference invert-100 dark:bg-[var(--black)]"></div>
-
-    <div id="left-menu" class="light:bg-[var(--white)] fixed top-10 bottom-auto left-0 z-50 flex h-24 w-full flex-row items-center justify-between p-5 md:bottom-0 lg:h-auto lg:w-75 lg:flex-col lg:items-start lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100">
-      <p class="jost w-fit tracking-widest">{{ t('logo') }}</p>
-      <div class="hidden flex-col gap-5 lg:flex lg:w-fit">
-        <a data-open-block="who" class="w-fit text-3xl" href="#who">{{ t('menu-who') }}</a>
-        <a data-open-block="what" class="w-fit text-3xl" href="#what">{{ t('menu-what') }}</a>
-        <a data-open-block="stack" class="w-fit text-3xl" href="#stack">{{ t('menu-stack') }}</a>
-        <a data-open-block="projects" class="w-fit text-3xl" href="#projects">{{ t('menu-projects') }}</a>
-        <a data-open-block="design" class="w-fit text-3xl" href="#design">{{ t('menu-design') }}</a>
-      </div>
-      <div class="flex flex-row items-center">
-        <p>{{ t('footer-copyright') }}</p>
-      </div>
-    </div>
-
-    <div id="right-menu" class="align-center light:bg-[var(--yellow)] fixed right-0 bottom-0 left-0 z-50 m-[12px] flex h-[98px] flex-row items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:top-10 lg:right-0 lg:left-auto lg:m-0 lg:h-auto lg:w-75 lg:flex-col lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
-      <div class="flex flex-row items-end gap-5">
-        <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
-          <Icons icon="telegram"></Icons>
-        </a>
-        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">
-          <Icons icon="google-mail"></Icons>
-        </a>
-      </div>
-      <p id="lang-toggle">english</p>
-
-      <p id="scroll-to-top">{{ t('footer-scroll-up') }}</p>
-      <Icons icon="theme-toggler" class="hidden"></Icons>
-    </div>
-
-    <div class="relative top-24 container mb-55 flex max-w-full flex-col md:mb-0 lg:top-0">
       <!--who-->
-      <div id="who" class="3xl:mx-150 4xl:mx-175 relative mx-5 mt-10 flex min-h-screen w-auto flex-col justify-center gap-10 self-start lg:mx-75 lg:gap-25">
-        <div class="flex flex-wrap place-items-end gap-x-5">
+      <div id="who" class="relative px-5 flex w-auto flex-col justify-end gap-10 self-start lg:gap-5 mb-10">
+        <div class="flex flex-wrap place-items-end gap-x-5 min-h-screen">
           <h1 class="glow xl:leading-30">{{ t('hero') }}</h1>
           <Icons icon="star" class="hidden"></Icons>
-          <h4 class="pb-5">{{ t('portfolio')}}</h4>
+          <h4 class="pb-5 hidden">{{ t('portfolio')}}</h4>
         </div>
         <p>{{ t('intro') }}</p>
         <div class="light:bg-[var(--yellow)] absolute top-[40%] right-0 -z-1 hidden w-[25%] -translate-y-[50%]">
@@ -154,6 +134,25 @@
         </div>
       </div>
     </div>
+
+    <footer class="align-center light:bg-[var(--yellow)] m-[12px] flex h-[98px] items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:m-0 lg:h-auto lg:w-75 lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
+      <div class="flex items-center">
+        <p>{{ t('footer-copyright') }}</p>
+        <div class="flex items-end gap-5">
+          <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
+            <Icons icon="telegram"></Icons>
+          </a>
+          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">
+            <Icons icon="google-mail"></Icons>
+          </a>
+        </div>
+        <p id="lang-toggle">english</p>
+      </div>
+
+      <p id="scroll-to-top">{{ t('footer-scroll-up') }}</p>
+      <Icons icon="theme-toggler" class="hidden"></Icons>
+    </footer>
+
     <div class="light:hidden noise block"></div>
     <div class="dotted-grid fixed top-0 -z-2 block h-full w-full dark:hidden"></div>
     <img alt="" class="light:hidden fixed top-10 right-20 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />

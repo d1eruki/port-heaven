@@ -34,36 +34,48 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     }
   }
 
+  p {
+    color: $grey;
+  }
+
   body {
     background-color: $white;
     color: $black;
   }
 
-  .container {
+  header {
     p {
+      color: $white;
+    }
+
+    #banner {
+      color: $black;
+    }
+
+    a {
       color: $grey;
+      &:hover {
+        color: $white;
+      }
+
+      &:hover polygon,
+      &:hover path {
+        fill: $yellow;
+      }
     }
   }
 
   polygon,
   path {
-    fill: $black;
+    fill: $white;
   }
 
   .active {
-    background-color: $black;
-    color: $white;
-  }
+    background-color: $white;
+    color: $black;
 
-  a {
     &:hover {
-      background-color: $black;
-      color: $white;
-    }
-
-    &:hover polygon,
-    &:hover path {
-      fill: $yellow;
+        color: $black;
     }
   }
 
@@ -119,8 +131,8 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     }
   }
 
-  #left-menu,
-  #right-menu {
+  header,
+  footer {
     * {
       color: $white;
     }
@@ -321,10 +333,6 @@ a {
   font-weight: 300;
 }
 
-#left-menu * a {
-  font-size: 2rem;
-}
-
 .item {
   filter: grayscale(100%);
   transition: $transition;
@@ -404,6 +412,10 @@ polygon.star {
   h4 {
     font-size: 1rem;
   }
+}
+
+.swiper {
+  z-index: 0 !important;
 }
 
 .swiper-pagination-bullet {

@@ -4,7 +4,7 @@ import Bullets from "./components/bullets.vue";
 import Features from "./components/key-features.vue";
 import Icons from "./components/icons.vue";
 import Items from "./components/items.vue";
-import Buttons from "./components/button.vue";
+import SourceButtons from "./components/source-button.vue";
 import i18n from "./i18n";
 import { useI18n } from "vue-i18n";
 
@@ -20,6 +20,6 @@ app.component("Bullet", Bullets);
 app.component("Futures", Features);
 app.component("Icons", Icons);
 app.component("Items", Items);
-app.component("Button", Buttons);
+app.component("SourceButtons", SourceButtons);
 app.use(i18n);
 app.mount("#app");
