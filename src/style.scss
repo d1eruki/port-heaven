@@ -65,17 +65,12 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     }
   }
 
-  polygon,
-  path {
-    fill: $white;
-  }
-
   .active {
-    background-color: $white;
+    background-color: $yellow;
     color: $black;
 
     &:hover {
-        color: $black;
+      color: $black;
     }
   }
 
@@ -88,12 +83,12 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     }
   }
 
-  .button {
-    color: $black;
-    background-color: $white;
+  .custom-button {
+    background-color: $black;
+    color: $white;
 
     &:hover {
-      color: $white;
+      color: $yellow;
     }
   }
 }
@@ -304,7 +299,7 @@ body {
 
 h1 {
   font-family: "Actay", sans-serif;
-  font-size: 7rem;
+  font-size: 15rem;
   text-transform: uppercase;
 }
 
@@ -329,7 +324,7 @@ h4 {
 
 p,
 a {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 300;
 }
 

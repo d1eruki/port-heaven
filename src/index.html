@@ -14,130 +14,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="whitespace-pre-line">
-    <div class="container flex max-w-full flex-col">
-      <header class="fixed top-0 z-1 h-fit w-full">
+    <div class="container grid max-w-full grid-cols-4">
+      <header class="fixed top-0 z-1 col-span-4 h-fit w-full">
         <p id="banner" class="light:bg-[var(--yellow)] flex hidden h-10 w-full items-center justify-center">{{ t('development') }}</p>
         <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute z-2"></div>
-        <div class="light:bg-[var(--black)] flex md:h-20 w-full flex-col items-center justify-between p-5 md:flex-row">
-          <p class="jost hidden md:block tracking-widest">{{ t('logo') }}</p>
-          <div class="flex flex-wrap gap-y-0 gap-x-5 lg:w-fit">
-            <a data-open-block="who" class="w-fit" href="#who">{{ t('menu-who') }}</a>
-            <a data-open-block="what" class="w-fit" href="#what">{{ t('menu-what') }}</a>
-            <a data-open-block="stack" class="w-fit" href="#stack">{{ t('menu-stack') }}</a>
+        <div class="light:bg-[var(--black)] flex w-full flex-col items-center justify-between p-5 md:h-20 md:flex-row">
+          <p class="jost hidden tracking-widest md:block">{{ t('logo') }}</p>
+          <div class="flex flex-wrap gap-x-5 gap-y-0 lg:w-fit">
+            <a data-open-block="me" class="w-fit" href="#me">{{ t('menu-me') }}</a>
+            <a data-open-block="principles" class="w-fit" href="#principles">{{ t('menu-principles') }}</a>
+            <a data-open-block="tools" class="w-fit" href="#tools">{{ t('menu-tools') }}</a>
             <a data-open-block="projects" class="w-fit" href="#projects">{{ t('menu-projects') }}</a>
             <a data-open-block="design" class="w-fit" href="#design">{{ t('menu-design') }}</a>
           </div>
         </div>
       </header>
 
-      <!--who-->
-      <div id="who" class="relative px-5 flex w-auto flex-col justify-end gap-10 self-start lg:gap-5 mb-10">
-        <div class="flex flex-wrap place-items-end gap-x-5 min-h-screen">
-          <h1 class="glow xl:leading-30">{{ t('hero') }}</h1>
-          <Icons icon="star" class="hidden"></Icons>
-          <h4 class="pb-5 hidden">{{ t('portfolio')}}</h4>
-        </div>
-        <p>{{ t('intro') }}</p>
-        <div class="light:bg-[var(--yellow)] absolute top-[40%] right-0 -z-1 hidden w-[25%] -translate-y-[50%]">
-          <img alt="" class="mix-blend-luminosity grayscale" src="assets/images/me.png" />
-        </div>
-      </div>
-
-      <!--about-->
-      <div id="what" class="light:bg-[var(--black)] relative min-h-screen content-center">
-        <div class="3xl:mx-150 4xl:mx-175 mx-5 my-10 flex scroll-mt-5 flex-col gap-10 lg:mx-75 xl:gap-10">
-          <h2 class="light:text-[var(--white)]">{{ t('menu-what') }}</h2>
-          <div class="flex flex-col justify-between justify-center gap-10 2xl:flex-row">
-            <futures :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></futures>
-            <futures :title="t('about-system-title')" :text="t('about-system-text')" number="02"></futures>
-            <futures :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></futures>
-          </div>
-        </div>
+      <!--me-->
+      <div id="me" class="light:bg-[var(--black)] relative col-span-4 min-h-screen content-end">
+        <h1 class="light:text-[color:var(--white)] px-5 xl:leading-45">{{ t('hero') }}</h1>
         <img alt="" class="absolute right-[5%] bottom-0 opacity-6 lg:w-150" src="assets/images/soma.png" />
       </div>
-
-      <!--stack-->
-      <div id="stack" class="3xl:mx-150 4xl:mx-175 mx-5 mt-10 grid min-h-screen scroll-mt-5 content-center gap-10 lg:mx-75 xl:gap-10">
-        <h2>{{ t('menu-stack') }}</h2>
-        <p>{{ t('stack-paragraph') }}</p>
+      <div class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-2 flex aspect-2/1 flex-col gap-5 p-10 outline">
+        <h2>{{ t('menu-me') }}</h2>
+        <p class="">{{ t('me-paragraph') }}</p>
       </div>
-
-      <!--projects-->
-      <div id="projects" class="grid min-h-screen scroll-mt-5 content-center gap-10">
-        <h2 class="3xl:mx-150 4xl:mx-175 mx-5 lg:mx-75 xl:gap-10">{{ t('menu-projects') }}</h2>
-        <p class="3xl:mx-150 4xl:mx-175 mx-5 lg:mx-75 xl:gap-10">{{ t('projects-paragraph') }}</p>
-
-        <div class="swiper mySwiper h-fit w-full">
-          <div class="swiper-pagination 3pl:mx-150 4xl:px-175 light:bg-[var(--yellow)] relative! bottom-0! flex h-10 flex-wrap content-center justify-start gap-2 px-10 lg:px-75"></div>
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <project
-                :project-name="t('projects-downloadPage-title')"
-                :project-description="t('projects-downloadPage-paragraph')"
-                :project-statistic="[
-        t('projects-downloadPage-stats-1'),
-        t('projects-downloadPage-stats-2'),
-        t('projects-downloadPage-stats-3'),
-        t('projects-downloadPage-stats-4'),
-        t('projects-downloadPage-stats-5'),
-      ]"
-                :project-links="[
-        { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
-        { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
-      ]"
-                :project-result="t('projects-downloadPage-result')"
-              ></project>
-            </div>
-            <div class="swiper-slide">
-              <project
-                :project-name="t('projects-registry-title')"
-                :project-description="t('projects-registry-paragraph')"
-                :project-statistic="[
-        t('projects-registry-stats-1'),
-        t('projects-registry-stats-2'),
-        t('projects-registry-stats-3'),
-      ]"
-                :project-links="[
-        { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
-        { url: 'https://varwin.com/ru/education/projects', name: t('projects-button-site') }
-      ]"
-                :project-result="t('projects-registry-result')"
-              ></project>
-            </div>
-            <div class="swiper-slide">
-              <project
-                :project-name="t('projects-xrms-title')"
-                :project-description="t('projects-xrms-paragraph')"
-                :project-statistic="[
-        t('projects-xrms-stats-1'),
-        t('projects-xrms-stats-2'),
-        t('projects-xrms-stats-3'),
-      ]"
-                :project-links="[
-        { url: 'https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1', name: t('projects-button-design') }
-      ]"
-                :project-result="t('projects-xrms-result')"
-              ></project>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!--design-->
-      <div id="design" class="3xl:mx-150 4xl:mx-175 mx-5 grid min-h-screen scroll-mt-5 content-center gap-10 pt-10 md:mx-0 lg:mx-75">
-        <h2>{{ t('menu-design') }}</h2>
-        <p>{{ t('design-paragraph') }}</p>
-        <div class="gri-cols-1 grid gap-10 md:grid-cols-2 2xl:grid-cols-3">
-          <items :item-name="t('design-varwinMobile-title')" :item-desc="t('design-varwinMobile-text')" item-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/mobile-client?node-id=0-1&t=4h0oblALTXRHPdCr-1" item-img-alt=""></items> <items :item-name="t('design-subscout-title')" :item-desc="t('design-subscout-text')" item-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/7-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-Subscout?node-id=8201-5919&t=ppyJz1Pd15phVZQ3-1" item-img-alt=""></items>
-          <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></items>
-          <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/3-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9F%D0%B8%D0%BE%D0%BD%D0%B5%D1%80?node-id=22-20&t=wfIEsNfXeRBmDyeO-1" item-img-alt=""></items>
-        </div>
-      </div>
-    </div>
-
-    <footer class="align-center light:bg-[var(--yellow)] m-[12px] flex h-[98px] items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:m-0 lg:h-auto lg:w-75 lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
-      <div class="flex items-center">
-        <p>{{ t('footer-copyright') }}</p>
+      <div></div>
+      <div class="light:bg-[var(--yellow)] p-5 flex flex-col justify-between">
+        <h3>Контакты</h3>
         <div class="flex items-end gap-5">
           <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
             <Icons icon="telegram"></Icons>
@@ -146,15 +50,89 @@
             <Icons icon="google-mail"></Icons>
           </a>
         </div>
-        <p id="lang-toggle">english</p>
       </div>
 
-      <p id="scroll-to-top">{{ t('footer-scroll-up') }}</p>
-      <Icons icon="theme-toggler" class="hidden"></Icons>
-    </footer>
+      <!--principles-->
+      <Principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></Principles>
+      <Principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></Principles>
+      <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
+      <h2 id="principles" class="px-5 py-10">{{ t('menu-principles') }}</h2>
 
-    <div class="light:hidden noise block"></div>
-    <div class="dotted-grid fixed top-0 -z-2 block h-full w-full dark:hidden"></div>
-    <img alt="" class="light:hidden fixed top-10 right-20 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />
+      <!--tools-->
+      <h2 id="tools" class="col-span-1 p-5">{{ t('menu-tools') }}</h2>
+      <p class="col-span-2 aspect-2/1 p-5">{{ t('tools-paragraph') }}</p>
+
+      <!--projects-->
+      <p class="col-span-2 aspect-2/1 p-5">{{ t('projects-paragraph') }}</p>
+      <div></div>
+      <h2 id="projects" class="col-span-1 p-5">{{ t('menu-projects') }}</h2>
+
+      <project
+        :project-name="t('projects-downloadPage-title')"
+        :project-description="t('projects-downloadPage-paragraph')"
+        :project-statistic="[
+        t('projects-downloadPage-stats-1'),
+        t('projects-downloadPage-stats-2'),
+        t('projects-downloadPage-stats-3'),
+        t('projects-downloadPage-stats-4'),
+        t('projects-downloadPage-stats-5'),
+      ]"
+        :project-links="[
+        { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
+        { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
+      ]"
+        :project-result="t('projects-downloadPage-result')"
+      ></project>
+      <project
+        :project-name="t('projects-registry-title')"
+        :project-description="t('projects-registry-paragraph')"
+        :project-statistic="[
+        t('projects-registry-stats-1'),
+        t('projects-registry-stats-2'),
+        t('projects-registry-stats-3'),
+      ]"
+        :project-links="[
+        { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
+        { url: 'https://varwin.com/ru/education/projects', name: t('projects-button-site') }
+      ]"
+        :project-result="t('projects-registry-result')"
+      ></project>
+      <project
+        :project-name="t('projects-xrms-title')"
+        :project-description="t('projects-xrms-paragraph')"
+        :project-statistic="[
+        t('projects-xrms-stats-1'),
+        t('projects-xrms-stats-2'),
+        t('projects-xrms-stats-3'),
+      ]"
+        :project-links="[
+        { url: 'https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1', name: t('projects-button-design') }
+      ]"
+        :project-result="t('projects-xrms-result')"
+      ></project>
+      <div></div>
+
+      <!--design-->
+      <h2 id="design" class="col-span-1 p-5">{{ t('menu-design') }}</h2>
+      <p class="col-span-3 aspect-3/1 p-5">{{ t('design-paragraph') }}</p>
+
+      <items :item-name="t('design-varwinMobile-title')" :item-desc="t('design-varwinMobile-text')" item-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/mobile-client?node-id=0-1&t=4h0oblALTXRHPdCr-1" item-img-alt=""></items> <items :item-name="t('design-subscout-title')" :item-desc="t('design-subscout-text')" item-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/7-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-Subscout?node-id=8201-5919&t=ppyJz1Pd15phVZQ3-1" item-img-alt=""></items>
+      <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></items>
+      <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/3-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9F%D0%B8%D0%BE%D0%BD%D0%B5%D1%80?node-id=22-20&t=wfIEsNfXeRBmDyeO-1" item-img-alt=""></items>
+
+      <footer class="align-center light:bg-[var(--yellow)] col-span-4 m-[12px] flex h-[98px] items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:m-0 lg:h-auto lg:w-75 lg:items-end lg:rounded-none lg:bg-transparent! lg:p-10 lg:mix-blend-difference lg:invert-100 dark:bg-[var(--purple)]">
+        <div class="flex items-center">
+          <p>{{ t('footer-copyright') }}</p>
+          <p id="lang-toggle">english</p>
+        </div>
+
+        <p id="scroll-to-top">{{ t('footer-scroll-up') }}</p>
+        <Icons icon="theme-toggler" class="hidden"></Icons>
+      </footer>
+
+      <div class="light:hidden noise block"></div>
+      <div class="dotted-grid fixed top-0 -z-2 block h-full w-full dark:hidden"></div>
+      <img alt="" class="light:hidden fixed top-10 right-20 opacity-3 lg:h-[85%]" src="assets/images/soma.png" />
+    </div>
   </body>
 </html>

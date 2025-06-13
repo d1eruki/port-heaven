@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import Projects from "./components/projects.vue";
 import Bullets from "./components/bullets.vue";
-import Features from "./components/key-features.vue";
+import Principles from "./components/principles.vue";
 import Icons from "./components/icons.vue";
 import Items from "./components/items.vue";
 import SourceButtons from "./components/source-button.vue";
@@ -17,7 +17,7 @@ const app = createApp({
 
 app.component("Project", Projects);
 app.component("Bullet", Bullets);
-app.component("Futures", Features);
+app.component("Principles", Principles);
 app.component("Icons", Icons);
 app.component("Items", Items);
 app.component("SourceButtons", SourceButtons);

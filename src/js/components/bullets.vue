@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center">
+  <div class="flex items-center">
     <svg viewBox="-150 -150 300 300" style="width: 30px; height: 30px">
       <polygon class="star" points=""></polygon>
     </svg>

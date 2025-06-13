@@ -6,9 +6,9 @@
 
   "development": "in active development",
 
-  "menu-who": "about me",
-  "menu-what": "principles",
-  "menu-stack": "tools",
+  "menu-me": "about me",
+  "menu-principles": "principles",
+  "menu-tools": "tools",
   "menu-projects": "key projects",
   "menu-design": "layouts",
 
@@ -24,7 +24,7 @@
   "about-strategy-title": "Strategy",
   "about-strategy-text": "I see the product as a whole: from idea and structure to final implementation. I engage at all stages to ensure the result is deliberate and impactful, not random.",
 
-  "stack-paragraph": "In my work, I combine analytics, interface thinking, and visual expression.\n\nA project starts with research: I study competitors, conduct interviews, and clarify what matters to users. Based on this, I build user flows and create the framework for the future interface.\n\nThe visual part is realized through adaptive layouts and interactive prototypes in Figma. At this stage, I actively test hypotheses through usability testing — sometimes quick and informal, but always with a clear goal: to understand where the interface works and where it doesn’t.\n\nIf needed, I incorporate animation in After Effects, create promo videos, or do basic frontend with Tailwind/CSS to build an MVP. I work with Git and can streamline processes for teams or freelance projects.",
+  "tools-paragraph": "In my work, I combine analytics, interface thinking, and visual expression.\n\nA project starts with research: I study competitors, conduct interviews, and clarify what matters to users. Based on this, I build user flows and create the framework for the future interface.\n\nThe visual part is realized through adaptive layouts and interactive prototypes in Figma. At this stage, I actively test hypotheses through usability testing — sometimes quick and informal, but always with a clear goal: to understand where the interface works and where it doesn’t.\n\nIf needed, I incorporate animation in After Effects, create promo videos, or do basic frontend with Tailwind/CSS to build an MVP. I work with Git and can streamline processes for teams or freelance projects.",
 
   "projects-paragraph": "Each of these projects is not just a set of screens. These are thoughtful solutions based on user needs, clear logic, and visual expressiveness. I’ve gone through the entire journey: from initial sketches and mistakes to the final pixel and working interface. Each project reflects my approach, style, and responsibility for the outcome.",
   "projects-project": "project",

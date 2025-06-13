@@ -1,6 +1,6 @@
 <template>
-  <div class="light:border-neutral-800 flex flex-1 flex-col gap-2 gap-10 border-l-1 px-10 dark:border-neutral-200">
-    <span class="biryani light:text-neutral-800 text-9xl dark:text-neutral-200">{{ number }}</span>
+  <div class="light:bg-[var(--black)] flex aspect-square flex-col gap-2 p-5 md:gap-10">
+    <span class="biryani light:text-[color:var(--yellow)] text-9xl">{{ number }}</span>
     <h3 class="light:text-[color:var(--white)]">{{ title }}</h3>
     <p>{{ text }}</p>
   </div>
