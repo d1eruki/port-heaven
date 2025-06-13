@@ -1,7 +1,7 @@
 <template>
   <div class="light:bg-[var(--black)] flex flex-col justify-between gap-10 p-5">
     <div class="flex flex-col gap-2 md:gap-10">
-      <span class="biryani light:text-[color:var(--yellow)] text-9xl">{{ number }}</span>
+      <span class="biryani light:text-[color:var(--grey-dark)] text-9xl">{{ number }}</span>
       <h3 class="light:text-[color:var(--white)]">{{ title }}</h3>
     </div>
     <p>{{ text }}</p>

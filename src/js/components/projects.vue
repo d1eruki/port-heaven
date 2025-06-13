@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <div class="flex w-full justify-end gap-1 lg:gap-0 h-fit">
+    <div class="flex h-fit w-full justify-end">
       <CustomButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
     </div>
   </div>

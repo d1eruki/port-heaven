@@ -57,11 +57,14 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
       &:hover {
         color: $white;
       }
+    }
+  }
 
-      &:hover polygon,
-      &:hover path {
-        fill: $yellow;
-      }
+  svg {
+    &:hover polygon,
+    &:hover path,
+    &:hover rect {
+      fill: $white;
     }
   }
 
@@ -79,66 +82,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $black;
 
     &:hover {
-      color: $white;
-    }
-  }
-}
-
-[data-theme="dark"] {
-  * {
-    &::selection {
-      background-color: $white;
-      color: $black;
-    }
-  }
-
-  body {
-    background-color: $black;
-    color: $white;
-  }
-
-  .glow {
-    filter: drop-shadow(0px 0px 150px $white);
-  }
-
-  polygon,
-  path {
-    fill: $white;
-  }
-
-  p {
-    color: $grey;
-  }
-
-  a {
-    &:hover {
-      background-color: $white;
-      color: $black;
-    }
-  }
-
-  header,
-  footer {
-    * {
-      color: $white;
-    }
-
-    .active {
       background-color: $black;
-      color: $white;
-    }
-  }
-
-  .item {
-    color: $grey;
-
-    &:hover {
-      color: $black;
-    }
-  }
-
-  #banner {
-    p {
       color: $white;
     }
   }
@@ -320,13 +264,20 @@ a {
 }
 
 .item {
-  filter: grayscale(100%);
   transition: $transition;
-  height: fit-content;
 
   &:hover {
+    z-index: 2;
     transform: translate(10px, 10px);
-    filter: grayscale(0%);
+  }
+}
+
+.custom-button {
+  transition: $transition;
+
+  &:hover {
+    z-index: 2;
+    transform: translate(5px, 5px);
   }
 }
 
@@ -420,9 +371,4 @@ header {
 
 .swiper-pagination-bullet-active {
   background: $black !important;
-}
-
-.custom-invert {
-  mix-blend-mode: difference;
-  filter: invert(100%);
 }

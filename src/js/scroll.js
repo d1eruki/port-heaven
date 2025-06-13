@@ -12,33 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!headerLinks.length || !sections.length) return;
 
-  let isProgrammaticScroll = false; // Флаг для программного скролла
-
-  function getBannerHeight() {
-    const banner = document.getElementById("banner");
-    return banner ? banner.offsetHeight : 0;
-  }
-
   function setActiveLinkByIndex(index) {
     headerLinks.forEach((link, i) => {
       link.classList.toggle("active", i === index);
     });
-  }
-
-  function scrollToSection(section) {
-    if (!section) return;
-    isProgrammaticScroll = true; // Устанавливаем флаг
-    const targetY = section.offsetTop - getBannerHeight();
-    window.scrollTo({ top: targetY, behavior: "smooth" });
-
-    // Сбрасываем флаг после завершения скролла
-    window.addEventListener(
-      "scrollend",
-      () => {
-        isProgrammaticScroll = false;
-      },
-      { once: true },
-    );
   }
 
   // Подсветка активной ссылки при скролле
@@ -55,42 +32,33 @@ document.addEventListener("DOMContentLoaded", function () {
     setActiveLinkByIndex(currentIndex);
   });
 
+  // Кнопка "наверх"
   if (scrollIcon) {
     function toggleScrollButton() {
-      if (window.scrollY > 300) {
-        scrollIcon.classList.add("visible");
-      } else {
-        scrollIcon.classList.remove("visible");
-      }
+      scrollIcon.classList.toggle("visible", window.scrollY > 300);
     }
 
-    scrollIcon.addEventListener("click", function () {
-      isProgrammaticScroll = true;
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      window.addEventListener(
-        "scrollend",
-        () => {
-          isProgrammaticScroll = false;
-        },
-        { once: true },
-      );
+    scrollIcon.addEventListener("click", () => {
+      document.documentElement.scrollIntoView({ behavior: "smooth" });
     });
 
     toggleScrollButton();
     window.addEventListener("scroll", toggleScrollButton);
   }
 
+  // Клик по якорным ссылкам
   headerLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       const targetId = this.getAttribute("href");
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
-        scrollToSection(targetEl);
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   });
 
+  // Установить активный линк при загрузке страницы
   window.addEventListener("load", () => {
     const scrollY = window.scrollY;
     let currentIndex = 0;
