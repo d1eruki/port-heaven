@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btn) {
     btn.addEventListener("click", () => {
       const current = i18n.global.locale.value;
-      i18n.global.locale.value = current === "ru" ? "en" : "ru";
-      btn.textContent = current === "ru" ? "русский" : "english";
+      const next = current === "ru" ? "en" : "ru";
+      i18n.global.locale.value = next;
+      btn.src = next === "en" ? "assets/images/locales/ru.svg" : "assets/images/locales/en.svg";
     });
   }
 });
