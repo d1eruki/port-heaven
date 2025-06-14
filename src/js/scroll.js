@@ -13,24 +13,37 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!headerLinks.length || !sections.length) return;
 
   function setActiveLinkByIndex(index) {
+    console.log("Активный индекс:", index);
     headerLinks.forEach((link, i) => {
       link.classList.toggle("active", i === index);
     });
   }
 
-  // Подсветка активной ссылки при скролле
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-    let currentIndex = 0;
-    for (let i = 0; i < sections.length; i++) {
-      if (scrollY >= sections[i].offsetTop - window.innerHeight / 2) {
-        currentIndex = i;
-      } else {
-        break;
+  function updateActiveLink() {
+    const scrollY = window.scrollY + window.innerHeight / 3;
+    let lastMatchedIndex = -1;
+
+    sections.forEach((section, i) => {
+      const top = section.offsetTop;
+      const bottom = top + section.offsetHeight;
+
+      console.log(`Секция #${i} — top: ${top}, bottom: ${bottom}`);
+
+      if (scrollY >= top && scrollY < bottom) {
+        lastMatchedIndex = i;
       }
+    });
+
+    if (lastMatchedIndex !== -1) {
+      setActiveLinkByIndex(lastMatchedIndex);
     }
-    setActiveLinkByIndex(currentIndex);
-  });
+
+    console.log("Активный индекс:", lastMatchedIndex);
+    console.log("Текущий scrollY + смещение:", scrollY);
+  }
+
+  // Подсветка активной ссылки при скролле
+  window.addEventListener("scroll", updateActiveLink);
 
   // Кнопка "наверх"
   if (scrollIcon) {
@@ -59,16 +72,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Установить активный линк при загрузке страницы
-  window.addEventListener("load", () => {
-    const scrollY = window.scrollY;
-    let currentIndex = 0;
-    for (let i = 0; i < sections.length; i++) {
-      if (scrollY >= sections[i].offsetTop - window.innerHeight / 2) {
-        currentIndex = i;
-      } else {
-        break;
-      }
-    }
-    setActiveLinkByIndex(currentIndex);
-  });
+  window.addEventListener("load", updateActiveLink);
 });
