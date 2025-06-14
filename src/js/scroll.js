@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!headerLinks.length || !sections.length) return;
 
   function setActiveLinkByIndex(index) {
-    console.log("Активный индекс:", index);
     headerLinks.forEach((link, i) => {
       link.classList.toggle("active", i === index);
     });
@@ -27,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const top = section.offsetTop;
       const bottom = top + section.offsetHeight;
 
-      console.log(`Секция #${i} — top: ${top}, bottom: ${bottom}`);
-
       if (scrollY >= top && scrollY < bottom) {
         lastMatchedIndex = i;
       }
@@ -37,15 +34,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (lastMatchedIndex !== -1) {
       setActiveLinkByIndex(lastMatchedIndex);
     }
-
-    console.log("Активный индекс:", lastMatchedIndex);
-    console.log("Текущий scrollY + смещение:", scrollY);
   }
 
-  // Подсветка активной ссылки при скролле
+  function scrollToWithHeaderOffset(targetEl) {
+    const header = document.querySelector("header");
+    const headerHeight = header ? header.offsetHeight : 0;
+    const targetY = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth",
+    });
+  }
+
   window.addEventListener("scroll", updateActiveLink);
 
-  // Кнопка "наверх"
   if (scrollIcon) {
     function toggleScrollButton() {
       scrollIcon.classList.toggle("visible", window.scrollY > 300);
@@ -59,18 +62,16 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", toggleScrollButton);
   }
 
-  // Клик по якорным ссылкам
   headerLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       const targetId = this.getAttribute("href");
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
-        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollToWithHeaderOffset(targetEl);
       }
     });
   });
 
-  // Установить активный линк при загрузке страницы
   window.addEventListener("load", updateActiveLink);
 });
