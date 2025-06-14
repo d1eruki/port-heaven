@@ -164,9 +164,6 @@
   .pointer-events-none {
     pointer-events: none;
   }
-  .visible {
-    visibility: visible;
-  }
   .absolute {
     position: absolute;
   }
@@ -188,17 +185,11 @@
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
-  .right-5 {
-    right: calc(var(--spacing) * 5);
-  }
   .right-\[5\%\] {
     right: 5%;
   }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
-  }
-  .bottom-5 {
-    bottom: calc(var(--spacing) * 5);
   }
   .left-0 {
     left: calc(var(--spacing) * 0);
@@ -398,9 +389,6 @@
   .opacity-6 {
     opacity: 6%;
   }
-  .mix-blend-difference {
-    mix-blend-mode: difference;
-  }
   .mix-blend-hard-light {
     mix-blend-mode: hard-light;
   }
@@ -431,6 +419,11 @@
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
+    }
+  }
+  .lg\:fixed {
+    @media (width >= 64rem) {
+      position: fixed;
     }
   }
   .lg\:relative {
@@ -569,14 +562,14 @@
       color: var(--black) !important;
     }
   }
-  .light\:text-\[color\:var\(--grey-dark\)\] {
-    &:where([data-theme="light"], [data-theme="light"] *) {
-      color: var(--grey-dark);
-    }
-  }
   .light\:text-\[color\:var\(--white\)\] {
     &:where([data-theme="light"], [data-theme="light"] *) {
       color: var(--white);
+    }
+  }
+  .light\:text-\[color\:var\(--yellow\)\] {
+    &:where([data-theme="light"], [data-theme="light"] *) {
+      color: var(--yellow);
     }
   }
   .light\:text-\[var\(--black\)\] {
@@ -852,17 +845,6 @@ iframe,video {
 }
 .card img:hover {
   filter: grayscale(0%) brightness(0.9) contrast(1.1);
-}
-#scroll-to-top {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s,visibility .3s,background-color .3s;
-}
-#scroll-to-top.visible {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
 }
 polygon.star {
   transform-origin: center center;
