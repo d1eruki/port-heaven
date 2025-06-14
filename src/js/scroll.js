@@ -50,8 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", updateActiveLink);
 
   if (scrollIcon) {
+    scrollIcon.style.display = "none"; // скрываем изначально
+
     function toggleScrollButton() {
-      scrollIcon.classList.toggle("visible", window.scrollY > 300);
+      scrollIcon.style.display = window.scrollY > 300 ? "block" : "none";
     }
 
     scrollIcon.addEventListener("click", () => {

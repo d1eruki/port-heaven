@@ -312,22 +312,6 @@ video {
   }
 }
 
-#scroll-to-top {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 0.3s,
-    visibility 0.3s,
-    background-color 0.3s;
-
-  &.visible {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
 polygon.star {
   transform-origin: center center;
   transform-box: fill-box;
