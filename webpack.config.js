@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: "./src/script.js",
@@ -17,7 +18,7 @@ module.exports = {
     static: path.join(__dirname, "dist"),
     port: 8080,
     open: false,
-    allowedHosts: "all", // <-- добавь эту строку сюда
+    allowedHosts: "all",
   },
   resolve: {
     alias: {
@@ -58,6 +59,13 @@ module.exports = {
           "sass-loader",
         ],
       },
+    ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      `...`,
+      new CssMinimizerPlugin(),
     ],
   },
   plugins: [
