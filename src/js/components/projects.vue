@@ -1,6 +1,6 @@
 <template>
   <div class="light:bg-[var(--white)] flex flex-col gap-10">
-    <h3 class="light:text-[var(--black)] light:bg-[var(--yellow)] p-5">{{ projectName }}</h3>
+    <h3 class="light:text-[var(--black)] light:bg-[var(--blue)] p-5">{{ projectName }}</h3>
     <div class="flex flex-col gap-10 p-5">
       <p class="light:text-[var(--black)]!">{{ projectDescription }}</p>
       <h4>{{ t("projects-stat-after-launch") }}</h4>

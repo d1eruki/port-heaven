@@ -8,6 +8,7 @@ $white: hsl(0 0% 100%);
 $pink: hsl(314 97% 44%);
 $purple: hsl(248 65% 50%);
 $yellow: hsl(73, 100%, 50%);
+$blue: hsl(220, 100%, 50%);
 $grey: hsl(0 0% 50%);
 $grey-light: hsl(0 0% 70%);
 $grey-dark: hsl(0 0% 20%);
@@ -20,6 +21,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   --pink: #{$pink};
   --purple: #{$purple};
   --yellow: #{$yellow};
+  --blue: #{$blue};
   --grey: #{$grey};
   --grey-light: #{$grey-light};
   --grey-dark: #{$grey-dark};
@@ -69,7 +71,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .active {
-    background-color: $yellow;
+    background-color: $blue;
     color: $black;
 
     &:hover {
@@ -182,7 +184,7 @@ body {
     width: calc(100% + 20rem);
     height: calc(100% + 20rem);
     position: fixed;
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
+    background-image: url("assets/images/noise.png");
     opacity: 0.15;
     pointer-events: none;
     -webkit-animation: noise 1s steps(2) infinite;

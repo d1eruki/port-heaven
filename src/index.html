@@ -21,8 +21,8 @@
     </div>
 
     <header class="sticky top-0 z-5 col-span-1 h-fit w-full lg:col-span-4">
-      <p id="banner" class="light:bg-[var(--yellow)] flex hidden h-10 w-full content-center text-center md:block">{{ t('development') }}</p>
-      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute z-2"></div>
+      <p id="banner" class="light:bg-[var(--blue)] flex hidden h-10 w-full content-center text-center md:block">{{ t('development') }}</p>
+      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] bottom-0 absolute z-2"></div>
       <div class="light:bg-[var(--black)] flex w-full flex-col justify-between md:h-20 md:flex-row lg:items-center">
         <p class="jost hidden pl-5 tracking-widest lg:block">{{ t('logo') }}</p>
         <div class="flex h-full w-full flex-wrap justify-between gap-y-0 lg:w-fit">
@@ -35,11 +35,11 @@
       </div>
     </header>
 
-    <div class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5 outline lg:col-span-2">
+    <div></div>
+    <div class="light:bg-[var(--white)] light:text-[color:var(--black)] lg:aspect-2/1 col-span-1 flex flex-col gap-5 p-5 outline lg:col-span-2">
       <h2>{{ t('menu-me') }}</h2>
       <p class="">{{ t('me-paragraph') }}</p>
     </div>
-    <div></div>
     <contacts></contacts>
 
     <!--principles-->
@@ -60,7 +60,7 @@
       <h2>{{ t('menu-projects') }}</h2>
       <p>{{ t('projects-paragraph') }}</p>
     </div>
-    <div class="light:bg-[var(--yellow)] flex hidden gap-5 p-5 lg:block">
+    <div class="light:bg-[var(--blue)] flex hidden gap-5 p-5 lg:block">
       <Icons icon="square"></Icons>
     </div>
 
@@ -113,7 +113,7 @@
     <div></div>
     <div></div>
     <div></div>
-    <div id="design" class="light:bg-[var(--yellow)] light:text-[color:var(--black)] flex scroll-mt-30 flex-col gap-10 p-5">
+    <div id="design" class="light:bg-[var(--blue)] light:text-[color:var(--black)] aspect-square flex scroll-mt-30 flex-col gap-10 p-5">
       <h2>{{ t('menu-design') }}</h2>
       <p class="light:text-[color:var(--black)]!">{{ t('design-paragraph') }}</p>
     </div>
@@ -122,7 +122,7 @@
     <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></items>
     <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/3-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9F%D0%B8%D0%BE%D0%BD%D0%B5%D1%80?node-id=22-20&t=wfIEsNfXeRBmDyeO-1" item-img-alt=""></items>
 
-    <footer class="light:bg-[var(--yellow)] light:lg:bg-[var(--black)] fixed right-0 bottom-0 left-0 col-span-1 m-[12px] grid h-[98px] grid-cols-2 content-center items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:relative lg:col-span-1 lg:m-0 lg:aspect-square lg:h-auto lg:grid-cols-1 lg:content-end lg:rounded-none lg:p-5">
+    <footer class="light:bg-[var(--blue)] light:lg:bg-[var(--black)] fixed right-0 bottom-0 left-0 col-span-1 m-[12px] grid h-[98px] grid-cols-2 content-center items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:relative lg:col-span-1 lg:m-0 lg:aspect-square lg:h-auto lg:grid-cols-1 lg:content-end lg:rounded-none lg:p-5">
       <p class="light:text-[color:var(--black)]! light:lg:text-[color:var(--white)]! col-span-1 lg:text-[1.5rem]!">{{ t('footer-copyright') }}</p>
       <div class="light:lg:bg-[var(--black)] right-0 bottom-0 z-50 flex justify-end gap-5 lg:fixed lg:p-5">
         <p id="scroll-to-top" class="light:lg:text-[color:var(--white)]! light:text-[color:var(--black)]!">{{ t('footer-scroll-up') }}</p>
