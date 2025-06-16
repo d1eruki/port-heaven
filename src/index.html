@@ -43,7 +43,7 @@
     <contacts></contacts>
 
     <!--principles-->
-    <h2 id="principles" class="scroll-mt-30 p-5">{{ t('menu-principles') }}</h2>
+    <h2 id="principles" class="scroll-mt-30 p-5 lg:aspect-square">{{ t('menu-principles') }}</h2>
     <Principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></Principles>
     <Principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></Principles>
     <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
@@ -57,7 +57,7 @@
     <div></div>
     <div></div>
     <div id="projects" class="light:bg-[var(--black)] light:text-[color:var(--white)] flex scroll-mt-30 flex-col justify-between gap-10 p-5">
-      <h2>{{ t('menu-projects') }}</h2>
+      <h2 class="lg:aspect-square">{{ t('menu-projects') }}</h2>
       <p>{{ t('projects-paragraph') }}</p>
     </div>
     <div class="light:bg-[var(--blue)] flex hidden gap-5 p-5 lg:block">
@@ -123,7 +123,7 @@
     <div></div>
     <div></div>
     <div></div>
-    <div id="design" class="light:bg-[var(--blue)] light:text-[color:var(--black)] flex aspect-square scroll-mt-30 flex-col gap-10 p-5">
+    <div id="design" class="light:bg-[var(--blue)] light:text-[color:var(--black)] justify-between flex aspect-square scroll-mt-30 flex-col gap-10 p-5">
       <h2>{{ t('menu-design') }}</h2>
       <p class="light:text-[color:var(--black)]!">{{ t('design-paragraph') }}</p>
     </div>
