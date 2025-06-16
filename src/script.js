@@ -10,15 +10,9 @@ import "swiper/css/bundle";
 
 window.onscroll = updateProgressBar;
 
-new Swiper(".mySwiper", {
-  direction: "horizontal",
-  slidesPerView: 1,
+const swiper = new Swiper(".mySwiper", {
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
-  },
-  autoplay: {
-    delay: 20000,
-    disableOnInteraction: false,
   },
 });

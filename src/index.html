@@ -22,7 +22,6 @@
 
     <header class="sticky top-0 z-5 col-span-1 h-fit w-full lg:col-span-4">
       <p id="banner" class="light:bg-[var(--blue)] flex hidden h-10 w-full content-center text-center md:block">{{ t('development') }}</p>
-      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] bottom-0 absolute z-2"></div>
       <div class="light:bg-[var(--black)] flex w-full flex-col justify-between md:h-20 md:flex-row lg:items-center">
         <p class="jost hidden pl-5 tracking-widest lg:block">{{ t('logo') }}</p>
         <div class="flex h-full w-full flex-wrap justify-between gap-y-0 lg:w-fit">
@@ -33,10 +32,11 @@
           <a data-open-block="design" class="w-fit content-center px-5" href="#design">{{ t('menu-design') }}</a>
         </div>
       </div>
+      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] lg:absolute bottom-0 z-2"></div>
     </header>
 
     <div></div>
-    <div class="light:bg-[var(--white)] light:text-[color:var(--black)] lg:aspect-2/1 col-span-1 flex flex-col gap-5 p-5 outline lg:col-span-2">
+    <div class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5 outline lg:col-span-2 lg:aspect-2/1">
       <h2>{{ t('menu-me') }}</h2>
       <p class="">{{ t('me-paragraph') }}</p>
     </div>
@@ -64,56 +64,68 @@
       <Icons icon="square"></Icons>
     </div>
 
-    <project
-      :project-name="t('projects-downloadPage-title')"
-      :project-description="t('projects-downloadPage-paragraph')"
-      :project-statistic="[
+    <div class="swiper z-0! mySwiper lg:col-span-4 col-span-1 grid-cols-4">
+      <div class="swiper-pagination light:bg-[var(--blue)] col-span-1 relative! lg:absolute bottom-0! flex! w-fit! gap-5! p-5!"></div>
+      <div class="swiper-wrapper h-auto!">
+        <div class="swiper-slide h-auto!">
+          <project
+            :project-name="t('projects-downloadPage-title')"
+            :project-description="t('projects-downloadPage-paragraph')"
+            :project-statistic="[
         t('projects-downloadPage-stats-1'),
         t('projects-downloadPage-stats-2'),
         t('projects-downloadPage-stats-3'),
         t('projects-downloadPage-stats-4'),
         t('projects-downloadPage-stats-5'),
       ]"
-      :project-links="[
+            :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
       ]"
-      :project-result="t('projects-downloadPage-result')"
-    ></project>
-    <project
-      :project-name="t('projects-registry-title')"
-      :project-description="t('projects-registry-paragraph')"
-      :project-statistic="[
+            :project-result="t('projects-downloadPage-result')"
+          ></project>
+        </div>
+        <div class="swiper-slide h-auto!">
+          <project
+            :project-name="t('projects-registry-title')"
+            :project-description="t('projects-registry-paragraph')"
+            :project-statistic="[
         t('projects-registry-stats-1'),
         t('projects-registry-stats-2'),
         t('projects-registry-stats-3'),
       ]"
-      :project-links="[
+            :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://varwin.com/ru/education/projects', name: t('projects-button-site') }
       ]"
-      :project-result="t('projects-registry-result')"
-    ></project>
-    <project
-      :project-name="t('projects-xrms-title')"
-      :project-description="t('projects-xrms-paragraph')"
-      :project-statistic="[
+            :project-result="t('projects-registry-result')"
+          ></project>
+        </div>
+        <div class="swiper-slide h-auto!">
+          <project
+            :project-name="t('projects-xrms-title')"
+            :project-description="t('projects-xrms-paragraph')"
+            :project-statistic="[
         t('projects-xrms-stats-1'),
         t('projects-xrms-stats-2'),
         t('projects-xrms-stats-3'),
       ]"
-      :project-links="[
+            :project-links="[
         { url: 'https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1', name: t('projects-button-design') }
       ]"
-      :project-result="t('projects-xrms-result')"
-    ></project>
+            :project-result="t('projects-xrms-result')"
+          ></project>
+        </div>
+      </div>
+    </div>
+
     <div></div>
 
     <!--design-->
     <div></div>
     <div></div>
     <div></div>
-    <div id="design" class="light:bg-[var(--blue)] light:text-[color:var(--black)] aspect-square flex scroll-mt-30 flex-col gap-10 p-5">
+    <div id="design" class="light:bg-[var(--blue)] light:text-[color:var(--black)] flex aspect-square scroll-mt-30 flex-col gap-10 p-5">
       <h2>{{ t('menu-design') }}</h2>
       <p class="light:text-[color:var(--black)]!">{{ t('design-paragraph') }}</p>
     </div>

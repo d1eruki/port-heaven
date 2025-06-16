@@ -275,11 +275,12 @@ a {
 }
 
 .custom-button {
-  transition: $transition;
+  p {
+    color: $white;
+  }
 
-  &:hover {
-    z-index: 2;
-    transform: translate(5px, 5px);
+  &:hover p {
+    color: $black;
   }
 }
 
@@ -350,7 +351,8 @@ header {
 }
 
 .swiper {
-  z-index: 0 !important;
+  width: 100%;
+  height: 100%;
 }
 
 .swiper-pagination-bullet {
@@ -358,9 +360,9 @@ header {
   height: 24px !important;
   margin: 0 !important;
   opacity: 1 !important;
-  background: $white !important;
+  background: $black !important;
 }
 
 .swiper-pagination-bullet-active {
-  background: $black !important;
+  background: $white !important;
 }
