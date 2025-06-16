@@ -12,6 +12,7 @@
       <p class="text-[var(--grey)]!">{{ projectResult }}</p>
       <div class="flex flex-col gap-2">
         <div v-for="(statistic, index) in projectStatistic" :key="index" class="flex items-center gap-3">
+          <Icons class="text-[var(--grey)]!" icon="star"></Icons>
           <p class="text-[var(--grey)]!">{{ statistic }}</p>
         </div>
       </div>
