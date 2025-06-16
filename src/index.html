@@ -36,7 +36,7 @@
     </header>
 
     <div></div>
-    <div class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5 outline lg:col-span-2 lg:aspect-2/1">
+    <div class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5 border lg:col-span-2 lg:aspect-2/1">
       <h2>{{ t('menu-me') }}</h2>
       <p class="">{{ t('me-paragraph') }}</p>
     </div>
@@ -51,7 +51,7 @@
     <!--tools-->
     <img alt="" class="hidden w-full mix-blend-hard-light grayscale lg:block" src="assets/images/tools/figma.svg" />
     <h2 id="tools" class="scroll-mt-30 p-5">{{ t('menu-tools') }}</h2>
-    <p class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5 outline lg:col-span-2">{{ t('tools-paragraph') }}</p>
+    <p class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5 border lg:col-span-2">{{ t('tools-paragraph') }}</p>
 
     <!--projects-->
     <div></div>
@@ -64,7 +64,7 @@
       <Icons icon="square"></Icons>
     </div>
 
-    <div class="swiper z-0! mySwiper lg:col-span-4 col-span-1 grid-cols-4">
+    <div class="swiper z-0! mySwiper lg:col-span-3 col-span-1 grid-cols-3">
       <div class="swiper-pagination light:bg-[var(--blue)] col-span-1 relative! lg:absolute bottom-0! flex! w-fit! gap-5! p-5!"></div>
       <div class="swiper-wrapper h-auto!">
         <div class="swiper-slide h-auto!">
@@ -119,8 +119,6 @@
       </div>
     </div>
 
-    <div></div>
-
     <!--design-->
     <div></div>
     <div></div>
@@ -129,6 +127,7 @@
       <h2>{{ t('menu-design') }}</h2>
       <p class="light:text-[color:var(--black)]!">{{ t('design-paragraph') }}</p>
     </div>
+    <div></div>
 
     <items :item-name="t('design-varwinMobile-title')" :item-desc="t('design-varwinMobile-text')" item-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/mobile-client?node-id=0-1&t=4h0oblALTXRHPdCr-1" item-img-alt=""></items> <items :item-name="t('design-subscout-title')" :item-desc="t('design-subscout-text')" item-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/7-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-Subscout?node-id=8201-5919&t=ppyJz1Pd15phVZQ3-1" item-img-alt=""></items>
     <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></items>
