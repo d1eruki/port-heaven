@@ -24,7 +24,7 @@
       <p id="banner" class="light:bg-[var(--yellow)] flex hidden h-10 w-full content-center text-center">{{ t('development') }}</p>
       <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute top-0 z-2"></div>
       <div class="light:bg-[var(--black)] flex w-full flex-col justify-between md:h-20 md:flex-row lg:items-center">
-        <a href="#me" class="jost hidden tracking-widest lg:block pl-5">{{ t('logo') }}</a>
+        <a href="#me" class="jost hidden pl-5 tracking-widest lg:block">{{ t('logo') }}</a>
         <div class="flex h-full w-full flex-wrap items-center justify-between gap-0 lg:w-fit">
           <a data-open-block="about" class="h-full w-fit content-center px-5" href="#about">{{ t('menu-about') }}</a>
           <a data-open-block="principles" class="h-full w-fit content-center px-5" href="#principles">{{ t('menu-principles') }}</a>
@@ -58,7 +58,7 @@
 
     <!--tools-->
     <img alt="" class="hidden w-full mix-blend-hard-light grayscale lg:col-span-1 lg:row-span-1" src="assets/images/tools/figma.svg" />
-    <div id="tools" class="light:bg-[var(--yellow)] flex gap-5 p-5 flex-col justify-between lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1">
+    <div id="tools" class="light:bg-[var(--yellow)] flex flex-col justify-between gap-5 p-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1">
       <h2 class="light:text-[color:var(--black)]! scroll-mt-30 lg:col-span-4">{{ t('menu-tools') }}</h2>
       <p class="light:text-[color:var(--black)]! flex flex-col lg:col-span-3">{{ t('tools-paragraph') }}</p>
     </div>
@@ -71,7 +71,7 @@
     </div>
     <div class="light:bg-[var(--yellow)] flex hidden gap-5 p-5 lg:block"></div>
 
-    <div class="swiper flex! flex-col mySwiper z-0! lg:col-span-2">
+    <div class="swiper mySwiper z-0! flex! flex-col lg:col-span-2">
       <div class="swiper-pagination light:bg-[var(--yellow)] static! flex! w-full! gap-5! p-5! lg:px-0!"></div>
       <div class="swiper-wrapper">
         <project

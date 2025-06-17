@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-slide light:bg-[var(--black)] flex! justify-between flex-col!">
+  <div class="swiper-slide light:bg-[var(--black)] flex! flex-col! justify-between">
     <div class="flex flex-col gap-5 p-5">
       <h3 class="light:text-[var(--white)]">{{ projectName }}</h3>
       <p class="light:text-[var(--grey)]!">{{ projectDescription }}</p>
