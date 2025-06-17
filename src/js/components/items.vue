@@ -1,5 +1,5 @@
 <template>
-  <a :href="itemUrl" target="_blank" class="item flex flex-col justify-between p-5 border lg:aspect-square">
+  <a :href="itemUrl" target="_blank" class="item flex flex-col justify-between p-5 row-span-1">
     <h4>{{ itemName }}</h4>
     <p>{{ itemDesc }}</p>
   </a>
