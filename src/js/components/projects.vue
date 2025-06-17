@@ -1,19 +1,19 @@
 <template>
-  <div class="light:bg-[var(--white)] grid h-full flex-row justify-between  lg:grid-cols-1 lg:flex-col">
-    <div class="flex flex-col gap-10 p-5">
-      <h3 class="light:text-[var(--black)]">{{ projectName }}</h3>
+  <div class="swiper-slide light:bg-[var(--black)] flex! justify-between flex-col!">
+    <div class="flex flex-col gap-5 p-5">
+      <h3 class="light:text-[var(--white)]">{{ projectName }}</h3>
       <p class="light:text-[var(--grey)]!">{{ projectDescription }}</p>
-      <h4>{{ t("projects-stat-after-launch") }}</h4>
+      <h4 class="light:text-[var(--white)]">{{ t("projects-stat-after-launch") }}</h4>
       <p class="text-[var(--grey)]!">{{ projectResult }}</p>
       <div class="flex flex-col gap-2">
         <div v-for="(statistic, index) in projectStatistic" :key="index" class="flex items-center gap-3">
-          <Icons class="text-[var(--grey)]!" icon="star"></Icons>
+          <Icons class="hidden text-[var(--grey)]!" icon="star"></Icons>
           <p class="text-[var(--grey)]!">{{ statistic }}</p>
         </div>
       </div>
     </div>
     <div class="flex h-fit w-full justify-end">
-      <CustomButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
+      <CustomButton class="w-full" v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
     </div>
   </div>
 </template>

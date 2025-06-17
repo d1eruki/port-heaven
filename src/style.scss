@@ -81,9 +81,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .item {
-    background-color: $white;
-    color: $black;
-
     &:hover {
       background-color: $black;
       color: $white;
@@ -323,7 +320,7 @@ h4 {
 
 p,
 a {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 300;
 }
 
@@ -390,7 +387,6 @@ header {
 
 .swiper {
   width: 100%;
-  height: 100%;
 }
 
 .swiper-pagination-bullet {
