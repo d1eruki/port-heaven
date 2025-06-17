@@ -1,10 +1,7 @@
 function applyHeights() {
-  const header = document.querySelector("header");
-  const headerHeight = header ? header.offsetHeight : 0;
-  const screenHeight = window.innerHeight;
-  const screenWidth = window.innerWidth;
   const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
   const minWidthPx = 64 * remInPx;
+  const isMobile = window.innerWidth < minWidthPx;
 
   const elementsWithId = Array.from(document.body.children).filter(el => el.id);
 
@@ -13,15 +10,21 @@ function applyHeights() {
   const middleElements = elementsWithId.slice(1, -1);
   const lastEl = elementsWithId[elementsWithId.length - 1];
 
+  if (isMobile) {
+    middleElements.forEach(el => el.style.minHeight = "");
+    lastEl.style.minHeight = "";
+    return;
+  }
+
+  const header = document.querySelector("header");
+  const headerHeight = header ? header.offsetHeight : 0;
+  const screenHeight = window.innerHeight;
+
   middleElements.forEach(el => {
     el.style.minHeight = (screenHeight - headerHeight) + "px";
   });
 
-  if (screenWidth >= minWidthPx) {
-    lastEl.style.minHeight = (screenHeight - headerHeight) + "px";
-  } else {
-    lastEl.style.minHeight = "";
-  }
+  lastEl.style.minHeight = (screenHeight - headerHeight) + "px";
 }
 
 window.addEventListener("DOMContentLoaded", applyHeights);

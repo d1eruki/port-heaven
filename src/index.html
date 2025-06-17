@@ -13,7 +13,7 @@
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="3xl:max-w-[1920px] relative container grid max-w-full grid-cols-1 justify-self-center whitespace-pre-line lg:grid-cols-4">
+  <body lang="ru" id="app" class="3xl:max-w-[1920px] relative container lg:grid max-w-full justify-self-center whitespace-pre-line lg:grid-cols-4">
     <!--me-->
     <div id="me" class="light:bg-[var(--black)] relative z-7 col-span-1 min-h-dvh content-end lg:col-span-4">
       <h1 class="light:text-[color:var(--white)] px-5 xl:leading-45">{{ t('hero') }}</h1>
@@ -43,7 +43,7 @@
     <contacts class="col-span-1"></contacts>
 
     <!--principles-->
-    <h2 id="principles" class="lg:writing-sideways-lr col-span-1 scroll-mt-30 p-5">{{ t('menu-principles') }}</h2>
+    <h2 id="principles" class="writing-sideways-lr col-span-1 scroll-mt-30 p-5">{{ t('menu-principles') }}</h2>
     <Principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></Principles>
     <Principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></Principles>
     <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
