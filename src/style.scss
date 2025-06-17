@@ -234,37 +234,6 @@ body {
   }
 }
 
-h1 {
-  font-family: "Actay", sans-serif;
-  font-size: 15rem;
-  text-transform: uppercase;
-}
-
-h2 {
-  font-family: "Actay", sans-serif;
-  font-size: 6rem;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-h3 {
-  font-family: "Actay", sans-serif;
-  font-size: 2.75rem;
-  text-transform: uppercase;
-}
-
-h4 {
-  font-family: "Actay", sans-serif;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-}
-
-p,
-a {
-  font-size: 1rem;
-  font-weight: 300;
-}
-
 .item {
   transition: $transition;
 
@@ -326,7 +295,44 @@ header {
   }
 }
 
-@media (max-width: 80rem) {
+h1 {
+  font-family: "Actay", sans-serif;
+  font-size: 15rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: "Actay", sans-serif;
+  font-size: 6rem;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+h3 {
+  font-family: "Actay", sans-serif;
+  font-size: 2.75rem;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-family: "Actay", sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+p,
+a {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+header {
+  a {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 80rem) { //1280px xl
   h1 {
     font-size: 2.5rem;
   }
@@ -347,6 +353,35 @@ header {
     a {
       font-size: 1rem;
     }
+  }
+}
+
+@media (min-width: 120rem) { //1920px 3xl
+  h1 {
+    font-size: 15rem;
+  }
+
+  h2 {
+    font-size: 6rem;
+  }
+
+  h3 {
+    font-size: 2.75rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  header {
+    a {
+      font-size: 1.75rem;
+    }
+  }
+
+  p,
+  a {
+    font-size: 1.5rem;
   }
 }
 
