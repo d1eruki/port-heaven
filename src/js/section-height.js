@@ -6,27 +6,21 @@ function applyHeights() {
   const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
   const minWidthPx = 64 * remInPx;
 
-  // Фильтруем: только прямые потомки body с id
-  const elementsWithId = Array.from(document.body.children).filter((el) => el.id);
+  const elementsWithId = Array.from(document.body.children).filter(el => el.id);
 
-  if (elementsWithId.length < 2) return; // нечего обрабатывать
+  if (elementsWithId.length < 2) return;
 
   const middleElements = elementsWithId.slice(1, -1);
   const lastEl = elementsWithId[elementsWithId.length - 1];
 
-  // Растягиваем все, кроме первого и последнего
-  middleElements.forEach((el) => {
-    el.style.minHeight = screenHeight - headerHeight + "px";
-    console.log(`→ Set minHeight for #${el.id}`);
+  middleElements.forEach(el => {
+    el.style.minHeight = (screenHeight - headerHeight) + "px";
   });
 
-  // Последний — только если ширина >= 64rem
   if (screenWidth >= minWidthPx) {
-    lastEl.style.minHeight = screenHeight - headerHeight + "px";
-    console.log(`→ Set minHeight for LAST #${lastEl.id}`);
+    lastEl.style.minHeight = (screenHeight - headerHeight) + "px";
   } else {
     lastEl.style.minHeight = "";
-    console.log(`→ CLEARED minHeight for LAST #${lastEl.id}`);
   }
 }
 
