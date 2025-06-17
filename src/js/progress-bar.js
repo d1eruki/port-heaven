@@ -1,7 +1,13 @@
 export const updateProgressBar = () => {
   const progressBar = document.getElementById("progress-bar");
+
   const totalHeight = document.body.scrollHeight - window.innerHeight;
-  progressBar.style.width = totalHeight > 0 ? `${(window.scrollY / totalHeight) * 100}%` : "0%";
+  const scrollY = window.scrollY;
+
+  // Ограничиваем ширину прогресс-бара максимумом в 100%
+  const progress = totalHeight > 0 ? Math.min((scrollY / totalHeight) * 100, 100) : 0;
+
+  progressBar.style.width = `${progress}%`;
 };
 
 window.addEventListener("beforeunload", () => {
@@ -17,3 +23,4 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("scroll", updateProgressBar);
+window.addEventListener("resize", updateProgressBar);
