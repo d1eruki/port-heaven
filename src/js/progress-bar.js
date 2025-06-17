@@ -4,7 +4,6 @@ export const updateProgressBar = () => {
   const totalHeight = document.body.scrollHeight - window.innerHeight;
   const scrollY = window.scrollY;
 
-  // Ограничиваем ширину прогресс-бара максимумом в 100%
   const progress = totalHeight > 0 ? Math.min((scrollY / totalHeight) * 100, 100) : 0;
 
   progressBar.style.width = `${progress}%`;
