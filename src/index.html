@@ -35,7 +35,11 @@
       </div>
     </header>
 
-    <div></div>
+    <div class="hidden lg:flex self-end">
+      <div class="light:bg-[var(--yellow)] ">
+        <img alt="" class="grayscale" src="assets/images/me.png" />
+      </div>
+    </div>
     <div id="about" class="light:bg-[var(--white)] light:text-[color:var(--black)] lg: flex flex-col gap-5 p-5 lg:col-span-2">
       <h2>{{ t('menu-about') }}</h2>
       <p class="">{{ t('about-paragraph') }}</p>
@@ -49,20 +53,24 @@
     <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
 
     <!--tools-->
-    <img alt="" class="hidden w-full mix-blend-hard-light grayscale lg:block" src="assets/images/tools/figma.svg" />
-    <h2 id="tools" class="scroll-mt-30 p-5">{{ t('menu-tools') }}</h2>
-    <p class="light:bg-[var(--white)] light:text-[color:var(--black)] lg: flex flex-col gap-5 p-5 lg:col-span-2">{{ t('tools-paragraph') }}</p>
+
+
+
+    <img alt="" class="hidden w-full lg:col-span-1 lg:row-span-1 lg:block" src="assets/images/tools/figma.svg" />
+    <h2 id="tools" class="row-span-2 scroll-mt-30 p-5">{{ t('menu-tools') }}</h2>
+    <p class="light:bg-[var(--white)] lg:row-span-2 light:text-[color:var(--black)] lg: flex flex-col gap-5 p-5 lg:col-span-2">{{ t('tools-paragraph') }}</p>
+    <img alt="" class="hidden w-full col-span-1 row-span-1 lg:block" src="assets/images/tools/photoshop.svg" />
 
     <!--projects-->
     <div id="projects" class="light:bg-[var(--black)] light:text-[color:var(--white)] flex scroll-mt-30 flex-col justify-between gap-10 p-5">
-      <h2 class="lg:aspect-square">{{ t('menu-projects') }}</h2>
+      <h2>{{ t('menu-projects') }}</h2>
       <p>{{ t('projects-paragraph') }}</p>
     </div>
     <div class="light:bg-[var(--yellow)] flex hidden gap-5 p-5 lg:block"></div>
 
     <div class="swiper mySwiper lg: z-0! lg:col-span-2">
-      <div class="swiper-pagination light:bg-[var(--yellow)] relative! bottom-0! flex! w-fit! gap-5! p-5! lg:absolute"></div>
-      <div class="swiper-wrapper grid h-auto! grid-cols-2">
+      <div class="swiper-pagination light:bg-[var(--yellow)] relative! bottom-0! flex! w-full! gap-5! p-5! lg:px-0! lg:absolute"></div>
+      <div class="swiper-wrapper grid h-full! grid-cols-2">
         <div class="swiper-slide h-auto!">
           <project
             :project-name="t('projects-downloadPage-title')"

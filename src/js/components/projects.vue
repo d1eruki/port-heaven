@@ -1,12 +1,7 @@
 <template>
-  <div class="light:bg-[var(--white)] grid h-full flex-row lg:grid-cols-1 lg:flex-col">
-    <div class="light:bg-[var(--yellow)] flex flex-col justify-between">
-      <h3 class="light:text-[var(--black)] p-5">{{ projectName }}</h3>
-      <div class="flex h-fit w-full justify-end">
-        <CustomButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
-      </div>
-    </div>
-    <div class="col-span-1 flex flex-col gap-10 p-5 lg:col-span-2">
+  <div class="light:bg-[var(--white)] grid h-full flex-row justify-between  lg:grid-cols-1 lg:flex-col">
+    <div class="flex flex-col gap-10 p-5">
+      <h3 class="light:text-[var(--black)]">{{ projectName }}</h3>
       <p class="light:text-[var(--grey)]!">{{ projectDescription }}</p>
       <h4>{{ t("projects-stat-after-launch") }}</h4>
       <p class="text-[var(--grey)]!">{{ projectResult }}</p>
@@ -16,6 +11,9 @@
           <p class="text-[var(--grey)]!">{{ statistic }}</p>
         </div>
       </div>
+    </div>
+    <div class="flex h-fit w-full justify-end">
+      <CustomButton v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
     </div>
   </div>
 </template>

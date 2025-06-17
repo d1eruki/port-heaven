@@ -1,5 +1,5 @@
 <template>
-  <div class="light:bg-[var(--black)] flex flex-col justify-between gap-10 p-5">
+  <div class="light:bg-[var(--black)] border-l light:lg:border-[color:var(--grey)] flex flex-col justify-between gap-10 p-5">
     <div class="flex flex-col gap-10">
       <span class="biryani light:text-[color:var(--yellow)] text-9xl">{{ number }}</span>
       <h3 class="light:text-[color:var(--white)]">{{ title }}</h3>
