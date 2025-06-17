@@ -22,7 +22,7 @@
 
     <header class="sticky top-0 z-5 col-span-1 h-fit w-full lg:col-span-4">
       <p id="banner" class="light:bg-[var(--yellow)] flex hidden h-10 w-full content-center text-center">{{ t('development') }}</p>
-      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] lg:absolute top-0 z-2"></div>
+      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute top-0 z-2"></div>
       <div class="light:bg-[var(--black)] flex w-full flex-col justify-between md:h-20 md:flex-row lg:items-center">
         <p class="jost hidden pl-5 tracking-widest lg:block">{{ t('logo') }}</p>
         <div class="flex h-full w-full flex-wrap justify-between gap-y-0 lg:w-fit">
@@ -36,14 +36,14 @@
     </header>
 
     <div></div>
-    <div id="about" class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5  lg:col-span-2">
+    <div id="about" class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5 lg:col-span-2">
       <h2>{{ t('menu-me') }}</h2>
       <p class="">{{ t('about-paragraph') }}</p>
     </div>
-    <contacts></contacts>
+    <contacts class="col-span-1"></contacts>
 
     <!--principles-->
-    <h2 id="principles" class="scroll-mt-30 p-5 lg:aspect-square" style="writing-mode: sideways-lr;">{{ t('menu-principles') }}</h2>
+    <h2 id="principles" class="lg:writing-sideways-lr col-span-1 scroll-mt-30 p-5">{{ t('menu-principles') }}</h2>
     <Principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></Principles>
     <Principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></Principles>
     <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
@@ -51,20 +51,19 @@
     <!--tools-->
     <img alt="" class="hidden w-full mix-blend-hard-light grayscale lg:block" src="assets/images/tools/figma.svg" />
     <h2 id="tools" class="scroll-mt-30 p-5">{{ t('menu-tools') }}</h2>
-    <p class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5  lg:col-span-2">{{ t('tools-paragraph') }}</p>
+    <p class="light:bg-[var(--white)] light:text-[color:var(--black)] col-span-1 flex flex-col gap-5 p-5 lg:col-span-2">{{ t('tools-paragraph') }}</p>
 
     <!--projects-->
     <div id="projects" class="light:bg-[var(--black)] light:text-[color:var(--white)] flex scroll-mt-30 flex-col justify-between gap-10 p-5">
       <h2 class="lg:aspect-square">{{ t('menu-projects') }}</h2>
       <p>{{ t('projects-paragraph') }}</p>
     </div>
-    <div class="light:bg-[var(--yellow)] flex hidden gap-5 p-5 lg:block">
-    </div>
+    <div class="light:bg-[var(--yellow)] flex hidden gap-5 p-5 lg:block"></div>
 
-    <div class="swiper z-0! mySwiper lg:col-span-3 col-span-1 grid-cols-3">
-      <div class="swiper-pagination light:bg-[var(--yellow)] col-span-1 relative! lg:absolute bottom-0! flex! w-fit! gap-5! p-5!"></div>
-      <div class="swiper-wrapper h-auto!">
-        <div class="swiper-slide h-auto!">
+    <div class="swiper mySwiper z-0! col-span-2 lg:col-span-2">
+      <div class="swiper-pagination light:bg-[var(--yellow)] relative! bottom-0! col-span-1 flex! w-fit! gap-5! p-5! lg:absolute"></div>
+      <div class="swiper-wrapper grid h-auto! grid-cols-2">
+        <div class="swiper-slide col-span-1 h-auto!">
           <project
             :project-name="t('projects-downloadPage-title')"
             :project-description="t('projects-downloadPage-paragraph')"
@@ -82,7 +81,7 @@
             :project-result="t('projects-downloadPage-result')"
           ></project>
         </div>
-        <div class="swiper-slide h-auto!">
+        <div class="swiper-slide col-span-1 h-auto!">
           <project
             :project-name="t('projects-registry-title')"
             :project-description="t('projects-registry-paragraph')"
@@ -98,7 +97,7 @@
             :project-result="t('projects-registry-result')"
           ></project>
         </div>
-        <div class="swiper-slide h-auto!">
+        <div class="swiper-slide col-span-1 h-auto!">
           <project
             :project-name="t('projects-xrms-title')"
             :project-description="t('projects-xrms-paragraph')"
@@ -117,8 +116,7 @@
     </div>
 
     <!--design-->
-    <div></div>
-    <div id="design" class="light:bg-[var(--yellow)] light:text-[color:var(--black)] col-span-2 row-span-2 justify-between flex scroll-mt-30 flex-col gap-10 p-5">
+    <div id="design" class="light:bg-[var(--yellow)] light:text-[color:var(--black)] col-span-2 row-span-2 flex scroll-mt-30 flex-col justify-between gap-10 p-5">
       <h2>{{ t('menu-design') }}</h2>
       <p class="light:text-[color:var(--black)]!">{{ t('design-paragraph') }}</p>
     </div>
@@ -127,7 +125,7 @@
     <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></items>
     <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/3-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9F%D0%B8%D0%BE%D0%BD%D0%B5%D1%80?node-id=22-20&t=wfIEsNfXeRBmDyeO-1" item-img-alt=""></items>
 
-    <footer class="light:bg-[var(--yellow)] light:lg:bg-[var(--black)] fixed right-0 bottom-0 left-0 col-span-1 m-[12px] grid h-[98px] grid-cols-2 content-center items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:relative lg:col-span-1 lg:m-0 lg:aspect-square lg:h-auto lg:grid-cols-1 lg:content-end lg:rounded-none lg:p-5">
+    <footer id="footer" class="light:bg-[var(--yellow)] light:lg:bg-[var(--black)] fixed right-0 bottom-0 left-0 col-span-1 m-[12px] grid h-[98px] grid-cols-2 content-center items-center justify-between rounded-[42px] px-[21px] py-[19px] lg:relative lg:col-span-2 lg:m-0 lg:h-auto lg:grid-cols-1 lg:content-end lg:rounded-none lg:p-5">
       <p class="light:text-[color:var(--black)]! light:lg:text-[color:var(--white)]! col-span-1 lg:text-[1.5rem]!">{{ t('footer-copyright') }}</p>
       <div class="light:lg:bg-[var(--black)] right-0 bottom-0 z-50 flex justify-end gap-5 lg:fixed lg:p-5">
         <p id="scroll-to-top" class="light:lg:text-[color:var(--white)]! light:text-[color:var(--black)]!">{{ t('footer-scroll-up') }}</p>
@@ -135,7 +133,7 @@
       </div>
       <Icons icon="theme-toggler" class="hidden"></Icons>
     </footer>
-    <contacts class="mb-32 lg:mb-0"></contacts>
+    <contacts class="col-span-1 mb-32 lg:col-span-2 lg:mb-0"></contacts>
 
     <div class="noise pointer-events-none z-10 block mix-blend-lighten"></div>
     <div class="dotted-grid fixed top-0 left-0 -z-2 block h-full w-full dark:hidden"></div>
