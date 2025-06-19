@@ -10,6 +10,7 @@ $pink: hsl(314 97% 44%);
 $purple: hsl(248 65% 50%);
 $yellow: hsl(73, 100%, 50%);
 $blue: hsl(220, 100%, 50%);
+$green: hsl(108, 100%, 50%);
 $grey: hsl(0 0% 50%);
 $grey-light: hsl(0 0% 70%);
 $grey-dark: hsl(0 0% 20%);
@@ -23,6 +24,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   --purple: #{$purple};
   --yellow: #{$yellow};
   --blue: #{$blue};
+  --green: #{$green};
   --grey: #{$grey};
   --grey-light: #{$grey-light};
   --grey-dark: #{$grey-dark};
@@ -72,7 +74,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .active {
-    background-color: $yellow;
+    background-color: $green;
     color: $black;
 
     &:hover {
@@ -287,57 +289,109 @@ polygon.star {
   transform-box: fill-box;
 }
 
-header {
-  a {
-    font-size: 1.5rem;
-  }
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Actay", sans-serif;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-family: "Actay", sans-serif;
-  font-size: 15rem;
-  text-transform: uppercase;
+  font-size: 2.5rem;
+  line-height: calc(var(--spacing) * 10);
 }
 
 h2 {
-  font-family: "Actay", sans-serif;
-  font-size: 6rem;
-  text-transform: uppercase;
-  line-height: 1;
+  font-size: 2rem;
 }
 
 h3 {
-  font-family: "Actay", sans-serif;
-  font-size: 2.75rem;
-  text-transform: uppercase;
+  font-size: 1.25rem;
 }
 
 h4 {
-  font-family: "Actay", sans-serif;
-  font-size: 1.5rem;
-  text-transform: uppercase;
+  font-size: 1rem;
 }
 
-p,
-a {
-  font-size: 1.25rem;
-  font-weight: 300;
+p {
+  font-size: 1rem;
 }
 
 header {
   a {
-    font-size: 1.75rem;
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 80rem) {
-  //1280px xl
+@media (min-width: 48rem) {
+  //768 md
   h1 {
-    font-size: 2.5rem;
+    font-size: 7.5rem;
+    line-height: calc(var(--spacing) * 25);
   }
 
   h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
     font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  header {
+    a {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@media (min-width: 64rem) {
+  //1024 lg
+  h1 {
+    font-size: 10rem;
+    line-height: calc(var(--spacing) * 35);
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  header {
+    a {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@media (min-width: 80rem) {
+  //1280 xl
+  h1 {
+    font-size: 10rem;
+  }
+
+  h2 {
+    font-size: 4rem;
   }
 
   h3 {
@@ -348,6 +402,10 @@ header {
     font-size: 1rem;
   }
 
+  p {
+    font-size: 1rem;
+  }
+
   header {
     a {
       font-size: 1rem;
@@ -355,8 +413,38 @@ header {
   }
 }
 
+@media (min-width: 96rem) {
+  //1536 2xl
+  h1 {
+    font-size: 15rem;
+    line-height: calc(var(--spacing) * 50);
+  }
+
+  h2 {
+    font-size: 6rem;
+  }
+
+  h3 {
+    font-size: 2.75rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  header {
+    a {
+      font-size: 1.75rem;
+    }
+  }
+}
+
 @media (min-width: 120rem) {
-  //1920px 3xl
+  //1920 3xl
   h1 {
     font-size: 15rem;
   }
@@ -373,15 +461,43 @@ header {
     font-size: 1.5rem;
   }
 
+  p {
+    font-size: 1rem;
+  }
+
   header {
     a {
       font-size: 1.75rem;
     }
   }
+}
 
-  p,
-  a {
+@media (min-width: 160rem) {
+  //2560 4xl
+  h1 {
+    font-size: 15rem;
+  }
+
+  h2 {
+    font-size: 6rem;
+  }
+
+  h3 {
+    font-size: 2.75rem;
+  }
+
+  h4 {
     font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  header {
+    a {
+      font-size: 1.75rem;
+    }
   }
 }
 
