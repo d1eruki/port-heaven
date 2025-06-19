@@ -23,16 +23,16 @@
     <header class="sticky top-0 z-5 h-fit w-full lg:col-span-4">
       <p id="banner" class="light:bg-[var(--green)] flex hidden h-10 w-full content-center text-center">{{ t('development') }}</p>
       <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute top-0 z-2"></div>
-      <div class="light:bg-[var(--black)] flex w-full flex-col justify-between md:h-20 md:flex-row lg:items-center">
+      <div class="light:bg-[var(--black)] flex w-full flex-col justify-between gap-5 md:h-fit md:flex-row lg:items-center">
         <a href="#me" class="jost hidden pl-5 tracking-widest lg:block">{{ t('logo') }}</a>
-        <div class="flex h-full w-full flex-wrap items-center justify-between gap-0 lg:w-fit">
-          <a data-open-block="about" class="h-full w-fit content-center px-5" href="#about">{{ t('menu-about') }}</a>
-          <a data-open-block="principles" class="h-full w-fit content-center px-5" href="#principles">{{ t('menu-principles') }}</a>
-          <a data-open-block="tools" class="h-full w-fit content-center px-5" href="#tools">{{ t('menu-tools') }}</a>
-          <a data-open-block="projects" class="h-full w-fit content-center px-5" href="#projects">{{ t('menu-projects') }}</a>
-          <a data-open-block="design" class="h-full w-fit content-center px-5" href="#design">{{ t('menu-design') }}</a>
+        <div class="flex h-fit w-full flex-wrap items-center lg:justify-between gap-0 lg:w-fit">
+          <nav-button nav-name="about"></nav-button>
+          <nav-button nav-name="principles"></nav-button>
+          <nav-button nav-name="tools"></nav-button>
+          <nav-button nav-name="projects"></nav-button>
+          <nav-button nav-name="design"></nav-button>
           <a data-open-block="footer" class="hidden h-full w-fit content-center px-5 lg:block" href="#footer">{{ t('menu-footer') }}</a>
-          <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="m-5 h-6 w-6 cursor-pointer" />
+          <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="m-2 lg:m-5 h-6 w-6 cursor-pointer" />
         </div>
       </div>
     </header>

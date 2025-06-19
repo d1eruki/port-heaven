@@ -298,206 +298,33 @@ h4 {
 }
 
 h1 {
-  font-size: 2.5rem;
-  line-height: calc(var(--spacing) * 10);
+  font-size: clamp(2.5rem, 12.5vw, 17.5rem);
+  line-height: 12.5vw;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: clamp(1rem, 0.286rem + 3.571vw, 6rem);
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 0.571rem + 2.143vw, 4rem);
 }
 
 h4 {
-  font-size: 1rem;
+  font-size: clamp(1rem, 0.714rem + 1.429vw, 3rem);
+}
+
+.numbers {
+  font-size: clamp(4rem, 2.429rem + 7.857vw, 15rem);
 }
 
 p {
-  font-size: 1rem;
+  font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
 }
 
 header {
   a {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 48rem) {
-  //768 md
-  h1 {
-    font-size: 7.5rem;
-    line-height: calc(var(--spacing) * 25);
-  }
-
-  h2 {
-    font-size: 3rem;
-  }
-
-  h3 {
-    font-size: 2rem;
-  }
-
-  h4 {
-    font-size: 1.25rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  header {
-    a {
-      font-size: 1.25rem;
-    }
-  }
-}
-
-@media (min-width: 64rem) {
-  //1024 lg
-  h1 {
-    font-size: 10rem;
-    line-height: calc(var(--spacing) * 35);
-  }
-
-  h2 {
-    font-size: 3rem;
-  }
-
-  h3 {
-    font-size: 2rem;
-  }
-
-  h4 {
-    font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 1.25rem;
-  }
-
-  header {
-    a {
-      font-size: 1.25rem;
-    }
-  }
-}
-
-@media (min-width: 80rem) {
-  //1280 xl
-  h1 {
-    font-size: 10rem;
-  }
-
-  h2 {
-    font-size: 4rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  h4 {
-    font-size: 1rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  header {
-    a {
-      font-size: 1rem;
-    }
-  }
-}
-
-@media (min-width: 96rem) {
-  //1536 2xl
-  h1 {
-    font-size: 15rem;
-    line-height: calc(var(--spacing) * 50);
-  }
-
-  h2 {
-    font-size: 6rem;
-  }
-
-  h3 {
-    font-size: 2.75rem;
-  }
-
-  h4 {
-    font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  header {
-    a {
-      font-size: 1.75rem;
-    }
-  }
-}
-
-@media (min-width: 120rem) {
-  //1920 3xl
-  h1 {
-    font-size: 15rem;
-  }
-
-  h2 {
-    font-size: 6rem;
-  }
-
-  h3 {
-    font-size: 2.75rem;
-  }
-
-  h4 {
-    font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  header {
-    a {
-      font-size: 1.75rem;
-    }
-  }
-}
-
-@media (min-width: 160rem) {
-  //2560 4xl
-  h1 {
-    font-size: 15rem;
-  }
-
-  h2 {
-    font-size: 6rem;
-  }
-
-  h3 {
-    font-size: 2.75rem;
-  }
-
-  h4 {
-    font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  header {
-    a {
-      font-size: 1.75rem;
-    }
+    font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
   }
 }
 

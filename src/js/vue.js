@@ -6,6 +6,7 @@ import Icons from "./components/icons.vue";
 import Items from "./components/items.vue";
 import Contacts from "./components/contacts.vue";
 import CustomButtons from "./components/custom-button.vue";
+import NavButton from "./components/nav-button.vue";
 import i18n from "./i18n";
 import { useI18n } from "vue-i18n";
 
@@ -22,6 +23,7 @@ app.component("Principles", Principles);
 app.component("Icons", Icons);
 app.component("Items", Items);
 app.component("CustomButtons", CustomButtons);
+app.component("NavButton", NavButton);
 app.component("Contacts", Contacts);
 app.use(i18n);
 app.mount("#app");

@@ -10,17 +10,14 @@ const props = defineProps({
   itemName: {
     type: String,
     required: true,
-    default: "Default Title",
   },
   itemDesc: {
     type: String,
     required: true,
-    default: "Default Description",
   },
   itemUrl: {
     type: String,
     required: true,
-    default: "https://www.youtube.com/",
   },
 });
 </script>
