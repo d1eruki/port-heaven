@@ -37,19 +37,19 @@ const props = defineProps({
   },
   width: {
     type: [String, Number],
-    default: 'clamp(1rem, 0.429rem + 2.857vw, 5rem)',
+    default: "clamp(1rem, 0.429rem + 2.857vw, 5rem)",
   },
   height: {
     type: [String, Number],
-    default: 'clamp(1rem, 0.429rem + 2.857vw, 5rem)',
+    default: "clamp(1rem, 0.429rem + 2.857vw, 5rem)",
   },
   minWidth: {
     type: [String, Number],
-    default: 'clamp(1rem, 0.429rem + 2.857vw, 5rem)',
+    default: "clamp(1rem, 0.429rem + 2.857vw, 5rem)",
   },
   minHeight: {
     type: [String, Number],
-    default: 'clamp(1rem, 0.429rem + 2.857vw, 5rem)',
+    default: "clamp(1rem, 0.429rem + 2.857vw, 5rem)",
   },
 });
 

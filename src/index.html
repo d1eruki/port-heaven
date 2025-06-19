@@ -32,7 +32,7 @@
           <nav-button nav-name="projects"></nav-button>
           <nav-button nav-name="design"></nav-button>
           <nav-button nav-name="footer"></nav-button>
-          <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="hidden lg:flex m-2 h-6 w-6 cursor-pointer lg:m-5" />
+          <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="m-2 hidden h-6 w-6 cursor-pointer lg:m-5 lg:flex" />
         </div>
       </div>
     </header>
@@ -136,9 +136,9 @@
     <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></items>
     <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/3-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9F%D0%B8%D0%BE%D0%BD%D0%B5%D1%80?node-id=22-20&t=wfIEsNfXeRBmDyeO-1" item-img-alt=""></items>
 
-    <footer id="footer" class="light:bg-[var(--black)] grid h-fit grid-cols-3 lg:grid-cols-2 content-center items-center items-end justify-between p-5 lg:col-span-1 lg:content-end">
+    <footer id="footer" class="light:bg-[var(--black)] grid h-fit grid-cols-3 content-center items-center items-end justify-between p-5 lg:col-span-1 lg:grid-cols-2 lg:content-end">
       <h4 class="light:text-[color:var(--white)]">{{ t('footer-copyright') }}</h4>
-      <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="justify-self-center flex lg:hidden flex h-6 w-6 cursor-pointer lg:m-5" />
+      <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="flex h-6 w-6 cursor-pointer justify-self-center lg:m-5 lg:hidden" />
       <p id="scroll-to-top" class="light:text-[color:var(--white)] justify-self-end">{{ t('footer-scroll-up') }}</p>
       <Icons icon="theme-toggler" class="hidden"></Icons>
     </footer>
