@@ -23,7 +23,7 @@
     <header class="sticky top-0 z-5 h-fit w-full lg:col-span-4">
       <p id="banner" class="light:bg-[var(--green)] flex hidden h-10 w-full content-center text-center">{{ t('development') }}</p>
       <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute top-0 z-2"></div>
-      <div class="light:bg-[var(--black)] flex w-full flex-col justify-between gap-5 md:h-fit md:flex-row lg:items-center">
+      <div class="light:bg-[var(--black)] flex w-full flex-col justify-between gap-5 md:h-full md:flex-row lg:items-center">
         <a href="#me" class="jost hidden pl-5 tracking-widest lg:block">{{ t('logo') }}</a>
         <div class="flex h-fit w-full flex-wrap items-center lg:justify-between gap-0 lg:w-fit">
           <nav-button nav-name="about"></nav-button>
@@ -31,19 +31,19 @@
           <nav-button nav-name="tools"></nav-button>
           <nav-button nav-name="projects"></nav-button>
           <nav-button nav-name="design"></nav-button>
-          <a data-open-block="footer" class="hidden h-full w-fit content-center px-5 lg:block" href="#footer">{{ t('menu-footer') }}</a>
+          <nav-button nav-name="footer"></nav-button>
           <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="m-2 lg:m-5 h-6 w-6 cursor-pointer" />
         </div>
       </div>
     </header>
 
-    <div class="hidden self-end lg:flex">
-      <div class="light:bg-[var(--green)]">
+    <div class="hidden h-full lg:flex rows-span-2 light:bg-[var(--black)]">
+      <div class="light:bg-[var(--green)] h-fit self-end">
         <img alt="" class="grayscale" src="assets/images/me.png" />
       </div>
     </div>
-    <div id="about" class="light:text-[color:var(--black)] flex flex-col justify-between gap-5 p-5 lg:col-span-2">
-      <h2>{{ t('about-title') }}</h2>
+    <div id="about" class="light:bg-[var(--black)] flex flex-col gap-5 p-5 lg:col-span-2">
+      <h2 class="light:text-[color:var(--white)] ">{{ t('about-title') }}</h2>
       <p class="">{{ t('about-paragraph') }}</p>
     </div>
     <contacts class="lg:col-span-1"></contacts>
