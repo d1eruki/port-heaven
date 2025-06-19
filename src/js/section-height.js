@@ -1,3 +1,15 @@
+function throttle(func, delay) {
+  let timeoutId;
+  return function (...args) {
+    if (!timeoutId) {
+      timeoutId = setTimeout(() => {
+        func.apply(this, args);
+        timeoutId = null;
+      }, delay);
+    }
+  };
+}
+
 function applyHeights() {
   const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
   const minWidthPx = 64 * remInPx;
@@ -10,22 +22,32 @@ function applyHeights() {
   const middleElements = elementsWithId.slice(1, -1);
   const lastEl = elementsWithId[elementsWithId.length - 1];
 
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  header.style.height = "";
+
   if (isMobile) {
     middleElements.forEach((el) => (el.style.minHeight = ""));
     lastEl.style.minHeight = "";
     return;
   }
 
-  const header = document.querySelector("header");
-  const headerHeight = header ? header.offsetHeight : 0;
+  const headerHeightRaw = header.offsetHeight;
+  const headerHeight = Math.round(headerHeightRaw);
+  header.style.height = headerHeight + "px";
+
   const screenHeight = window.innerHeight;
 
   middleElements.forEach((el) => {
-    el.style.minHeight = screenHeight - headerHeight + "px";
+    const calculatedHeight = screenHeight - headerHeight;
+    el.style.minHeight = calculatedHeight + "px";
   });
 
   lastEl.style.minHeight = screenHeight - headerHeight + "px";
 }
 
+const throttledApplyHeights = throttle(applyHeights, 100);
+
 window.addEventListener("DOMContentLoaded", applyHeights);
-window.addEventListener("resize", applyHeights);
+window.addEventListener("resize", throttledApplyHeights);
