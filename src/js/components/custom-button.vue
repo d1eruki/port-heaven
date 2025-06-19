@@ -10,12 +10,10 @@ const props = defineProps({
   url: {
     type: String,
     required: true,
-    default: "https://www.google.com/",
   },
   name: {
     type: String,
     required: true,
-    default: "https://www.google.com/",
   },
 });
 </script>

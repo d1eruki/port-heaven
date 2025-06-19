@@ -10,6 +10,7 @@ $pink: hsl(314 97% 44%);
 $purple: hsl(248 65% 50%);
 $yellow: hsl(73, 100%, 50%);
 $blue: hsl(220, 100%, 50%);
+$green: hsl(108, 100%, 50%);
 $grey: hsl(0 0% 50%);
 $grey-light: hsl(0 0% 70%);
 $grey-dark: hsl(0 0% 20%);
@@ -23,6 +24,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   --purple: #{$purple};
   --yellow: #{$yellow};
   --blue: #{$blue};
+  --green: #{$green};
   --grey: #{$grey};
   --grey-light: #{$grey-light};
   --grey-dark: #{$grey-dark};
@@ -72,7 +74,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .active {
-    background-color: $yellow;
+    background-color: $green;
     color: $black;
 
     &:hover {
@@ -287,101 +289,42 @@ polygon.star {
   transform-box: fill-box;
 }
 
-header {
-  a {
-    font-size: 1.5rem;
-  }
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Actay", sans-serif;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-family: "Actay", sans-serif;
-  font-size: 15rem;
-  text-transform: uppercase;
+  font-size: clamp(2.5rem, 12.5vw, 17.5rem);
+  line-height: 12.5vw;
 }
 
 h2 {
-  font-family: "Actay", sans-serif;
-  font-size: 6rem;
-  text-transform: uppercase;
-  line-height: 1;
+  font-size: clamp(1rem, 0.286rem + 3.571vw, 6rem);
 }
 
 h3 {
-  font-family: "Actay", sans-serif;
-  font-size: 2.75rem;
-  text-transform: uppercase;
+  font-size: clamp(1rem, 0.571rem + 2.143vw, 4rem);
 }
 
 h4 {
-  font-family: "Actay", sans-serif;
-  font-size: 1.5rem;
-  text-transform: uppercase;
+  font-size: clamp(1rem, 0.714rem + 1.429vw, 3rem);
 }
 
-p,
-a {
-  font-size: 1.25rem;
-  font-weight: 300;
+.numbers {
+  font-size: clamp(4rem, 2.429rem + 7.857vw, 15rem);
+}
+
+p {
+  font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
 }
 
 header {
   a {
-    font-size: 1.75rem;
-  }
-}
-
-@media (max-width: 80rem) {
-  //1280px xl
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  h4 {
-    font-size: 1rem;
-  }
-
-  header {
-    a {
-      font-size: 1rem;
-    }
-  }
-}
-
-@media (min-width: 120rem) {
-  //1920px 3xl
-  h1 {
-    font-size: 15rem;
-  }
-
-  h2 {
-    font-size: 6rem;
-  }
-
-  h3 {
-    font-size: 2.75rem;
-  }
-
-  h4 {
-    font-size: 1.5rem;
-  }
-
-  header {
-    a {
-      font-size: 1.75rem;
-    }
-  }
-
-  p,
-  a {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
   }
 }
 

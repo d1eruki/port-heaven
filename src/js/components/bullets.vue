@@ -14,7 +14,6 @@ const props = defineProps({
   text: {
     type: String,
     required: true,
-    default: "default text",
   },
 });
 </script>

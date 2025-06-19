@@ -13,36 +13,36 @@
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="3xl:max-w-[1920px] relative container max-w-full justify-self-center whitespace-pre-line lg:grid lg:grid-cols-4">
+  <body lang="ru" id="app" class="relative container max-w-full justify-self-center whitespace-pre-line lg:grid lg:grid-cols-4">
     <!--me-->
     <div id="me" class="light:bg-[var(--black)] relative z-7 min-h-dvh content-end lg:col-span-4">
-      <h1 class="light:text-[color:var(--white)] px-5 xl:leading-45">{{ t('hero') }}</h1>
+      <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
       <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
     </div>
 
     <header class="sticky top-0 z-5 h-fit w-full lg:col-span-4">
-      <p id="banner" class="light:bg-[var(--yellow)] flex hidden h-10 w-full content-center text-center">{{ t('development') }}</p>
+      <p id="banner" class="light:bg-[var(--green)] flex hidden h-10 w-full content-center text-center">{{ t('development') }}</p>
       <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute top-0 z-2"></div>
-      <div class="light:bg-[var(--black)] flex w-full flex-col justify-between md:h-20 md:flex-row lg:items-center">
+      <div class="light:bg-[var(--black)] flex w-full flex-col justify-between gap-5 md:h-fit md:flex-row lg:items-center">
         <a href="#me" class="jost hidden pl-5 tracking-widest lg:block">{{ t('logo') }}</a>
-        <div class="flex h-full w-full flex-wrap items-center justify-between gap-0 lg:w-fit">
-          <a data-open-block="about" class="h-full w-fit content-center px-5" href="#about">{{ t('menu-about') }}</a>
-          <a data-open-block="principles" class="h-full w-fit content-center px-5" href="#principles">{{ t('menu-principles') }}</a>
-          <a data-open-block="tools" class="h-full w-fit content-center px-5" href="#tools">{{ t('menu-tools') }}</a>
-          <a data-open-block="projects" class="h-full w-fit content-center px-5" href="#projects">{{ t('menu-projects') }}</a>
-          <a data-open-block="design" class="h-full w-fit content-center px-5" href="#design">{{ t('menu-design') }}</a>
+        <div class="flex h-fit w-full flex-wrap items-center lg:justify-between gap-0 lg:w-fit">
+          <nav-button nav-name="about"></nav-button>
+          <nav-button nav-name="principles"></nav-button>
+          <nav-button nav-name="tools"></nav-button>
+          <nav-button nav-name="projects"></nav-button>
+          <nav-button nav-name="design"></nav-button>
           <a data-open-block="footer" class="hidden h-full w-fit content-center px-5 lg:block" href="#footer">{{ t('menu-footer') }}</a>
-          <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="m-5 h-6 w-6 cursor-pointer" />
+          <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="m-2 lg:m-5 h-6 w-6 cursor-pointer" />
         </div>
       </div>
     </header>
 
     <div class="hidden self-end lg:flex">
-      <div class="light:bg-[var(--yellow)]">
+      <div class="light:bg-[var(--green)]">
         <img alt="" class="grayscale" src="assets/images/me.png" />
       </div>
     </div>
-    <div id="about" class="light:text-[color:var(--black)] flex flex-col gap-5 p-5 lg:col-span-2">
+    <div id="about" class="light:text-[color:var(--black)] flex flex-col justify-between gap-5 p-5 lg:col-span-2">
       <h2>{{ t('about-title') }}</h2>
       <p class="">{{ t('about-paragraph') }}</p>
     </div>
@@ -53,12 +53,12 @@
       <Principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></Principles>
       <Principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></Principles>
       <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
-      <h2 class="light:bg-[var(--yellow)] writing-sideways-lr order-first scroll-mt-30 p-5 lg:order-last">{{ t('menu-principles') }}</h2>
+      <h2 class="light:bg-[var(--green)] writing-sideways-lr order-first scroll-mt-30 p-5 lg:order-last">{{ t('menu-principles') }}</h2>
     </div>
 
     <!--tools-->
     <img alt="" class="hidden w-full mix-blend-hard-light grayscale lg:col-span-1 lg:row-span-1" src="assets/images/tools/figma.svg" />
-    <div id="tools" class="light:bg-[var(--yellow)] flex flex-col justify-between gap-5 p-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1">
+    <div id="tools" class="light:bg-[var(--green)] flex flex-col justify-between gap-5 p-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1">
       <h2 class="light:text-[color:var(--black)]! scroll-mt-30 lg:col-span-4">{{ t('menu-tools') }}</h2>
       <p class="light:text-[color:var(--black)]! flex flex-col lg:col-span-3">{{ t('tools-paragraph') }}</p>
     </div>
@@ -69,10 +69,10 @@
       <h2>{{ t('menu-projects') }}</h2>
       <p>{{ t('projects-paragraph') }}</p>
     </div>
-    <div class="light:bg-[var(--yellow)] flex hidden gap-5 p-5 lg:block"></div>
+    <div class="light:bg-[var(--green)] flex hidden gap-5 p-5 lg:block"></div>
 
     <div class="swiper mySwiper z-0! flex! flex-col lg:col-span-2">
-      <div class="swiper-pagination light:bg-[var(--yellow)] static! flex! w-full! gap-5! p-5! lg:px-0!"></div>
+      <div class="swiper-pagination light:bg-[var(--green)] static! flex! w-full! gap-5! p-5! lg:px-0!"></div>
       <div class="swiper-wrapper">
         <project
           :project-name="t('projects-downloadPage-title')"
@@ -123,7 +123,7 @@
     </div>
 
     <!--design-->
-    <div id="design" class="light:bg-[var(--yellow)] light:text-[color:var(--black)] row-span-2 flex scroll-mt-30 flex-col justify-between gap-5 p-5 lg:col-span-2">
+    <div id="design" class="light:bg-[var(--green)] light:text-[color:var(--black)] row-span-2 flex scroll-mt-30 flex-col justify-between gap-5 p-5 lg:col-span-2">
       <h2>{{ t('menu-design') }}</h2>
       <p class="light:text-[color:var(--black)]!">{{ t('design-paragraph') }}</p>
     </div>
