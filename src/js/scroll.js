@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (lastMatchedIndex !== -1) {
       setActiveLinkByIndex(lastMatchedIndex);
+    } else {
+      headerLinks.forEach((link) => link.classList.remove("active"));
     }
   }
 
@@ -50,7 +52,15 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", updateActiveLink);
 
   if (scrollIcon) {
-    scrollIcon.style.display = "none"; // скрываем изначально
+    const styleElement = document.createElement("style");
+    styleElement.textContent = `
+      a[data-open-block] {
+        transition: all 0.3s ease;
+      }
+    `;
+    document.head.appendChild(styleElement);
+
+    scrollIcon.style.display = "none";
 
     function toggleScrollButton() {
       scrollIcon.style.display = window.scrollY > 300 ? "block" : "none";

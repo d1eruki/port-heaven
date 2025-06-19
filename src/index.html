@@ -20,9 +20,8 @@
       <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
     </div>
 
-    <header class="sticky top-0 z-5 h-fit w-full lg:col-span-4">
-      <p id="banner" class="light:bg-[var(--green)] flex hidden h-10 w-full content-center text-center">{{ t('development') }}</p>
-      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute top-0 z-2"></div>
+    <header class="sticky top-0 z-5 h-fit w-full lg:col-span-4 light:bg-[var(--black)]">
+      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] lg:absolute top-0 z-2"></div>
       <div class="light:bg-[var(--black)] flex w-full flex-col justify-between gap-5 md:h-full md:flex-row lg:items-center">
         <a href="#me" class="jost hidden pl-5 tracking-widest lg:flex">{{ t('logo') }}</a>
         <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit lg:justify-between">
@@ -139,7 +138,7 @@
     <footer id="footer" class="light:bg-[var(--black)] grid h-fit grid-cols-3 content-center items-center items-end justify-between p-5 lg:col-span-1 lg:grid-cols-2 lg:content-end">
       <h4 class="light:text-[color:var(--white)]">{{ t('footer-copyright') }}</h4>
       <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="flex h-6 w-6 cursor-pointer justify-self-center lg:m-5 lg:hidden" />
-      <p id="scroll-to-top" class="light:text-[color:var(--white)] justify-self-end">{{ t('footer-scroll-up') }}</p>
+      <a id="scroll-to-top" class="light:text-[color:var(--white)] justify-self-end">{{ t('footer-scroll-up') }}</a>
       <Icons icon="theme-toggler" class="hidden"></Icons>
     </footer>
     <contacts class="lg:col-span-3"></contacts>

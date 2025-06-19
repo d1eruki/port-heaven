@@ -48,20 +48,15 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
     color: $black;
   }
 
-  header {
-    p {
-      color: $white;
-    }
+  a {
+    color: $grey;
 
-    #banner {
+    svg {
       color: $black;
     }
 
-    a {
-      color: $grey;
-      &:hover {
-        color: $white;
-      }
+    &:hover {
+      color: $white;
     }
   }
 
@@ -322,10 +317,8 @@ p {
   font-size: clamp(1rem, 0.857rem + 0.714vw, 2rem);
 }
 
-header {
-  a {
-    font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
-  }
+a {
+  font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
 }
 
 .swiper {
