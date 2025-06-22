@@ -73,7 +73,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .active {
-    background-color: $green;
+    background-color: $white;
     color: $black;
 
     &:hover {
@@ -82,7 +82,6 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .item {
-    background-color: $white;
     h4 {
       color: $black;
     }
@@ -171,7 +170,7 @@ body {
 }
 
 .dotted-grid {
-  background-image: radial-gradient($black 1px, $transparent 0);
+  background-image: radial-gradient($grey-light 1px, $transparent 0);
   background-size: 25px 25px;
 }
 
@@ -346,5 +345,5 @@ a {
 }
 
 .swiper-pagination-bullet-active {
-  background: $green !important;
+  background: $white !important;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="light:bg-[var(--green)] flex justify-between gap-10 p-5 lg:flex-col">
+  <div class="flex justify-between gap-10 p-5 lg:flex-col">
     <h2>{{ t("menu-footer") }}</h2>
     <div class="flex items-center gap-5 lg:flex-col lg:items-end">
       <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
