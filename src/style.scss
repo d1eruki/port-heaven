@@ -4,6 +4,10 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 
+@utility tab-* {
+  height: --value('inherit', 'unset');
+}
+
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);
 $pink: hsl(314 97% 44%);
@@ -337,10 +341,10 @@ a {
   height: 24px !important;
   margin: 0 !important;
   opacity: 1 !important;
-  background: $black !important;
+  background: $white !important;
   border-radius: 0 !important;
 }
 
 .swiper-pagination-bullet-active {
-  background: $white !important;
+  background: $green !important;
 }

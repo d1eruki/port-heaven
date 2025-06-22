@@ -22,7 +22,7 @@
 
     <header class="light:bg-[var(--black)] sticky top-0 z-15 h-fit w-full lg:col-span-4">
       <div id="progress-bar" class="progress-bar light:bg-[var(--white)] top-0 z-2 lg:absolute"></div>
-      <div class="light:bg-[var(--black)] z-11 flex w-full flex-col justify-between gap-5 lg:h-fit lg:flex-row lg:items-center">
+      <div class="h-[inherit] z-11 flex w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
         <a href="#me" class="jost hidden pl-5 tracking-widest lg:flex">{{ t('logo') }}</a>
         <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
           <nav-button nav-name="about"></nav-button>
@@ -61,9 +61,18 @@
 
     <!--tools-->
     <img alt="" class="hidden w-full mix-blend-hard-light grayscale lg:col-span-1 lg:row-span-1" src="assets/images/tools/figma.svg" />
-    <div id="tools" class="light:bg-[var(--green)] flex flex-col justify-between gap-5 p-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1">
-      <h2 class="light:text-[color:var(--black)]! scroll-mt-30 lg:col-span-4">{{ t('menu-tools') }}</h2>
-      <p class="light:text-[color:var(--black)]! flex flex-col lg:col-span-3">{{ t('tools-paragraph') }}</p>
+    <div id="tools" class="light:bg-[var(--green)] scroll-mt-30 flex flex-col justify-between gap-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1">
+      <div class="lg:col-span-4 grid justify-between gap-5 grid-cols-1 lg:grid-cols-4">
+        <div class="grid lg:col-span-1 grid-cols-4 gap-0 h-fit">
+          <img alt="" class="w-full h-fit" src="assets/images/tools/figma.svg" />
+          <img alt="" class="w-full h-fit" src="assets/images/tools/photoshop.svg" />
+          <img alt="" class="w-full h-fit" src="assets/images/tools/illustrator.svg" />
+          <img alt="" class="w-full h-fit" src="assets/images/tools/after-effect.svg" />
+          <img alt="" class="w-full h-fit" src="assets/images/tools/premier-pro.svg" />
+        </div>
+        <h2 class="lg:col-span-3 grid light:text-[color:var(--black)]!">{{ t('menu-tools') }}</h2>
+      </div>
+      <p class="light:text-[color:var(--black)]! flex flex-col p-5 lg:col-span-3">{{ t('tools-paragraph') }}</p>
     </div>
     <img alt="" class="hidden w-full mix-blend-hard-light grayscale lg:col-span-1 lg:row-span-1" src="assets/images/tools/photoshop.svg" />
 
@@ -74,8 +83,8 @@
     </div>
     <div class="light:bg-[var(--green)] flex hidden gap-5 p-5 lg:block"></div>
 
-    <div class="swiper mySwiper z-11! flex! flex-col lg:col-span-2">
-      <div class="swiper-pagination light:bg-[var(--green)] static! flex! w-full! gap-5! p-5! lg:px-0!"></div>
+    <div class="swiper light:bg-[var(--black)] mySwiper z-11! flex! flex-col lg:col-span-2">
+      <div class="swiper-pagination static! flex! w-full! gap-5! p-5!"></div>
       <div class="swiper-wrapper">
         <project
           :project-name="t('projects-downloadPage-title')"
