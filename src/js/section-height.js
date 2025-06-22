@@ -1,3 +1,5 @@
+import { getHeaderHeight } from "./global-variables";
+
 function throttle(func, delay) {
   let timeoutId;
   return function (...args) {
@@ -16,13 +18,12 @@ function applyHeights() {
   const isMobile = window.innerWidth < minWidthPx;
 
   const elementsWithId = Array.from(document.body.children).filter((el) => el.id);
-
   if (elementsWithId.length < 2) return;
 
   const middleElements = elementsWithId.slice(1, -1);
   const lastEl = elementsWithId[elementsWithId.length - 1];
-
   const header = document.querySelector("header");
+
   if (!header) return;
 
   header.style.height = "";
@@ -33,18 +34,17 @@ function applyHeights() {
     return;
   }
 
-  const headerHeightRaw = header.offsetHeight;
-  const headerHeight = Math.round(headerHeightRaw);
-  header.style.height = headerHeight + "px";
+  const headerHeight = Math.round(getHeaderHeight());
+  header.style.height = `${headerHeight}px`;
 
   const screenHeight = window.innerHeight;
+  const targetHeight = screenHeight - headerHeight;
 
   middleElements.forEach((el) => {
-    const calculatedHeight = screenHeight - headerHeight;
-    el.style.minHeight = calculatedHeight + "px";
+    el.style.minHeight = `${targetHeight}px`;
   });
 
-  lastEl.style.minHeight = screenHeight - headerHeight + "px";
+  lastEl.style.minHeight = `${targetHeight}px`;
 }
 
 const throttledApplyHeights = throttle(applyHeights, 100);

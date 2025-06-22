@@ -1,3 +1,5 @@
+import { getHeaderHeight } from "./global-variables";
+
 document.addEventListener("DOMContentLoaded", function () {
   const scrollIcon = document.querySelector("#scroll-to-top");
   const headerLinks = document.querySelectorAll("a[data-open-block]");
@@ -5,8 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .map((link) => {
       const id = link.getAttribute("href");
       if (!id || !id.startsWith("#")) return null;
-      const section = document.querySelector(id);
-      return section || null;
+      return document.querySelector(id);
     })
     .filter(Boolean);
 
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateActiveLink() {
-    const scrollY = window.scrollY + window.innerHeight / 3;
+    const scrollY = window.scrollY + getHeaderHeight() + 10;
     let lastMatchedIndex = -1;
 
     sections.forEach((section, i) => {
@@ -39,9 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function scrollToWithHeaderOffset(targetEl) {
-    const header = document.querySelector("header");
-    const headerHeight = header ? header.offsetHeight : 0;
-    const targetY = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight;
+    const targetY = targetEl.getBoundingClientRect().top + window.scrollY - getHeaderHeight();
 
     window.scrollTo({
       top: targetY,
@@ -50,17 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.addEventListener("scroll", updateActiveLink);
+  window.addEventListener("load", updateActiveLink);
 
   if (scrollIcon) {
-    const styleElement = document.createElement("style");
-    styleElement.textContent = `
-      a[data-open-block] {
-        transition: all 0.3s ease;
-      }
-    `;
-    document.head.appendChild(styleElement);
-
     scrollIcon.style.display = "none";
+
+    const style = document.createElement("style");
+    style.textContent = `a[data-open-block] { transition: all 0.3s ease; }`;
+    document.head.appendChild(style);
 
     function toggleScrollButton() {
       scrollIcon.style.display = window.scrollY > 300 ? "block" : "none";
@@ -70,8 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
       document.documentElement.scrollIntoView({ behavior: "smooth" });
     });
 
-    toggleScrollButton();
     window.addEventListener("scroll", toggleScrollButton);
+    toggleScrollButton();
   }
 
   headerLinks.forEach((link) => {
@@ -79,11 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const targetId = this.getAttribute("href");
       const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        scrollToWithHeaderOffset(targetEl);
-      }
+      if (targetEl) scrollToWithHeaderOffset(targetEl);
     });
   });
-
-  window.addEventListener("load", updateActiveLink);
 });
