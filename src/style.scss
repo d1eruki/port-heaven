@@ -5,7 +5,7 @@
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 
 @utility tab-* {
-  height: --value('inherit', 'unset');
+  height: --value("inherit");
 }
 
 $black: hsl(0 0% 0%);

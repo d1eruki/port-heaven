@@ -2,7 +2,7 @@
   <div class="swiper-slide flex! h-auto! flex-col! justify-between">
     <div class="flex flex-col gap-5 p-5">
       <h3 class="light:text-[var(--white)]">{{ projectName }}</h3>
-      <p class="light:text-[var(--grey)]! mb-15">{{ projectDescription }}</p>
+      <p class="light:text-[var(--grey)]! lg:mb-15">{{ projectDescription }}</p>
       <h4 class="light:text-[var(--white)]">{{ t("projects-stat-after-launch") }}</h4>
       <p class="text-[var(--grey)]!">{{ projectResult }}</p>
       <div class="flex flex-col gap-2">
