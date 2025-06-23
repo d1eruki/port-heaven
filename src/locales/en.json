@@ -29,9 +29,10 @@
 
   "projects-paragraph": "Each of these projects is more than just a set of screens. They are thoughtful solutions based on user needs, clear logic, and visual expressiveness. I’ve gone through the entire journey: from initial sketches and mistakes to the final pixel and working interface. Each project reflects my approach, style, and responsibility for the result.",
   "projects-project": "project",
-  "projects-stat-after-launch": "Results",
+  "projects-stat-after-launch": "+ Results",
   "projects-button-design": "design",
   "projects-button-site": "site",
+  "projects-open-description": "description",
 
   "projects-downloadPage-title": "Varwin XRMS Download Page",
   "projects-downloadPage-paragraph": "The goal was to increase conversion and update an outdated page. I started from scratch: conducted short interviews with marketing, identified user needs, compiled UX tasks, and created a layout. After hallway tests and revisions, I coded the final version using Bootstrap 4.",

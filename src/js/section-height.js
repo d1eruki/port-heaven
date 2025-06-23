@@ -17,11 +17,12 @@ function applyHeights() {
   const minWidthPx = 64 * remInPx;
   const isMobile = window.innerWidth < minWidthPx;
 
-  const elementsWithId = Array.from(document.body.children).filter((el) => el.id);
-  if (elementsWithId.length < 2) return;
+  // 👇 Используем data-section вместо id
+  const sectionElements = Array.from(document.querySelectorAll("[data-section]"));
+  if (sectionElements.length < 2) return;
 
-  const middleElements = elementsWithId.slice(1, -1);
-  const lastEl = elementsWithId[elementsWithId.length - 1];
+  const middleElements = sectionElements.slice(1, -1);
+  const lastEl = sectionElements[sectionElements.length - 1];
   const header = document.querySelector("header");
 
   if (!header) return;

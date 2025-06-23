@@ -1,7 +1,8 @@
 <template>
-  <div class="swiper-slide flex! h-auto! flex-col! justify-between">
+  <div class="swiper-slide col-span-1 flex! h-auto! flex-col! justify-between">
     <div class="flex flex-col gap-5 p-5">
       <h3>{{ projectName }}</h3>
+      <button data-micromodal-trigger="modal-1">{{ t("projects-open-description") }}</button>
       <p class="light:text-[var(--grey)]! lg:mb-15">{{ projectDescription }}</p>
       <h4>{{ t("projects-stat-after-launch") }}</h4>
       <p class="text-[var(--grey)]!">{{ projectResult }}</p>
@@ -31,22 +32,15 @@ const props = defineProps({
   },
   projectDescription: {
     type: String,
-    required: true,
-    default: "Default Description",
   },
   projectResult: {
     type: String,
-    required: true,
-    default: "Default Result",
   },
   projectStatistic: {
     type: Array,
-    required: true,
-    default: () => ["Default Statistic"],
   },
   projectLinks: {
     type: Array,
-    required: true,
     default: () => [],
   },
 });

@@ -1,0 +1,118 @@
+$black: hsl(0 0% 0%);
+$white: hsl(0 0% 100%);
+$pink: hsl(314 97% 44%);
+$purple: hsl(248 65% 50%);
+$yellow: hsl(73, 100%, 50%);
+$blue: hsl(220, 100%, 50%);
+$green: hsl(108, 100%, 50%);
+$grey: hsl(0 0% 50%);
+$grey-light: hsl(0 0% 70%);
+$grey-dark: hsl(0 0% 20%);
+$transparent: hsla(0, 0%, 0%, 0);
+
+:root {
+  --black: #{$black};
+  --white: #{$white};
+  --pink: #{$pink};
+  --purple: #{$purple};
+  --yellow: #{$yellow};
+  --blue: #{$blue};
+  --green: #{$green};
+  --grey: #{$grey};
+  --grey-light: #{$grey-light};
+  --grey-dark: #{$grey-dark};
+  --transparent: #{$transparent};
+}
+
+[data-theme="light"] {
+  * {
+    &::selection {
+      background-color: $black;
+      color: $white;
+    }
+  }
+
+  p {
+    color: $grey;
+  }
+
+  body {
+    background-color: $green;
+    color: $black;
+  }
+
+  a {
+    color: $grey;
+
+    svg {
+      color: $black;
+    }
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  svg {
+    &:hover polygon,
+    &:hover path,
+    &:hover rect {
+      fill: $white;
+    }
+  }
+
+  hr {
+    color: $grey;
+  }
+
+  .active {
+    background-color: $white;
+    color: $black;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .item {
+    background-color: $black;
+    h4,
+    p {
+      color: $white;
+    }
+    &:hover {
+      background-color: $white;
+      h4,
+      p {
+        color: $black;
+      }
+    }
+  }
+
+  .dotted-grid {
+    background-image: radial-gradient($white 1px, $transparent 0);
+  }
+
+  .swiper-pagination-bullet {
+    background: $black !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: $green !important;
+  }
+
+  .custom-button {
+    background-color: $black;
+    p {
+      color: $white;
+    }
+
+    &:hover {
+      background-color: $white;
+
+      p {
+        color: $black;
+      }
+    }
+  }
+}
