@@ -48,7 +48,7 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   body {
-    background-color: $white;
+    background-color: $green;
     color: $black;
   }
 
@@ -82,15 +82,44 @@ $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .item {
-    h4 {
-      color: $black;
+    background-color: $black;
+    h4,
+    p {
+      color: $white;
     }
     &:hover {
-      h4 {
-        color: $white;
+      background-color: $white;
+      h4,
+      p {
+        color: $black;
       }
-      background-color: $black;
+    }
+  }
+
+  .dotted-grid {
+    background-image: radial-gradient($white 1px, $transparent 0);
+  }
+
+  .swiper-pagination-bullet {
+    background: $black !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: $green !important;
+  }
+
+  .custom-button {
+    background-color: $black;
+    p {
       color: $white;
+    }
+
+    &:hover {
+      background-color: $white;
+
+      p {
+        color: $black;
+      }
     }
   }
 }
@@ -170,7 +199,6 @@ body {
 }
 
 .dotted-grid {
-  background-image: radial-gradient($grey-light 1px, $transparent 0);
   background-size: 25px 25px;
 }
 
@@ -243,18 +271,7 @@ body {
   transition: $transition;
 
   &:hover {
-    z-index: 12;
     transform: translate(10px, 10px);
-  }
-}
-
-.custom-button {
-  p {
-    color: $white;
-  }
-
-  &:hover p {
-    color: $black;
   }
 }
 
@@ -340,10 +357,5 @@ a {
   height: 24px !important;
   margin: 0 !important;
   opacity: 1 !important;
-  background: $white !important;
   border-radius: 0 !important;
-}
-
-.swiper-pagination-bullet-active {
-  background: $white !important;
 }

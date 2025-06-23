@@ -22,7 +22,7 @@
 
     <header class="light:bg-[var(--black)] sticky top-0 z-1 h-fit w-full lg:col-span-4">
       <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
-      <div class=" flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
+      <div class="flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
         <a href="#me" class="jost hidden pl-5 tracking-widest lg:flex">{{ t('logo') }}</a>
         <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
           <nav-button nav-name="about"></nav-button>
@@ -44,7 +44,7 @@
       </div>
       <div class="light:bg-[var(--black)] col-span-1 hidden lg:flex"></div>
       <div class="light:bg-[var(--black)] col-span-1 hidden lg:flex"></div>
-      <div class=" col-span-1 hidden content-end grayscale lg:flex">
+      <div class="col-span-1 hidden content-end grayscale lg:flex">
         <img alt="" class="h-fit self-end" src="assets/images/me.png" />
       </div>
     </div>
@@ -60,7 +60,7 @@
 
     <!--tools-->
     <div id="tools" class="flex scroll-mt-30 flex-col justify-between gap-5 p-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1 lg:p-0">
-      <div class="grid grid-cols-1 justify-between gap-5 lg:col-span-4 lg:grid-cols-4">
+      <div class="grid grid-cols-1 justify-between lg:col-span-4 lg:grid-cols-4">
         <div class="hidden h-fit grid-cols-4 gap-0 lg:col-span-1 lg:grid">
           <img alt="" class="h-fit w-full" src="assets/images/tools/figma.svg" />
           <img alt="" class="h-fit w-full" src="assets/images/tools/photoshop.svg" />
@@ -68,19 +68,18 @@
           <img alt="" class="h-fit w-full" src="assets/images/tools/after-effect.svg" />
           <img alt="" class="h-fit w-full" src="assets/images/tools/premier-pro.svg" />
         </div>
-        <h2 class="grid lg:col-span-3">{{ t('menu-tools') }}</h2>
+        <h2 class="grid lg:ml-5 lg:col-span-3">{{ t('menu-tools') }}</h2>
       </div>
       <p class="light:text-[color:var(--black)]! flex flex-col p-0 lg:col-span-3 lg:p-5">{{ t('tools-paragraph') }}</p>
     </div>
 
     <!--projects-->
-    <div id="projects" class=" col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <div class="light:bg-[var(--black)] col-span-1 grid justify-between gap-5 p-5">
+    <div id="projects" class="col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
+      <div class="light:bg-[var(--black)] col-span-1 flex flex-col justify-between gap-5 p-5">
         <h2 class="light:text-[color:var(--white)]">{{ t('menu-projects') }}</h2>
         <p>{{ t('projects-paragraph') }}</p>
       </div>
-      <div class="col-span-1 hidden gap-5 p-5 lg:grid"></div>
-      <div class="light:bg-[var(--black)] swiper mySwiper z-0! col-span-1 flex! flex-col lg:col-span-2">
+      <div class="light:bg-[var(--white)] swiper mySwiper z-0! col-span-1 flex! flex-col lg:col-span-3">
         <div class="swiper-pagination static! flex! w-full! gap-5! p-5!"></div>
         <div class="swiper-wrapper">
           <project
