@@ -74,7 +74,7 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
   }
 
-  .item {
+  .item-design {
     background-color: $black;
     h4,
     p {
@@ -89,6 +89,16 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
   }
 
+  .item-project {
+    h4,
+    p {
+      color: $black;
+    }
+    &:hover {
+      background-color: $white;
+    }
+  }
+
   .dotted-grid {
     background-image: radial-gradient($white 1px, $transparent 0);
   }
@@ -98,7 +108,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   .swiper-pagination-bullet-active {
-    background: $green !important;
+    background: $white !important;
   }
 
   .custom-button {

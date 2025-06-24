@@ -41,7 +41,7 @@ $breakpoint-4xl: 160rem; //2560
 
   a,
   &.pointer-active,
-  &.item > *,
+  &.item-design > *,
   #lang-toggle,
   #scroll-to-top {
     cursor: url("assets/images/cursors/cursor-active.png"), pointer;
@@ -89,11 +89,12 @@ body {
   }
 }
 
-.item {
+.item-design,
+.item-project {
   transition: $transition;
 
   &:hover {
-    transform: translate(10px, 10px);
+    transform: translate(10px, 10px) !important;
   }
 }
 
