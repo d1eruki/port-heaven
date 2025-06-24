@@ -40,10 +40,10 @@ $breakpoint-4xl: 160rem; //2560
   cursor: url("assets/images/cursors/cursor-inactive.png"), auto;
 
   a,
-  &.pointer-active,
-  &.item-design > *,
-  #lang-toggle,
-  #scroll-to-top {
+  .pointer-active,
+  .item-design,
+  .item-project,
+  #lang-toggle {
     cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }
 

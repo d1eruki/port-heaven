@@ -18,19 +18,23 @@
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
           <div class="modal__header">
-            <h2 class="modal__title" id="modal-1-title">MicroModal</h2>
-            <button class="modal__close" aria-label="Закрыть" data-micromodal-close></button>
+            <h4 class="modal__title" id="modal-1-title">MicroModal</h4>
           </div>
           <main class="modal__content" id="modal-1-content">
             <p>Содержимое модального окна.</p>
           </main>
           <footer class="modal__footer">
-            <button class="modal__btn modal__btn-primary">Продолжить</button>
             <button class="modal__btn" data-micromodal-close aria-label="Закрыть">Закрыть</button>
           </footer>
         </div>
       </div>
     </div>
+    <!--me-->
+    <section data-section="me" id="me" class="light:bg-[var(--black)] relative min-h-dvh content-end lg:col-span-4">
+      <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
+      <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
+    </section>
+
     <header class="light:bg-[var(--black)] sticky top-0 z-1 h-fit w-full lg:col-span-4">
       <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
       <div class="flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
@@ -46,12 +50,6 @@
         </div>
       </div>
     </header>
-    <!--me-->
-    <section data-section="me" id="me" class="light:bg-[var(--black)] relative min-h-dvh content-end lg:col-span-4">
-      <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
-      <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
-    </section>
-
     <!--about-->
     <section data-section="about" class="col-span-1 grid lg:col-span-3 lg:grid-cols-3 lg:grid-rows-2">
       <div class="light:bg-[var(--black)] flex flex-col justify-between gap-5 p-5 lg:col-span-3">

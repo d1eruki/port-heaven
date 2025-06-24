@@ -1,9 +1,8 @@
 <template>
-  <div class="swiper-slide item-project flex! h-auto! flex-col! justify-between">
+  <div data-micromodal-trigger="modal-1" class="swiper-slide item-project flex! h-auto! flex-col! justify-between">
     <div class="flex flex-col gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p class="lg:mb-15">{{ projectDescription }}</p>
-      <button data-micromodal-trigger="modal-1">{{ t("projects-open-description") }}</button>
     </div>
     <div>
       <div class="flex flex-col gap-5 p-5">
