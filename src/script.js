@@ -13,10 +13,10 @@ import MicroModal from "micromodal";
 window.onscroll = updateProgressBar;
 
 const swiper = new Swiper(".mySwiper", {
+  slidesPerView: 3,
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
-    slidesPerView: 1,
   },
 });
 

@@ -14,12 +14,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="relative container max-w-full justify-self-center whitespace-pre-line lg:grid lg:grid-cols-4">
-    <!--me-->
-    <section data-section="me" id="me" class="light:bg-[var(--black)] relative min-h-dvh content-end lg:col-span-4">
-      <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
-      <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
-    </section>
-
+    <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+          <header class="modal__header">
+            <h2 class="modal__title" id="modal-1-title">MicroModal</h2>
+            <button class="modal__close" aria-label="Закрыть" data-micromodal-close></button>
+          </header>
+          <main class="modal__content" id="modal-1-content">
+            <p>Содержимое модального окна.</p>
+          </main>
+          <footer class="modal__footer">
+            <button class="modal__btn modal__btn-primary">Продолжить</button>
+            <button class="modal__btn" data-micromodal-close aria-label="Закрыть">Закрыть</button>
+          </footer>
+        </div>
+      </div>
+    </div>
     <header class="light:bg-[var(--black)] sticky top-0 z-1 h-fit w-full lg:col-span-4">
       <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
       <div class="flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
@@ -35,25 +46,11 @@
         </div>
       </div>
     </header>
-
-
-
-    <div class="modal z-100!" id="modal-1" aria-hidden="true">
-      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-          <header class="modal__header">
-            <h2 class="modal__title" id="modal-1-title">Заголовок</h2>
-            <button class="modal__close" aria-label="Закрыть" data-micromodal-close></button>
-          </header>
-          <main class="modal__content">
-            <p>Контент модального окна.</p>
-          </main>
-          <footer class="modal__footer">
-            <button class="modal__btn" data-micromodal-close>Закрыть</button>
-          </footer>
-        </div>
-      </div>
-    </div>
+    <!--me-->
+    <section data-section="me" id="me" class="light:bg-[var(--black)] relative min-h-dvh content-end lg:col-span-4">
+      <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
+      <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
+    </section>
 
     <!--about-->
     <section data-section="about" class="col-span-1 grid lg:col-span-3 lg:grid-cols-3 lg:grid-rows-2">
@@ -71,9 +68,9 @@
 
     <!--principles-->
     <section data-section="principles" class="col-span-4 flex flex-col lg:grid lg:grid-cols-4">
-      <Principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></Principles>
-      <Principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></Principles>
-      <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
+      <principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></principles>
+      <principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></principles>
+      <principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></principles>
       <h2 class="writing-sideways-lr order-first scroll-mt-30 p-5 lg:order-last">{{ t('menu-principles') }}</h2>
     </section>
 
@@ -100,7 +97,7 @@
       </div>
       <div class="light:bg-[var(--white)] swiper mySwiper z-0! col-span-1 flex! flex-col lg:col-span-3">
         <div class="swiper-pagination static! flex! w-full! gap-5! p-5!"></div>
-        <div class="swiper-wrapper grid grid-cols-3 col-span-1">
+        <div class="swiper-wrapper">
           <project
             :project-name="t('projects-downloadPage-title')"
             :project-description="t('projects-downloadPage-paragraph')"
@@ -146,9 +143,7 @@
       ]"
             :project-result="t('projects-xrms-result')"
           ></project>
-          <project
-            :project-name="t('projects-template-title')"
-          ></project>
+          <project :project-name="t('projects-template-title')"></project>
         </div>
       </div>
     </section>
