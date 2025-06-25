@@ -19,9 +19,9 @@
   background-color: white;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease;
+  width: 50%;
 }
 
-/* Пример простой анимации */
 @keyframes fadeIn {
   from {
     opacity: 0;
