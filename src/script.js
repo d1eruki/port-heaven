@@ -11,6 +11,11 @@ import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import MicroModal from "micromodal";
 
+MicroModal.init({
+  disableScroll: true,
+  disableFocus: true,
+});
+
 window.onscroll = updateProgressBar;
 
 const swiper = new Swiper(".mySwiper", {
@@ -24,8 +29,4 @@ const swiper = new Swiper(".mySwiper", {
       slidesPerView: 3,
     },
   },
-});
-
-MicroModal.init({
-  disableScroll: true,
 });
