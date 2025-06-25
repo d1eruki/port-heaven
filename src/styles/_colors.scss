@@ -74,28 +74,16 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
   }
 
-  .item-design {
+  .item {
     background-color: $black;
-    h4,
-    p {
+    * {
       color: $white;
     }
     &:hover {
       background-color: $white;
-      h4,
-      p {
+      * {
         color: $black;
       }
-    }
-  }
-
-  .item-project {
-    h4,
-    p {
-      color: $black;
-    }
-    &:hover {
-      background-color: $white;
     }
   }
 
@@ -104,11 +92,11 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   .swiper-pagination-bullet {
-    background: $black !important;
+    background: $white !important;
   }
 
   .swiper-pagination-bullet-active {
-    background: $white !important;
+    background: $green !important;
   }
 
   .custom-button {

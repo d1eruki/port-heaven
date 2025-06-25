@@ -1,5 +1,5 @@
 <template>
-  <div @click="openModal" class="swiper-slide item-project flex! h-auto! flex-col!">
+  <div @click="openModal" class="swiper-slide item flex! h-auto! flex-col!">
     <div class="flex h-full flex-col justify-between gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p>{{ projectDescription }}</p>
