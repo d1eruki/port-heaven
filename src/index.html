@@ -14,9 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="relative container max-w-full justify-self-center whitespace-pre-line lg:grid lg:grid-cols-4">
-    <div class="modal micromodal-slide z-100!" id="modal" aria-hidden="true">
+    <div class="modal micromodal-slide z-100! relative!" id="modal" aria-hidden="true">
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <main class="modal__content" id="modal-content">
+        <main class="modal__content w-full! lg:w-[50%]!" id="modal-content">
           <p>Содержимое модального окна.</p>
         </main>
       </div>
@@ -137,6 +137,8 @@
         </div>
       </div>
     </section>
+
+    <div class="block lg:hidden h-5 col-span-1 light:bg-[var(--black)]"></div>
 
     <!--design-->
     <section data-section="design" class="light:text-[color:var(--black)] col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
