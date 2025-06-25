@@ -1,9 +1,9 @@
 @use "tailwindcss";
-@use "./styles/colors";
-@use "./styles/animations";
-@use "./styles/custom-tailwind-styles";
-@use "./styles/swiper";
-@use "./styles/micromodal";
+@use "styles/colors" as *;
+@use "styles/animations" as *;
+@use "styles/custom-tailwind-styles" as *;
+@use "styles/swiper" as *;
+@use "styles/micromodal" as *;
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
@@ -41,8 +41,7 @@ $breakpoint-4xl: 160rem; //2560
 
   a,
   .pointer-active,
-  .item-design *,
-  .item-project > *,
+  .item > *,
   #lang-toggle {
     cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }
@@ -89,12 +88,12 @@ body {
   }
 }
 
-.item-design,
-.item-project {
+.item {
   transition: $transition;
 
   &:hover {
     transform: translate(10px, 10px) !important;
+    z-index: 1;
   }
 }
 

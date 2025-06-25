@@ -1,8 +1,9 @@
 <template>
-  <div @click="openModal" class="swiper-slide item-project flex! h-auto! flex-col!">
+  <div @click="openModal" class="swiper-slide item flex! h-auto! flex-col!">
     <div class="flex h-full flex-col justify-between gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p>{{ projectDescription }}</p>
+      <p class="flex items-center justify-center px-5 py-5 lg:px-10">Подробнее</p>
     </div>
 
     <div ref="modalContent" style="display: none">
