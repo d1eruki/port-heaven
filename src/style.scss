@@ -1,100 +1,14 @@
 @use "tailwindcss";
+@use "./styles/colors";
+@use "./styles/animations";
 @use "./styles/custom-tailwind-styles";
+@use "./styles/swiper";
+@use "./styles/micromodal";
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 
-@utility tab-* {
-  height: --value("inherit");
-}
-
-$black: hsl(0 0% 0%);
-$white: hsl(0 0% 100%);
-$pink: hsl(314 97% 44%);
-$purple: hsl(248 65% 50%);
-$yellow: hsl(73, 100%, 50%);
-$blue: hsl(220, 100%, 50%);
-$green: hsl(108, 100%, 50%);
-$grey: hsl(0 0% 50%);
-$grey-light: hsl(0 0% 70%);
-$grey-dark: hsl(0 0% 20%);
-$transparent: hsla(0, 0%, 0%, 0);
 $transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
-
-:root {
-  --black: #{$black};
-  --white: #{$white};
-  --pink: #{$pink};
-  --purple: #{$purple};
-  --yellow: #{$yellow};
-  --blue: #{$blue};
-  --green: #{$green};
-  --grey: #{$grey};
-  --grey-light: #{$grey-light};
-  --grey-dark: #{$grey-dark};
-  --transparent: #{$transparent};
-}
-
-[data-theme="light"] {
-  * {
-    &::selection {
-      background-color: $black;
-      color: $white;
-    }
-  }
-
-  p {
-    color: $grey;
-  }
-
-  body {
-    background-color: $white;
-    color: $black;
-  }
-
-  a {
-    color: $grey;
-
-    svg {
-      color: $black;
-    }
-
-    &:hover {
-      color: $white;
-    }
-  }
-
-  svg {
-    &:hover polygon,
-    &:hover path,
-    &:hover rect {
-      fill: $white;
-    }
-  }
-
-  .active {
-    background-color: $green;
-    color: $black;
-
-    &:hover {
-      color: $black;
-    }
-  }
-
-  .item {
-    background-color: $white;
-    h4 {
-      color: $black;
-    }
-    &:hover {
-      h4 {
-        color: $white;
-      }
-      background-color: $black;
-      color: $white;
-    }
-  }
-}
 
 $breakpoint-3xl: 120rem; //1920
 $breakpoint-4xl: 160rem; //2560
@@ -120,38 +34,16 @@ $breakpoint-4xl: 160rem; //2560
   font-family: "Actay", sans-serif;
 }
 
-@keyframes move {
-  from {
-    margin-left: 0;
-  }
-  to {
-    margin-left: 50%;
-  }
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-hr {
-  color: var(--grey);
-}
-
 * {
   font-family: "Jost", sans-serif;
   text-wrap: balance;
   cursor: url("assets/images/cursors/cursor-inactive.png"), auto;
 
   a,
-  &.pointer-active,
-  &.item > *,
-  #lang-toggle,
-  #scroll-to-top {
+  .pointer-active,
+  .item-design *,
+  .item-project > *,
+  #lang-toggle {
     cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }
 
@@ -171,7 +63,6 @@ body {
 }
 
 .dotted-grid {
-  background-image: radial-gradient($black 1px, $transparent 0);
   background-size: 25px 25px;
 }
 
@@ -196,66 +87,14 @@ body {
     -webkit-animation: noise 1s steps(2) infinite;
     animation: noise 1s steps(2) infinite;
   }
-
-  @-webkit-keyframes noise {
-    to {
-      transform: translate3d(-7rem, 0, 0);
-    }
-  }
-
-  @keyframes noise {
-    0% {
-      transform: translate3d(0, 9rem, 0);
-    }
-    10% {
-      transform: translate3d(-1rem, -4rem, 0);
-    }
-    20% {
-      transform: translate3d(-8rem, 2rem, 0);
-    }
-    30% {
-      transform: translate3d(9rem, -9rem, 0);
-    }
-    40% {
-      transform: translate3d(-2rem, 7rem, 0);
-    }
-    50% {
-      transform: translate3d(-9rem, -4rem, 0);
-    }
-    60% {
-      transform: translate3d(2rem, 6rem, 0);
-    }
-    70% {
-      transform: translate3d(7rem, -8rem, 0);
-    }
-    80% {
-      transform: translate3d(-9rem, 1rem, 0);
-    }
-    90% {
-      transform: translate3d(6rem, -5rem, 0);
-    }
-    to {
-      transform: translate3d(-7rem, 0, 0);
-    }
-  }
 }
 
-.item {
+.item-design,
+.item-project {
   transition: $transition;
 
   &:hover {
-    z-index: 12;
-    transform: translate(10px, 10px);
-  }
-}
-
-.custom-button {
-  p {
-    color: $white;
-  }
-
-  &:hover p {
-    color: $black;
+    transform: translate(10px, 10px) !important;
   }
 }
 
@@ -330,21 +169,4 @@ p {
 
 a {
   font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
-}
-
-.swiper {
-  width: 100%;
-}
-
-.swiper-pagination-bullet {
-  width: 24px !important;
-  height: 24px !important;
-  margin: 0 !important;
-  opacity: 1 !important;
-  background: $white !important;
-  border-radius: 0 !important;
-}
-
-.swiper-pagination-bullet-active {
-  background: $green !important;
 }

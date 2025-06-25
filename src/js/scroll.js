@@ -1,13 +1,15 @@
 import { getHeaderHeight } from "./global-variables";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const scrollIcon = document.querySelector("#scroll-to-top");
+  const scrollIcon = document.querySelector("[data-scroll-to-top]");
   const headerLinks = document.querySelectorAll("a[data-open-block]");
   const sections = Array.from(headerLinks)
     .map((link) => {
       const id = link.getAttribute("href");
       if (!id || !id.startsWith("#")) return null;
-      return document.querySelector(id);
+
+      const cleanId = id.slice(1);
+      return document.querySelector(`[data-section="${cleanId}"]`);
     })
     .filter(Boolean);
 
@@ -73,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
   headerLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetEl = document.querySelector(targetId);
+      const targetId = this.getAttribute("href").slice(1); // убираем #
+      const targetEl = document.querySelector(`[data-section="${targetId}"]`);
       if (targetEl) scrollToWithHeaderOffset(targetEl);
     });
   });

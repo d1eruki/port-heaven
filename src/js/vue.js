@@ -17,13 +17,14 @@ const app = createApp({
   },
 });
 
-app.component("Project", Projects);
-app.component("Bullet", Bullets);
-app.component("Principles", Principles);
-app.component("Icons", Icons);
-app.component("Items", Items);
-app.component("CustomButtons", CustomButtons);
-app.component("NavButton", NavButton);
-app.component("Contacts", Contacts);
+app.component("project", Projects);
+app.component("bullet", Bullets);
+app.component("principles", Principles);
+app.component("icons", Icons);
+app.component("items", Items);
+app.component("customButtons", CustomButtons);
+app.component("navButton", NavButton);
+app.component("contacts", Contacts);
 app.use(i18n);
 app.mount("#app");
+app.config.globalProperties.t = i18n.global.t;

@@ -1,26 +1,35 @@
 <template>
-  <div class="swiper-slide flex! h-auto! flex-col! justify-between">
-    <div class="flex flex-col gap-5 p-5">
-      <h3 class="light:text-[var(--white)]">{{ projectName }}</h3>
-      <p class="light:text-[var(--grey)]! lg:mb-15">{{ projectDescription }}</p>
-      <h4 class="light:text-[var(--white)]">{{ t("projects-stat-after-launch") }}</h4>
-      <p class="text-[var(--grey)]!">{{ projectResult }}</p>
-      <div class="flex flex-col gap-2">
-        <div v-for="(statistic, index) in projectStatistic" :key="index" class="flex items-center gap-3">
-          <Icons class="hidden text-[var(--grey)]!" icon="star"></Icons>
-          <p class="text-[var(--grey)]!">{{ statistic }}</p>
+  <div @click="openModal" class="swiper-slide item-project flex! h-auto! flex-col!">
+    <div class="flex h-full flex-col justify-between gap-5 p-5">
+      <h3>{{ projectName }}</h3>
+      <p>{{ projectDescription }}</p>
+    </div>
+
+    <div ref="modalContent" style="display: none">
+      <div class="flex flex-col gap-5 p-5">
+        <h3>{{ t("projects-stat-after-launch") }}</h3>
+        <p>{{ projectResult }}</p>
+        <div class="flex flex-col gap-2">
+          <div v-for="(statistic, index) in projectStatistic" :key="index" class="flex items-center gap-3">
+            <icons class="hidden text-[var(--grey)]!" icon="star" />
+            <p>{{ statistic }}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="flex h-fit w-full justify-end">
-      <CustomButton class="w-full" v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
+      <div class="flex h-fit w-full justify-end">
+        <customButton class="w-full" v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import CustomButton from "./custom-button.vue";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import MicroModal from "micromodal";
+import customButton from "./custom-button.vue";
+import Icons from "./icons.vue";
+
 const { t } = useI18n();
 
 const props = defineProps({
@@ -29,25 +38,30 @@ const props = defineProps({
     required: true,
     default: "Default Title",
   },
-  projectDescription: {
-    type: String,
-    required: true,
-    default: "Default Description",
-  },
-  projectResult: {
-    type: String,
-    required: true,
-    default: "Default Result",
-  },
-  projectStatistic: {
-    type: Array,
-    required: true,
-    default: () => ["Default Statistic"],
-  },
+  projectDescription: String,
+  projectResult: String,
+  projectStatistic: Array,
   projectLinks: {
     type: Array,
-    required: true,
     default: () => [],
   },
 });
+
+const modalContent = ref(null);
+
+function openModal() {
+  const target = document.getElementById("modal-content");
+  if (target && modalContent.value) {
+    target.innerHTML = "";
+
+    const clone = modalContent.value.cloneNode(true);
+
+    // Убираем display: none
+    clone.style.display = "block";
+
+    target.appendChild(clone);
+
+    MicroModal.show("modal");
+  }
+}
 </script>

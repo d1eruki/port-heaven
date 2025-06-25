@@ -6,6 +6,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
+const isDev = process.env.NODE_ENV === "development";
+
 module.exports = {
   entry: "./src/script.js",
   output: {
@@ -13,12 +15,13 @@ module.exports = {
     filename: "script.js",
     clean: true,
   },
-  mode: process.env.NODE_ENV === "development" ? "development" : "production",
+  mode: isDev ? "development" : "production",
   devServer: {
     static: path.join(__dirname, "dist"),
     port: 8080,
     open: false,
     allowedHosts: "all",
+    hot: true,
   },
   resolve: {
     alias: {
@@ -41,12 +44,12 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.scss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
           "css-loader",
           {
             loader: "postcss-loader",
@@ -62,7 +65,7 @@ module.exports = {
     ],
   },
   optimization: {
-    minimize: true,
+    minimize: !isDev,
     minimizer: [`...`, new CssMinimizerPlugin()],
   },
   plugins: [
@@ -72,9 +75,13 @@ module.exports = {
       filename: "index.html",
       inject: true,
     }),
-    new MiniCssExtractPlugin({
-      filename: "style.css",
-    }),
+    ...(isDev
+      ? []
+      : [
+          new MiniCssExtractPlugin({
+            filename: "style.css",
+          }),
+        ]),
     new CopyWebpackPlugin({
       patterns: [{ from: "src/assets/images", to: "assets/images" }],
     }),

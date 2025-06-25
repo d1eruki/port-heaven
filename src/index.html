@@ -14,16 +14,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="relative container max-w-full justify-self-center whitespace-pre-line lg:grid lg:grid-cols-4">
+    <div class="modal micromodal-slide z-100! relative!" id="modal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <main class="modal__content w-full! lg:w-[50%]!" id="modal-content">
+          <p>Содержимое модального окна.</p>
+        </main>
+      </div>
+    </div>
     <!--me-->
-    <div id="me" class="light:bg-[var(--black)] relative z-11 min-h-dvh content-end lg:col-span-4">
+    <section data-section="me" id="me" class="light:bg-[var(--black)] relative min-h-dvh content-end lg:col-span-4">
       <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
       <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
-    </div>
+    </section>
 
-    <header class="light:bg-[var(--black)] sticky top-0 z-15 h-fit w-full lg:col-span-4">
-      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] top-0 z-2 lg:absolute"></div>
-      <div class="z-11 flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
-        <a href="#me" class="jost hidden pl-5 tracking-widest lg:flex">{{ t('logo') }}</a>
+    <header class="light:bg-[var(--black)] sticky top-0 z-1 h-fit w-full lg:col-span-4">
+      <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
+      <div class="flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
+        <a href="#me" data-open-block class="jost hidden h-full w-fit content-center p-2.5 tracking-widest lg:block lg:flex lg:px-10 lg:py-5">{{ t('logo') }}</a>
         <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
           <nav-button nav-name="about"></nav-button>
           <nav-button nav-name="principles"></nav-button>
@@ -35,32 +42,31 @@
         </div>
       </div>
     </header>
-
     <!--about-->
-    <div id="about" class="light:bg-[var(--black)] col-span-1 grid lg:col-span-3 lg:grid-cols-3 lg:grid-rows-2">
-      <div class="z-11 flex flex-col justify-between gap-5 p-5 lg:col-span-3">
+    <section data-section="about" class="col-span-1 grid lg:col-span-3 lg:grid-cols-3 lg:grid-rows-2">
+      <div class="light:bg-[var(--black)] flex flex-col justify-between gap-5 p-5 lg:col-span-3">
         <h2 class="light:text-[color:var(--white)]">{{ t('about-title') }}</h2>
         <p class="">{{ t('about-paragraph') }}</p>
       </div>
-      <div class="z-11 col-span-1 hidden lg:flex"></div>
-      <div class="z-11 col-span-1 hidden lg:flex"></div>
-      <div class="light:bg-[var(--green)] col-span-1 hidden content-end lg:flex">
-        <img alt="" class="h-fit self-end mix-blend-multiply" src="assets/images/me.png" />
+      <div class="light:bg-[var(--black)] col-span-1 hidden lg:flex"></div>
+      <div class="light:bg-[var(--black)] col-span-1 hidden lg:flex"></div>
+      <div class="col-span-1 hidden content-end grayscale lg:flex">
+        <img alt="" class="h-fit self-end" src="assets/images/me.png" />
       </div>
-    </div>
+    </section>
     <contacts class="hidden lg:col-span-1 lg:flex"></contacts>
 
     <!--principles-->
-    <div id="principles" class="col-span-4 flex flex-col lg:grid lg:grid-cols-4">
-      <Principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></Principles>
-      <Principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></Principles>
-      <Principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></Principles>
-      <h2 class="light:bg-[var(--green)] writing-sideways-lr order-first scroll-mt-30 p-5 lg:order-last">{{ t('menu-principles') }}</h2>
-    </div>
+    <section data-section="principles" class="col-span-4 flex flex-col lg:grid lg:grid-cols-4">
+      <principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></principles>
+      <principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></principles>
+      <principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></principles>
+      <h2 class="writing-sideways-lr order-first scroll-mt-30 p-5 lg:order-last">{{ t('menu-principles') }}</h2>
+    </section>
 
     <!--tools-->
-    <div id="tools" class="light:bg-[var(--green)] flex scroll-mt-30 flex-col justify-between gap-5 p-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1 lg:p-0">
-      <div class="grid grid-cols-1 justify-between gap-5 lg:col-span-4 lg:grid-cols-4">
+    <section data-section="tools" class="flex scroll-mt-30 flex-col justify-between gap-5 p-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1 lg:p-0">
+      <div class="grid grid-cols-1 justify-between lg:col-span-4 lg:grid-cols-4">
         <div class="hidden h-fit grid-cols-4 gap-0 lg:col-span-1 lg:grid">
           <img alt="" class="h-fit w-full" src="assets/images/tools/figma.svg" />
           <img alt="" class="h-fit w-full" src="assets/images/tools/photoshop.svg" />
@@ -68,19 +74,18 @@
           <img alt="" class="h-fit w-full" src="assets/images/tools/after-effect.svg" />
           <img alt="" class="h-fit w-full" src="assets/images/tools/premier-pro.svg" />
         </div>
-        <h2 class="grid lg:col-span-3">{{ t('menu-tools') }}</h2>
+        <h2 class="grid lg:col-span-3 lg:ml-5">{{ t('menu-tools') }}</h2>
       </div>
       <p class="light:text-[color:var(--black)]! flex flex-col p-0 lg:col-span-3 lg:p-5">{{ t('tools-paragraph') }}</p>
-    </div>
+    </section>
 
     <!--projects-->
-    <div id="projects" class="light:bg-[var(--black)] z-11 col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <div class="col-span-1 grid justify-between gap-5 p-5">
+    <section data-section="projects" class="col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
+      <div class="light:bg-[var(--black)] col-span-1 flex flex-col justify-between gap-5 p-5">
         <h2 class="light:text-[color:var(--white)]">{{ t('menu-projects') }}</h2>
         <p>{{ t('projects-paragraph') }}</p>
       </div>
-      <div class="light:bg-[var(--green)] col-span-1 hidden gap-5 p-5 lg:grid"></div>
-      <div class="swiper mySwiper z-11! col-span-1 flex! flex-col lg:col-span-2">
+      <div class="swiper mySwiper z-0! col-span-1 flex! flex-col lg:col-span-3">
         <div class="swiper-pagination static! flex! w-full! gap-5! p-5!"></div>
         <div class="swiper-wrapper">
           <project
@@ -128,13 +133,16 @@
       ]"
             :project-result="t('projects-xrms-result')"
           ></project>
+          <project :project-name="t('projects-template-title')"></project>
         </div>
       </div>
-    </div>
+    </section>
+
+    <div class="block lg:hidden h-5 col-span-1 light:bg-[var(--black)]"></div>
 
     <!--design-->
-    <div id="design" class="light:text-[color:var(--black)] col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <div class="light:bg-[var(--green)] col-span-2 row-span-2 grid flex-col justify-between gap-5 p-5">
+    <section data-section="design" class="light:text-[color:var(--black)] col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
+      <div class="col-span-2 row-span-2 grid flex-col justify-between gap-5 p-5">
         <h2>{{ t('menu-design') }}</h2>
         <p class="light:text-[color:var(--black)]! self-end">{{ t('design-paragraph') }}</p>
       </div>
@@ -143,17 +151,17 @@
         <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/4-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9B%D0%B5%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3-%D0%B4%D0%BB%D1%8F-%D1%82%D1%83%D1%80%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BB%D1%83%D0%B1%D0%B0?node-id=1-23&t=i3AvYlIGIdL9S8E7-1" item-img-alt=""></items>
         <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/3-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82.-%D0%9F%D0%B8%D0%BE%D0%BD%D0%B5%D1%80?node-id=22-20&t=wfIEsNfXeRBmDyeO-1" item-img-alt=""></items>
       </div>
-    </div>
+    </section>
 
-    <footer id="footer" class="light:bg-[var(--black)] z-11 grid h-fit grid-cols-3 content-center items-center items-end justify-between p-5 lg:col-span-1 lg:grid-cols-2 lg:content-end">
+    <footer data-section="footer" class="light:bg-[var(--black)] grid h-fit grid-cols-3 content-center items-center items-end justify-between p-5 lg:col-span-1 lg:grid-cols-2 lg:content-end">
       <h4 class="light:text-[color:var(--white)]">{{ t('footer-copyright') }}</h4>
       <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="flex h-6 w-6 cursor-pointer justify-self-center lg:m-5 lg:hidden" />
       <a id="scroll-to-top" class="light:text-[color:var(--white)] justify-self-end">{{ t('footer-scroll-up') }}</a>
-      <Icons icon="theme-toggler" class="hidden"></Icons>
+      <icons icon="theme-toggler" class="hidden"></icons>
     </footer>
     <contacts class="lg:col-span-3"></contacts>
 
-    <div class="noise pointer-events-none z-16 block mix-blend-lighten"></div>
-    <div class="dotted-grid pointer-events-none fixed top-0 left-0 z-10 block hidden h-full w-full mix-blend-color-dodge"></div>
+    <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>
+    <div class="dotted-grid pointer-events-none fixed top-0 left-0 -z-1 block h-full w-full"></div>
   </body>
 </html>
