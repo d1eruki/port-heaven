@@ -5,6 +5,7 @@ import "./js/section-height";
 import "./js/theme-toggle";
 import "./js/locale-toggler";
 import "./js/marquee";
+import "./js/yandex-metrika";
 import { updateProgressBar } from "./js/progress-bar";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
