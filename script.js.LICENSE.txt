@@ -1,3 +1,9 @@
+/*!
+  * shared v11.1.7
+  * (c) 2025 kazuya kawaguchi
+  * Released under the MIT License.
+  */
+
 /*! #__NO_SIDE_EFFECTS__ */
 
 /**
