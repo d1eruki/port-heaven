@@ -1,25 +1,23 @@
 <template>
   <div @click="openModal" class="swiper-slide item-project flex! h-auto! flex-col!">
-    <div class="flex flex-col justify-between gap-5 p-5">
+    <div class="flex h-full flex-col justify-between gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p>{{ projectDescription }}</p>
     </div>
 
-    <div ref="modalContent">
+    <div ref="modalContent" style="display: none">
       <div class="flex flex-col gap-5 p-5">
-        <h4>{{ t("projects-stat-after-launch") }}</h4>
+        <h3>{{ t("projects-stat-after-launch") }}</h3>
         <p>{{ projectResult }}</p>
-
         <div class="flex flex-col gap-2">
           <div v-for="(statistic, index) in projectStatistic" :key="index" class="flex items-center gap-3">
             <icons class="hidden text-[var(--grey)]!" icon="star" />
             <p>{{ statistic }}</p>
           </div>
         </div>
-
-        <div class="flex h-fit w-full justify-end">
-          <customButton class="w-full" v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
-        </div>
+      </div>
+      <div class="flex h-fit w-full justify-end">
+        <customButton class="w-full" v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
       </div>
     </div>
   </div>
@@ -52,11 +50,18 @@ const props = defineProps({
 const modalContent = ref(null);
 
 function openModal() {
-  const target = document.getElementById("modal-1-content");
+  const target = document.getElementById("modal-content");
   if (target && modalContent.value) {
     target.innerHTML = "";
-    target.appendChild(modalContent.value.cloneNode(true));
-    MicroModal.show("modal-1");
-  }console.log(modalContent.value)
+
+    const clone = modalContent.value.cloneNode(true);
+
+    // Убираем display: none
+    clone.style.display = "block";
+
+    target.appendChild(clone);
+
+    MicroModal.show("modal");
+  }
 }
 </script>

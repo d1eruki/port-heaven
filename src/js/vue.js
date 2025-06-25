@@ -27,4 +27,4 @@ app.component("navButton", NavButton);
 app.component("contacts", Contacts);
 app.use(i18n);
 app.mount("#app");
-app.config.globalProperties.t = i18n.global.t
+app.config.globalProperties.t = i18n.global.t;

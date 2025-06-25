@@ -41,8 +41,8 @@ $breakpoint-4xl: 160rem; //2560
 
   a,
   .pointer-active,
-  .item-design,
-  .item-project,
+  .item-design *,
+  .item-project > *,
   #lang-toggle {
     cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }

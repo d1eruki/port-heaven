@@ -14,19 +14,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="relative container max-w-full justify-self-center whitespace-pre-line lg:grid lg:grid-cols-4">
-    <div class="modal micromodal-slide z-100!" id="modal-1" aria-hidden="true">
+    <div class="modal micromodal-slide z-100!" id="modal" aria-hidden="true">
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-          <div class="modal__header">
-            <h4 class="modal__title" id="modal-1-title">MicroModal</h4>
-          </div>
-          <main class="modal__content" id="modal-1-content">
-            <p>Содержимое модального окна.</p>
-          </main>
-          <footer class="modal__footer">
-            <button class="modal__btn" data-micromodal-close aria-label="Закрыть">Закрыть</button>
-          </footer>
-        </div>
+        <main class="modal__content" id="modal-content">
+          <p>Содержимое модального окна.</p>
+        </main>
       </div>
     </div>
     <!--me-->

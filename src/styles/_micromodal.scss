@@ -15,10 +15,8 @@
   justify-content: center;
 }
 
-.modal__container {
-  background: white;
-  padding: 2rem;
-  max-width: 500px;
+.modal__content {
+  background-color: white;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease;
 }

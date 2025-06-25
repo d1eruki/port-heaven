@@ -1,7 +1,6 @@
 <template>
-  <a class="custom-button flex items-center justify-center gap-2 px-5 py-5 text-xl! lg:px-10" :href="url" target="_blank">
+  <a class="custom-button flex items-center justify-center px-5 py-5 lg:px-10" :href="url" target="_blank">
     <p>{{ name }}</p>
-    <icons icon="arrow-link" min-height="10" min-width="10" height="10" width="10"></icons>
   </a>
 </template>
 
