@@ -6,12 +6,13 @@ export const useModalStore = defineStore('modal', {
     data: null,
   }),
   actions: {
-    open(payload) {
-      this.data = payload
-      MicroModal.show('project-modal')
+    open(project) {
+      this.data = project
+      MicroModal.show('modal-1')
     },
     close() {
-      MicroModal.close('project-modal')
+      MicroModal.close('modal-1')
+      this.data = null
     },
   },
 })

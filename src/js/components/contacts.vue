@@ -3,10 +3,10 @@
     <h2>{{ t("menu-footer") }}</h2>
     <div class="flex items-center gap-5 lg:flex-col lg:items-end">
       <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
-        <Icons icon="telegram"></Icons>
+        <icons icon="telegram"></icons>
       </a>
       <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">
-        <Icons icon="google-mail"></Icons>
+        <icons icon="google-mail"></icons>
       </a>
     </div>
   </div>
