@@ -1,10 +1,12 @@
 import Swiper from "swiper";
+import { Pagination } from "swiper/modules";
 import "swiper/css/bundle";
 
 const swiper1 = new Swiper(".swiper1", {
+  modules: [Pagination],
   slidesPerView: 1,
   pagination: {
-    el: ".swiper-pagination",
+    el: ".swiper1 .swiper-pagination",
     clickable: true,
   },
   breakpoints: {
@@ -15,9 +17,10 @@ const swiper1 = new Swiper(".swiper1", {
 });
 
 const swiper2 = new Swiper(".swiper2", {
+  modules: [Pagination],
   slidesPerView: 1,
   pagination: {
-    el: ".swiper-pagination",
+    el: ".swiper2 .swiper-pagination",
     clickable: true,
   },
   breakpoints: {
