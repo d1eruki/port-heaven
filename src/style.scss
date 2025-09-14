@@ -193,7 +193,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 .swiper2 .swiper-wrapper,
 .swiper1,
 .swiper1 .swiper-wrapper {
-  overflow: visible !important;
+  overflow-y: visible !important;
 }
 
 .swiper-pagination-bullet {
