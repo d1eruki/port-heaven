@@ -29,9 +29,9 @@
       <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
       <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
     </section>
-    <section class="flex flex-col justify-between gap-5 p-5 lg:col-span-4">
+    <section class="grid content-center min-h-dvh flex-col gap-5 p-5 lg:col-span-4">
       <h2 class="light:text-[color:var(--white)]">{{ t('about-title') }}</h2>
-      <p class="">{{ t('about-paragraph') }}</p>
+      <p>{{ t('about-paragraph') }}</p>
     </section>
 
     <header class="light:bg-[var(--black)] sticky top-0 z-2 h-fit w-full lg:col-span-4">
@@ -110,7 +110,7 @@
       <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/Redesign-of-the-Power-Machines-plant-webpage?node-id=1051-200&t=hfZVdTFUnt3JHWLN-1" item-img-alt=""></items>
     </section>
 
-    <footer data-section="footer" class="light:bg-[var(--black)] grid h-fit grid-cols-3 content-center items-center items-end justify-between p-5 lg:col-span-1 lg:grid-cols-2 lg:content-end">
+    <footer data-section="footer" class="grid h-fit grid-cols-3 content-center items-center items-end justify-between p-5 lg:col-span-1 lg:grid-cols-2 lg:content-end">
       <h4 class="light:text-[color:var(--white)]">{{ t('footer-copyright') }}</h4>
       <button id="lang-toggle" class="flex cursor-pointer justify-self-center lg:m-5 lg:hidden">en</button>
       <a id="scroll-to-top" class="light:text-[color:var(--white)] justify-self-end">{{ t('footer-scroll-up') }}</a>
