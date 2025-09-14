@@ -1,7 +1,5 @@
 @use "tailwindcss";
 
-
-
 $transition: all 0.25s;
 //@use "styles/colors" as *;
 
@@ -189,6 +187,13 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 .swiper {
   width: 100%;
+}
+
+.swiper2,
+.swiper2 .swiper-wrapper,
+.swiper1,
+.swiper1 .swiper-wrapper {
+  overflow: visible !important;
 }
 
 .swiper-pagination-bullet {
