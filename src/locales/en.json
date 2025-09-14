@@ -8,14 +8,14 @@
   "menu-about": "about me",
   "menu-principles": "principles",
   "menu-tools": "tools",
-  "menu-projects": "projects",
+  "menu-projects": "commercial projects",
   "menu-design": "designs",
   "menu-footer": "contact",
 
   "contacts-telegram": "telegram",
   "contacts-email": "email",
 
-  "about-title": "UI/UX Designer",
+  "about-title": "Designer",
   "about-paragraph": "Creating not just beautiful but effective designs that solve business problems, boost conversions, and scale easily. I work at the intersection of design, product, and frontend: I understand how products think and how frontend writes, factoring in metrics, MVP, and development constraints. I think like a user, calculate like a product, and structure like an engineer—turning business goals into clear, logical, and implementable interfaces.",
 
   "about-efficiency-title": "Efficiency",
@@ -27,7 +27,7 @@
 
   "tools-paragraph": "In my work, I combine analytics, interface thinking, and visual expression.\n\nA project starts with research: I study competitors, conduct interviews, and clarify what matters to users. Based on this, I build user flows and create the framework for the future interface.\n\nThe visual part is implemented through adaptive layouts and interactive prototypes in Figma. At this stage, I actively test hypotheses—sometimes even roughly, but with a clear goal: to understand where the interface works and where it doesn’t.\n\nIf needed, I add animations in After Effects, edit promotional videos, or handle basic frontend with CSS/Tailwind/Bootstrap to build an MVP. I work with Git and can streamline processes for teams or freelance projects.",
 
-  "projects-paragraph": "Each of these projects is more than just a set of screens. They are thoughtful solutions based on user needs, clear logic, and visual expressiveness. I’ve gone through the entire journey: from initial sketches and mistakes to the final pixel and working interface. Each project reflects my approach, style, and responsibility for the result.",
+  "projects-paragraph": "Each of these projects is not just a set of screens. They are thoughtful solutions based on user needs, clear logic, and visual expressiveness. I went through the entire process: from the first sketches and mistakes to the final pixel and a fully functioning interface. These are real commercial projects, each carrying my approach, my style, and my responsibility for the result.",
   "projects-project": "project",
   "projects-stat-after-launch": "+ Results",
   "projects-button-design": "design",
@@ -67,6 +67,10 @@
   "design-baikal-text": "Updated landing page for the ‘Time to Hike’ tourism club, offering a trip to Baikal.",
   "design-pioner-title": "Pioner",
   "design-pioner-text": "Updated landing page for a power machinery factory.",
+  "design-admaster-title": "AdMaster",
+  "design-admaster-text": "Design of an adaptive landing page for AdMaster — an online advertising management platform for media publishers.",
+  "design-0xprocessing-title": "0x processing",
+  "design-0xprocessing-text": "Development of a landing page for 0x Processing, a crypto payment service for digital goods marketplaces.",
 
   "footer-copyright": "© 2025\nArtem Tresckow",
   "footer-scroll-up": "Scroll up"

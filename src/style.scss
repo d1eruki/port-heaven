@@ -1,14 +1,249 @@
 @use "tailwindcss";
-@use "styles/colors" as *;
-@use "styles/animations" as *;
-@use "styles/custom-tailwind-styles" as *;
-@use "styles/swiper" as *;
-@use "styles/micromodal" as *;
+
+$transition: all 0.25s;
+//@use "styles/colors" as *;
+
+$black: hsl(0 0% 0%);
+$white: hsl(0 0% 100%);
+$pink: hsl(314 97% 44%);
+$purple: hsl(248 65% 50%);
+$yellow: hsl(73, 100%, 50%);
+$blue: hsl(220, 100%, 50%);
+$green: hsl(108, 100%, 50%);
+$grey: hsl(0 0% 50%);
+$grey-light: hsl(0 0% 70%);
+$grey-dark: hsl(0 0% 20%);
+$transparent: hsla(0, 0%, 0%, 0);
+
+:root {
+  --black: #{$black};
+  --white: #{$white};
+  --pink: #{$pink};
+  --purple: #{$purple};
+  --yellow: #{$yellow};
+  --blue: #{$blue};
+  --green: #{$green};
+  --grey: #{$grey};
+  --grey-light: #{$grey-light};
+  --grey-dark: #{$grey-dark};
+  --transparent: #{$transparent};
+}
+
+[data-theme="light"] {
+  * {
+    &::selection {
+      background-color: $black;
+      color: $white;
+    }
+  }
+
+  p {
+    color: $grey;
+  }
+
+  body {
+    background-color: $yellow;
+    color: $black;
+  }
+
+  a {
+    color: $grey;
+
+    svg {
+      color: $black;
+    }
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  svg {
+    &:hover polygon,
+    &:hover path,
+    &:hover rect {
+      fill: $white;
+    }
+  }
+
+  hr {
+    color: $grey;
+  }
+
+  .active {
+    background-color: $white;
+    color: $black;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .item {
+    transition: $transition;
+    background-color: $black;
+    box-shadow: 0 0 $black;
+    * {
+      color: $white;
+    }
+    &:hover {
+      background-color: $white;
+      box-shadow: -10px -10px $black;
+      * {
+        color: $black;
+      }
+    }
+  }
+
+  .dotted-grid {
+    background-image: radial-gradient($white 1px, $transparent 0);
+  }
+
+  .swiper-pagination-bullet {
+    background: $white !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: $yellow !important;
+  }
+
+  .custom-button {
+    background-color: $black;
+    p {
+      color: $white;
+    }
+
+    &:hover {
+      background-color: $white;
+
+      p {
+        color: $black;
+      }
+    }
+  }
+}
+
+//@use "styles/animations" as *;
+
+@keyframes noise {
+  0% {
+    transform: translate3d(0, 9rem, 0);
+  }
+  10% {
+    transform: translate3d(-1rem, -4rem, 0);
+  }
+  20% {
+    transform: translate3d(-8rem, 2rem, 0);
+  }
+  30% {
+    transform: translate3d(9rem, -9rem, 0);
+  }
+  40% {
+    transform: translate3d(-2rem, 7rem, 0);
+  }
+  50% {
+    transform: translate3d(-9rem, -4rem, 0);
+  }
+  60% {
+    transform: translate3d(2rem, 6rem, 0);
+  }
+  70% {
+    transform: translate3d(7rem, -8rem, 0);
+  }
+  80% {
+    transform: translate3d(-9rem, 1rem, 0);
+  }
+  90% {
+    transform: translate3d(6rem, -5rem, 0);
+  }
+  to {
+    transform: translate3d(-7rem, 0, 0);
+  }
+}
+
+//@use "styles/custom-tailwind-styles" as *;
+
+.writing-horizontal-tb {
+  writing-mode: horizontal-tb;
+}
+
+.writing-vertical-lr {
+  writing-mode: vertical-lr;
+}
+
+.writing-vertical-rl {
+  writing-mode: vertical-rl;
+}
+
+.writing-sideways-rl {
+  writing-mode: sideways-rl;
+}
+
+.writing-sideways-lr {
+  writing-mode: sideways-lr;
+}
+
+//@use "styles/swiper" as *;
+
+.swiper {
+  width: 100%;
+}
+
+.swiper2,
+.swiper2 .swiper-wrapper,
+.swiper1,
+.swiper1 .swiper-wrapper {
+  overflow-y: visible !important;
+}
+
+.swiper-pagination-bullet {
+  width: 24px !important;
+  height: 24px !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  border-radius: 0 !important;
+}
+
+//@use "styles/micromodal" as *;
+
+.modal {
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+.modal__overlay {
+  background: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__content {
+  background-color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+//
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
-
-$transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
 $breakpoint-3xl: 120rem; //1920
 $breakpoint-4xl: 160rem; //2560
