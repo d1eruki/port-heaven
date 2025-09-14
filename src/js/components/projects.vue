@@ -1,5 +1,5 @@
 <template>
-  <div @click="openModal" class="swiper-slide item flex! h-auto! flex-col!">
+  <div @click="openModal" class="item col-span-1 flex h-auto flex-col lg:h-full">
     <div class="flex h-full flex-col justify-between gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p>{{ projectDescription }}</p>
@@ -18,13 +18,7 @@
         </div>
       </div>
       <div class="flex h-fit w-full justify-end">
-        <a
-          v-for="(link, index) in projectLinks"
-          :key="index"
-          class="custom-button w-full flex items-center justify-center px-5 py-5 lg:px-10"
-          :href="link.url"
-          target="_blank"
-        >
+        <a v-for="(link, index) in projectLinks" :key="index" class="custom-button flex w-full items-center justify-center px-5 py-5 lg:px-10" :href="link.url" target="_blank">
           <p>{{ link.name }}</p>
         </a>
       </div>
