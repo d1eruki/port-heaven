@@ -18,7 +18,15 @@
         </div>
       </div>
       <div class="flex h-fit w-full justify-end">
-        <customButton class="w-full" v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
+        <a
+          v-for="(link, index) in projectLinks"
+          :key="index"
+          class="custom-button w-full flex items-center justify-center px-5 py-5 lg:px-10"
+          :href="link.url"
+          target="_blank"
+        >
+          <p>{{ link.name }}</p>
+        </a>
       </div>
     </div>
   </div>
@@ -28,7 +36,6 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import MicroModal from "micromodal";
-import customButton from "./custom-button.vue";
 import Icons from "./icons.vue";
 
 const { t } = useI18n();
