@@ -1,7 +1,6 @@
 import "./style.scss";
 import "./js/vue";
 import "./js/scroll";
-import "./js/section-height";
 import "./js/theme-toggle";
 import "./js/locale-toggler";
 import "./js/yandex-metrika";
