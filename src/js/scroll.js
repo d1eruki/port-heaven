@@ -1,62 +1,15 @@
-import { getHeaderHeight } from "./global-variables";
-
 document.addEventListener("DOMContentLoaded", function () {
   const scrollIcon = document.querySelector("#scroll-to-top, [data-scroll-to-top]");
-  const headerLinks = document.querySelectorAll("a[data-open-block]");
-  const sections = Array.from(headerLinks)
-    .map((link) => {
-      const id = link.getAttribute("href");
-      if (!id || !id.startsWith("#")) return null;
+  const sections = Array.from(document.querySelectorAll("[data-section]"));
 
-      const cleanId = id.slice(1);
-      return document.querySelector(`[data-section="${cleanId}"]`);
-    })
-    .filter(Boolean);
-
-  function setActiveLinkByIndex(index) {
-    headerLinks.forEach((link, i) => {
-      link.classList.toggle("active", i === index);
-    });
+  function scrollToElement(targetEl) {
+    const top = targetEl.offsetTop;
+    window.scrollTo({ top, behavior: "smooth" });
+    return top;
   }
-
-  function updateActiveLink() {
-    const scrollY = window.scrollY + getHeaderHeight() + 10;
-    let lastMatchedIndex = -1;
-
-    sections.forEach((section, i) => {
-      const top = section.offsetTop;
-      const bottom = top + section.offsetHeight;
-
-      if (scrollY >= top && scrollY < bottom) {
-        lastMatchedIndex = i;
-      }
-    });
-
-    if (lastMatchedIndex !== -1) {
-      setActiveLinkByIndex(lastMatchedIndex);
-    } else {
-      headerLinks.forEach((link) => link.classList.remove("active"));
-    }
-  }
-
-  function scrollToWithHeaderOffset(targetEl) {
-    const targetY = targetEl.getBoundingClientRect().top + window.scrollY - getHeaderHeight();
-
-    window.scrollTo({
-      top: targetY,
-      behavior: "smooth",
-    });
-  }
-
-  window.addEventListener("scroll", updateActiveLink);
-  window.addEventListener("load", updateActiveLink);
 
   if (scrollIcon) {
     scrollIcon.style.display = "none";
-
-    const style = document.createElement("style");
-    style.textContent = `a[data-open-block] { transition: all 0.3s ease; }`;
-    document.head.appendChild(style);
 
     function toggleScrollButton() {
       scrollIcon.style.display = window.scrollY > 300 ? "block" : "none";
@@ -70,12 +23,70 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleScrollButton();
   }
 
-  headerLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
+  if (sections.length) {
+    let wheelLock = false;
+    const threshold = 4;
+    const unlockDelay = 700;
+
+    function currentIndex() {
+      const cx = Math.floor(window.innerWidth / 2);
+      const cy = Math.floor(window.innerHeight / 2);
+      let el = document.elementFromPoint(cx, cy);
+      while (el && el !== document.body && !el.hasAttribute?.("data-section")) {
+        el = el.parentElement;
+      }
+      if (el && el.hasAttribute && el.hasAttribute("data-section")) {
+        const idx = sections.indexOf(el);
+        if (idx !== -1) return idx;
+      }
+      const y = window.scrollY;
+      let idx = 0;
+      for (let i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop <= y + 1) idx = i;
+      }
+      return idx;
+    }
+
+    function atSectionBoundary(sec) {
+      const y = window.scrollY;
+      const vh = window.innerHeight;
+      const top = sec.offsetTop;
+      const bottom = top + sec.offsetHeight;
+      const atTop = Math.abs(y - top) <= 1;
+      const atBottom = Math.abs(y + vh - bottom) <= 1;
+      return { atTop, atBottom };
+    }
+
+    function onWheel(e) {
+      const dy = e.deltaY || 0;
+      if (Math.abs(dy) < threshold) return;
+
+      if (wheelLock) {
+        e.preventDefault();
+        return;
+      }
+
+      const cur = currentIndex();
+      const sec = sections[cur];
+      const isTall = sec.offsetHeight > window.innerHeight + 1;
+
+      if (isTall) {
+        const { atTop, atBottom } = atSectionBoundary(sec);
+        if ((dy < 0 && !atTop) || (dy > 0 && !atBottom)) {
+          return;
+        }
+      }
+
+      let target = cur + (dy > 0 ? 1 : -1);
+      target = Math.max(0, Math.min(sections.length - 1, target));
+      if (target === cur) return;
+
       e.preventDefault();
-      const targetId = this.getAttribute("href").slice(1); // убираем #
-      const targetEl = document.querySelector(`[data-section="${targetId}"]`);
-      if (targetEl) scrollToWithHeaderOffset(targetEl);
-    });
-  });
+      wheelLock = true;
+      scrollToElement(sections[target]);
+      setTimeout(() => (wheelLock = false), unlockDelay);
+    }
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+  }
 });

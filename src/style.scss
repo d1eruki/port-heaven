@@ -6,6 +6,7 @@ $transition: all 0.25s;
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);
 $pink: hsl(314 97% 44%);
+$red: hsl(0, 100%, 50%);
 $purple: hsl(248 65% 50%);
 $yellow: hsl(73, 100%, 50%);
 $blue: hsl(220, 100%, 50%);
@@ -19,6 +20,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   --black: #{$black};
   --white: #{$white};
   --pink: #{$pink};
+  --red: #{$red};
   --purple: #{$purple};
   --yellow: #{$yellow};
   --blue: #{$blue};
@@ -97,29 +99,6 @@ $transparent: hsla(0, 0%, 0%, 0);
   .dotted-grid {
     background-image: radial-gradient($grey-dark 1px, $transparent 0);
   }
-
-  .swiper-pagination-bullet {
-    background: $white !important;
-  }
-
-  .swiper-pagination-bullet-active {
-    background: $yellow !important;
-  }
-
-  .custom-button {
-    background-color: $black;
-    p {
-      color: $white;
-    }
-
-    &:hover {
-      background-color: $white;
-
-      p {
-        color: $black;
-      }
-    }
-  }
 }
 
 //@use "styles/animations" as *;
@@ -161,21 +140,6 @@ $transparent: hsla(0, 0%, 0%, 0);
 }
 
 //@use "styles/custom-tailwind-styles" as *;
-
-
-//@use "styles/swiper" as *;
-
-.swiper {
-  width: 100%;
-}
-
-.swiper-pagination-bullet {
-  width: 24px !important;
-  height: 24px !important;
-  margin: 0 !important;
-  opacity: 1 !important;
-  border-radius: 0 !important;
-}
 
 //@use "styles/micromodal" as *;
 
@@ -313,12 +277,6 @@ iframe,
 video {
   border-radius: 15px;
   border: none;
-}
-
-.progress-bar {
-  height: 5px;
-  width: 0;
-  transition: width 0.1s ease;
 }
 
 .card {
