@@ -1,106 +1,93 @@
-# port-heaven
+# Port Heaven
 
-## Описание
+## Description
 
-port-heaven персональный проект-портфолио для демонстрации имеющихся навыков
+Port Heaven is a personal portfolio project to showcase existing frontend skills and experiments.
 
-## Технологии
-
-В этом проекте используются следующие технологии:
+## Technologies
 
 ### Webpack
 
-**Webpack** — мощный сборщик модулей для JavaScript-приложений. Он используется для сборки, оптимизации и обработки всех исходных файлов проекта.
+Webpack is used to bundle, optimize, and process all project assets.
 
-#### Задействованные пакеты:
+Packages involved:
 
-- `webpack` — сам сборщик
-- `webpack-cli` — инструмент командной строки для управления Webpack
-- `webpack-dev-server` — сервер для разработки, который автоматически обновляет страницу при изменении файлов
-- `copy-webpack-plugin` — используется для копирования файлов или каталогов в сборку, таких как статические ресурсы
-
-### Babel
-
-**Babel** — транспайлер, который используется для преобразования современного JavaScript (ES6+) в код, совместимый с более старыми браузерами
-
-#### Задействованные пакеты:
-
-- `@babel/core` — ядро Babel
-- `@babel/preset-env` — пресет, который автоматически определяет необходимые преобразования для поддержки целевых браузеров
-- `babel-loader` — загрузчик для интеграции Babel с Webpack
+- `webpack` — the bundler
+- `webpack-cli` — command-line interface for Webpack
+- `webpack-dev-server` — local dev server with HMR
+- `copy-webpack-plugin` — copies static assets to the build
+- `html-webpack-plugin` — generates HTML and injects built assets
+- `css-minimizer-webpack-plugin` — minimizes CSS in production
+- `mini-css-extract-plugin` — extracts CSS into separate files for production
+- `css-loader` — allows importing CSS into JS
+- `style-loader` — injects styles into DOM during development
 
 ### SCSS
 
-**SCSS** — препроцессор для работы с CSS, который добавляет возможности, такие как переменные, вложенные стили и миксины
+SCSS is used to author styles with variables, nesting, and mixins.
 
-#### Задействованные пакеты:
+Packages involved:
 
-- `sass` — инструмент для компиляции SCSS в CSS
-- `sass-loader` — загрузчик для обработки SCSS в Webpack
-- `style-loader` — добавляет стили прямо в DOM для горячей загрузки в режиме разработки
-- `css-loader` — позволяет импортировать CSS-файлы в JavaScript
-- `mini-css-extract-plugin` — извлекает CSS в отдельные файлы, что полезно для production-сборки
+- `sass` — SCSS compiler
+- `sass-loader` — processes SCSS in Webpack
 
 ### PostCSS
 
-**PostCSS** — инструмент для обработки CSS с помощью плагинов
-
-#### Использование:
-
-- Добавление префиксов с помощью `autoprefixer`
-- Поддержка SCSS-синтаксиса через `postcss-scss`
-- Настройка с использованием `postcss` и `postcss-loader`
+PostCSS is used together with Tailwind CSS v4 via @tailwindcss/postcss and postcss-loader.
 
 ### Tailwind CSS
 
-**Tailwind CSS** — утилитарный CSS-фреймворк для быстрой разработки интерфейсов. Он предоставляет множество готовых классов для стилизации. Настроен через PostCSS.
+Utility-first CSS framework wired through PostCSS.
 
 ### Vue 3
 
-**Vue.js** — прогрессивный JavaScript-фреймворк для построения пользовательских интерфейсов.
+Progressive JavaScript framework for building the UI.
 
-#### Задействованные пакеты:
+Packages involved:
 
-- `vue` — ядро Vue 3.
-- `@vue/compiler-sfc` — компилятор для работы с однофайловыми компонентами (Single File Components).
-- `vue-loader` — загрузчик Webpack для обработки однофайловых компонентов Vue.
+- `vue` — Vue 3 core
+- `@vue/compiler-sfc` — compiler for Single File Components
+- `vue-loader` — Webpack loader for .vue files
 
-### HTML Webpack Plugin
+### State & i18n
 
-**HTML Webpack Plugin** — плагин для генерации HTML-файла, который автоматически подключает все собранные ресурсы (CSS, JS) к итоговому документу.
+- `pinia` — state management
+- `vue-i18n` — internationalization
 
-#### Задействованные пакеты:
+### UI Utilities
 
-- `html-webpack-plugin` — позволяет создавать HTML-файлы, оптимизированные для вашего приложения.
+- `swiper` — touch slider
+- `micromodal` — accessible modals
 
-### Развертывание на GitHub Pages
+### Developer Tooling
 
-Для развертывания приложения на GitHub Pages используется пакет:
+- `prettier` + `prettier-plugin-tailwindcss` — code formatting
+- `npm-check-updates` — dependency checks/updates
+- `ngrok` — public tunnel for local dev
 
-- `gh-pages` — позволяет автоматически публиковать содержимое папки сборки в репозитории на GitHub.
+## Installation
 
-## Установка
+1. Clone the repository:
 
-1. Клонируйте репозиторий:
+```bash
+git clone git@github.com:d1eruki/port-heaven.git
+cd port-heaven
+```
 
-   ```bash
-   git clone git@github.com:d1eruki/port-heaven.git
-   cd port-heaven
-   ```
+2. Install dependencies:
 
-2. Установите зависимости:
-   Если у вас не установлен `Node.js`, загрузите его с [официального сайта](https://nodejs.org/).
-   После установки, выполните команду:
-   ```bash
-   npm install
-   ```
+   Make sure you have Node.js installed: https://nodejs.org/
 
-## Использование
+```bash
+npm install
+```
 
-Для запуска сайта на локальном сервере выполните команду:
+## Usage
+
+To run the site locally:
 
 ```bash
 npm start
 ```
 
-Сайт будет доступно по адресу `http://localhost:8080`.
+The app will be available at http://localhost:8080
