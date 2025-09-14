@@ -50,7 +50,7 @@ $transparent: hsla(0, 0%, 0%, 0);
     color: $grey;
 
     svg {
-      color: $black;
+      color: $white;
     }
 
     &:hover {
@@ -81,7 +81,6 @@ $transparent: hsla(0, 0%, 0%, 0);
 
   .item {
     transition: $transition;
-    background-color: $black;
     box-shadow: 0 0 $black;
     * {
       color: $white;
@@ -96,7 +95,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   .dotted-grid {
-    background-image: radial-gradient($white 1px, $transparent 0);
+    background-image: radial-gradient($grey-dark 1px, $transparent 0);
   }
 
   .swiper-pagination-bullet {
