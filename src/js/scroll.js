@@ -1,7 +1,7 @@
 import { getHeaderHeight } from "./global-variables";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const scrollIcon = document.querySelector("[data-scroll-to-top]");
+  const scrollIcon = document.querySelector("#scroll-to-top, [data-scroll-to-top]");
   const headerLinks = document.querySelectorAll("a[data-open-block]");
   const sections = Array.from(headerLinks)
     .map((link) => {
@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return document.querySelector(`[data-section="${cleanId}"]`);
     })
     .filter(Boolean);
-
-  if (!headerLinks.length || !sections.length) return;
 
   function setActiveLinkByIndex(index) {
     headerLinks.forEach((link, i) => {
