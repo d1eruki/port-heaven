@@ -84,8 +84,11 @@ $transparent: hsla(0, 0%, 0%, 0);
   .item {
     transition: $transition;
     box-shadow: 0 0 $black;
-    * {
+    .h3 {
       color: $white;
+    }
+    p {
+      color: $grey;
     }
     &:hover {
       background-color: $white;
@@ -300,8 +303,7 @@ polygon.star {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-family: "Actay", sans-serif;
   text-transform: uppercase;
 }
@@ -316,15 +318,7 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1rem, 0.571rem + 2.143vw, 4rem);
-}
-
-h4 {
   font-size: clamp(1rem, 0.714rem + 1.429vw, 3rem);
-}
-
-.numbers {
-  font-size: clamp(4rem, 2.429rem + 7.857vw, 15rem);
 }
 
 p {

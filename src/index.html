@@ -33,14 +33,14 @@
     </section>
 
     <!--about-->
-    <section data-section="about" id="about" class="col-span-1 grid min-h-dvh grid-cols-1 gap-5 pr-5 lg:col-span-4 lg:h-full lg:grid-cols-4">
-      <h2 class="light:bg-[var(--red)] light:text-[color:var(--white)] col-span-1 h-fit lg:h-1/2 p-5 lg:col-span-2">{{ t('about-title') }}</h2>
-      <p class="col-span-2">{{ t('about-paragraph') }}</p>
+    <section data-section="about" id="about" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:h-full lg:grid-cols-4">
+      <h2 class="light:bg-[var(--red)] light:text-[color:var(--white)] col-span-1 h-fit p-5 lg:col-span-2 lg:h-full">{{ t('about-title') }}</h2>
+      <p class="col-span-2 p-5">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
     <section data-section="projects" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <h2 class="light:bg-[var(--red)] light:text-[color:var(--white)] col-span-1 h-fit p-5 lg:col-span-1 lg:h-1/2">{{ t('menu-projects') }}</h2>
+      <h2 class="light:bg-[var(--red)] light:text-[color:var(--white)] col-span-1 h-fit p-5 lg:col-span-1 lg:h-full">{{ t('menu-projects') }}</h2>
 
       <project
         :project-name="t('projects-downloadPage-title')"
@@ -112,7 +112,8 @@
           <icons icon="google-mail"></icons>
         </a>
       </div>
-      <h4 class="light:text-[color:var(--white)] col-span-2 flex items-end justify-self-end p-5">{{ t('footer-copyright') }}</h4>
+      <h3 class="light:text-[color:var(--white)] col-span-2 flex items-end justify-self-end p-5">{{ t('footer-copyright') }}</h3>
+      <a id="lang-toggle" class="hidden w-fit cursor-pointer p-2.5 lg:flex lg:px-10 lg:py-5">en</a>
     </footer>
 
     <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>

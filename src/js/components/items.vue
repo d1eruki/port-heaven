@@ -1,6 +1,6 @@
 <template>
   <a :href="itemUrl" target="_blank" class="item col-span-1 row-span-1 flex h-full flex-col justify-between gap-5 p-5">
-    <h4>{{ itemName }}</h4>
+    <h3>{{ itemName }}</h3>
     <p>{{ itemDesc }}</p>
   </a>
 </template>
