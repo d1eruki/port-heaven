@@ -40,7 +40,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   p {
-    color: $grey;
+    color: $white;
   }
 
   body {
@@ -198,16 +198,15 @@ $breakpoint-4xl: 160rem; //2560
   font-display: swap;
 }
 
-.jost {
-  font-family: "Jost", sans-serif;
-}
-
 .Actay {
   font-family: "Actay", sans-serif;
 }
 
 * {
-  font-family: "Jost", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
   text-wrap: balance;
   cursor: url("assets/images/cursors/cursor-inactive.png"), auto;
 
