@@ -57,7 +57,6 @@ Packages involved:
 ### UI Utilities
 
 - `swiper` — touch slider
-- `micromodal` — accessible modals
 
 ### Developer Tooling
 

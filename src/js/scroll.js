@@ -31,7 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
       while (el && el !== document.body && !el.hasAttribute?.("data-section")) {
         // If the ancestor itself is fixed, also ignore and fallback
         const pos = el instanceof Element ? getComputedStyle(el).position : "";
-        if (pos === "fixed") { el = null; break; }
+        if (pos === "fixed") {
+          el = null;
+          break;
+        }
         el = el.parentElement;
       }
       if (el && el.hasAttribute && el.hasAttribute("data-section")) {
@@ -108,8 +111,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const onScrollEnd = () => {
         if (finished) return;
         finished = true;
-        try { window.removeEventListener("scrollend", onScrollEnd); } catch (_) {}
-        if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); endWatchRAF = 0; }
+        try {
+          window.removeEventListener("scrollend", onScrollEnd);
+        } catch (_) {}
+        if (endWatchRAF) {
+          cancelAnimationFrame(endWatchRAF);
+          endWatchRAF = 0;
+        }
         finish();
       };
       try {
@@ -129,14 +137,21 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           if (!finished && stableFrames >= 6) {
             finished = true;
-            try { window.removeEventListener("scrollend", onScrollEnd); } catch (_) {}
-            if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); endWatchRAF = 0; }
+            try {
+              window.removeEventListener("scrollend", onScrollEnd);
+            } catch (_) {}
+            if (endWatchRAF) {
+              cancelAnimationFrame(endWatchRAF);
+              endWatchRAF = 0;
+            }
             finish();
           } else if (!finished) {
             watchStable();
           } else {
             // finished elsewhere, clear raf id
-            if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); }
+            if (endWatchRAF) {
+              cancelAnimationFrame(endWatchRAF);
+            }
             endWatchRAF = 0;
           }
         });
@@ -147,8 +162,13 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => {
         if (!finished) {
           finished = true;
-          try { window.removeEventListener("scrollend", onScrollEnd); } catch (_) {}
-          if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); endWatchRAF = 0; }
+          try {
+            window.removeEventListener("scrollend", onScrollEnd);
+          } catch (_) {}
+          if (endWatchRAF) {
+            cancelAnimationFrame(endWatchRAF);
+            endWatchRAF = 0;
+          }
           finish();
         }
       }, MAX_LOCK_MS);
@@ -193,7 +213,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target === cur) return;
         e.preventDefault();
         // Immediately set programmatic flags to suppress touchpad inertia
-        isProgrammatic = true; wheelLock = true;
+        isProgrammatic = true;
+        wheelLock = true;
         scrollToElement(sections[target]);
       } else if (dy < 0) {
         // up: if top still above (i.e., section scrolled past top), allow native scrolling
@@ -202,7 +223,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target === cur) return;
         e.preventDefault();
         // Immediately set programmatic flags to suppress touchpad inertia
-        isProgrammatic = true; wheelLock = true;
+        isProgrammatic = true;
+        wheelLock = true;
         scrollToElement(sections[target]);
       }
     }
@@ -257,7 +279,10 @@ document.addEventListener("DOMContentLoaded", function () {
         clearTimeout(resizeTimer);
         resizeTimer = null;
       }
-      if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); endWatchRAF = 0; }
+      if (endWatchRAF) {
+        cancelAnimationFrame(endWatchRAF);
+        endWatchRAF = 0;
+      }
       stableFrames = 0;
     }
 

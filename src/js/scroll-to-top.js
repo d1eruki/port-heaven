@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function scrollToTop(e) {
     e?.preventDefault?.();
     // Respect reduced motion if user prefers it
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) {
       window.scrollTo({ top: 0 });
     } else {

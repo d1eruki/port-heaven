@@ -6,9 +6,3 @@ import "./js/theme-toggle";
 import "./js/locale-toggler";
 import "./js/yandex-metrika";
 import "./js/cursor";
-import MicroModal from "micromodal";
-
-MicroModal.init({
-  disableScroll: true,
-  disableFocus: true,
-});
