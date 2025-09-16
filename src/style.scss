@@ -70,7 +70,6 @@ $transparent: hsla(0, 0%, 0%, 0);
 
   .item {
     transition: $transition;
-    box-shadow: 0 0 $black;
     h3 {
       color: $white;
     }
@@ -79,7 +78,6 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
     &:hover {
       background-color: $white;
-      box-shadow: -10px -10px $black;
       * {
         color: $black;
       }

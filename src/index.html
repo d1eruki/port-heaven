@@ -28,19 +28,19 @@
 
     <!--me-->
     <section data-section="me" id="me" class="relative min-h-dvh content-end lg:col-span-4">
-      <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
+      <h1 class="px-5">{{ t('hero') }}</h1>
       <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
     </section>
 
     <!--about-->
-    <section data-section="about" id="about" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:h-full lg:grid-cols-4">
-      <h2 class="light:text-[color:var(--white)] col-span-1 h-fit p-5 lg:col-span-2 lg:h-full">{{ t('about-title') }}</h2>
+    <section data-section="about" id="about" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4">
+      <h2 class="col-span-1 h-fit p-5 lg:col-span-2 lg:h-full">{{ t('about-title') }}</h2>
       <p class="light:text-[color:var(--grey)] col-span-2 p-5">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
     <section data-section="projects" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <h2 class="light:text-[color:var(--white)] col-span-1 h-fit p-5 lg:col-span-1 lg:h-full">{{ t('menu-projects') }}</h2>
+      <h2 class="col-span-1 h-fit p-5 lg:col-span-1 lg:h-full">{{ t('menu-projects') }}</h2>
 
       <project
         :project-name="t('projects-downloadPage-title')"
@@ -91,7 +91,7 @@
 
     <!--design-->
     <section data-section="design" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <h2 class="light:text-[color:var(--white)] col-span-1 grid h-fit p-5 lg:h-full">{{ t('menu-design') }}</h2>
+      <h2 class="col-span-1 grid h-fit p-5 lg:h-full">{{ t('menu-design') }}</h2>
       <items :item-name="t('design-varwinMobile-title')" :item-desc="t('design-varwinMobile-text')" item-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" item-img-alt=""></items>
       <items :item-name="t('design-admaster-title')" :item-desc="t('design-admaster-text')" item-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" item-img-alt=""></items>
       <items :item-name="t('design-0xprocessing-title')" :item-desc="t('design-0xprocessing-text')" item-url="https://www.figma.com/design/eViD7HUkXMbie6XI9a8BLK/0x-processing-landing-page?node-id=2006-2&t=qwDbVxa6LRKoFTY5-1" item-img-alt=""></items>
