@@ -24,9 +24,13 @@
     });
   }
 
-  // Активность: если таргет или его предок имеет .Active, делаем крупнее
+  // Активность: делаем крупнее над .active и над ссылками <a>
   function updateActive(target) {
-    const isActive = !!(target && target.closest && target.closest(".active"));
+    const isActive = !!(
+      target &&
+      target.closest &&
+      (target.closest(".active") || target.closest("a"))
+    );
     cursor.classList.toggle("is-active", isActive);
   }
 
