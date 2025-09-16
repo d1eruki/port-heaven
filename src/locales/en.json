@@ -8,7 +8,7 @@
   "menu-footer": "contact",
 
   "about-title": "Designer",
-  "about-paragraph": "I create designs that are not only beautiful but also effective, solving business problems, increasing conversions, and easily scalable. I work at the intersection of design, product, and front-end development: I understand how the product thinks and how the front-end writes, taking into account metrics, MVP, and development constraints. I think like a user, calculate like a product, and structure like an engineer — I turn business goals into a clear, logical, and implementable interface.",
+  "about-paragraph": "I create not just beautiful, but functional design that solves business challenges, boosts conversions, and scales easily. I work at the intersection of web design, product, and front-end, keeping in mind metrics, MVP, and development constraints. I look through the eyes of the user and structure like an engineer—turning business goals into clear, usable interfaces. I know front-end basics and can quickly build prototypes or landing pages. I also use video editing for presentations, promo materials, and UI animations to show design not only in static form, but also in motion.",
 
   "about-efficiency-title": "Efficiency",
   "about-efficiency-text": "I create designs that solve problems, not just look good. User experience is always aimed at increasing conversions. I focus on speed: MVP, launch, tests—to quickly understand what really works.",
@@ -17,7 +17,7 @@
   "about-strategy-title": "Strategy",
   "about-strategy-text": "I see the product as a whole: from idea and structure to final implementation. I contribute at every stage to ensure the result is deliberate and impactful, not random.",
 
-  "projects-stat-after-launch": "+ Results",
+  "projects-stat-after-launch": "Results",
   "projects-button-design": "design",
   "projects-button-site": "site",
 
@@ -59,6 +59,5 @@
   "design-stuff-title": "Stuff",
   "design-stuff-text": "Development of a landing page for Stuff — a personnel and recruitment agency",
 
-  "footer-copyright": "© 2025\nArtem Tresckow",
   "footer-scroll-up": "Scroll up"
 }

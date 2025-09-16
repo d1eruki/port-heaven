@@ -39,10 +39,6 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
   }
 
-  p {
-    color: $white;
-  }
-
   body {
     background-color: $black;
     color: $white;
@@ -75,7 +71,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   .item {
     transition: $transition;
     box-shadow: 0 0 $black;
-    .h3 {
+    h3 {
       color: $white;
     }
     p {
@@ -174,6 +170,11 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 .modal {
   display: none;
+
+  h3,
+  p {
+    color: $black;
+  }
 }
 
 .modal.is-open {
