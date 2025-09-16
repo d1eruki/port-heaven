@@ -34,8 +34,8 @@ $transparent: hsla(0, 0%, 0%, 0);
 [data-theme="light"] {
   * {
     &::selection {
-      background-color: $black;
-      color: $white;
+      background-color: $white;
+      color: $black;
     }
   }
 

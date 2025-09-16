@@ -87,6 +87,26 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => (wheelLock = false), unlockDelay);
     }
 
-    window.addEventListener("wheel", onWheel, { passive: false });
+    // Включаем авто-скролл только на экранах >= 64rem
+    const mq = window.matchMedia("(min-width: 64rem)");
+    let isBound = false;
+    function bindWheel() {
+      if (!isBound) {
+        window.addEventListener("wheel", onWheel, { passive: false });
+        isBound = true;
+      }
+    }
+    function unbindWheel() {
+      if (isBound) {
+        window.removeEventListener("wheel", onWheel, { passive: false });
+        isBound = false;
+      }
+    }
+
+    if (mq.matches) bindWheel();
+    mq.addEventListener?.("change", (e) => {
+      if (e.matches) bindWheel();
+      else unbindWheel();
+    });
   }
 });
