@@ -27,20 +27,20 @@
     </div>
 
     <!--me-->
-    <section data-section="me" id="me" class="relative min-h-dvh content-end lg:col-span-4">
+    <section data-section="me" id="me" class="relative min-h-dvh content-end lg:col-span-4 mb-100 auto-rows-fr">
       <h1 class="px-5">{{ t('hero') }}</h1>
       <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
     </section>
 
     <!--about-->
-    <section data-section="about" id="about" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4">
+    <section data-section="about" id="about" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4 mb-100 auto-rows-fr">
       <h2 class="col-span-1 h-fit p-5 lg:col-span-2 lg:h-full">{{ t('about-title') }}</h2>
       <p class="light:text-[color:var(--grey)] col-span-2 p-5">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
-    <section data-section="projects" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <h2 class="col-span-1 h-fit p-5 lg:col-span-1 lg:h-full">{{ t('menu-projects') }}</h2>
+    <section data-section="projects" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4 mb-100 auto-rows-fr">
+      <h2 class="col-span-1 h-fit p-5 lg:col-span-2 lg:h-full">{{ t('menu-projects') }}</h2>
 
       <project
         :project-name="t('projects-downloadPage-title')"
@@ -90,7 +90,7 @@
     </section>
 
     <!--design-->
-    <section data-section="design" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4">
+    <section data-section="design" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4 mb-100 auto-rows-fr">
       <h2 class="col-span-1 grid h-fit p-5 lg:h-full">{{ t('menu-design') }}</h2>
       <items :item-name="t('design-varwinMobile-title')" :item-desc="t('design-varwinMobile-text')" item-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" item-img-alt=""></items>
       <items :item-name="t('design-admaster-title')" :item-desc="t('design-admaster-text')" item-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" item-img-alt=""></items>
@@ -101,7 +101,7 @@
       <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/Redesign-of-the-Power-Machines-plant-webpage?node-id=1051-200&t=hfZVdTFUnt3JHWLN-1" item-img-alt=""></items>
     </section>
 
-    <footer data-section="footer" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4">
+    <section data-section="footer" class="col-span-1 grid min-h-dvh grid-cols-1 lg:col-span-4 lg:grid-cols-4 auto-rows-fr">
       <div class="col-span-1 flex h-fit flex-row justify-between p-5 lg:col-span-1 lg:h-full lg:flex-col">
         <h2>{{ t("menu-footer") }}</h2>
         <div class="col-span-2 flex items-center items-end gap-5">
@@ -117,7 +117,7 @@
         <a id="lang-toggle" class="h-1/2 content-end self-end justify-self-end lg:content-start">en</a>
         <a id="scroll-to-top" class="h-1/2 content-end self-end justify-self-end">{{ t('footer-scroll-up') }}</a>
       </div>
-    </footer>
+    </section>
 
     <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>
   </body>
