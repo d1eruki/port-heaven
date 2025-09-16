@@ -115,17 +115,17 @@ $transparent: hsla(0, 0%, 0%, 0);
   width: var(--cursor-size);
   height: var(--cursor-size);
   border-radius: 50%;
-  background: #fff;              /* белый + difference = инверсия относительно фона */
+  background: #fff; /* белый + difference = инверсия относительно фона */
   mix-blend-mode: difference;
   pointer-events: none;
-  z-index: 2147483647;           /* живи выше всех попапов */
+  z-index: 2147483647; /* живи выше всех попапов */
   transform: translate(-50%, -50%);
   opacity: 0;
   transition:
-          width .18s ease,
-          height .18s ease,
-          opacity .2s ease,
-          transform .04s linear;       /* легкая «псевдо-инерция» */
+    width 0.18s ease,
+    height 0.18s ease,
+    opacity 0.2s ease,
+    transform 0.04s linear; /* легкая «псевдо-инерция» */
 }
 
 .app-cursor.is-active {
@@ -142,7 +142,13 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 /* Демо-стили, не обязательны для работы */
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
   margin: 0;
   line-height: 1.5;
 }
