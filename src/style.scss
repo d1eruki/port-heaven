@@ -72,15 +72,6 @@ $transparent: hsla(0, 0%, 0%, 0);
     color: $grey;
   }
 
-  .active {
-    background-color: $white;
-    color: $black;
-
-    &:hover {
-      color: $black;
-    }
-  }
-
   .item {
     transition: $transition;
     box-shadow: 0 0 $black;
@@ -111,9 +102,12 @@ $transparent: hsla(0, 0%, 0%, 0);
   --cursor-size-active: 25px;
 }
 
-/* Прячем системный курсор только там, где есть нормальный pointer */
-.use-custom-cursor body {
-  cursor: none;
+/* Прячем системный курсор полностью (включая ссылки, кнопки и т.д.) */
+.use-custom-cursor body,
+.use-custom-cursor body *,
+.use-custom-cursor body *::before,
+.use-custom-cursor body *::after {
+  cursor: none !important;
 }
 
 /* Сам курсор */

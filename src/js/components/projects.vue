@@ -1,5 +1,5 @@
 <template>
-  <div @click="openModal" class="item col-span-1 flex h-auto flex-col lg:h-full">
+  <div @click="openModal" class="item active col-span-1 flex h-auto flex-col lg:h-full">
     <div class="flex h-full flex-col justify-between gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p>{{ projectDescription }}</p>

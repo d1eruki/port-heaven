@@ -24,7 +24,7 @@
 
   // Активность: если таргет или его предок имеет .Active, делаем крупнее
   function updateActive(target) {
-    const isActive = !!(target && target.closest && target.closest('.Active'));
+    const isActive = !!(target && target.closest && target.closest('.active'));
     cursor.classList.toggle('is-active', isActive);
   }
 
