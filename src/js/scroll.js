@@ -1,22 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const scrollIcon = document.querySelector("#scroll-to-top, [data-scroll-to-top]");
   const sections = Array.from(document.querySelectorAll("[data-section]"));
-
-  // Keep the existing scroll-to-top button behavior untouched
-  if (scrollIcon) {
-    scrollIcon.style.display = "none";
-
-    function toggleScrollButton() {
-      scrollIcon.style.display = window.scrollY > 300 ? "block" : "none";
-    }
-
-    scrollIcon.addEventListener("click", () => {
-      document.documentElement.scrollIntoView({ behavior: "smooth" });
-    });
-
-    window.addEventListener("scroll", toggleScrollButton);
-    toggleScrollButton();
-  }
 
   if (sections.length) {
     // Pure JS section flipping with strict direction and inertia suppression
