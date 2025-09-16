@@ -16,7 +16,7 @@
     x = nx; y = ny;
     if (rafId) return;
     rafId = requestAnimationFrame(() => {
-      cursor.style.transform = `translate(${x}px, ${y}px)`;
+      cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
       cursor.style.opacity = '1';
       rafId = null;
     });

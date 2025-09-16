@@ -103,11 +103,8 @@ $transparent: hsla(0, 0%, 0%, 0);
 }
 
 /* Прячем системный курсор полностью (включая ссылки, кнопки и т.д.) */
-.use-custom-cursor body,
-.use-custom-cursor body *,
-.use-custom-cursor body *::before,
-.use-custom-cursor body *::after {
-  cursor: none !important;
+.use-custom-cursor body * {
+  cursor: none;
 }
 
 /* Сам курсор */
