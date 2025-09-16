@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (sections.length) {
     // Pure JS section flipping with strict direction and inertia suppression
-    const EPS = 3; // boundary epsilon (2–4 px)
+    const EPS = 5; // boundary epsilon (5 px for HiDPI/inertia)
     const DELTA_THRESHOLD = 2; // ignore tiny deltas/noise
 
     let isProgrammatic = false; // we're running a smooth scroll we initiated
@@ -38,7 +38,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const cx = Math.floor(window.innerWidth / 2);
       const cy = Math.floor(window.innerHeight / 2);
       let el = document.elementFromPoint(cx, cy);
+      // Ignore fixed-position overlays/headers that can cover the center point
+      if (el && el instanceof Element) {
+        const pos = getComputedStyle(el).position;
+        if (pos === "fixed") {
+          el = null; // force fallback
+        }
+      }
       while (el && el !== document.body && !el.hasAttribute?.("data-section")) {
+        // If the ancestor itself is fixed, also ignore and fallback
+        const pos = el instanceof Element ? getComputedStyle(el).position : "";
+        if (pos === "fixed") { el = null; break; }
         el = el.parentElement;
       }
       if (el && el.hasAttribute && el.hasAttribute("data-section")) {
@@ -115,7 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const onScrollEnd = () => {
         if (finished) return;
         finished = true;
-        window.removeEventListener("scrollend", onScrollEnd);
+        try { window.removeEventListener("scrollend", onScrollEnd); } catch (_) {}
+        if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); endWatchRAF = 0; }
         finish();
       };
       try {
@@ -136,9 +147,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!finished && stableFrames >= 6) {
             finished = true;
             try { window.removeEventListener("scrollend", onScrollEnd); } catch (_) {}
+            if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); endWatchRAF = 0; }
             finish();
           } else if (!finished) {
             watchStable();
+          } else {
+            // finished elsewhere, clear raf id
+            if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); }
+            endWatchRAF = 0;
           }
         });
       }
@@ -149,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!finished) {
           finished = true;
           try { window.removeEventListener("scrollend", onScrollEnd); } catch (_) {}
+          if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); endWatchRAF = 0; }
           finish();
         }
       }, MAX_LOCK_MS);
@@ -163,8 +180,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const absY = Math.abs(dy);
       const absX = Math.abs(e.deltaX || 0);
 
-      // Only vertical-dominant and meaningful delta
-      if (absY <= absX || absY < DELTA_THRESHOLD) return;
+      // Only vertical-dominant and meaningful delta: vertical must be at least 2x horizontal
+      if (absY < DELTA_THRESHOLD || absY < 2 * absX) return;
 
       // While programmatic scroll/lock is active, suppress inertia
       if (isProgrammatic || wheelLock) {
@@ -192,6 +209,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let target = Math.min(sections.length - 1, cur + 1);
         if (target === cur) return;
         e.preventDefault();
+        // Immediately set programmatic flags to suppress touchpad inertia
+        isProgrammatic = true; wheelLock = true;
         scrollToElement(sections[target]);
       } else if (dy < 0) {
         // up: if top still above (i.e., section scrolled past top), allow native scrolling
@@ -199,6 +218,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let target = Math.max(0, cur - 1);
         if (target === cur) return;
         e.preventDefault();
+        // Immediately set programmatic flags to suppress touchpad inertia
+        isProgrammatic = true; wheelLock = true;
         scrollToElement(sections[target]);
       }
     }
@@ -206,15 +227,40 @@ document.addEventListener("DOMContentLoaded", function () {
     // Enable behavior only on screens >= 64rem
     const mq = window.matchMedia("(min-width: 64rem)");
     let isBound = false;
+    let resizeTimer = null;
+
+    function alignCurrentSection() {
+      if (!sections.length) return;
+      const idx = currentIndex();
+      const target = sections[idx];
+      if (!target) return;
+      const desiredTop = target.offsetTop;
+      const diff = Math.abs(Math.round(window.scrollY) - Math.round(desiredTop));
+      if (diff > EPS) {
+        // Gentle align using programmatic scrolling
+        scrollToElement(target);
+      }
+    }
+
+    function onResizeDebounced() {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (isProgrammatic || wheelLock) return;
+        alignCurrentSection();
+      }, 120);
+    }
+
     function bindWheel() {
       if (!isBound) {
         window.addEventListener("wheel", onWheel, { passive: false });
+        window.addEventListener("resize", onResizeDebounced);
         isBound = true;
       }
     }
     function unbindWheel() {
       if (isBound) {
         window.removeEventListener("wheel", onWheel, { passive: false });
+        window.removeEventListener("resize", onResizeDebounced);
         isBound = false;
       }
       // Reset flags when disabling
@@ -224,7 +270,11 @@ document.addEventListener("DOMContentLoaded", function () {
         clearTimeout(quietTimer);
         quietTimer = null;
       }
-      if (endWatchRAF) cancelAnimationFrame(endWatchRAF);
+      if (resizeTimer) {
+        clearTimeout(resizeTimer);
+        resizeTimer = null;
+      }
+      if (endWatchRAF) { cancelAnimationFrame(endWatchRAF); endWatchRAF = 0; }
       stableFrames = 0;
     }
 
