@@ -84,6 +84,18 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
   }
 
+  .projects {
+    p {
+      color: $grey;
+    }
+    a:hover {
+      background-color: $white;
+      * {
+        color: $black;
+      }
+    }
+  }
+
   .dotted-grid {
     background-image: radial-gradient($grey-dark 1px, $transparent 0);
   }
@@ -240,7 +252,8 @@ body {
   }
 }
 
-.item {
+.item,
+.projects a {
   transition: $transition;
 
   &:hover {
