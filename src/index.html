@@ -23,7 +23,7 @@
     <!--me-->
     <section data-section="me" id="me" class="min-h-dvh content-end lg:auto-rows-fr">
       <h1 class="px-5">{{ t('hero') }}</h1>
-      <img alt="" class="absolute right-[5%] bottom-0 w-dvh opacity-6 sm:top-0" src="assets/images/soma.png" />
+<!--      <img alt="" class="absolute right-[5%] bottom-0 w-dvh opacity-6 sm:top-0" src="assets/images/soma.png" />-->
       <div class="absolute top-5 right-5">
         <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
       </div>
@@ -60,7 +60,7 @@
     <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="col-span-1 h-fit p-5 lg:col-span-1">{{ t('menu-projects') }}</h2>
       <div class="scroll-section p-5">
-        <div class="wrapper relative min-h-dvh">
+        <div class="wrapper relative flex h-full gap-5">
           <project
             :project-name="t('projects-downloadPage-title')"
             :project-description="t('projects-downloadPage-paragraph')"
@@ -109,7 +109,7 @@
     </section>
 
     <!--design-->
-    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
+    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[10px] py-[10px] lg:auto-rows-fr lg:grid-cols-4">
       <h2 class="col-span-1 grid h-fit p-5 lg:h-full">{{ t('menu-design') }}</h2>
       <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt=""></design>
       <design :design-name="t('design-admaster-title')" :design-desc="t('design-admaster-text')" design-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" design-img-alt=""></design>
@@ -138,6 +138,6 @@
       </div>
     </section>
 
-    <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>
+<!--    <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>-->
   </body>
 </html>

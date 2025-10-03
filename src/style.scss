@@ -14,6 +14,7 @@ $blue: hsl(220, 100%, 50%);
 $green: hsl(108, 100%, 50%);
 $grey: hsl(0 0% 50%);
 $grey-light: hsl(0 0% 70%);
+$grey-lighter: hsl(0, 0%, 95%);
 $grey-dark: hsl(0 0% 20%);
 $transparent: hsla(0, 0%, 0%, 0);
 
@@ -28,6 +29,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   --green: #{$green};
   --grey: #{$grey};
   --grey-light: #{$grey-light};
+  --grey-lighter: #{$grey-lighter};
   --grey-dark: #{$grey-dark};
   --transparent: #{$transparent};
 }
@@ -90,16 +92,10 @@ $transparent: hsla(0, 0%, 0%, 0);
     p {
       color: $black;
     }
-    a:hover {
-      background-color: $white;
-      * {
-        color: $black;
-      }
-    }
   }
 
   .dotted-grid {
-    background-image: radial-gradient($grey-dark 1px, $transparent 0);
+    background-image: radial-gradient($grey-lighter 2.5px, $transparent 0px);
   }
 }
 
@@ -374,4 +370,8 @@ button {
   height: 5px;
   width: 0;
   transition: width 0.1s ease;
+}
+
+.dotted-grid {
+  background-size: 25px 25px;
 }

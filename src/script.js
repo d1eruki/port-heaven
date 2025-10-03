@@ -5,7 +5,7 @@ import "./js/scroll-to-top";
 import "./js/theme-toggle";
 import "./js/locale-toggler";
 import "./js/yandex-metrika";
-import "./js/section-height";
+//import "./js/section-height";
 import "./js/cursor";
 import "./js/gsap";
 import { updateProgressBar } from "./js/progress-bar";
