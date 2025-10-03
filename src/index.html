@@ -23,11 +23,11 @@
     <!--me-->
     <section data-section="me" id="me" class="min-h-dvh content-end lg:auto-rows-fr">
       <h1 class="px-5">{{ t('hero') }}</h1>
-<!--      <img alt="" class="absolute right-[5%] bottom-0 w-dvh opacity-6 sm:top-0" src="assets/images/soma.png" />-->
+      <!--      <img alt="" class="absolute right-[5%] bottom-0 w-dvh opacity-6 sm:top-0" src="assets/images/soma.png" />-->
       <div class="absolute top-5 right-5">
         <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
       </div>
-<!--      <div class="absolute right-5 bottom-5 col-span-2 flex items-center items-end gap-5">
+      <!--      <div class="absolute right-5 bottom-5 col-span-2 flex items-center items-end gap-5">
         <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
           <icons icon="telegram"></icons>
         </a>
@@ -37,9 +37,9 @@
       </div>-->
     </section>
 
-    <header class="sticky hidden top-0 z-2 h-fit w-full">
+    <header class="sticky top-0 z-2 hidden h-fit w-full">
       <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
-      <div class="flex  h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
+      <div class="flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
         <a href="#me" data-open-block class="jost hidden h-full w-fit content-center p-2.5 tracking-widest lg:block lg:flex lg:px-10 lg:py-5">{{ t('logo') }}</a>
         <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
           <nav-button nav-name="projects">{{ t('logo') }}</nav-button>
@@ -63,7 +63,8 @@
         <div class="wrapper relative flex h-full">
           <project
             :project-name="t('projects-downloadPage-title')"
-            :project-description="t('projects-downloadPage-paragraph')"
+            :project-description="t('projects-downloadPage-description')"
+            :project-text="t('projects-downloadPage-text')"
             :project-statistic="[
         t('projects-downloadPage-stats-1'),
         t('projects-downloadPage-stats-2'),
@@ -79,7 +80,8 @@
           ></project>
           <project
             :project-name="t('projects-registry-title')"
-            :project-description="t('projects-registry-paragraph')"
+            :project-description="t('projects-registry-description')"
+            :project-text="t('projects-registry-text')"
             :project-statistic="[
         t('projects-registry-stats-1'),
         t('projects-registry-stats-2'),
@@ -93,7 +95,8 @@
           ></project>
           <project
             :project-name="t('projects-xrms-title')"
-            :project-description="t('projects-xrms-paragraph')"
+            :project-description="t('projects-xrms-description')"
+            :project-text="t('projects-xrms-text')"
             :project-statistic="[
         t('projects-xrms-stats-1'),
         t('projects-xrms-stats-2'),
@@ -138,8 +141,7 @@
       </div>
     </section>
 
-<!--    <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>-->
-<!--    <div class="dotted-grid pointer-events-none fixed top-0 left-0 -z-1 block h-full w-full"></div>-->
-
+    <!--    <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>-->
+    <!--    <div class="dotted-grid pointer-events-none fixed top-0 left-0 -z-1 block h-full w-full"></div>-->
   </body>
 </html>
