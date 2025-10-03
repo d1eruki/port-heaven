@@ -14,7 +14,9 @@ $blue: hsl(220, 100%, 50%);
 $green: hsl(108, 100%, 50%);
 $grey: hsl(0 0% 50%);
 $grey-light: hsl(0 0% 70%);
+$grey-lighter: hsl(0, 0%, 95%);
 $grey-dark: hsl(0 0% 20%);
+$grey-darker: hsl(0, 0%, 10%);
 $transparent: hsla(0, 0%, 0%, 0);
 
 :root {
@@ -28,7 +30,9 @@ $transparent: hsla(0, 0%, 0%, 0);
   --green: #{$green};
   --grey: #{$grey};
   --grey-light: #{$grey-light};
+  --grey-lighter: #{$grey-lighter};
   --grey-dark: #{$grey-dark};
+  --grey-darker: #{$grey-darker};
   --transparent: #{$transparent};
 }
 
@@ -86,19 +90,14 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   .project {
+    h3,
     p {
-      color: $grey;
-    }
-    a:hover {
-      background-color: $white;
-      * {
-        color: $black;
-      }
+      color: $black;
     }
   }
 
   .dotted-grid {
-    background-image: radial-gradient($grey-dark 1px, $transparent 0);
+    background-image: radial-gradient($grey-darker 2.5px, $transparent 0px);
   }
 }
 
@@ -280,7 +279,7 @@ body {
   transition: $transition;
 
   &:hover {
-    transform: translate(5px, 5px) !important;
+    transform: translate(10px, 10px) !important;
     z-index: 1;
   }
 }
@@ -373,4 +372,8 @@ button {
   height: 5px;
   width: 0;
   transition: width 0.1s ease;
+}
+
+.dotted-grid {
+  background-size: 25px 25px;
 }
