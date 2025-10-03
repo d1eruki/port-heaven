@@ -86,8 +86,9 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   .project {
+    h3,
     p {
-      color: $grey;
+      color: $black;
     }
     a:hover {
       background-color: $white;
@@ -280,7 +281,7 @@ body {
   transition: $transition;
 
   &:hover {
-    transform: translate(5px, 5px) !important;
+    transform: translate(10px, 10px) !important;
     z-index: 1;
   }
 }
