@@ -89,13 +89,6 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
   }
 
-  .project {
-    h3,
-    p {
-      color: $black;
-    }
-  }
-
   .dotted-grid {
     background-image: radial-gradient($grey-darker 2.5px, $transparent 0px);
   }
@@ -279,7 +272,7 @@ body {
   transition: $transition;
 
   &:hover {
-    transform: translate(10px, 10px) !important;
+    transform: translate(5px, 5px);
     z-index: 1;
   }
 }
