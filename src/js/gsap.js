@@ -26,9 +26,7 @@ function initScroll(section, items, direction) {
   // Initial states
   items.forEach((item, index) => {
     if (index !== 0) {
-      direction == "horizontal"
-        ? gsap.set(item, { xPercent: 100 })
-        : gsap.set(item, { yPercent: 100 });
+      direction == "horizontal" ? gsap.set(item, { xPercent: 100 }) : gsap.set(item, { yPercent: 100 });
     }
   });
 
@@ -52,18 +50,18 @@ function initScroll(section, items, direction) {
 
     direction == "horizontal"
       ? timeline.to(
-        items[index + 1],
-        {
-          xPercent: 0,
-        },
-        "<"
-      )
+          items[index + 1],
+          {
+            xPercent: 0,
+          },
+          "<",
+        )
       : timeline.to(
-        items[index + 1],
-        {
-          yPercent: 0,
-        },
-        "<"
-      );
+          items[index + 1],
+          {
+            yPercent: 0,
+          },
+          "<",
+        );
   });
 }
