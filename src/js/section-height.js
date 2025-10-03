@@ -31,8 +31,12 @@ function applyHeights() {
   header.style.height = "";
 
   if (isMobile) {
-    middleElements.forEach((el) => (el.style.minHeight = ""));
+    middleElements.forEach((el) => {
+      el.style.minHeight = "";
+      el.style.paddingTop = "";
+    });
     lastEl.style.minHeight = "";
+    lastEl.style.paddingTop = "";
     return;
   }
 
@@ -47,10 +51,15 @@ function applyHeights() {
   const targetHeight = Math.max(0, screenHeight - headerHeight);
 
   middleElements.forEach((el) => {
-    el.style.minHeight = `${targetHeight}px`;
+    // Не уменьшаем высоту секции снизу — оставляем стандартную min-height (например, min-h-dvh из классов)
+    el.style.minHeight = "";
+    // Отступ только сверху, чтобы контент не уезжал под фиксированный header
+    el.style.paddingTop = `${headerHeight}px`;
   });
 
-  lastEl.style.minHeight = `${targetHeight}px`;
+  // Убираем отступы на последней секции, чтобы не было пустого места снизу
+  lastEl.style.minHeight = "";
+  lastEl.style.paddingTop = "";
 }
 
 const throttledApplyHeights = throttle(() => requestAnimationFrame(applyHeights), 100);
