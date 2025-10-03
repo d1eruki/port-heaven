@@ -124,6 +124,46 @@ $transparent: hsla(0, 0%, 0%, 0);
   height: var(--cursor-size-active);
 }
 
+/* Custom cursor label enhancements */
+:root {
+  --cursor-size-label: 110px;
+}
+
+/* Re-declare to append new properties without breaking existing ones */
+.app-cursor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+/* Render label using data-label attribute */
+.app-cursor::after {
+  content: attr(data-label);
+  opacity: 0;
+  transform: translateY(2px) scale(0.98);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  color: $black;
+  pointer-events: none;
+}
+
+/* Show bigger cursor with label when hovering actionable elements */
+.app-cursor.has-label {
+  width: var(--cursor-size-label);
+  height: var(--cursor-size-label);
+  background: $white; /* ensure solid background so text is readable */
+  mix-blend-mode: normal; /* avoid inverting text */
+}
+
+.app-cursor.has-label::after {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 //@use "styles/animations" as *;
 
 @keyframes noise {
