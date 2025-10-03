@@ -57,10 +57,7 @@ function initScroll(section, items, direction) {
 
   items.forEach((item, index) => {
     // Animate current card subtle scale/border to indicate transition
-    timeline.to(item, {
-      scale: 0.9,
-      borderRadius: "10px",
-    });
+    timeline.to(item, {});
 
     // Only animate to the next item if it exists
     const next = items[index + 1];

@@ -1,5 +1,5 @@
 <template>
-  <div class="light:bg-[var(--black)] item absolute h-full w-full will-change-transform project col-span-1 flex flex-col rounded-4xl border border-solid border-white lg:h-full">
+  <div class="light:bg-[var(--black)] item project absolute col-span-1 flex h-full w-full flex-col rounded-4xl border border-solid border-white will-change-transform lg:h-full">
     <div class="flex h-full flex-col justify-between gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p>{{ projectDescription }}</p>
