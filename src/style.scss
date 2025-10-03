@@ -140,8 +140,8 @@ $transparent: hsla(0, 0%, 0%, 0);
   opacity: 0;
   transform: translateY(2px) scale(1);
   transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
+          opacity 0.18s ease,
+          transform 0.18s ease;
 }
 
 .app-cursor.is-active {
@@ -282,7 +282,7 @@ body {
   transition: $transition;
 
   &:hover {
-    transform: translate(10px, 10px) !important;
+    transform: translate(5px, 5px) !important;
     z-index: 1;
   }
 }
@@ -363,4 +363,10 @@ button {
   &:hover {
     color: $white;
   }
+}
+
+.progress-bar {
+  height: 5px;
+  width: 0;
+  transition: width 0.1s ease;
 }

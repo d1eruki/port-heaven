@@ -13,7 +13,7 @@
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="container grid max-w-full gap-25 whitespace-pre-line lg:gap-100">
+  <body lang="ru" id="app" class="container grid max-w-full gap-25 whitespace-pre-line lg:gap-0">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -36,6 +36,19 @@
         </a>
       </div>
     </section>
+
+    <header class="sticky top-0 z-2 h-fit w-full">
+      <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
+      <div class="flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
+        <a href="#me" data-open-block class="jost hidden h-full w-fit content-center p-2.5 tracking-widest lg:block lg:flex lg:px-10 lg:py-5">{{ t('logo') }}</a>
+        <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
+          <nav-button nav-name="projects">{{ t('logo') }}</nav-button>
+          <nav-button nav-name="design">{{ t('menu-design') }}</nav-button>
+          <nav-button nav-name="footer" class="hidden lg:block">{{ t('menu-footer') }}</nav-button>
+          <button id="lang-toggle" class="hidden w-fit cursor-pointer p-2.5 lg:flex lg:px-10 lg:py-5">en</button>
+        </div>
+      </div>
+    </header>
 
     <!--about-->
     <section data-section="about" id="about" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
