@@ -6,6 +6,11 @@
         <p class="light:text-[color:var(--grey)]">{{ projectDescription }}</p>
       </div>
       <p class="light:text-[color:var(--black)]">{{ projectText }}</p>
+      <div class="flex flex-wrap gap-2">
+        <div v-for="(tag, index) in projectTags" :key="index" class="active custom-button flex w-fit">
+          <p class="w-fit light:text-[color:var(--black)] border border-solid border-black rounded-4xl px-5">{{ getTagName(tag) }}</p>
+        </div>
+      </div>
       <div class="flex">
         <a v-for="(link, index) in projectLinks" :key="index" class="active custom-button flex w-full" :href="link.url" target="_blank">
           <p class="w-fit">{{ link.name }}</p>
@@ -30,5 +35,18 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  projectTags: {
+    type: Array,
+    default: () => [],
+  },
 });
+
+function getTagName(tag) {
+  if (tag == null) return "";
+  if (typeof tag === 'string' || typeof tag === 'number') return String(tag);
+  if (typeof tag === 'object') {
+    return tag.name || tag.label || tag.title || '';
+  }
+  return '';
+}
 </script>
