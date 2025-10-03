@@ -1,4 +1,7 @@
-// Make ScrollTrigger available for use in GSAP animations
+// GSAP + ScrollTrigger setup using ES modules for reliability
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(ScrollTrigger);
 
 // Select the HTML elements needed for the animation
@@ -6,7 +9,9 @@ const scrollSection = document.querySelectorAll(".scroll-section");
 
 scrollSection.forEach((section) => {
   const wrapper = section.querySelector(".wrapper");
+  if (!wrapper) return;
   const items = wrapper.querySelectorAll(".item");
+  if (!items || items.length === 0) return;
 
   // Initialize
   let direction = null;
@@ -21,10 +26,19 @@ scrollSection.forEach((section) => {
 });
 
 function initScroll(section, items, direction) {
-  // Initial states
+  // Ensure stacking context so cards can overlap
+  gsap.set(section.querySelector(".wrapper"), { position: "relative" });
+  // Initial states (position all but the first off-screen in the proper axis)
   items.forEach((item, index) => {
+    // absolute stack so they can overlap
+    gsap.set(item, { position: "absolute", top: 0, left: 0, width: "100%", height: "100%" });
+
     if (index !== 0) {
-      direction == "horizontal" ? gsap.set(item, { xPercent: 100 }) : gsap.set(item, { yPercent: 100 });
+      if (direction === "horizontal") {
+        gsap.set(item, { xPercent: 100 });
+      } else {
+        gsap.set(item, { yPercent: 100 });
+      }
     }
   });
 
@@ -40,26 +54,25 @@ function initScroll(section, items, direction) {
     },
     defaults: { ease: "none" },
   });
+
   items.forEach((item, index) => {
+    // Animate current card subtle scale/border to indicate transition
     timeline.to(item, {
       scale: 0.9,
       borderRadius: "10px",
     });
 
-    direction == "horizontal"
-      ? timeline.to(
-          items[index + 1],
-          {
-            xPercent: 0,
-          },
-          "<",
-        )
-      : timeline.to(
-          items[index + 1],
-          {
-            yPercent: 0,
-          },
-          "<",
-        );
+    // Only animate to the next item if it exists
+    const next = items[index + 1];
+    if (!next) return;
+
+    // bring next above the current before sliding it in
+    timeline.set(next, { zIndex: index + 2 }, "<");
+
+    if (direction === "horizontal") {
+      timeline.to(next, { xPercent: 0 }, "<");
+    } else {
+      timeline.to(next, { yPercent: 0 }, "<");
+    }
   });
 }

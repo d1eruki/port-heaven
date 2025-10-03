@@ -317,6 +317,13 @@ section {
   }
 }
 
+.scroll-section {
+
+  .item {
+    inset: 0;
+  }
+}
+
 polygon.star {
   transform-origin: center center;
   transform-box: fill-box;

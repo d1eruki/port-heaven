@@ -59,60 +59,51 @@
     <!--projects-->
     <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="col-span-1 h-fit p-5 lg:col-span-1">{{ t('menu-projects') }}</h2>
-
-      <div class="scroll-section vertical-section section">
-        <div class="wrapper">
-          <div role="list" class="list">
-            <div role="listitem" class="item">
-              <project
-                :project-name="t('projects-downloadPage-title')"
-                :project-description="t('projects-downloadPage-paragraph')"
-                :project-statistic="[
+      <div class="scroll-section">
+        <div class="wrapper min-h-dvh relative">
+          <project
+            :project-name="t('projects-downloadPage-title')"
+            :project-description="t('projects-downloadPage-paragraph')"
+            :project-statistic="[
         t('projects-downloadPage-stats-1'),
         t('projects-downloadPage-stats-2'),
         t('projects-downloadPage-stats-3'),
         t('projects-downloadPage-stats-4'),
         t('projects-downloadPage-stats-5'),
       ]"
-                :project-links="[
+            :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
       ]"
-                :project-result="t('projects-downloadPage-result')"
-              ></project>
-            </div>
-            <div role="listitem" class="item">
-              <project
-                :project-name="t('projects-registry-title')"
-                :project-description="t('projects-registry-paragraph')"
-                :project-statistic="[
+            :project-result="t('projects-downloadPage-result')"
+          ></project>
+          <project
+            :project-name="t('projects-registry-title')"
+            :project-description="t('projects-registry-paragraph')"
+            :project-statistic="[
         t('projects-registry-stats-1'),
         t('projects-registry-stats-2'),
         t('projects-registry-stats-3'),
       ]"
-                :project-links="[
+            :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://varwin.com/ru/education/projects', name: t('projects-button-site') }
       ]"
-                :project-result="t('projects-registry-result')"
-              ></project>
-            </div>
-            <div role="listitem" class="item">
-              <project
-                :project-name="t('projects-xrms-title')"
-                :project-description="t('projects-xrms-paragraph')"
-                :project-statistic="[
+            :project-result="t('projects-registry-result')"
+          ></project>
+          <project
+            :project-name="t('projects-xrms-title')"
+            :project-description="t('projects-xrms-paragraph')"
+            :project-statistic="[
         t('projects-xrms-stats-1'),
         t('projects-xrms-stats-2'),
         t('projects-xrms-stats-3'),
       ]"
-                :project-links="[
+            :project-links="[
         { url: 'https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1', name: t('projects-button-design') }
       ]"
-                :project-result="t('projects-xrms-result')"
-              ></project>
-            </div>
-          </div>
+            :project-result="t('projects-xrms-result')"
+          ></project>
         </div>
       </div>
     </section>
