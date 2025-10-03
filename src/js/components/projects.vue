@@ -1,5 +1,6 @@
 <template>
-  <div class="project active col-span-1 flex flex-col lg:h-full">
+  <div class="project active col-span-1 flex flex-col lg:h-full border-solid
+ border-white border rounded-4xl">
     <div class="flex h-full flex-col justify-between gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p>{{ projectDescription }}</p>

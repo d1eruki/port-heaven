@@ -49,10 +49,6 @@ $transparent: hsla(0, 0%, 0%, 0);
     color: $grey;
 
     svg {
-      color: $grey;
-    }
-
-    &:hover {
       color: $white;
     }
   }
