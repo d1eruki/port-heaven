@@ -24,10 +24,32 @@
     });
   }
 
-  // Активность: делаем крупнее над .active и над ссылками <a>
+  // Активность: делаем крупнее над .active и выводим текст внутри над ссылками/кнопками
   function updateActive(target) {
-    const isActive = !!(target && target.closest && (target.closest(".active") || target.closest("a")));
+    let isActive = false;
+    let hasLabel = false;
+    let label = "";
+
+    if (target && target.closest) {
+      const actionable = target.closest("[data-cursor-label], a, button");
+      if (actionable) {
+        isActive = true;
+        const custom = actionable.getAttribute && actionable.getAttribute("data-cursor-label");
+        label = custom || (actionable.tagName === "A" ? "открыть" : "");
+        hasLabel = !!label;
+      } else if (target.closest(".active")) {
+        isActive = true;
+      }
+    }
+
     cursor.classList.toggle("is-active", isActive);
+    cursor.classList.toggle("has-label", hasLabel);
+
+    if (hasLabel) {
+      cursor.setAttribute("data-label", label);
+    } else {
+      cursor.removeAttribute("data-label");
+    }
   }
 
   // Используем pointer* чтобы покрыть разные девайсы с мышью

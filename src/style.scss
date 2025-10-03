@@ -106,7 +106,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 :root {
   --cursor-size: 15px;
-  --cursor-size-active: 25px;
+  --cursor-size-active: 50px;
 }
 
 .use-custom-cursor body * {
@@ -121,20 +121,46 @@ $transparent: hsla(0, 0%, 0%, 0);
   height: var(--cursor-size);
   border-radius: 50%;
   background: $white;
+  color: $black;
   mix-blend-mode: difference;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 1000;
   transform: translate(-50%, -50%);
-  opacity: 0;
   transition:
     width 0.18s ease,
     height 0.18s ease,
     opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.app-cursor::after {
+  content: attr(data-label);
+  opacity: 0;
+  transform: translateY(2px) scale(1);
+  transition:
+          opacity 0.18s ease,
+          transform 0.18s ease;
 }
 
 .app-cursor.is-active {
   width: var(--cursor-size-active);
   height: var(--cursor-size-active);
+}
+
+.app-cursor.has-label {
+  width: fit-content;
+  height: var(--cursor-size-active);
+  padding: 8px;
+}
+
+.app-cursor.has-label::after {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 //@use "styles/animations" as *;
@@ -323,10 +349,15 @@ h3 {
   font-size: clamp(1rem, 0.714rem + 1.429vw, 3rem);
 }
 
-p {
+p,
+button {
   font-size: clamp(1rem, 0.857rem + 0.714vw, 2rem);
 }
 
 a {
   font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
+}
+
+button {
+  color: $grey;
 }
