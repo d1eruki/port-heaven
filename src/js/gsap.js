@@ -1,6 +1,4 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+// Make ScrollTrigger available for use in GSAP animations
 gsap.registerPlugin(ScrollTrigger);
 
 // Select the HTML elements needed for the animation

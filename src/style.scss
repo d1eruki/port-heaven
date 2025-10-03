@@ -65,7 +65,7 @@ $transparent: hsla(0, 0%, 0%, 0);
     color: $grey;
   }
 
-  .item {
+  .design {
     transition: $transition;
     h3 {
       color: $white;
@@ -136,8 +136,8 @@ $transparent: hsla(0, 0%, 0%, 0);
   opacity: 0;
   transform: translateY(2px) scale(1);
   transition:
-          opacity 0.18s ease,
-          transform 0.18s ease;
+    opacity 0.18s ease,
+    transform 0.18s ease;
 }
 
 .app-cursor.is-active {
@@ -230,7 +230,7 @@ $breakpoint-4xl: 160rem; //2560
 
   a,
   .pointer-active,
-  .item > *,
+  .design > *,
   #lang-toggle {
   }
 
@@ -272,7 +272,7 @@ body {
   }
 }
 
-.item,
+.design,
 .projects a {
   transition: $transition;
 
