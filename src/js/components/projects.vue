@@ -1,38 +1,18 @@
 <template>
-  <div @click="openModal" class="swiper-slide item flex! h-auto! flex-col!">
-    <div class="flex h-full flex-col justify-between gap-5 p-5">
-      <h3>{{ projectName }}</h3>
-      <p>{{ projectDescription }}</p>
-      <p class="flex items-center justify-center px-5 py-5 lg:px-10">Подробнее</p>
-    </div>
-
-    <div ref="modalContent" style="display: none">
-      <div class="flex flex-col gap-5 p-5">
-        <h3>{{ t("projects-stat-after-launch") }}</h3>
-        <p>{{ projectResult }}</p>
-        <div class="flex flex-col gap-2">
-          <div v-for="(statistic, index) in projectStatistic" :key="index" class="flex items-center gap-3">
-            <icons class="hidden text-[var(--grey)]!" icon="star" />
-            <p>{{ statistic }}</p>
-          </div>
-        </div>
-      </div>
+  <div class="light:bg-[var(--black)] item project absolute col-span-1 flex h-full w-full flex-col overflow-hidden rounded-4xl border border-solid border-white will-change-transform lg:h-full">
+    <div class="flex h-full flex-col justify-between gap-5">
+      <h3 class="p-5 lg:w-[80%]">{{ projectName }}</h3>
+      <p class="p-5">{{ projectDescription }}</p>
       <div class="flex h-fit w-full justify-end">
-        <customButton class="w-full" v-for="(link, index) in projectLinks" :key="index" :url="link.url" :name="link.name" />
+        <a v-for="(link, index) in projectLinks" :key="index" class="active custom-button flex w-full items-center justify-center px-5 py-5 lg:px-10" :href="link.url" target="_blank">
+          <p>{{ link.name }}</p>
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useI18n } from "vue-i18n";
-import MicroModal from "micromodal";
-import customButton from "./custom-button.vue";
-import Icons from "./icons.vue";
-
-const { t } = useI18n();
-
 const props = defineProps({
   projectName: {
     type: String,
@@ -47,22 +27,4 @@ const props = defineProps({
     default: () => [],
   },
 });
-
-const modalContent = ref(null);
-
-function openModal() {
-  const target = document.getElementById("modal-content");
-  if (target && modalContent.value) {
-    target.innerHTML = "";
-
-    const clone = modalContent.value.cloneNode(true);
-
-    // Убираем display: none
-    clone.style.display = "block";
-
-    target.appendChild(clone);
-
-    MicroModal.show("modal");
-  }
-}
 </script>

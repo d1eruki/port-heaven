@@ -1,4 +1,5 @@
 @use "tailwindcss";
+@use "styles/gasp" as *;
 
 $transition: all 0.25s;
 //@use "styles/colors" as *;
@@ -6,6 +7,7 @@ $transition: all 0.25s;
 $black: hsl(0 0% 0%);
 $white: hsl(0 0% 100%);
 $pink: hsl(314 97% 44%);
+$red: hsl(0, 100%, 50%);
 $purple: hsl(248 65% 50%);
 $yellow: hsl(73, 100%, 50%);
 $blue: hsl(220, 100%, 50%);
@@ -19,6 +21,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   --black: #{$black};
   --white: #{$white};
   --pink: #{$pink};
+  --red: #{$red};
   --purple: #{$purple};
   --yellow: #{$yellow};
   --blue: #{$blue};
@@ -32,28 +35,24 @@ $transparent: hsla(0, 0%, 0%, 0);
 [data-theme="light"] {
   * {
     &::selection {
-      background-color: $black;
-      color: $white;
+      background-color: $white;
+      color: $black;
     }
   }
 
-  p {
-    color: $grey;
-  }
-
   body {
-    background-color: $yellow;
-    color: $black;
+    background-color: $black;
+    color: $white;
   }
 
   a {
     color: $grey;
 
-    svg {
-      color: $black;
+    &:hover {
+      color: $white;
     }
 
-    &:hover {
+    svg {
       color: $white;
     }
   }
@@ -70,25 +69,28 @@ $transparent: hsla(0, 0%, 0%, 0);
     color: $grey;
   }
 
-  .active {
-    background-color: $white;
-    color: $black;
-
-    &:hover {
-      color: $black;
-    }
-  }
-
-  .item {
+  .design {
     transition: $transition;
-    background-color: $black;
-    box-shadow: 0 0 $black;
-    * {
+    h3 {
       color: $white;
+    }
+    p {
+      color: $grey;
     }
     &:hover {
       background-color: $white;
-      box-shadow: -10px -10px $black;
+      * {
+        color: $black;
+      }
+    }
+  }
+
+  .project {
+    p {
+      color: $grey;
+    }
+    a:hover {
+      background-color: $white;
       * {
         color: $black;
       }
@@ -96,31 +98,66 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   .dotted-grid {
-    background-image: radial-gradient($white 1px, $transparent 0);
+    background-image: radial-gradient($grey-dark 1px, $transparent 0);
   }
+}
 
-  .swiper-pagination-bullet {
-    background: $white !important;
-  }
+//@use "styles/cursor" as *;
 
-  .swiper-pagination-bullet-active {
-    background: $yellow !important;
-  }
+:root {
+  --cursor-size: 15px;
+  --cursor-size-active: 150px;
+}
 
-  .custom-button {
-    background-color: $black;
-    p {
-      color: $white;
-    }
+.use-custom-cursor body * {
+  cursor: none;
+}
 
-    &:hover {
-      background-color: $white;
+.app-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: 50%;
+  background: $white;
+  color: $black;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-      p {
-        color: $black;
-      }
-    }
-  }
+.app-cursor::after {
+  content: attr(data-label);
+  opacity: 0;
+  transform: translateY(2px) scale(1);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.app-cursor.is-active {
+  width: var(--cursor-size-active);
+  height: var(--cursor-size-active);
+}
+
+.app-cursor.has-label {
+  width: var(--cursor-size-active);
+  height: var(--cursor-size-active);
+  border-radius: 100px;
+}
+
+.app-cursor.has-label::after {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 //@use "styles/animations" as *;
@@ -163,76 +200,6 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 //@use "styles/custom-tailwind-styles" as *;
 
-.writing-horizontal-tb {
-  writing-mode: horizontal-tb;
-}
-
-.writing-vertical-lr {
-  writing-mode: vertical-lr;
-}
-
-.writing-vertical-rl {
-  writing-mode: vertical-rl;
-}
-
-.writing-sideways-rl {
-  writing-mode: sideways-rl;
-}
-
-.writing-sideways-lr {
-  writing-mode: sideways-lr;
-}
-
-//@use "styles/swiper" as *;
-
-.swiper {
-  width: 100%;
-}
-
-.swiper-pagination-bullet {
-  width: 24px !important;
-  height: 24px !important;
-  margin: 0 !important;
-  opacity: 1 !important;
-  border-radius: 0 !important;
-}
-
-//@use "styles/micromodal" as *;
-
-.modal {
-  display: none;
-}
-
-.modal.is-open {
-  display: block;
-}
-
-.modal__overlay {
-  background: rgba(0, 0, 0, 0.75);
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal__content {
-  background-color: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 //
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
@@ -254,33 +221,26 @@ $breakpoint-4xl: 160rem; //2560
   font-display: swap;
 }
 
-.jost {
-  font-family: "Jost", sans-serif;
-}
-
 .Actay {
   font-family: "Actay", sans-serif;
 }
 
 * {
-  font-family: "Jost", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
   text-wrap: balance;
-  cursor: url("assets/images/cursors/cursor-inactive.png"), auto;
 
   a,
   .pointer-active,
-  .item > *,
+  .design > *,
   #lang-toggle {
-    cursor: url("assets/images/cursors/cursor-active.png"), pointer;
   }
 
   &::-webkit-scrollbar {
     display: none;
   }
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -316,11 +276,11 @@ body {
   }
 }
 
-.item {
+.design {
   transition: $transition;
 
   &:hover {
-    transform: translate(10px, 10px) !important;
+    transform: translate(5px, 5px) !important;
     z-index: 1;
   }
 }
@@ -333,12 +293,6 @@ iframe,
 video {
   border-radius: 15px;
   border: none;
-}
-
-.progress-bar {
-  height: 5px;
-  width: 0;
-  transition: width 0.1s ease;
 }
 
 .card {
@@ -356,6 +310,22 @@ video {
   }
 }
 
+section {
+  position: relative;
+
+  h2 {
+    position: sticky;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+.scroll-section {
+  .item {
+    inset: 0;
+  }
+}
+
 polygon.star {
   transform-origin: center center;
   transform-box: fill-box;
@@ -363,8 +333,7 @@ polygon.star {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-family: "Actay", sans-serif;
   text-transform: uppercase;
 }
@@ -379,21 +348,29 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1rem, 0.571rem + 2.143vw, 4rem);
-}
-
-h4 {
   font-size: clamp(1rem, 0.714rem + 1.429vw, 3rem);
 }
 
-.numbers {
-  font-size: clamp(4rem, 2.429rem + 7.857vw, 15rem);
-}
-
-p {
+p,
+button,
+.app-cursor {
   font-size: clamp(1rem, 0.857rem + 0.714vw, 2rem);
 }
 
 a {
   font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
+}
+
+button {
+  color: $grey;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.progress-bar {
+  height: 5px;
+  width: 0;
+  transition: width 0.1s ease;
 }

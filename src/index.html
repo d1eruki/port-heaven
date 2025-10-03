@@ -11,71 +11,56 @@
 
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="relative container max-w-full justify-self-center whitespace-pre-line lg:grid lg:grid-cols-4">
-    <noscript
-      ><div><img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" /></div
-    ></noscript>
-    <div class="modal micromodal-slide relative! z-100!" id="modal" aria-hidden="true">
-      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <main class="modal__content w-full! lg:w-[50%]!" id="modal-content">
-          <p>Содержимое модального окна.</p>
-        </main>
+  <body lang="ru" id="app" class="container grid max-w-full gap-25 whitespace-pre-line lg:gap-0">
+    <noscript>
+      <div>
+        <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
       </div>
-    </div>
+    </noscript>
+
     <!--me-->
-    <section data-section="me" id="me" class="light:bg-[var(--black)] relative min-h-dvh content-end lg:col-span-4">
-      <h1 class="light:text-[color:var(--white)] px-5">{{ t('hero') }}</h1>
-      <img alt="" class="absolute right-[5%] bottom-0 w-[35%] opacity-6" src="assets/images/soma.png" />
+    <section data-section="me" id="me" class="min-h-dvh content-end lg:auto-rows-fr">
+      <h1 class="px-5">{{ t('hero') }}</h1>
+      <img alt="" class="absolute right-[5%] bottom-0 w-dvh opacity-6 sm:top-0" src="assets/images/soma.png" />
+      <div class="absolute top-5 right-5">
+        <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
+      </div>
+      <div class="absolute right-5 bottom-5 col-span-2 flex items-center items-end gap-5">
+        <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
+          <icons icon="telegram"></icons>
+        </a>
+        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">
+          <icons icon="google-mail"></icons>
+        </a>
+      </div>
     </section>
 
-    <header class="light:bg-[var(--black)] sticky top-0 z-2 h-fit w-full lg:col-span-4">
+    <header class="sticky top-0 z-2 h-fit w-full">
       <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
-      <div class="flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
+      <div class="flex hidden h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
         <a href="#me" data-open-block class="jost hidden h-full w-fit content-center p-2.5 tracking-widest lg:block lg:flex lg:px-10 lg:py-5">{{ t('logo') }}</a>
         <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
-          <nav-button nav-name="about"></nav-button>
-          <nav-button nav-name="principles"></nav-button>
-          <nav-button nav-name="projects"></nav-button>
-          <nav-button nav-name="design"></nav-button>
-          <nav-button nav-name="tools"></nav-button>
-          <nav-button nav-name="footer" class="hidden lg:block"></nav-button>
-          <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="m-2 hidden h-6 w-6 cursor-pointer lg:m-5 lg:flex" />
+          <nav-button nav-name="projects">{{ t('logo') }}</nav-button>
+          <nav-button nav-name="design">{{ t('menu-design') }}</nav-button>
+          <nav-button nav-name="footer" class="hidden lg:block">{{ t('menu-footer') }}</nav-button>
+          <button id="lang-toggle" class="hidden w-fit cursor-pointer p-2.5 lg:flex lg:px-10 lg:py-5">en</button>
         </div>
       </div>
     </header>
-    <!--about-->
-    <section data-section="about" class="col-span-1 grid lg:col-span-3 lg:grid-cols-3 lg:grid-rows-2">
-      <div class="light:bg-[var(--black)] flex flex-col justify-between gap-5 p-5 lg:col-span-3">
-        <h2 class="light:text-[color:var(--white)]">{{ t('about-title') }}</h2>
-        <p class="">{{ t('about-paragraph') }}</p>
-      </div>
-      <div class="light:bg-[var(--black)] col-span-1 hidden lg:flex"></div>
-      <div class="light:bg-[var(--black)] col-span-1 hidden lg:flex"></div>
-      <div class="col-span-1 hidden content-end grayscale lg:flex">
-        <img alt="" class="h-fit self-end" src="assets/images/me.png" />
-      </div>
-    </section>
-    <contacts class="hidden lg:col-span-1 lg:flex"></contacts>
 
-    <!--principles-->
-    <section data-section="principles" class="col-span-4 flex flex-col lg:grid lg:grid-cols-4">
-      <principles :title="t('about-efficiency-title')" :text="t('about-efficiency-text')" number="01"></principles>
-      <principles :title="t('about-system-title')" :text="t('about-system-text')" number="02"></principles>
-      <principles :title="t('about-strategy-title')" :text="t('about-strategy-text')" number="03"></principles>
-      <h2 class="writing-sideways-lr order-first scroll-mt-30 p-5 lg:order-last">{{ t('menu-principles') }}</h2>
+    <!--about-->
+    <section data-section="about" id="about" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
+      <h2 class="col-span-1 h-fit p-5">{{ t('about-title') }}</h2>
+      <p class="light:text-[color:var(--grey)] col-span-1 self-end p-5">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
-    <section data-section="projects" class="col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <div class="col-span-2 flex flex-col justify-between gap-5 p-5 xl:col-span-1">
-        <h2>{{ t('menu-projects') }}</h2>
-        <p class="light:text-[color:var(--black)]!">{{ t('projects-paragraph') }}</p>
-      </div>
-      <div class="swiper swiper1 z-0! col-span-2 flex! flex-col xl:col-span-3">
-        <div class="swiper-pagination light:bg-[var(--black)] static! flex! w-full! gap-5! p-5!"></div>
-        <div class="swiper-wrapper">
+    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
+      <h2 class="col-span-1 h-fit p-5 lg:col-span-1">{{ t('menu-projects') }}</h2>
+      <div class="scroll-section">
+        <div class="wrapper relative min-h-dvh">
           <project
             :project-name="t('projects-downloadPage-title')"
             :project-description="t('projects-downloadPage-paragraph')"
@@ -92,7 +77,6 @@
       ]"
             :project-result="t('projects-downloadPage-result')"
           ></project>
-
           <project
             :project-name="t('projects-registry-title')"
             :project-description="t('projects-registry-paragraph')"
@@ -107,7 +91,6 @@
       ]"
             :project-result="t('projects-registry-result')"
           ></project>
-
           <project
             :project-name="t('projects-xrms-title')"
             :project-description="t('projects-xrms-paragraph')"
@@ -121,55 +104,40 @@
       ]"
             :project-result="t('projects-xrms-result')"
           ></project>
-          <project :project-name="t('projects-template-title')"></project>
         </div>
       </div>
     </section>
 
     <!--design-->
-    <section data-section="design" class="light:text-[color:var(--black)] col-span-1 grid scroll-mt-30 grid-cols-1 lg:col-span-4 lg:grid-cols-4">
-      <div class="col-span-4 row-span-2 grid flex-col justify-between gap-5 p-5">
-        <h2>{{ t('menu-design') }}</h2>
-        <p class="light:text-[color:var(--black)]! self-end">{{ t('design-paragraph') }}</p>
-      </div>
-      <div class="swiper swiper2 z-0! col-span-1 flex! flex-col lg:col-span-4">
-        <div class="swiper-pagination light:bg-[var(--black)] static! flex! w-full! gap-5! p-5!"></div>
-        <div class="swiper-wrapper">
-          <items :item-name="t('design-varwinMobile-title')" :item-desc="t('design-varwinMobile-text')" item-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" item-img-alt=""></items>
-          <items :item-name="t('design-admaster-title')" :item-desc="t('design-admaster-text')" item-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" item-img-alt=""></items>
-          <items :item-name="t('design-0xprocessing-title')" :item-desc="t('design-0xprocessing-text')" item-url="https://www.figma.com/design/eViD7HUkXMbie6XI9a8BLK/0x-processing-landing-page?node-id=2006-2&t=qwDbVxa6LRKoFTY5-1" item-img-alt=""></items>
-          <items :item-name="t('design-stuff-title')" :item-desc="t('design-stuff-text')" item-url="https://www.figma.com/design/zkcugeK8gsTGqsDKiv5soC/Stuff-landing-design?node-id=3181-397&t=U01Vfxg6N5lwyUEv-1" item-img-alt=""></items>
-          <items :item-name="t('design-subscout-title')" :item-desc="t('design-subscout-text')" item-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/Mobile-app-for-subscription-tracking?node-id=8201-5922&t=ny4TL8Y3mUFaQ0PB-1" item-img-alt=""></items>
-          <items :item-name="t('design-baikal-title')" :item-desc="t('design-baikal-text')" item-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/Landing-page-for-a-travel-club?node-id=1-23&t=END5NzJfg1Z8PRH1-1" item-img-alt=""></items>
-          <items :item-name="t('design-pioner-title')" :item-desc="t('design-pioner-text')" item-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/Redesign-of-the-Power-Machines-plant-webpage?node-id=1051-200&t=hfZVdTFUnt3JHWLN-1" item-img-alt=""></items>
-        </div>
-      </div>
+    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
+      <h2 class="col-span-1 grid h-fit p-5 lg:h-full">{{ t('menu-design') }}</h2>
+      <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt=""></design>
+      <design :design-name="t('design-admaster-title')" :design-desc="t('design-admaster-text')" design-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" design-img-alt=""></design>
+      <design :design-name="t('design-0xprocessing-title')" :design-desc="t('design-0xprocessing-text')" design-url="https://www.figma.com/design/eViD7HUkXMbie6XI9a8BLK/0x-processing-landing-page?node-id=2006-2&t=qwDbVxa6LRKoFTY5-1" design-img-alt=""></design>
+      <design :design-name="t('design-stuff-title')" :design-desc="t('design-stuff-text')" design-url="https://www.figma.com/design/zkcugeK8gsTGqsDKiv5soC/Stuff-landing-design?node-id=3181-397&t=U01Vfxg6N5lwyUEv-1" design-img-alt=""></design>
+      <design :design-name="t('design-subscout-title')" :design-desc="t('design-subscout-text')" design-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/Mobile-app-for-subscription-tracking?node-id=8201-5922&t=ny4TL8Y3mUFaQ0PB-1" design-img-alt=""></design>
+      <design :design-name="t('design-baikal-title')" :design-desc="t('design-baikal-text')" design-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/Landing-page-for-a-travel-club?node-id=1-23&t=END5NzJfg1Z8PRH1-1" design-img-alt=""></design>
+      <design :design-name="t('design-pioner-title')" :design-desc="t('design-pioner-text')" design-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/Redesign-of-the-Power-Machines-plant-webpage?node-id=1051-200&t=hfZVdTFUnt3JHWLN-1" design-img-alt=""></design>
     </section>
 
-    <!--tools-->
-    <section data-section="tools" class="flex scroll-mt-30 flex-col justify-between gap-5 p-5 lg:col-span-4 lg:grid lg:grid-cols-4 lg:grid-rows-1 lg:p-0">
-      <div class="grid grid-cols-1 justify-between lg:col-span-4 lg:grid-cols-4">
-        <div class="hidden h-fit grid-cols-4 gap-0 lg:col-span-1 lg:grid">
-          <img alt="" class="h-fit w-full" src="assets/images/tools/figma.svg" />
-          <img alt="" class="h-fit w-full" src="assets/images/tools/photoshop.svg" />
-          <img alt="" class="h-fit w-full" src="assets/images/tools/illustrator.svg" />
-          <img alt="" class="h-fit w-full" src="assets/images/tools/after-effect.svg" />
-          <img alt="" class="h-fit w-full" src="assets/images/tools/premier-pro.svg" />
+    <section data-section="footer" id="footer" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
+      <div class="col-span-1 flex h-fit flex-row justify-between p-5 lg:h-full lg:flex-col">
+        <h2>{{ t("menu-footer") }}</h2>
+        <div class="col-span-2 flex items-center items-end gap-5">
+          <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
+            <icons icon="telegram"></icons>
+          </a>
+          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">
+            <icons icon="google-mail"></icons>
+          </a>
         </div>
-        <h2 class="grid lg:col-span-3 lg:ml-5">{{ t('menu-tools') }}</h2>
       </div>
-      <p class="light:text-[color:var(--black)]! flex flex-col p-0 lg:col-span-3 lg:p-5">{{ t('tools-paragraph') }}</p>
+      <div class="col-span-3 flex flex-row justify-between p-5 lg:flex-col">
+        <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
+        <button id="scroll-to-top" class="content-end self-end justify-self-end">{{ t('footer-scroll-up') }}</button>
+      </div>
     </section>
-
-    <footer data-section="footer" class="light:bg-[var(--black)] grid h-fit grid-cols-3 content-center items-center items-end justify-between p-5 lg:col-span-1 lg:grid-cols-2 lg:content-end">
-      <h4 class="light:text-[color:var(--white)]">{{ t('footer-copyright') }}</h4>
-      <img id="lang-toggle" src="assets/images/locales/en.svg" alt="language toggle" class="flex h-6 w-6 cursor-pointer justify-self-center lg:m-5 lg:hidden" />
-      <a id="scroll-to-top" class="light:text-[color:var(--white)] justify-self-end">{{ t('footer-scroll-up') }}</a>
-      <icons icon="theme-toggler" class="hidden"></icons>
-    </footer>
-    <contacts class="lg:col-span-3"></contacts>
 
     <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>
-    <div class="dotted-grid pointer-events-none fixed top-0 left-0 -z-1 block h-full w-full"></div>
   </body>
 </html>
