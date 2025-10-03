@@ -279,7 +279,7 @@ body {
   transition: $transition;
 
   &:hover {
-    transform: translate(10px, 10px) !important;
+    transform: translate(5px, 5px);
     z-index: 1;
   }
 }
