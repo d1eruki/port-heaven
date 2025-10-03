@@ -108,11 +108,11 @@ $transparent: hsla(0, 0%, 0%, 0);
   height: var(--cursor-size);
   border-radius: 50%;
   background: $white;
+  color: $black;
   mix-blend-mode: difference;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 1000;
   transform: translate(-50%, -50%);
-  opacity: 0;
   transition:
     width 0.18s ease,
     height 0.18s ease,
@@ -123,8 +123,15 @@ $transparent: hsla(0, 0%, 0%, 0);
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1;
+}
+
+.app-cursor::after {
+  content: attr(data-label);
+  opacity: 0;
+  transform: translateY(2px) scale(1);
+  transition:
+          opacity 0.18s ease,
+          transform 0.18s ease;
 }
 
 .app-cursor.is-active {
@@ -132,19 +139,6 @@ $transparent: hsla(0, 0%, 0%, 0);
   height: var(--cursor-size-active);
 }
 
-/* Render label using data-label attribute */
-.app-cursor::after {
-  content: attr(data-label);
-  opacity: 0;
-  transform: translateY(2px) scale(0.98);
-  transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
-  color: $black;
-  pointer-events: none;
-}
-
-/* Show bigger cursor with label when hovering actionable elements */
 .app-cursor.has-label {
   width: fit-content;
   height: var(--cursor-size-active);
@@ -341,10 +335,15 @@ h3 {
   font-size: clamp(1rem, 0.714rem + 1.429vw, 3rem);
 }
 
-p {
+p,
+button {
   font-size: clamp(1rem, 0.857rem + 0.714vw, 2rem);
 }
 
 a {
   font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
+}
+
+button {
+  color: $grey;
 }
