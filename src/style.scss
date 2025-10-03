@@ -48,6 +48,10 @@ $transparent: hsla(0, 0%, 0%, 0);
   a {
     color: $grey;
 
+    &:hover {
+      color: $white;
+    }
+
     svg {
       color: $white;
     }
@@ -81,7 +85,7 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
   }
 
-  .projects {
+  .project {
     p {
       color: $grey;
     }
@@ -272,8 +276,7 @@ body {
   }
 }
 
-.design,
-.projects a {
+.design {
   transition: $transition;
 
   &:hover {
