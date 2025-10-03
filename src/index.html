@@ -38,16 +38,16 @@
     </section>
 
     <!--about-->
-    <section data-section="about" id="about" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
-      <h2 class="col-span-1 h-fit p-5 lg:col-span-2">{{ t('about-title') }}</h2>
-      <p class="light:text-[color:var(--grey)] col-span-2 self-end p-5">{{ t('about-paragraph') }}</p>
+    <section data-section="about" id="about" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
+      <h2 class="col-span-1 h-fit p-5">{{ t('about-title') }}</h2>
+      <p class="light:text-[color:var(--grey)] col-span-1 self-end p-5">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
     <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="col-span-1 h-fit p-5 lg:row-span-3">{{ t('menu-projects') }}</h2>
+      <h2 class="col-span-1 h-fit p-5 lg:col-span-1">{{ t('menu-projects') }}</h2>
 
-      <div class="projects">
+      <div class="projects !h-full">
 
         <project
           :project-name="t('projects-downloadPage-title')"

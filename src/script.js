@@ -6,3 +6,4 @@ import "./js/theme-toggle";
 import "./js/locale-toggler";
 import "./js/yandex-metrika";
 import "./js/cursor";
+import "./js/gsap";

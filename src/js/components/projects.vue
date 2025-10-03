@@ -1,5 +1,5 @@
 <template>
-  <div class="projects active col-span-1 flex flex-col lg:min-h-dvh">
+  <div class="project active col-span-1 flex flex-col lg:h-full">
     <div class="flex h-full flex-col justify-between gap-5 p-5">
       <h3>{{ projectName }}</h3>
       <p>{{ projectDescription }}</p>
