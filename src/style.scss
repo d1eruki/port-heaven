@@ -16,6 +16,7 @@ $grey: hsl(0 0% 50%);
 $grey-light: hsl(0 0% 70%);
 $grey-lighter: hsl(0, 0%, 95%);
 $grey-dark: hsl(0 0% 20%);
+$grey-darker: hsl(0, 0%, 10%);
 $transparent: hsla(0, 0%, 0%, 0);
 
 :root {
@@ -31,6 +32,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   --grey-light: #{$grey-light};
   --grey-lighter: #{$grey-lighter};
   --grey-dark: #{$grey-dark};
+  --grey-darker: #{$grey-darker};
   --transparent: #{$transparent};
 }
 
@@ -95,7 +97,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   .dotted-grid {
-    background-image: radial-gradient($grey-lighter 2.5px, $transparent 0px);
+    background-image: radial-gradient($grey-darker 2.5px, $transparent 0px);
   }
 }
 
