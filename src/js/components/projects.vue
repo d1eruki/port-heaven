@@ -4,16 +4,16 @@
       <div class="flex flex-col gap-5">
         <h3 class="light:text-[color:var(--black)] lg:w-[80%]">{{ projectName }}</h3>
         <p class="light:text-[color:var(--grey)]">{{ projectDescription }}</p>
-      </div>
-      <p class="light:text-[color:var(--black)]">{{ projectText }}</p>
-      <div class="flex flex-wrap gap-2">
-        <div v-for="(tag, index) in projectTags" :key="index" class="flex">
-          <p class="light:text-[color:var(--black)] rounded-4xl border border-solid border-black px-5">{{ getTagName(tag) }}</p>
+        <div class="flex flex-wrap gap-2">
+          <div v-for="(tag, index) in projectTags" :key="index" class="flex">
+            <p class="light:text-[color:var(--black)] rounded-4xl border border-solid border-black px-5">{{ getTagName(tag) }}</p>
+          </div>
         </div>
       </div>
-      <div class="flex">
-        <a v-for="(link, index) in projectLinks" :key="index" class="active flex w-full" :href="link.url" target="_blank">
-          <p>{{ link.name }}</p>
+      <p class="light:text-[color:var(--black)]">{{ projectText }}</p>
+      <div class="flex gap-2">
+        <a v-for="(link, index) in projectLinks" :key="index" class="light:bg-[var(--black)] active flex w-fit rounded-full px-10 py-5" :href="link.url" target="_blank">
+          <p class="light:text-[color:var(--white)]">{{ link.name }}</p>
         </a>
       </div>
     </div>

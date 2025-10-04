@@ -325,7 +325,8 @@ polygon.star {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: "Actay", sans-serif;
   text-transform: uppercase;
 }
@@ -336,21 +337,22 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1rem, 0.286rem + 3.571vw, 6rem);
+  font-size: clamp(1rem, 4.5vw, 6rem);
 }
 
 h3 {
-  font-size: clamp(1rem, 0.714rem + 1.429vw, 3rem);
+  font-size: clamp(1rem, 3vw, 4.5rem);
+}
+
+h4 {
+  font-size: clamp(1rem, 2vw, 3rem);
 }
 
 p,
+a,
 button,
 .app-cursor {
-  font-size: clamp(1rem, 0.857rem + 0.714vw, 2rem);
-}
-
-a {
-  font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
+  font-size: clamp(1rem, 1vw, 2rem);
 }
 
 button {
