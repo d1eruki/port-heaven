@@ -64,7 +64,7 @@
     (e) => {
       if (!initialized) moveTo(e.clientX, e.clientY);
     },
-    { passive: true }
+    { passive: true },
   );
   document.addEventListener(
     "pointerover",
@@ -72,7 +72,7 @@
       if (!initialized) moveTo(e.clientX, e.clientY);
       updateActive(e.target);
     },
-    { passive: true }
+    { passive: true },
   );
   document.addEventListener("pointerout", (e) => updateActive(e.relatedTarget || document.body), { passive: true });
   // Фолбэк: одноразово синхронизируем по mousemove, если по каким‑то причинам pointer* не сработали
@@ -81,7 +81,7 @@
     (e) => {
       if (!initialized) moveTo(e.clientX, e.clientY);
     },
-    { passive: true, once: true }
+    { passive: true, once: true },
   );
 
   // Скрывать при уходе курсора из окна

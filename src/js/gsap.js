@@ -36,7 +36,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function initScroll(section, projects, direction, { isTouch }) {
-
   // Initial states (position all but the first off-screen in the proper axis)
   projects.forEach((project, index) => {
     // projects are stacked via CSS (absolute positioning) in style.scss

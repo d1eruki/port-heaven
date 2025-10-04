@@ -1,6 +1,6 @@
 <template>
-  <div class="project light:bg-[var(--white)] h-full project absolute top-0 left-0 col-span-1 flex h-dvh w-full flex-col gap-5 rounded-4xl border border-solid border-black will-change-transform">
-    <div class="flex h-full flex-col lg:justify-between gap-5 p-5 lg:p-15">
+  <div class="project light:bg-[var(--white)] project absolute top-0 left-0 col-span-1 flex h-dvh h-full w-full flex-col gap-5 rounded-4xl border border-solid border-black will-change-transform">
+    <div class="flex h-full flex-col gap-5 p-5 lg:justify-between lg:p-15">
       <div class="flex flex-col gap-5">
         <h3 class="light:text-[color:var(--black)] lg:w-[80%]">{{ projectName }}</h3>
         <p class="light:text-[color:var(--grey)]">{{ projectDescription }}</p>
