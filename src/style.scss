@@ -352,23 +352,3 @@ button {
 
   background-origin: padding-box;
 }
-
-/* Scroll/GSAP base layout moved from JS (gsap.js) to styles */
-.scroll-section {
-  min-height: 100svh;
-  min-height: 100dvh;
-}
-
-.scroll-section .wrapper {
-  position: relative;
-  min-height: 100svh;
-  min-height: 100dvh;
-}
-
-.scroll-section .wrapper .item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  will-change: transform;
-}

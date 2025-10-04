@@ -15,8 +15,8 @@ window.addEventListener("DOMContentLoaded", () => {
   scrollSection.forEach((section) => {
     const wrapper = section.querySelector(".wrapper");
     if (!wrapper) return;
-    const items = wrapper.querySelectorAll(".item");
-    if (!items || items.length === 0) return;
+    const projects = wrapper.querySelectorAll(".project");
+    if (!projects || projects.length === 0) return;
 
     // Initialize
     let direction = null;
@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
       direction = "horizontal";
     }
 
-    initScroll(section, items, direction, { isTouch });
+    initScroll(section, projects, direction, { isTouch });
   });
 
   // On orientation change or resize, refresh ScrollTrigger to recalc measurements
@@ -35,22 +35,17 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => ScrollTrigger.refresh());
 });
 
-function initScroll(section, items, direction, { isTouch }) {
-  // Ensure stacking context so cards can overlap
-  const wrapper = section.querySelector(".wrapper");
-
-  // Heights are controlled via CSS (svh/dvh) in style.scss for better separation of concerns.
-  // No JS height setters needed here.
+function initScroll(section, projects, direction, { isTouch }) {
 
   // Initial states (position all but the first off-screen in the proper axis)
-  items.forEach((item, index) => {
-    // Items are stacked via CSS (absolute positioning) in style.scss
+  projects.forEach((project, index) => {
+    // projects are stacked via CSS (absolute positioning) in style.scss
 
     if (index !== 0) {
       if (direction === "horizontal") {
-        gsap.set(item, { xPercent: 100 });
+        gsap.set(project, { xPercent: 100 });
       } else {
-        gsap.set(item, { yPercent: 100 });
+        gsap.set(project, { yPercent: 100 });
       }
     }
   });
@@ -63,7 +58,7 @@ function initScroll(section, items, direction, { isTouch }) {
       pinType: isTouch ? "transform" : "fixed",
       anticipatePin: 1,
       start: "top top",
-      end: () => `+=${items.length * 100}%`,
+      end: () => `+=${projects.length * 100}%`,
       scrub: 1,
       invalidateOnRefresh: true,
       // markers: true,
@@ -71,12 +66,12 @@ function initScroll(section, items, direction, { isTouch }) {
     defaults: { ease: "none" },
   });
 
-  items.forEach((item, index) => {
+  projects.forEach((project, index) => {
     // Animate current card subtle scale/border to indicate transition
-    timeline.to(item, {});
+    timeline.to(project, {});
 
-    // Only animate to the next item if it exists
-    const next = items[index + 1];
+    // Only animate to the next project if it exists
+    const next = projects[index + 1];
     if (!next) return;
 
     // bring next above the current before sliding it in
