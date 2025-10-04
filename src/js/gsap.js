@@ -31,7 +31,7 @@ function initScroll(section, items, direction) {
   // Initial states (position all but the first off-screen in the proper axis)
   items.forEach((item, index) => {
     // absolute stack so they can overlap
-    gsap.set(item, { position: "absolute", top: 0, left: 0, width: "100%", height: "100%" });
+    gsap.set(item, { position: "absolute", top: 0, width: "100%"});
 
     if (index !== 0) {
       if (direction === "horizontal") {

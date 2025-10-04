@@ -53,14 +53,14 @@
     <!--about-->
     <section data-section="about" id="about" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="col-span-1 h-fit p-10">{{ t('about-title') }}</h2>
-      <p class="light:text-[color:var(--grey)] col-span-1 self-end p-10">{{ t('about-paragraph') }}</p>
+      <p class="light:text-[color:var(--grey)] corner-frame col-span-1 self-end p-10">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
-    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
+    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 gap-5 lg:gap-0 lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="col-span-1 h-fit p-10 lg:col-span-1">{{ t('menu-projects') }}</h2>
-      <div class="scroll-section p-10">
-        <div class="wrapper relative flex h-full">
+      <div class="scroll-section lg:p-10">
+        <div class="wrapper relative flex">
           <project
             :project-name="t('projects-downloadPage-title')"
             :project-description="t('projects-downloadPage-description')"
@@ -72,7 +72,7 @@
         t('projects-downloadPage-stats-4'),
         t('projects-downloadPage-stats-5'),
       ]"
-            :project-tags="['Figma', 'Bootstrap']"
+            :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'UX/UI']"
             :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
