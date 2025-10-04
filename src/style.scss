@@ -79,10 +79,13 @@ $transparent: hsla(0, 0%, 0%, 0);
       color: $white;
     }
     p {
-      color: $grey;
+      display: none;
     }
     &:hover {
       background-color: $white;
+      p {
+        display: block;
+      }
       * {
         color: $black;
       }
@@ -222,7 +225,6 @@ $breakpoint-4xl: 160rem; //2560
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
-  text-wrap: balance;
 
   a,
   .pointer-active,
@@ -233,12 +235,6 @@ $breakpoint-4xl: 160rem; //2560
   &::-webkit-scrollbar {
     display: none;
   }
-}
-
-body {
-  word-break: normal;
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 .dotted-grid {
@@ -277,55 +273,17 @@ body {
   }
 }
 
-.active {
-  transition: $transition;
-}
-
-iframe,
-video {
-  border-radius: 15px;
-  border: none;
-}
-
-.card {
-  position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.card img {
-  filter: grayscale(100%) brightness(0.9) contrast(1.1);
-  transition: all 0.3s ease;
-
-  &:hover {
-    filter: grayscale(0%) brightness(0.9) contrast(1.1);
-  }
-}
-
 section {
-  position: relative;
-
   h2 {
     position: sticky;
     top: 0;
-    z-index: -1;
   }
-}
-
-.scroll-section {
-  .item {
-    inset: 0;
-  }
-}
-
-polygon.star {
-  transform-origin: center center;
-  transform-box: fill-box;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: "Actay", sans-serif;
   text-transform: uppercase;
 }
@@ -336,21 +294,26 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1rem, 0.286rem + 3.571vw, 6rem);
+  font-size: clamp(1.5rem, 4vw, 8rem);
 }
 
 h3 {
-  font-size: clamp(1rem, 0.714rem + 1.429vw, 3rem);
+  font-size: clamp(1rem, 3vw, 4.5rem);
+}
+
+h4 {
+  font-size: clamp(1rem, 2vw, 3rem);
 }
 
 p,
+a,
 button,
 .app-cursor {
-  font-size: clamp(1rem, 0.857rem + 0.714vw, 2rem);
+  font-size: clamp(1rem, 1.25vw, 2rem);
 }
 
-a {
-  font-size: clamp(1rem, 0.821rem + 0.893vw, 2.25rem);
+small {
+  font-size: clamp(1rem, 1vw, 1.25rem);
 }
 
 button {
@@ -369,4 +332,23 @@ button {
 
 .dotted-grid {
   background-size: 25px 25px;
+}
+
+.corner-frame {
+  --cf-color: currentColor;
+  --cf-size: 1px;
+  --cf-length: 24px;
+
+  background:
+    /* top-left */
+    linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top left / var(--cf-length) var(--cf-size) no-repeat,
+    linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top left / var(--cf-size) var(--cf-length) no-repeat,
+    /* top-right */ linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top right / var(--cf-length) var(--cf-size) no-repeat,
+    linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top right / var(--cf-size) var(--cf-length) no-repeat,
+    /* bottom-left */ linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom left / var(--cf-length) var(--cf-size) no-repeat,
+    linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom left / var(--cf-size) var(--cf-length) no-repeat,
+    /* bottom-right */ linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom right / var(--cf-length) var(--cf-size) no-repeat,
+    linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom right / var(--cf-size) var(--cf-length) no-repeat;
+
+  background-origin: padding-box;
 }
