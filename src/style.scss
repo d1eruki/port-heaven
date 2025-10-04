@@ -222,7 +222,6 @@ $breakpoint-4xl: 160rem; //2560
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
-  text-wrap: balance;
 
   a,
   .pointer-active,
@@ -233,12 +232,6 @@ $breakpoint-4xl: 160rem; //2560
   &::-webkit-scrollbar {
     display: none;
   }
-}
-
-body {
-  word-break: normal;
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 .dotted-grid {
@@ -277,50 +270,11 @@ body {
   }
 }
 
-.active {
-  transition: $transition;
-}
-
-iframe,
-video {
-  border-radius: 15px;
-  border: none;
-}
-
-.card {
-  position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.card img {
-  filter: grayscale(100%) brightness(0.9) contrast(1.1);
-  transition: all 0.3s ease;
-
-  &:hover {
-    filter: grayscale(0%) brightness(0.9) contrast(1.1);
-  }
-}
-
 section {
-  position: relative;
-
   h2 {
     position: sticky;
     top: 0;
-    z-index: -1;
   }
-}
-
-.scroll-section {
-  .item {
-    inset: 0;
-  }
-}
-
-polygon.star {
-  transform-origin: center center;
-  transform-box: fill-box;
 }
 
 h1,
@@ -350,8 +304,7 @@ h4 {
 
 p,
 a,
-button,
-.app-cursor {
+button {
   font-size: clamp(1rem, 1vw, 2rem);
 }
 
