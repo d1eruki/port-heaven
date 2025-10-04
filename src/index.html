@@ -13,7 +13,7 @@
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="container grid max-w-full gap-25 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
+  <body lang="ru" id="app" class="container grid max-w-full leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -53,11 +53,11 @@
     <!--about-->
     <section data-section="about" id="about" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="col-span-1 h-fit p-10">{{ t('about-title') }}</h2>
-      <p class="light:text-[color:var(--grey)] corner-frame col-span-1 self-end p-10">{{ t('about-paragraph') }}</p>
+      <p class="light:text-[color:var(--grey)] light:bg-[var(--black)] corner-frame col-span-1 self-end p-10">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
-    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 gap-5 lg:gap-0 lg:auto-rows-fr lg:grid-cols-2">
+    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
       <h2 class="col-span-1 h-fit p-10 lg:col-span-1">{{ t('menu-projects') }}</h2>
       <div class="scroll-section lg:p-10">
         <div class="wrapper relative flex">
