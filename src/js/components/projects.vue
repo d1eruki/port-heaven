@@ -6,7 +6,7 @@
         <p class="light:text-[color:var(--grey)]">{{ projectDescription }}</p>
         <div class="flex flex-wrap gap-2">
           <div v-for="(tag, index) in projectTags" :key="index" class="flex">
-            <p class="light:text-[color:var(--black)] rounded-4xl border border-solid border-black px-5">{{ getTagName(tag) }}</p>
+            <small class="light:text-[color:var(--black)] rounded-4xl border border-solid border-black px-5 py-2.5">{{ getTagName(tag) }}</small>
           </div>
         </div>
       </div>

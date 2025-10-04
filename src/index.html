@@ -13,7 +13,7 @@
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="container grid max-w-full gap-25 text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
+  <body lang="ru" id="app" class="container grid max-w-full gap-25 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -22,9 +22,9 @@
 
     <!--me-->
     <section data-section="me" id="me" class="min-h-dvh content-end lg:auto-rows-fr">
-      <h1 class="px-5">{{ t('hero') }}</h1>
+      <h1 class="px-10">{{ t('hero') }}</h1>
       <!--      <img alt="" class="absolute right-[5%] bottom-0 w-dvh opacity-6 sm:top-0" src="assets/images/soma.png" />-->
-      <div class="absolute top-5 right-5">
+      <div class="absolute top-10 right-10">
         <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
       </div>
       <!--      <div class="absolute right-5 bottom-5 col-span-2 flex items-center items-end gap-5">
@@ -39,27 +39,27 @@
 
     <header class="sticky top-0 z-2 hidden h-fit w-full">
       <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
-      <div class="flex h-[inherit] w-full flex-col justify-between gap-5 lg:flex-row lg:items-center">
-        <a href="#me" data-open-block class="jost hidden h-full w-fit content-center p-2.5 tracking-widest lg:block lg:flex lg:px-10 lg:py-5">{{ t('logo') }}</a>
+      <div class="flex h-[inherit] w-full flex-col justify-between gap-10 lg:flex-row lg:items-center">
+        <a href="#me" data-open-block class="jost hidden h-full w-fit content-center p-2.5 tracking-widest lg:block lg:flex lg:px-10 lg:py-10">{{ t('logo') }}</a>
         <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
           <nav-button nav-name="projects">{{ t('logo') }}</nav-button>
           <nav-button nav-name="design">{{ t('menu-design') }}</nav-button>
           <nav-button nav-name="footer" class="hidden lg:block">{{ t('menu-footer') }}</nav-button>
-          <button id="lang-toggle" class="hidden w-fit cursor-pointer p-2.5 lg:flex lg:px-10 lg:py-5">en</button>
+          <button id="lang-toggle" class="hidden w-fit cursor-pointer p-2.5 lg:flex lg:px-10 lg:py-10">en</button>
         </div>
       </div>
     </header>
 
     <!--about-->
     <section data-section="about" id="about" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="col-span-1 h-fit p-5">{{ t('about-title') }}</h2>
-      <p class="light:text-[color:var(--grey)] col-span-1 self-end p-5">{{ t('about-paragraph') }}</p>
+      <h2 class="col-span-1 h-fit p-10">{{ t('about-title') }}</h2>
+      <p class="light:text-[color:var(--grey)] col-span-1 self-end p-10">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
     <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="col-span-1 h-fit p-5 lg:col-span-1">{{ t('menu-projects') }}</h2>
-      <div class="scroll-section p-5">
+      <h2 class="col-span-1 h-fit p-10 lg:col-span-1">{{ t('menu-projects') }}</h2>
+      <div class="scroll-section p-10">
         <div class="wrapper relative flex h-full">
           <project
             :project-name="t('projects-downloadPage-title')"
@@ -116,7 +116,7 @@
 
     <!--design-->
     <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:auto-rows-fr lg:grid-cols-4">
-      <h2 class="col-span-1 grid h-fit p-5 lg:h-full">{{ t('menu-design') }}</h2>
+      <h2 class="col-span-1 grid h-fit p-10 lg:h-full">{{ t('menu-design') }}</h2>
       <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt=""></design>
       <design :design-name="t('design-admaster-title')" :design-desc="t('design-admaster-text')" design-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" design-img-alt=""></design>
       <design :design-name="t('design-0xprocessing-title')" :design-desc="t('design-0xprocessing-text')" design-url="https://www.figma.com/design/eViD7HUkXMbie6XI9a8BLK/0x-processing-landing-page?node-id=2006-2&t=qwDbVxa6LRKoFTY5-1" design-img-alt=""></design>
@@ -127,9 +127,9 @@
     </section>
 
     <section data-section="footer" id="footer" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
-      <div class="col-span-1 flex h-fit flex-row justify-between p-5 lg:h-full lg:flex-col">
+      <div class="col-span-1 flex h-fit flex-row justify-between p-10 lg:h-full lg:flex-col">
         <h2>{{ t("menu-footer") }}</h2>
-        <div class="col-span-2 flex items-center items-end gap-5">
+        <div class="col-span-2 flex items-center items-end gap-10">
           <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
             <icons icon="telegram"></icons>
           </a>
@@ -138,7 +138,7 @@
           </a>
         </div>
       </div>
-      <div class="col-span-3 flex flex-row justify-between p-5 lg:flex-col">
+      <div class="col-span-3 flex flex-row justify-between p-10 lg:flex-col">
         <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
         <button id="scroll-to-top" class="content-end self-end justify-self-end">{{ t('footer-scroll-up') }}</button>
       </div>
