@@ -53,14 +53,14 @@
     <!--about-->
     <section data-section="about" id="about" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="col-span-1 h-fit p-10">{{ t('about-title') }}</h2>
-      <p class="light:text-[color:var(--grey)] light:bg-[var(--black)] corner-frame col-span-1 self-end p-10">{{ t('about-paragraph') }}</p>
+      <p class="light:text-[color:var(--grey)] light:bg-[var(--black)] corner-frame col-span-1 p-10 lg:self-end">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
-    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
+    <section data-section="projects" id="projects" class="m-5 grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
       <h2 class="col-span-1 h-fit p-10 lg:col-span-1">{{ t('menu-projects') }}</h2>
       <div class="scroll-section lg:p-10">
-        <div class="wrapper relative flex">
+        <div class="wrapper flex">
           <project
             :project-name="t('projects-downloadPage-title')"
             :project-description="t('projects-downloadPage-description')"

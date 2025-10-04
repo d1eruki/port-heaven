@@ -38,22 +38,13 @@ window.addEventListener("DOMContentLoaded", () => {
 function initScroll(section, items, direction, { isTouch }) {
   // Ensure stacking context so cards can overlap
   const wrapper = section.querySelector(".wrapper");
-  gsap.set(wrapper, { position: "relative" });
 
-  // Ensure each card fills the viewport height (mobile-safe). CSS will use svh/dvh, but we provide JS fallback.
-  const setHeights = () => {
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    gsap.set([section, wrapper], { minHeight: vh });
-    items.forEach((item) => gsap.set(item, { height: vh }));
-  };
-  setHeights();
-  // Re-apply heights before ScrollTrigger refresh calculations
-  ScrollTrigger.addEventListener("refreshInit", setHeights);
+  // Heights are controlled via CSS (svh/dvh) in style.scss for better separation of concerns.
+  // No JS height setters needed here.
 
   // Initial states (position all but the first off-screen in the proper axis)
   items.forEach((item, index) => {
-    // absolute stack so they can overlap
-    gsap.set(item, { position: "absolute", top: 0, left: 0, width: "100%", willChange: "transform" });
+    // Items are stacked via CSS (absolute positioning) in style.scss
 
     if (index !== 0) {
       if (direction === "horizontal") {

@@ -334,9 +334,7 @@ button {
   background-size: 25px 25px;
 }
 
-/* Corner-only border utility */
 .corner-frame {
-  /* You can override these on the element: --cf-color, --cf-size, --cf-length */
   --cf-color: currentColor;
   --cf-size: 1px;
   --cf-length: 24px;
@@ -355,22 +353,22 @@ button {
   background-origin: padding-box;
 }
 
-/* Mobile full-viewport card stacking fixes */
+/* Scroll/GSAP base layout moved from JS (gsap.js) to styles */
 .scroll-section {
-  position: relative;
   min-height: 100svh;
+  min-height: 100dvh;
 }
 
 .scroll-section .wrapper {
   position: relative;
   min-height: 100svh;
+  min-height: 100dvh;
 }
 
-.scroll-section .item {
-  min-height: 100svh; /* modern mobile viewport unit, stable under URL bar */
-  height: 100dvh; /* dynamic viewport for newer browsers */
-  height: 100vh; /* fallback */
-  width: 100%;
+.scroll-section .wrapper .item {
+  position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  will-change: transform;
 }
