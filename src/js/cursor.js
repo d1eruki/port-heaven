@@ -7,11 +7,14 @@
 
   const cursor = document.createElement("div");
   cursor.className = "app-cursor";
+  // Скрываем до первой инициализации позиции, чтобы не мигал в левом верхнем углу
+  cursor.style.opacity = "0";
   document.body.appendChild(cursor);
 
   let x = 0,
     y = 0;
   let rafId = null;
+  let initialized = false;
 
   function moveTo(nx, ny) {
     x = nx;
@@ -20,6 +23,7 @@
     rafId = requestAnimationFrame(() => {
       cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
       cursor.style.opacity = "1";
+      initialized = true;
       rafId = null;
     });
   }
@@ -54,8 +58,31 @@
 
   // Используем pointer* чтобы покрыть разные девайсы с мышью
   document.addEventListener("pointermove", (e) => moveTo(e.clientX, e.clientY), { passive: true });
-  document.addEventListener("pointerover", (e) => updateActive(e.target), { passive: true });
+  // Ранняя инициализация позиции при первом наведении/входе указателя в окно
+  document.addEventListener(
+    "pointerenter",
+    (e) => {
+      if (!initialized) moveTo(e.clientX, e.clientY);
+    },
+    { passive: true },
+  );
+  document.addEventListener(
+    "pointerover",
+    (e) => {
+      if (!initialized) moveTo(e.clientX, e.clientY);
+      updateActive(e.target);
+    },
+    { passive: true },
+  );
   document.addEventListener("pointerout", (e) => updateActive(e.relatedTarget || document.body), { passive: true });
+  // Фолбэк: одноразово синхронизируем по mousemove, если по каким‑то причинам pointer* не сработали
+  document.addEventListener(
+    "mousemove",
+    (e) => {
+      if (!initialized) moveTo(e.clientX, e.clientY);
+    },
+    { passive: true, once: true },
+  );
 
   // Скрывать при уходе курсора из окна
   document.addEventListener("mouseleave", () => {

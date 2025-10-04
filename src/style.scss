@@ -78,14 +78,8 @@ $transparent: hsla(0, 0%, 0%, 0);
     h3 {
       color: $white;
     }
-    p {
-      display: none;
-    }
     &:hover {
       background-color: $white;
-      p {
-        display: block;
-      }
       * {
         color: $black;
       }
@@ -270,13 +264,6 @@ $breakpoint-4xl: 160rem; //2560
   &:hover {
     transform: translate(5px, 5px);
     z-index: 1;
-  }
-}
-
-section {
-  h2 {
-    position: sticky;
-    top: 0;
   }
 }
 
