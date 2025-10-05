@@ -61,6 +61,13 @@ $transparent: hsla(0, 0%, 0%, 0);
     }
   }
 
+  .design {
+      span {
+        height: 1em;
+        width: 1em;
+      }
+  }
+
   svg {
     &:hover polygon,
     &:hover path,
