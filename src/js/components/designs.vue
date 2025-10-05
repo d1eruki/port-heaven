@@ -4,9 +4,9 @@
     <p class="right-10 bottom-10 left-10 block self-end lg:absolute lg:hidden lg:group-hover:block">{{ designDesc }}</p>
     <div class="right-10 bottom-10 left-10 flex flex-wrap gap-2 self-end lg:absolute lg:flex lg:group-hover:hidden">
       <div v-for="(tag, index) in designTags" :key="index" class="flex light:text-[color:var(--grey)] light:border-[color:var(--grey)] rounded-4xl border border-solid px-5 py-2.5">
-        <small class="">
-          <span v-if="adaptiveLanding" class="icon-[fa7-solid--mobile-screen]"></span>
-          <span v-if="desktopLanding" class="icon-[fa7-solid--display]"></span>
+        <small class="flex gap-2.5">
+          <span v-if="isAdaptiveLanding(tag)" class="icon-[fa7-solid--mobile-screen]"></span>
+          <span v-if="isDesktopLanding(tag)" class="icon-[fa7-solid--display]"></span>
           {{ getTagName(tag) }}
 
         </small>
@@ -16,7 +16,6 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
 
 const props = defineProps({
   designUrl: {
@@ -37,8 +36,8 @@ const props = defineProps({
   },
 });
 
-const adaptiveLanding = computed(() => props.designTags.some((tag) => (getTagName(tag) || "").toLowerCase().includes('adaptive landing')));
-const desktopLanding = computed(() => props.designTags.some((tag) => (getTagName(tag) || "").toLowerCase().includes('desktop landing')));
+const isAdaptiveLanding = (tag) => (getTagName(tag) || "").toLowerCase().includes('adaptive landing');
+const isDesktopLanding = (tag) => (getTagName(tag) || "").toLowerCase().includes('desktop landing');
 
 function getTagName(tag) {
   if (tag == null) return "";

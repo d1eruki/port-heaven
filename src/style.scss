@@ -51,22 +51,17 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   a {
-    color: $white;
-    span {
-      height: 3em;
-      width: 3em;
-    }
-    &:hover {
-      color: $white;
-    }
-  }
+     color: $white;
 
-  .design {
-      span {
-        height: 1em;
-        width: 1em;
-      }
-  }
+     &:not(.design) span {
+       height: 3em;
+       width: 3em;
+     }
+
+     &:hover {
+       color: $white;
+     }
+   }
 
   svg {
     &:hover polygon,
@@ -309,7 +304,8 @@ button,
   font-size: clamp(1.25rem, 1.25vw, 2rem);
 }
 
-small {
+small,
+.design span {
   font-size: clamp(1rem, 1vw, 1.25rem);
 }
 
