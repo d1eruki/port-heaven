@@ -13,6 +13,7 @@
     "build": "webpack --mode production"
   },
   "devDependencies": {
+    "@iconify/tailwind4": "^1.0.6",
     "@tailwindcss/postcss": "^4.1.13",
     "@types/webpack": "^5.28.5",
     "@vue/compiler-sfc": "^3.5.21",

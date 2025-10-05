@@ -1,5 +1,6 @@
 @use "tailwindcss";
 @use "styles/gasp" as *;
+@plugin "@iconify/tailwind4";
 
 $transition: all 0.25s;
 //@use "styles/colors" as *;
@@ -50,13 +51,9 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   a {
-    color: $grey;
+    color: $white;
 
     &:hover {
-      color: $white;
-    }
-
-    svg {
       color: $white;
     }
   }
@@ -210,8 +207,12 @@ $breakpoint-4xl: 160rem; //2560
   font-display: swap;
 }
 
-.Actay {
-  font-family: "Actay", sans-serif;
+@font-face {
+  font-family: "basis33";
+  src: url("./assets/fonts/basis33.regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 * {
@@ -263,7 +264,6 @@ $breakpoint-4xl: 160rem; //2560
 
   &:hover {
     transform: translate(5px, 5px);
-    z-index: 1;
   }
 }
 
@@ -276,30 +276,31 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 12.5vw, 17.5rem);
+  font-size: clamp(3rem, 12.5vw, 17.5rem);
   line-height: 12.5vw;
 }
 
 h2 {
-  font-size: clamp(1.5rem, 4vw, 8rem);
+  font-size: clamp(2.5rem, 4vw, 8rem);
 }
 
 h3 {
-  font-size: clamp(1rem, 3vw, 4.5rem);
+  font-size: clamp(2rem, 3vw, 4.5rem);
 }
 
 h4 {
-  font-size: clamp(1rem, 2vw, 3rem);
+  font-size: clamp(1.75rem, 2vw, 3rem);
 }
 
 p,
 a,
 button,
 .app-cursor {
-  font-size: clamp(1rem, 1.25vw, 2rem);
+  font-size: clamp(1.25rem, 1.25vw, 2rem);
 }
 
-small {
+small,
+.design span {
   font-size: clamp(1rem, 1vw, 1.25rem);
 }
 

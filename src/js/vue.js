@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 import Projects from "./components/projects.vue";
-import Icons from "./components/icons.vue";
 import Designs from "./components/designs.vue";
 import NavButton from "./components/nav-button.vue";
 
@@ -15,7 +14,6 @@ const app = createApp({
 });
 
 app.component("project", Projects);
-app.component("icons", Icons);
 app.component("design", Designs);
 app.component("navButton", NavButton);
 
