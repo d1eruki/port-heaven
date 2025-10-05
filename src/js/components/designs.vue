@@ -1,5 +1,5 @@
 <template>
-  <a :href="designUrl" target="_blank" class="design group active row-span-1 flex h-full flex-col justify-center gap-5 rounded-4xl p-10 hover:items-start hover:justify-between lg:min-h-[400px] lg:items-center">
+  <a :href="designUrl" target="_blank" class="light:bg-[var(--black)] z-10 hover:z-100 design group active row-span-1 flex h-full flex-col justify-center gap-5 rounded-4xl p-10 hover:items-start hover:justify-between lg:min-h-[400px] lg:items-center">
     <h4 class="light:text-[color:var(--white)]">{{ designName }}</h4>
     <p class="block lg:hidden lg:group-hover:block">{{ designDesc }}</p>
   </a>
