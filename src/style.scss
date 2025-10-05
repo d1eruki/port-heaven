@@ -1,5 +1,6 @@
 @use "tailwindcss";
 @use "styles/gasp" as *;
+@plugin "@iconify/tailwind4";
 
 $transition: all 0.25s;
 //@use "styles/colors" as *;
@@ -50,13 +51,12 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   a {
-    color: $grey;
-
-    &:hover {
-      color: $white;
+    color: $white;
+    span {
+      height: 3em;
+      width: 3em;
     }
-
-    svg {
+    &:hover {
       color: $white;
     }
   }
