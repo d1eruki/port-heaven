@@ -53,11 +53,6 @@ $transparent: hsla(0, 0%, 0%, 0);
   a {
     color: $white;
 
-    &:not(.design) span {
-      height: 3em;
-      width: 3em;
-    }
-
     &:hover {
       color: $white;
     }
