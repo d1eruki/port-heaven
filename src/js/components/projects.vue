@@ -3,7 +3,7 @@
     <div class="flex h-full flex-col gap-5 p-5 lg:justify-between lg:p-15">
       <div class="flex flex-col gap-5">
         <h3 class="light:text-[color:var(--black)]">{{ projectName }}</h3>
-        <p class="light:text-[color:var(--grey)]">{{ projectDescription }}</p>
+        <p class="light:text-[color:var(--grey)] !font-[basis33]">{{ projectDescription }}</p>
         <div class="flex flex-wrap gap-2">
           <div v-for="(tag, index) in projectTags" :key="index" class="flex">
             <small class="light:text-[color:var(--black)] rounded-4xl border border-solid border-black px-5 py-2.5">{{ getTagName(tag) }}</small>

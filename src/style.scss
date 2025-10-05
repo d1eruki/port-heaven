@@ -51,17 +51,17 @@ $transparent: hsla(0, 0%, 0%, 0);
   }
 
   a {
-     color: $white;
+    color: $white;
 
-     &:not(.design) span {
-       height: 3em;
-       width: 3em;
-     }
+    &:not(.design) span {
+      height: 3em;
+      width: 3em;
+    }
 
-     &:hover {
-       color: $white;
-     }
-   }
+    &:hover {
+      color: $white;
+    }
+  }
 
   svg {
     &:hover polygon,
@@ -221,7 +221,7 @@ $breakpoint-4xl: 160rem; //2560
 }
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: "basis33", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
