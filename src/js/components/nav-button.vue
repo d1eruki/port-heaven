@@ -1,5 +1,5 @@
 <template>
-  <a :href="`#${navName}`" :data-open-block="navName" :data-scroll-target="`[data-section='${navName}']`" class="w-fit content-center p-2.5 lg:block lg:px-10 lg:py-5">
+  <a :href="`#${navName}`" :data-open-block="navName" :data-scroll-target="`[data-section='${navName}']`">
     {{ t(navName === "design" ? "menu-designs" : `menu-${navName}`) }}
   </a>
 </template>

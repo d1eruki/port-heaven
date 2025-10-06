@@ -24,6 +24,6 @@ window.ScrollSmoother = ScrollSmoother;
 import "./js/gsap/scroll-card";
 
 //import "./js/section-height";
-//import { updateProgressBar } from "./js/progress-bar";
+import { updateProgressBar } from "./js/progress-bar";
 
-//window.onscroll = updateProgressBar;
+window.onscroll = updateProgressBar;

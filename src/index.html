@@ -28,27 +28,40 @@
       </div>
     </section>
 
-    <header class="sticky top-0 z-2 hidden h-fit w-full">
-      <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
-      <div class="flex h-[inherit] w-full flex-col justify-between gap-10 lg:flex-row lg:items-center">
-        <a href="#me" data-open-block class="jost hidden h-full w-fit content-center p-2.5 tracking-widest lg:block lg:flex lg:px-10 lg:py-10">{{ t('logo') }}</a>
-        <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
+    <header class="fixed sticky top-0 left-0 z-100 flex min-h-dvh w-full justify-between">
+      <div id="progress-bar" class="progress-bar light:bg-[var(--white)] absolute"></div>
+
+      <div id="left-menu" class="flex flex-col justify-between m-10 w-40">
+        <p class="w-fit">{{ t('logo') }}</p>
+        <div class="flex-col gap-5 flex w-fit">
           <nav-button nav-name="projects">{{ t('logo') }}</nav-button>
           <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
-          <nav-button nav-name="footer" class="hidden lg:block">{{ t('menu-footer') }}</nav-button>
-          <button id="lang-toggle" class="hidden w-fit cursor-pointer p-2.5 lg:flex lg:px-10 lg:py-10">en</button>
+          <nav-button nav-name="footer" class="lg:block">{{ t('menu-footer') }}</nav-button>
         </div>
+        <div class="flex flex-row items-center">
+          <p>{{ t('footer-copyright') }}</p>
+        </div>
+      </div>
+
+      <div id="right-menu" class="flex w-fit flex-col justify-between p-10">
+        <div class="flex flex-row gap-5">
+          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5 lg:size-15"></span> </a>
+          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5 lg:size-15"></span> </a>
+        </div>
+        <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
+        <button id="scroll-to-top" class="content-end self-end justify-self-end">{{ t('footer-scroll-up') }}</button>
+        <Icons icon="theme-toggler" class="hidden"></Icons>
       </div>
     </header>
 
     <!--about-->
-    <section data-section="about" id="about" class="grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+    <section data-section="about" id="about" class="ml-40 grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="glow-lg col-span-1 h-fit p-10 lg:sticky lg:top-0">{{ t('about-title') }}</h2>
       <p class="light:text-[color:var(--grey)] light:bg-[var(--black)] corner-frame col-span-1 p-10 !font-[basis33] uppercase lg:self-end">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
-    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
+    <section data-section="projects" id="projects" class="ml-40 grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
       <h2 class="glow-lg col-span-1 h-fit p-10 lg:sticky lg:top-0 lg:col-span-1">{{ t('menu-projects') }}</h2>
       <div class="scroll-section min-h-dvh lg:p-10">
         <div class="wrapper relative flex h-full">
@@ -106,7 +119,7 @@
     </section>
 
     <!--design-->
-    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:auto-rows-fr lg:grid-cols-4">
+    <section data-section="design" id="design" class="ml-40 grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:auto-rows-fr lg:grid-cols-4">
       <h2 class="glow-lg col-span-1 grid h-fit content-center p-10 lg:sticky lg:top-0 lg:h-full">{{ t('menu-designs') }}</h2>
       <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt="" :design-tags="['Mobile app', 'Visual', 'Team work']"></design>
 
@@ -126,7 +139,7 @@
     </section>
 
     <!--creatives-->
-    <section data-section="creatives" id="creatives" class="relative grid min-h-dvh lg:auto-cols-fr lg:auto-rows-fr lg:grid-cols-20 lg:gap-0">
+    <section data-section="creatives" id="creatives" class="ml-40 relative grid min-h-dvh lg:auto-cols-fr lg:auto-rows-fr lg:grid-cols-20 lg:gap-0">
       <h2 class="glow-lg absolute sticky top-1/2 left-1/2 z-10 h-fit w-fit w-max -translate-x-1/2 -translate-y-1/2">{{ t('menu-creatives') }}</h2>
       <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" creative-grid-area="4/3/7/8"></creative>
       <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" creative-grid-area="6/12/12/20"></creative>
@@ -135,19 +148,6 @@
       <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" creative-grid-area="16/2/19/6"></creative>
     </section>
 
-    <section data-section="footer" id="footer" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
-      <div class="col-span-1 flex h-fit flex-row items-center justify-between p-10 lg:h-full lg:flex-col lg:items-start">
-        <h2 class="glow-lg lg:sticky lg:top-0">{{ t("menu-footer") }}</h2>
-        <div class="col-span-2 flex gap-10">
-          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5 lg:size-15"></span> </a>
-          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5 lg:size-15"></span> </a>
-        </div>
-      </div>
-      <div class="col-span-3 flex flex-row justify-between p-10 lg:flex-col">
-        <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
-        <button id="scroll-to-top" class="content-end self-end justify-self-end">{{ t('footer-scroll-up') }}</button>
-      </div>
-    </section>
     <div class="grain -z-1"></div>
 
     <img alt="" class="fixed right-[5%] bottom-0 -z-1 opacity-2.5 md:h-[85%]" src="assets/images/soma.png" />
