@@ -3,22 +3,14 @@
 
   "hero": "Artem\nTresckow",
 
+  "menu-about": "designer",
   "menu-projects": "projects",
   "menu-designs": "designs",
   "menu-creatives": "creatives",
   "menu-footer": "contact",
 
-  "about-title": "Designer",
   "about-paragraph": "I create not just beautiful, but functional design that solves business challenges, boosts conversions, and scales easily. I work at the intersection of web design, product, and front-end, keeping in mind metrics, MVP, and development constraints. I look through the eyes of the user and structure like an engineer—turning business goals into clear, usable interfaces. I know front-end basics and can quickly build prototypes or landing pages. I also use video editing for presentations, promo materials, and UI animations to show design not only in static form, but also in motion.",
 
-  "about-efficiency-title": "Efficiency",
-  "about-efficiency-text": "I create designs that solve problems, not just look good. User experience is always aimed at increasing conversions. I focus on speed: MVP, launch, tests—to quickly understand what really works.",
-  "about-system-title": "Systematic Approach",
-  "about-system-text": "I build design systems that scale and maintain easily. I account for technical constraints, understand frontend, and ensure developers can comfortably work with my solutions.",
-  "about-strategy-title": "Strategy",
-  "about-strategy-text": "I see the product as a whole: from idea and structure to final implementation. I contribute at every stage to ensure the result is deliberate and impactful, not random.",
-
-  "projects-stat-after-launch": "Results",
   "projects-button-design": "design",
   "projects-button-site": "site",
 

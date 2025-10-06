@@ -92,7 +92,8 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 :root {
   --cursor-size: 15px;
-  --cursor-size-active: 150px;
+  --cursor-size-active: 35px;
+  --cursor-size-label: 150px;
 }
 
 .use-custom-cursor body * {
@@ -136,8 +137,8 @@ $transparent: hsla(0, 0%, 0%, 0);
 }
 
 .app-cursor.has-label {
-  width: var(--cursor-size-active);
-  height: var(--cursor-size-active);
+  width: var(--cursor-size-label);
+  height: var(--cursor-size-label);
   border-radius: 100px;
 }
 

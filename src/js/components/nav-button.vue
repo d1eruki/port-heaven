@@ -1,7 +1,7 @@
 <template>
-  <a :href="`#${navName}`" :data-open-block="navName" :data-scroll-target="`[data-section='${navName}']`">
+  <button :href="`#${navName}`" :data-open-block="navName" :data-scroll-target="`[data-section='${navName}']`" class="self-start transition-colors duration-300">
     {{ t(navName === "design" ? "menu-designs" : `menu-${navName}`) }}
-  </a>
+  </button>
 </template>
 
 <script setup>

@@ -25,10 +25,11 @@
       <h1 class="glow-xl px-10">{{ t('hero') }}</h1>
     </section>
 
-    <header class="fixed sticky top-0 left-0 z-100 p-10 hidden min-h-dvh w-60 flex-col justify-between lg:flex">
+    <header class="fixed sticky top-0 left-0 z-100 hidden min-h-dvh w-60 flex-col justify-between p-10 lg:flex">
       <p class="w-fit">{{ t('logo') }}</p>
       <div class="flex w-fit flex-col gap-5">
-        <nav-button nav-name="projects">{{ t('logo') }}</nav-button>
+        <nav-button nav-name="about">{{ t('menu-about') }}</nav-button>
+        <nav-button nav-name="projects">{{ t('menu-projects') }}</nav-button>
         <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
         <nav-button nav-name="creatives">{{ t('menu-creatives') }}</nav-button>
       </div>
@@ -44,7 +45,7 @@
 
     <!--about-->
     <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-40 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="glow-lg col-span-1 h-fit p-10 lg:sticky lg:top-0">{{ t('about-title') }}</h2>
+      <h2 class="glow-lg col-span-1 h-fit p-10 lg:sticky lg:top-0">{{ t('menu-about') }}</h2>
       <p class="light:text-[color:var(--grey)] light:bg-[var(--black)] corner-frame col-span-1 p-10 !font-[basis33] uppercase lg:self-end">{{ t('about-paragraph') }}</p>
     </section>
 
