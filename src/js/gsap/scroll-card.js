@@ -56,8 +56,7 @@ function initScroll(gsap, section, projects, direction, { isTouch }) {
     scrollTrigger: {
       trigger: section,
       pin: true,
-      // Use transform-based pinning on touch devices to avoid iOS address bar/fixed-position glitches
-      pinType: isTouch ? "transform" : "fixed",
+      // pinType не указываем вовсе
       anticipatePin: 1,
       start: "top top",
       end: () => `+=${projects.length * 100}%`,

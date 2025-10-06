@@ -22,8 +22,8 @@ window.ScrollTrigger = ScrollTrigger;
 window.ScrollSmoother = ScrollSmoother;
 
 // Feature modules (they will reference window.gsap/plugins at runtime)
-import "./js/gsap/scroll-card";
 import "./js/gsap/scroll-creatives";
+import "./js/gsap/scroll-card";
 //import { updateProgressBar } from "./js/progress-bar";
 
 //window.onscroll = updateProgressBar;

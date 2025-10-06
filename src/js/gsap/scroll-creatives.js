@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const skewSetter = gsap.quickTo("img", "skewY");
   const clamp = gsap.utils.clamp(-20, 20);
 
-  ScrollSmoother.create({
+  const smoother = ScrollSmoother.create({
     wrapper: "#wrapper",
     content: "#content",
     smooth: 2,
@@ -21,4 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
     onUpdate: (self) => skewSetter(clamp(self.getVelocity() / -50)),
     onStop: () => skewSetter(0),
   });
+
+  // гарантируем, что все уже знают про smoother
+  window.ScrollTrigger && window.ScrollTrigger.refresh();
 });
