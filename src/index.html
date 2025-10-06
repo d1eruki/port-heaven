@@ -32,6 +32,7 @@
         <nav-button nav-name="projects">{{ t('menu-projects') }}</nav-button>
         <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
         <nav-button nav-name="creatives">{{ t('menu-creatives') }}</nav-button>
+        <nav-button nav-name="footer">{{ t('menu-footer') }}</nav-button>
       </div>
       <button id="lang-toggle" class="hidden w-fit">en</button>
       <button id="scroll-to-top" class="hidden w-fit">{{ t('footer-scroll-up') }}</button>
@@ -137,7 +138,7 @@
 
     <!--creatives-->
     <section data-section="creatives" id="creatives" class="relative block min-h-dvh lg:ml-50 lg:grid lg:auto-cols-fr lg:auto-rows-fr lg:grid-cols-20 lg:gap-0">
-      <div class="pointer-events-none sticky z-10 flex h-fit w-150 flex-col gap-5 p-10 lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
+      <div class="pointer-events-none sticky z-10 flex h-fit lg:w-150 flex-col gap-5 p-10 lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
         <h2 class="glow-lg w-full">{{ t('menu-creatives') }}</h2>
         <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
       </div>
@@ -146,6 +147,13 @@
       <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" creative-grid-area="10/2/15/13"></creative>
       <creative creative-src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" creative-grid-area="14/11/19/19"></creative>
       <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" creative-grid-area="16/2/19/6"></creative>
+      <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" creative-grid-area="17/3/24/9"></creative>
+    </section>
+
+    <!--footer-->
+    <section data-section="footer" id="footer" class="flex min-h-dvh lg:w-150 flex-col justify-center gap-5 justify-self-center p-10">
+      <h2 class="glow-lg">{{ t('menu-footer') }}</h2>
+      <menu-desc :menu-desc="t('menu-footer-description')" class="w-full"></menu-desc>
     </section>
 
     <div class="grain -z-1"></div>

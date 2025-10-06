@@ -221,10 +221,11 @@ $breakpoint-4xl: 160rem; //2560
 }
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: "basis33", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
+  text-transform: uppercase;
 
   a,
   .pointer-active,
