@@ -8,7 +8,8 @@ import "./js/yandex-metrika";
 import "./js/card-rotate";
 //import "./js/section-height";
 import "./js/cursor";
-import "./js/gsap";
+import "./js/gsap/scroll-card";
+import "./js/gsap/scroll-creatives";
 //import { updateProgressBar } from "./js/progress-bar";
 
 //window.onscroll = updateProgressBar;

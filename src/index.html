@@ -135,29 +135,23 @@
     </section>
 
     <!--creatives-->
-    <section data-section="creatives" id="creatives" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
+    <section data-section="creatives" id="creatives" class="relative min-h-dvh lg:gap-0">
       <h2 class="absolute sticky top-1/2 left-1/2 h-fit w-fit -translate-x-1/2 -translate-y-1/2">{{ t('menu-creatives') }}</h2>
-      <div class="grid lg:!grid-cols-3 sm:!grid-cols-2 gap-4">
-        <div class="card aspect-video justify-self-center scale-75">
-          <img src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" alt="post-card">
-        </div>
-        <div class="card aspect-video justify-self-center scale-75">
-          <img src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" alt="post-card">
-        </div>
-        <div class="card aspect-video justify-self-center scale-75">
-          <img src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" alt="post-card">
-        </div>
-        <div class="card aspect-video justify-self-center scale-75">
-          <img src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" alt="post-card">
-        </div>
-        <div class="card aspect-video justify-self-center scale-75">
-          <img src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" alt="post-card">
-        </div>
+      <div id="wrapper">
+        <section id="content">
+          <section class="images">
+            <img data-speed="0.8" class="card aspect-video scale-75 justify-self-center" src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" alt="post-card" />
+            <img data-speed="0.9" class="card aspect-video scale-75 justify-self-center" src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" alt="post-card" />
+            <img data-speed="1" class="card aspect-video scale-75 justify-self-center" src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" alt="post-card" />
+            <img data-speed="1.1" class="card aspect-video scale-75 justify-self-center" src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" alt="post-card" />
+            <img data-speed="0.9" class="card aspect-video scale-75 justify-self-center" src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" alt="post-card" />
+          </section>
+        </section>
       </div>
     </section>
 
     <section data-section="footer" id="footer" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
-      <div class="col-span-1 flex h-fit flex-row justify-between items-center lg:items-start p-10 lg:h-full lg:flex-col">
+      <div class="col-span-1 flex h-fit flex-row items-center justify-between p-10 lg:h-full lg:flex-col lg:items-start">
         <h2 class="lg:sticky lg:top-0">{{ t("menu-footer") }}</h2>
         <div class="col-span-2 flex gap-10">
           <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5 lg:size-15"></span> </a>
