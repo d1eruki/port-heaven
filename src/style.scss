@@ -340,3 +340,18 @@ button {
 
   background-origin: padding-box;
 }
+
+.card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card img {
+  filter: grayscale(100%) brightness(0.9) contrast(1.1);
+  transition: all .3s ease;
+
+  &:hover {
+    filter: grayscale(0%) brightness(0.9) contrast(1.1);
+  }
+}
