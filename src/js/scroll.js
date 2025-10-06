@@ -321,5 +321,20 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       updateActiveNavButton();
     }, 100);
+
+    // Handle nav button clicks for smooth scrolling
+    document.addEventListener("click", (e) => {
+      const navButton = e.target.closest("[data-scroll-target]");
+      if (!navButton) return;
+
+      const targetSelector = navButton.getAttribute("data-scroll-target");
+      if (!targetSelector) return;
+
+      const targetSection = document.querySelector(targetSelector);
+      if (!targetSection) return;
+
+      e.preventDefault();
+      scrollToElement(targetSection);
+    });
   }
 });
