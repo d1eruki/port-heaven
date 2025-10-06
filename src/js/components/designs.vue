@@ -4,8 +4,8 @@
     <div class="top-75 right-10 bottom-10 left-10 flex flex-wrap gap-5 self-end lg:absolute lg:flex lg:group-hover:hidden">
       <div v-for="(tag, index) in designTags" :key="index" class="light:text-[color:var(--grey)] flex gap-2.5">
         <small class="flex gap-2.5">
-          <!--          <span v-if="isAdaptiveLanding(tag)" class="icon-[fa7-solid&#45;&#45;mobile-screen]"></span>
-          <span v-if="isDesktopLanding(tag)" class="icon-[fa7-solid&#45;&#45;display]"></span>-->
+          <span v-if="isAdaptiveLanding(tag)" class="icon-[fa7-solid--mobile-screen]"></span>
+          <span v-if="isDesktopLanding(tag)" class="icon-[fa7-solid--display]"></span>
           {{ getTagName(tag) }}
         </small>
       </div>
