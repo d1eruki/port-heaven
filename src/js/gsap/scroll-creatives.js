@@ -1,9 +1,13 @@
-import { gsap } from "gsap";
-import ScrollSmoother from "gsap/ScrollSmoother";
-
-gsap.registerPlugin(ScrollSmoother);
+// Use globally-registered GSAP and plugins (initialized in script.js)
 
 window.addEventListener("DOMContentLoaded", () => {
+  const gsap = window.gsap;
+  const ScrollSmoother = window.ScrollSmoother;
+  if (!gsap || !ScrollSmoother) {
+    console.warn("GSAP/ScrollSmoother not initialized. Ensure script.js registers plugins before DOMContentLoaded.");
+    return;
+  }
+
   // Set up a fast setter for skew and clamp the value to avoid extreme angles
   const skewSetter = gsap.quickTo("img", "skewY");
   const clamp = gsap.utils.clamp(-20, 20);

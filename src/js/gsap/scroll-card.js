@@ -1,11 +1,14 @@
-// GSAP + ScrollTrigger setup using ES modules for reliability
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+// Use globally-registered GSAP and plugins (initialized in script.js)
 
 // Initialize after DOM is ready to avoid early initialization issues (common on mobile)
 window.addEventListener("DOMContentLoaded", () => {
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  if (!gsap || !ScrollTrigger) {
+    console.warn("GSAP/ScrollTrigger not initialized. Ensure script.js registers plugins before DOMContentLoaded.");
+    return;
+  }
+
   // Touch/device detection to tweak pinning strategy for mobile browsers
   const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
@@ -27,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
       direction = "horizontal";
     }
 
-    initScroll(section, projects, direction, { isTouch });
+    initScroll(gsap, section, projects, direction, { isTouch });
   });
 
   // On orientation change or resize, refresh ScrollTrigger to recalc measurements
@@ -35,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => ScrollTrigger.refresh());
 });
 
-function initScroll(section, projects, direction, { isTouch }) {
+function initScroll(gsap, section, projects, direction, { isTouch }) {
   // Initial states (position all but the first off-screen in the proper axis)
   projects.forEach((project, index) => {
     // projects are stacked via CSS (absolute positioning) in style.scss
