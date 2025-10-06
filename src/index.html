@@ -33,12 +33,12 @@
         <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
         <nav-button nav-name="creatives">{{ t('menu-creatives') }}</nav-button>
       </div>
-      <div class="flex">
-        <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5 lg:size-15"></span> </a>
-        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5 lg:size-15"></span> </a>
-        <button id="theme-toggler" class="icon-[fa7-solid--adjust] size-7.5 lg:size-15"></button>
-        <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
-        <button id="scroll-to-top" class="content-end self-end justify-self-end">{{ t('footer-scroll-up') }}</button>
+      <button id="lang-toggle" class="hidden w-fit">en</button>
+      <button id="scroll-to-top" class="hidden w-fit">{{ t('footer-scroll-up') }}</button>
+      <div class="flex gap-5">
+        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5"></span> </a>
+        <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5 "></span> </a>
+        <button id="theme-toggler" class="hidden icon-[fa7-solid--adjust] size-7.5"></button>
       </div>
     </header>
     <div id="progress-bar" class="progress-bar light:bg-[var(--white)] fixed top-0 right-0"></div>
