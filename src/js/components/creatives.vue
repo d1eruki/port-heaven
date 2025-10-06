@@ -1,5 +1,7 @@
 <template>
-  <img class="card aspect-video object-cover" :src="creativeSrc" :style="{ gridArea: creativeGridArea }" alt="post-card" />
+  <div class="card h-fit" :style="{ gridArea: creativeGridArea }">
+    <img class="aspect-video object-cover" :src="creativeSrc" alt="post-card" />
+  </div>
 </template>
 
 <script setup>
