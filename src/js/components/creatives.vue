@@ -11,7 +11,7 @@ const props = defineProps({
   creativeGridArea: {
     type: String,
     required: false,
-    default: 'auto',
+    default: "auto",
   },
 });
 </script>
