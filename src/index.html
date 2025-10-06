@@ -21,11 +21,11 @@
     </noscript>
 
     <!--me-->
-    <section data-section="me" id="me" class="min-h-dvh content-end lg:auto-rows-fr">
-      <h1 class="glow-xl px-10">{{ t('hero') }}</h1>
+    <section data-section="me" id="me" class="min-h-dvh content-end p-10">
+      <h1 class="glow-xl">{{ t('hero') }}</h1>
     </section>
 
-    <header class="fixed sticky top-0 left-0 z-100 hidden min-h-dvh w-60 flex-col justify-between p-10 lg:flex">
+    <header class="fixed sticky top-0 left-0 z-100 hidden min-h-dvh w-50 flex-col justify-between p-10 lg:flex">
       <p class="w-fit">{{ t('logo') }}</p>
       <div class="flex w-fit flex-col gap-5">
         <nav-button nav-name="about">{{ t('menu-about') }}</nav-button>
@@ -37,20 +37,20 @@
       <button id="scroll-to-top" class="hidden w-fit">{{ t('footer-scroll-up') }}</button>
       <div class="flex gap-5">
         <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5"></span> </a>
-        <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5 "></span> </a>
-        <button id="theme-toggler" class="hidden icon-[fa7-solid--adjust] size-7.5"></button>
+        <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5"></span> </a>
+        <button id="theme-toggler" class="icon-[fa7-solid--adjust] hidden size-7.5"></button>
       </div>
     </header>
     <div id="progress-bar" class="progress-bar light:bg-[var(--white)] fixed top-0 right-0"></div>
 
     <!--about-->
-    <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-40 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="glow-lg col-span-1 h-fit p-10 lg:sticky lg:top-0">{{ t('menu-about') }}</h2>
+    <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-50 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+      <h2 class="glow-lg col-span-1 m-10 h-fit lg:sticky lg:top-0">{{ t('menu-about') }}</h2>
       <p class="light:text-[color:var(--grey)] light:bg-[var(--black)] corner-frame col-span-1 p-10 !font-[basis33] uppercase lg:self-end">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
-    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:ml-40 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
+    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:ml-50 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
       <h2 class="glow-lg col-span-1 h-fit p-10 lg:sticky lg:top-0 lg:col-span-1">{{ t('menu-projects') }}</h2>
       <div class="scroll-section min-h-dvh lg:p-10">
         <div class="wrapper relative flex h-full">
@@ -108,7 +108,7 @@
     </section>
 
     <!--design-->
-    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:ml-40 lg:auto-rows-fr lg:grid-cols-3">
+    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:ml-50 lg:auto-rows-fr lg:grid-cols-3">
       <h2 class="glow-lg col-span-1 grid h-fit content-center p-10 lg:top-0 lg:h-full">{{ t('menu-designs') }}</h2>
       <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt="" :design-tags="['Mobile app', 'Visual', 'Team work']"></design>
 
@@ -128,7 +128,7 @@
     </section>
 
     <!--creatives-->
-    <section data-section="creatives" id="creatives" class="relative block min-h-dvh lg:ml-40 lg:grid lg:auto-cols-fr lg:auto-rows-fr lg:grid-cols-20 lg:gap-0">
+    <section data-section="creatives" id="creatives" class="relative block min-h-dvh lg:ml-50 lg:grid lg:auto-cols-fr lg:auto-rows-fr lg:grid-cols-20 lg:gap-0">
       <h2 class="glow-lg sticky z-10 h-fit w-fit w-max p-10 lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">{{ t('menu-creatives') }}</h2>
       <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" creative-grid-area="4/3/7/8"></creative>
       <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" creative-grid-area="6/12/12/20"></creative>
