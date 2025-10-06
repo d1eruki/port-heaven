@@ -6,7 +6,7 @@ export const updateProgressBar = () => {
 
   const progress = totalHeight > 0 ? Math.min((scrollY / totalHeight) * 100, 100) : 0;
 
-  progressBar.style.width = `${progress}%`;
+  progressBar.style.height = `${progress}%`;
 };
 
 window.addEventListener("beforeunload", () => {
