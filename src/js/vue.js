@@ -3,6 +3,7 @@ import Projects from "./components/projects.vue";
 import Designs from "./components/designs.vue";
 import Creatives from "./components/creatives.vue";
 import NavButton from "./components/nav-button.vue";
+import MenuDesc from "./components/menu-description.vue";
 
 import i18n from "./i18n";
 import { useI18n } from "vue-i18n";
@@ -18,6 +19,7 @@ app.component("project", Projects);
 app.component("design", Designs);
 app.component("creative", Creatives);
 app.component("navButton", NavButton);
+app.component("menuDesc", MenuDesc);
 
 app.use(i18n);
 app.mount("#app");

@@ -18,6 +18,7 @@ $grey-light: hsl(0 0% 70%);
 $grey-lighter: hsl(0, 0%, 95%);
 $grey-dark: hsl(0 0% 20%);
 $grey-darker: hsl(0, 0%, 10%);
+$grey-darkest: hsl(0, 0%, 2%);
 $transparent: hsla(0, 0%, 0%, 0);
 
 :root {
@@ -34,6 +35,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   --grey-lighter: #{$grey-lighter};
   --grey-dark: #{$grey-dark};
   --grey-darker: #{$grey-darker};
+  --grey-darkest: #{$grey-darkest};
   --transparent: #{$transparent};
 }
 
@@ -48,6 +50,8 @@ $transparent: hsla(0, 0%, 0%, 0);
   body {
     background-color: $black;
     color: $white;
+    background-size: 25px 25px;
+    background-image: linear-gradient(var(--grey-darkest) 1px, transparent 1px), linear-gradient(to right, var(--grey-darkest) 1px, transparent 1px);
   }
 
   a {
