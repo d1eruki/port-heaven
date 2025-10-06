@@ -13,7 +13,7 @@
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
+  <body lang="ru" id="app" class="container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-20">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -22,19 +22,10 @@
 
     <!--me-->
     <section data-section="me" id="me" class="min-h-dvh content-end lg:auto-rows-fr">
-      <h1 class="glow px-10">{{ t('hero') }}</h1>
-      <!--      <img alt="" class="absolute right-[5%] bottom-0 w-dvh opacity-6 sm:top-0" src="assets/images/soma.png" />-->
+      <h1 class="glow-xl px-10">{{ t('hero') }}</h1>
       <div class="absolute top-10 right-10">
         <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
       </div>
-      <!--      <div class="absolute right-5 bottom-5 col-span-2 flex items-center items-end gap-5">
-        <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
-          <icons icon="telegram"></icons>
-        </a>
-        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">
-          <icons icon="google-mail"></icons>
-        </a>
-      </div>-->
     </section>
 
     <header class="sticky top-0 z-2 hidden h-fit w-full">
@@ -52,13 +43,13 @@
 
     <!--about-->
     <section data-section="about" id="about" class="grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="glow col-span-1 h-fit p-10 lg:sticky lg:top-0">{{ t('about-title') }}</h2>
+      <h2 class="glow-lg col-span-1 h-fit p-10 lg:sticky lg:top-0">{{ t('about-title') }}</h2>
       <p class="light:text-[color:var(--grey)] light:bg-[var(--black)] corner-frame col-span-1 p-10 !font-[basis33] uppercase lg:self-end">{{ t('about-paragraph') }}</p>
     </section>
 
     <!--projects-->
     <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-      <h2 class="glow col-span-1 h-fit p-10 lg:sticky lg:top-0 lg:col-span-1">{{ t('menu-projects') }}</h2>
+      <h2 class="glow-lg col-span-1 h-fit p-10 lg:sticky lg:top-0 lg:col-span-1">{{ t('menu-projects') }}</h2>
       <div class="scroll-section min-h-dvh lg:p-10">
         <div class="wrapper relative flex h-full">
           <project
@@ -116,7 +107,7 @@
 
     <!--design-->
     <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:auto-rows-fr lg:grid-cols-4">
-      <h2 class="glow col-span-1 grid h-fit content-center p-10 lg:sticky lg:top-0 lg:h-full">{{ t('menu-designs') }}</h2>
+      <h2 class="glow-lg col-span-1 grid h-fit content-center p-10 lg:sticky lg:top-0 lg:h-full">{{ t('menu-designs') }}</h2>
       <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt="" :design-tags="['Mobile app', 'Visual', 'Team work']"></design>
 
       <design :design-name="t('design-admaster-title')" :design-desc="t('design-admaster-text')" design-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>
@@ -136,7 +127,7 @@
 
     <!--creatives-->
     <section data-section="creatives" id="creatives" class="relative grid min-h-dvh lg:auto-cols-fr lg:auto-rows-fr lg:grid-cols-20 lg:gap-0">
-      <h2 class="glow absolute sticky top-1/2 left-1/2 z-10 h-fit w-fit w-max -translate-x-1/2 -translate-y-1/2">{{ t('menu-creatives') }}</h2>
+      <h2 class="glow-lg absolute sticky top-1/2 left-1/2 z-10 h-fit w-fit w-max -translate-x-1/2 -translate-y-1/2">{{ t('menu-creatives') }}</h2>
       <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" creative-grid-area="4/3/7/8"></creative>
       <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" creative-grid-area="6/12/12/20"></creative>
       <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" creative-grid-area="10/2/15/13"></creative>
@@ -146,7 +137,7 @@
 
     <section data-section="footer" id="footer" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
       <div class="col-span-1 flex h-fit flex-row items-center justify-between p-10 lg:h-full lg:flex-col lg:items-start">
-        <h2 class="glow lg:sticky lg:top-0">{{ t("menu-footer") }}</h2>
+        <h2 class="glow-lg lg:sticky lg:top-0">{{ t("menu-footer") }}</h2>
         <div class="col-span-2 flex gap-10">
           <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5 lg:size-15"></span> </a>
           <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5 lg:size-15"></span> </a>
@@ -157,9 +148,9 @@
         <button id="scroll-to-top" class="content-end self-end justify-self-end">{{ t('footer-scroll-up') }}</button>
       </div>
     </section>
-
-    <!--    <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>-->
     <div class="grain -z-1"></div>
+
+    <img alt="" class="fixed right-[5%] bottom-0 -z-1 opacity-2.5 md:h-[85%]" src="assets/images/soma.png" />
 
     <!--    <div class="dotted-grid pointer-events-none fixed top-0 left-0 -z-1 block h-full w-full"></div>-->
   </body>

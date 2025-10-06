@@ -119,6 +119,7 @@ $transparent: hsla(0, 0%, 0%, 0);
   display: flex;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(0px 0px 10px #ffffff);
 }
 
 .app-cursor::after {
@@ -341,8 +342,12 @@ button {
   background-origin: padding-box;
 }
 
-.glow {
+.glow-xl {
   filter: drop-shadow(0px 0px 200px #ffffff);
+}
+
+.glow-lg {
+  filter: drop-shadow(0px 0px 75px #ffffff);
 }
 
 .grain {
