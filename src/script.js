@@ -6,7 +6,6 @@ import "./js/theme-toggle";
 import "./js/locale-toggler";
 import "./js/yandex-metrika";
 import "./js/card-rotate";
-//import "./js/section-height";
 import "./js/cursor";
 
 // Centralized GSAP imports and plugin registration
@@ -22,8 +21,9 @@ window.ScrollTrigger = ScrollTrigger;
 window.ScrollSmoother = ScrollSmoother;
 
 // Feature modules (they will reference window.gsap/plugins at runtime)
-import "./js/gsap/scroll-creatives";
 import "./js/gsap/scroll-card";
+
+//import "./js/section-height";
 //import { updateProgressBar } from "./js/progress-bar";
 
 //window.onscroll = updateProgressBar;
