@@ -26,5 +26,7 @@ import "./js/gsap/scroll-card";
 
 //import "./js/section-height";
 import { updateProgressBar } from "./js/progress-bar";
+import { generateChessboard } from "./js/chessboard";
 
 window.onscroll = updateProgressBar;
+generateChessboard();

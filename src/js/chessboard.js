@@ -1,5 +1,3 @@
-
-
 export const generateChessboard = () => {
   const chess = document.querySelector(".chess");
   let htmlContent = "";
