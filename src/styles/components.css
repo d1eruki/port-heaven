@@ -72,7 +72,7 @@
   }
 
   .progress-bar {
-    width: 5px;
+    width: 1px;
     height: 0;
     transition: height 0.1s ease;
   }
