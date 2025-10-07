@@ -1,0 +1,106 @@
+legend {
+    padding: 5px 10px;
+}
+
+legend:not(.profile legend) {
+    background: var(--color-blue);
+}
+
+.shirt {
+    transform: rotateY(180deg);
+}
+
+.shirt img {
+    width: 80%;
+}
+
+.profile fieldset {
+    width: 180px;
+    height: 180px;
+}
+
+.profile legend {
+    background-color: var(--color-black);
+    line-height: 10px;
+    animation: move 5s infinite linear alternate;
+}
+
+.profile fieldset:nth-of-type(2) {
+    transform: rotate(90deg);
+}
+
+.profile fieldset:nth-of-type(3) {
+    transform: rotate(180deg);
+}
+
+.profile fieldset:nth-of-type(4) {
+    transform: rotate(-90deg);
+}
+
+.profile img {
+    width: 180px;
+}
+
+.chess {
+    width: 180px;
+    height: 180px;
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(18, 1fr);
+}
+
+.cube-one {
+    background-color: var(--color-transparent);
+}
+
+.cube-two {
+    background-color: var(--color-white);
+}
+
+.card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card img {
+    filter: grayscale(100%) brightness(0.9) contrast(1.1);
+    transition: all 0.3s ease;
+}
+
+.card img:hover {
+    filter: grayscale(0%) brightness(0.9) contrast(1.1);
+}
+
+.profile-box {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 20px;
+}
+
+.profile-box:hover .profile {
+    transform: rotateY(180deg);
+}
+
+.profile-box:hover .shirt {
+    transform: rotateY(0);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(270deg, var(--color-black), var(--color-grey-darkest));
+    background-size: 400% 400%;
+    animation: animateBg 30s ease infinite;
+}
+
+@keyframes animateBg {
+    0%, 100% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}

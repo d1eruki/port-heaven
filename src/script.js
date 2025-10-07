@@ -1,6 +1,7 @@
 import "./style.css";
 import "./js/vue";
 import "./js/scroll";
+import "./js/chessboard";
 //import "./js/scroll-to-top";
 import "./js/theme-toggle";
 import "./js/locale-toggler";
