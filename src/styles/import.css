@@ -77,6 +77,14 @@
     }
   }
 
+  .shirt,
+  .profile {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    backface-visibility: hidden;
+  }
+
   .neon-pink-shadow {
     border: 2px solid var(--color-pink);
     box-shadow:
