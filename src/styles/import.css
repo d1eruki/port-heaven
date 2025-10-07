@@ -83,4 +83,13 @@
       0 0 20px var(--color-blue),
       inset 0 0 10px var(--color-pink);
   }
+
+  @keyframes move {
+    from {
+      margin-left: 0;
+    }
+    to {
+      margin-left: 50%;
+    }
+  }
 }
