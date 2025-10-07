@@ -1,4 +1,4 @@
-@layer utilities {
+@layer components {
   .dotted-grid {
     background-size: 25px 25px;
   }
