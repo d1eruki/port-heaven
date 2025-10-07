@@ -1,18 +1,13 @@
-/* src/style.css */
+@import "tailwindcss";
+@plugin "@iconify/tailwind4";
+
 @import "./styles/core.css";
 @import "./styles/fonts.css";
 
-/* базовые слои */
 @import "./styles/keyframes.css";
 @import "./styles/base.css";
 
-/* компоненты и эффекты */
-@import "./styles/components/progress-bar.css";
-@import "./styles/components/cursor.css";
-@import "./styles/components/corner-frame.css";
-
 @import "./styles/effects/grain.css";
 
-/* темы и утилиты */
 @import "./styles/themes/light.css";
 @import "./styles/utilities.css";

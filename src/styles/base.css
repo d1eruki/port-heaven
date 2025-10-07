@@ -4,10 +4,15 @@
     font-optical-sizing: auto;
     font-weight: 200;
     text-transform: uppercase;
+    cursor: none;
 
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  body {
+    background-size: 25px 25px;
   }
 
   h1,

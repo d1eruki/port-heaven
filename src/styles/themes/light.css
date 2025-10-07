@@ -8,7 +8,6 @@
     body {
       background-color: var(--color-black);
       color: var(--color-white);
-      background-size: 25px 25px;
       background-image: linear-gradient(var(--color-grey-darkest) 1px, transparent 1px), linear-gradient(to right, var(--color-grey-darkest) 1px, transparent 1px);
     }
 
@@ -29,9 +28,6 @@
       fill: var(--color-white);
     }
 
-    .design {
-      transition: all 0.25s;
-    }
     .design h3 {
       color: var(--color-white);
     }
