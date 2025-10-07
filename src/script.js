@@ -1,4 +1,4 @@
-import "./style.scss";
+import "./style.css";
 import "./js/vue";
 import "./js/scroll";
 //import "./js/scroll-to-top";

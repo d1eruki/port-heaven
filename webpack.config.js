@@ -34,9 +34,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: "asset/resource",
-        generator: {
-          filename: "assets/images/[name][ext]",
-        },
+        generator: { filename: "assets/images/[name][ext]" },
       },
       {
         test: /\.vue$/,
@@ -44,10 +42,6 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.scss$/i,
         use: [
           isDev ? "style-loader" : MiniCssExtractPlugin.loader,
           "css-loader",
@@ -59,7 +53,6 @@ module.exports = {
               },
             },
           },
-          "sass-loader",
         ],
       },
     ],
@@ -75,13 +68,7 @@ module.exports = {
       filename: "index.html",
       inject: true,
     }),
-    ...(isDev
-      ? []
-      : [
-          new MiniCssExtractPlugin({
-            filename: "style.css",
-          }),
-        ]),
+    ...(isDev ? [] : [new MiniCssExtractPlugin({ filename: "style.css" })]),
     new CopyWebpackPlugin({
       patterns: [{ from: "src/assets/images", to: "assets/images" }],
     }),
