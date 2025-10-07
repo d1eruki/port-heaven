@@ -1,5 +1,5 @@
 <template>
-  <p class="light:text-[color:var(--grey)] w-full !font-[basis33] uppercase">{{ menuDesc }}</p>
+  <p class="light:text-(--color-grey) w-full !font-[basis33] uppercase">{{ menuDesc }}</p>
 </template>
 
 <script setup>

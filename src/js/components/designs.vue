@@ -1,8 +1,8 @@
 <template>
   <a :href="designUrl" target="_blank" class="group design relative z-10 grid gap-5 rounded-4xl p-10 hover:z-100 lg:h-150 lg:items-center">
-    <h4 class="light:text-[color:var(--white)] flex gap-3">{{ designName }}</h4>
+    <h4 class="light:text-(--color-white) flex gap-3">{{ designName }}</h4>
     <div class="top-75 right-10 bottom-10 left-10 flex flex-wrap gap-5 self-end lg:absolute lg:flex lg:group-hover:hidden">
-      <div v-for="(tag, index) in designTags" :key="index" class="light:text-[color:var(--grey)] flex gap-2.5">
+      <div v-for="(tag, index) in designTags" :key="index" class="light:text-(--color-grey) flex gap-2.5">
         <small class="flex gap-2.5">
           <span v-if="isAdaptiveLanding(tag)" class="icon-[fa7-solid--mobile-screen]"></span>
           <span v-if="isDesktopLanding(tag)" class="icon-[fa7-solid--display]"></span>
