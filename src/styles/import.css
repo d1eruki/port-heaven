@@ -2,16 +2,8 @@ legend {
     padding: 5px 10px;
 }
 
-legend:not(.profile legend) {
-    background: var(--color-blue);
-}
-
 .shirt {
     transform: rotateY(180deg);
-}
-
-.shirt img {
-    width: 80%;
 }
 
 .profile fieldset {
@@ -44,13 +36,12 @@ legend:not(.profile legend) {
 .chess {
     width: 180px;
     height: 180px;
-    display: grid;
     grid-template-columns: repeat(18, 1fr);
     grid-template-rows: repeat(18, 1fr);
 }
 
 .cube-one {
-    background-color: var(--color-transparent);
+    background-color: var(--color-black);
 }
 
 .cube-two {
@@ -75,7 +66,6 @@ legend:not(.profile legend) {
 .profile-box {
     width: 180px;
     height: 180px;
-    margin-bottom: 20px;
 }
 
 .profile-box:hover .profile {
@@ -104,3 +94,11 @@ body {
         background-position: 100% 50%;
     }
 }
+
+
+
+.neon-pink-shadow {
+    border: 2px solid var(--color-pink);
+    box-shadow: 0 0 20px var(--color-blue), inset 0 0 10px var(--color-pink);
+}
+
