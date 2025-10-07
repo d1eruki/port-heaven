@@ -39,6 +39,7 @@
   .profile-box {
     width: 180px;
     height: 180px;
+      grid-area: 2 / 14 / 3 / 17;
   }
 
   .profile-box:hover .profile {

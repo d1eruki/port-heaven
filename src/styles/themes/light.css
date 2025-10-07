@@ -62,11 +62,11 @@
       background-color: var(--color-white);
     }
 
-    .neon-pink-shadow {
-      outline: 2px solid var(--color-pink);
+    .neon-shadow {
+      outline: 1px solid var(--color-white);
       box-shadow:
-        0 0 20px var(--color-pink),
-        inset 0 0 10px var(--color-pink);
+        0 0 20px var(--color-white),
+        inset 0 0 10px var(--color-white);
     }
 
     .profile legend {
