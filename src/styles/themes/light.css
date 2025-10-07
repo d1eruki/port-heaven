@@ -53,5 +53,24 @@
       background: var(--color-white);
       color: var(--color-black);
     }
+
+    .cube-one {
+      background-color: var(--color-transparent);
+    }
+
+    .cube-two {
+      background-color: var(--color-white);
+    }
+
+    .neon-pink-shadow {
+      outline: 2px solid var(--color-pink);
+      box-shadow:
+        0 0 20px var(--color-pink),
+        inset 0 0 10px var(--color-pink);
+    }
+
+    .profile legend {
+      background-color: var(--color-black);
+    }
   }
 }

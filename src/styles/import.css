@@ -1,8 +1,4 @@
 @layer components {
-  legend {
-    padding: 5px 10px;
-  }
-
   .shirt {
     transform: rotateY(180deg);
   }
@@ -13,7 +9,6 @@
   }
 
   .profile legend {
-    background-color: var(--color-black);
     line-height: 10px;
     animation: move 5s infinite linear alternate;
   }
@@ -41,14 +36,6 @@
     grid-template-rows: repeat(18, 1fr);
   }
 
-  .cube-one {
-    background-color: var(--color-transparent);
-  }
-
-  .cube-two {
-    background-color: var(--color-white);
-  }
-
   .profile-box {
     width: 180px;
     height: 180px;
@@ -61,21 +48,6 @@
   .profile-box:hover .shirt {
     transform: rotateY(0);
   }
-  body {
-    background: linear-gradient(270deg, var(--color-black), var(--color-grey-darkest));
-    background-size: 400% 400%;
-    animation: animateBg 30s ease infinite;
-  }
-
-  @keyframes animateBg {
-    0%,
-    100% {
-      background-position: 0 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
 
   .shirt,
   .profile {
@@ -83,21 +55,5 @@
     height: 100%;
     transition: transform 0.5s ease;
     backface-visibility: hidden;
-  }
-
-  .neon-pink-shadow {
-    border: 2px solid var(--color-pink);
-    box-shadow:
-      0 0 20px var(--color-blue),
-      inset 0 0 10px var(--color-pink);
-  }
-
-  @keyframes move {
-    from {
-      margin-left: 0;
-    }
-    to {
-      margin-left: 50%;
-    }
   }
 }

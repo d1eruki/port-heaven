@@ -33,3 +33,22 @@
     transform: translate3d(-7rem, 0, 0);
   }
 }
+
+@keyframes animateBg {
+  0%,
+  100% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes move {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 50%;
+  }
+}

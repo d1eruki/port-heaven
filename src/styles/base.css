@@ -15,6 +15,12 @@
     background-size: 25px 25px;
   }
 
+  body {
+    background: linear-gradient(270deg, var(--color-black), var(--color-grey-darkest));
+    background-size: 400% 400%;
+    animation: animateBg 30s ease infinite;
+  }
+
   h1,
   h2,
   h3,
@@ -43,8 +49,13 @@
   .app-cursor {
     font-size: var(--text-body);
   }
+
   small,
   .design span {
     font-size: var(--text-small);
+  }
+
+  legend {
+    padding: 5px 10px;
   }
 }
