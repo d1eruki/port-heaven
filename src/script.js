@@ -1,7 +1,7 @@
 import "./style.css";
 import "./js/vue";
 import "./js/scroll";
-import "./js/chessboard";
+//import "./js/chessboard";
 //import "./js/scroll-to-top";
 import "./js/theme-toggle";
 import "./js/locale-toggler";
@@ -26,7 +26,7 @@ import "./js/gsap/scroll-card";
 
 //import "./js/section-height";
 import { updateProgressBar } from "./js/progress-bar";
-import { generateChessboard } from "./js/chessboard";
+//import { generateChessboard } from "./js/chessboard";
 
 window.onscroll = updateProgressBar;
-generateChessboard();
+//generateChessboard();

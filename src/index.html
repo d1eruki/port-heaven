@@ -143,12 +143,13 @@
         <h2 class="glow-lg w-full">{{ t('menu-creatives') }}</h2>
         <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
       </div>
-      <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" creative-grid-area="4/3/7/8"></creative>
-      <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" creative-grid-area="6/12/12/20"></creative>
-      <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" creative-grid-area="10/2/15/13"></creative>
-      <creative creative-src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" creative-grid-area="14/11/19/19"></creative>
-      <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" creative-grid-area="16/2/19/6"></creative>
-      <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" creative-grid-area="17/3/24/9"></creative>
+      <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" col="2" col-span="5" row="2" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" col="14" col-span="6" row="3" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" col="3" col-span="7" row="4" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" col="12" col-span="6" row="5" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" col="1" col-span="8" row="6" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" col="9" col-span="7" row="7" row-span="1"></creative>
+      <!--
       <div class="profile-box relative z-5 cursor-none">
         <div class="profile neon-shadow absolute size-full backface-hidden">
           <div class="chess absolute -z-1 grid"></div>
@@ -168,10 +169,11 @@
         </div>
         <img alt="Girl in a jacket" class="shirt absolute size-full h-auto backface-hidden" src="./assets/images/dieruki.png" />
       </div>
+-->
     </section>
 
     <!--footer-->
-    <section data-section="footer" id="footer" class="flex min-h-dvh flex-col justify-center gap-5 justify-self-center p-10 lg:w-150">
+    <section data-section="footer" id="footer" class="flex min-h-dvh flex-col justify-center gap-5 justify-self-center p-10 lg:w-200">
       <h2 class="glow-lg">{{ t('menu-footer') }}</h2>
       <menu-desc :menu-desc="t('menu-footer-description')" class="w-full"></menu-desc>
     </section>
