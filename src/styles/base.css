@@ -1,0 +1,45 @@
+@layer base {
+  * {
+    font-family: "basis33", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    text-transform: uppercase;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Actay", sans-serif;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    line-height: var(--leading-h1);
+  }
+  h2 {
+    font-size: var(--text-h2);
+  }
+  h3 {
+    font-size: var(--text-h3);
+  }
+  h4 {
+    font-size: var(--text-h4);
+  }
+
+  p,
+  a,
+  button,
+  .app-cursor {
+    font-size: var(--text-body);
+  }
+  small,
+  .design span {
+    font-size: var(--text-small);
+  }
+}

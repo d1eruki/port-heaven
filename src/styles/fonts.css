@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Actay";
+  src: url("../assets/fonts/ActayWide-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "basis33";
+  src: url("../assets/fonts/basis33.regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --cursor-size: 15px;
+  --cursor-size-active: 35px;
+  --cursor-size-label: 150px;
+}

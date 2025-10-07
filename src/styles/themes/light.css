@@ -1,0 +1,61 @@
+@layer base {
+  @variant light {
+    *::selection {
+      background-color: var(--color-white);
+      color: var(--color-black);
+    }
+
+    body {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      background-size: 25px 25px;
+      background-image: linear-gradient(var(--color-grey-darkest) 1px, transparent 1px), linear-gradient(to right, var(--color-grey-darkest) 1px, transparent 1px);
+    }
+
+    a {
+      color: var(--color-white);
+    }
+    a:hover {
+      color: var(--color-white);
+    }
+
+    hr {
+      color: var(--color-grey);
+    }
+
+    svg:hover polygon,
+    svg:hover path,
+    svg:hover rect {
+      fill: var(--color-white);
+    }
+
+    .design {
+      transition: all 0.25s;
+    }
+    .design h3 {
+      color: var(--color-white);
+    }
+    .design:hover {
+      background-color: var(--color-white);
+    }
+    .design:hover * {
+      color: var(--color-black);
+    }
+
+    .dotted-grid {
+      background-image: radial-gradient(circle, var(--color-grey-darker) 0, var(--color-grey-darker) 2.5px, var(--color-transparent) 2.5px);
+    }
+
+    .glow-xl {
+      filter: drop-shadow(0 0 200px var(--color-white));
+    }
+    .glow-lg {
+      filter: drop-shadow(0 0 75px var(--color-white));
+    }
+
+    .app-cursor {
+      background: var(--color-white);
+      color: var(--color-black);
+    }
+  }
+}

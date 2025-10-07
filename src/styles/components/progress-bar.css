@@ -1,0 +1,5 @@
+.progress-bar {
+  width: 5px;
+  height: 0;
+  transition: height 0.1s ease;
+}

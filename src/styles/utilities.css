@@ -1,0 +1,22 @@
+@layer utilities {
+  .dotted-grid {
+    background-size: 25px 25px;
+  }
+
+  .design {
+    transition: all 0.25s;
+  }
+  .design:hover {
+    transform: translate(5px, 5px);
+  }
+
+  .progress-bar {
+    width: 5px;
+    height: 0;
+    transition: height 0.1s ease;
+  }
+
+  .use-custom-cursor body * {
+    cursor: none;
+  }
+}
