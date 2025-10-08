@@ -47,7 +47,7 @@
 
     <!--about-->
     <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-50 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="glow-lg col-span-1 w-full p-10 lg:sticky lg:top-0 lg:h-dvh lg:text-center">{{ t('menu-about') }}</h2>
+      <h2 class="glow-lg col-span-1 w-full lg:content-center p-10 lg:sticky lg:top-0 lg:h-dvh lg:text-center">{{ t('menu-about') }}</h2>
       <div class="corner-frame col-span-1 m-10 p-10 lg:self-end">
         <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
       </div>
@@ -115,7 +115,7 @@
     </section>
 
     <!--design-->
-    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:ml-50 lg:auto-rows-fr lg:grid-cols-3">
+    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] lg:ml-50 lg:auto-rows-fr lg:grid-cols-3">
       <div class="col-span-1 grid h-fit content-center gap-5 p-10 lg:top-0 lg:h-full">
         <h2 class="glow-lg">{{ t('menu-designs') }}</h2>
         <menu-desc :menu-desc="t('menu-designs-description')"></menu-desc>
@@ -170,7 +170,8 @@
 
     <div class="grain -z-1"></div>
 
-    <img alt="" class="fixed right-[5%] bottom-0 -z-1 md:h-[85%]" src="assets/images/soma.png" />
+    <!--    <img alt="" class="fixed right-[5%] bottom-0 -z-1 md:h-[85%]" src="assets/images/soma.png" />-->
+    <div class="vignette pointer-events-none fixed top-0 left-0 z-100 h-full w-full"></div>
 
     <!--    <div class="dotted-grid pointer-events-none fixed top-0 left-0 -z-1 block h-full w-full"></div>-->
   </body>

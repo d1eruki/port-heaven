@@ -35,12 +35,35 @@
 }
 
 @keyframes animateBg {
-  0%,
-  100% {
-    background-position: 0 50%;
+  0% {
+    background-position:
+      0 0,
+      0 0;
+    background-size: 25px 25px;
+  }
+  25% {
+    background-position:
+      50px 25px,
+      25px 50px;
+    background-size: 26px 26px;
   }
   50% {
-    background-position: 100% 50%;
+    background-position:
+      100px 50px,
+      50px 100px;
+    background-size: 25px 25px;
+  }
+  75% {
+    background-position:
+      50px 75px,
+      75px 50px;
+    background-size: 24px 24px;
+  }
+  100% {
+    background-position:
+      0 0,
+      0 0;
+    background-size: 25px 25px;
   }
 }
 

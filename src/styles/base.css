@@ -12,13 +12,10 @@
   }
 
   body {
-    background-size: 25px 25px;
-  }
-
-  body {
-    background: linear-gradient(270deg, var(--color-black), var(--color-grey-darkest));
-    background-size: 400% 400%;
-    animation: animateBg 30s ease infinite;
+    animation: animateBg 40s ease-in-out infinite;
+    /* transform: perspective(800px) scale(1.1) rotateX(10deg) rotateY(-10deg);
+    transform-origin: center center;
+    filter: contrast(1.1) saturate(1.1);*/
   }
 
   h1,

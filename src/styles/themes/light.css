@@ -70,5 +70,9 @@
       background-color: var(--color-white);
       color: var(--color-black);
     }
+
+    .vignette {
+      box-shadow: 0 0 200px var(--color-black) inset;
+    }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <a :href="designUrl" target="_blank" class="group design relative z-10 grid gap-5 rounded-4xl p-10 hover:z-100 lg:h-150 lg:items-center">
+  <a :href="designUrl" target="_blank" class="group design relative z-10 grid gap-5 lg:rounded-4xl p-10 hover:z-100 lg:h-150 lg:items-center">
     <h4 class="light:text-(--color-white) flex gap-3 group-hover:lg:text-(--color-black)">{{ designName }}</h4>
     <div class="top-75 right-10 bottom-10 left-10 flex flex-wrap gap-5 self-end lg:absolute lg:flex lg:group-hover:hidden">
       <div v-for="(tag, index) in designTags" :key="index" class="light:text-(--color-grey) flex gap-2.5">
