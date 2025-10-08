@@ -1,18 +1,18 @@
 <template>
-  <div class="project light:bg-(--color-white) project absolute top-0 left-0 col-span-1 flex h-full w-full flex-col gap-5 rounded-4xl border border-solid border-black will-change-transform">
+  <div class="project light:bg-(--color-white) project absolute top-0 left-0 col-span-1 flex h-full w-full flex-col gap-5 lg:rounded-4xl border border-solid border-black will-change-transform">
     <div class="flex h-full flex-col gap-5 p-5 lg:justify-between lg:p-15">
       <div class="flex flex-col gap-5">
         <h3 class="light:text-(--color-black)">{{ projectName }}</h3>
         <p class="light:text-(--color-grey)">{{ projectDescription }}</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="lg:flex hidden flex-wrap gap-2">
           <div v-for="(tag, index) in projectTags" :key="index" class="flex">
             <small class="light:text-(--color-black) rounded-4xl border border-solid border-black px-5 py-2.5">{{ getTagName(tag) }}</small>
           </div>
         </div>
       </div>
       <p class="light:text-(--color-black)">{{ projectText }}</p>
-      <div class="flex gap-2">
-        <a v-for="(link, index) in projectLinks" :key="index" class="light:bg-(--color-black) active flex w-fit rounded-full px-10 py-5" :href="link.url" target="_blank">
+      <div class="flex gap-2 flex-wrap">
+        <a v-for="(link, index) in projectLinks" :key="index" class="light:bg-(--color-black) active flex w-fit rounded-full px-5 py-2.5 lg:px-10 lg:py-5" :href="link.url" target="_blank">
           <p class="light:text-(--color-white)">{{ link.name }}</p>
         </a>
       </div>

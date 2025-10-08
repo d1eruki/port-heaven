@@ -77,30 +77,26 @@
     transition: height 0.1s ease;
   }
 
-  .shirt {
+  .card-rotate,
+  .card-rotate-face,
+  .card-rotate-shirt {
+    transition: transform 0.5s ease;
+  }
+
+  .card-rotate-shirt {
     transform: rotateY(180deg);
   }
 
-  .profile fieldset {
-    width: 180px;
-    height: 180px;
+  .card-rotate:hover .card-rotate-face {
+    transform: rotateY(180deg);
   }
 
-  .profile legend {
-    line-height: 10px;
+  .card-rotate:hover .card-rotate-shirt {
+    transform: rotateY(0deg);
+  }
+
+  .card-rotate-shirt legend {
     animation: move 5s infinite linear alternate;
-  }
-
-  .profile fieldset:nth-of-type(2) {
-    transform: rotate(90deg);
-  }
-
-  .profile fieldset:nth-of-type(3) {
-    transform: rotate(180deg);
-  }
-
-  .profile fieldset:nth-of-type(4) {
-    transform: rotate(-90deg);
   }
 
   .chess {
@@ -108,24 +104,5 @@
     height: 180px;
     grid-template-columns: repeat(18, 1fr);
     grid-template-rows: repeat(18, 1fr);
-  }
-
-  .profile-box {
-    width: 180px;
-    height: 180px;
-    grid-area: 2 / 14 / 3 / 17;
-  }
-
-  .profile-box:hover .profile {
-    transform: rotateY(180deg);
-  }
-
-  .profile-box:hover .shirt {
-    transform: rotateY(0);
-  }
-
-  .shirt,
-  .profile {
-    transition: transform 0.5s ease;
   }
 }

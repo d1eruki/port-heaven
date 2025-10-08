@@ -1,7 +1,7 @@
 import VanillaTilt from "vanilla-tilt";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".card"); // Выбираем все .card
+  const cards = document.querySelectorAll(".vanilla-tilt"); // Выбираем все .card
   if (cards.length) {
     cards.forEach((card) => {
       VanillaTilt.init(card, {

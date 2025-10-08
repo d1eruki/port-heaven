@@ -69,8 +69,9 @@
         inset 0 0 10px var(--color-white);
     }
 
-    .profile legend {
-      background-color: var(--color-black);
+    legend {
+      background-color: var(--color-white);
+      color: var(--color-black);
     }
   }
 }
