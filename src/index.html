@@ -26,10 +26,9 @@
       <h1 class="glow-xl">{{ t('hero') }}</h1>
     </section>
 
-    <header class="sticky top-0 left-0 z-100 mix-blend-difference lg:mix-blend-normal lg:min-h-dvh w-50 flex-col lg:justify-between p-10 flex justify-end
-">
-      <p class="w-fit hidden lg:block">{{ t('logo') }}</p>
-      <div class="lg:flex hidden w-fit flex-col gap-5">
+    <header class="sticky top-0 left-0 z-100 flex w-50 flex-col justify-end p-10 mix-blend-difference lg:min-h-dvh lg:justify-between lg:mix-blend-normal">
+      <p class="hidden w-fit lg:block">{{ t('logo') }}</p>
+      <div class="hidden w-fit flex-col gap-5 lg:flex">
         <nav-button nav-name="about">{{ t('menu-about') }}</nav-button>
         <nav-button nav-name="projects">{{ t('menu-projects') }}</nav-button>
         <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
@@ -48,7 +47,7 @@
 
     <!--about-->
     <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-50 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="glow-lg col-span-1 w-full p-10 lg:text-center lg:sticky lg:top-0 lg:h-dvh">{{ t('menu-about') }}</h2>
+      <h2 class="glow-lg col-span-1 w-full p-10 lg:sticky lg:top-0 lg:h-dvh lg:text-center">{{ t('menu-about') }}</h2>
       <div class="corner-frame col-span-1 m-10 p-10 lg:self-end">
         <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
       </div>
@@ -56,7 +55,7 @@
 
     <!--projects-->
     <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:ml-50 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-      <div class="col-span-1 grid h-fit content-center gap-5 p-10 lg:text-center lg:sticky lg:top-0 lg:col-span-1 lg:h-dvh">
+      <div class="col-span-1 grid h-fit content-center gap-5 p-10 lg:sticky lg:top-0 lg:col-span-1 lg:h-dvh lg:text-center">
         <h2 class="glow-lg">{{ t('menu-projects') }}</h2>
         <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
       </div>
@@ -139,7 +138,7 @@
     </section>
 
     <!--creatives-->
-<!--
+    <!--
     <section data-section="creatives" id="creatives" class="relative block min-h-dvh lg:ml-50 lg:grid lg:auto-cols-fr lg:auto-rows-fr lg:grid-cols-20 lg:gap-0">
       <div class="pointer-events-none sticky z-10 flex h-fit flex-col gap-5 p-10 lg:top-1/2 lg:left-1/2 lg:w-150 lg:-translate-x-1/2 lg:-translate-y-1/2">
         <h2 class="glow-lg w-full">{{ t('menu-creatives') }}</h2>

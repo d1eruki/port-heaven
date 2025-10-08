@@ -28,9 +28,6 @@
       fill: var(--color-white);
     }
 
-    .design h3 {
-      color: var(--color-white);
-    }
     .design:hover {
       background-color: var(--color-white);
     }
