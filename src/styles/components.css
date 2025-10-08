@@ -1,0 +1,108 @@
+@layer components {
+  .dotted-grid {
+    background-size: 25px 25px;
+  }
+
+  .design {
+    transition: var(--transition);
+  }
+  .design:hover {
+    transform: translate(5px, 5px);
+  }
+
+  .corner-frame {
+    --cf-color: var(--color-grey);
+    --cf-size: 1px;
+    --cf-length: 24px;
+    background:
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top left / var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top left / var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top right / var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top right / var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom left / var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom left / var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom right / var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom right / var(--cf-size) var(--cf-length) no-repeat;
+    background-origin: padding-box;
+  }
+
+  .app-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.18s ease,
+      height 0.18s ease,
+      opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-cursor::after {
+    content: attr(data-label);
+    opacity: 0;
+    transform: translateY(2px) scale(1);
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .app-cursor.is-active {
+    width: var(--cursor-size-active);
+    height: var(--cursor-size-active);
+  }
+
+  .app-cursor.has-label {
+    width: var(--cursor-size-label);
+    height: var(--cursor-size-label);
+    border-radius: 100px;
+  }
+
+  .app-cursor.has-label::after {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .progress-bar {
+    width: 1px;
+    height: 0;
+    transition: height 0.1s ease;
+  }
+
+  .card-rotate,
+  .card-rotate-face,
+  .card-rotate-shirt {
+    transition: transform 0.5s ease;
+  }
+
+  .card-rotate-shirt {
+    transform: rotateY(180deg);
+  }
+
+  .card-rotate:hover .card-rotate-face {
+    transform: rotateY(180deg);
+  }
+
+  .card-rotate:hover .card-rotate-shirt {
+    transform: rotateY(0deg);
+  }
+
+  .card-rotate-shirt legend {
+    animation: move 5s infinite linear alternate;
+  }
+
+  .chess {
+    width: 180px;
+    height: 180px;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(18, 1fr);
+  }
+}

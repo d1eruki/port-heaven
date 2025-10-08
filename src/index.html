@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <title>port-heaven</title>
 
@@ -13,7 +13,7 @@
     <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
+  <body lang="ru" id="app" class="container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-20">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -21,45 +21,46 @@
     </noscript>
 
     <!--me-->
-    <section data-section="me" id="me" class="min-h-dvh content-end lg:auto-rows-fr">
-      <h1 class="px-10">{{ t('hero') }}</h1>
-      <!--      <img alt="" class="absolute right-[5%] bottom-0 w-dvh opacity-6 sm:top-0" src="assets/images/soma.png" />-->
-      <div class="absolute top-10 right-10">
-        <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
-      </div>
-      <!--      <div class="absolute right-5 bottom-5 col-span-2 flex items-center items-end gap-5">
-        <a class="w-fit" href="https://t.me/d1eruki" target="_blank">
-          <icons icon="telegram"></icons>
-        </a>
-        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank">
-          <icons icon="google-mail"></icons>
-        </a>
-      </div>-->
+
+    <section data-section="me" id="me" class="min-h-dvh content-end p-10">
+      <h1 class="glow-xl">{{ t('hero') }}</h1>
     </section>
 
-    <header class="sticky top-0 z-2 hidden h-fit w-full">
-      <div id="progress-bar" class="light:bg-[var(--white)] progress-bar top-0 lg:absolute"></div>
-      <div class="flex h-[inherit] w-full flex-col justify-between gap-10 lg:flex-row lg:items-center">
-        <a href="#me" data-open-block class="jost hidden h-full w-fit content-center p-2.5 tracking-widest lg:block lg:flex lg:px-10 lg:py-10">{{ t('logo') }}</a>
-        <div class="flex h-fit w-full flex-wrap items-center gap-0 lg:w-fit">
-          <nav-button nav-name="projects">{{ t('logo') }}</nav-button>
-          <nav-button nav-name="design">{{ t('menu-design') }}</nav-button>
-          <nav-button nav-name="footer" class="hidden lg:block">{{ t('menu-footer') }}</nav-button>
-          <button id="lang-toggle" class="hidden w-fit cursor-pointer p-2.5 lg:flex lg:px-10 lg:py-10">en</button>
-        </div>
+    <header class="sticky top-0 left-0 z-100 mix-blend-difference lg:mix-blend-normal lg:min-h-dvh w-50 flex-col lg:justify-between p-10 flex justify-end
+">
+      <p class="w-fit hidden lg:block">{{ t('logo') }}</p>
+      <div class="lg:flex hidden w-fit flex-col gap-5">
+        <nav-button nav-name="about">{{ t('menu-about') }}</nav-button>
+        <nav-button nav-name="projects">{{ t('menu-projects') }}</nav-button>
+        <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
+        <nav-button nav-name="creatives" class="light:text-(--color-red)">{{ t('menu-creatives') }}</nav-button>
+        <nav-button nav-name="footer">{{ t('menu-footer') }}</nav-button>
+      </div>
+      <button id="lang-toggle" class="hidden w-fit">en</button>
+      <button id="scroll-to-top" class="hidden w-fit">{{ t('footer-scroll-up') }}</button>
+      <div class="flex gap-5">
+        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5"></span> </a>
+        <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5"></span> </a>
+        <button id="theme-toggler" class="icon-[fa7-solid--adjust] hidden size-7.5"></button>
       </div>
     </header>
+    <div id="progress-bar" class="progress-bar light:bg-(--color-white) fixed top-0 right-0"></div>
 
     <!--about-->
-    <section data-section="about" id="about" class="grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="col-span-1 h-fit p-10 lg:sticky lg:top-0">{{ t('about-title') }}</h2>
-      <p class="light:text-[color:var(--grey)] light:bg-[var(--black)] corner-frame col-span-1 p-10 !font-[basis33] uppercase lg:self-end">{{ t('about-paragraph') }}</p>
+    <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-50 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+      <h2 class="glow-lg col-span-1 w-full p-10 lg:text-center lg:sticky lg:top-0 lg:h-dvh">{{ t('menu-about') }}</h2>
+      <div class="corner-frame col-span-1 m-10 p-10 lg:self-end">
+        <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
+      </div>
     </section>
 
     <!--projects-->
-    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-      <h2 class="col-span-1 h-fit p-10 lg:sticky lg:top-0 lg:col-span-1">{{ t('menu-projects') }}</h2>
-      <div class="scroll-section min-h-dvh lg:p-10">
+    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:ml-50 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
+      <div class="col-span-1 grid h-fit content-center gap-5 p-10 lg:text-center lg:sticky lg:top-0 lg:col-span-1 lg:h-dvh">
+        <h2 class="glow-lg">{{ t('menu-projects') }}</h2>
+        <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
+      </div>
+      <div class="scroll-section min-h-dvh p-10">
         <div class="wrapper relative flex h-full">
           <project
             :project-name="t('projects-downloadPage-title')"
@@ -115,8 +116,11 @@
     </section>
 
     <!--design-->
-    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:auto-rows-fr lg:grid-cols-4">
-      <h2 class="col-span-1 grid h-fit content-center p-10 lg:sticky lg:top-0 lg:h-full">{{ t('menu-design') }}</h2>
+    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] pb-[5px] lg:ml-50 lg:auto-rows-fr lg:grid-cols-3">
+      <div class="col-span-1 grid h-fit content-center gap-5 p-10 lg:top-0 lg:h-full">
+        <h2 class="glow-lg">{{ t('menu-designs') }}</h2>
+        <menu-desc :menu-desc="t('menu-designs-description')"></menu-desc>
+      </div>
       <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt="" :design-tags="['Mobile app', 'Visual', 'Team work']"></design>
 
       <design :design-name="t('design-admaster-title')" :design-desc="t('design-admaster-text')" design-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>
@@ -134,21 +138,41 @@
       <!--      <design :design-name="t('design-mooozik-title')" :design-desc="t('design-mooozik-text')" design-url="https://www.figma.com/design/voDUMRONK5sGFSo43BkcU9/Mooozik-%E2%80%94-a-music-label-for-cows?node-id=0-1&t=8jUM5sY9hUOspPua-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>-->
     </section>
 
-    <section data-section="footer" id="footer" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
-      <div class="col-span-1 flex h-fit flex-row justify-between items-center lg:items-start p-10 lg:h-full lg:flex-col">
-        <h2 class="lg:sticky lg:top-0">{{ t("menu-footer") }}</h2>
-        <div class="col-span-2 flex gap-10">
-          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5 lg:size-15"></span> </a>
-          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5 lg:size-15"></span> </a>
+    <!--creatives-->
+<!--
+    <section data-section="creatives" id="creatives" class="relative block min-h-dvh lg:ml-50 lg:grid lg:auto-cols-fr lg:auto-rows-fr lg:grid-cols-20 lg:gap-0">
+      <div class="pointer-events-none sticky z-10 flex h-fit flex-col gap-5 p-10 lg:top-1/2 lg:left-1/2 lg:w-150 lg:-translate-x-1/2 lg:-translate-y-1/2">
+        <h2 class="glow-lg w-full">{{ t('menu-creatives') }}</h2>
+        <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
+      </div>
+      <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" col="2" col-span="5" row="2" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" col="14" col-span="6" row="3" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" col="3" col-span="7" row="4" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" col="12" col-span="6" row="5" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" col="1" col-span="8" row="6" row-span="1"></creative>
+      <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" col="9" col-span="7" row="7" row-span="1"></creative>
+      &lt;!&ndash;
+      <div class="profile-box relative z-5 cursor-none">
+        <div class="profile neon-shadow absolute size-full backface-hidden">
+          <div class="chess absolute -z-1 grid"></div>
+          <img alt="Girl in a jacket" class="absolute top-0 z-1" src="./assets/images/me.png" />
         </div>
+        <img alt="Girl in a jacket" class="shirt absolute size-full h-auto backface-hidden" src="./assets/images/dieruki.png" />
       </div>
-      <div class="col-span-3 flex flex-row justify-between p-10 lg:flex-col">
-        <button id="lang-toggle" class="content-end self-end justify-self-end lg:content-start">en</button>
-        <button id="scroll-to-top" class="content-end self-end justify-self-end">{{ t('footer-scroll-up') }}</button>
-      </div>
+&ndash;&gt;
+    </section>
+-->
+
+    <!--footer-->
+    <section data-section="footer" id="footer" class="flex min-h-dvh flex-col justify-center gap-5 justify-self-center p-10 lg:w-200">
+      <h2 class="glow-lg">{{ t('menu-footer') }}</h2>
+      <menu-desc :menu-desc="t('menu-footer-description')" class="w-full"></menu-desc>
     </section>
 
-    <!--    <div class="noise pointer-events-none z-2 block mix-blend-lighten"></div>-->
+    <div class="grain -z-1"></div>
+
+    <img alt="" class="fixed right-[5%] bottom-0 -z-1 md:h-[85%]" src="assets/images/soma.png" />
+
     <!--    <div class="dotted-grid pointer-events-none fixed top-0 left-0 -z-1 block h-full w-full"></div>-->
   </body>
 </html>

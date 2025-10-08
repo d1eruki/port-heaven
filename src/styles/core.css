@@ -1,0 +1,38 @@
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+@theme {
+  /* breakpoints */
+  --breakpoint-3xl: 120rem; /* 1920 */
+  --breakpoint-4xl: 160rem; /* 2560 */
+
+  --transition: all 0.25s;
+
+  --cursor-size: 15px;
+  --cursor-size-active: 35px;
+  --cursor-size-label: 150px;
+
+  /* colors (HSL) */
+  --color-pink: hsl(314 97% 44%);
+  --color-red: hsl(0 100% 50%);
+  --color-purple: hsl(248 65% 50%);
+  --color-yellow: hsl(73 100% 50%);
+  --color-blue: hsl(220 100% 50%);
+  --color-green: hsl(108 100% 50%);
+  --color-grey: hsl(0 0% 50%);
+  --color-grey-light: hsl(0 0% 70%);
+  --color-grey-lighter: hsl(0 0% 95%);
+  --color-grey-dark: hsl(0 0% 20%);
+  --color-grey-darker: hsl(0 0% 10%);
+  --color-grey-darkest: hsl(0 0% 2%);
+  --color-transparent: hsl(0 0% 0% / 0);
+
+  /* типографика */
+  --text-h1: clamp(3rem, 12.5vw, 17.5rem);
+  --leading-h1: 12.5vw;
+  --text-h2: clamp(2.5rem, 4vw, 8rem);
+  --text-h3: clamp(2rem, 3vw, 4.5rem);
+  --text-h4: clamp(1.75rem, 2vw, 3rem);
+  --text-body: clamp(1.25rem, 1.25vw, 2rem);
+  --text-small: clamp(1rem, 1vw, 1.25rem);
+}

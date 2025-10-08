@@ -1,7 +1,7 @@
 <template>
-  <a :href="`#${navName}`" :data-open-block="navName" :data-scroll-target="`[data-section='${navName}']`" class="w-fit content-center p-2.5 lg:block lg:px-10 lg:py-5">
-    {{ t(`menu-${navName}`) }}
-  </a>
+  <button :data-open-block="navName" :data-scroll-target="`[data-section='${navName}']`" class="light:text-(--color-grey) self-start transition-colors duration-300">
+    {{ t(navName === "design" ? "menu-designs" : `menu-${navName}`) }}
+  </button>
 </template>
 
 <script setup>

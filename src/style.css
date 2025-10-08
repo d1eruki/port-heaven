@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@plugin "@iconify/tailwind4";
+
+@import "./styles/core.css";
+@import "./styles/fonts.css";
+
+@import "./styles/keyframes.css";
+@import "./styles/base.css";
+
+@import "./styles/effects/grain.css";
+
+@import "./styles/themes/light.css";
+@import "./styles/components.css";

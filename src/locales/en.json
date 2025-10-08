@@ -1,23 +1,19 @@
 {
-  "logo": "dieruki",
+  "logo": "dai ruki",
 
   "hero": "Artem\nTresckow",
 
-  "menu-projects": "commercial projects",
-  "menu-design": "designs",
-  "menu-footer": "contact",
+  "menu-about": "designer",
+  "menu-about-description": "I create not just beautiful, but functional design that solves business challenges, boosts conversions, and scales easily. I work at the intersection of web design, product, and front-end, keeping in mind metrics, MVP, and development constraints. I look through the eyes of the user and structure like an engineer—turning business goals into clear, usable interfaces. I know front-end basics and can quickly build prototypes or landing pages. I also use video editing for presentations, promo materials, and UI animations to show design not only in static form, but also in motion.",
+  "menu-projects": "projects",
+  "menu-projects-description": "[ Real commercial cases that have been brought to fruition. Here, you will find not just ideas, but projects that have been launched and are currently operational. ]",
+  "menu-designs": "mockups",
+  "menu-designs-description": "[ Concepts and prototypes without implementation: educational, freelance projects, and personal experiments. The idea, structure, and presentation are important here, not the code. ]",
+  "menu-creatives": "creatives",
+  "menu-creatives-description": "[ A collection of visuals that I generate, compile, and refine. It includes commissioned works and personal experiments—anything where I could play with ideas, atmosphere, and style. ]",
+  "menu-footer": "напишите мне",
+  "menu-footer-description": "[ If the project is vague, but you feel that there is something to it. I will help you capture the essence and shape it into a normal form. ]",
 
-  "about-title": "Designer",
-  "about-paragraph": "I create not just beautiful, but functional design that solves business challenges, boosts conversions, and scales easily. I work at the intersection of web design, product, and front-end, keeping in mind metrics, MVP, and development constraints. I look through the eyes of the user and structure like an engineer—turning business goals into clear, usable interfaces. I know front-end basics and can quickly build prototypes or landing pages. I also use video editing for presentations, promo materials, and UI animations to show design not only in static form, but also in motion.",
-
-  "about-efficiency-title": "Efficiency",
-  "about-efficiency-text": "I create designs that solve problems, not just look good. User experience is always aimed at increasing conversions. I focus on speed: MVP, launch, tests—to quickly understand what really works.",
-  "about-system-title": "Systematic Approach",
-  "about-system-text": "I build design systems that scale and maintain easily. I account for technical constraints, understand frontend, and ensure developers can comfortably work with my solutions.",
-  "about-strategy-title": "Strategy",
-  "about-strategy-text": "I see the product as a whole: from idea and structure to final implementation. I contribute at every stage to ensure the result is deliberate and impactful, not random.",
-
-  "projects-stat-after-launch": "Results",
   "projects-button-design": "design",
   "projects-button-site": "site",
 

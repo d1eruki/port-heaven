@@ -1,0 +1,77 @@
+@layer base {
+  @variant light {
+    *::selection {
+      background-color: var(--color-white);
+      color: var(--color-black);
+    }
+
+    body {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      background-image: linear-gradient(var(--color-grey-darkest) 1px, transparent 1px), linear-gradient(to right, var(--color-grey-darkest) 1px, transparent 1px);
+    }
+
+    a {
+      color: var(--color-white);
+    }
+    a:hover {
+      color: var(--color-white);
+    }
+
+    hr {
+      color: var(--color-grey);
+    }
+
+    svg:hover polygon,
+    svg:hover path,
+    svg:hover rect {
+      fill: var(--color-white);
+    }
+
+    .design h3 {
+      color: var(--color-white);
+    }
+    .design:hover {
+      background-color: var(--color-white);
+    }
+    .design:hover * {
+      color: var(--color-black);
+    }
+
+    .dotted-grid {
+      background-image: radial-gradient(circle, var(--color-grey-darker) 0, var(--color-grey-darker) 2.5px, var(--color-transparent) 2.5px);
+    }
+
+    .glow-xl {
+      filter: drop-shadow(0 0 200px var(--color-white));
+    }
+    .glow-lg {
+      filter: drop-shadow(0 0 75px var(--color-white));
+    }
+
+    .app-cursor {
+      background: var(--color-white);
+      color: var(--color-black);
+    }
+
+    .cube-one {
+      background-color: var(--color-transparent);
+    }
+
+    .cube-two {
+      background-color: var(--color-white);
+    }
+
+    .neon-shadow {
+      outline: 1px solid var(--color-white);
+      box-shadow:
+        0 0 20px var(--color-white),
+        inset 0 0 10px var(--color-white);
+    }
+
+    legend {
+      background-color: var(--color-white);
+      color: var(--color-black);
+    }
+  }
+}

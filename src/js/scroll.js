@@ -16,35 +16,47 @@ document.addEventListener("DOMContentLoaded", function () {
     const QUIET_MS = 200; // "тихая пауза"
     const MAX_LOCK_MS = 800; // upper bound for total lock duration
 
+    // Track and update active navigation button
+    let lastActiveSection = null;
+    function updateActiveNavButton() {
+      const idx = currentIndex();
+      const currentSection = sections[idx];
+      if (!currentSection) return;
+
+      const sectionName = currentSection.getAttribute("data-section");
+      if (sectionName === lastActiveSection) return;
+
+      lastActiveSection = sectionName;
+
+      // Remove active class from all nav buttons
+      const navButtons = document.querySelectorAll("[data-scroll-target]");
+      navButtons.forEach((btn) => {
+        btn.classList.remove("!text-white");
+      });
+
+      // Add active class to current section's nav button
+      const activeButton = document.querySelector(`[data-scroll-target="[data-section='${sectionName}']"]`);
+      if (activeButton) {
+        activeButton.classList.add("!text-white");
+      }
+    }
+
     function currentIndex() {
-      // Determine current section by viewport center, fallback to scrollY positions
-      const cx = Math.floor(window.innerWidth / 2);
-      const cy = Math.floor(window.innerHeight / 2);
-      let el = document.elementFromPoint(cx, cy);
-      // Ignore fixed-position overlays/headers that can cover the center point
-      if (el && el instanceof Element) {
-        const pos = getComputedStyle(el).position;
-        if (pos === "fixed") {
-          el = null; // force fallback
-        }
-      }
-      while (el && el !== document.body && !el.hasAttribute?.("data-section")) {
-        // If the ancestor itself is fixed, also ignore and fallback
-        const pos = el instanceof Element ? getComputedStyle(el).position : "";
-        if (pos === "fixed") {
-          el = null;
-          break;
-        }
-        el = el.parentElement;
-      }
-      if (el && el.hasAttribute && el.hasAttribute("data-section")) {
-        const idx = sections.indexOf(el);
-        if (idx !== -1) return idx;
-      }
+      // Determine current section based on which one is entering/visible in viewport
       const y = window.scrollY;
+      const vh = window.innerHeight;
+      const threshold = vh * 0.3; // Section becomes active when it's 30% into viewport
+
       let idx = 0;
       for (let i = 0; i < sections.length; i++) {
-        if (sections[i].offsetTop <= y + 1) idx = i;
+        const sectionTop = sections[i].offsetTop;
+        const sectionBottom = sectionTop + sections[i].offsetHeight;
+
+        // Check if section top has entered the viewport from bottom
+        // or if we're already past this section
+        if (sectionTop <= y + vh - threshold) {
+          idx = i;
+        }
       }
       return idx;
     }
@@ -290,6 +302,39 @@ document.addEventListener("DOMContentLoaded", function () {
     mq.addEventListener?.("change", (e) => {
       if (e.matches) bindWheel();
       else unbindWheel();
+    });
+
+    // Update active nav button on scroll
+    let scrollTimer = null;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          updateActiveNavButton();
+        }, 50);
+      },
+      { passive: true },
+    );
+
+    // Set initial active nav button
+    setTimeout(() => {
+      updateActiveNavButton();
+    }, 100);
+
+    // Handle nav button clicks for smooth scrolling
+    document.addEventListener("click", (e) => {
+      const navButton = e.target.closest("[data-scroll-target]");
+      if (!navButton) return;
+
+      const targetSelector = navButton.getAttribute("data-scroll-target");
+      if (!targetSelector) return;
+
+      const targetSection = document.querySelector(targetSelector);
+      if (!targetSection) return;
+
+      e.preventDefault();
+      scrollToElement(targetSection);
     });
   }
 });
