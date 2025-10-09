@@ -1,0 +1,53 @@
+/* Бросай это на body или любой контейнер */
+:root {
+    --grid-bg: hsl(0 0% 3%);          /* фон почти чёрный */
+    --grid-line: hsl(0 0% 12%);       /* тонкая линия */
+    --grid-bold: hsl(0 0% 16%);       /* толстая линия */
+    --grid-size: 24px;                /* шаг клетки */
+    --grid-bold-step: calc(var(--grid-size) * 8); /* каждая 8-я толще */
+    --grid-thin-w: 1px;               /* толщина тонкой */
+    --grid-bold-w: 2px;               /* толщина толстой */
+}
+
+.grid-bg {
+    background-color: var(--grid-bg);
+    background-image:
+        /* тонкие горизонтали */
+            linear-gradient(to bottom,
+            var(--grid-line) var(--grid-thin-w),
+            transparent 0),
+                /* тонкие вертикали */
+            linear-gradient(to right,
+            var(--grid-line) var(--grid-thin-w),
+            transparent 0),
+                /* толстые горизонтали через N */
+            linear-gradient(to bottom,
+            var(--grid-bold) var(--grid-bold-w),
+            transparent 0),
+                /* толстые вертикали через N */
+            linear-gradient(to right,
+            var(--grid-bold) var(--grid-bold-w),
+            transparent 0);
+    background-size:
+            var(--grid-size) var(--grid-size),
+            var(--grid-size) var(--grid-size),
+            var(--grid-bold-step) var(--grid-bold-step),
+            var(--grid-bold-step) var(--grid-bold-step);
+    /* для пиксель-перфекта */
+    background-position:
+            top left,
+            top left,
+            top left,
+            top left;
+}
+
+/* Если нужна сетка поверх чисто чёрного */
+.grid-bg--pure {
+    background-color: #000;
+}
+
+/* Темнее/светлее быстро: просто меняй прозрачности */
+.dark-grid {
+    --grid-line: hsl(0 0% 100% / 0.015);
+    --grid-bold: hsl(0 0% 100% / 0.02);
+}

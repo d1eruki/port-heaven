@@ -1,14 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 @font-face {
   font-family: "Actay";
   src: url("../assets/fonts/ActayWide-Bold.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "basis33";
-  src: url("../assets/fonts/basis33.regular.ttf") format("opentype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

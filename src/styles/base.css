@@ -1,21 +1,13 @@
 @layer base {
   * {
-    font-family: "basis33", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 200;
-    text-transform: uppercase;
     cursor: none;
 
     &::-webkit-scrollbar {
       display: none;
     }
-  }
-
-  body {
-    animation: animateBg 40s ease-in-out infinite;
-    /* transform: perspective(800px) scale(1.1) rotateX(10deg) rotateY(-10deg);
-    transform-origin: center center;
-    filter: contrast(1.1) saturate(1.1);*/
   }
 
   h1,

@@ -1,8 +1,4 @@
 @layer components {
-  .dotted-grid {
-    background-size: 25px 25px;
-  }
-
   .design {
     transition: var(--transition);
   }
@@ -100,12 +96,5 @@
 
   .card-rotate-shirt legend {
     animation: move 5s infinite linear alternate;
-  }
-
-  .chess {
-    width: 180px;
-    height: 180px;
-    grid-template-columns: repeat(18, 1fr);
-    grid-template-rows: repeat(18, 1fr);
   }
 }

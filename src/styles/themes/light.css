@@ -8,7 +8,6 @@
     body {
       background-color: var(--color-black);
       color: var(--color-white);
-      background-image: linear-gradient(var(--color-grey-darkest) 1px, transparent 1px), linear-gradient(to right, var(--color-grey-darkest) 1px, transparent 1px);
     }
 
     a {
@@ -49,30 +48,6 @@
     .app-cursor {
       background: var(--color-white);
       color: var(--color-black);
-    }
-
-    .cube-one {
-      background-color: var(--color-transparent);
-    }
-
-    .cube-two {
-      background-color: var(--color-white);
-    }
-
-    .neon-shadow {
-      outline: 1px solid var(--color-white);
-      box-shadow:
-        0 0 20px var(--color-white),
-        inset 0 0 10px var(--color-white);
-    }
-
-    legend {
-      background-color: var(--color-white);
-      color: var(--color-black);
-    }
-
-    .vignette {
-      box-shadow: 0 0 200px var(--color-black) inset;
     }
   }
 }
