@@ -28,9 +28,6 @@
       fill: var(--color-white);
     }
 
-    .design h3 {
-      color: var(--color-white);
-    }
     .design:hover {
       background-color: var(--color-white);
     }
@@ -72,6 +69,10 @@
     legend {
       background-color: var(--color-white);
       color: var(--color-black);
+    }
+
+    .vignette {
+      box-shadow: 0 0 200px var(--color-black) inset;
     }
   }
 }
