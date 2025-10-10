@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         speed: 800,
         perspective: 800,
         easing: "cubic-bezier(0.23, 1, 0.32, 1)",
-        glare: true,
+        glare: false,
         "max-glare": 0.3,
         "glare-prerender": false,
         gyroscope: true,
