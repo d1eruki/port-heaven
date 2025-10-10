@@ -8,6 +8,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <link href="assets/images/favicon.ico" rel="icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="grid-bg dark-grid container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-20">
     <noscript>
@@ -21,7 +24,7 @@
       <h1>{{ t('hero') }}</h1>
     </section>
 
-    <header class="sticky top-0 left-0 z-100 flex w-50 flex-col justify-end p-10 mix-blend-difference lg:min-h-dvh lg:justify-between lg:mix-blend-normal">
+    <header class="sticky top-0 left-0 z-100 flex w-50 flex-col justify-end p-10 mix-blend-difference lg:min-h-dvh lg:justify-between">
       <p class="hidden w-fit lg:block">{{ t('logo') }}</p>
       <div class="hidden w-fit flex-col gap-5 lg:flex">
         <nav-button nav-name="about">{{ t('menu-about') }}</nav-button>
@@ -42,69 +45,71 @@
 
     <!--about-->
     <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-50 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="col-span-1 w-full p-10 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
+      <h2 class="col-span-1 w-full p-10 lg:sticky lg:top-0 lg:h-dvh lg:content-center">{{ t('menu-about') }}</h2>
       <div class="corner-frame col-span-1 m-10 p-10 lg:self-end">
         <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
       </div>
     </section>
 
     <!--projects-->
-    <section data-section="projects" id="projects" class="grid min-h-dvh grid-cols-1 lg:ml-50 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-      <div class="col-span-1 grid h-fit content-center gap-5 p-10 lg:sticky lg:top-0 lg:col-span-1 lg:h-dvh lg:text-center">
-        <h2 class="">{{ t('menu-projects') }}</h2>
-        <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
-      </div>
-      <div class="scroll-section min-h-dvh p-10">
-        <div class="wrapper relative flex h-full">
-          <project
-            :project-name="t('projects-downloadPage-title')"
-            :project-description="t('projects-downloadPage-description')"
-            :project-text="t('projects-downloadPage-text')"
-            :project-statistic="[
+    <section data-section="projects" id="projects" class="light:bg-(--color-white)">
+      <div class="grid min-h-dvh grid-cols-1 lg:ml-50 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
+        <div class="col-span-1 grid h-fit content-center gap-5 p-10 lg:sticky lg:top-0 lg:col-span-1 lg:h-dvh">
+          <h2 class="light:text-(--color-black)">{{ t('menu-projects') }}</h2>
+          <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
+        </div>
+        <div class="scroll-section min-h-dvh">
+          <div class="wrapper relative flex h-full">
+            <project
+              :project-name="t('projects-downloadPage-title')"
+              :project-description="t('projects-downloadPage-description')"
+              :project-text="t('projects-downloadPage-text')"
+              :project-statistic="[
         t('projects-downloadPage-stats-1'),
         t('projects-downloadPage-stats-2'),
         t('projects-downloadPage-stats-3'),
         t('projects-downloadPage-stats-4'),
         t('projects-downloadPage-stats-5'),
       ]"
-            :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Web']"
-            :project-links="[
+              :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Web']"
+              :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
       ]"
-            :project-result="t('projects-downloadPage-result')"
-          ></project>
-          <project
-            :project-name="t('projects-registry-title')"
-            :project-description="t('projects-registry-description')"
-            :project-text="t('projects-registry-text')"
-            :project-statistic="[
+              :project-result="t('projects-downloadPage-result')"
+            ></project>
+            <project
+              :project-name="t('projects-registry-title')"
+              :project-description="t('projects-registry-description')"
+              :project-text="t('projects-registry-text')"
+              :project-statistic="[
         t('projects-registry-stats-1'),
         t('projects-registry-stats-2'),
         t('projects-registry-stats-3'),
       ]"
-            :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Web']"
-            :project-links="[
+              :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Web']"
+              :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://varwin.com/ru/education/projects', name: t('projects-button-site') }
       ]"
-            :project-result="t('projects-registry-result')"
-          ></project>
-          <project
-            :project-name="t('projects-xrms-title')"
-            :project-description="t('projects-xrms-description')"
-            :project-text="t('projects-xrms-text')"
-            :project-statistic="[
+              :project-result="t('projects-registry-result')"
+            ></project>
+            <project
+              :project-name="t('projects-xrms-title')"
+              :project-description="t('projects-xrms-description')"
+              :project-text="t('projects-xrms-text')"
+              :project-statistic="[
         t('projects-xrms-stats-1'),
         t('projects-xrms-stats-2'),
         t('projects-xrms-stats-3'),
       ]"
-            :project-tags="['Figma', 'Prototype', 'Testing', 'Design', 'UX/UI']"
-            :project-links="[
+              :project-tags="['Figma', 'Prototype', 'Testing', 'Design', 'UX/UI']"
+              :project-links="[
         { url: 'https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1', name: t('projects-button-design') }
       ]"
-            :project-result="t('projects-xrms-result')"
-          ></project>
+              :project-result="t('projects-xrms-result')"
+            ></project>
+          </div>
         </div>
       </div>
     </section>
