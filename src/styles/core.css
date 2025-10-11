@@ -19,6 +19,7 @@
   --color-yellow: hsl(73 100% 50%);
   --color-blue: hsl(220 100% 50%);
   --color-green: hsl(108 100% 50%);
+  --color-orange: hsl(17, 92%, 58%);
   --color-grey: hsl(0 0% 50%);
   --color-grey-light: hsl(0 0% 70%);
   --color-grey-lighter: hsl(0 0% 95%);
@@ -33,6 +34,6 @@
   --text-h2: clamp(2.5rem, 4vw, 8rem);
   --text-h3: clamp(2rem, 3vw, 4.5rem);
   --text-h4: clamp(1.75rem, 2vw, 3rem);
-  --text-body: clamp(1.25rem, 1.25vw, 2rem);
+  --text-body: clamp(1.25rem, 1vw, 2rem);
   --text-small: clamp(1rem, 1vw, 1.25rem);
 }

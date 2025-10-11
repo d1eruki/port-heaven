@@ -1,340 +1,433 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  // ---------- Config helpers ----------
+  const rootStyle = getComputedStyle(document.documentElement);
+  const readCSSVar = (name, fallback) => {
+    const v = rootStyle.getPropertyValue(name).trim();
+    return v || fallback;
+  };
+  const readNumberAttr = (el, name, fallback) => {
+    const v = el.getAttribute(name);
+    const n = v != null ? Number(v) : NaN;
+    return Number.isFinite(n) ? n : fallback;
+  };
+  const readStringAttr = (el, name, fallback) => el.getAttribute(name) || fallback;
+
+  // Body-driven config (без правки JS)
+  const body = document.body;
+  const THRESHOLD_FRACTION = Math.min(0.9, Math.max(0.05, readNumberAttr(body, "data-flip-threshold", 0.3))); // 0.05..0.9
+  const EPS = Math.max(0, readNumberAttr(body, "data-eps", 5));
+  const QUIET_MS = Math.max(0, readNumberAttr(body, "data-quiet-ms", 200));
+  const MAX_LOCK_MS = Math.max(100, readNumberAttr(body, "data-max-lock-ms", 800));
+  const ACTIVE_CLASS = readStringAttr(body, "data-active-class", "!text-white");
+  const UPDATE_HASH = readStringAttr(body, "data-update-hash", "false") === "true";
+
+  // Брейкпоинт из CSS-переменной, с запасным значением
+  const bp = readCSSVar("--breakpoint-lg", "64rem");
+  const mq = window.matchMedia(`(min-width: ${bp})`);
+
+  // ---------- DOM ----------
   const sections = Array.from(document.querySelectorAll("[data-section]"));
+  if (!sections.length) return;
 
-  if (sections.length) {
-    // Pure JS section flipping with strict direction and inertia suppression
-    const EPS = 5; // boundary epsilon (5 px for HiDPI/inertia)
-    const DELTA_THRESHOLD = 2; // ignore tiny deltas/noise
+  // Кэш метаданных секций
+  const meta = sections.map((el) => ({
+    el,
+    name: el.getAttribute("data-section") || "",
+    top: 0,
+    bottom: 0,
+  }));
 
-    let isProgrammatic = false; // we're running a smooth scroll we initiated
-    let wheelLock = false; // general lock to avoid rapid flips
-    let quietTimer = null; // extra 200ms quiet period after scroll stops
-    let endWatchRAF = 0; // rAF id for stable scrollY sentinel
-    let lastY = 0;
-    let stableFrames = 0;
-
-    const QUIET_MS = 200; // "тихая пауза"
-    const MAX_LOCK_MS = 800; // upper bound for total lock duration
-
-    // Track and update active navigation button
-    let lastActiveSection = null;
-    function updateActiveNavButton() {
-      const idx = currentIndex();
-      const currentSection = sections[idx];
-      if (!currentSection) return;
-
-      const sectionName = currentSection.getAttribute("data-section");
-      if (sectionName === lastActiveSection) return;
-
-      lastActiveSection = sectionName;
-
-      // Remove active class from all nav buttons
-      const navButtons = document.querySelectorAll("[data-scroll-target]");
-      navButtons.forEach((btn) => {
-        btn.classList.remove("!text-white");
-      });
-
-      // Add active class to current section's nav button
-      const activeButton = document.querySelector(`[data-scroll-target="[data-section='${sectionName}']"]`);
-      if (activeButton) {
-        activeButton.classList.add("!text-white");
-      }
+  // Быстрый доступ к навкнопкам по имени секции
+  const allNavButtons = Array.from(document.querySelectorAll("[data-scroll-target]"));
+  const navByName = new Map();
+  for (const btn of allNavButtons) {
+    const sel = btn.getAttribute("data-scroll-target");
+    // Пытаемся извлечь имя секции из шаблона [data-section='NAME']
+    let name = "";
+    if (sel) {
+      const m = sel.match(/\[data-section=['"]?([^'"\]]+)['"]?]/);
+      if (m) name = m[1];
     }
-
-    function currentIndex() {
-      // Determine current section based on which one is entering/visible in viewport
-      const y = window.scrollY;
-      const vh = window.innerHeight;
-      const threshold = vh * 0.3; // Section becomes active when it's 30% into viewport
-
-      let idx = 0;
-      for (let i = 0; i < sections.length; i++) {
-        const sectionTop = sections[i].offsetTop;
-        const sectionBottom = sectionTop + sections[i].offsetHeight;
-
-        // Check if section top has entered the viewport from bottom
-        // or if we're already past this section
-        if (sectionTop <= y + vh - threshold) {
-          idx = i;
-        }
-      }
-      return idx;
+    if (name) {
+      if (!navByName.has(name)) navByName.set(name, []);
+      navByName.get(name).push(btn);
     }
+  }
 
-    function isScrollable(el) {
-      if (!(el instanceof Element)) return false;
-      const style = getComputedStyle(el);
-      const canScrollY = /auto|scroll|overlay/.test(style.overflowY);
-      return canScrollY && el.scrollHeight > el.clientHeight;
+  // ---------- State ----------
+  let isProgrammatic = false;
+  let wheelLock = false;
+  let quietTimer = null;
+  let endWatchRAF = 0;
+  let stableFrames = 0;
+  let lastY = 0;
+  let lastActiveName = null;
+  let isBound = false;
+  let resizeTimer = null;
+  let scrollTimer = null;
+
+  // ---------- Positions / observers ----------
+  const recomputePositions = () => {
+    for (const m of meta) {
+      const rect = m.el.getBoundingClientRect();
+      const top = Math.round(rect.top + window.scrollY);
+      m.top = top;
+      m.bottom = top + Math.round(m.el.offsetHeight || rect.height);
     }
+  };
 
-    function canScrollFurther(el, dy) {
-      if (!isScrollable(el)) return false;
-      if (dy > 0) {
-        // downwards: content below
-        return Math.ceil(el.scrollTop + el.clientHeight) < el.scrollHeight - 1;
-      }
-      if (dy < 0) {
-        // upwards: content above
-        return el.scrollTop > 1;
-      }
-      return false;
+  const ro = new ResizeObserver(() => {
+    // высоты меняются — пересчитать и подровнять при необходимости
+    if (isProgrammatic || wheelLock) return;
+    recomputePositions();
+    alignCurrentSection(); // мягкая подстройка
+  });
+
+  meta.forEach((m) => ro.observe(m.el));
+  recomputePositions();
+
+  // ---------- Core helpers ----------
+  const currentIndex = () => {
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+    const threshold = vh * THRESHOLD_FRACTION;
+
+    let idx = 0;
+    for (let i = 0; i < meta.length; i++) {
+      const top = meta[i].top;
+      if (top <= y + vh - threshold) idx = i;
+      else break; // позиции монотонны, можно выйти раньше
     }
+    return idx;
+  };
 
-    function wheelInNestedScrollableAllowsNative(target, dy) {
-      let node = target instanceof Node ? target : null;
-      while (node && node !== document.body && node !== document.documentElement) {
-        if (canScrollFurther(node, dy)) return true; // let native scroll
-        // If node is scrollable but at edge, continue to parent to possibly flip sections
-        node = node.parentNode;
-      }
-      return false;
-    }
+  const setActiveByIndex = (i) => {
+    const m = meta[i];
+    if (!m) return;
+    if (m.name === lastActiveName) return;
+    lastActiveName = m.name;
 
-    function scrollToElement(targetEl) {
-      if (!targetEl) return;
-      const top = targetEl.offsetTop;
+    // снять со всех
+    for (const btn of allNavButtons) btn.classList.remove(ACTIVE_CLASS);
+    // повесить на соответствующие
+    const btns = navByName.get(m.name) || [];
+    btns.forEach((b) => b.classList.add(ACTIVE_CLASS));
 
-      // start programmatic scroll & lock
-      isProgrammatic = true;
-      wheelLock = true;
-      lastY = -1; // force first comparison
-      stableFrames = 0;
-
-      const cleanup = () => {
-        if (quietTimer) {
-          clearTimeout(quietTimer);
-          quietTimer = null;
-        }
-        isProgrammatic = false;
-        wheelLock = false;
-      };
-
-      const finish = () => {
-        // Start quiet pause then unlock
-        if (quietTimer) clearTimeout(quietTimer);
-        quietTimer = setTimeout(() => {
-          cleanup();
-        }, QUIET_MS);
-      };
-
-      // Prefer scrollend if available
-      let finished = false;
-      const onScrollEnd = () => {
-        if (finished) return;
-        finished = true;
-        try {
-          window.removeEventListener("scrollend", onScrollEnd);
-        } catch (_) {}
-        if (endWatchRAF) {
-          cancelAnimationFrame(endWatchRAF);
-          endWatchRAF = 0;
-        }
-        finish();
-      };
+    if (UPDATE_HASH && m.name) {
+      // не прыгаем, просто меняем адресную строку
       try {
-        window.addEventListener("scrollend", onScrollEnd, { once: true });
-      } catch (_) {
-        // ignore if not supported
-      }
-
-      // Sentinel via rAF: wait for several consecutive frames with stable scrollY
-      function watchStable() {
-        endWatchRAF = requestAnimationFrame(() => {
-          const y = Math.round(window.scrollY);
-          if (y === lastY) stableFrames++;
-          else {
-            stableFrames = 0;
-            lastY = y;
-          }
-          if (!finished && stableFrames >= 6) {
-            finished = true;
-            try {
-              window.removeEventListener("scrollend", onScrollEnd);
-            } catch (_) {}
-            if (endWatchRAF) {
-              cancelAnimationFrame(endWatchRAF);
-              endWatchRAF = 0;
-            }
-            finish();
-          } else if (!finished) {
-            watchStable();
-          } else {
-            // finished elsewhere, clear raf id
-            if (endWatchRAF) {
-              cancelAnimationFrame(endWatchRAF);
-            }
-            endWatchRAF = 0;
-          }
-        });
-      }
-      watchStable();
-
-      // Safety timeout to ensure we never stay locked
-      setTimeout(() => {
-        if (!finished) {
-          finished = true;
-          try {
-            window.removeEventListener("scrollend", onScrollEnd);
-          } catch (_) {}
-          if (endWatchRAF) {
-            cancelAnimationFrame(endWatchRAF);
-            endWatchRAF = 0;
-          }
-          finish();
-        }
-      }, MAX_LOCK_MS);
-
-      // perform smooth scroll
-      window.scrollTo({ top, behavior: "smooth" });
-      return top;
+        history.replaceState(null, "", `#${encodeURIComponent(m.name)}`);
+      } catch {}
     }
+  };
 
-    function onWheel(e) {
-      const dy = e.deltaY || 0;
-      const absY = Math.abs(dy);
-      const absX = Math.abs(e.deltaX || 0);
+  const isScrollable = (el) => {
+    if (!(el instanceof Element)) return false;
+    const style = getComputedStyle(el);
+    const canScrollY = /auto|scroll|overlay/.test(style.overflowY);
+    return canScrollY && el.scrollHeight > el.clientHeight + 1;
+  };
 
-      // Only vertical-dominant and meaningful delta: vertical must be at least 2x horizontal
-      if (absY < DELTA_THRESHOLD || absY < 2 * absX) return;
-
-      // While programmatic scroll/lock is active, suppress inertia
-      if (isProgrammatic || wheelLock) {
-        e.preventDefault();
-        return;
-      }
-
-      const cur = currentIndex();
-      const sec = sections[cur];
-      if (!sec) return;
-
-      // Give priority to nested scrollables under the cursor
-      if (wheelInNestedScrollableAllowsNative(e.target, dy)) {
-        // Let native scroll inside nested element
-        return;
-      }
-
-      const rect = sec.getBoundingClientRect();
-      const vh = window.innerHeight;
-
-      if (dy > 0) {
-        // down: if bottom still below viewport bottom, allow native scrolling
-        if (rect.bottom > vh - EPS) return;
-        // flip strictly by direction
-        let target = Math.min(sections.length - 1, cur + 1);
-        if (target === cur) return;
-        e.preventDefault();
-        // Immediately set programmatic flags to suppress touchpad inertia
-        isProgrammatic = true;
-        wheelLock = true;
-        scrollToElement(sections[target]);
-      } else if (dy < 0) {
-        // up: if top still above (i.e., section scrolled past top), allow native scrolling
-        if (rect.top < -EPS) return;
-        let target = Math.max(0, cur - 1);
-        if (target === cur) return;
-        e.preventDefault();
-        // Immediately set programmatic flags to suppress touchpad inertia
-        isProgrammatic = true;
-        wheelLock = true;
-        scrollToElement(sections[target]);
-      }
+  const canScrollFurther = (el, dy) => {
+    if (!isScrollable(el)) return false;
+    if (dy > 0) {
+      return Math.ceil(el.scrollTop + el.clientHeight) < el.scrollHeight - 1;
     }
-
-    // Enable behavior only on screens >= 64rem
-    const mq = window.matchMedia("(min-width: 64rem)");
-    let isBound = false;
-    let resizeTimer = null;
-
-    function alignCurrentSection() {
-      if (!sections.length) return;
-      const idx = currentIndex();
-      const target = sections[idx];
-      if (!target) return;
-      const desiredTop = target.offsetTop;
-      const diff = Math.abs(Math.round(window.scrollY) - Math.round(desiredTop));
-      if (diff > EPS) {
-        // Gentle align using programmatic scrolling
-        scrollToElement(target);
-      }
+    if (dy < 0) {
+      return el.scrollTop > 1;
     }
+    return false;
+  };
 
-    function onResizeDebounced() {
-      if (resizeTimer) clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        if (isProgrammatic || wheelLock) return;
-        alignCurrentSection();
-      }, 120);
+  const wheelInNestedScrollableAllowsNative = (target, dy) => {
+    let node = target instanceof Node ? target : null;
+    while (node && node !== document.body && node !== document.documentElement) {
+      if (canScrollFurther(node, dy)) return true;
+      node = node.parentNode;
     }
+    return false;
+  };
 
-    function bindWheel() {
-      if (!isBound) {
-        window.addEventListener("wheel", onWheel, { passive: false });
-        window.addEventListener("resize", onResizeDebounced);
-        isBound = true;
-      }
-    }
-    function unbindWheel() {
-      if (isBound) {
-        window.removeEventListener("wheel", onWheel, { passive: false });
-        window.removeEventListener("resize", onResizeDebounced);
-        isBound = false;
-      }
-      // Reset flags when disabling
+  const finishProgrammatic = () => {
+    if (quietTimer) clearTimeout(quietTimer);
+    quietTimer = setTimeout(() => {
       isProgrammatic = false;
       wheelLock = false;
-      if (quietTimer) {
-        clearTimeout(quietTimer);
-        quietTimer = null;
-      }
-      if (resizeTimer) {
-        clearTimeout(resizeTimer);
-        resizeTimer = null;
-      }
+    }, QUIET_MS);
+  };
+
+  const startStableWatch = (onFinished) => {
+    let finished = false;
+
+    const onScrollEnd = () => {
+      if (finished) return;
+      finished = true;
+      try {
+        window.removeEventListener("scrollend", onScrollEnd);
+      } catch {}
       if (endWatchRAF) {
         cancelAnimationFrame(endWatchRAF);
         endWatchRAF = 0;
       }
-      stableFrames = 0;
+      onFinished();
+    };
+
+    try {
+      window.addEventListener("scrollend", onScrollEnd, { once: true });
+    } catch {}
+
+    lastY = -1;
+    stableFrames = 0;
+
+    const watch = () => {
+      endWatchRAF = requestAnimationFrame(() => {
+        const y = Math.round(window.scrollY);
+        if (y === lastY) stableFrames++;
+        else {
+          stableFrames = 0;
+          lastY = y;
+        }
+
+        if (!finished && stableFrames >= 6) {
+          finished = true;
+          try {
+            window.removeEventListener("scrollend", onScrollEnd);
+          } catch {}
+          if (endWatchRAF) {
+            cancelAnimationFrame(endWatchRAF);
+            endWatchRAF = 0;
+          }
+          onFinished();
+        } else if (!finished) {
+          watch();
+        } else {
+          if (endWatchRAF) cancelAnimationFrame(endWatchRAF);
+          endWatchRAF = 0;
+        }
+      });
+    };
+    watch();
+
+    // страховка
+    setTimeout(() => {
+      if (finished) return;
+      finished = true;
+      try {
+        window.removeEventListener("scrollend", onScrollEnd);
+      } catch {}
+      if (endWatchRAF) {
+        cancelAnimationFrame(endWatchRAF);
+        endWatchRAF = 0;
+      }
+      onFinished();
+    }, MAX_LOCK_MS);
+  };
+
+  const scrollToIndex = (i) => {
+    const m = meta[i];
+    if (!m) return;
+    // немедленно подсветить
+    setActiveByIndex(i);
+
+    isProgrammatic = true;
+    wheelLock = true;
+
+    startStableWatch(finishProgrammatic);
+    window.scrollTo({ top: m.top, behavior: "smooth" });
+  };
+
+  const alignCurrentSection = () => {
+    const i = currentIndex();
+    const m = meta[i];
+    if (!m) return;
+    const diff = Math.abs(Math.round(window.scrollY) - Math.round(m.top));
+    if (diff > EPS) scrollToIndex(i);
+    else setActiveByIndex(i);
+  };
+
+  // ---------- Event handlers ----------
+  const DELTA_THRESHOLD = 2;
+
+  const onWheel = (e) => {
+    const dy = e.deltaY || 0;
+    const absY = Math.abs(dy);
+    const absX = Math.abs(e.deltaX || 0);
+
+    if (absY < DELTA_THRESHOLD || absY < 2 * absX) return;
+
+    if (isProgrammatic || wheelLock) {
+      e.preventDefault();
+      return;
     }
 
-    if (mq.matches) bindWheel();
-    mq.addEventListener?.("change", (e) => {
-      if (e.matches) bindWheel();
-      else unbindWheel();
-    });
+    const idx = currentIndex();
+    const m = meta[idx];
+    if (!m) return;
 
-    // Update active nav button on scroll
-    let scrollTimer = null;
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (scrollTimer) clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => {
-          updateActiveNavButton();
-        }, 50);
-      },
-      { passive: true },
-    );
+    if (wheelInNestedScrollableAllowsNative(e.target, dy)) return;
 
-    // Set initial active nav button
-    setTimeout(() => {
-      updateActiveNavButton();
-    }, 100);
+    const rect = m.el.getBoundingClientRect();
+    const vh = window.innerHeight;
 
-    // Handle nav button clicks for smooth scrolling
-    document.addEventListener("click", (e) => {
-      const navButton = e.target.closest("[data-scroll-target]");
-      if (!navButton) return;
-
-      const targetSelector = navButton.getAttribute("data-scroll-target");
-      if (!targetSelector) return;
-
-      const targetSection = document.querySelector(targetSelector);
-      if (!targetSection) return;
-
+    if (dy > 0) {
+      if (rect.bottom > vh - EPS) return; // ещё не доехали до низа секции
+      const target = Math.min(meta.length - 1, idx + 1);
+      if (target === idx) return;
       e.preventDefault();
-      scrollToElement(targetSection);
-    });
+      isProgrammatic = true;
+      wheelLock = true;
+      scrollToIndex(target);
+    } else if (dy < 0) {
+      if (rect.top < -EPS) return; // ещё не выехали из верха секции
+      const target = Math.max(0, idx - 1);
+      if (target === idx) return;
+      e.preventDefault();
+      isProgrammatic = true;
+      wheelLock = true;
+      scrollToIndex(target);
+    }
+  };
+
+  const onKeydown = (e) => {
+    const k = e.key;
+    if (!["PageDown", "PageUp", "ArrowDown", "ArrowUp", " "].includes(k)) return;
+
+    if (isProgrammatic || wheelLock) {
+      e.preventDefault();
+      return;
+    }
+
+    let dir = 0;
+    if (k === "PageDown" || k === "ArrowDown" || k === " ") dir = 1;
+    if (k === "PageUp" || k === "ArrowUp") dir = -1;
+    if (!dir) return;
+
+    e.preventDefault();
+    const idx = currentIndex();
+    const target = Math.max(0, Math.min(meta.length - 1, idx + dir));
+    if (target !== idx) {
+      isProgrammatic = true;
+      wheelLock = true;
+      scrollToIndex(target);
+    }
+  };
+
+  const onResizeDebounced = () => {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (isProgrammatic || wheelLock) return;
+      recomputePositions();
+      alignCurrentSection();
+    }, 120);
+  };
+
+  const onScrollThrottled = () => {
+    if (scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      if (isProgrammatic || wheelLock) return;
+      setActiveByIndex(currentIndex());
+    }, 50);
+  };
+
+  // клики по навкнопкам
+  const onDocClick = (e) => {
+    const navButton = e.target.closest("[data-scroll-target]");
+    if (!navButton) return;
+
+    if (wheelLock) {
+      // пока идёт программная прокрутка — игнор
+      e.preventDefault();
+      return;
+    }
+
+    const sel = navButton.getAttribute("data-scroll-target");
+    if (!sel) return;
+    const targetSection = document.querySelector(sel);
+    if (!targetSection) return;
+    e.preventDefault();
+
+    const i = meta.findIndex((m) => m.el === targetSection);
+    if (i >= 0) {
+      isProgrammatic = true;
+      wheelLock = true;
+      scrollToIndex(i);
+    }
+  };
+
+  // ---------- Binding ----------
+  const bind = () => {
+    if (isBound) return;
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("keydown", onKeydown, { passive: false });
+    window.addEventListener("resize", onResizeDebounced);
+    window.addEventListener("scroll", onScrollThrottled, { passive: true });
+    document.addEventListener("click", onDocClick);
+    isBound = true;
+  };
+
+  const unbind = () => {
+    if (!isBound) return;
+    window.removeEventListener("wheel", onWheel, { passive: false });
+    window.removeEventListener("keydown", onKeydown, { passive: false });
+    window.removeEventListener("resize", onResizeDebounced);
+    window.removeEventListener("scroll", onScrollThrottled, { passive: true });
+    document.removeEventListener("click", onDocClick);
+    isBound = false;
+
+    isProgrammatic = false;
+    wheelLock = false;
+
+    if (quietTimer) {
+      clearTimeout(quietTimer);
+      quietTimer = null;
+    }
+    if (resizeTimer) {
+      clearTimeout(resizeTimer);
+      resizeTimer = null;
+    }
+    if (scrollTimer) {
+      clearTimeout(scrollTimer);
+      scrollTimer = null;
+    }
+    if (endWatchRAF) {
+      cancelAnimationFrame(endWatchRAF);
+      endWatchRAF = 0;
+    }
+    stableFrames = 0;
+  };
+
+  // media change
+  const onMQ = (e) => {
+    if (e.matches) {
+      recomputePositions();
+      bind();
+      // сразу подсветить актуальную секцию
+      setActiveByIndex(currentIndex());
+    } else {
+      unbind();
+    }
+  };
+
+  // старт
+  if (mq.matches) {
+    bind();
+    setTimeout(() => setActiveByIndex(currentIndex()), 50);
   }
+  mq.addEventListener?.("change", onMQ);
+
+  // Публичное API, вдруг пригодится
+  window.SectionFlipper = {
+    enable() {
+      recomputePositions();
+      bind();
+      setActiveByIndex(currentIndex());
+    },
+    disable() {
+      unbind();
+    },
+    align() {
+      if (!isProgrammatic && !wheelLock) alignCurrentSection();
+    },
+    version: "1.1.0",
+  };
 });

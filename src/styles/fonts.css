@@ -5,11 +5,3 @@
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: "basis33";
-  src: url("../assets/fonts/basis33.regular.ttf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}

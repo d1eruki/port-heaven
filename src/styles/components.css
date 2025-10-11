@@ -1,14 +1,10 @@
 @layer components {
-  .dotted-grid {
-    background-size: 25px 25px;
-  }
-
-  .design {
+  .anim-extrude {
     transition: var(--transition);
   }
 
   @media (min-width: theme(screens.lg)) {
-    .design:hover {
+    .anim-extrude:hover {
       transform: translate(5px, 5px);
     }
   }
@@ -100,12 +96,5 @@
 
   .card-rotate-shirt legend {
     animation: move 5s infinite linear alternate;
-  }
-
-  .chess {
-    width: 180px;
-    height: 180px;
-    grid-template-columns: repeat(18, 1fr);
-    grid-template-rows: repeat(18, 1fr);
   }
 }

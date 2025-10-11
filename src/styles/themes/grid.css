@@ -1,0 +1,33 @@
+:root {
+  --grid-bg: hsl(0 0% 3%);
+  --grid-line: hsl(0 0% 12%);
+  --grid-bold: hsl(0 0% 16%);
+  --grid-size: 24px;
+  --grid-bold-step: calc(var(--grid-size) * 8);
+  --grid-thin-w: 1px;
+  --grid-bold-w: 2px;
+}
+
+.grid-bg {
+  background-color: var(--grid-bg);
+  background-image: linear-gradient(to bottom, var(--grid-line) var(--grid-thin-w), transparent 0), linear-gradient(to right, var(--grid-line) var(--grid-thin-w), transparent 0), linear-gradient(to bottom, var(--grid-bold) var(--grid-bold-w), transparent 0), linear-gradient(to right, var(--grid-bold) var(--grid-bold-w), transparent 0);
+  background-size:
+    var(--grid-size) var(--grid-size),
+    var(--grid-size) var(--grid-size),
+    var(--grid-bold-step) var(--grid-bold-step),
+    var(--grid-bold-step) var(--grid-bold-step);
+  background-position:
+    top left,
+    top left,
+    top left,
+    top left;
+}
+
+.grid-bg--pure {
+  background-color: #000;
+}
+
+.dark-grid {
+  --grid-line: hsl(0 0% 100% / 0.015);
+  --grid-bold: hsl(0 0% 100% / 0.02);
+}
