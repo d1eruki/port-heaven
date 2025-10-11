@@ -29,7 +29,7 @@
         <header class="top-0 left-0 z-100 flex w-50 flex-col justify-end p-10 lg:min-h-dvh lg:justify-between">
           <p class="hidden w-fit lg:block">{{ t('logo') }}</p>
           <div class="hidden w-fit flex-col gap-5 lg:flex">
-            <nav-button nav-name="about">{{ t('menu-about') }}</nav-button>
+            <nav-button nav-name="about" class="is-active">{{ t('menu-about') }}</nav-button>
             <nav-button nav-name="projects">{{ t('menu-projects') }}</nav-button>
             <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
             <!--        <nav-button nav-name="creatives" class="light:text-(&#45;&#45;color-red)">{{ t('menu-creatives') }}</nav-button>-->
@@ -56,12 +56,12 @@
         <!--projects-->
         <section data-section="projects" id="projects" class="light:bg-(--color-white)">
           <div class="grid min-h-dvh grid-cols-1 lg:ml-50 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-            <div class="pin col-span-1 grid h-fit content-center gap-5 p-10 lg:top-0 lg:col-span-1 lg:h-dvh">
+            <div class="pin col-span-1 grid content-center gap-5 p-10 lg:top-0 lg:col-span-1 lg:h-dvh">
               <h2 class="light:text-(--color-black)">{{ t('menu-projects') }}</h2>
               <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
             </div>
-            <div class="scroll-section min-h-dvh">
-              <div class="wrapper relative flex h-full">
+            <div class="cards-section">
+              <div class="cards-wrapper">
                 <project
                   :project-name="t('projects-downloadPage-title')"
                   :project-description="t('projects-downloadPage-description')"
