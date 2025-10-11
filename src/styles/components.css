@@ -1,10 +1,10 @@
 @layer components {
-  .design {
+  .anim-extrude {
     transition: var(--transition);
   }
 
   @media (min-width: theme(screens.lg)) {
-    .design:hover {
+    .anim-extrude:hover {
       transform: translate(5px, 5px);
     }
   }
