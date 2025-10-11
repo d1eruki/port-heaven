@@ -11,9 +11,9 @@
         </div>
       </div>
       <p class="light:text-(--color-white)">{{ projectText }}</p>
-      <div class="flex flex-wrap gap-15">
+      <div class="flex flex-wrap gap-10">
         <a v-for="(link, index) in projectLinks" :key="index" class="anim-extrude light:bg-(--color-white) active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5" :href="link.url" target="_blank">
-          <p class="light:text-(--color-black)">{{ link.name }}</p>
+          <p class="light:text-(--color-black) font-[Actay]">{{ link.name }}</p>
         </a>
       </div>
     </div>
