@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
+import ScrollSmoother from "gsap/ScrollSmoother";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -23,32 +23,56 @@ const pinHeader = ScrollTrigger.create({
   end: "bottom top",
   pin: true,
   pinSpacing: false,
+  anticipatePin: 1,
   invalidateOnRefresh: true,
 });
 
-const pinHeadings = ScrollTrigger.create({
-  trigger: "#projects .pin",
-  start: "top top",
-  endTrigger: "#projects",
-  end: "bottom top",
-  pin: true,
-  pinSpacing: false,
-  invalidateOnRefresh: true,
-});
+gsap.utils.toArray("section .pin").forEach((element) => {
+  const section = element.closest("section");
 
-const cards = gsap.utils.toArray(".project");
-cards.forEach((card, index) => {
   ScrollTrigger.create({
-    trigger: card,
+    trigger: element,
     start: "top top",
+    endTrigger: section,
     end: "bottom top",
     pin: true,
     pinSpacing: true,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+    pinnedContainer: "#smooth-content",
+  });
+});
+
+gsap.utils.toArray(".project").forEach((element) => {
+  const st = ScrollTrigger.create({
+    trigger: element,
+    start: "top top",
+    end: "bottom top",
+    pin: true,
+    pinSpacing: false,
+    anticipatePin: 1,
     invalidateOnRefresh: true,
   });
 });
 
-smoother.effects(pinHeader.pin, { speed: 0 });
-smoother.effects(pinHeadings.pin, { speed: 0 });
+const container = document.querySelector("#creatives .container-creatives");
+
+gsap.to(container, {
+  y: () => -(container.scrollHeight - window.innerHeight),
+  ease: "none",
+  scrollTrigger: {
+    trigger: container,
+    start: "top top",
+    end: () => `+=${container.scrollHeight - window.innerHeight}`,
+    scrub: true,
+    pin: true,
+    pinSpacing: true,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+    pinnedContainer: "#smooth-content",
+  },
+});
+
+if (pinHeader.pin) smoother.effects(pinHeader.pin, { speed: 0 });
 
 window.addEventListener("load", () => ScrollTrigger.refresh());

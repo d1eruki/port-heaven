@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --------- Геометрия секций ---------
-  const meta = sections.map(el => ({ el, name: el.getAttribute("data-section") || "", top: 0, bottom: 0 }));
+  const meta = sections.map((el) => ({ el, name: el.getAttribute("data-section") || "", top: 0, bottom: 0 }));
 
   const recomputePositions = () => {
     for (const m of meta) {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const btn of allNavButtons) btn.classList.remove(ACTIVE_CLASS);
     // повесить на связанные
     const btns = navByName.get(m.name) || [];
-    btns.forEach(b => b.classList.add(ACTIVE_CLASS));
+    btns.forEach((b) => b.classList.add(ACTIVE_CLASS));
   };
 
   // --------- События ---------
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     // найти индекс и прыгнуть
-    const i = meta.findIndex(m => m.el === targetSection);
+    const i = meta.findIndex((m) => m.el === targetSection);
     if (i >= 0) {
       window.scrollTo(0, meta[i].top); // без плавности
       setActiveByIndex(i);
@@ -105,14 +105,17 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", onResizeDebounced);
 
   const ro = new ResizeObserver(() => onResizeDebounced());
-  meta.forEach(m => ro.observe(m.el));
+  meta.forEach((m) => ro.observe(m.el));
 
   // Инициализация подсветки
   setTimeout(() => setActiveByIndex(currentIndex()), 50);
 
   // На всякий случай — компактное API
   window.SectionClicksOnly = {
-    refresh() { recomputePositions(); setActiveByIndex(currentIndex()); },
-    version: "1.0.0-min"
+    refresh() {
+      recomputePositions();
+      setActiveByIndex(currentIndex());
+    },
+    version: "1.0.0-min",
   };
 });
