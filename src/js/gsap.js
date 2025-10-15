@@ -46,14 +46,16 @@ gsap.utils.toArray("section .pin").forEach((el) => {
 
 // Creatives section scroll - wait for Vue to render
 function initCreativesScroll() {
-  const creativesSection = document.getElementById("creatives");
+  const creativesWrapper = document.querySelector(".creatives-wrapper");
   const creativesContainer = document.querySelector(".container-creatives");
+  const creativesSection = document.getElementById("creatives");
 
   console.log("🔍 DEBUG Creatives Section:");
-  console.log("creativesSection:", creativesSection);
+  console.log("creativesWrapper:", creativesWrapper);
   console.log("creativesContainer:", creativesContainer);
+  console.log("creativesSection:", creativesSection);
 
-  if (creativesSection && creativesContainer) {
+  if (creativesWrapper && creativesContainer && creativesSection) {
     // Wait a bit more for images and content to load
     setTimeout(() => {
       const creativesHeight = creativesContainer.scrollHeight;
@@ -67,14 +69,16 @@ function initCreativesScroll() {
 
       if (creativesHeight > sectionHeight) {
         const scrollTriggerConfig = {
-          trigger: creativesSection,
+          trigger: creativesWrapper,
           start: "top top",
-          end: () => `+=${creativesHeight}`,
+          endTrigger: creativesSection,
+          end: "bottom top",
           scrub: 1,
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          pinnedContainer: "#smooth-content",
           onEnter: () => console.log("✅ ScrollTrigger ENTERED"),
           onLeave: () => console.log("❌ ScrollTrigger LEFT"),
           onUpdate: (self) => console.log("🔄 Progress:", self.progress.toFixed(2)),
@@ -92,6 +96,12 @@ function initCreativesScroll() {
         });
 
         console.log("🎬 Animation created:", animation);
+
+        // Tell ScrollSmoother not to apply smooth effects to pinned wrapper
+        if (animation.scrollTrigger && animation.scrollTrigger.pin) {
+          smoother.effects(animation.scrollTrigger.pin, { speed: 0 });
+          console.log("✅ Added smoother effects to pinned element");
+        }
       } else {
         console.warn("⚠️ Content is too short, no scroll needed");
       }

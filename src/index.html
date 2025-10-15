@@ -138,20 +138,22 @@
         </section>
 
         <!--creatives-->
-        <section data-section="creatives" id="creatives" class="light:bg-(--color-white) light:lg:bg-(--transparent) relative h-dvh overflow-hidden lg:ml-50">
-          <div class="creatives-header pointer-events-none absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center">
-            <div class="flex w-full flex-col gap-5 p-10 lg:w-150">
-              <h2 class="light:text-(--color-black) light:lg:text-(--color-white) w-full">{{ t('menu-creatives') }}</h2>
-              <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
+        <section data-section="creatives" id="creatives" class="light:bg-(--color-white) light:lg:bg-(--transparent) lg:ml-50">
+          <div class="creatives-wrapper relative h-dvh overflow-hidden">
+            <div class="creatives-header pointer-events-none absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center">
+              <div class="flex w-full flex-col gap-5 p-10 lg:w-150">
+                <h2 class="light:text-(--color-black) light:lg:text-(--color-white) w-full">{{ t('menu-creatives') }}</h2>
+                <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
+              </div>
             </div>
-          </div>
-          <div class="container-creatives absolute top-0 left-0 z-1 h-fit w-full p-10 lg:grid lg:grid-cols-20">
+            <div class="container-creatives absolute top-0 left-0 z-1 h-fit w-full p-10 lg:grid lg:grid-cols-20">
             <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" :col="2" :col-span="5" :row="2" :row-span="1"></creative>
             <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" :col="14" :col-span="6" :row="3" :row-span="1"></creative>
             <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" :col="3" :col-span="7" :row="4" :row-span="1"></creative>
             <creative creative-src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" :col="12" :col-span="6" :row="5" :row-span="1"></creative>
             <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" :col="1" :col-span="8" :row="6" :row-span="1"></creative>
             <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" :col="9" :col-span="7" :row="7" :row-span="1"></creative>
+            </div>
           </div>
         </section>
 
