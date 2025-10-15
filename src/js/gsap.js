@@ -27,11 +27,10 @@ const pinHeader = ScrollTrigger.create({
   invalidateOnRefresh: true,
 });
 
-gsap.utils.toArray("section .pin").forEach((element) => {
-  const section = element.closest("section");
-
-  ScrollTrigger.create({
-    trigger: element,
+gsap.utils.toArray("section .pin").forEach((el) => {
+  const section = el.closest("section");
+  const st = ScrollTrigger.create({
+    trigger: el,
     start: "top top",
     endTrigger: section,
     end: "bottom top",
@@ -41,11 +40,12 @@ gsap.utils.toArray("section .pin").forEach((element) => {
     invalidateOnRefresh: true,
     pinnedContainer: "#smooth-content",
   });
+  if (st.pin) smoother.effects(st.pin, { speed: 0 });
 });
 
-gsap.utils.toArray(".project").forEach((element) => {
+gsap.utils.toArray(".project").forEach((el, i) => {
   const st = ScrollTrigger.create({
-    trigger: element,
+    trigger: el,
     start: "top top",
     end: "bottom top",
     pin: true,
@@ -53,24 +53,7 @@ gsap.utils.toArray(".project").forEach((element) => {
     anticipatePin: 1,
     invalidateOnRefresh: true,
   });
-});
-
-const container = document.querySelector("#creatives .container-creatives");
-
-gsap.to(container, {
-  y: () => -(container.scrollHeight - window.innerHeight),
-  ease: "none",
-  scrollTrigger: {
-    trigger: container,
-    start: "top top",
-    end: () => `+=${container.scrollHeight - window.innerHeight}`,
-    scrub: true,
-    pin: true,
-    pinSpacing: true,
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    pinnedContainer: "#smooth-content",
-  },
+  if (st.pin) smoother.effects(st.pin, { speed: 0 });
 });
 
 if (pinHeader.pin) smoother.effects(pinHeader.pin, { speed: 0 });

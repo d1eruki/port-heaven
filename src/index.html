@@ -138,12 +138,12 @@
         </section>
 
         <!--creatives-->
-        <section data-section="creatives" id="creatives" class="light:bg-(--color-white) light:lg:bg-(--transparent) relative min-h-dvh content-center justify-self-center p-10">
-          <div class="pointer-events-none z-10 flex flex-col gap-5 lg:w-150">
+        <section data-section="creatives" id="creatives" class="light:bg-(--color-white) light:lg:bg-(--transparent) relative h-dvh lg:ml-50">
+          <div class="pin justify-center pointer-events-none flex w-full flex-col gap-5 lg:w-150">
             <h2 class="light:text-(--color-black) light:lg:text-(--color-white) w-full">{{ t('menu-creatives') }}</h2>
             <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
           </div>
-          <div class="container-creatives m-y-100 absolute h-fit lg:grid lg:grid-cols-20">
+          <div class="container-creatives  absolute -z-1 h-fit lg:grid lg:grid-cols-20">
             <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" :col="2" :col-span="5" :row="2" :row-span="1"></creative>
             <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" :col="14" :col-span="6" :row="3" :row-span="1"></creative>
             <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" :col="3" :col-span="7" :row="4" :row-span="1"></creative>
@@ -156,7 +156,7 @@
         <!--footer-->
         <section data-section="footer" id="footer" class="min-h-dvh content-center justify-self-center p-10 lg:ml-50">
           <div class="flex flex-col gap-5 lg:w-150">
-            <h2 class="">{{ t('menu-footer') }}</h2>
+            <h2>{{ t('menu-footer') }}</h2>
             <menu-desc :menu-desc="t('menu-footer-description')" class="w-full"></menu-desc>
           </div>
         </section>
