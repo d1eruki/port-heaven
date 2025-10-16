@@ -1,21 +1,19 @@
 <template>
-  <div class="project light:bg-(--color-black) project top-0 left-0 col-span-1 flex min-h-dvh w-full flex-col gap-5 border-solid border-white will-change-transform">
-    <div class="flex min-h-dvh flex-col gap-5 p-5 lg:justify-between lg:p-15">
-      <div class="flex flex-col gap-5">
-        <h3 class="light:text-(--color-white)">{{ projectName }}</h3>
-        <p class="light:text-(--color-grey)">{{ projectDescription }}</p>
-        <div class="hidden flex-wrap gap-2 lg:flex">
-          <div v-for="(tag, index) in projectTags" :key="index" class="flex">
-            <small class="light:text-(--color-white) rounded-4xl border border-solid border-white px-5 py-2.5">{{ getTagName(tag) }}</small>
-          </div>
+  <div class="project light:bg-(--color-black) project top-0 left-0 col-span-1 flex min-h-dvh w-full flex-col justify-between gap-5 border-solid border-white p-10 will-change-transform lg:p-15">
+    <div class="flex flex-col gap-5">
+      <h3 class="light:text-(--color-white)">{{ projectName }}</h3>
+      <p class="light:text-(--color-grey)">{{ projectDescription }}</p>
+      <div class="hidden flex-wrap gap-2 lg:flex">
+        <div v-for="(tag, index) in projectTags" :key="index" class="flex">
+          <small class="light:text-(--color-white) rounded-4xl border border-solid border-white px-5 py-2.5">{{ getTagName(tag) }}</small>
         </div>
       </div>
-      <p class="light:text-(--color-white)">{{ projectText }}</p>
-      <div class="flex flex-wrap gap-10">
-        <a v-for="(link, index) in projectLinks" :key="index" class="anim-extrude light:bg-(--color-white) active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5" :href="link.url" target="_blank">
-          <p class="light:text-(--color-black) font-[Actay]">{{ link.name }}</p>
-        </a>
-      </div>
+    </div>
+    <p class="light:text-(--color-white)">{{ projectText }}</p>
+    <div class="flex flex-wrap gap-10">
+      <a v-for="(link, index) in projectLinks" :key="index" class="anim-extrude light:bg-(--color-white) active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5" :href="link.url" target="_blank">
+        <p class="light:text-(--color-black) font-[Actay]">{{ link.name }}</p>
+      </a>
     </div>
   </div>
 </template>
