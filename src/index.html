@@ -20,18 +20,19 @@
     </noscript>
 
     <!--me-->
-    <section data-section="me" id="me" class="min-h-dvh content-end p-10">
+    <div data-section="me" id="me" class="min-h-dvh content-end p-10">
       <h1>{{ t('hero') }}</h1>
-    </section>
+    </div>
 
     <header class="fixed top-0 left-0 z-100 flex w-50 flex-col justify-end p-10 mix-blend-difference lg:min-h-dvh lg:justify-between">
-      <p class="hidden w-fit lg:block">{{ t('logo') }}</p>
-      <div class="hidden w-fit flex-col gap-5 lg:flex">
-        <nav-button nav-name="about" class="is-active">{{ t('menu-about') }}</nav-button>
-        <nav-button nav-name="projects">{{ t('menu-projects') }}</nav-button>
-        <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
-        <nav-button nav-name="creatives" class="light:text-(--color-red)">{{ t('menu-creatives') }}</nav-button>
-        <nav-button nav-name="footer">{{ t('menu-footer') }}</nav-button>
+      <p class="hidden w-fit lg:hidden">{{ t('logo') }}</p>
+      <img class="w-20" src="assets/images/logo.png" alt="logo" />
+      <div id="navigation" class="hidden w-fit flex-col gap-5 lg:flex">
+        <nav-button nav-name="about" class="is-active hidden">{{ t('menu-about') }}</nav-button>
+        <nav-button nav-name="projects" class="hidden">{{ t('menu-projects') }}</nav-button>
+        <nav-button nav-name="design" class="hidden">{{ t('menu-designs') }}</nav-button>
+        <nav-button nav-name="creatives" class="light:text-(--color-red) hidden">{{ t('menu-creatives') }}</nav-button>
+        <nav-button nav-name="footer" class="hidden">{{ t('menu-footer') }}</nav-button>
       </div>
       <button id="lang-toggle" class="hidden w-fit">en</button>
       <button id="scroll-to-top" class="hidden w-fit">{{ t('footer-scroll-up') }}</button>
