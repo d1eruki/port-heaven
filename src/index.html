@@ -26,7 +26,7 @@
 
     <header class="fixed top-0 left-0 z-100 flex w-50 flex-col justify-end p-10 mix-blend-difference lg:min-h-dvh lg:justify-between">
       <p class="hidden w-fit lg:hidden">{{ t('logo') }}</p>
-      <img class="w-20" src="assets/images/logo.png" alt="logo" />
+      <img class="hidden w-20 lg:block" src="assets/images/logo.png" alt="logo" />
       <nav class="hidden w-fit flex-col gap-5 lg:flex">
         <nav-button nav-name="about" class="is-active hidden">{{ t('menu-about') }}</nav-button>
         <nav-button nav-name="projects" class="hidden">{{ t('menu-projects') }}</nav-button>
@@ -45,8 +45,8 @@
     <div id="progress-bar" class="progress-bar light:bg-(--color-white) fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"></div>
 
     <!--about-->
-    <section data-section="about" id="about" class="light:bg-(--color-white) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="light:text-(--color-black) col-span-1 w-full p-10 text-center lg:sticky lg:top-0 lg:h-dvh lg:content-center">{{ t('menu-about') }}</h2>
+    <section data-section="about" id="about" class="lg:light:bg-(--color-white) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+      <h2 class="lg:light:text-(--color-black) col-span-1 w-full p-10 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
       <div class="corner-frame col-span-1 p-10 lg:m-10 lg:self-end">
         <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
       </div>
@@ -136,7 +136,7 @@
 
     <!--creatives-->
     <section data-section="creatives" id="creatives" class="relative min-h-dvh lg:my-[25dvh]">
-      <div class="light:bg-(--color-white) light:lg:bg-(--transparent) pointer-events-none left-0 z-10 flex -translate-y-1/2 flex-col gap-5 p-10 lg:sticky lg:inset-y-[50dvh] lg:items-center lg:p-0">
+      <div class="light:bg-(--color-white) light:lg:bg-(--transparent) pointer-events-none left-0 z-10 flex flex-col gap-5 p-10 lg:sticky lg:inset-y-[50dvh] lg:-translate-y-1/2 lg:items-center lg:p-0">
         <h2 class="light:text-(--color-black) light:lg:text-(--color-white) lg:w-150">{{ t('menu-creatives') }}</h2>
         <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
       </div>
