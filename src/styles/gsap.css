@@ -1,3 +1,0 @@
-.pin-spacer:has(> header) {
-  mix-blend-mode: difference;
-}
