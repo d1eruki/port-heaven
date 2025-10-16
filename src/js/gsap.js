@@ -27,6 +27,8 @@ const pinHeader = ScrollTrigger.create({
   invalidateOnRefresh: true,
 });
 
+if (pinHeader.pin) smoother.effects(pinHeader.pin, { speed: 0 });
+
 gsap.utils.toArray("section .pin").forEach((el) => {
   const section = el.closest("section");
 
@@ -44,7 +46,19 @@ gsap.utils.toArray("section .pin").forEach((el) => {
   if (st.pin) smoother.effects(st.pin, { speed: 0 });
 });
 
-// Creatives section scroll
+gsap.utils.toArray(".project").forEach((el, i) => {
+  const st = ScrollTrigger.create({
+    trigger: el,
+    start: "top top",
+    end: "bottom top",
+    pin: true,
+    pinSpacing: false,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+  });
+  if (st.pin) smoother.effects(st.pin, { speed: 0 });
+});
+
 window.addEventListener("load", () => {
   const wrapper = document.querySelector(".creatives-wrapper");
   const container = document.querySelector(".container-creatives");
@@ -78,20 +92,5 @@ window.addEventListener("load", () => {
     }
   }
 });
-
-gsap.utils.toArray(".project").forEach((el, i) => {
-  const st = ScrollTrigger.create({
-    trigger: el,
-    start: "top top",
-    end: "bottom top",
-    pin: true,
-    pinSpacing: false,
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-  });
-  if (st.pin) smoother.effects(st.pin, { speed: 0 });
-});
-
-if (pinHeader.pin) smoother.effects(pinHeader.pin, { speed: 0 });
 
 window.addEventListener("load", () => ScrollTrigger.refresh());
