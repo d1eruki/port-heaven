@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@iconify/tailwind4";
+@import "lenis/dist/lenis.css";
 
 @import "./styles/fonts.css";
 @import "./styles/core.css";

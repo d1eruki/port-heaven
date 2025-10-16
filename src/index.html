@@ -12,157 +12,151 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="grid-bg dark-grid container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
-    <div id="smooth-wrapper">
-      <div id="smooth-content">
-        <noscript>
-          <div>
-            <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
-          </div>
-        </noscript>
+  <body lang="ru" id="app" class="grid-bg dark-grid relative container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
+    <noscript>
+      <div>
+        <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
+      </div>
+    </noscript>
 
-        <!--me-->
-        <section data-section="me" id="me" class="min-h-dvh content-end p-10">
-          <h1>{{ t('hero') }}</h1>
-        </section>
+    <!--me-->
+    <section data-section="me" id="me" class="min-h-dvh content-end p-10">
+      <h1>{{ t('hero') }}</h1>
+    </section>
 
-        <header class="absolute top-[100dvh] left-0 z-100 flex w-50 flex-col justify-end p-10 lg:min-h-dvh lg:justify-between">
-          <p class="hidden w-fit lg:block">{{ t('logo') }}</p>
-          <div class="hidden w-fit flex-col gap-5 lg:flex">
-            <nav-button nav-name="about" class="is-active">{{ t('menu-about') }}</nav-button>
-            <nav-button nav-name="projects">{{ t('menu-projects') }}</nav-button>
-            <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
-            <nav-button nav-name="creatives" class="light:text-(--color-red)">{{ t('menu-creatives') }}</nav-button>
-            <nav-button nav-name="footer">{{ t('menu-footer') }}</nav-button>
-          </div>
-          <button id="lang-toggle" class="hidden w-fit">en</button>
-          <button id="scroll-to-top" class="hidden w-fit">{{ t('footer-scroll-up') }}</button>
-          <div class="flex gap-5">
-            <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5"></span> </a>
-            <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5"></span> </a>
-            <button id="theme-toggler" class="icon-[fa7-solid--adjust] hidden size-7.5"></button>
-          </div>
-        </header>
-        <div id="progress-bar" class="progress-bar light:bg-(--color-white) fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"></div>
+    <header class="fixed top-0 left-0 z-100 flex w-50 flex-col justify-end p-10 mix-blend-difference lg:min-h-dvh lg:justify-between">
+      <p class="hidden w-fit lg:block">{{ t('logo') }}</p>
+      <div class="hidden w-fit flex-col gap-5 lg:flex">
+        <nav-button nav-name="about" class="is-active">{{ t('menu-about') }}</nav-button>
+        <nav-button nav-name="projects">{{ t('menu-projects') }}</nav-button>
+        <nav-button nav-name="design">{{ t('menu-designs') }}</nav-button>
+        <nav-button nav-name="creatives" class="light:text-(--color-red)">{{ t('menu-creatives') }}</nav-button>
+        <nav-button nav-name="footer">{{ t('menu-footer') }}</nav-button>
+      </div>
+      <button id="lang-toggle" class="hidden w-fit">en</button>
+      <button id="scroll-to-top" class="hidden w-fit">{{ t('footer-scroll-up') }}</button>
+      <div class="flex gap-5">
+        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5"></span> </a>
+        <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5"></span> </a>
+        <button id="theme-toggler" class="icon-[fa7-solid--adjust] hidden size-7.5"></button>
+      </div>
+    </header>
+    <div id="progress-bar" class="progress-bar light:bg-(--color-white) fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"></div>
 
-        <!--about-->
-        <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-50 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-          <h2 class="col-span-1 w-full p-10 lg:sticky lg:top-0 lg:h-dvh lg:content-center">{{ t('menu-about') }}</h2>
-          <div class="corner-frame col-span-1 p-10 lg:m-10 lg:self-end">
-            <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
-          </div>
-        </section>
+    <!--about-->
+    <section data-section="about" id="about" class="grid grid-cols-1 lg:ml-50 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+      <h2 class="col-span-1 w-full p-10 lg:sticky lg:top-0 lg:h-dvh lg:content-center">{{ t('menu-about') }}</h2>
+      <div class="corner-frame col-span-1 p-10 lg:m-10 lg:self-end">
+        <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
+      </div>
+    </section>
 
-        <!--projects-->
-        <section data-section="projects" id="projects" class="light:bg-(--color-white)">
-          <div class="grid min-h-dvh grid-cols-1 lg:ml-50 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-            <div class="pin col-span-1 grid content-center gap-5 p-10 lg:top-0 lg:col-span-1 lg:h-dvh">
-              <h2 class="light:text-(--color-black)">{{ t('menu-projects') }}</h2>
-              <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
-            </div>
-            <div class="container-cards">
-              <project
-                :project-name="t('projects-downloadPage-title')"
-                :project-description="t('projects-downloadPage-description')"
-                :project-text="t('projects-downloadPage-text')"
-                :project-statistic="[
+    <!--projects-->
+    <section data-section="projects" id="projects" class="light:bg-(--color-white)">
+      <div class="relative grid min-h-dvh grid-cols-1 lg:ml-50 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
+        <div class="col-span-1 grid content-center gap-5 p-10 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:col-span-1 lg:h-dvh">
+          <h2 class="light:text-(--color-black)">{{ t('menu-projects') }}</h2>
+          <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
+        </div>
+        <div class="container-cards">
+          <project
+            :project-name="t('projects-downloadPage-title')"
+            :project-description="t('projects-downloadPage-description')"
+            :project-text="t('projects-downloadPage-text')"
+            :project-statistic="[
         t('projects-downloadPage-stats-1'),
         t('projects-downloadPage-stats-2'),
         t('projects-downloadPage-stats-3'),
         t('projects-downloadPage-stats-4'),
         t('projects-downloadPage-stats-5'),
       ]"
-                :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Web']"
-                :project-links="[
+            :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Web']"
+            :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://marketplace.varwin.com/ru/education/download-xrms', name: t('projects-button-site') }
       ]"
-                :project-result="t('projects-downloadPage-result')"
-              ></project>
-              <project
-                :project-name="t('projects-registry-title')"
-                :project-description="t('projects-registry-description')"
-                :project-text="t('projects-registry-text')"
-                :project-statistic="[
+            :project-result="t('projects-downloadPage-result')"
+          ></project>
+          <project
+            :project-name="t('projects-registry-title')"
+            :project-description="t('projects-registry-description')"
+            :project-text="t('projects-registry-text')"
+            :project-statistic="[
         t('projects-registry-stats-1'),
         t('projects-registry-stats-2'),
         t('projects-registry-stats-3'),
       ]"
-                :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Web']"
-                :project-links="[
+            :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Web']"
+            :project-links="[
         { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
         { url: 'https://varwin.com/ru/education/projects', name: t('projects-button-site') }
       ]"
-                :project-result="t('projects-registry-result')"
-              ></project>
-              <project
-                :project-name="t('projects-xrms-title')"
-                :project-description="t('projects-xrms-description')"
-                :project-text="t('projects-xrms-text')"
-                :project-statistic="[
+            :project-result="t('projects-registry-result')"
+          ></project>
+          <project
+            :project-name="t('projects-xrms-title')"
+            :project-description="t('projects-xrms-description')"
+            :project-text="t('projects-xrms-text')"
+            :project-statistic="[
         t('projects-xrms-stats-1'),
         t('projects-xrms-stats-2'),
         t('projects-xrms-stats-3'),
       ]"
-                :project-tags="['Figma', 'Prototype', 'Testing', 'Design', 'UX/UI']"
-                :project-links="[
+            :project-tags="['Figma', 'Prototype', 'Testing', 'Design', 'UX/UI']"
+            :project-links="[
         { url: 'https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1', name: t('projects-button-design') }
       ]"
-                :project-result="t('projects-xrms-result')"
-              ></project>
-            </div>
-          </div>
-        </section>
-
-        <!--design-->
-        <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] lg:ml-50 lg:auto-rows-fr lg:grid-cols-3">
-          <div class="light:bg-(--color-white) light:lg:bg-(--transparent) col-span-1 grid h-fit content-center gap-5 p-10 lg:top-0 lg:h-full">
-            <h2 class="light:text-(--color-black) light:lg:text-(--color-white)">{{ t('menu-designs') }}</h2>
-            <menu-desc :menu-desc="t('menu-designs-description')"></menu-desc>
-          </div>
-          <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt="" :design-tags="['Mobile app', 'Visual', 'Team work']"></design>
-
-          <design :design-name="t('design-admaster-title')" :design-desc="t('design-admaster-text')" design-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>
-
-          <design :design-name="t('design-0xprocessing-title')" :design-desc="t('design-0xprocessing-text')" design-url="https://www.figma.com/design/eViD7HUkXMbie6XI9a8BLK/0x-processing-landing-page?node-id=2006-2&t=qwDbVxa6LRKoFTY5-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>
-
-          <design :design-name="t('design-stuff-title')" :design-desc="t('design-stuff-text')" design-url="https://www.figma.com/design/zkcugeK8gsTGqsDKiv5soC/Stuff-landing-design?node-id=3181-397&t=U01Vfxg6N5lwyUEv-1" design-img-alt="" :design-tags="['Desktop landing', 'Visual', 'Concept']"></design>
-
-          <design :design-name="t('design-subscout-title')" :design-desc="t('design-subscout-text')" design-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/Mobile-app-for-subscription-tracking?node-id=8201-5922&t=ny4TL8Y3mUFaQ0PB-1" design-img-alt="" :design-tags="['Mobile app', 'Prototype', 'Visual', 'Concept']"></design>
-
-          <design :design-name="t('design-baikal-title')" :design-desc="t('design-baikal-text')" design-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/Landing-page-for-a-travel-club?node-id=1-23&t=END5NzJfg1Z8PRH1-1" design-img-alt="" :design-tags="['Desktop landing', 'Visual', 'Concept']"></design>
-
-          <design :design-name="t('design-pioner-title')" :design-desc="t('design-pioner-text')" design-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/Redesign-of-the-Power-Machines-plant-webpage?node-id=1051-200&t=hfZVdTFUnt3JHWLN-1" design-img-alt="" :design-tags="['Desktop landing', 'Redesign', 'Concept']"></design>
-
-          <!--      <design :design-name="t('design-mooozik-title')" :design-desc="t('design-mooozik-text')" design-url="https://www.figma.com/design/voDUMRONK5sGFSo43BkcU9/Mooozik-%E2%80%94-a-music-label-for-cows?node-id=0-1&t=8jUM5sY9hUOspPua-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>-->
-        </section>
-
-        <!--creatives-->
-        <section data-section="creatives" id="creatives" class="lg:ml-50">
-          <div class="creatives-wrapper relative min-h-dvh">
-            <div class="light:bg-(--color-white) light:lg:bg-(--transparent) pointer-events-none relative z-10 flex h-full w-full flex-col justify-center gap-5 p-10 lg:items-center lg:p-0">
-              <h2 class="light:text-(--color-black) light:lg:text-(--color-white) lg:w-150">{{ t('menu-creatives') }}</h2>
-              <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
-            </div>
-            <div class="container-creatives top-0 left-0 h-fit w-full lg:absolute lg:grid lg:grid-cols-20 lg:p-10">
-              <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" :col="2" :col-span="5" :row="2" :row-span="1"></creative>
-              <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" :col="14" :col-span="6" :row="3" :row-span="1"></creative>
-              <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" :col="3" :col-span="7" :row="4" :row-span="1"></creative>
-              <creative creative-src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" :col="12" :col-span="6" :row="5" :row-span="1"></creative>
-              <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" :col="2" :col-span="7" :row="6" :row-span="1"></creative>
-              <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" :col="11" :col-span="7" :row="7" :row-span="1"></creative>
-            </div>
-          </div>
-        </section>
-
-        <!--footer-->
-        <section data-section="footer" id="footer" class="min-h-dvh lg:ml-50">
-          <div class="flex min-h-dvh w-full flex-col justify-center gap-5 p-10 lg:items-center lg:p-0">
-            <h2 class="lg:w-150">{{ t('menu-footer') }}</h2>
-            <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
-          </div>
-        </section>
+            :project-result="t('projects-xrms-result')"
+          ></project>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!--design-->
+    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 pr-[5px] lg:ml-50 lg:auto-rows-fr lg:grid-cols-3">
+      <div class="light:bg-(--color-white) light:lg:bg-(--transparent) col-span-1 grid h-fit content-center gap-5 p-10 lg:top-0 lg:h-full">
+        <h2 class="light:text-(--color-black) light:lg:text-(--color-white)">{{ t('menu-designs') }}</h2>
+        <menu-desc :menu-desc="t('menu-designs-description')"></menu-desc>
+      </div>
+      <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt="" :design-tags="['Mobile app', 'Visual', 'Team work']"></design>
+
+      <design :design-name="t('design-admaster-title')" :design-desc="t('design-admaster-text')" design-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>
+
+      <design :design-name="t('design-0xprocessing-title')" :design-desc="t('design-0xprocessing-text')" design-url="https://www.figma.com/design/eViD7HUkXMbie6XI9a8BLK/0x-processing-landing-page?node-id=2006-2&t=qwDbVxa6LRKoFTY5-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>
+
+      <design :design-name="t('design-stuff-title')" :design-desc="t('design-stuff-text')" design-url="https://www.figma.com/design/zkcugeK8gsTGqsDKiv5soC/Stuff-landing-design?node-id=3181-397&t=U01Vfxg6N5lwyUEv-1" design-img-alt="" :design-tags="['Desktop landing', 'Visual', 'Concept']"></design>
+
+      <design :design-name="t('design-subscout-title')" :design-desc="t('design-subscout-text')" design-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/Mobile-app-for-subscription-tracking?node-id=8201-5922&t=ny4TL8Y3mUFaQ0PB-1" design-img-alt="" :design-tags="['Mobile app', 'Prototype', 'Visual', 'Concept']"></design>
+
+      <design :design-name="t('design-baikal-title')" :design-desc="t('design-baikal-text')" design-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/Landing-page-for-a-travel-club?node-id=1-23&t=END5NzJfg1Z8PRH1-1" design-img-alt="" :design-tags="['Desktop landing', 'Visual', 'Concept']"></design>
+
+      <design :design-name="t('design-pioner-title')" :design-desc="t('design-pioner-text')" design-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/Redesign-of-the-Power-Machines-plant-webpage?node-id=1051-200&t=hfZVdTFUnt3JHWLN-1" design-img-alt="" :design-tags="['Desktop landing', 'Redesign', 'Concept']"></design>
+
+      <!--      <design :design-name="t('design-mooozik-title')" :design-desc="t('design-mooozik-text')" design-url="https://www.figma.com/design/voDUMRONK5sGFSo43BkcU9/Mooozik-%E2%80%94-a-music-label-for-cows?node-id=0-1&t=8jUM5sY9hUOspPua-1" design-img-alt="" :design-tags="['Adaptive landing', 'Visual', 'Concept']"></design>-->
+    </section>
+
+    <!--creatives-->
+    <section data-section="creatives" id="creatives" class="relative min-h-dvh lg:my-[25dvh] lg:ml-50">
+      <div class="light:bg-(--color-white) light:lg:bg-(--transparent) pointer-events-none left-0 z-10 flex -translate-y-1/2 flex-col gap-5 p-10 lg:sticky lg:inset-y-[50dvh] lg:items-center lg:p-0">
+        <h2 class="light:text-(--color-black) light:lg:text-(--color-white) lg:w-150">{{ t('menu-creatives') }}</h2>
+        <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
+      </div>
+      <div class="container-creatives h-fit w-full lg:grid lg:grid-cols-20 lg:p-10">
+        <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" :col="2" :col-span="5" :row="2" :row-span="1"></creative>
+        <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" :col="14" :col-span="6" :row="3" :row-span="1"></creative>
+        <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" :col="3" :col-span="7" :row="4" :row-span="1"></creative>
+        <creative creative-src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" :col="12" :col-span="6" :row="5" :row-span="1"></creative>
+        <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" :col="2" :col-span="7" :row="6" :row-span="1"></creative>
+        <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" :col="11" :col-span="7" :row="7" :row-span="1"></creative>
+      </div>
+    </section>
+
+    <!--footer-->
+    <section data-section="footer" id="footer" class="min-h-dvh lg:ml-50">
+      <div class="flex min-h-dvh w-full flex-col justify-center gap-5 p-10 lg:items-center lg:p-0">
+        <h2 class="lg:w-150">{{ t('menu-footer') }}</h2>
+        <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
+      </div>
+    </section>
   </body>
 </html>
