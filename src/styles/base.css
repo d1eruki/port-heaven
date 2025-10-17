@@ -14,8 +14,9 @@
   h2,
   h3,
   h4 {
+    font-weight: 900;
     font-family: "Actay", sans-serif;
-    text-transform: uppercase;
+    text-transform: lowercase;
   }
 
   h1 {
