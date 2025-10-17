@@ -18,7 +18,7 @@
   --dot-color: var(--color-white);
 }
 
-nav button {
+nav .dot {
   width: var(--dot-size);
   height: var(--dot-size);
 }
