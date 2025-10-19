@@ -1,5 +1,5 @@
 <template>
-  <div class="top-0 left-0 col-span-1 flex min-h-dvh w-full flex-col justify-between gap-5 p-10 will-change-transform lg:p-15">
+  <div class="top-0 left-0 col-span-1 flex min-h-dvh w-full flex-col justify-between gap-5 p-15 will-change-transform lg:p-15">
     <div class="flex flex-col gap-5">
       <h3 class="light:text-(--color-white)">{{ projectName }}</h3>
       <p class="light:text-(--color-grey)">{{ projectDescription }}</p>

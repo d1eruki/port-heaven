@@ -1,13 +1,13 @@
 (function () {
-  // Включаем только на устройствах с точным курсором
   const supportsFine = matchMedia("(pointer: fine)").matches;
-  if (!supportsFine) return;
+  const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!supportsFine || prefersReduced) return;
 
-  document.documentElement.classList.add("use-custom-cursor");
+  const root = document.documentElement;
+  root.classList.add("use-custom-cursor");
 
   const cursor = document.createElement("div");
   cursor.className = "app-cursor";
-  // Скрываем до первой инициализации позиции, чтобы не мигал в левом верхнем углу
   cursor.style.opacity = "0";
   document.body.appendChild(cursor);
 
@@ -16,26 +16,28 @@
   let rafId = null;
   let initialized = false;
 
+  function render() {
+    rafId = null;
+    cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+    if (!initialized) {
+      cursor.style.opacity = "1";
+      initialized = true;
+    }
+  }
+
   function moveTo(nx, ny) {
     x = nx;
     y = ny;
-    if (rafId) return;
-    rafId = requestAnimationFrame(() => {
-      cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-      cursor.style.opacity = "1";
-      initialized = true;
-      rafId = null;
-    });
+    if (rafId == null) rafId = requestAnimationFrame(render);
   }
 
-  // Активность: делаем крупнее над .active и выводим текст внутри над ссылками/кнопками
   function updateActive(target) {
     let isActive = false;
     let hasLabel = false;
     let label = "";
 
     if (target && target.closest) {
-      const actionable = target.closest("[data-cursor-label], a, button");
+      const actionable = target.closest("[data-cursor-label], a, button, [role='button'], [tabindex]");
       if (actionable) {
         isActive = true;
         const custom = actionable.getAttribute && actionable.getAttribute("data-cursor-label");
@@ -56,16 +58,21 @@
     }
   }
 
-  // Используем pointer* чтобы покрыть разные девайсы с мышью
-  document.addEventListener("pointermove", (e) => moveTo(e.clientX, e.clientY), { passive: true });
-  // Ранняя инициализация позиции при первом наведении/входе указателя в окно
+  const onPointerMove = (e) => {
+    moveTo(e.clientX, e.clientY);
+  };
+  document.addEventListener("pointermove", onPointerMove, { passive: true });
+
   document.addEventListener(
     "pointerenter",
     (e) => {
-      if (!initialized) moveTo(e.clientX, e.clientY);
+      moveTo(e.clientX, e.clientY);
+      cursor.style.opacity = "1";
     },
     { passive: true },
   );
+
+  // Обновляем активность при смене ховера
   document.addEventListener(
     "pointerover",
     (e) => {
@@ -74,8 +81,15 @@
     },
     { passive: true },
   );
-  document.addEventListener("pointerout", (e) => updateActive(e.relatedTarget || document.body), { passive: true });
-  // Фолбэк: одноразово синхронизируем по mousemove, если по каким‑то причинам pointer* не сработали
+
+  document.addEventListener(
+    "pointerout",
+    (e) => {
+      updateActive(e.relatedTarget || document.body);
+    },
+    { passive: true },
+  );
+
   document.addEventListener(
     "mousemove",
     (e) => {
@@ -84,13 +98,30 @@
     { passive: true, once: true },
   );
 
-  // Скрывать при уходе курсора из окна
-  document.addEventListener("mouseleave", () => {
-    cursor.style.opacity = "0";
+  document.addEventListener(
+    "pointerleave",
+    () => {
+      cursor.style.opacity = "0";
+    },
+    { passive: true },
+  );
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && initialized) {
+      cursor.style.opacity = "1";
+    } else {
+      cursor.style.opacity = "0";
+    }
   });
 
-  // На всякий случай прятать при скрытии вкладки
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState !== "visible") cursor.style.opacity = "0";
+  window.addEventListener("blur", () => {
+    cursor.style.opacity = "0";
+  });
+  window.addEventListener("focus", () => {
+    if (initialized) cursor.style.opacity = "1";
+  });
+
+  window.addEventListener("resize", () => {
+    if (initialized) render();
   });
 })();
