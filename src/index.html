@@ -20,9 +20,14 @@
     </noscript>
 
     <!--me-->
-    <div data-section="me" id="me" class="flex min-h-dvh flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
-      <h1>{{ t('hero') }}</h1>
-      <p class="lg:mb-10">{{ t('logo') }}</p>
+    <div data-section="hero" id="hero" class="hero flex min-h-dvh">
+      <div class="hero-media absolute">
+        <img src="assets/images/soma-lancet.png" class="h-full w-full object-cover" alt="hero" />
+      </div>
+      <div class="z-1 flex flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
+        <h1>{{ t('hero') }}</h1>
+        <p class="lg:mb-10">{{ t('logo') }}</p>
+      </div>
     </div>
 
     <header class="fixed top-0 left-0 z-100 hidden min-h-dvh w-10 items-center justify-center mix-blend-difference lg:flex">

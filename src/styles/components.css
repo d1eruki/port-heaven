@@ -98,4 +98,21 @@
   .card-rotate-shirt legend {
     animation: move 5s infinite linear alternate;
   }
+
+  nav .dot {
+    width: var(--dot-size);
+    height: var(--dot-size);
+  }
+
+  nav circle {
+    transition:
+      transform 0.2s ease,
+      fill 0.2s ease,
+      opacity 0.2s ease;
+    transform: scale(0.5);
+  }
+
+  nav button[aria-current="true"] circle {
+    transform: scale(1);
+  }
 }

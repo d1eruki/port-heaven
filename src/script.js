@@ -9,13 +9,3 @@ import "./js/scroll-section";
 import "./js/sections";
 import "./js/lenis";
 import "./js/scroll-to-top";
-
-import { updateProgressBar } from "./js/progress-bar";
-
-window.addEventListener("lenis-scroll", (e) => {
-  try {
-    updateProgressBar(e.detail.y);
-  } catch {
-    updateProgressBar();
-  }
-});

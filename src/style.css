@@ -11,28 +11,3 @@
 @import "./styles/themes/grid.css";
 
 @import "./styles/components.css";
-
-:root {
-  --dot-size: 14px;
-  --dot-gap: 10px;
-  --dot-color: var(--color-white);
-}
-
-nav .dot {
-  width: var(--dot-size);
-  height: var(--dot-size);
-}
-
-nav circle {
-  fill: var(--dot-color);
-  transition:
-    transform 0.2s ease,
-    fill 0.2s ease,
-    opacity 0.2s ease;
-  transform: scale(0.5);
-}
-
-nav button[aria-current="true"] circle {
-  fill: var(--dot-color);
-  transform: scale(1);
-}

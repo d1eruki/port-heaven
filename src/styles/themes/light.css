@@ -49,5 +49,13 @@
       background: var(--color-white);
       color: var(--color-black);
     }
+
+    nav circle {
+      fill: var(--dot-color);
+    }
+
+    nav button[aria-current="true"] circle {
+      fill: var(--dot-color);
+    }
   }
 }
