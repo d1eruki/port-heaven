@@ -1,7 +1,9 @@
 <template>
   <a :href="designUrl" target="_blank" class="design">
     <div class="anim-extrude group relative z-10 grid gap-5 p-15 hover:z-50 lg:h-[50dvh] lg:items-center">
-      <h4 class="light:text-(--color-white) flex gap-3 group-hover:lg:text-(--color-black)">{{ designName }}</h4>
+      <h4 class="light:text-(--color-white) group-hover:light:text-(--color-black) flex gap-3">
+        {{ designName }}
+      </h4>
       <div class="top-75 right-15 bottom-15 left-15 flex flex-wrap gap-5 self-end lg:absolute lg:flex lg:group-hover:hidden">
         <div v-for="(tag, index) in designTags" :key="index" class="light:text-(--color-grey) flex gap-2.5">
           <small class="flex gap-2.5">

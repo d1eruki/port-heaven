@@ -20,9 +20,9 @@
     </noscript>
 
     <!--me-->
-    <div data-section="me" id="me" class="flex min-h-dvh content-end items-end justify-between gap-10 p-15">
+    <div data-section="me" id="me" class="flex min-h-dvh flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
       <h1>{{ t('hero') }}</h1>
-      <p class="mb-10 hidden lg:block">{{ t('logo') }}</p>
+      <p class="lg:mb-10">{{ t('logo') }}</p>
     </div>
 
     <header class="fixed top-0 left-0 z-100 hidden min-h-dvh w-10 items-center justify-center mix-blend-difference lg:flex">
@@ -36,7 +36,7 @@
     </header>
     <div id="progress-bar" class="progress-bar light:bg-(--color-white) fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"></div>
 
-    <div class="fixed top-0 right-0 z-200 flex justify-end gap-5 p-10 mix-blend-difference">
+    <div class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15">
       <button id="theme-toggler" class="icon-[ic--baseline-dark-mode] hidden size-10"></button>
       <button id="lang-toggle" class="icon-[ic--baseline-language] size-10"></button>
     </div>
@@ -44,7 +44,7 @@
     <!--about-->
     <section data-section="about" id="about" class="lg:light:bg-(--color-yellow) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="lg:light:text-(--color-black) col-span-1 w-full p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
-      <div class="corner-frame col-span-1 p-15 lg:m-10 lg:self-end">
+      <div class="corner-frame col-span-1 p-15 lg:m-15 lg:self-end">
         <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
       </div>
     </section>
@@ -109,7 +109,7 @@
     </section>
 
     <!--design-->
-    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-4">
+    <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 md:grid-cols-2 lg:auto-rows-fr lg:grid-cols-3 xl:grid-cols-4">
       <div class="light:bg-(--color-white) light:lg:bg-(--transparent) col-span-1 grid h-fit content-center gap-5 p-15 lg:top-0 lg:h-full">
         <h2 class="light:text-(--color-black) light:lg:text-(--color-white)">{{ t('menu-designs') }}</h2>
         <menu-desc :menu-desc="t('menu-designs-description')"></menu-desc>
@@ -155,11 +155,11 @@
           <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
         </div>
         <div class="flex justify-start gap-10 lg:w-150">
-          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] size-10"></span> </a>
-          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] size-10"></span> </a>
+          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] light:text-(--color-yellow) size-10"></span> </a>
+          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] light:text-(--color-yellow) size-10"></span> </a>
         </div>
       </div>
-      <button id="scroll-to-top" class="icon-[ic--round-keyboard-arrow-up] absolute right-5 bottom-5 size-10"></button>
+      <button id="scroll-to-top" class="icon-[ic--round-keyboard-arrow-up] absolute right-5 bottom-5 size-10 lg:right-15 lg:bottom-15"></button>
     </section>
   </body>
 </html>
