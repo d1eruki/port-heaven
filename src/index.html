@@ -7,12 +7,12 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <link href="assets/images/favicon.ico" rel="icon" />
+    <link href="assets/images/favicon.png" rel="icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="grid-bg dark-grid relative container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
+  <body lang="ru" id="app" class="relative container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -20,32 +20,29 @@
     </noscript>
 
     <!--me-->
-    <div data-section="me" id="me" class="min-h-dvh content-end p-15">
-      <h1 class="lg:ml-50">{{ t('hero') }}</h1>
+    <div data-section="me" id="me" class="flex min-h-dvh content-end items-end justify-between gap-10 p-15">
+      <h1>{{ t('hero') }}</h1>
+      <p class="mb-10 hidden lg:block">{{ t('logo') }}</p>
     </div>
 
-    <header class="fixed top-0 left-0 z-100 flex w-50 flex-col justify-end p-5 mix-blend-difference lg:min-h-dvh lg:justify-between">
-      <p class="hidden w-fit lg:hidden">{{ t('logo') }}</p>
-      <img class="hidden w-20 lg:block" src="assets/images/logo.png" alt="logo" />
-      <nav class="hidden w-fit flex-col gap-5 lg:flex">
+    <header class="fixed top-0 left-0 z-100 hidden min-h-dvh w-10 items-center justify-center mix-blend-difference lg:flex">
+      <nav class="flex w-fit flex-col gap-5">
         <nav-button nav-name="about" class="is-active hidden">{{ t('menu-about') }}</nav-button>
         <nav-button nav-name="projects" class="hidden">{{ t('menu-projects') }}</nav-button>
         <nav-button nav-name="design" class="hidden">{{ t('menu-designs') }}</nav-button>
-        <nav-button nav-name="creatives" class="light:text-(--color-red) hidden">{{ t('menu-creatives') }}</nav-button>
+        <nav-button nav-name="creatives" class="hidden">{{ t('menu-creatives') }}</nav-button>
         <nav-button nav-name="footer" class="hidden">{{ t('menu-footer') }}</nav-button>
       </nav>
-      <button id="lang-toggle" class="hidden w-fit">en</button>
-      <button id="scroll-to-top" class="hidden w-fit">{{ t('footer-scroll-up') }}</button>
-      <div class="flex gap-5">
-        <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[tabler--mail-filled] size-7.5"></span> </a>
-        <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[icon-park-outline--telegram] size-7.5"></span> </a>
-        <button id="theme-toggler" class="icon-[fa7-solid--adjust] hidden size-7.5"></button>
-      </div>
     </header>
     <div id="progress-bar" class="progress-bar light:bg-(--color-white) fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"></div>
 
+    <div class="fixed top-0 right-0 z-200 flex justify-end gap-5 p-10 mix-blend-difference">
+      <button id="theme-toggler" class="icon-[ic--baseline-dark-mode] hidden size-10"></button>
+      <button id="lang-toggle" class="icon-[ic--baseline-language] size-10"></button>
+    </div>
+
     <!--about-->
-    <section data-section="about" id="about" class="lg:light:bg-(--color-white) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+    <section data-section="about" id="about" class="lg:light:bg-(--color-yellow) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="lg:light:text-(--color-black) col-span-1 w-full p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
       <div class="corner-frame col-span-1 p-15 lg:m-10 lg:self-end">
         <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
@@ -151,11 +148,18 @@
     </section>
 
     <!--footer-->
-    <section data-section="footer" id="footer" class="min-h-dvh">
-      <div class="flex min-h-dvh w-full flex-col justify-center gap-5 p-15 lg:items-center lg:p-0">
-        <h2 class="lg:w-150">{{ t('menu-footer') }}</h2>
-        <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
+    <section data-section="footer" id="footer" class="relative min-h-dvh">
+      <div class="relative flex min-h-dvh flex-col justify-center gap-10 p-10 lg:items-center lg:p-0">
+        <div class="flex flex-col gap-5 lg:w-150">
+          <h2>{{ t('menu-footer') }}</h2>
+          <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
+        </div>
+        <div class="flex justify-start gap-10 lg:w-150">
+          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] size-10"></span> </a>
+          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] size-10"></span> </a>
+        </div>
       </div>
+      <button id="scroll-to-top" class="icon-[ic--round-keyboard-arrow-up] absolute right-5 bottom-5 size-10"></button>
     </section>
   </body>
 </html>

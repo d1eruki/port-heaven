@@ -29,8 +29,8 @@
   --color-transparent: hsl(0 0% 0% / 0);
 
   /* типографика */
-  --text-h1: clamp(3rem, 12.5vw, 17.5rem);
-  --leading-h1: 12.5vw;
+  --text-h1: clamp(3rem, 10vw, 16rem);
+  --leading-h1: 10vw;
   --text-h2: clamp(2.5rem, 4vw, 8rem);
   --text-h3: clamp(2rem, 3vw, 4.5rem);
   --text-h4: clamp(1.75rem, 2vw, 3rem);

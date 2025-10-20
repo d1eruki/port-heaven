@@ -1,3 +1,5 @@
+import { t } from "./i18n";
+
 (function () {
   const supportsFine = matchMedia("(pointer: fine)").matches;
   const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -41,7 +43,7 @@
       if (actionable) {
         isActive = true;
         const custom = actionable.getAttribute && actionable.getAttribute("data-cursor-label");
-        label = custom || (actionable.tagName === "A" ? "открыть" : "");
+        label = custom || (actionable.tagName === "A" ? t("button-open") : "");
         hasLabel = !!label;
       } else if (target.closest(".active")) {
         isActive = true;
