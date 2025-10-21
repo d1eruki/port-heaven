@@ -1,5 +1,5 @@
 <template>
-  <div class="card-rotate vanilla-tilt h-fit hover:z-100" :style="computedStyle">
+  <div class="-card-rotate vanilla-tilt h-fit hover:z-100" :style="computedStyle">
     <img class="card-rotate-face backface-hidden" :src="creativeSrc" alt="post-card" />
     <div class="card-rotate-shirt light:bg-(--color-white) light:text-(--color-black) absolute top-0 h-full w-full backface-hidden">asd</div>
   </div>

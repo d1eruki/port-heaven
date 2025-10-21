@@ -21,10 +21,10 @@
 
     <!--me-->
     <div data-section="hero" id="hero" class="hero flex min-h-dvh">
-      <div class="hero-media absolute">
-        <img src="assets/images/soma-lancet.png" class="h-full w-full object-cover" alt="hero" />
+      <div class="hero-media absolute top-[-660px] w-full">
+        <img src="assets/images/soma-lancet.png" class="-z-2 aspect-auto w-full object-cover grayscale" alt="hero" />
       </div>
-      <div class="z-1 flex flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
+      <div class="z-1 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
         <h1>{{ t('hero') }}</h1>
         <p class="lg:mb-10">{{ t('logo') }}</p>
       </div>
@@ -47,7 +47,7 @@
     </div>
 
     <!--about-->
-    <section data-section="about" id="about" class="lg:light:bg-(--color-yellow) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+    <section data-section="about" id="about" class="lg:light:bg-(--color-white) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="lg:light:text-(--color-black) col-span-1 w-full p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
       <div class="corner-frame col-span-1 p-15 lg:m-15 lg:self-end">
         <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
@@ -56,7 +56,7 @@
 
     <!--projects-->
     <section data-section="projects" id="projects" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-      <div class="light:bg-(--color-white) col-span-1 grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:col-span-1 lg:h-dvh lg:place-items-end lg:text-end">
+      <div class="light:bg-(--color-yellow) col-span-1 grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:col-span-1 lg:h-dvh lg:place-items-end lg:text-end">
         <h2 class="light:text-(--color-black)">{{ t('menu-projects') }}</h2>
         <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
       </div>
@@ -143,12 +143,8 @@
         <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
       </div>
       <div class="container-creatives h-fit w-full lg:grid lg:grid-cols-20 lg:p-10">
-        <creative creative-src="assets/images/creatives/6c184e6ae99b54f5b0c2ac60ed1f8587.jpg" :col="2" :col-span="5" :row="2" :row-span="1"></creative>
-        <creative creative-src="assets/images/creatives/9e33d39111e3410126682675811f881c.jpg" :col="14" :col-span="6" :row="3" :row-span="1"></creative>
-        <creative creative-src="assets/images/creatives/73a05c7eeb94d543dc7a1829ceb8ba2f.jpg" :col="3" :col-span="7" :row="4" :row-span="1"></creative>
-        <creative creative-src="assets/images/creatives/370f4d59574ac02796386dbd790cbaae.jpg" :col="12" :col-span="6" :row="5" :row-span="1"></creative>
-        <creative creative-src="assets/images/creatives/a7fe8e2e4dbdf8114d6864fc511a46a4.jpg" :col="2" :col-span="7" :row="6" :row-span="1"></creative>
-        <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" :col="11" :col-span="7" :row="7" :row-span="1"></creative>
+        <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" :col="2" :col-span="5" :row="2" :row-span="1"></creative>
+        <creative creative-src="assets/images/creatives/siyay.png" :col="14" :col-span="6" :row="3" :row-span="1"></creative>
       </div>
     </section>
 
