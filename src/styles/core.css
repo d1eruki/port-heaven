@@ -3,6 +3,7 @@
 
 @theme {
   /* breakpoints */
+  --breakpoint-lg: 64rem; /* 1024 */
   --breakpoint-3xl: 120rem; /* 1920 */
   --breakpoint-4xl: 160rem; /* 2560 */
 

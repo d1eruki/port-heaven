@@ -4,6 +4,12 @@
     font-optical-sizing: auto;
     font-weight: 200;
     cursor: none;
+    line-height: 1;
+    text-wrap: balance;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    white-space: pre-line;
 
     &::-webkit-scrollbar {
       display: none;

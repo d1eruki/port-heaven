@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="relative container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-0">
+  <body lang="ru" id="app" class="relative container grid max-w-full gap-10 lg:gap-0">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -43,7 +43,7 @@
 
     <div class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15">
       <button id="theme-toggler" class="icon-[ic--baseline-dark-mode] hidden size-10"></button>
-      <button id="lang-toggle" class="icon-[ic--baseline-language] size-10"></button>
+      <button id="lang-toggle" class="icon-[ic--baseline-language] size-6 lg:size-10"></button>
     </div>
 
     <!--about-->
@@ -56,7 +56,7 @@
 
     <!--projects-->
     <section data-section="projects" id="projects" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-      <div class="light:bg-(--color-yellow) col-span-1 grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:col-span-1 lg:h-dvh lg:place-items-end lg:text-end">
+      <div class="light:bg-(--color-white) col-span-1 grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:col-span-1 lg:h-dvh lg:place-items-end lg:text-end">
         <h2 class="light:text-(--color-black)">{{ t('menu-projects') }}</h2>
         <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
       </div>
@@ -115,7 +115,7 @@
 
     <!--design-->
     <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 md:grid-cols-2 lg:auto-rows-fr lg:grid-cols-3 xl:grid-cols-4">
-      <div class="light:bg-(--color-white) light:lg:bg-(--transparent) col-span-1 grid h-fit content-center gap-5 p-15 lg:top-0 lg:h-full">
+      <div class="light:bg-(--color-white) light:lg:bg-(--transparent) col-span-1 grid h-auto content-center gap-5 p-15 lg:top-0 lg:h-full">
         <h2 class="light:text-(--color-black) light:lg:text-(--color-white)">{{ t('menu-designs') }}</h2>
         <menu-desc :menu-desc="t('menu-designs-description')"></menu-desc>
       </div>
@@ -160,7 +160,7 @@
           <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] light:text-(--color-yellow) size-10"></span> </a>
         </div>
       </div>
-      <button id="scroll-to-top" class="icon-[ic--round-keyboard-arrow-up] absolute right-5 bottom-5 size-10 lg:right-15 lg:bottom-15"></button>
+      <button id="scroll-to-top" class="icon-[ic--round-keyboard-arrow-up] absolute right-5 bottom-5 size-6 lg:right-15 lg:bottom-15 lg:size-10"></button>
     </section>
   </body>
 </html>
