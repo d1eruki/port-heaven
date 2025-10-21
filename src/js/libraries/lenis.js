@@ -18,7 +18,7 @@ document.addEventListener("scroll-to-top", () => {
 });
 
 // ---- ПРОГРЕСС-БАР ---------------------------------------------
-import { updateProgressBar } from "./progress-bar";
+import { updateProgressBar } from "../custom/progress-bar";
 
 window.addEventListener("lenis-scroll", (e) => {
   try {

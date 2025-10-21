@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --------- Мини-конфиг ---------
   const body = document.body;
   const ACTIVE_CLASS = (body.getAttribute("data-active-class") || "!text-white").trim();
-  const THRESHOLD_FRACTION = Math.min(0.9, Math.max(0.05, Number(body.getAttribute("data-flip-threshold")) || 0.3)); // 0.05..0.9
+  const THRESHOLD_FRACTION = Math.min(0.9, Math.max(0.05, Number(body.getAttribute("data-flip-threshold")) || 0.3));
 
-  // --------- DOM ---------
   const sections = Array.from(document.querySelectorAll("[data-section]"));
   if (!sections.length) return;
 
@@ -19,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     navByName.get(name).push(btn);
   }
 
-  // --------- Геометрия секций ---------
   const meta = sections.map((el) => ({ el, name: el.getAttribute("data-section") || "", top: 0, bottom: 0 }));
 
   const recomputePositions = () => {
@@ -32,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   recomputePositions();
 
-  // --------- Активная секция ---------
   let lastActiveName = null;
 
   const currentIndex = () => {
@@ -53,15 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!m || m.name === lastActiveName) return;
     lastActiveName = m.name;
 
-    // снять со всех
     for (const btn of allNavButtons) btn.classList.remove(ACTIVE_CLASS);
-    // повесить на связанные
     const btns = navByName.get(m.name) || [];
     btns.forEach((b) => b.classList.add(ACTIVE_CLASS));
   };
 
-  // --------- События ---------
-  // Клик по навкнопкам: мгновенно прыгаем к секции, без smooth
   document.addEventListener("click", (e) => {
     const navButton = e.target.closest("[data-scroll-target]");
     if (!navButton) return;
@@ -82,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Обновляем подсветку при ручном скролле пользователем
   let scrollTimer = null;
   const onScrollThrottled = () => {
     if (scrollTimer) return;
@@ -107,10 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const ro = new ResizeObserver(() => onResizeDebounced());
   meta.forEach((m) => ro.observe(m.el));
 
-  // Инициализация подсветки
   setTimeout(() => setActiveByIndex(currentIndex()), 50);
 
-  // На всякий случай — компактное API
   window.SectionClicksOnly = {
     refresh() {
       recomputePositions();

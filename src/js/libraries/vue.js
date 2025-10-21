@@ -1,9 +1,9 @@
 import { createApp } from "vue";
-import Projects from "./components/projects.vue";
-import Designs from "./components/designs.vue";
-import Creatives from "./components/creatives.vue";
-import NavButton from "./components/nav-button.vue";
-import MenuDesc from "./components/menu-description.vue";
+import Projects from "../vue-components/projects.vue";
+import Designs from "../vue-components/designs.vue";
+import Creatives from "../vue-components/creatives.vue";
+import NavButton from "../vue-components/nav-button.vue";
+import MenuDesc from "../vue-components/menu-description.vue";
 
 import i18n from "./i18n";
 import { useI18n } from "vue-i18n";

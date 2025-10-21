@@ -1,4 +1,4 @@
-import { t } from "./i18n";
+import { t } from "../libraries/i18n";
 
 (function () {
   const supportsFine = matchMedia("(pointer: fine)").matches;
