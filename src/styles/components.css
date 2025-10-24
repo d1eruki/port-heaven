@@ -77,28 +77,6 @@
     transition: height 0.1s ease;
   }
 
-  .card-rotate,
-  .card-rotate-face,
-  .card-rotate-shirt {
-    transition: transform 0.5s ease;
-  }
-
-  .card-rotate-shirt {
-    transform: rotateY(180deg);
-  }
-
-  .card-rotate:hover .card-rotate-face {
-    transform: rotateY(180deg);
-  }
-
-  .card-rotate:hover .card-rotate-shirt {
-    transform: rotateY(0deg);
-  }
-
-  .card-rotate-shirt legend {
-    animation: move 5s infinite linear alternate;
-  }
-
   nav .dot {
     width: var(--dot-size);
     height: var(--dot-size);

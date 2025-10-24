@@ -36,7 +36,7 @@ const about = document.getElementById("about");
 if (hero && heroMedia && about) {
   //const HERO_SHIFT_PX = 120;
   const HERO_SHIFT_PX = 420;
-  const ABOUT_SHIFT_PX = 660;
+  //const ABOUT_SHIFT_PX = 660;
 
   let heroTop = 0;
   let heroH = 0;
@@ -64,9 +64,9 @@ if (hero && heroMedia && about) {
     const heroY = -t * HERO_SHIFT_PX;
     heroMedia.style.transform = `translate3d(0, ${heroY}px, 0)`;
 
-    const aboutY = -t * ABOUT_SHIFT_PX;
-    //about.style.transform = `translate3d(0, ${aboutY}px, 0)`;
-    about.style.transform = `translate3d(0, 0, 0)`;
+    // const aboutY = -t * ABOUT_SHIFT_PX;
+    // //about.style.transform = `translate3d(0, ${aboutY}px, 0)`;
+    // about.style.transform = `translate3d(0, 0, 0)`;
   }
 
   lenis.on("scroll", updateParallax);
