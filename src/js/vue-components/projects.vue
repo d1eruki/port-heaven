@@ -9,7 +9,9 @@
         </div>
       </div>
     </div>
-    <p class="light:text-(--color-white)">{{ projectText }}</p>
+    <div class="flex flex-col gap-5">
+      <p v-for="(text, index) in projectText" :key="index" class="light:text-(--color-white)">{{ text }}</p>
+    </div>
     <div class="flex flex-wrap gap-5 lg:gap-10">
       <a v-for="(link, index) in projectLinks" :key="index" class="anim-extrude light:bg-(--color-yellow) active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5" :href="link.url" target="_blank">
         <p class="light:text-(--color-black) font-[Actay]">{{ link.name }}</p>
@@ -23,17 +25,24 @@ const props = defineProps({
   projectName: {
     type: String,
     required: true,
-    default: "Default Title",
+    default: "Default title",
   },
-  projectDescription: String,
-  projectText: String,
-  projectResult: String,
-  projectStatistic: Array,
-  projectLinks: {
+  projectDescription: {
+    type: String,
+    required: true,
+    default: "Default description",
+  },
+  projectTags: {
     type: Array,
     default: () => [],
   },
-  projectTags: {
+  projectText: {
+    type: Array,
+    default: () => [],
+  },
+  projectResult: String,
+  projectStatistic: Array,
+  projectLinks: {
     type: Array,
     default: () => [],
   },
