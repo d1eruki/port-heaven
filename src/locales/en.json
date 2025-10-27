@@ -21,8 +21,8 @@
 
   "projects-varwinDotCom-title": "Varwin.com Website",
   "projects-varwinDotCom-description": "Comprehensive update of varwin.com — redesign, UX optimization, and development of new sections.",
-  "projects-varwinDotCom-text-1": "The goal of the project was to refresh outdated sections of varwin.com and improve user experience. I started with the redesign of the Varwin XRMS download page. Conducted short interviews with the marketing team and users to identify their needs. Based on the insights gathered, I formulated UX hypotheses and designed a prototype focused on conversion and interface clarity. After hallway testing and iterations, I built the final version using Bootstrap 4.",
-  "projects-varwinDotCom-text-2": "The next step was designing a registry of user projects within the Varwin Education section. It gave users a unique opportunity to share their work and explore projects created by other members of the community.",
+  "projects-varwinDotCom-text-1": "Redesign of the Varwin XRMS download page aimed at refreshing the interface and improving conversion. Conducted short interviews with marketing and users, formulated UX hypotheses, and designed a prototype. After testing and revisions, the final version was implemented using Bootstrap 4.",
+  "projects-varwinDotCom-text-2": "Design of the user project registry within the Varwin Education section. The new section united the community and enabled users to share their work and explore projects created by others.",
 
   "projects-xrms-title": "Varwin XRMS Platform",
   "projects-xrms-description": "Varwin XRMS UI kit and prototypes for visualizing ideas and testing product changes",
