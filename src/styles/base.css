@@ -9,7 +9,6 @@
     word-break: normal;
     overflow-wrap: break-word;
     hyphens: auto;
-    white-space: pre-line;
 
     &::-webkit-scrollbar {
       display: none;
