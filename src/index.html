@@ -21,8 +21,8 @@
 
     <!--me-->
     <div data-section="hero" id="hero" class="hero -z-2 flex min-h-dvh">
-      <div class="hero-media absolute top-[-660px] w-full">
-        <img src="assets/images/soma-lancet.png" class="aspect-auto w-full object-cover grayscale" alt="hero" />
+      <div class="hero-media absolute w-full lg:-top-200 lg:self-center">
+        <img src="assets/images/soma-lancet.png" class="aspect-auto h-dvh w-full object-cover grayscale lg:h-auto" alt="hero" />
       </div>
       <div class="z-1 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
         <h1 class="whitespace-pre-line">{{ t('hero') }}</h1>
@@ -47,7 +47,7 @@
     </div>
 
     <!--about-->
-    <section data-section="about" id="about" class="lg:light:bg-(--color-white) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+    <section data-section="about" id="about" class="lg:light:bg-(--color-white) light:bg-(--color-black) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
       <h2 class="lg:light:text-(--color-black) col-span-1 w-full p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
       <div class="corner-frame col-span-1 p-15 lg:m-15 lg:self-end">
         <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
