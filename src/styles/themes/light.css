@@ -28,7 +28,7 @@
     }
 
     .design:hover {
-      background-color: var(--color-white);
+      background-color: var(--color-yellow);
     }
     .design:hover * {
       color: var(--color-black);
