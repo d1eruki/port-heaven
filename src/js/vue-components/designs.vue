@@ -1,5 +1,5 @@
 <template>
-  <a :href="designUrl" target="_blank" class="light:hover:bg-(--color-yellow) light:text-(--color-white) light:hover:text-(--color-black)">
+  <a :href="designUrl" target="_blank" class="light:hover:bg-(--color-yellow) group light:text-(--color-white) light:hover:text-(--color-black)">
     <div class="anim-extrude relative z-10 grid gap-5 p-15 hover:z-50 lg:h-[50dvh] lg:items-center">
       <h4 class="flex gap-3">
         {{ designName }}
