@@ -5,11 +5,6 @@
       color: var(--color-black);
     }
 
-    body {
-      background-color: var(--color-black);
-      color: var(--color-white);
-    }
-
     a {
       color: var(--color-white);
     }
@@ -25,13 +20,6 @@
     svg:hover path,
     svg:hover rect {
       fill: var(--color-white);
-    }
-
-    .design:hover {
-      background-color: var(--color-yellow);
-    }
-    .design:hover * {
-      color: var(--color-black);
     }
 
     .dotted-grid {

@@ -14,13 +14,8 @@
   --cursor-size-label: 150px;
 
   /* colors (HSL) */
-  --color-pink: hsl(314 97% 44%);
-  --color-red: hsl(0 100% 50%);
-  --color-purple: hsl(248 65% 50%);
-  --color-yellow: hsl(73 100% 50%);
-  --color-blue: hsl(220 100% 50%);
-  --color-green: hsl(108 100% 50%);
-  --color-orange: hsl(17, 92%, 58%);
+  --color-purple: hsl(253 99% 62%);
+  --color-yellow: hsl(73, 99%, 62%);
   --color-grey: hsl(0 0% 50%);
   --color-grey-light: hsl(0 0% 70%);
   --color-grey-lighter: hsl(0 0% 95%);
