@@ -4,7 +4,7 @@
       <h4 class="flex gap-3">
         {{ designName }}
       </h4>
-      <div class="top-75 right-15 bottom-15 left-15 flex flex-wrap gap-5 self-end lg:absolute lg:flex lg:group-hover:hidden">
+      <div class="top-75 right-15 bottom-15 left-15 flex flex-wrap gap-5 self-end opacity-100 transition-all duration-100 ease-in-out lg:absolute lg:flex lg:group-hover:opacity-0">
         <div v-for="(tag, index) in designTags" :key="index" class="light:text-(--color-grey) flex gap-2.5">
           <small class="flex gap-2.5">
             <span v-if="isAdaptiveLanding(tag)" class="icon-[fa7-solid--mobile-screen]"></span>
@@ -13,7 +13,7 @@
           </small>
         </div>
       </div>
-      <p class="right-15 bottom-15 left-15 block self-end lg:absolute lg:hidden lg:group-hover:block">{{ designDesc }}</p>
+      <p class="right-15 bottom-15 left-15 block self-end transition-all duration-100 ease-in-out lg:absolute lg:opacity-0 lg:group-hover:opacity-100">{{ designDesc }}</p>
     </div>
   </a>
 </template>
