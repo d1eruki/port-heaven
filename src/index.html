@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="light:bg-(--color-black) light:text-(--color-white) relative container grid max-w-full gap-10 lg:gap-0">
+  <body lang="ru" id="app" class="light:bg-(--color-black) light:text-(--color-white) grid-bg relative container grid max-w-full">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -22,7 +22,7 @@
     <!--me-->
     <div data-section="hero" id="hero" class="hero -z-2 flex min-h-dvh">
       <div class="hero-media absolute w-full lg:self-center">
-        <img src="assets/images/soma-lancet.png" class="aspect-auto h-dvh w-full object-cover grayscale lg:h-auto" alt="hero" />
+        <img src="assets/images/soma-lancet-2.png" class="aspect-auto h-dvh justify-self-end object-cover grayscale lg:h-auto lg:w-1/2" alt="hero" />
       </div>
       <div class="z-1 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
         <h1 class="whitespace-pre-line">{{ t('hero') }}</h1>
@@ -47,10 +47,10 @@
     </div>
 
     <!--about-->
-    <section data-section="about" id="about" class="lg:light:bg-(--color-white) light:bg-(--color-black) grid grid-cols-1 lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="lg:light:text-(--color-black) col-span-1 w-full p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
-      <div class="corner-frame col-span-1 p-15 lg:m-15 lg:self-end">
-        <menu-desc :menu-desc="t('menu-about-description')"></menu-desc>
+    <section data-section="about" id="about" class="grid grid-cols-1 items-end lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
+      <h2 class="light:bg-(--color-white) light:text-(--color-black) col-span-1 p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
+      <div class="lg:light:bg-(--color-white) light:bg-(--color-black) col-span-1 h-full content-end lg:p-15">
+        <menu-desc class="corner-frame p-15" :menu-desc="t('menu-about-description')"></menu-desc>
       </div>
     </section>
 
@@ -58,7 +58,7 @@
     <section data-section="projects" id="projects" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
       <div class="light:bg-(--color-white) col-span-1 grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:col-span-1 lg:h-dvh lg:place-items-end lg:text-end">
         <h2 class="light:text-(--color-black)">{{ t('menu-projects') }}</h2>
-        <menu-desc :menu-desc="t('menu-projects-description')"></menu-desc>
+        <menu-desc class="lg:max-w-150" :menu-desc="t('menu-projects-description')"></menu-desc>
       </div>
       <div class="container-cards">
         <project
@@ -91,7 +91,7 @@
     <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 md:grid-cols-2 lg:auto-rows-fr lg:grid-cols-3 xl:grid-cols-4">
       <div class="light:bg-(--color-white) light:lg:bg-(--transparent) col-span-1 grid h-auto content-center gap-5 p-15 lg:top-0 lg:h-full">
         <h2 class="light:text-(--color-black) light:lg:text-(--color-white)">{{ t('menu-designs') }}</h2>
-        <menu-desc :menu-desc="t('menu-designs-description')"></menu-desc>
+        <menu-desc class="lg:max-w-150" :menu-desc="t('menu-designs-description')"></menu-desc>
       </div>
       <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt="" :design-tags="['Mobile app', 'Visual', 'Team work']"></design>
 
@@ -118,7 +118,7 @@
     <section data-section="creatives" id="creatives" class="relative min-h-dvh lg:my-[25dvh]">
       <div class="light:bg-(--color-white) light:lg:bg-(--transparent) pointer-events-none left-0 z-10 flex flex-col gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:-translate-y-1/2 lg:items-center lg:p-0">
         <h2 class="light:text-(--color-black) light:lg:text-(--color-white) lg:w-150">{{ t('menu-creatives') }}</h2>
-        <menu-desc :menu-desc="t('menu-creatives-description')"></menu-desc>
+        <menu-desc class="lg:max-w-150" :menu-desc="t('menu-creatives-description')"></menu-desc>
       </div>
       <div class="container-creatives h-fit w-full lg:mb-[35dvh] lg:grid lg:grid-cols-20 lg:p-10">
         <creative creative-src="assets/images/creatives/2025-artem-yakovenko.png" :col="2" :col-span="5" :row="2" :row-span="1"></creative>
@@ -131,7 +131,7 @@
       <div class="relative flex min-h-dvh flex-col justify-center gap-10 p-10 lg:items-center lg:p-0">
         <div class="flex flex-col gap-5 lg:w-150">
           <h2>{{ t('menu-footer') }}</h2>
-          <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
+          <menu-desc class="lg:max-w-150" :menu-desc="t('menu-footer-description')"></menu-desc>
         </div>
         <div class="flex justify-start gap-10 lg:w-150">
           <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] light:text-(--color-yellow) size-10"></span> </a>

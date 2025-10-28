@@ -1,7 +1,7 @@
 :root {
   --grid-bg: hsl(0 0% 3%);
-  --grid-line: hsl(0 0% 12%);
-  --grid-bold: hsl(0 0% 16%);
+  --grid-line: hsl(0, 0%, 7.5%);
+  --grid-bold: hsl(0, 0%, 10%);
   --grid-size: 24px;
   --grid-bold-step: calc(var(--grid-size) * 8);
   --grid-thin-w: 1px;
@@ -21,13 +21,4 @@
     top left,
     top left,
     top left;
-}
-
-.grid-bg--pure {
-  background-color: #000;
-}
-
-.dark-grid {
-  --grid-line: hsl(0 0% 100% / 0.015);
-  --grid-bold: hsl(0 0% 100% / 0.02);
 }

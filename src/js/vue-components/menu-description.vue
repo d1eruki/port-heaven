@@ -1,5 +1,5 @@
 <template>
-  <p class="light:text-(--color-grey) w-full lg:max-w-150">{{ menuDesc }}</p>
+  <p class="light:text-(--color-grey) w-full">{{ menuDesc }}</p>
 </template>
 
 <script setup>
