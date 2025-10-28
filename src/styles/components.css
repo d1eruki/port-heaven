@@ -93,4 +93,11 @@
   nav button[aria-current="true"] circle {
     transform: scale(1);
   }
+  .vanilla-tilt-creatives {
+    transition: var(--transition);
+    box-shadow: -4px 4px 0 0 var(--color-yellow);
+  }
+  .vanilla-tilt-creatives:hover {
+    box-shadow: none;
+  }
 }

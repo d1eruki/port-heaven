@@ -1,6 +1,6 @@
 <template>
-  <div class="vanilla-tilt-creatives h-fit hover:z-100" :style="computedStyle">
-    <img :src="creativeSrc" alt="post-card" />
+  <div class="vanilla-tilt-creatives group h-fit hover:z-100" :style="computedStyle">
+    <img class="grayscale transition-all duration-1000 ease-in-out group-hover:grayscale-0" :src="creativeSrc" alt="post-card" />
   </div>
 </template>
 
