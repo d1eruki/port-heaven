@@ -9,3 +9,4 @@ import "./js/custom/cursor";
 import "./js/custom/scroll-section";
 import "./js/custom/sections";
 import "./js/custom/scroll-to-top";
+import "./js/custom/hero-image-scale";
