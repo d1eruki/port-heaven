@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="light:bg-(--color-black) light:text-(--color-white) grid-bg relative container grid max-w-full">
+  <body lang="ru" id="app" class="light:bg-black light:text-white grid-bg relative container grid max-w-full">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <header class="fixed top-0 left-0 z-100 hidden lg:opacity-0 lg:pointer-events-none transition-opacity duration-300 ease-in-out min-h-dvh w-10 items-center justify-center mix-blend-difference lg:flex">
+    <header class="fixed top-0 left-0 z-100 hidden min-h-dvh w-10 items-center justify-center mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:flex lg:opacity-0">
       <nav class="flex w-fit flex-col gap-5">
         <nav-button nav-name="about" class="is-active hidden">{{ t('menu-about') }}</nav-button>
         <nav-button nav-name="projects" class="hidden">{{ t('menu-projects') }}</nav-button>
@@ -45,7 +45,7 @@
         <nav-button nav-name="footer" class="hidden">{{ t('menu-footer') }}</nav-button>
       </nav>
     </header>
-    <div id="progress-bar" class="progress-bar light:bg-(--color-white) fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"></div>
+    <div id="progress-bar" class="progress-bar light:bg-white fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"></div>
 
     <div class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15">
       <button id="theme-toggler" class="icon-[ic--baseline-dark-mode] hidden size-10"></button>
@@ -54,16 +54,16 @@
 
     <!--about-->
     <section data-section="about" id="about" class="grid grid-cols-1 items-end lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="light:bg-(--color-white) light:text-(--color-black) col-span-1 p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
-      <div class="lg:light:bg-(--color-white) light:bg-(--color-black) col-span-1 h-full content-end lg:p-15">
+      <h2 class="light:bg-white light:text-black col-span-1 p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
+      <div class="lg:light:bg-white light:bg-black col-span-1 h-full content-end lg:p-15">
         <menu-desc class="corner-frame p-15" :menu-desc="t('menu-about-description')"></menu-desc>
       </div>
     </section>
 
     <!--projects-->
     <section data-section="projects" id="projects" class="relative grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0">
-      <div class="light:bg-(--color-white) col-span-1 grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:col-span-1 lg:h-dvh lg:place-items-end lg:text-end">
-        <h2 class="light:text-(--color-black)">{{ t('menu-projects') }}</h2>
+      <div class="light:bg-white col-span-1 grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:col-span-1 lg:h-dvh lg:place-items-end lg:text-end">
+        <h2 class="light:text-black">{{ t('menu-projects') }}</h2>
         <menu-desc class="lg:max-w-150" :menu-desc="t('menu-projects-description')"></menu-desc>
       </div>
       <div class="container-cards">
@@ -95,8 +95,8 @@
 
     <!--design-->
     <section data-section="design" id="design" class="grid min-h-dvh grid-cols-1 md:grid-cols-2 lg:auto-rows-fr lg:grid-cols-3 xl:grid-cols-4">
-      <div class="light:bg-(--color-white) light:lg:bg-(--transparent) col-span-1 grid h-auto content-center gap-5 p-15 lg:top-0 lg:h-full">
-        <h2 class="light:text-(--color-black) light:lg:text-(--color-white)">{{ t('menu-designs') }}</h2>
+      <div class="light:bg-white light:lg:bg-transparent col-span-1 grid h-auto content-center gap-5 p-15 lg:top-0 lg:h-full">
+        <h2 class="light:text-black light:lg:text-white">{{ t('menu-designs') }}</h2>
         <menu-desc class="lg:max-w-150" :menu-desc="t('menu-designs-description')"></menu-desc>
       </div>
       <design :design-name="t('design-varwinMobile-title')" :design-desc="t('design-varwinMobile-text')" design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1" design-img-alt="" :design-tags="['Mobile app', 'Visual', 'Team work']"></design>
@@ -122,8 +122,8 @@
 
     <!--creatives-->
     <section data-section="creatives" id="creatives" class="relative min-h-dvh lg:my-[25dvh]">
-      <div class="light:bg-(--color-white) light:lg:bg-(--transparent) pointer-events-none left-0 z-10 flex flex-col gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:-translate-y-1/2 lg:items-center lg:p-0">
-        <h2 class="light:text-(--color-black) light:lg:text-(--color-white) lg:w-150">{{ t('menu-creatives') }}</h2>
+      <div class="light:bg-white light:lg:bg-transparent pointer-events-none left-0 z-10 flex flex-col gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:-translate-y-1/2 lg:items-center lg:p-0">
+        <h2 class="light:text-black light:lg:text-white lg:w-150">{{ t('menu-creatives') }}</h2>
         <menu-desc class="lg:max-w-150" :menu-desc="t('menu-creatives-description')"></menu-desc>
       </div>
       <div class="container-creatives h-fit w-full lg:mb-[35dvh] lg:grid lg:grid-cols-20 lg:p-10">
@@ -140,8 +140,8 @@
           <menu-desc class="lg:max-w-150" :menu-desc="t('menu-footer-description')"></menu-desc>
         </div>
         <div class="flex justify-start gap-10 lg:w-150">
-          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] light:text-(--color-yellow) size-10"></span> </a>
-          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] light:text-(--color-yellow) size-10"></span> </a>
+          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] light:text-primary size-10"></span> </a>
+          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] light:text-primary size-10"></span> </a>
         </div>
       </div>
       <button id="scroll-to-top" class="icon-[ic--round-keyboard-arrow-up] absolute right-5 bottom-5 size-6 lg:right-15 lg:bottom-15 lg:size-10"></button>

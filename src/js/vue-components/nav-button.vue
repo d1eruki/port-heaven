@@ -1,5 +1,5 @@
 <template>
-  <button :data-open-block="navName" :data-scroll-target="`[data-section='${navName}']`" class="light:text-(--color-grey) self-start text-start mix-blend-difference transition-colors duration-300">
+  <button :data-open-block="navName" :data-scroll-target="`[data-section='${navName}']`" class="light:text-grey-500 self-start text-start mix-blend-difference transition-colors duration-300">
     {{ t(navName === "design" ? "menu-designs" : `menu-${navName}`) }}
   </button>
 </template>

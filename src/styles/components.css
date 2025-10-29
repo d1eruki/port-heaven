@@ -10,7 +10,7 @@
   }
 
   .corner-frame {
-    --cf-color: var(--color-grey);
+    --cf-color: var(--color-grey-500);
     --cf-size: 1px;
     --cf-length: 24px;
     background:
@@ -95,7 +95,7 @@
   }
   .vanilla-tilt-creatives {
     transition: var(--transition);
-    box-shadow: -4px 4px 0 0 var(--color-yellow);
+    box-shadow: -4px 4px 0 0 var(--color-primary);
   }
   .vanilla-tilt-creatives:hover {
     box-shadow: none;

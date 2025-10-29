@@ -1,20 +1,20 @@
 <template>
-  <div class="lg:light:bg-(--color-black) top-0 left-0 col-span-1 flex min-h-dvh w-full flex-col justify-between gap-10 p-15 will-change-transform lg:p-15">
+  <div class="lg:light:bg-black top-0 left-0 col-span-1 flex min-h-dvh w-full flex-col justify-between gap-10 p-15 will-change-transform lg:p-15">
     <div class="flex flex-col gap-5">
-      <h3 class="light:text-(--color-white)">{{ projectName }}</h3>
-      <p class="light:text-(--color-grey)">{{ projectDescription }}</p>
+      <h3 class="light:text-white">{{ projectName }}</h3>
+      <p class="light:text-grey-500">{{ projectDescription }}</p>
       <div class="hidden flex-wrap gap-2 lg:flex">
         <div v-for="(tag, index) in projectTags" :key="index" class="flex">
-          <small class="light:text-(--color-white) rounded-4xl border border-solid border-white px-5 py-2.5">{{ getTagName(tag) }}</small>
+          <small class="light:text-white light:border-white rounded-4xl border border-solid px-5 py-2.5">{{ getTagName(tag) }}</small>
         </div>
       </div>
     </div>
     <div class="flex flex-col gap-5">
-      <p v-for="(text, index) in projectText" :key="index" class="light:text-(--color-white)">{{ text }}</p>
+      <p v-for="(text, index) in projectText" :key="index" class="light:text-white">{{ text }}</p>
     </div>
     <div class="flex flex-wrap gap-5 lg:gap-10">
-      <a v-for="(link, index) in projectLinks" :key="index" class="anim-extrude light:bg-(--color-yellow) active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5" :href="link.url" target="_blank">
-        <p class="light:text-(--color-black) font-[Actay]">{{ link.name }}</p>
+      <a v-for="(link, index) in projectLinks" :key="index" class="anim-extrude light:bg-primary active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5" :href="link.url" target="_blank">
+        <p class="light:text-black font-[Actay]">{{ link.name }}</p>
       </a>
     </div>
   </div>

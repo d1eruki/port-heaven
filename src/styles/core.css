@@ -14,18 +14,18 @@
   --cursor-size-label: 150px;
 
   /* colors (HSL) */
-  --color-purple: hsl(265 100% 50%);
-  --color-yellow: hsl(83, 100%, 50%);
-  --color-grey: hsl(0 0% 50%);
-  --color-grey-light: hsl(0 0% 70%);
-  --color-grey-lighter: hsl(0 0% 95%);
-  --color-grey-dark: hsl(0 0% 20%);
-  --color-grey-darker: hsl(0 0% 10%);
-  --color-grey-darkest: hsl(0 0% 2%);
+  --color-primary: hsl(83, 100%, 50%);
+  --color-secondary: hsl(265 100% 50%);
+  --color-grey-900: hsl(0 0% 2%);
+  --color-grey-800: hsl(0 0% 10%);
+  --color-grey-600: hsl(0 0% 20%);
+  --color-grey-500: hsl(0 0% 50%);
+  --color-grey-200: hsl(0 0% 70%);
+  --color-grey-100: hsl(0 0% 95%);
   --color-transparent: hsl(0 0% 0% / 0);
 
   /* типографика */
-  --text-h1: clamp(3rem, 12vw, 16rem);
+  --text-h1: clamp(3rem, 12vw, 20rem);
   --leading-h1: 10vw;
   --text-h2: clamp(2.5rem, 4vw, 8rem);
   --text-h3: clamp(2rem, 3vw, 4.5rem);
