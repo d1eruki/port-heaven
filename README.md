@@ -73,7 +73,7 @@ git clone git@github.com:d1eruki/port-heaven.git
 cd port-heaven
 ```
 
-2. Install dependencies:
+1. Install dependencies:
 
    Make sure you have Node.js installed: https://nodejs.org/
 
