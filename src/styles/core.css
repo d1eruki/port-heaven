@@ -16,13 +16,7 @@
   /* colors (HSL) */
   --color-primary: hsl(83, 100%, 50%);
   --color-secondary: hsl(265 100% 50%);
-  --color-grey-900: hsl(0 0% 2%);
-  --color-grey-800: hsl(0 0% 10%);
-  --color-grey-600: hsl(0 0% 20%);
   --color-grey-500: hsl(0 0% 50%);
-  --color-grey-200: hsl(0 0% 70%);
-  --color-grey-100: hsl(0 0% 95%);
-  --color-transparent: hsl(0 0% 0% / 0);
 
   /* типографика */
   --text-h1: clamp(3rem, 12vw, 20rem);

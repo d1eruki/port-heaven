@@ -12,18 +12,10 @@
       color: var(--color-white);
     }
 
-    hr {
-      color: var(--color-grey);
-    }
-
     svg:hover polygon,
     svg:hover path,
     svg:hover rect {
       fill: var(--color-white);
-    }
-
-    .dotted-grid {
-      background-image: radial-gradient(circle, var(--color-grey-darker) 0, var(--color-grey-darker) 2.5px, var(--color-transparent) 2.5px);
     }
 
     .glow-xl {
