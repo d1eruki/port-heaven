@@ -65,16 +65,16 @@
     </section>
 
     <!--principles-->
-    <section data-section="what" id="what" class="light:bg-black flex min-h-screen flex-col content-center lg:gap-15">
+    <section data-section="what" id="what" class="light:bg-black relative flex min-h-screen flex-col content-center lg:gap-15">
       <div class="light:lg:text-white light:lg:bg-black light:text-black light:bg-white p-15">
         <h2 class="">{{ t('menu-what') }}</h2>
       </div>
-      <div class="flex flex-col gap-15 lg:flex-row lg:p-15 ">
+      <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
         <feature :title="t('menu-what-efficiency-title')" :text="t('menu-what-efficiency-text')" number="01"></feature>
         <feature :title="t('menu-what-system-title')" :text="t('menu-what-system-text')" number="02"></feature>
         <feature :title="t('menu-what-strategy-title')" :text="t('menu-what-strategy-text')" number="03"></feature>
       </div>
-      <img alt="" class="absolute right-[5%] bottom-0 opacity-6 lg:w-150" src="assets/images/soma.png" />
+      <img alt="" class="absolute right-0 bottom-20 hidden w-150 opacity-6 lg:block" src="assets/soma.png" />
     </section>
 
     <!--projects-->
