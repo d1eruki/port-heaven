@@ -1,8 +1,8 @@
 <template>
-  <div class="light:border-neutral-800 flex flex-1 flex-col gap-10 border-l-1 px-10 dark:border-neutral-200">
-    <span class="light:text-neutral-800 text-9xl">{{ number }}</span>
-    <h3 class="light:text-white">{{ title }}</h3>
-    <p>{{ text }}</p>
+  <div class="light:border-neutral-900 relative flex min-h-dvh flex-1 flex-col justify-between p-15 lg:min-h-full lg:gap-10 lg:border-l-1 lg:px-15 lg:py-0">
+    <span class="light:text-neutral-900 absolute -bottom-12 -left-36 z-1 text-[24rem] font-black lg:static lg:text-9xl lg:font-extralight">{{ number }}</span>
+    <h3 class="light:text-white z-2">{{ title }}</h3>
+    <p class="z-2">{{ text }}</p>
   </div>
 </template>
 

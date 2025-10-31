@@ -65,16 +65,14 @@
     </section>
 
     <!--principles-->
-    <section data-section="what" id="what" class="light:bg-black min-h-screen content-center">
-      <div class="flex flex-col lg:gap-15">
-        <div class="light:lg:text-white light:lg:bg-black light:text-black light:bg-white p-15">
-          <h2 class="">{{ t('menu-what') }}</h2>
-        </div>
-        <div class="flex flex-col gap-15 p-15 lg:flex-row">
-          <feature :title="t('menu-what-efficiency-title')" :text="t('menu-what-efficiency-text')" number="01"></feature>
-          <feature :title="t('menu-what-system-title')" :text="t('menu-what-system-text')" number="02"></feature>
-          <feature :title="t('menu-what-strategy-title')" :text="t('menu-what-strategy-text')" number="03"></feature>
-        </div>
+    <section data-section="what" id="what" class="light:bg-black flex min-h-screen flex-col content-center lg:gap-15">
+      <div class="light:lg:text-white light:lg:bg-black light:text-black light:bg-white p-15">
+        <h2 class="">{{ t('menu-what') }}</h2>
+      </div>
+      <div class="flex flex-col gap-15 lg:flex-row lg:p-15 ">
+        <feature :title="t('menu-what-efficiency-title')" :text="t('menu-what-efficiency-text')" number="01"></feature>
+        <feature :title="t('menu-what-system-title')" :text="t('menu-what-system-text')" number="02"></feature>
+        <feature :title="t('menu-what-strategy-title')" :text="t('menu-what-strategy-text')" number="03"></feature>
       </div>
       <img alt="" class="absolute right-[5%] bottom-0 opacity-6 lg:w-150" src="assets/images/soma.png" />
     </section>
@@ -154,7 +152,7 @@
     </section>
 
     <!--footer-->
-    <section data-section="footer" id="footer" class="grid min-h-dvh grid-rows-3 auto-rows-auto content-center">
+    <section data-section="footer" id="footer" class="grid min-h-dvh auto-rows-auto grid-rows-3 content-center">
       <div></div>
       <div class="flex flex-col justify-center gap-10 p-10 lg:items-center lg:p-0">
         <div class="flex flex-col gap-5 lg:w-150">
