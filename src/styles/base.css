@@ -49,4 +49,11 @@
   .design span {
     font-size: var(--text-small);
   }
+
+  video::-webkit-media-controls {
+    display: none;
+  }
+  video:hover::-webkit-media-controls {
+    display: flex;
+  }
 }

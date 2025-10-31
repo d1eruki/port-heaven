@@ -1,6 +1,6 @@
 <template>
   <div class="vanilla-tilt-creatives group h-fit hover:z-100" :style="computedStyle">
-    <video class="transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0" :src="creativeSrc" controls />
+    <video class="transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0" :src="creativeSrc" muted controls autoplay loop />
   </div>
 </template>
 
