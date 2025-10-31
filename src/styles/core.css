@@ -16,7 +16,6 @@
   /* colors (HSL) */
   --color-primary: hsl(83, 100%, 50%);
   --color-secondary: hsl(265 100% 50%);
-  --color-grey-500: hsl(0 0% 50%);
 
   /* типографика */
   --text-h1: clamp(3rem, 12vw, 20rem);
@@ -25,7 +24,7 @@
   --text-h3: clamp(2rem, 3vw, 4.5rem);
   --text-h4: clamp(1.75rem, 2vw, 3rem);
   --text-body: clamp(1.25rem, 1vw, 2rem);
-  --text-small: clamp(1rem, 1vw, 1.25rem);
+  --text-small: clamp(0.75rem, 1vw, 1.25rem);
 
   --dot-size: 14px;
   --dot-gap: 10px;

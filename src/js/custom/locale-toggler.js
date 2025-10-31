@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const setLabel = (el) => {
     const current = i18n.global.locale.value;
-    el.textContent = current === "ru" ? "en" : "ru";
+    const small = el.querySelector("small");
+    if (small) {
+      small.textContent = current === "ru" ? "en" : "ru";
+    }
   };
 
   buttons.forEach((btn) => {

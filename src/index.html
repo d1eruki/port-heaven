@@ -36,7 +36,7 @@
       </div>
       <div class="z-1 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
         <h1 class="whitespace-pre-line">{{ t('hero') }}</h1>
-        <p class="lg:mb-10">{{ t('logo') }}</p>
+        <small class="lg:mb-10">{{ t('logo') }}</small>
       </div>
     </div>
 
@@ -53,7 +53,7 @@
 
     <div class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15">
       <button id="theme-toggler" class="icon-[ic--baseline-dark-mode] hidden size-10"></button>
-      <button id="lang-toggle" class="icon-[ic--baseline-language] size-6 lg:size-10"></button>
+      <button id="lang-toggle" class="group light:text-gray-500 light:hover:text-white flex"><small>en</small></button>
     </div>
 
     <!--about-->
@@ -139,8 +139,9 @@
     </section>
 
     <!--footer-->
-    <section data-section="footer" id="footer" class="relative min-h-dvh">
-      <div class="relative flex min-h-dvh flex-col justify-center gap-10 p-10 lg:items-center lg:p-0">
+    <section data-section="footer" id="footer" class="grid min-h-dvh grid-rows-3 content-center">
+      <div></div>
+      <div class="flex flex-col justify-center gap-10 p-10 lg:items-center lg:p-0">
         <div class="flex flex-col gap-5 lg:w-150">
           <h2>{{ t('menu-footer') }}</h2>
           <menu-desc class="lg:max-w-150" :menu-desc="t('menu-footer-description')"></menu-desc>
@@ -150,7 +151,9 @@
           <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] light:text-primary size-10"></span> </a>
         </div>
       </div>
-      <button id="scroll-to-top" class="icon-[ic--round-keyboard-arrow-up] absolute right-5 bottom-5 size-6 lg:right-15 lg:bottom-15 lg:size-10"></button>
+      <div class="place-items-end content-end p-10">
+        <button id="scroll-to-top" class="group light:text-gray-500 light:hover:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>наверх</small></button>
+      </div>
     </section>
   </body>
 </html>

@@ -5,7 +5,7 @@
         {{ designName }}
       </h4>
       <div class="top-75 right-15 bottom-15 left-15 flex flex-wrap gap-5 self-end opacity-100 transition-all duration-100 ease-in-out lg:absolute lg:flex lg:group-hover:opacity-0">
-        <div v-for="(tag, index) in designTags" :key="index" class="light:text-grey-500 flex gap-2.5">
+        <div v-for="(tag, index) in designTags" :key="index" class="light:text-gray-500 flex gap-2.5">
           <small class="flex gap-2.5">
             <span v-if="isAdaptiveLanding(tag)" class="icon-[ic--baseline-phone-android]"></span>
             <span v-if="isDesktopLanding(tag)" class="icon-[ic--baseline-monitor]"></span>

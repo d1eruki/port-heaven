@@ -10,7 +10,7 @@
   }
 
   .corner-frame {
-    --cf-color: var(--color-grey-500);
+    --cf-color: var(--color-gray-500);
     --cf-size: 1px;
     --cf-length: 24px;
     background:
@@ -81,7 +81,6 @@
     width: var(--dot-size);
     height: var(--dot-size);
   }
-
   nav circle {
     transition:
       transform 0.2s ease,
@@ -89,10 +88,10 @@
       opacity 0.2s ease;
     transform: scale(0.5);
   }
-
   nav button[aria-current="true"] circle {
     transform: scale(1);
   }
+
   .vanilla-tilt-creatives {
     transition: var(--transition);
     box-shadow: -4px 4px 0 0 var(--color-primary);
