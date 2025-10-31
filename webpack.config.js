@@ -34,7 +34,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: "asset/resource",
-        generator: { filename: "assets/images/[name][ext]" },
+        generator: { filename: "assets/[name][ext]" },
       },
       {
         test: /\.vue$/,
@@ -70,7 +70,7 @@ module.exports = {
     }),
     ...(isDev ? [] : [new MiniCssExtractPlugin({ filename: "style.css" })]),
     new CopyWebpackPlugin({
-      patterns: [{ from: "src/assets/images", to: "assets/images" }],
+      patterns: [{ from: "src/assets", to: "assets" }],
     }),
     new DefinePlugin({
       __VUE_OPTIONS_API__: JSON.stringify(false),
