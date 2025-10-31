@@ -1,8 +1,8 @@
 <template>
-  <div class="light:lg:bg-black top-0 left-0 col-span-1 flex min-h-dvh w-full flex-col justify-between gap-10 p-15 will-change-transform lg:p-15">
+  <div class="light:lg:bg-black top-0 left-0 col-span-1 flex min-h-dvh w-full flex-col justify-between gap-10 p-15 will-change-transform">
     <div class="flex flex-col gap-5">
       <h3 class="light:text-white">{{ projectName }}</h3>
-      <p class="light:text-gray-500">{{ projectDescription }}</p>
+      <p class="light:text-neutral-500">{{ projectDescription }}</p>
       <div class="hidden flex-wrap gap-2 lg:flex">
         <div v-for="(tag, index) in projectTags" :key="index" class="flex">
           <small class="light:text-white light:border-white rounded-4xl border border-solid px-2 py-1.5">{{ getTagName(tag) }}</small>

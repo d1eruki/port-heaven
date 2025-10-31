@@ -5,6 +5,7 @@ import imgCreatives from "../vue-components/img-creatives.vue";
 import videoCreatives from "../vue-components/video-creatives.vue";
 import NavButton from "../vue-components/nav-button.vue";
 import MenuDesc from "../vue-components/menu-description.vue";
+import Features from "../vue-components/features.vue";
 
 import i18n from "./i18n";
 import { useI18n } from "vue-i18n";
@@ -22,6 +23,7 @@ app.component("img-creative", imgCreatives);
 app.component("video-creative", videoCreatives);
 app.component("navButton", NavButton);
 app.component("menuDesc", MenuDesc);
+app.component("feature", Features);
 
 app.use(i18n);
 app.mount("#app");

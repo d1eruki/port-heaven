@@ -5,6 +5,13 @@
 
   "menu-about": "ux/ui/web designer",
   "menu-about-description": "I create not just beautiful, but functional design that solves business challenges, boosts conversions, and scales easily. I work at the intersection of web design, product, and front-end, keeping in mind metrics, MVP, and development constraints. I look through the eyes of the user and structure like an engineer—turning business goals into clear, usable interfaces. I know front-end basics and can quickly build prototypes or landing pages. I also use video editing for presentations, promo materials, and UI animations to show design not only in static form, but also in motion.",
+  "menu-what": "principles",
+  "menu-what-efficiency-title": "Efficiency",
+  "menu-what-efficiency-text": "Design that solves problems, not just looks pretty. User experience is tailored to increase conversions. Focus on speed: MVP, launch, tests — all to quickly understand what works.",
+  "menu-what-system-title": "Systematic Approach",
+  "menu-what-system-text": "Creating design systems that are easy to scale and maintain. I consider technical constraints, understand frontend, and work in a way that makes life easier for developers.",
+  "menu-what-strategy-title": "Strategy",
+  "menu-what-strategy-text": "I see the product as a whole: from idea and structure to final implementation. I engage at all stages to ensure the result is deliberate and impactful, not random.",
   "menu-projects": "commercial projects",
   "menu-projects-description": "[ Real commercial cases that have been brought to fruition. Here, you will find not just ideas, but projects that have been launched and are currently operational. ]",
   "menu-designs": "mockups",

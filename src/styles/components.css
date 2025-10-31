@@ -10,7 +10,7 @@
   }
 
   .corner-frame {
-    --cf-color: var(--color-gray-500);
+    --cf-color: var(--color-neutral-500);
     --cf-size: 1px;
     --cf-length: 24px;
     background:
