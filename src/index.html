@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" prefix="og: https://ogp.me/ns#" class="scroll-smooth">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <title>port-heaven</title>
 
@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="light:bg-black light:text-white relative container grid max-w-full overflow-x-hidden">
+  <body lang="ru" id="app" class="light:bg-black light:text-white relative container grid max-w-full scroll-smooth">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -31,7 +31,7 @@
 
     <!--me-->
     <div data-section="hero" id="hero" class="hero -z-2 flex min-h-dvh">
-      <div class="hero-media absolute w-full lg:z-2 lg:self-center">
+      <div class="hero-media absolute w-full overflow-x-hidden lg:z-2 lg:self-center">
         <img src="assets/soma-lancet.webp" class="hero-image aspect-auto h-dvh justify-self-end object-cover lg:h-auto lg:w-1/2" alt="hero" />
       </div>
       <div class="z-1 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between">
@@ -145,9 +145,9 @@
       </div>
       <div class="container-creatives h-fit w-full lg:mb-[35dvh] lg:grid lg:grid-cols-20 lg:p-10">
         <img-creative creative-src="assets/creatives/postcard.webp" :col="2" :col-span="5" :row="2" :row-span="1"></img-creative>
-        <img-creative creative-src="assets/creatives/siyay.webp" :col="14" :col-span="6" :row="3" :row-span="1"></img-creative>
+        <video-creative creative-src="assets/creatives/varwin-opening.mp4" :col="13" :col-span="6" :row="3" :row-span="1"></video-creative>
         <img-creative creative-src="assets/creatives/saasoft.webp" :col="3" :col-span="6" :row="4" :row-span="1"></img-creative>
-        <video-creative creative-src="assets/creatives/varwin-opening.mp4" :col="13" :col-span="6" :row="5" :row-span="1"></video-creative>
+        <img-creative creative-src="assets/creatives/siyay.webp" :col="14" :col-span="6" :row="5" :row-span="1"></img-creative>
       </div>
     </section>
 

@@ -92,11 +92,13 @@
     transform: scale(1);
   }
 
-  .vanilla-tilt-creatives {
-    transition: var(--transition);
-    box-shadow: -4px 4px 0 0 var(--color-primary);
-  }
-  .vanilla-tilt-creatives:hover {
-    box-shadow: none;
+  @media (min-width: 1024px) {
+    .vanilla-tilt-creatives {
+      transition: var(--transition);
+      box-shadow: -4px 4px 0 0 var(--color-primary);
+    }
+    .vanilla-tilt-creatives:hover {
+      box-shadow: none;
+    }
   }
 }
