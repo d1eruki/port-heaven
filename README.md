@@ -22,7 +22,6 @@ Packages involved:
 - `css-loader` — allows importing CSS into JS
 - `style-loader` — injects styles into DOM during development
 
-
 ### PostCSS
 
 PostCSS is used together with Tailwind CSS v4 via `@tailwindcss/postcss` and `postcss-loader`.
