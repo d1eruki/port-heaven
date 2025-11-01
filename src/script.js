@@ -11,3 +11,4 @@ import "./js/custom/sections";
 import "./js/custom/scroll-to-top";
 import "./js/custom/hero-image-scale";
 import "./js/custom/header-toggle";
+import "./js/custom/bg-cells";
