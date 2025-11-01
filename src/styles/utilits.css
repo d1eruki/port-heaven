@@ -1,0 +1,21 @@
+@layer utilities {
+    .justify-last {
+        text-align: justify;
+    }
+    .justify-last::after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+    }
+
+    @media (min-width: 1024px) {
+        .lg\:justify-last {
+            text-align: justify;
+        }
+        .lg\:justify-last::after {
+            content: "";
+            display: inline-block;
+            width: 100%;
+        }
+    }
+}

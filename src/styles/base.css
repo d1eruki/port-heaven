@@ -4,11 +4,10 @@
     font-optical-sizing: auto;
     font-weight: 200;
     cursor: none;
-    line-height: 1;
-    text-wrap: balance;
+    line-height: 1.2;
+   /* text-wrap: balance;
     word-break: normal;
-    overflow-wrap: break-word;
-    hyphens: auto;
+    overflow-wrap: break-word;*/
 
     &::-webkit-scrollbar {
       display: none;
@@ -22,6 +21,7 @@
     font-weight: 900;
     font-family: "Actay", sans-serif;
     text-transform: lowercase;
+      hyphens: auto;
   }
 
   h1 {
