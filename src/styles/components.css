@@ -103,8 +103,7 @@
   }
 
   .hero {
-    background-image: radial-gradient(circle at 0 0, #fff 1.2px, transparent 1.2px), linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-
+    background-image: radial-gradient(circle at 0 0, var(--color-white) 1px, transparent 1px), linear-gradient(to right, var(--color-neutral-800) 1px, transparent 1px), linear-gradient(to bottom, var(--color-neutral-800) 1px, transparent 1px);
     background-size:
       var(--cell) var(--cell),
       var(--cell) var(--cell),
@@ -113,7 +112,6 @@
       0 0,
       0 0,
       0 0;
-    background-repeat: repeat;
-    background-attachment: scroll;
+    background-attachment: fixed;
   }
 }
