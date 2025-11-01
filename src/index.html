@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body lang="ru" id="app" class="light:bg-black light:text-white relative container grid max-w-full scroll-smooth">
+  <body lang="ru" id="app" class="lg:justify-last article light:bg-black light:text-white relative container grid max-w-full scroll-smooth">
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103012336" style="position: absolute; left: -9999px" alt="" />
@@ -55,7 +55,7 @@
 
     <div class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15">
       <button id="theme-toggler" class="icon-[ic--baseline-dark-mode] hidden size-10"></button>
-      <button id="lang-toggle" class="group light:text-neutral-500 light:hover:text-white flex"><small>en</small></button>
+      <button id="lang-toggle" class="group light:text-white flex"><small>en</small></button>
     </div>
 
     <!--about-->
@@ -67,14 +67,14 @@
     </section>
 
     <!--principles-->
-    <section data-section="what" id="what" class="light:bg-black relative flex min-h-screen flex-col content-center lg:gap-15">
-      <div class="light:lg:text-white light:lg:bg-black light:text-black light:bg-white p-15">
-        <h2 class="">{{ t('menu-what') }}</h2>
+    <section data-section="numbers" id="numbers" class="light:bg-black relative flex min-h-screen flex-col lg:justify-center content-center lg:gap-15">
+      <div class="light:lg:text-white light:lg:bg-black light:text-black light:bg-white p-15 block lg:hidden">
+        <h2 class="">{{ t('menu-numbers') }}</h2>
       </div>
       <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
-        <feature :title="t('menu-what-efficiency-title')" :text="t('menu-what-efficiency-text')" number="01"></feature>
-        <feature :title="t('menu-what-system-title')" :text="t('menu-what-system-text')" number="02"></feature>
-        <feature :title="t('menu-what-strategy-title')" :text="t('menu-what-strategy-text')" number="03"></feature>
+        <feature :title="t('menu-numbers-experience-title')" :text="t('menu-numbers-experience-text')" number="2+"></feature>
+        <feature :title="t('menu-numbers-projects-title')" :text="t('menu-numbers-projects-text')" number="15+"></feature>
+        <feature :title="t('menu-numbers-strategy-title')" :text="t('menu-numbers-strategy-text')" number="03"></feature>
       </div>
       <img alt="" class="absolute right-0 bottom-20 hidden w-150 opacity-6 lg:block" src="assets/soma.png" />
     </section>
@@ -167,7 +167,7 @@
         </div>
       </div>
       <div class="place-items-end content-end p-5 lg:p-15">
-        <button id="scroll-to-top" class="group light:text-neutral-500 light:hover:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small></button>
+        <button id="scroll-to-top" class="group light:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small></button>
       </div>
     </section>
   </body>
