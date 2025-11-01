@@ -109,9 +109,9 @@
       var(--cell) var(--cell),
       var(--cell) var(--cell);
     background-position:
-      0 0,
-      0 0,
-      0 0;
+      calc(var(--cell) / 2) calc(var(--cell) / 2),
+      calc(var(--cell) / 2) calc(var(--cell) / 2),
+      calc(var(--cell) / 2) calc(var(--cell) / 2);
     background-attachment: fixed;
   }
 }
