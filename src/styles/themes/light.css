@@ -28,7 +28,7 @@
     }
 
     nav button[aria-current="true"] circle {
-      fill: var(--dot-color);
+      fill: var(--dot-current);
     }
   }
 }

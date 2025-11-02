@@ -29,4 +29,5 @@
   --dot-size: 14px;
   --dot-gap: 10px;
   --dot-color: var(--color-white);
+  --dot-current: var(--color-primary);
 }
