@@ -20,7 +20,6 @@
     <link href="assets/favicon.png" rel="icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="lg:justify-last article light:bg-black light:text-white relative container grid max-w-full scroll-smooth">
     <noscript>
@@ -58,25 +57,27 @@
       <button id="lang-toggle" class="group light:text-white flex"><small>en</small></button>
     </div>
 
-    <!--about-->
-    <section data-section="about" id="about" class="grid grid-cols-1 items-end lg:min-h-dvh lg:auto-rows-fr lg:grid-cols-2">
-      <h2 class="light:bg-white light:text-black col-span-1 p-15 lg:sticky lg:top-0 lg:h-dvh lg:content-center lg:text-center">{{ t('menu-about') }}</h2>
-      <div class="lg:light:bg-white light:bg-black col-span-1 h-full content-end lg:p-15">
-        <menu-desc class="corner-frame p-15" :menu-desc="t('menu-about-description')"></menu-desc>
+    <!--description-->
+    <section data-section="description" id="description" class="grid lg:min-h-dvh lg:grid-cols-2">
+      <div class="light:bg-white light:text-black content-center lg:h-dvh">
+        <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description') }}</h2>
+      </div>
+      <div class="lg:light:bg-white light:bg-black h-full content-end lg:p-15">
+        <menu-desc class="corner-frame p-15" :menu-desc="t('menu-description-description')"></menu-desc>
       </div>
     </section>
 
-    <!--numbers-->
-    <section data-section="numbers" id="numbers" class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15">
+    <!--about-->
+    <section data-section="about" id="about" class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15">
       <div class="light:lg:text-white light:lg:bg-black light:text-black light:bg-white block p-15 lg:hidden">
-        <h2 class="">{{ t('menu-numbers') }}</h2>
+        <h2 class="">{{ t('menu-about') }}</h2>
       </div>
       <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
-        <feature :title="t('menu-numbers-experience-title')" :text="t('menu-numbers-experience-text')" number="2+"></feature>
-        <feature :title="t('menu-numbers-projects-title')" :text="t('menu-numbers-projects-text')" number="15+"></feature>
-        <feature :title="t('menu-numbers-hobbies-title')" :text="t('menu-numbers-hobbies-text')"></feature>
+        <feature :title="'/ ' + t('menu-about-experience-title')" :text="t('menu-about-experience-text')" number="2+"></feature>
+        <feature :title="'/ ' + t('menu-about-projects-title')" :text="t('menu-about-projects-text')" number="10+"></feature>
+        <feature :text="t('menu-about-hobbies-text')"></feature>
       </div>
-      <img alt="" class="absolute right-0 bottom-20 z-1 hidden w-190 opacity-7.5 lg:block" src="assets/soma.webp" />
+      <img alt="" class="absolute right-0 bottom-20 z-1 hidden w-180 opacity-7.5 lg:block" src="assets/soma.webp" />
     </section>
 
     <!--projects-->
@@ -154,8 +155,8 @@
     </section>
 
     <!--footer-->
-    <section data-section="footer" id="footer" class="grid min-h-dvh auto-rows-auto grid-rows-3 content-center">
-      <div></div>
+    <section data-section="footer" id="footer" class="grid min-h-dvh auto-rows-auto grid-rows-2 content-center lg:grid-rows-3">
+      <div class="hidden lg:block"></div>
       <div class="flex flex-col justify-center gap-10 p-10 lg:items-center lg:p-0">
         <div class="flex flex-col gap-5 lg:w-150">
           <h2>{{ t('menu-footer') }}</h2>

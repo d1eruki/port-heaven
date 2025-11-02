@@ -3,16 +3,16 @@
 
   "hero": "Artem\nTresckow",
 
-  "menu-about": "ux/ui/web designer",
-  "menu-about-description": "I create not just beautiful, but functional design that solves business challenges, boosts conversions, and scales easily. I work at the intersection of web design, product, and front-end, keeping in mind metrics, MVP, and development constraints. I look through the eyes of the user and structure like an engineer—turning business goals into clear, usable interfaces. I know front-end basics and can quickly build prototypes or landing pages. I also use video editing for presentations, promo materials, and UI animations to show design not only in static form, but also in motion.",
+  "menu-description": "ux/ui/web designer",
+  "menu-description-description": "I create not just beautiful, but functional design that solves business challenges, boosts conversions, and scales easily. I work at the intersection of web design, product, and front-end, keeping in mind metrics, MVP, and development constraints. I look through the eyes of the user and structure like an engineer—turning business goals into clear, usable interfaces. I know front-end basics and can quickly build prototypes or landing pages. I also use video editing for presentations, promo materials, and UI animations to show design not only in static form, but also in motion.",
 
-  "menu-numbers": "Numbers",
-  "menu-numbers-experience-title": "Experience",
-  "menu-numbers-experience-text": "years working on commercial projects — from designing interfaces in Figma to building UI kits and interactive prototypes. Handled layout with CSS, frameworks, and builders. Familiar with design guidelines and able to adapt layouts for different platforms, created promo materials and motion graphics.",
-  "menu-numbers-projects-title": "Projects",
-  "menu-numbers-projects-text": "projects delivered — from landing pages to complex web platforms. Developed several design systems, reducing build and revision time by up to 40%. Worked on VR, e-learning, and marketing products, improving UX and visual consistency.",
-  "menu-numbers-hobbies-title": "Hobbies",
-  "menu-numbers-hobbies-text": "In my free time I grow as a designer, take on freelance projects, and explore new directions. I follow my favorite designers and get inspired by their work. Sometimes I go out to nice places or just relax at home — movies, some gaming, and the gym for balance.",
+  "menu-about": "Numbers",
+  "menu-about-experience-title": "Experience",
+  "menu-about-experience-text": "years working on commercial projects — from designing interfaces in Figma to building UI kits and interactive prototypes. Handled layout with CSS, frameworks, and builders. Familiar with design guidelines and able to adapt layouts for different platforms, created promo materials and motion graphics.",
+  "menu-about-projects-title": "Projects",
+  "menu-about-projects-text": "projects delivered — from landing pages to complex web platforms. Developed several design systems, reducing build and revision time by up to 40%. Worked on VR, e-learning, and marketing products, improving UX and visual consistency.",
+  "menu-about-hobbies-title": "Hobbies",
+  "menu-about-hobbies-text": "In my free time I grow as a designer, take on freelance projects, and explore new directions. I follow my favorite designers and get inspired by their work. Sometimes I go out to nice places or just relax at home — movies, some gaming, and the gym for balance.",
 
   "menu-projects": "commercial projects",
   "menu-projects-description": "[ Real commercial cases that have been brought to fruition. Here, you will find not just ideas, but projects that have been launched and are currently operational. ]",

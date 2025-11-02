@@ -1,6 +1,6 @@
 <template>
   <div class="light:border-neutral-800 relative z-2 grid min-h-dvh flex-1 justify-between gap-15 p-15 lg:min-h-full lg:gap-20 lg:border-l-1 lg:p-15 xl:[grid-template-rows:auto_1fr_auto]">
-    <small class="light:text-white">/ {{ title }}</small>
+    <small class="light:text-white">{{ title }}</small>
     <span class="light:text-primary text-[8rem] font-black lg:static lg:text-9xl lg:font-bold">{{ number }}</span>
     <p>{{ text }}</p>
   </div>
@@ -13,8 +13,6 @@ const props = defineProps({
   },
   title: {
     type: String,
-    required: true,
-    default: "default title",
   },
   text: {
     type: String,
