@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-5">
       <h3 class="light:text-white">{{ projectName }}</h3>
       <p class="light:text-neutral-500">{{ projectDescription }}</p>
-      <Tags :tags="projectTags" />
+      <Tags :tags="projectTags" :show-icons="true" />
     </div>
     <div class="flex flex-col gap-5">
       <p v-for="(text, index) in projectText" :key="index" class="light:text-white">{{ text }}</p>
