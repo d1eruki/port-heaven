@@ -87,6 +87,7 @@
       fill 0.2s ease,
       opacity 0.2s ease;
     transform: scale(0.5);
+    transform-origin: center;
   }
   nav button[aria-current="true"] circle {
     transform: scale(1);
