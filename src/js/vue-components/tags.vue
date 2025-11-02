@@ -1,7 +1,7 @@
 <template>
   <div class="hidden flex-wrap gap-2 lg:flex">
     <div v-for="(tag, index) in tags" :key="index" class="flex">
-      <small class="light:text-neutral-500 light:bg-neutral-800 rounded-4xl px-2 py-1.5 flex gap-2.5">
+      <small class="light:text-neutral-500 light:bg-neutral-800 flex gap-2.5 rounded-4xl px-2 py-1.5">
         <span v-if="showIcons && isAdaptive(tag)" class="icon-[ic--baseline-phone-android]"></span>
         <span v-if="showIcons && isDesktop(tag)" class="icon-[ic--baseline-monitor]"></span>
         {{ getTagName(tag) }}
