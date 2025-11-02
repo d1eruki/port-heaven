@@ -164,8 +164,14 @@
           <menu-desc class="lg:max-w-150" :menu-desc="t('menu-footer-description')"></menu-desc>
         </div>
         <div class="flex justify-start gap-10 lg:w-150">
-          <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] light:text-primary size-10"></span> </a>
-          <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] light:text-primary size-10"></span> </a>
+          <div class="group relative">
+            <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] light:text-primary size-10"></span> </a>
+            <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
+          </div>
+          <div class="group relative">
+            <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] light:text-primary size-10"></span> </a>
+            <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
+          </div>
         </div>
       </div>
       <div class="place-items-end content-end p-5 lg:p-15">

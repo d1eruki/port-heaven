@@ -1,15 +1,21 @@
-@font-face {
-  font-family: "Actay";
-  src: url("../assets/fonts/ActayWide-Bold.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
+/* =========================
+   JetBrains Mono — Normal
+   ========================= */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("../assets/fonts/JetBrainsMono-Thin.woff2") format("woff2");
   font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================
+   Actay Wide — Bold
+   ========================= */
+@font-face {
+  font-family: "Actay Wide";
+  src: url("../assets/fonts/ActayWide-Bold.otf") format("opentype");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }

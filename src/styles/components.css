@@ -43,7 +43,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Actay", sans-serif;
+    font-family: "Actay Wide", sans-serif;
   }
 
   .app-cursor::after {
