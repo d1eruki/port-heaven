@@ -3,11 +3,7 @@
     <div class="flex flex-col gap-5">
       <h3 class="light:text-white">{{ projectName }}</h3>
       <p class="light:text-neutral-500">{{ projectDescription }}</p>
-      <div class="hidden flex-wrap gap-2 lg:flex">
-        <div v-for="(tag, index) in projectTags" :key="index" class="flex">
-          <small class="light:text-neutral-500 light:bg-neutral-800 rounded-4xl  px-2 py-1.5">{{ getTagName(tag) }}</small>
-        </div>
-      </div>
+      <Tags :tags="projectTags" />
     </div>
     <div class="flex flex-col gap-5">
       <p v-for="(text, index) in projectText" :key="index" class="light:text-white">{{ text }}</p>
@@ -21,6 +17,8 @@
 </template>
 
 <script setup>
+import Tags from "./tags.vue";
+
 const props = defineProps({
   projectName: {
     type: String,
@@ -47,13 +45,4 @@ const props = defineProps({
     default: () => [],
   },
 });
-
-function getTagName(tag) {
-  if (tag == null) return "";
-  if (typeof tag === "string" || typeof tag === "number") return String(tag);
-  if (typeof tag === "object") {
-    return tag.name || tag.label || tag.title || "";
-  }
-  return "";
-}
 </script>
