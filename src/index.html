@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <header class="fixed top-0 left-0 z-50 hidden min-h-dvh w-15 items-center justify-center mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:flex lg:opacity-0">
+    <header class="fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0">
       <nav class="flex w-fit flex-col gap-5">
         <nav-button nav-name="about" class="is-active hidden">{{ t('menu-about') }}</nav-button>
         <nav-button nav-name="projects" class="hidden">{{ t('menu-projects') }}</nav-button>
@@ -60,11 +60,38 @@
     </div>
 
     <!--description-->
-    <section data-section="description" id="description" class="grid lg:min-h-dvh lg:grid-cols-2">
-      <div class="light:bg-white light:text-black content-center justify-items-center lg:h-dvh">
-        <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description') }}</h2>
+    <section data-section="description" id="description" class="light:lg:bg-primary relative grid lg:min-h-dvh lg:grid-cols-2">
+      <div class="absolute inset-0 hidden grid-cols-4 grid-rows-2 text-white lg:grid">
+        <!-- Ячейка -->
+        <div class="[container-type:size] grid place-items-center">
+          <span class="font-[Pico] text-[min(100cqi,100cqb)]">д</span>
+        </div>
+        <div class="[container-type:size] grid place-items-center">
+          <span class="font-[Pico] text-[min(100cqi,100cqb)]">и</span>
+        </div>
+        <div class="[container-type:size] grid place-items-center">
+          <span class="font-[Pico] text-[min(100cqi,100cqb)]">з</span>
+        </div>
+        <div class="[container-type:size] grid place-items-center">
+          <span class="font-[Pico] text-[min(100cqi,100cqb)]">а</span>
+        </div>
+        <div class="[container-type:size] grid place-items-center">
+          <span class="font-[Pico] text-[min(100cqi,100cqb)]">й</span>
+        </div>
+        <div class="[container-type:size] grid place-items-center">
+          <span class="font-[Pico] text-[min(100cqi,100cqb)]">н</span>
+        </div>
+        <div class="[container-type:size] grid place-items-center">
+          <span class="font-[Pico] text-[min(100cqi,100cqb)]">е</span>
+        </div>
+        <div class="[container-type:size] grid place-items-center">
+          <span class="font-[Pico] text-[min(100cqi,100cqb)]">р</span>
+        </div>
       </div>
-      <div class="lg:light:bg-white light:bg-black h-full content-end lg:p-15">
+      <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:h-dvh">
+        <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
+      </div>
+      <div class="z-2 h-full content-end lg:p-15">
         <menu-desc class="corner-frame p-15" :menu-desc="t('menu-description-description')"></menu-desc>
       </div>
     </section>
@@ -159,7 +186,7 @@
     <!--footer-->
     <section data-section="footer" id="footer" class="grid min-h-dvh auto-rows-auto grid-rows-2 content-center lg:grid-rows-3">
       <div class="hidden lg:block"></div>
-      <div class="flex flex-col justify-center gap-10 p-10 lg:items-center lg:p-0">
+      <div class="flex flex-col justify-center gap-10 p-15 lg:items-center lg:p-0">
         <div class="flex flex-col gap-5 lg:w-150">
           <h2>{{ t('menu-footer') }}</h2>
           <menu-desc class="lg:max-w-150" :menu-desc="t('menu-footer-description')"></menu-desc>

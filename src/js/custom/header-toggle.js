@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Keep base `hidden` so header is never shown on small screens.
   // On lg+, start from transparent and fade in/out by toggling `lg:opacity-0`.
-  header.classList.add("hidden");
+  header.classList.add("flex");
   header.classList.add("lg:opacity-0");
 
   const getThreshold = () => window.innerHeight / 2; // 50dvh equivalent at runtime

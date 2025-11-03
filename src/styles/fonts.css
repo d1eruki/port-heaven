@@ -1,5 +1,5 @@
 /* =========================
-   JetBrains Mono — Normal
+   JetBrains Mono
    ========================= */
 @font-face {
   font-family: "JetBrains Mono";
@@ -8,13 +8,31 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../assets/fonts/JetBrainsMono-Bold.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* =========================
-   Actay Wide — Bold
+   Actay Wide
    ========================= */
 @font-face {
   font-family: "Actay Wide";
   src: url("../assets/fonts/ActayWide-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================
+   pico
+   ========================= */
+@font-face {
+  font-family: "Pico";
+  src: url("../assets/fonts/pico-8.ttf") format("opentype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
