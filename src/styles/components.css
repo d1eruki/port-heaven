@@ -116,3 +116,13 @@
     background-attachment: fixed;
   }
 }
+
+
+/* Compose hero-image transforms from CSS variables set by JS */
+@layer components {
+  .hero-image {
+    transform: translateY(var(--parallaxY, 0)) scale(var(--heroScale, 1));
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+  }
+}

@@ -28,15 +28,17 @@ window.addEventListener("lenis-scroll", (e) => {
   }
 });
 
-// ---- ПАРАЛЛАКС: hero-media --------------------------------
-const heroMedia = document.querySelector(".hero-media");
+// ---- ПАРАЛЛАКС: hero-image --------------------------------
+const heroImages = document.querySelectorAll(".hero-image");
 
-if (heroMedia) {
+if (heroImages.length) {
   const PARALLAX_SPEED = 0.5;
 
   lenis.on("scroll", (e) => {
     const scroll = e && typeof e.scroll === "number" ? e.scroll : lenis.scroll;
     const offset = scroll * PARALLAX_SPEED;
-    heroMedia.style.transform = `translateY(${offset}px)`;
+    heroImages.forEach((el) => {
+      el.style.setProperty("--parallaxY", offset + "px");
+    });
   });
 }

@@ -1,7 +1,10 @@
-const heroImage = document.querySelector(".hero-image");
+const heroImages = document.querySelectorAll(".hero-image");
 
-if (heroImage) {
-  heroImage.style.transition = "transform 0.3s ease-out";
+if (heroImages.length) {
+  // Transition can be handled via CSS; keep here as a fallback for older CSS
+  heroImages.forEach((el) => {
+    el.style.transition = el.style.transition || "transform 0.3s ease-out";
+  });
 
   const clamp = (val, min, max) => Math.max(min, Math.min(val, max));
 
@@ -16,7 +19,9 @@ if (heroImage) {
     const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
     const deltaY = scrollY - initialScrollY;
     const targetScale = clamp(baseScale + deltaY * perPixelFactor, minScale, maxScale);
-    heroImage.style.transform = `scale(${targetScale})`;
+    heroImages.forEach((el) => {
+      el.style.setProperty("--heroScale", String(targetScale));
+    });
   };
 
   // Initialize
