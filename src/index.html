@@ -32,13 +32,15 @@
     <!--    <canvas id="shader-canvas" class="hidden"></canvas>- -->
 
     <!--me-->
-    <div data-section="hero" id="hero" class="hero relative -z-2 flex min-h-dvh">
-      <img src="assets/soma-lancet.webp" class="hero-image absolute right-0 lg:z-3 z-2 h-dvh w-auto lg:top-0 lg:self-center lg:right-20 object-cover" alt="hero" />
-      <div class="lg:z-2 z-3 flex w-full flex-col content-end justify-end gap-10 p-15 lg:mix-blend-difference lg:flex-row lg:items-end lg:justify-between">
-        <h1 class="whitespace-pre-line">{{ t('hero') }}</h1>
-        <small class="lg:mb-10">{{ t('logo') }}</small>
+    <div data-section="hero" id="hero" class="hero -z-2">
+      <div class="relative isolate flex min-h-dvh w-full">
+        <img src="assets/soma-lancet.webp" class="hero-image absolute right-0 lg:z-3 z-2 h-dvh w-auto object-cover lg:top-0 lg:right-20 lg:self-center" alt="hero" />
+        <div class="z-2 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between lg:mix-blend-difference">
+          <h1 class="whitespace-pre-line">{{ t('hero') }}</h1>
+          <small class="lg:mb-10">{{ t('logo') }}</small>
+        </div>
+        <img src="assets/soma-lancet-bg.webp" class="hero-image absolute right-0 z-1 h-dvh w-auto object-cover lg:top-0 lg:right-20 lg:self-center" alt="hero" />
       </div>
-      <img src="assets/soma-lancet-bg.webp" class="hero-image absolute right-0 z-1 h-dvh w-auto lg:top-0 lg:self-center lg:right-20 object-cover" alt="hero" />
     </div>
 
     <header class="fixed top-0 left-0 z-50 hidden min-h-dvh w-15 items-center justify-center mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:flex lg:opacity-0">
@@ -59,7 +61,7 @@
 
     <!--description-->
     <section data-section="description" id="description" class="grid lg:min-h-dvh lg:grid-cols-2">
-      <div class="light:bg-white light:text-black content-center lg:h-dvh justify-items-center">
+      <div class="light:bg-white light:text-black content-center justify-items-center lg:h-dvh">
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description') }}</h2>
       </div>
       <div class="lg:light:bg-white light:bg-black h-full content-end lg:p-15">

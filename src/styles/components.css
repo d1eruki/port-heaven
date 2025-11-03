@@ -117,7 +117,6 @@
   }
 }
 
-
 /* Compose hero-image transforms from CSS variables set by JS */
 @layer components {
   .hero-image {
