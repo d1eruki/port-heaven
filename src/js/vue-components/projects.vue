@@ -1,6 +1,5 @@
 <template>
-  <div class="light:lg:bg-black">
-    <!--
+  <div class="light:lg:bg-black min-h-dvh w-full">
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
@@ -10,10 +9,9 @@
           <img src="../../assets/projects/varwin/screen-1.png" alt="project-2" />
         </div>
       </div>
-      <div class="swiper-pagination light:bg-white z-100 light:text-black w-fit px-2.5 py-1 absolute left-0 bottom-0"></div>
+      <div class="swiper-pagination light:bg-white light:text-black absolute bottom-0 left-0 z-100 w-fit px-2.5 py-1"></div>
     </div>
--->
-    <div class="flex min-h-dvh flex-col justify-between gap-10 p-15">
+    <div class="flex flex-col justify-between gap-10 p-15">
       <div class="flex flex-col gap-5">
         <h3 class="light:text-white">{{ projectName }}</h3>
         <p class="light:text-neutral-500">{{ projectDescription }}</p>
