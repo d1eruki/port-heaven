@@ -5,9 +5,6 @@
     font-weight: 100;
     cursor: none;
     line-height: 1;
-    /* text-wrap: balance;
-    word-break: normal;
-    overflow-wrap: break-word;*/
 
     &::-webkit-scrollbar {
       display: none;

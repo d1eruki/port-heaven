@@ -3,7 +3,6 @@ import "./js/libraries/vue";
 import "./js/libraries/yandex-metrika";
 import "./js/libraries/lenis";
 import "./js/libraries/vanilla-tilt";
-import "./js/libraries/swiper";
 import "./js/custom/theme-toggle";
 import "./js/custom/locale-toggler";
 import "./js/custom/cursor";

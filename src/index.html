@@ -29,8 +29,6 @@
       </div>
     </noscript>
 
-    <!--    <canvas id="shader-canvas" class="hidden"></canvas>- -->
-
     <!--me-->
     <div data-section="hero" id="hero" class="hero -z-2">
       <div class="relative isolate flex min-h-dvh w-full overflow-x-hidden">
@@ -60,36 +58,9 @@
     </div>
 
     <!--description-->
-    <section data-section="description" id="description" class="light:lg:bg-primary relative grid lg:min-h-dvh lg:grid-cols-2">
-      <div class="absolute inset-0 hidden grid-cols-4 grid-rows-2 text-white lg:grid">
-        <!-- Ячейка -->
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">д</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">и</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">з</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">а</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">й</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">н</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">е</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">р</span>
-        </div>
-      </div>
-      <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:h-dvh">
-        <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
+    <section data-section="description" id="description" class="light:bg-primary relative grid lg:min-h-dvh lg:grid-cols-2">
+      <div class="light:text-black z-2 content-center justify-items-center lg:h-dvh">
+        <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description') }}</h2>
       </div>
       <div class="z-2 h-full content-end lg:p-15">
         <menu-desc class="corner-frame p-15" :menu-desc="t('menu-description-description')"></menu-desc>
@@ -165,8 +136,6 @@
       <design :design-name="t('design-robogrid-title')" :design-desc="t('design-robogrid-text')" design-url="https://www.figma.com/design/vGx3VZvjNgUGGsXgeMOnTz/RoboGrid-dashboard?node-id=49006-62828&t=BHLtfKFgJxVkYZTz-1" design-img-alt="" :design-tags="['Dashboard']"></design>
 
       <design :design-name="t('design-analyticalPlatform-title')" :design-desc="t('design-analyticalPlatform-text')" design-url="https://www.figma.com/design/TxZzzOnA3p8sTROyOKx3pC/Analytical-platform?node-id=60044-27&t=KbV07VHSG1w1dgWX-1" design-img-alt="" :design-tags="['Dashboard']"></design>
-
-      <!--      <design :design-name="t('design-mooozik-title')" :design-desc="t('design-mooozik-text')" design-url="https://www.figma.com/design/voDUMRONK5sGFSo43BkcU9/Mooozik-%E2%80%94-a-music-label-for-cows?node-id=0-1&t=8jUM5sY9hUOspPua-1" design-img-alt="" :design-tags="['Adaptive', 'Visual', 'Concept']"></design>-->
     </section>
 
     <!--creatives-->
