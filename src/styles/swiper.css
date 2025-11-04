@@ -1,0 +1,13 @@
+.swiper {
+  width: 100%;
+  max-width: 100%;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.swiper-pagination {
+  font-size: var(--text-small);
+}

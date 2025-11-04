@@ -2,6 +2,8 @@
 @plugin "@iconify/tailwind4";
 @import "lenis/dist/lenis.css";
 
+@import "swiper/css";
+
 @import "./styles/fonts.css";
 @import "./styles/core.css";
 
@@ -11,3 +13,5 @@
 @import "./styles/themes/light.css";
 
 @import "./styles/components.css";
+
+@import "./styles/swiper.css";
