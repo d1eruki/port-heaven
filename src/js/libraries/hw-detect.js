@@ -14,10 +14,7 @@ export function isHardwareAccelerationEnabled() {
       failIfMajorPerformanceCaveat: true,
     };
 
-    const gl =
-      canvas.getContext("webgl2", attrs) ||
-      canvas.getContext("webgl", attrs) ||
-      canvas.getContext("experimental-webgl", attrs);
+    const gl = canvas.getContext("webgl2", attrs) || canvas.getContext("webgl", attrs) || canvas.getContext("experimental-webgl", attrs);
 
     if (!gl) return false;
 
@@ -37,15 +34,7 @@ export function isHardwareAccelerationEnabled() {
     }
 
     const signature = (String(renderer) + " " + String(vendor)).toLowerCase();
-    const softwareMarkers = [
-      "swiftshader",
-      "llvmpipe",
-      "software",
-      "softpipe",
-      "mesa",
-      "angle (swiftshader",
-      "angle (mesa",
-    ];
+    const softwareMarkers = ["swiftshader", "llvmpipe", "software", "softpipe", "mesa", "angle (swiftshader", "angle (mesa"];
     const looksSoftware = softwareMarkers.some((m) => signature.includes(m));
 
     let maxTextureSize = 0;
@@ -57,8 +46,6 @@ export function isHardwareAccelerationEnabled() {
 
     if (looksSoftware) return false;
     return !(maxTextureSize && maxTextureSize <= 2048);
-
-
   } catch {
     return false;
   }
