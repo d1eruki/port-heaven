@@ -1,3 +1,5 @@
+import { smoothScrollTo } from "../utils/smooth-scroll";
+
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   const ACTIVE_CLASS = (body.getAttribute("data-active-class") || "!text-white").trim();
@@ -69,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // найти индекс и прыгнуть
     const i = meta.findIndex((m) => m.el === targetSection);
     if (i >= 0) {
-      window.scrollTo(0, meta[i].top); // без плавности
+      smoothScrollTo(targetSection);
       setActiveByIndex(i);
     }
   });

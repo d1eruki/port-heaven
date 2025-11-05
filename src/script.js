@@ -13,16 +13,13 @@ import "./js/custom/header-toggle";
 import "./js/custom/bg-cells";
 import "./js/custom/prevent-orphans";
 
-// Determine HW acceleration (one-time)
 const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
 
-// Add only the 'no-hw' flag when hardware acceleration is OFF
 if (!hwOn) {
   document.documentElement.classList.add("no-hw");
 }
 
-// Conditionally load assets: heavy JS only when HW is ON; fallback CSS only when HW is OFF
 (async () => {
   try {
     if (hwOn) {
@@ -35,6 +32,5 @@ if (!hwOn) {
       await import("./styles/no-hm.css");
     }
   } catch {
-    // ignore
   }
 })();
