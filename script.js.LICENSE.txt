@@ -4,6 +4,12 @@
   * Released under the MIT License.
   */
 
+/*!
+  * vue-i18n v11.1.12
+  * (c) 2025 kazuya kawaguchi
+  * Released under the MIT License.
+  */
+
 /**
 * @vue/runtime-core v3.5.22
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
