@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <header class="fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0">
+    <div id="menu-dot" class="fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0">
       <nav class="flex w-fit flex-col gap-5">
         <nav-button nav-name="about" class="is-active hidden">{{ t('menu-about') }}</nav-button>
         <nav-button nav-name="projects" class="hidden">{{ t('menu-projects') }}</nav-button>
@@ -49,50 +49,27 @@
         <nav-button nav-name="creatives" class="hidden">{{ t('menu-creatives') }}</nav-button>
         <nav-button nav-name="footer" class="hidden">{{ t('menu-footer') }}</nav-button>
       </nav>
-    </header>
+    </div>
     <div id="progress-bar" class="progress-bar light:bg-white fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"></div>
 
-    <div class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15">
+    <div id="menu-right" class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15">
       <button id="theme-toggler" class="icon-[ic--baseline-dark-mode] hidden size-10"></button>
       <button id="lang-toggle" class="group light:text-white flex"><small>en</small></button>
     </div>
 
     <!--description-->
-    <section data-section="description" id="description" class="light:lg:bg-primary relative grid lg:min-h-dvh lg:grid-cols-2">
-      <div class="absolute inset-0 hidden grid-cols-4 grid-rows-2 text-white lg:grid">
-        <!-- Ячейка -->
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">д</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">и</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">з</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">а</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">й</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">н</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">е</span>
-        </div>
-        <div class="[container-type:size] grid place-items-center">
-          <span class="font-[Pico] text-[min(100cqi,100cqb)]">р</span>
-        </div>
-      </div>
-      <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:h-dvh">
+    <section data-section="description" id="description" class="light:lg:bg-primary relative grid lg:grid-cols-2">
+      <canvas id="radar" width="400" height="400"></canvas>
+      <div class="left-15 h-full w-full text-(length:--designer) wrap-break-word text-white lg:absolute">{{ t('menu-description-2') }}</div>
+      <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center">
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
       </div>
       <div class="z-2 h-full content-end lg:p-15">
         <menu-desc class="corner-frame p-15" :menu-desc="t('menu-description-description')"></menu-desc>
       </div>
     </section>
+
+    <header class="light:lg:bg-primary z-100 h-10 w-full lg:sticky lg:top-0">asdasd</header>
 
     <!--about-->
     <section data-section="about" id="about" class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15">
