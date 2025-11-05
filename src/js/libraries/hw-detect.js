@@ -30,7 +30,7 @@ export function isHardwareAccelerationEnabled() {
         vendor = gl.getParameter(gl.VENDOR) || "";
       }
     } catch {
-      // ignore
+      /* ignore */
     }
 
     const signature = (String(renderer) + " " + String(vendor)).toLowerCase();
@@ -41,7 +41,7 @@ export function isHardwareAccelerationEnabled() {
     try {
       maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE) || 0;
     } catch {
-      // ignore
+      /* ignore */
     }
 
     if (looksSoftware) return false;
@@ -49,4 +49,28 @@ export function isHardwareAccelerationEnabled() {
   } catch {
     return false;
   }
+}
+
+export function applyHwClass(options = {}) {
+  const { recheckOnVisibility = false } = options;
+  const root = document.documentElement;
+
+  const set = (on) => {
+    if (on) root.classList.add("hw");
+    else root.classList.remove("hw");
+  };
+
+  set(isHardwareAccelerationEnabled());
+
+  if (recheckOnVisibility) {
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) set(isHardwareAccelerationEnabled());
+    });
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => applyHwClass());
+} else {
+  applyHwClass();
 }

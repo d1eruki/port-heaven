@@ -1,4 +1,7 @@
 @import "tailwindcss";
+
+@custom-variant hw (&:where(html.hw &));
+
 @plugin "@iconify/tailwind4";
 @import "lenis/dist/lenis.css";
 

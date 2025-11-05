@@ -29,7 +29,7 @@ if (!hwOn) {
       await import("./js/custom/hero-image-parallax");
       await import("./js/custom/cursor");
     } else {
-      await import("./styles/no-hm.css");
+      await import("./styles/no-hw.css");
     }
   } catch {}
 })();
