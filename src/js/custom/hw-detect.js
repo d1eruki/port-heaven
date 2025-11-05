@@ -25,8 +25,7 @@ export function isHardwareAccelerationEnabled() {
         renderer = gl.getParameter(gl.RENDERER) || "";
         vendor = gl.getParameter(gl.VENDOR) || "";
       }
-    } catch {
-    }
+    } catch {}
 
     const signature = (String(renderer) + " " + String(vendor)).toLowerCase();
     const softwareMarkers = ["swiftshader", "swift shader", "google swiftshader", "llvmpipe", "llvm", "softpipe", "software", "mesa", "angle (swiftshader", "angle (mesa", "warp", "d3d11 warp", "microsoft basic render driver", "basic render", "software adapter", "angle (d3d11 warp", "angle (microsoft"];
@@ -35,8 +34,7 @@ export function isHardwareAccelerationEnabled() {
     let maxTextureSize = 0;
     try {
       maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE) || 0;
-    } catch {
-    }
+    } catch {}
 
     if (looksSoftware) return false;
     return !(maxTextureSize && maxTextureSize <= 2048);

@@ -32,16 +32,16 @@
     <!--me-->
     <div data-section="hero" id="hero" class="hero -z-2">
       <div class="relative isolate flex min-h-dvh w-full overflow-x-hidden">
-        <img src="assets/soma-lancet.webp" class="hero-image absolute right-0 z-2 h-dvh w-auto object-cover lg:top-0 lg:right-20 lg:z-3 lg:self-center" alt="hero" />
+        <img src="assets/soma-lancet.webp" class="hero-image absolute right-0 left-0 z-2 h-dvh w-auto justify-self-center object-cover lg:top-0 lg:right-20 lg:z-3 lg:self-center lg:justify-self-end" alt="hero" />
         <div class="z-2 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between lg:mix-blend-difference">
           <h1 class="whitespace-pre-line">{{ t('hero') }}</h1>
           <small class="lg:mb-10">{{ t('logo') }}</small>
         </div>
-        <img src="assets/soma-lancet-bg.webp" class="hero-image absolute right-0 z-1 h-dvh w-auto object-cover lg:top-0 lg:right-20 lg:self-center" alt="hero" />
+        <img src="assets/soma-lancet-bg.webp" class="hero-image absolute right-0 left-0 z-1 h-dvh w-auto justify-self-center object-cover lg:top-0 lg:right-20 lg:self-center lg:justify-self-end" alt="hero" />
       </div>
     </div>
 
-    <div id="menu-dot" class="fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center hw:mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0">
+    <div id="menu-dot" class="hw:mix-blend-difference fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0">
       <nav class="flex w-fit flex-col gap-5">
         <nav-button nav-name="about" class="is-active hidden">{{ t('menu-about') }}</nav-button>
         <nav-button nav-name="projects" class="hidden">{{ t('menu-projects') }}</nav-button>
@@ -58,18 +58,18 @@
     </div>
 
     <!--description-->
-    <section data-section="description" id="description" class="light:lg:bg-primary relative grid lg:grid-cols-2">
-      <canvas id="radar" width="400" height="400"></canvas>
-      <div class="left-15 h-full w-full text-(length:--designer) wrap-break-word text-white lg:absolute">{{ t('menu-description-2') }}</div>
-      <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center">
+    <section data-section="description" id="description" class="light:lg:bg-primary relative grid h-fit lg:grid-cols-2">
+      <!--      <div class="z-1 flex col-span-1">
+        <canvas id="radar" width="400" height="400"></canvas>
+      </div>-->
+      <div class="left-15 z-0 h-full w-full text-(length:--designer) wrap-break-word text-white lg:absolute">{{ t('menu-description-2') }}</div>
+      <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center lg:justify-items-start justify-items-center">
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
       </div>
-      <div class="z-2 h-full content-end lg:p-15">
-        <menu-desc class="corner-frame p-15" :menu-desc="t('menu-description-description')"></menu-desc>
-      </div>
+      <div class="corner-frame z-2 p-15 m-15 light:text-black">{{ t('menu-description-description') }}></div>
     </section>
 
-    <header class="light:lg:bg-primary z-100 h-10 w-full lg:sticky lg:top-0">asdasd</header>
+    <header class="px-15 light:lg:bg-primary z-100 h-10 w-full lg:sticky lg:top-0">asdasd</header>
 
     <!--about-->
     <section data-section="about" id="about" class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15">

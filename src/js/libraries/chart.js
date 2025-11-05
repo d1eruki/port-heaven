@@ -13,13 +13,14 @@ new Chart(ctx, {
         label: "Demo",
         data: [4, 4, 3, 1, 2, 1],
         fill: true,
-        backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--bg-sky-500/80").trim(),
+        backgroundColor: "hsla(0, 0%, 0%, 0.1)",
         borderColor: getComputedStyle(document.documentElement).getPropertyValue("--color-black").trim(),
         pointBackgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--color-black").trim(),
       },
     ],
   },
   options: {
+    devicePixelRatio: 5,
     plugins: { legend: { display: false } },
     scales: {
       r: {
