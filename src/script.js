@@ -6,7 +6,7 @@ import "./js/libraries/vanilla-tilt";
 import "./js/libraries/swiper";
 import "./js/libraries/chart";
 
-import { isHardwareAccelerationEnabled } from "./js/custom/hw-detect";
+import { isHwOn } from "./js/custom/hw-detect";
 
 import "./js/custom/theme-toggle";
 import "./js/custom/locale-toggler";
@@ -17,12 +17,7 @@ import "./js/custom/menu-dot-toggler";
 import "./js/custom/hero-bg-cells";
 import "./js/custom/prevent-orphans";
 
-const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
-
-if (!hwOn) {
-  document.documentElement.classList.add("no-hw");
-}
+const hwOn = isHwOn();
 
 (async () => {
   try {
