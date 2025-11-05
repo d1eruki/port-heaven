@@ -13,10 +13,6 @@ lenis.on("scroll", (e) => {
   window.dispatchEvent(new CustomEvent("lenis-scroll", { detail: { y } }));
 });
 
-document.addEventListener("scroll-to-top", () => {
-  lenis.scrollTo(0);
-});
-
 // ---- ПРОГРЕСС-БАР ---------------------------------------------
 import { updateProgressBar } from "../custom/progress-bar";
 
@@ -27,18 +23,3 @@ window.addEventListener("lenis-scroll", (e) => {
     updateProgressBar();
   }
 });
-
-// ---- ПАРАЛЛАКС: hero-image --------------------------------
-const heroImages = document.querySelectorAll(".hero-image");
-
-if (heroImages.length) {
-  const PARALLAX_SPEED = 0.5;
-
-  lenis.on("scroll", (e) => {
-    const scroll = e && typeof e.scroll === "number" ? e.scroll : lenis.scroll;
-    const offset = scroll * PARALLAX_SPEED;
-    heroImages.forEach((el) => {
-      el.style.setProperty("--parallaxY", offset + "px");
-    });
-  });
-}

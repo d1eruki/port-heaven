@@ -1,11 +1,13 @@
+import { smoothScrollTop } from "../utils/smooth-scroll";
+
 document.addEventListener("DOMContentLoaded", () => {
   const scrollIcon = document.querySelector("#scroll-to-top, [data-scroll-to-top]");
   if (!scrollIcon) return;
 
-  function scrollToTop(e) {
+  function onClick(e) {
     e?.preventDefault?.();
-    document.dispatchEvent(new CustomEvent("scroll-to-top"));
+    smoothScrollTop();
   }
 
-  scrollIcon.addEventListener("click", scrollToTop);
+  scrollIcon.addEventListener("click", onClick);
 });

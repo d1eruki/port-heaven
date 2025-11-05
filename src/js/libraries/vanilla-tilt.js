@@ -1,6 +1,6 @@
 import VanillaTilt from "vanilla-tilt";
 
-document.addEventListener("DOMContentLoaded", () => {
+function initTilt() {
   const root = getComputedStyle(document.documentElement);
   const raw = root.getPropertyValue("--breakpoint-lg").trim() || "1024px";
 
@@ -33,4 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
       scale: 1.5,
     });
   });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initTilt, { once: true });
+} else {
+  initTilt();
+}

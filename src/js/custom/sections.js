@@ -1,4 +1,4 @@
-const SECTION_DOTS_VERSION = "2.1.1";
+import { smoothScrollTo as _smoothScrollTo } from "../utils/smooth-scroll";
 
 (function () {
   const init = () =>
@@ -52,7 +52,11 @@ function initSectionDots(opts = {}) {
     btn.dataset.target = `#${sec.id}`;
     btn.setAttribute("aria-label", label);
     btn.innerHTML = `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" /></svg>`;
-    btn.addEventListener("click", () => smoothScrollTo(sec, cfg.offset));
+    btn.addEventListener("click", () => {
+      _smoothScrollTo(sec, { offset: cfg.offset });
+      setActive(sec.id);
+      if (history && history.replaceState) history.replaceState(null, "", `#${sec.id}`);
+    });
     frag.appendChild(btn);
     btnById.set(sec.id, btn);
   }
@@ -149,16 +153,4 @@ function initSectionDots(opts = {}) {
   });
 
   tick();
-
-  function smoothScrollTo(el, extraOffset = 0) {
-    const target = el.getBoundingClientRect().top + window.pageYOffset - extraOffset;
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (hasLenis && typeof window.lenis.scrollTo === "function") {
-      window.lenis.scrollTo(target, { offset: 0 });
-    } else {
-      window.scrollTo({ top: target, behavior: prefersReduced ? "auto" : "smooth" });
-    }
-    setActive(el.id);
-    if (history && history.replaceState) history.replaceState(null, "", `#${el.id}`);
-  }
 }
