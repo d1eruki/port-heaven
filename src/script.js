@@ -31,6 +31,5 @@ if (!hwOn) {
     } else {
       await import("./styles/no-hm.css");
     }
-  } catch {
-  }
+  } catch {}
 })();

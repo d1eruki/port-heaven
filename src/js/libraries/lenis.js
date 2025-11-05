@@ -13,7 +13,6 @@ lenis.on("scroll", (e) => {
   window.dispatchEvent(new CustomEvent("lenis-scroll", { detail: { y } }));
 });
 
-
 // ---- ПРОГРЕСС-БАР ---------------------------------------------
 import { updateProgressBar } from "../custom/progress-bar";
 

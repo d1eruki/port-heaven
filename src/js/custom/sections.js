@@ -1,5 +1,4 @@
 import { smoothScrollTo as _smoothScrollTo } from "../utils/smooth-scroll";
-const SECTION_DOTS_VERSION = "2.1.1";
 
 (function () {
   const init = () =>
@@ -154,5 +153,4 @@ function initSectionDots(opts = {}) {
   });
 
   tick();
-
 }
