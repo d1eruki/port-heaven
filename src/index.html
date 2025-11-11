@@ -41,6 +41,10 @@
       </div>
     </div>
 
+    <div class="py-5 light:bg-primary absolute -rotate-25 top-150 light:text-black">
+      asd
+    </div>
+
     <div id="menu-dot" class="hw:mix-blend-difference fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0">
       <nav class="flex w-fit flex-col gap-5">
         <nav-button nav-name="about" class="is-active hidden">{{ t('menu-about') }}</nav-button>
@@ -63,13 +67,13 @@
         <canvas id="radar" width="400" height="400"></canvas>
       </div>-->
       <div class="left-15 z-0 h-full w-full text-(length:--designer) wrap-break-word text-white lg:absolute">{{ t('menu-description-2') }}</div>
-      <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center lg:justify-items-start justify-items-center">
+      <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:justify-items-start">
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
       </div>
-      <div class="corner-frame z-2 p-15 m-15 light:text-black">{{ t('menu-description-description') }}></div>
+      <div class="corner-frame light:text-black z-2 m-15 p-15">{{ t('menu-description-description') }}></div>
     </section>
 
-    <header class="px-15 light:lg:bg-primary z-100 h-10 w-full lg:sticky lg:top-0">asdasd</header>
+    <header class="light:lg:bg-primary z-100 h-10 w-full px-15 lg:sticky lg:top-0">asdasd</header>
 
     <!--about-->
     <section data-section="about" id="about" class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15">
@@ -159,6 +163,7 @@
     </section>
 
     <!--footer-->
+<!--
     <section data-section="footer" id="footer" class="grid min-h-dvh auto-rows-auto grid-rows-2 content-center lg:grid-rows-3">
       <div class="hidden lg:block"></div>
       <div class="flex flex-col justify-center gap-10 p-15 lg:items-center lg:p-0">
@@ -168,11 +173,11 @@
         </div>
         <div class="flex justify-start gap-10 lg:w-150">
           <div class="group relative">
-            <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic--round-email] light:text-primary size-10"></span> </a>
+            <a class="w-fit" href="mailto:stapps90@gmail.com" target="_blank"> <span class="icon-[ic&#45;&#45;round-email] light:text-primary size-10"></span> </a>
             <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
           </div>
           <div class="group relative">
-            <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic--baseline-telegram] light:text-primary size-10"></span> </a>
+            <a class="w-fit" href="https://t.me/d1eruki" target="_blank"> <span class="icon-[ic&#45;&#45;baseline-telegram] light:text-primary size-10"></span> </a>
             <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
           </div>
         </div>
@@ -180,6 +185,19 @@
       <div class="place-items-end content-end p-5 lg:p-15">
         <button id="scroll-to-top" class="group light:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small></button>
       </div>
+    </section>
+-->
+
+    <section data-section="footer" id="footer" class="p-15 flex gap-15 min-h-dvh items-end">
+      <div>
+        <div class="text-primary font-[Actay_Wide] text-[15rem]">Дайруки</div>
+        <div>
+          <a class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400" href="https://t.me/d1eruki" target="_blank"> телеграм </a>
+          <a class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400" href="mailto:stapps90@gmail.com" target="_blank"> почта </a>
+        </div>
+      </div>
+      <menu-desc class="lg:max-w-150" :menu-desc="t('menu-footer-description')"></menu-desc>
+      <button id="scroll-to-top" class="group light:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small></button>
     </section>
   </body>
 </html>
