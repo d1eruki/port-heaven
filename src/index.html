@@ -18,8 +18,10 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <link href="assets/favicon.png" rel="icon" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet" />
   </head>
   <body lang="ru" id="app" class="lg:justify-last article light:bg-black light:text-white relative container grid max-w-full scroll-smooth">
     <noscript>
@@ -38,10 +40,6 @@
         </div>
         <img src="assets/soma-lancet-bg.webp" class="hero-image absolute right-0 left-0 z-1 h-dvh w-auto justify-self-center object-cover lg:top-0 lg:right-20 lg:self-center lg:justify-self-end" alt="hero" />
       </div>
-    </div>
-
-    <div class="py-5 light:bg-primary absolute -rotate-25 top-150 light:text-black">
-      asd
     </div>
 
     <div id="menu-dot" class="hw:mix-blend-difference fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0">
@@ -65,7 +63,7 @@
       <!--      <div class="z-1 flex col-span-1">
         <canvas id="radar" width="400" height="400"></canvas>
       </div>-->
-      <div class="left-15 z-0 h-full w-full text-(length:--designer) wrap-break-word text-white lg:absolute">{{ t('menu-description-2') }}</div>
+      <div class="left-15 z-0 h-full w-full text-(length:--designer) break-words text-white lg:absolute">{{ t('menu-description-2') }}</div>
       <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:justify-items-start">
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
       </div>
@@ -162,7 +160,7 @@
     </section>
 
     <!--footer-->
-<!--
+
     <section data-section="footer" id="footer" class="grid min-h-dvh auto-rows-auto grid-rows-2 content-center lg:grid-rows-3">
       <div class="hidden lg:block"></div>
       <div class="flex flex-col justify-center gap-10 p-15 lg:items-center lg:p-0">
@@ -181,13 +179,9 @@
           </div>
         </div>
       </div>
-      <div class="place-items-end content-end p-5 lg:p-15">
-        <button id="scroll-to-top" class="group light:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small></button>
-      </div>
     </section>
--->
 
-    <section data-section="footer" id="footer" class="p-15 flex gap-15 min-h-dvh items-end">
+    <section data-section="footer" id="footer" class="flex min-h-dvh items-end gap-15 p-15">
       <div>
         <div class="text-primary font-[Actay_Wide] text-[15rem]">Дайруки</div>
         <div>
