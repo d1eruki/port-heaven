@@ -22,11 +22,7 @@ const hwOn = isHwOn();
 (async () => {
   try {
     if (hwOn) {
-      await import("./js/libraries/lenis");
-      await import("./js/libraries/vanilla-tilt");
-      await import("./js/custom/hero-image-scale");
-      await import("./js/custom/hero-image-parallax");
-      await import("./js/custom/cursor");
+      await Promise.all([import("./js/libraries/lenis"), import("./js/libraries/vanilla-tilt"), import("./js/custom/hero-image-scale"), import("./js/custom/hero-image-parallax"), import("./js/custom/cursor")]);
     } else {
       await import("./styles/no-hw.css");
     }

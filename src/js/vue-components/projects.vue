@@ -3,7 +3,7 @@
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="../../assets/projects/varwin/cover.png" alt="project-1" />
+          <img src="../../assets/projects/varwin/cover.png" alt="project-1" loading="lazy" decoding="async" />
         </div>
         <div class="swiper-slide">
           <img src="../../assets/projects/varwin/screen-1.png" alt="project-2" />
