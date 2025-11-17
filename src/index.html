@@ -60,17 +60,15 @@
 
     <!--description-->
     <section data-section="description" id="description" class="light:lg:bg-primary relative grid h-fit lg:grid-cols-2">
-      <!--      <div class="z-1 flex col-span-1">
-        <canvas id="radar" width="400" height="400"></canvas>
-      </div>-->
-      <div class="left-15 z-0 h-full w-full text-(length:--designer) break-words text-white lg:absolute">{{ t('menu-description-2') }}</div>
+      <!--
+      <div class="left-15 z-0 h-full w-full text-(length:--designer) break-words text-white lg:absolute">{{ t('menu-description-2') }}</div>-->
       <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:justify-items-start">
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
       </div>
       <div class="corner-frame light:text-black z-2 m-15 p-15">{{ t('menu-description-description') }}></div>
     </section>
 
-    <header class="light:lg:bg-primary z-100 h-10 w-full px-15 lg:sticky lg:top-0">asdasd</header>
+    <!--    <header class="light:lg:bg-primary z-100 h-10 w-full px-15 lg:sticky lg:top-0">asdasd</header>-->
 
     <!--about-->
     <section data-section="about" id="about" class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15">
@@ -185,11 +183,11 @@
       <div>
         <div class="text-primary font-[Actay_Wide] text-[15rem]">Дайруки</div>
         <div>
+          <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
           <a class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400" href="https://t.me/d1eruki" target="_blank"> телеграм </a>
           <a class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400" href="mailto:stapps90@gmail.com" target="_blank"> почта </a>
         </div>
       </div>
-      <menu-desc class="lg:max-w-150" :menu-desc="t('menu-footer-description')"></menu-desc>
       <button id="scroll-to-top" class="group light:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small></button>
     </section>
   </body>
