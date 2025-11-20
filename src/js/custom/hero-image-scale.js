@@ -1,7 +1,6 @@
 const heroImages = document.querySelectorAll(".hero-image");
 
 if (heroImages.length) {
-  // Transition can be handled via CSS; keep here as a fallback for older CSS
   heroImages.forEach((el) => {
     el.style.transition = el.style.transition || "transform 0.3s ease-out";
   });
@@ -12,7 +11,6 @@ if (heroImages.length) {
   const minScale = 0.5;
   const maxScale = 2;
   const initialScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-  // Scale sensitivity per pixel of vertical scroll
   const perPixelFactor = 0.0001;
 
   const applyScale = () => {
@@ -24,9 +22,7 @@ if (heroImages.length) {
     });
   };
 
-  // Initialize
   applyScale();
 
-  // Keep scale in sync with actual scroll position for perfect reversibility
   window.addEventListener("scroll", applyScale, { passive: true });
 }

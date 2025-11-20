@@ -1,17 +1,14 @@
-// nonbreaking-prepositions.js
-document.addEventListener("DOMContentLoaded", () => {
-  // короткие предлоги/союзы (добавил частые: а, но, да, же, ли, бы)
+import { onReady } from "../utils/onReady";
+
+onReady(() => {
   const SHORT = ["в", "на", "и", "к", "с", "у", "о", "об", "от", "по", "за", "из", "до", "под", "при", "про", "без", "над", "для", "а", "но", "да", "же", "ли", "бы"];
 
-  // \s или NBSP слева, короткое слово, обычный пробел справа
-  // заменяем на: тот же левый пробел + короткое слово + NBSP
   const re = new RegExp(`([\\s\\u00A0])(${SHORT.join("|")})(\\s+)`, "gi");
 
   const rootSelector = ".article"; // меняй при желании
   const roots = document.querySelectorAll(rootSelector);
 
   const glue = (node) => {
-    // только текстовые узлы
     if (node.nodeType !== Node.TEXT_NODE) return;
     const before = node.nodeValue;
     const after = before.replace(re, (_, p1, p2) => `${p1}${p2}\u00A0`);
@@ -26,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   roots.forEach(walk);
 
-  // Если Vue/i18n подменяет текст после загрузки — ловим изменения
   const mo = new MutationObserver((muts) => {
     for (const m of muts) {
       if (m.type === "childList") {

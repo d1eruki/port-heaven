@@ -2,8 +2,7 @@ import Lenis from "lenis";
 
 export const lenis = new Lenis({
   autoRaf: true,
-  duration: 1.1, // плавность правь по вкусу
-  // smoothWheel: true, // включи если надо
+  duration: 1.1,
 });
 
 window.lenis = lenis;
@@ -13,7 +12,6 @@ lenis.on("scroll", (e) => {
   window.dispatchEvent(new CustomEvent("lenis-scroll", { detail: { y } }));
 });
 
-// ---- ПРОГРЕСС-БАР ---------------------------------------------
 import { updateProgressBar } from "../custom/progress-bar";
 
 window.addEventListener("lenis-scroll", (e) => {

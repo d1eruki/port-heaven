@@ -1,13 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { onReady } from "../utils/onReady";
+
+onReady(() => {
   const header = document.querySelector("body > header, header");
   if (!header) return;
 
-  // Keep base `hidden` so header is never shown on small screens.
-  // On lg+, start from transparent and fade in/out by toggling `lg:opacity-0`.
   header.classList.add("flex");
   header.classList.add("lg:opacity-0");
 
-  const getThreshold = () => window.innerHeight / 2; // 50dvh equivalent at runtime
+  const getThreshold = () => window.innerHeight / 2;
 
   let lastState = null;
   let scrollTimer = null;
@@ -21,11 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (lastState === shouldShow) return;
     lastState = shouldShow;
     if (shouldShow) {
-      // Show only on lg+ by removing lg:opacity-0. Keep base hidden to stay hidden on small screens.
       header.classList.remove("lg:opacity-0");
       header.classList.remove("lg:pointer-events-none");
     } else {
-      // Hide on lg+ again (fade out) and block interactions while invisible
       header.classList.add("lg:opacity-0");
       header.classList.add("lg:pointer-events-none");
     }
@@ -48,6 +46,5 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", onScrollThrottled, { passive: true });
   window.addEventListener("resize", recompute);
 
-  // Initial check after a short delay to let layout settle
   setTimeout(recompute, 50);
 });

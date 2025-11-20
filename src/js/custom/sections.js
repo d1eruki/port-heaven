@@ -1,4 +1,5 @@
 import { smoothScrollTo as _smoothScrollTo } from "../utils/smooth-scroll";
+import { onReady } from "../utils/onReady";
 
 (function () {
   const init = () =>
@@ -14,11 +15,7 @@ import { smoothScrollTo as _smoothScrollTo } from "../utils/smooth-scroll";
       debug: false,
     });
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  onReady(init);
 })();
 
 function initSectionDots(opts = {}) {

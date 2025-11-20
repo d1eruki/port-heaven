@@ -1,6 +1,3 @@
-// Unified smooth scroll utility
-// Uses Lenis when available; falls back to native smooth scroll respecting prefers-reduced-motion
-
 function hasLenis() {
   return typeof window !== "undefined" && typeof window.lenis === "object" && window.lenis && typeof window.lenis.scrollTo === "function";
 }
@@ -28,7 +25,6 @@ export function smoothScrollTo(target, opts = {}) {
   const y = Math.max(0, baseY - (offset | 0));
 
   if (hasLenis()) {
-    // Let Lenis handle the easing
     window.lenis.scrollTo(y, { offset: 0 });
   } else {
     const reduce = prefersReducedMotion();
