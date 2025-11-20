@@ -1,11 +1,11 @@
 import { onReady } from "../utils/onReady";
 
 onReady(() => {
-  const header = document.querySelector("body > header, header");
-  if (!header) return;
+  const menuDot = document.querySelector("body > #menu-dot, #menu-dot");
+  if (!menuDot) return;
 
-  header.classList.add("flex");
-  header.classList.add("lg:opacity-0");
+  menuDot.classList.add("flex");
+  menuDot.classList.add("lg:opacity-0");
 
   const getThreshold = () => window.innerHeight / 2;
 
@@ -13,7 +13,7 @@ onReady(() => {
   let scrollTimer = null;
 
   const ensureTransitionClasses = () => {
-    header.classList.add("transition-opacity", "duration-300", "ease-in-out");
+    menuDot.classList.add("transition-opacity", "duration-300", "ease-in-out");
   };
   ensureTransitionClasses();
 
@@ -21,11 +21,11 @@ onReady(() => {
     if (lastState === shouldShow) return;
     lastState = shouldShow;
     if (shouldShow) {
-      header.classList.remove("lg:opacity-0");
-      header.classList.remove("lg:pointer-events-none");
+      menuDot.classList.remove("lg:opacity-0");
+      menuDot.classList.remove("lg:pointer-events-none");
     } else {
-      header.classList.add("lg:opacity-0");
-      header.classList.add("lg:pointer-events-none");
+      menuDot.classList.add("lg:opacity-0");
+      menuDot.classList.add("lg:pointer-events-none");
     }
   };
 
