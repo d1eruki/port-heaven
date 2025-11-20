@@ -15,6 +15,7 @@ import "./js/custom/prevent-orphans";
 
 const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
+const screenLg = window.innerWidth >= 1024;
 
 if (!hwOn) {
   document.documentElement.classList.add("no-hw");
@@ -22,13 +23,13 @@ if (!hwOn) {
 
 (async () => {
   try {
-    if (hwOn) {
+    if (hwOn && screenLg) {
       await import("./js/libraries/lenis");
       await import("./js/libraries/vanilla-tilt");
       await import("./js/custom/hero-image-scale");
       await import("./js/custom/hero-image-parallax");
       await import("./js/custom/cursor");
-    } else {
+    } else if (!hwOn) {
       await import("./styles/no-hw.css");
     }
   } catch {}
