@@ -43,44 +43,22 @@ export function isHardwareAccelerationEnabled() {
   }
 }
 
-function prefersReducedMotion() {
-  try {
-    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  } catch {
-    return false;
-  }
-}
-
-export function isHwOn() {
-  return isHardwareAccelerationEnabled() && !prefersReducedMotion();
-}
-
 export function applyHwClass(options = {}) {
   const { recheckOnVisibility = false } = options;
   const root = document.documentElement;
 
   const set = (on) => {
-    root.classList.toggle("hw", !!on);
+    if (on) root.classList.add("hw");
+    else root.classList.remove("hw");
   };
 
-  set(isHwOn());
+  set(isHardwareAccelerationEnabled());
 
-  // update on visibility back
   if (recheckOnVisibility) {
     document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) set(isHwOn());
+      if (!document.hidden) set(isHardwareAccelerationEnabled());
     });
   }
-
-  // react to prefers-reduced-motion changes
-  try {
-    const mql = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mql) {
-      const onChange = () => set(isHwOn());
-      if (typeof mql.addEventListener === "function") mql.addEventListener("change", onChange);
-      else if (typeof mql.addListener === "function") mql.addListener(onChange);
-    }
-  } catch {}
 }
 
 if (document.readyState === "loading") {

@@ -1,6 +1,7 @@
 import { smoothScrollTop } from "../utils/smooth-scroll";
+import { onReady } from "../utils/onReady";
 
-document.addEventListener("DOMContentLoaded", () => {
+onReady(() => {
   const scrollIcon = document.querySelector("#scroll-to-top, [data-scroll-to-top]");
   if (!scrollIcon) return;
 

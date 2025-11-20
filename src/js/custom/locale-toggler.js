@@ -1,6 +1,7 @@
 import i18n from "../libraries/i18n";
+import { onReady } from "../utils/onReady";
 
-document.addEventListener("DOMContentLoaded", () => {
+onReady(() => {
   const buttons = document.querySelectorAll("#lang-toggle");
 
   const setLabel = (el) => {

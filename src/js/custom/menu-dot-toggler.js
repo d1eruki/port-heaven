@@ -1,19 +1,19 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const menuDot = document.querySelector("body > #menu-dot, #menu-dot");
-  if (!menuDot) return;
+import { onReady } from "../utils/onReady";
 
-  // Keep base `hidden` so menuDot is never shown on small screens.
-  // On lg+, start from transparent and fade in/out by toggling `lg:opacity-0`.
-  menuDot.classList.add("flex");
-  menuDot.classList.add("lg:opacity-0");
+onReady(() => {
+  const header = document.querySelector("body > header, header");
+  if (!header) return;
 
-  const getThreshold = () => window.innerHeight / 2; // 50dvh equivalent at runtime
+  header.classList.add("flex");
+  header.classList.add("lg:opacity-0");
+
+  const getThreshold = () => window.innerHeight / 2;
 
   let lastState = null;
   let scrollTimer = null;
 
   const ensureTransitionClasses = () => {
-    menuDot.classList.add("transition-opacity", "duration-300", "ease-in-out");
+    header.classList.add("transition-opacity", "duration-300", "ease-in-out");
   };
   ensureTransitionClasses();
 
@@ -21,13 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (lastState === shouldShow) return;
     lastState = shouldShow;
     if (shouldShow) {
-      // Show only on lg+ by removing lg:opacity-0. Keep base hidden to stay hidden on small screens.
-      menuDot.classList.remove("lg:opacity-0");
-      menuDot.classList.remove("lg:pointer-events-none");
+      header.classList.remove("lg:opacity-0");
+      header.classList.remove("lg:pointer-events-none");
     } else {
-      // Hide on lg+ again (fade out) and block interactions while invisible
-      menuDot.classList.add("lg:opacity-0");
-      menuDot.classList.add("lg:pointer-events-none");
+      header.classList.add("lg:opacity-0");
+      header.classList.add("lg:pointer-events-none");
     }
   };
 
@@ -48,6 +46,5 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", onScrollThrottled, { passive: true });
   window.addEventListener("resize", recompute);
 
-  // Initial check after a short delay to let layout settle
   setTimeout(recompute, 50);
 });
