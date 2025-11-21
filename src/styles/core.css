@@ -12,8 +12,7 @@
   --cursor-size-active: 35px;
   --cursor-size-label: 150px;
 
-  --color-primary: hsl(83, 100%, 50%);
-  --color-secondary: hsl(265 100% 50%);
+  --color-primary: color(display-p3 0.7 1 0);
 
   --text-h1: clamp(3rem, 12vw, 20rem);
   --leading-h1: 10vw;
