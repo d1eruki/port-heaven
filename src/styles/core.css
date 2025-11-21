@@ -12,7 +12,7 @@
   --cursor-size-active: 35px;
   --cursor-size-label: 150px;
 
-  --color-primary: color(display-p3 0.7 1 0);
+  --color-primary: hsl(83 100% 50%);
 
   --text-h1: clamp(3rem, 12vw, 20rem);
   --leading-h1: 10vw;
@@ -26,4 +26,10 @@
   --dot-gap: 10px;
   --dot-color: var(--color-white);
   --dot-current: var(--color-primary);
+}
+
+@media (color-gamut: p3) {
+  :root {
+    --color-primary: color(display-p3 0.7 1 0);
+  }
 }
