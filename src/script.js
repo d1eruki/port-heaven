@@ -20,6 +20,9 @@ const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-m
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
 const screenLg = window.innerWidth >= 1024;
 
+import { ensureModelViewerLoaded } from "./js/libraries/model-viewer";
+ensureModelViewerLoaded().then(r =>{});
+
 if (!hwOn) {
   document.documentElement.classList.add("no-hw");
 }
