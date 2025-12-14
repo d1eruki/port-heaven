@@ -64,22 +64,7 @@
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
       </div>
       <div class="corner-frame light:text-black z-2 m-15 p-15">{{ t('menu-description-description') }}></div>
-      <model-viewer
-        src="assets/tag%20name.glb"
-        class="absolute z-10 top-0 right-0 min-h-dvh"
-        camera-controls
-        interaction-prompt="none"
-        camera-orbit="0deg 90deg auto"
-        min-camera-orbit="auto 90deg auto"
-        max-camera-orbit="auto 90deg auto"
-        disable-zoom
-        disable-pan
-        auto-rotate
-        rotation-per-second="10deg"
-        shadow-intensity="0"
-        autoplay
-        exposure="1"
-      ></model-viewer>
+      <model-viewer src="assets/tag%20name.glb" class="absolute top-0 right-0 z-10 min-h-dvh" camera-controls interaction-prompt="none" camera-orbit="0deg 90deg auto" min-camera-orbit="auto 90deg auto" max-camera-orbit="auto 90deg auto" disable-zoom disable-pan auto-rotate rotation-per-second="10deg" shadow-intensity="0" autoplay exposure="1"></model-viewer>
     </section>
 
     <!--    <header class="light:lg:bg-primary z-100 h-10 w-full px-15 lg:sticky lg:top-0">asdasd</header>-->
@@ -193,16 +178,16 @@
       </div>
     </section>
 
-    <!--    <section data-section="footer" id="footer" class="flex min-h-dvh items-end gap-15 p-15">-->
-    <!--      <div>-->
-    <!--        <div class="text-primary font-[Actay_Wide] text-[15rem]">Дайруки</div>-->
-    <!--        <div>-->
-    <!--          <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>-->
-    <!--          <a class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400" href="https://t.me/d1eruki" target="_blank"> телеграм </a>-->
-    <!--          <a class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400" href="mailto:stapps90@gmail.com" target="_blank"> почта </a>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <button id="scroll-to-top" class="group light:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small></button>-->
-    <!--    </section>-->
+    <section data-section="footer" id="footer" class="flex min-h-dvh items-end gap-15 p-15">
+      <div>
+        <div class="text-primary font-[Actay_Wide] text-[15rem]">Дайруки</div>
+        <div>
+          <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
+          <a class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400" href="https://t.me/d1eruki" target="_blank"> телеграм </a>
+          <a class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400" href="mailto:stapps90@gmail.com" target="_blank"> почта </a>
+        </div>
+      </div>
+      <button id="scroll-to-top" class="group light:text-white flex"><small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small></button>
+    </section>
   </body>
 </html>
