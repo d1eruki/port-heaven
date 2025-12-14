@@ -32,8 +32,7 @@ if (!hwOn) {
     if (hwOn && screenLg) {
       await import("./js/libraries/lenis");
       await import("./js/libraries/vanilla-tilt");
-      await import("./js/custom/hero-image-scale");
-      await import("./js/custom/hero-image-parallax");
+      await import("./js/custom/hero-image-effect");
       await import("./js/custom/cursor");
     } else if (!hwOn) {
       await import("./styles/no-hw.css");
