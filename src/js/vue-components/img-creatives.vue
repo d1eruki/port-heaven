@@ -1,6 +1,15 @@
 <template>
-  <div class="vanilla-tilt-creatives group h-fit hover:z-100" :style="computedStyle">
-    <img class="transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0" :src="creativeSrc" alt="post-card" loading="lazy" decoding="async" />
+  <div
+    class="vanilla-tilt-creatives group h-fit hover:z-100"
+    :style="computedStyle"
+  >
+    <img
+      class="transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0"
+      :src="creativeSrc"
+      alt="post-card"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 </template>
 
