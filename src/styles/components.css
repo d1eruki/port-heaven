@@ -113,11 +113,20 @@
       calc(var(--cell) / 2) calc(var(--cell) / 2),
       calc(var(--cell) / 2) calc(var(--cell) / 2);
   }
-}
-
-@layer components {
   .hero-image {
     transform: translateY(var(--parallaxY, 0)) scale(var(--heroScale, 1));
     will-change: transform;
+  }
+
+  @media (max-width: 767px) {
+    design > a.design-active,
+    .design-active {
+      background-color: var(--color-primary) !important;
+      color: var(--color-black) !important;
+    }
+
+    design > a.design-active .light\:text-white {
+      color: var(--color-black) !important;
+    }
   }
 }
