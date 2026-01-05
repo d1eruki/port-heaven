@@ -15,6 +15,7 @@ import "./js/custom/scroll-to-top";
 import "./js/custom/menu-dot-toggler";
 import "./js/custom/hero-bg-cells";
 import "./js/custom/prevent-orphans";
+import "./js/custom/design-active";
 
 const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
