@@ -134,6 +134,7 @@
         >
       </nav>
     </div>
+
     <div
       id="progress-bar"
       class="progress-bar light:bg-white fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"
@@ -159,14 +160,14 @@
     <section
       data-section="description"
       id="description"
-      class="light:bg-primary relative grid min-h-dvh lg:grid-cols-2"
+      class="light:bg-primary relative min-h-dvh lg:grid lg:grid-cols-2"
     >
       <!--
       <div class="left-15 z-0 h-full w-full text-(length:--designer) break-words text-white lg:absolute">{{ t('menu-description-2') }}</div>-->
       <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:justify-items-start">
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
       </div>
-      <div class="corner-frame light:text-black z-2 m-15 p-15">{{ t('menu-description-description') }}></div>
+      <div class="corner-frame light:text-black z-2 m-15 p-5 lg:p-15">{{ t('menu-description-description') }}></div>
       <model-viewer
         src="assets/tag%20name.glb"
         class="absolute top-0 right-0 z-10 min-h-dvh"
