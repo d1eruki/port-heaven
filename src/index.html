@@ -434,25 +434,25 @@
     <section
       data-section="footer"
       id="footer"
-      class="hidden min-h-dvh items-end gap-15 p-15"
+      class="flex min-h-dvh items-end p-15 lg:justify-between"
     >
-      <div>
-        <div class="text-primary font-[Actay_Wide] text-[15rem]">Дайруки</div>
-        <div>
-          <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
+      <div class="flex flex-col gap-5">
+        <h1 class="text-primary font-[Actay_Wide]">Дайруки</h1>
+        <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
+        <div class="gap-10 lg:flex">
           <a
-            class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400"
+            class="font-[Actay_Wide] text-neutral-700 hover:text-neutral-400"
             href="https://t.me/d1eruki"
             target="_blank"
           >
-            телеграм
+            <h2>телеграм</h2>
           </a>
           <a
-            class="font-[Actay_Wide] text-[5rem] text-neutral-700 hover:text-neutral-400"
+            class="font-[Actay_Wide] text-neutral-700 hover:text-neutral-400"
             href="mailto:stapps90@gmail.com"
             target="_blank"
           >
-            почта
+            <h2>почта</h2>
           </a>
         </div>
       </div>
