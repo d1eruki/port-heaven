@@ -21,21 +21,23 @@ const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-m
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
 const screenLg = window.innerWidth >= 1024;
 
-import { ensureModelViewerLoaded } from "./js/libraries/model-viewer";
-ensureModelViewerLoaded();
-
 if (!hwOn) {
   document.documentElement.classList.add("no-hw");
 }
 
 (async () => {
   try {
-    if (hwOn && screenLg) {
-      await import("./js/libraries/lenis");
-      await import("./js/libraries/vanilla-tilt");
-      await import("./js/custom/hero-image-effect");
-      await import("./js/custom/cursor");
-    } else if (!hwOn) {
+    if (hwOn) {
+      const { ensureModelViewerLoaded } = await import("./js/libraries/model-viewer");
+      ensureModelViewerLoaded();
+
+      if (screenLg) {
+        await import("./js/libraries/lenis");
+        await import("./js/libraries/vanilla-tilt");
+        await import("./js/custom/hero-image-effect");
+        await import("./js/custom/cursor");
+      }
+    } else {
       await import("./styles/no-hw.css");
     }
   } catch {}

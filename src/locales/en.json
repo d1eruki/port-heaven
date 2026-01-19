@@ -67,5 +67,7 @@
   "design-mooozik-text": "Mooozik is a Dutch music startup that produces unique music tracks designed exclusively for cows.",
 
   "button-open": "open",
-  "button-to-top": "to top"
+  "button-to-top": "to top",
+
+  "hw-disabled": "Hardware acceleration is disabled, and visual effects are turned off"
 }

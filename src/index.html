@@ -170,7 +170,7 @@
       <div class="corner-frame light:text-black z-2 m-15 p-5 lg:p-15">{{ t('menu-description-description') }}></div>
       <model-viewer
         src="assets/tag%20name.glb"
-        class="absolute top-0 right-0 z-10 min-h-dvh"
+        class="hw:block absolute top-0 right-0 z-10 hidden min-h-dvh"
         camera-controls
         interaction-prompt="none"
         camera-orbit="0deg 90deg auto"
@@ -186,7 +186,7 @@
       ></model-viewer>
     </section>
 
-    <!--    <header class="light:lg:bg-primary z-100 h-10 w-full px-15 lg:sticky lg:top-0">asdasd</header>-->
+    <header class="hw:hidden light:bg-primary sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5">{{ t('hw-disabled') }}</header>
 
     <!--about-->
     <section
