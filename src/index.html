@@ -391,68 +391,30 @@
     </section>
 
     <!--footer-->
-
     <section
       data-section="footer"
       id="footer"
-      class="grid min-h-dvh auto-rows-auto grid-rows-2 content-center lg:grid-rows-3"
-    >
-      <div class="hidden lg:block"></div>
-      <div class="flex flex-col justify-center gap-10 p-15 lg:items-center lg:p-0">
-        <div class="flex flex-col gap-5 lg:w-150">
-          <h2>{{ t('menu-footer') }}</h2>
-          <menu-desc
-            class="lg:max-w-150"
-            :menu-desc="t('menu-footer-description')"
-          ></menu-desc>
-        </div>
-        <div class="flex justify-start gap-10 lg:w-150">
-          <div class="group relative">
-            <a
-              class="w-fit"
-              href="mailto:stapps90@gmail.com"
-              target="_blank"
-            >
-              <span class="icon-[ic--round-email] light:text-primary size-10"></span>
-            </a>
-            <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
-          </div>
-          <div class="group relative">
-            <a
-              class="w-fit"
-              href="https://t.me/d1eruki"
-              target="_blank"
-            >
-              <span class="icon-[ic--baseline-telegram] light:text-primary size-10"></span>
-            </a>
-            <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section
-      data-section="footer"
-      id="footer"
-      class="flex min-h-dvh items-end p-15 lg:justify-between"
+      class="flex min-h-dvh items-center p-15 lg:justify-between"
     >
       <div class="flex flex-col gap-5">
         <h1 class="text-primary font-[Actay_Wide]">Дайруки</h1>
         <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
         <div class="gap-10 lg:flex">
           <a
-            class="font-[Actay_Wide] text-neutral-700 hover:text-neutral-400"
+            class="group relative font-[Actay_Wide] text-neutral-700 hover:text-neutral-600"
             href="https://t.me/d1eruki"
             target="_blank"
           >
-            <h2>телеграм</h2>
+            <h2>телеграм <span class="icon-[ic--baseline-telegram] size-10"></span></h2>
+            <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
           </a>
           <a
-            class="font-[Actay_Wide] text-neutral-700 hover:text-neutral-400"
+            class="group relative font-[Actay_Wide] text-neutral-700 hover:text-neutral-600"
             href="mailto:stapps90@gmail.com"
             target="_blank"
           >
-            <h2>почта</h2>
+            <h2>почта <span class="icon-[ic--round-email] size-10"></span></h2>
+            <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
           </a>
         </div>
       </div>
