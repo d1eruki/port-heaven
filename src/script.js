@@ -28,17 +28,17 @@ if (!hwOn) {
 (async () => {
   try {
     if (hwOn) {
-      const { ensureModelViewerLoaded } = await import("./js/libraries/model-viewer");
-      ensureModelViewerLoaded();
+      const imports = [import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) => ensureModelViewerLoaded())];
 
       if (screenLg) {
-        await import("./js/libraries/lenis");
-        await import("./js/libraries/vanilla-tilt");
-        await import("./js/custom/hero-image-effect");
-        await import("./js/custom/cursor");
+        imports.push(import("./js/libraries/lenis"), import("./js/libraries/vanilla-tilt"), import("./js/custom/hero-image-effect"), import("./js/custom/cursor"));
       }
+
+      await Promise.all(imports);
     } else {
       await import("./styles/no-hw.css");
     }
-  } catch {}
+  } catch (e) {
+    console.error("Failed to load dynamic modules:", e);
+  }
 })();
