@@ -17,14 +17,14 @@
   --color-primary: hsl(83 100% 50%);
 
   /* типографика */
-  --footer: clamp(2rem, 18vw, 20rem);
   --text-h1: clamp(3rem, 12vw, 20rem);
-  --leading-h1: 10vw;
-  --text-h2: clamp(2.5rem, 4vw, 8rem);
-  --text-h3: clamp(2rem, 3vw, 4.5rem);
-  --text-h4: clamp(1.75rem, 2vw, 3rem);
+  --text-h2: clamp(1.75rem, 4vw, 8rem);
+  --text-h3: clamp(1.5rem, 3vw, 4.5rem);
+  --text-h4: clamp(1.25rem, 2vw, 3rem);
   --text-body: clamp(1rem, 1vw, 2rem);
   --text-small: clamp(0.75rem, 0.75vw, 1.25rem);
+  --footer: clamp(2rem, 13vw, 20rem);
+  --leading-h1: 10vw;
 
   --dot-size: 14px;
   --dot-gap: 10px;

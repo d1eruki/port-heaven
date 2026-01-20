@@ -77,7 +77,7 @@
     <div
       data-section="hero"
       id="hero"
-      class="hero -z-2 bg-scroll lg:bg-fixed"
+      class="hero -z-2 min-h-dvh bg-scroll lg:bg-fixed"
     >
       <div class="relative isolate flex min-h-dvh w-full overflow-x-hidden">
         <img
@@ -90,7 +90,7 @@
         />
         <div class="z-2 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between lg:mix-blend-difference">
           <h1 class="whitespace-pre-line">{{ t('hero') }}</h1>
-          <small class="lg:mb-10">{{ t('logo') }}</small>
+          <small>{{ t('logo') }}</small>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -160,13 +160,12 @@
     <section
       data-section="description"
       id="description"
-      class="light:bg-primary relative min-h-dvh lg:grid lg:grid-cols-2"
+      class="light:bg-primary relative lg:grid lg:min-h-dvh lg:grid-cols-2"
     >
-      <!--<div class="left-15 z-0 h-full w-full text-(length:--designer) break-words text-white lg:absolute">{{ t('menu-description-2') }}</div>-->
       <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:justify-items-start">
-        <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
+        <h2 class="justify-self-center p-15 lg:max-w-150 lg:text-center">{{ t('menu-description') }}</h2>
       </div>
-      <div class="corner-frame light:text-black z-2 m-15 p-5 lg:p-15">{{ t('menu-description-description') }}></div>
+      <div class="corner-frame light:text-black z-2 m-10 self-center p-10 lg:m-15 lg:h-fit lg:p-15">{{ t('menu-description-description') }}></div>
       <model-viewer
         src="assets/tag%20name.glb"
         class="hw:block absolute top-0 right-0 z-10 hidden min-h-dvh"
@@ -397,7 +396,7 @@
     >
       <div class="items-center gap-10 lg:flex">
         <a
-          class="group relative w-auto font-[Actay_Wide] light:text-neutral-700 light:hover:text-white"
+          class="group light:text-neutral-700 light:hover:text-white relative w-auto font-[Actay_Wide]"
           href="https://t.me/d1eruki"
           target="_blank"
         >
@@ -405,7 +404,7 @@
           <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
         </a>
         <a
-          class="group relative w-auto font-[Actay_Wide] light:text-neutral-700 light:hover:text-white"
+          class="group light:text-neutral-700 light:hover:text-white relative w-auto font-[Actay_Wide]"
           href="mailto:stapps90@gmail.com"
           target="_blank"
         >
