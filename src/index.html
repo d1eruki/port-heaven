@@ -162,8 +162,7 @@
       id="description"
       class="light:bg-primary relative min-h-dvh lg:grid lg:grid-cols-2"
     >
-      <!--
-      <div class="left-15 z-0 h-full w-full text-(length:--designer) break-words text-white lg:absolute">{{ t('menu-description-2') }}</div>-->
+      <!--<div class="left-15 z-0 h-full w-full text-(length:--designer) break-words text-white lg:absolute">{{ t('menu-description-2') }}</div>-->
       <div class="light:bg-white light:lg:bg-transparent light:text-black z-2 content-center justify-items-center lg:justify-items-start">
         <h2 class="p-15 lg:max-w-150 lg:text-center">{{ t('menu-description-1') }}</h2>
       </div>
@@ -394,36 +393,36 @@
     <section
       data-section="footer"
       id="footer"
-      class="flex min-h-dvh items-center p-15 lg:justify-between"
+      class="flex min-h-dvh flex-col justify-end gap-5 p-15"
     >
-      <div class="flex flex-col gap-5">
-        <h1 class="text-primary font-[Actay_Wide]">Дайруки</h1>
+      <div class="items-center gap-10 lg:flex">
+        <a
+          class="group relative w-auto font-[Actay_Wide] text-neutral-700 hover:text-neutral-600"
+          href="https://t.me/d1eruki"
+          target="_blank"
+        >
+          <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--baseline-telegram] aspect-square"></span>телеграм</h2>
+          <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
+        </a>
+        <a
+          class="group relative w-auto font-[Actay_Wide] text-neutral-700 hover:text-neutral-600"
+          href="mailto:stapps90@gmail.com"
+          target="_blank"
+        >
+          <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--round-email] aspect-square"></span>почта</h2>
+          <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
+        </a>
         <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
-        <div class="gap-10 lg:flex">
-          <a
-            class="group relative font-[Actay_Wide] text-neutral-700 hover:text-neutral-600"
-            href="https://t.me/d1eruki"
-            target="_blank"
-          >
-            <h2>телеграм <span class="icon-[ic--baseline-telegram] size-10"></span></h2>
-            <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
-          </a>
-          <a
-            class="group relative font-[Actay_Wide] text-neutral-700 hover:text-neutral-600"
-            href="mailto:stapps90@gmail.com"
-            target="_blank"
-          >
-            <h2>почта <span class="icon-[ic--round-email] size-10"></span></h2>
-            <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
-          </a>
-        </div>
       </div>
-      <button
-        id="scroll-to-top"
-        class="group light:text-white flex"
-      >
-        <small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small>
-      </button>
+      <h2 class="text-primary font-[Actay_Wide] text-(length:--footer) text-nowrap lowercase">Дайруки</h2>
     </section>
+
+    <!--scroll-to-top-->
+    <button
+      id="scroll-to-top"
+      class="group light:text-white fixed right-5 bottom-5 z-200 flex mix-blend-difference lg:right-15 lg:bottom-15"
+    >
+      <small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small>
+    </button>
   </body>
 </html>

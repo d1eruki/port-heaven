@@ -17,7 +17,7 @@
   --color-primary: hsl(83 100% 50%);
 
   /* типографика */
-  --designer: clamp(10rem, 18vw, 30rem);
+  --footer: clamp(2rem, 18vw, 20rem);
   --text-h1: clamp(3rem, 12vw, 20rem);
   --leading-h1: 10vw;
   --text-h2: clamp(2.5rem, 4vw, 8rem);
@@ -28,7 +28,7 @@
 
   --dot-size: 14px;
   --dot-gap: 10px;
-  --dot-color: var(--color-white);
+  --dot-color: var(--color-neutral-700);
   --dot-current: var(--color-primary);
 }
 
