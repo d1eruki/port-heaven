@@ -69,5 +69,8 @@
   "button-to-top": "to top",
 
   "hw-disabled": "Hardware acceleration is disabled, and visual effects are turned off",
-  "lang-toggle": "ru"
+  "lang-toggle": "ru",
+
+  "telegram": "Telegram",
+  "mail": "E-mail"
 }

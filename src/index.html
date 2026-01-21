@@ -102,6 +102,7 @@
       </div>
     </div>
 
+    <!--navigation dots-->
     <div
       id="menu-dot"
       class="hw:mix-blend-difference fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0"
@@ -135,11 +136,13 @@
       </nav>
     </div>
 
+    <!--progress bar-->
     <div
       id="progress-bar"
       class="progress-bar light:bg-neutral-700 fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"
     ></div>
 
+    <!--right menu-->
     <div
       id="menu-right"
       class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15"
@@ -400,7 +403,7 @@
           href="https://t.me/d1eruki"
           target="_blank"
         >
-          <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--baseline-telegram] aspect-square"></span>телеграм</h2>
+          <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--baseline-telegram] aspect-square"></span>{{ t('telegram') }}</h2>
           <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
         </a>
         <a
@@ -408,12 +411,12 @@
           href="mailto:stapps90@gmail.com"
           target="_blank"
         >
-          <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--round-email] aspect-square"></span>почта</h2>
+          <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--round-email] aspect-square"></span>{{ t('mail') }}</h2>
           <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
         </a>
         <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
       </div>
-      <h2 class="text-primary font-[Actay_Wide] text-(length:--footer) text-nowrap lowercase">Дайруки</h2>
+      <h2 class="text-primary font-[Actay_Wide] text-(length:--footer) text-nowrap lowercase">{{ t('logo') }}</h2>
     </section>
 
     <!--scroll-to-top-->
