@@ -23,7 +23,7 @@
   --text-h4: clamp(1.25rem, 2vw, 3rem);
   --text-body: clamp(1rem, 1vw, 2rem);
   --text-small: clamp(0.75rem, 0.75vw, 1.25rem);
-  --footer: clamp(2rem, 13vw, 20rem);
+  --footer: clamp(2rem, 16vw, 30rem);
   --leading-h1: 10vw;
 
   --dot-size: 14px;
