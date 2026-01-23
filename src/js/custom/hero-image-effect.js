@@ -14,21 +14,23 @@ if (heroImages.length) {
   const maxScale = 2;
   const perPixelFactor = 0.0001;
 
-  const initialScroll = lenis.scroll;
-
-  lenis.on("scroll", (e) => {
-    const scroll = e && typeof e.scroll === "number" ? e.scroll : lenis.scroll;
-
+  const updateHeroEffect = (scroll) => {
     // Parallax
     const offset = scroll * PARALLAX_SPEED;
 
     // Scale
-    const delta = scroll - initialScroll;
-    const targetScale = clamp(baseScale + delta * perPixelFactor, minScale, maxScale);
+    const targetScale = clamp(baseScale + scroll * perPixelFactor, minScale, maxScale);
 
     heroImages.forEach((el) => {
       el.style.setProperty("--parallaxY", offset + "px");
       el.style.setProperty("--heroScale", String(targetScale));
     });
+  };
+
+  updateHeroEffect(lenis.scroll);
+
+  lenis.on("scroll", (e) => {
+    const scroll = e && typeof e.scroll === "number" ? e.scroll : lenis.scroll;
+    updateHeroEffect(scroll);
   });
 }
