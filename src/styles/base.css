@@ -27,29 +27,29 @@
   }
 
   h1 {
-    font-size: var(--text-h1);
-    line-height: var(--leading-h1);
+    font-size: var(--h1);
+    line-height: var(--h1-leading);
   }
   h2 {
-    font-size: var(--text-h2);
+    font-size: var(--h2);
   }
   h3 {
-    font-size: var(--text-h3);
+    font-size: var(--h3);
   }
   h4 {
-    font-size: var(--text-h4);
+    font-size: var(--h4);
   }
 
   p,
   a,
   button,
   .app-cursor {
-    font-size: var(--text-body);
+    font-size: var(--paragraph);
   }
 
   small,
   .design span {
-    font-size: var(--text-small);
+    font-size: var(--subtext);
   }
 
   video::-webkit-media-controls {
