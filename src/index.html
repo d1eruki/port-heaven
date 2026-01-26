@@ -57,6 +57,11 @@
       href="assets/favicon.png"
       rel="icon"
     />
+    <link
+      rel="preload"
+      href="assets/soma-lancet-2.webp"
+      as="image"
+    />
   </head>
   <body
     lang="ru"
@@ -77,15 +82,17 @@
     <div
       data-section="hero"
       id="hero"
-      class="hero -z-2 min-h-dvh bg-scroll lg:bg-fixed"
+      class="hero min-h-dvh bg-scroll lg:bg-fixed"
     >
       <div class="relative isolate flex min-h-dvh w-full overflow-x-hidden">
         <img
           src="assets/soma-lancet.webp"
-          class="hero-image lg:top-50% absolute right-0 left-0 z-2 h-dvh w-auto justify-self-center object-cover grayscale lg:right-30 lg:z-3 lg:h-9/10 lg:self-center lg:justify-self-end"
+          onmouseover="this.src='assets/soma-lancet-2.webp'"
+          onmouseout="this.src='assets/soma-lancet.webp'"
+          class="hero-image lg:top-50% absolute right-0 left-0 z-20 h-dvh w-auto justify-self-center object-cover grayscale transition-opacity duration-300 lg:right-30 lg:z-3 lg:h-9/10 lg:self-center lg:justify-self-end"
           alt="hero"
           fetchpriority="high"
-          decoding="async"
+          decoding="sync"
           loading="eager"
         />
         <div class="z-2 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between lg:mix-blend-difference">
