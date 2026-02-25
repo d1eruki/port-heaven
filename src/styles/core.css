@@ -2,6 +2,7 @@
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 
 @theme {
+  /* breakpoints */
   --breakpoint-lg: 64rem; /* 1024 */
   --breakpoint-3xl: 120rem; /* 1920 */
   --breakpoint-4xl: 160rem; /* 2560 */
@@ -12,19 +13,22 @@
   --cursor-size-active: 35px;
   --cursor-size-label: 150px;
 
+  /* colors (HSL) */
   --color-primary: hsl(83 100% 50%);
 
-  --text-h1: clamp(3rem, 12vw, 20rem);
-  --leading-h1: 10vw;
-  --text-h2: clamp(2.5rem, 4vw, 8rem);
-  --text-h3: clamp(2rem, 3vw, 4.5rem);
-  --text-h4: clamp(1.75rem, 2vw, 3rem);
-  --text-body: clamp(1rem, 1vw, 2rem);
-  --text-small: clamp(0.75rem, 0.75vw, 1.25rem);
+  /* типографика */
+  --h1: clamp(3rem, 12vw, 20rem);
+  --h2: clamp(1.75rem, 4vw, 8rem);
+  --h3: clamp(1.5rem, 3vw, 4.5rem);
+  --h4: clamp(1.25rem, 2vw, 3rem);
+  --paragraph: clamp(0.75rem, 0.7071rem + 0.1831vw, 1rem);
+  --subtext: clamp(0.75rem, 0.75vw, 1.25rem);
+  --footer-logo-text: clamp(3rem, -1.6339rem + 19.7712vw, 30rem);
+  --h1-leading: 10vw;
 
   --dot-size: 14px;
   --dot-gap: 10px;
-  --dot-color: var(--color-white);
+  --dot-color: var(--color-neutral-700);
   --dot-current: var(--color-primary);
 }
 

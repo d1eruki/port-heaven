@@ -8,14 +8,10 @@
   font-style: normal;
   font-display: swap;
 }
-
-/* =========================
-   Actay Wide
-   ========================= */
 @font-face {
-  font-family: "Actay Wide";
-  src: url("../assets/fonts/ActayWide-Bold.otf") format("opentype");
-  font-weight: 700;
+  font-family: "JetBrains Mono";
+  src: url("../assets/fonts/JetBrainsMono-Bold.woff2") format("woff2");
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }

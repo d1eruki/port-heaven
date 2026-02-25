@@ -3,7 +3,7 @@
 
   "hero": "Artem\nTresckow",
 
-  "menu-description": "ux/ui/web designer",
+  "menu-description": "designer",
   "menu-description-description": "I create not just beautiful, but functional design that solves business challenges, boosts conversions, and scales easily. I work at the intersection of web design, product, and front-end, keeping in mind metrics, MVP, and development constraints. I look through the eyes of the user and structure like an engineer—turning business goals into clear, usable interfaces. I know front-end basics and can quickly build prototypes or landing pages. I also use video editing for presentations, promo materials, and UI animations to show design not only in static form, but also in motion.",
 
   "menu-about": "About me",
@@ -65,6 +65,16 @@
   "design-mooozik-title": "Mooozik",
   "design-mooozik-text": "Mooozik is a Dutch music startup that produces unique music tracks designed exclusively for cows.",
 
+  "menu-pricing": "Pricing",
+  "menu-pricing-description": "[ Pricing description. ]",
+
   "button-open": "open",
-  "button-to-top": "to top"
+  "button-to-top": "to top",
+
+  "hw-disabled": "Hardware acceleration is disabled, and visual effects are turned off",
+  "lang-toggle": "ru",
+
+  "telegram": "Telegram",
+  "mail": "E-mail",
+  "behance": "behance"
 }

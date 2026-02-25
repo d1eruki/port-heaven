@@ -43,7 +43,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Actay Wide", sans-serif;
   }
 
   .app-cursor::after {
@@ -113,15 +112,26 @@
       calc(var(--cell) / 2) calc(var(--cell) / 2),
       calc(var(--cell) / 2) calc(var(--cell) / 2),
       calc(var(--cell) / 2) calc(var(--cell) / 2);
-    background-attachment: fixed;
   }
-}
-
-/* Compose hero-image transforms from CSS variables set by JS */
-@layer components {
   .hero-image {
     transform: translateY(var(--parallaxY, 0)) scale(var(--heroScale, 1));
     will-change: transform;
-    transition: transform 0.3s ease-out;
+  }
+
+  @media (max-width: 767px) {
+    [data-section="design"] a.design-active,
+    .design-active {
+      background-color: var(--color-primary) !important;
+      color: var(--color-black) !important;
+    }
+
+    [data-section="design"] a.design-active .light\:text-white {
+      color: var(--color-black) !important;
+    }
+
+    [data-section="design"] a.design-active small {
+      background-color: var(--color-neutral-800) !important;
+      color: var(--color-white) !important;
+    }
   }
 }
