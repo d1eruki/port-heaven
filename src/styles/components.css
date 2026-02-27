@@ -130,8 +130,8 @@
     }
 
     [data-section="design"] a.design-active small {
-      background-color: var(--color-neutral-800) !important;
-      color: var(--color-white) !important;
+      background-color: var(--color-white) !important;
+      color: var(--color-neutral-800) !important;
     }
   }
 }
