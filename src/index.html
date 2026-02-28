@@ -87,8 +87,8 @@
       <div class="relative isolate flex min-h-dvh w-full overflow-x-hidden">
         <img
           src="assets/soma-lancet.webp"
-          onmouseover="this.src='assets/soma-lancet-2.webp'"
-          onmouseout="this.src='assets/soma-lancet.webp'"
+          onmouseover="this.src = 'assets/soma-lancet-2.webp'"
+          onmouseout="this.src = 'assets/soma-lancet.webp'"
           class="hero-image lg:top-50% absolute right-0 left-0 z-1 h-dvh w-auto justify-self-center object-cover grayscale transition-opacity duration-300 lg:right-30 lg:z-3 lg:h-9/10 lg:self-center lg:justify-self-end"
           alt="hero"
           fetchpriority="high"
@@ -172,11 +172,11 @@
       id="description"
       class="light:bg-primary relative lg:grid lg:min-h-dvh lg:grid-cols-2"
     >
-      <div class="light:lg:bg-transparent light:text-black z-2 content-center px-15 pt-15 lg:pb-15 lg:justify-center">
+      <div class="light:lg:bg-transparent light:text-black z-2 content-center px-15 pt-15 lg:justify-center lg:pb-15">
         <h2 class="lg:justify-self-center">{{ t('menu-description') }}</h2>
       </div>
-      <p class="light:text-black z-2 self-center w-150 lg:h-fit p-15">{{ t('menu-description-description') }}</p>
-      <!--
+      <p class="light:text-black z-2 w-150 self-center p-15 lg:h-fit">{{ t('menu-description-description') }}</p>
+
       <model-viewer
         src="assets/tag.glb"
         class="hw:block absolute top-0 right-0 z-10 hidden min-h-dvh"
@@ -193,7 +193,6 @@
         autoplay
         exposure="1"
       ></model-viewer>
--->
     </section>
 
     <header class="hw:hidden light:bg-primary sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5">{{ t('hw-disabled') }}</header>
@@ -204,7 +203,7 @@
       id="about"
       class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15"
     >
-      <div class="light:text-white block pt-15 px-15 lg:hidden">
+      <div class="light:text-white block px-15 pt-15 lg:hidden">
         <h2>{{ t('menu-about') }}</h2>
       </div>
       <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
@@ -353,8 +352,13 @@
         design-img-alt=""
         :design-tags="['Dashboard']"
       ></design>
-
-      <!--      <design :design-name="t('design-mooozik-title')" :design-desc="t('design-mooozik-text')" design-url="https://www.figma.com/design/voDUMRONK5sGFSo43BkcU9/Mooozik-%E2%80%94-a-music-label-for-cows?node-id=0-1&t=8jUM5sY9hUOspPua-1" design-img-alt="" :design-tags="['Adaptive', 'Visual', 'Concept']"></design>-->
+      <design
+        :design-name="t('design-mooozik-title')"
+        :design-desc="t('design-mooozik-text')"
+        design-url="https://www.figma.com/design/voDUMRONK5sGFSo43BkcU9/Mooozik-%E2%80%94-a-music-label-for-cows?node-id=0-1&t=8jUM5sY9hUOspPua-1"
+        design-img-alt=""
+        :design-tags="['Adaptive', 'Visual', 'Concept']"
+      ></design>
     </section>
 
     <!--creatives-->
@@ -403,7 +407,6 @@
     </section>
 
     <!--pricing-->
-    <!--
     <section
       data-section="pricing"
       id="pricing"
@@ -411,7 +414,15 @@
     >
       <h2 class="">{{ t('menu-pricing') }}</h2>
     </section>
--->
+
+    <!--reviews-->
+    <section
+      data-section="reviews"
+      id="reviews"
+      class="light:bg-primary light:text-black relative min-h-dvh"
+    >
+      <h2 class="">{{ t('menu-reviews') }}</h2>
+    </section>
 
     <!--footer-->
     <section
