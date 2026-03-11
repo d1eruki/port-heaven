@@ -19,8 +19,11 @@ const initHorizontalScroll = () => {
 
     section.style.height = "400dvh";
     inner.style.position = "sticky";
-    inner.style.overflowX = "hidden";
+    inner.style.overflow = "visible";
     inner.style.display = "grid";
+
+    // Ensure parent section doesn't clip
+    section.style.overflow = "visible";
 
     const sectionHeight = section.offsetHeight;
     const viewportHeight = window.innerHeight;

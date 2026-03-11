@@ -32,14 +32,7 @@ if (!hwOn) {
       const imports = [import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) => ensureModelViewerLoaded())];
 
       if (screenLg) {
-        imports.push(
-          import("./js/libraries/lenis"),
-          import("./js/libraries/vanilla-tilt"),
-          import("./js/custom/hero-image-effect"),
-          import("./js/custom/cursor"),
-          import("./js/custom/scroll-speed"),
-          import("./js/custom/horizontal-scroll")
-        );
+        imports.push(import("./js/libraries/lenis"), import("./js/libraries/vanilla-tilt"), import("./js/custom/hero-image-effect"), import("./js/custom/cursor"), import("./js/custom/scroll-speed"), import("./js/custom/horizontal-scroll"));
       }
 
       await Promise.all(imports);
