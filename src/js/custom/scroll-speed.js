@@ -4,24 +4,26 @@ const initScrollSpeed = () => {
   const elements = document.querySelectorAll('[class*="scroll-speed-"]');
   if (!elements.length) return;
 
-  const items = Array.from(elements).map((el) => {
-    const classList = Array.from(el.classList);
-    const speedClass = classList.find((c) => c.startsWith("scroll-speed-"));
-    if (!speedClass) return null;
+  const items = Array.from(elements)
+    .map((el) => {
+      const classList = Array.from(el.classList);
+      const speedClass = classList.find((c) => c.startsWith("scroll-speed-"));
+      if (!speedClass) return null;
 
-    const rawValue = speedClass.replace("scroll-speed-", "");
-    let speed = 0;
-    if (rawValue.startsWith("--")) {
-      speed = -(parseFloat(rawValue.replace("--", "")) / 100);
-    } else {
-      speed = parseFloat(rawValue) / 100;
-    }
+      const rawValue = speedClass.replace("scroll-speed-", "");
+      let speed = 0;
+      if (rawValue.startsWith("--")) {
+        speed = -(parseFloat(rawValue.replace("--", "")) / 100);
+      } else {
+        speed = parseFloat(rawValue) / 100;
+      }
 
-    const rect = el.getBoundingClientRect();
-    const initialY = rect.top + window.scrollY;
+      const rect = el.getBoundingClientRect();
+      const initialY = rect.top + window.scrollY;
 
-    return { el, speed, initialY };
-  }).filter(Boolean);
+      return { el, speed, initialY };
+    })
+    .filter(Boolean);
 
   const update = () => {
     const scroll = lenis.scroll;
