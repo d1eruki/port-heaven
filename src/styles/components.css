@@ -118,6 +118,10 @@
     will-change: transform;
   }
 
+  [class*="scroll-speed-"] {
+    transform: translateY(var(--scroll-offset, 0));
+  }
+
   @media (max-width: 767px) {
     [data-section="design"] a.design-active,
     .design-active {
