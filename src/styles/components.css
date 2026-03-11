@@ -118,6 +118,11 @@
     will-change: transform;
   }
 
+  #design-inner {
+    will-change: transform;
+    /* transition: transform 0.1s linear; */
+  }
+
   [class*="scroll-speed-"] {
     transform: translateY(var(--scroll-offset, 0));
   }
