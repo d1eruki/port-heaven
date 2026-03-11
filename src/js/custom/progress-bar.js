@@ -1,31 +1,32 @@
-export const updateProgressBar = (scrollY = 0) => {
+import { calculateProgress, getScrollY } from "../utils/scroll";
+
+export const updateProgressBar = (scrollY) => {
   const progressBar = document.getElementById("progress-bar");
   if (!progressBar) return;
 
+  const currentY = scrollY !== undefined ? scrollY : getScrollY();
   const totalHeight = document.body.scrollHeight - window.innerHeight;
-  const progress = totalHeight > 0 ? Math.min((scrollY / totalHeight) * 100, 100) : 0;
+  const progress = calculateProgress(currentY, 0, totalHeight) * 100;
 
   progressBar.style.height = `${progress}%`;
 };
 
 window.addEventListener("beforeunload", () => {
-  const y = window.lenis ? window.lenis.scroll : window.scrollY;
-  localStorage.setItem("scrollY", y.toString());
+  localStorage.setItem("scrollY", getScrollY().toString());
 });
 
 window.addEventListener("load", () => {
   const saved = localStorage.getItem("scrollY");
   if (saved !== null && window.lenis) {
-    // пусть плавно подхватывает
     window.lenis.scrollTo(parseInt(saved, 10), { immediate: true });
   } else if (saved !== null) {
     window.scrollTo(0, parseInt(saved, 10));
   }
-  updateProgressBar(window.lenis ? window.lenis.scroll : window.scrollY);
+  updateProgressBar(getScrollY());
 });
 
 window.addEventListener("resize", () => {
-  updateProgressBar(window.lenis ? window.lenis.scroll : window.scrollY);
+  updateProgressBar(getScrollY());
 });
 
 window.addEventListener("lenis-scroll", (e) => {

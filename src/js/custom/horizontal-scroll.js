@@ -1,11 +1,10 @@
 import { lenis } from "../libraries/lenis";
+import { isMobile, calculateProgress, initOnLoad } from "../utils/scroll";
 
 const initHorizontalScroll = () => {
   const section = document.getElementById("design");
   const inner = document.getElementById("design-inner");
   if (!section || !inner) return;
-
-  const isMobile = () => window.innerWidth < 1024;
 
   const update = () => {
     if (isMobile()) {
@@ -17,24 +16,25 @@ const initHorizontalScroll = () => {
       return;
     }
 
-    section.style.height = "400dvh";
+    const innerWidth = inner.scrollWidth;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    const horizontalDistance = innerWidth - viewportWidth;
+    const dynamicSectionHeight = horizontalDistance + viewportHeight;
+
+    section.style.height = `${dynamicSectionHeight}px`;
     inner.style.position = "sticky";
     inner.style.overflow = "visible";
     inner.style.display = "grid";
 
-    // Ensure parent section doesn't clip
     section.style.overflow = "visible";
 
     const sectionHeight = section.offsetHeight;
-    const viewportHeight = window.innerHeight;
-    const innerWidth = inner.scrollWidth;
-    const viewportWidth = window.innerWidth;
-
     const start = section.offsetTop;
     const scroll = lenis.scroll;
 
-    let progress = (scroll - start) / (sectionHeight - viewportHeight);
-    progress = Math.max(0, Math.min(1, progress));
+    const progress = calculateProgress(scroll, start, start + (sectionHeight - viewportHeight));
 
     const maxTranslate = innerWidth - viewportWidth;
     const translateX = -progress * maxTranslate;
@@ -47,8 +47,4 @@ const initHorizontalScroll = () => {
   window.addEventListener("resize", update);
 };
 
-if (document.readyState === "complete") {
-  initHorizontalScroll();
-} else {
-  window.addEventListener("load", initHorizontalScroll);
-}
+initOnLoad(initHorizontalScroll);

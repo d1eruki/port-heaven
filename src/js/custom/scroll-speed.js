@@ -1,4 +1,5 @@
 import { lenis } from "../libraries/lenis";
+import { initOnLoad } from "../utils/scroll";
 
 const initScrollSpeed = () => {
   const elements = document.querySelectorAll('[class*="scroll-speed-"]');
@@ -45,8 +46,4 @@ const initScrollSpeed = () => {
   });
 };
 
-if (document.readyState === "complete") {
-  initScrollSpeed();
-} else {
-  window.addEventListener("load", initScrollSpeed);
-}
+initOnLoad(initScrollSpeed);

@@ -8,8 +8,8 @@ export const lenis = new Lenis({
 window.lenis = lenis;
 
 lenis.on("scroll", (e) => {
-  const y = e && typeof e.scroll === "number" ? e.scroll : lenis.scroll;
-  window.dispatchEvent(new CustomEvent("lenis-scroll", { detail: { y } }));
+  const y = e?.scroll ?? lenis.scroll;
+  window.dispatchEvent(new CustomEvent("lenis-scroll", { detail: { y, e } }));
 });
 
 import { updateProgressBar } from "../custom/progress-bar";
