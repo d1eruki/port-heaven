@@ -3,6 +3,7 @@ import "./style.css";
 import "./js/libraries/vue";
 import "./js/libraries/yandex-metrika";
 import "./js/libraries/swiper";
+import "./js/libraries/typograph";
 // import "./js/libraries/chart";
 
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
@@ -16,7 +17,6 @@ import "./js/custom/menu-dot-toggler";
 import "./js/custom/hero-bg-cells";
 import "./js/custom/design-active";
 import "./js/custom/random-counter";
-import "./js/custom/typograph";
 
 const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
