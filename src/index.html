@@ -180,7 +180,22 @@
         <h2 class="lg:justify-self-center">{{ t('menu-description') }}</h2>
       </div>
       <p class="light:text-black z-2 self-center p-15 lg:h-fit lg:w-150">{{ t('menu-description-description') }}</p>
-      <!--model viewer-->
+      <model-viewer
+        src="assets/tag.glb"
+        class="hw:block absolute top-0 right-0 z-10 hidden min-h-dvh"
+        camera-controls
+        interaction-prompt="none"
+        camera-orbit="0deg 90deg auto"
+        min-camera-orbit="auto 90deg auto"
+        max-camera-orbit="auto 90deg auto"
+        disable-zoom
+        disable-pan
+        auto-rotate
+        rotation-per-second="10deg"
+        shadow-intensity="0"
+        autoplay
+        exposure="1"
+      ></model-viewer>
     </section>
 
     <header class="hw:hidden light:bg-primary sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5">{{ t('hw-disabled') }}</header>
