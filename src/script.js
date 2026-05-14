@@ -40,15 +40,12 @@ if (!hwOn) {
 (async () => {
   try {
     if (hwOn) {
-      const imports = [
-        import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) => ensureModelViewerLoaded()),
-        import("./js/libraries/lenis").then(() => import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar())),
-        import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
-      ];
+      const imports = [import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) => ensureModelViewerLoaded()), import("./js/libraries/lenis").then(() => import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar()))];
 
       if (screenLg) {
         imports.push(
           import("./js/libraries/vanilla-tilt").then(({ initVanillaTilt }) => onReady(initVanillaTilt)),
+          import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
           import("./js/custom/cursor").then(({ initCursor }) => onReady(initCursor)),
           import("./js/custom/horizontal-scroll").then(({ initHorizontalScroll }) => initHorizontalScroll()),
         );
