@@ -1,4 +1,4 @@
-import i18n from "../libraries/i18n";
+import i18n, { setDocumentLanguage } from "../libraries/i18n";
 import { onReady } from "../utils/onReady";
 
 onReady(() => {
@@ -7,7 +7,9 @@ onReady(() => {
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const current = i18n.global.locale.value;
-      i18n.global.locale.value = current === "ru" ? "en" : "ru";
+      const next = current === "ru" ? "en" : "ru";
+      i18n.global.locale.value = next;
+      setDocumentLanguage(next);
     });
   });
 });
