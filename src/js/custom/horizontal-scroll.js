@@ -1,7 +1,7 @@
 import { lenis } from "../libraries/lenis";
 import { isMobile, calculateProgress, initOnLoad } from "../utils/scroll";
 
-const initHorizontalScroll = () => {
+const setupHorizontalScroll = () => {
   const section = document.getElementById("design");
   const inner = document.getElementById("design-inner");
   if (!section || !inner) return;
@@ -47,4 +47,4 @@ const initHorizontalScroll = () => {
   window.addEventListener("resize", update);
 };
 
-initOnLoad(initHorizontalScroll);
+export const initHorizontalScroll = () => initOnLoad(setupHorizontalScroll);

@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { onReady } from "../utils/onReady";
+
+export const initRandomCounter = () => onReady(() => {
   const counters = document.querySelectorAll("#counter");
   if (counters.length === 0) return;
 

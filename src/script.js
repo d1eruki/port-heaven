@@ -6,20 +6,32 @@ import "./js/libraries/swiper";
 // import "./js/libraries/chart";
 
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
+import { onReady } from "./js/utils/onReady";
 
-import "./js/custom/theme-toggle";
-import "./js/custom/locale-toggler";
-import "./js/custom/scroll-section";
-import "./js/custom/sections";
-import "./js/custom/scroll-to-top";
-import "./js/custom/menu-dot-toggler";
-import "./js/custom/hero-bg-cells";
-import "./js/custom/design-active";
-import "./js/custom/random-counter";
+import { applyInitialTheme, initThemeToggle } from "./js/custom/theme-toggle";
+import { initLocaleToggle } from "./js/custom/locale-toggler";
+import { initScrollSection } from "./js/custom/scroll-section";
+import { initSections } from "./js/custom/sections";
+import { initScrollToTop } from "./js/custom/scroll-to-top";
+import { initMenuDotToggler } from "./js/custom/menu-dot-toggler";
+import { initHeroBgCells } from "./js/custom/hero-bg-cells";
+import { initDesignActive } from "./js/custom/design-active";
+import { initRandomCounter } from "./js/custom/random-counter";
 
 const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
 const screenLg = window.innerWidth >= 1024;
+
+applyInitialTheme();
+initThemeToggle();
+initLocaleToggle();
+initScrollSection();
+initSections();
+initScrollToTop();
+initMenuDotToggler();
+initHeroBgCells();
+initDesignActive();
+initRandomCounter();
 
 if (!hwOn) {
   document.documentElement.classList.add("no-hw");
@@ -31,7 +43,13 @@ if (!hwOn) {
       const imports = [import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) => ensureModelViewerLoaded())];
 
       if (screenLg) {
-        imports.push(import("./js/libraries/lenis"), import("./js/libraries/vanilla-tilt"), import("./js/custom/parallax"), import("./js/custom/cursor"), import("./js/custom/horizontal-scroll"));
+        imports.push(
+          import("./js/libraries/lenis").then(() => import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar())),
+          import("./js/libraries/vanilla-tilt").then(({ initVanillaTilt }) => onReady(initVanillaTilt)),
+          import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
+          import("./js/custom/cursor").then(({ initCursor }) => onReady(initCursor)),
+          import("./js/custom/horizontal-scroll").then(({ initHorizontalScroll }) => initHorizontalScroll()),
+        );
       }
 
       await Promise.all(imports);

@@ -1,7 +1,7 @@
 import { lenis } from "../libraries/lenis";
 import { initOnLoad, clamp } from "../utils/scroll";
 
-const initParallax = () => {
+const setupParallax = () => {
   const elements = document.querySelectorAll('[class*="scroll-speed-"]');
   if (!elements.length) return;
 
@@ -12,7 +12,7 @@ const initParallax = () => {
       if (!speedClass) return null;
 
       const rawValue = speedClass.replace("scroll-speed-", "");
-      let speed = 0;
+      let speed;
       if (rawValue.startsWith("--")) {
         speed = -(parseFloat(rawValue.replace("--", "")) / 100);
       } else {
@@ -32,7 +32,7 @@ const initParallax = () => {
   const update = () => {
     const scroll = lenis.scroll;
     items.forEach(({ el, speed, initialY, anchor, scaleFactor }) => {
-      let offset = 0;
+      let offset;
 
       if (anchor === "top") {
         // Отсчет от начала страницы (идеально для Hero)
@@ -64,4 +64,4 @@ const initParallax = () => {
   });
 };
 
-initOnLoad(initParallax);
+export const initParallax = () => initOnLoad(setupParallax);

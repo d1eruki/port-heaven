@@ -1,7 +1,7 @@
 import { smoothScrollTo } from "../utils/smooth-scroll";
 import { onReady } from "../utils/onReady";
 
-onReady(() => {
+export const initScrollSection = () => onReady(() => {
   const body = document.body;
   const ACTIVE_CLASS = (body.getAttribute("data-active-class") || "!text-white").trim();
   const THRESHOLD_FRACTION = Math.min(0.9, Math.max(0.05, Number(body.getAttribute("data-flip-threshold")) || 0.3));

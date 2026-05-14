@@ -11,13 +11,3 @@ lenis.on("scroll", (e) => {
   const y = e?.scroll ?? lenis.scroll;
   window.dispatchEvent(new CustomEvent("lenis-scroll", { detail: { y, e } }));
 });
-
-import { updateProgressBar } from "../custom/progress-bar";
-
-window.addEventListener("lenis-scroll", (e) => {
-  try {
-    updateProgressBar(e.detail.y);
-  } catch {
-    updateProgressBar();
-  }
-});

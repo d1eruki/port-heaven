@@ -1,6 +1,6 @@
 import { onReady } from "../utils/onReady";
 
-const initDesignActive = () => {
+const setupDesignActive = () => {
   const isMobile = () => {
     const width = window.innerWidth;
     const mobileWidth = 48 * 16;
@@ -84,6 +84,4 @@ const initDesignActive = () => {
   observerCallback();
 };
 
-onReady(() => {
-  initDesignActive();
-});
+export const initDesignActive = () => onReady(setupDesignActive);

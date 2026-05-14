@@ -1,6 +1,6 @@
 import { onReady } from "../utils/onReady";
 
-onReady(() => {
+export const initMenuDotToggler = () => onReady(() => {
   const menuDot = document.querySelector("body > #menu-dot, #menu-dot");
   if (!menuDot) return;
 

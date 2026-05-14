@@ -1,6 +1,6 @@
 import { t } from "../libraries/i18n";
 
-(function () {
+export const initCursor = () => {
   const supportsFine = matchMedia("(pointer: fine)").matches;
   const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!supportsFine || prefersReduced) return;
@@ -126,4 +126,4 @@ import { t } from "../libraries/i18n";
   window.addEventListener("resize", () => {
     if (initialized) render();
   });
-})();
+};

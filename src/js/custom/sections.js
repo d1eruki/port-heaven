@@ -1,7 +1,7 @@
 import { smoothScrollTo as _smoothScrollTo } from "../utils/smooth-scroll";
 import { onReady } from "../utils/onReady";
 
-(function () {
+export const initSections = () => {
   const init = () =>
     initSectionDots({
       sectionSelector: "section[data-section][id]",
@@ -16,7 +16,7 @@ import { onReady } from "../utils/onReady";
     });
 
   onReady(init);
-})();
+};
 
 function initSectionDots(opts = {}) {
   const cfg = {

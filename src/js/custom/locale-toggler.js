@@ -1,7 +1,7 @@
 import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
 import { onReady } from "../utils/onReady";
 
-onReady(() => {
+export const initLocaleToggle = () => onReady(() => {
   const buttons = document.querySelectorAll("#lang-toggle");
 
   buttons.forEach((btn) => {

@@ -55,24 +55,32 @@ const restoreScrollPosition = () => {
   });
 };
 
-if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
-}
+export const initProgressBar = () => {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
 
-window.addEventListener("beforeunload", () => {
-  try {
-    localStorage.setItem(SCROLL_STORAGE_KEY, getScrollY().toString());
-  } catch {}
-});
+  window.addEventListener("beforeunload", () => {
+    try {
+      localStorage.setItem(SCROLL_STORAGE_KEY, getScrollY().toString());
+    } catch {}
+  });
 
-window.addEventListener("load", () => {
-  restoreScrollPosition();
-});
+  const onLoad = () => {
+    restoreScrollPosition();
+  };
 
-window.addEventListener("resize", () => {
-  updateProgressBar(getScrollY());
-});
+  if (document.readyState === "complete") {
+    onLoad();
+  } else {
+    window.addEventListener("load", onLoad);
+  }
 
-window.addEventListener("lenis-scroll", (e) => {
-  updateProgressBar(e.detail.y);
-});
+  window.addEventListener("resize", () => {
+    updateProgressBar(getScrollY());
+  });
+
+  window.addEventListener("lenis-scroll", (e) => {
+    updateProgressBar(e.detail.y);
+  });
+};
