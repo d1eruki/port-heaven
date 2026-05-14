@@ -46,6 +46,7 @@
           class="anim-extrude light:bg-primary active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5"
           :href="link.url"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <p class="light:text-black font-[Actay_Wide]">{{ link.name }}</p>
         </a>

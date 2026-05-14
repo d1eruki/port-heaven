@@ -105,16 +105,17 @@
   .hero {
     background-image: radial-gradient(circle at 0 0, var(--color-white) 1px, transparent 1px), linear-gradient(to right, var(--color-neutral-800) 1px, transparent 1px), linear-gradient(to bottom, var(--color-neutral-800) 1px, transparent 1px);
     background-size:
-      var(--cell) var(--cell),
-      var(--cell) var(--cell),
-      var(--cell) var(--cell);
+      var(--cell, 25vw) var(--cell, 25vw),
+      var(--cell, 25vw) var(--cell, 25vw),
+      var(--cell, 25vw) var(--cell, 25vw);
     background-position:
-      calc(var(--cell) / 2) calc(var(--cell) / 2),
-      calc(var(--cell) / 2) calc(var(--cell) / 2),
-      calc(var(--cell) / 2) calc(var(--cell) / 2);
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2),
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2),
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2);
   }
-  .hero-image {
-    transform: translateY(var(--parallaxY, 0)) scale(var(--heroScale, 1));
+
+  [class*="scroll-speed-"] {
+    transform: translateY(var(--parallax-offset, 0)) scale(var(--parallax-scale, 1));
     will-change: transform;
   }
 
@@ -130,8 +131,8 @@
     }
 
     [data-section="design"] a.design-active small {
-      background-color: var(--color-neutral-800) !important;
-      color: var(--color-white) !important;
+      background-color: var(--color-white) !important;
+      color: var(--color-neutral-800) !important;
     }
   }
 }

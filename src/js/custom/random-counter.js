@@ -1,44 +1,59 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const counters = document.querySelectorAll("#counter");
-  if (counters.length === 0) return;
+import Odometer from "odometer";
+import "odometer/themes/odometer-theme-default.css";
+
+import { onReady } from "../utils/onReady";
+
+const initializedCounters = new WeakSet();
+
+const createOdometer = (el, value) => {
+  if (initializedCounters.has(el)) return;
+
+  initializedCounters.add(el);
+
+  const odometer = new Odometer({
+    el,
+    value: 0,
+  });
+
+  let hasRun = false;
+
+  const updateCounter = () => {
+    if (hasRun) return;
+
+    odometer.update(value);
+    hasRun = true;
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    updateCounter();
+    return;
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const el = entry.target;
-          const rawTarget = el.dataset.target || "";
-          const targetNumber = parseInt(rawTarget) || 0;
-          const suffix = rawTarget.replace(/[0-9]/g, "");
-
-          animateRandomCounter(el, targetNumber, 1500, suffix);
+          updateCounter();
           observer.unobserve(el);
         }
       });
     },
     {
-      threshold: 0.4,
+      threshold: [0, 0.9],
     },
   );
 
-  counters.forEach((counter) => observer.observe(counter));
-});
+  observer.observe(el);
+};
 
-function animateRandomCounter(el, target, duration = 1500, suffix = "") {
-  const start = performance.now();
+export const initRandomCounter = () => {
+  onReady(() => {
+    const counters = document.querySelectorAll(".counter");
+    if (counters.length === 0) return;
 
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const factor = 1 - progress;
-
-    const randomValue = Math.floor(target + (Math.random() * 2 - 1) * factor * target * 0.2);
-
-    el.textContent = (progress < 1 ? randomValue : target) + suffix;
-
-    if (progress < 1) {
-      requestAnimationFrame(tick);
-    }
-  }
-
-  requestAnimationFrame(tick);
-}
+    counters.forEach((counter) => {
+      const targetNumber = parseInt(counter.dataset.target || "", 10) || 0;
+      createOdometer(counter, targetNumber);
+    });
+  });
+};

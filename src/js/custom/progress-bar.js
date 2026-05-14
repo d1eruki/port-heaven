@@ -1,33 +1,86 @@
-export const updateProgressBar = (scrollY = 0) => {
+import { calculateProgress, getScrollY } from "../utils/scroll";
+
+export const updateProgressBar = (scrollY) => {
   const progressBar = document.getElementById("progress-bar");
   if (!progressBar) return;
 
+  const currentY = scrollY !== undefined ? scrollY : getScrollY();
   const totalHeight = document.body.scrollHeight - window.innerHeight;
-  const progress = totalHeight > 0 ? Math.min((scrollY / totalHeight) * 100, 100) : 0;
+  const progress = calculateProgress(currentY, 0, totalHeight) * 100;
 
   progressBar.style.height = `${progress}%`;
 };
 
-window.addEventListener("beforeunload", () => {
-  const y = window.lenis ? window.lenis.scroll : window.scrollY;
-  localStorage.setItem("scrollY", y.toString());
-});
+const SCROLL_STORAGE_KEY = "scrollY";
 
-window.addEventListener("load", () => {
-  const saved = localStorage.getItem("scrollY");
-  if (saved !== null && window.lenis) {
-    // пусть плавно подхватывает
-    window.lenis.scrollTo(parseInt(saved, 10), { immediate: true });
-  } else if (saved !== null) {
-    window.scrollTo(0, parseInt(saved, 10));
+const resetHorizontalScroll = () => {
+  document.documentElement.scrollLeft = 0;
+  document.body.scrollLeft = 0;
+};
+
+const scrollToY = (y) => {
+  resetHorizontalScroll();
+
+  if (window.lenis) {
+    window.lenis.scrollTo(y, { immediate: true });
+  } else {
+    window.scrollTo(0, y);
   }
-  updateProgressBar(window.lenis ? window.lenis.scroll : window.scrollY);
-});
 
-window.addEventListener("resize", () => {
-  updateProgressBar(window.lenis ? window.lenis.scroll : window.scrollY);
-});
+  requestAnimationFrame(resetHorizontalScroll);
+};
 
-window.addEventListener("lenis-scroll", (e) => {
-  updateProgressBar(e.detail.y);
-});
+const readSavedScrollY = () => {
+  let saved = null;
+  try {
+    saved = localStorage.getItem(SCROLL_STORAGE_KEY);
+  } catch {}
+
+  const savedY = Number.parseInt(saved, 10);
+  return Number.isFinite(savedY) ? savedY : null;
+};
+
+const restoreScrollPosition = () => {
+  resetHorizontalScroll();
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const targetY = readSavedScrollY();
+      if (targetY !== null) {
+        scrollToY(targetY);
+      }
+
+      updateProgressBar(getScrollY());
+    });
+  });
+};
+
+export const initProgressBar = () => {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  window.addEventListener("beforeunload", () => {
+    try {
+      localStorage.setItem(SCROLL_STORAGE_KEY, getScrollY().toString());
+    } catch {}
+  });
+
+  const onLoad = () => {
+    restoreScrollPosition();
+  };
+
+  if (document.readyState === "complete") {
+    onLoad();
+  } else {
+    window.addEventListener("load", onLoad);
+  }
+
+  window.addEventListener("resize", () => {
+    updateProgressBar(getScrollY());
+  });
+
+  window.addEventListener("lenis-scroll", (e) => {
+    updateProgressBar(e.detail.y);
+  });
+};

@@ -27,5 +27,7 @@ function updateGrid() {
   root.style.setProperty("--cell-count", count);
 }
 
-window.addEventListener("resize", debounce(updateGrid, 100));
-updateGrid();
+export function initHeroBgCells() {
+  window.addEventListener("resize", debounce(updateGrid, 100));
+  updateGrid();
+}

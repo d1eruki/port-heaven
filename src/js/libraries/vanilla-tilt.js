@@ -1,6 +1,6 @@
 import VanillaTilt from "vanilla-tilt";
 
-function initTilt() {
+export function initVanillaTilt() {
   const cards = document.querySelectorAll(".vanilla-tilt-creatives");
   if (!cards.length) return;
 
@@ -19,10 +19,4 @@ function initTilt() {
       scale: 1.5,
     });
   });
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initTilt, { once: true });
-} else {
-  initTilt();
 }
