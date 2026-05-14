@@ -3,6 +3,7 @@
     :href="designUrl"
     :data-design-name="designName"
     target="_blank"
+    rel="noopener noreferrer"
     class="light:hover:bg-primary group light:text-white light:hover:text-black w-dvw shrink-0 lg:h-[50dvh] lg:w-[25dvw] lg:hover:z-51"
   >
     <div class="anim-extrude relative z-10 grid gap-5 p-15 lg:h-full lg:grid-rows-[50%] lg:items-center">
