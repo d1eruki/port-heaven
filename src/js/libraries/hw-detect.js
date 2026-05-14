@@ -10,7 +10,10 @@ export function isHardwareAccelerationEnabled() {
       failIfMajorPerformanceCaveat: false,
     };
 
-    const gl = canvas.getContext("webgl2", attrs) || canvas.getContext("webgl", attrs) || canvas.getContext("experimental-webgl", attrs);
+    const gl =
+      canvas.getContext("webgl2", attrs) ||
+      canvas.getContext("webgl", attrs) ||
+      canvas.getContext("experimental-webgl", attrs);
 
     if (!gl) return false;
 
@@ -28,7 +31,25 @@ export function isHardwareAccelerationEnabled() {
     } catch {}
 
     const signature = (String(renderer) + " " + String(vendor)).toLowerCase();
-    const softwareMarkers = ["swiftshader", "swift shader", "google swiftshader", "llvmpipe", "llvm", "softpipe", "software", "mesa", "angle (swiftshader", "angle (mesa", "warp", "d3d11 warp", "microsoft basic render driver", "basic render", "software adapter", "angle (d3d11 warp", "angle (microsoft"];
+    const softwareMarkers = [
+      "swiftshader",
+      "swift shader",
+      "google swiftshader",
+      "llvmpipe",
+      "llvm",
+      "softpipe",
+      "software",
+      "mesa",
+      "angle (swiftshader",
+      "angle (mesa",
+      "warp",
+      "d3d11 warp",
+      "microsoft basic render driver",
+      "basic render",
+      "software adapter",
+      "angle (d3d11 warp",
+      "angle (microsoft",
+    ];
     const looksSoftware = softwareMarkers.some((m) => signature.includes(m));
 
     let maxTextureSize = 0;

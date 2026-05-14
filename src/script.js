@@ -18,7 +18,8 @@ import { initHeroBgCells } from "./js/custom/hero-bg-cells";
 import { initDesignActive } from "./js/custom/design-active";
 import { initRandomCounter } from "./js/custom/random-counter";
 
-const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const prefersReduce =
+  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
 const screenLg = window.innerWidth >= 1024;
 
@@ -40,14 +41,25 @@ if (!hwOn) {
 (async () => {
   try {
     if (hwOn) {
-      const imports = [import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) => ensureModelViewerLoaded()), import("./js/libraries/lenis").then(() => import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar()))];
+      const imports = [
+        import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) =>
+          ensureModelViewerLoaded(),
+        ),
+        import("./js/libraries/lenis").then(() =>
+          import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar()),
+        ),
+      ];
 
       if (screenLg) {
         imports.push(
-          import("./js/libraries/vanilla-tilt").then(({ initVanillaTilt }) => onReady(initVanillaTilt)),
+          import("./js/libraries/vanilla-tilt").then(({ initVanillaTilt }) =>
+            onReady(initVanillaTilt),
+          ),
           import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
           import("./js/custom/cursor").then(({ initCursor }) => onReady(initCursor)),
-          import("./js/custom/horizontal-scroll").then(({ initHorizontalScroll }) => initHorizontalScroll()),
+          import("./js/custom/horizontal-scroll").then(({ initHorizontalScroll }) =>
+            initHorizontalScroll(),
+          ),
         );
       }
 

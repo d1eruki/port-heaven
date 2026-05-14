@@ -1,5 +1,10 @@
 function hasLenis() {
-  return typeof window !== "undefined" && typeof window.lenis === "object" && window.lenis && typeof window.lenis.scrollTo === "function";
+  return (
+    typeof window !== "undefined" &&
+    typeof window.lenis === "object" &&
+    window.lenis &&
+    typeof window.lenis.scrollTo === "function"
+  );
 }
 
 function prefersReducedMotion() {

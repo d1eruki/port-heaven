@@ -4,9 +4,11 @@
     :data-design-name="designName"
     target="_blank"
     rel="noopener noreferrer"
-    class="light:hover:bg-primary group light:text-white light:hover:text-black w-dvw shrink-0 lg:h-[50dvh] lg:w-[25dvw] lg:hover:z-51"
+    class="group w-dvw shrink-0 lg:h-[50dvh] lg:w-[25dvw] lg:hover:z-51 light:text-white light:hover:bg-primary light:hover:text-black"
   >
-    <div class="anim-extrude relative z-10 grid gap-5 p-15 lg:h-full lg:grid-rows-[50%] lg:items-center">
+    <div
+      class="anim-extrude relative z-10 grid gap-5 p-15 lg:h-full lg:grid-rows-[50%] lg:items-center"
+    >
       <h4 class="flex gap-3">
         {{ designName }}
       </h4>
@@ -16,9 +18,13 @@
           :show-icons="true"
           class="opacity-100 lg:group-hover:hidden lg:group-hover:opacity-0"
         />
-        <p class="lg:hidden lg:opacity-0 lg:group-hover:block lg:group-hover:opacity-100">{{ designDesc }}</p>
+        <p class="lg:hidden lg:opacity-0 lg:group-hover:block lg:group-hover:opacity-100">
+          {{ designDesc }}
+        </p>
       </div>
-      <span class="icon-[ic--baseline-arrow-outward] absolute top-5 right-7.5 scale-200 opacity-0 group-hover:opacity-100"></span>
+      <span
+        class="absolute top-5 right-7.5 icon-[ic--baseline-arrow-outward] scale-200 opacity-0 group-hover:opacity-100"
+      ></span>
     </div>
   </a>
 </template>

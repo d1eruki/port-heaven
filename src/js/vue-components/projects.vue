@@ -1,5 +1,5 @@
 <template>
-  <div class="light:lg:bg-black min-h-dvh w-full">
+  <div class="min-h-dvh w-full light:lg:bg-black">
     <!--
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
@@ -43,12 +43,12 @@
         <a
           v-for="(link, index) in projectLinks"
           :key="index"
-          class="anim-extrude light:bg-primary active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5"
+          class="anim-extrude active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5 light:bg-primary"
           :href="link.url"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <p class="light:text-black font-[Actay_Wide]">{{ link.name }}</p>
+          <p class="font-[Actay_Wide] light:text-black">{{ link.name }}</p>
         </a>
       </div>
     </div>

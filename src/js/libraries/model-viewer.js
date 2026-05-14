@@ -1,13 +1,18 @@
 export async function ensureModelViewerLoaded() {
   try {
-    if (window.customElements && window.customElements.get && window.customElements.get("model-viewer")) {
+    if (
+      window.customElements &&
+      window.customElements.get &&
+      window.customElements.get("model-viewer")
+    ) {
       return;
     }
 
     const existing = document.getElementById("model-viewer-cdn");
     if (existing) {
       return await new Promise((resolve) => {
-        if (window.customElements.get && window.customElements.get("model-viewer")) return resolve();
+        if (window.customElements.get && window.customElements.get("model-viewer"))
+          return resolve();
         // Fallback: poll briefly until defined
         const t = setInterval(() => {
           if (window.customElements.get && window.customElements.get("model-viewer")) {

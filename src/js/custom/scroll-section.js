@@ -5,7 +5,10 @@ export const initScrollSection = () =>
   onReady(() => {
     const body = document.body;
     const ACTIVE_CLASS = (body.getAttribute("data-active-class") || "!text-white").trim();
-    const THRESHOLD_FRACTION = Math.min(0.9, Math.max(0.05, Number(body.getAttribute("data-flip-threshold")) || 0.3));
+    const THRESHOLD_FRACTION = Math.min(
+      0.9,
+      Math.max(0.05, Number(body.getAttribute("data-flip-threshold")) || 0.3),
+    );
 
     const sections = Array.from(document.querySelectorAll("[data-section]"));
     if (!sections.length) return;
@@ -21,7 +24,12 @@ export const initScrollSection = () =>
       navByName.get(name).push(btn);
     }
 
-    const meta = sections.map((el) => ({ el, name: el.getAttribute("data-section") || "", top: 0, bottom: 0 }));
+    const meta = sections.map((el) => ({
+      el,
+      name: el.getAttribute("data-section") || "",
+      top: 0,
+      bottom: 0,
+    }));
 
     const recomputePositions = () => {
       for (const m of meta) {

@@ -66,7 +66,7 @@
   <body
     lang="ru"
     id="app"
-    class="lg:justify-last article light:bg-black light:text-white relative container grid max-w-full overflow-x-hidden scroll-smooth"
+    class="lg:justify-last article relative container grid max-w-full overflow-x-hidden scroll-smooth light:bg-black light:text-white"
   >
     <noscript>
       <div>
@@ -97,18 +97,22 @@
           decoding="sync"
           loading="eager"
         />
-        <div class="z-2 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between lg:mix-blend-difference">
+        <div
+          class="z-2 flex w-full flex-col content-end justify-end gap-10 p-15 lg:flex-row lg:items-end lg:justify-between lg:mix-blend-difference"
+        >
           <h1 class="whitespace-pre-line">{{ t('hero') }}</h1>
           <small class="hidden lg:block">{{ t('logo') }}</small>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 756 1031"
-          class="light:fill-primary hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-dvh w-auto justify-self-center object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
+          class="hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-dvh w-auto justify-self-center object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end light:fill-primary"
           data-parallax-anchor="top"
           data-parallax-scale="0.0001"
         >
-          <path d="M240.057 1001.8L221.878 951.318L175.502 921.253L95.7353 870.032L45.6493 779.466L28.583 719.707L0.386414 677.022L11.1456 597.963L45.6493 513.336L70.8778 470.28L108.35 439.473H142.111L194.794 428.338L179.583 377.116L142.111 363.012L153.612 316.986L142.111 278.385L170.679 255.743L179.583 166.662L210.006 94.2837L231.895 48.2585L285.32 10.3991L383.637 0.377441L495.31 38.9792L543.17 82.7774L586.578 159.239V242.01L575.077 305.109L607.725 316.986L586.578 387.509L555.413 439.473L543.17 462.114L607.725 485.498L703.074 526.698L733.497 592.024L755.386 687.044L743.514 755.711L716.802 808.788L669.684 846.277L663.748 884.136L632.954 906.035L607.725 889.332L576.561 916.799L543.17 930.532H508.667L497.536 957.999L467.485 985.837L432.239 1008.48L407.011 991.776L386.234 971.361L338.374 1001.8L303.128 1030.38L240.057 1001.8Z" />
+          <path
+            d="M240.057 1001.8L221.878 951.318L175.502 921.253L95.7353 870.032L45.6493 779.466L28.583 719.707L0.386414 677.022L11.1456 597.963L45.6493 513.336L70.8778 470.28L108.35 439.473H142.111L194.794 428.338L179.583 377.116L142.111 363.012L153.612 316.986L142.111 278.385L170.679 255.743L179.583 166.662L210.006 94.2837L231.895 48.2585L285.32 10.3991L383.637 0.377441L495.31 38.9792L543.17 82.7774L586.578 159.239V242.01L575.077 305.109L607.725 316.986L586.578 387.509L555.413 439.473L543.17 462.114L607.725 485.498L703.074 526.698L733.497 592.024L755.386 687.044L743.514 755.711L716.802 808.788L669.684 846.277L663.748 884.136L632.954 906.035L607.725 889.332L576.561 916.799L543.17 930.532H508.667L497.536 957.999L467.485 985.837L432.239 1008.48L407.011 991.776L386.234 971.361L338.374 1001.8L303.128 1030.38L240.057 1001.8Z"
+          />
         </svg>
       </div>
     </div>
@@ -116,7 +120,7 @@
     <!--navigation dots-->
     <div
       id="menu-dot"
-      class="hw:mix-blend-difference fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0"
+      class="fixed top-0 left-0 z-50 flex min-h-dvh w-15 items-center justify-center transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0 hw:mix-blend-difference"
     >
       <nav class="flex w-fit flex-col gap-5">
         <nav-button
@@ -150,7 +154,7 @@
     <!--progress bar-->
     <div
       id="progress-bar"
-      class="progress-bar light:bg-neutral-700 fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"
+      class="progress-bar fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex light:bg-neutral-700"
     ></div>
 
     <!--right menu-->
@@ -160,9 +164,10 @@
     >
       <button
         id="lang-toggle"
-        class="group light:hover:text-white light:text-neutral-700 flex"
+        class="group flex light:text-neutral-700 light:hover:text-white"
       >
-        <small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('lang-toggle') }}</small>
+        <small class="opacity-0 group-hover:opacity-100">/</small
+        ><small>{{ t('lang-toggle') }}</small>
       </button>
     </div>
 
@@ -170,24 +175,32 @@
     <section
       data-section="description"
       id="description"
-      class="light:bg-primary relative lg:grid lg:min-h-dvh lg:grid-cols-2"
+      class="relative lg:grid lg:min-h-dvh lg:grid-cols-2 light:bg-primary"
     >
-      <div class="light:lg:bg-transparent light:text-black z-2 content-center px-15 pt-15 lg:justify-center lg:pb-15">
+      <div
+        class="z-2 content-center px-15 pt-15 lg:justify-center lg:pb-15 light:text-black light:lg:bg-transparent"
+      >
         <h2 class="lg:justify-self-center">{{ t('menu-description') }}</h2>
       </div>
-      <p class="light:text-black z-2 self-center p-15 lg:h-fit lg:w-150">{{ t('menu-description-description') }}</p>
+      <p class="z-2 self-center p-15 lg:h-fit lg:w-150 light:text-black">
+        {{ t('menu-description-description') }}
+      </p>
       <!--model viewer-->
     </section>
 
-    <header class="hw:hidden light:bg-primary sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5">{{ t('hw-disabled') }}</header>
+    <header
+      class="sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5 light:bg-primary hw:hidden"
+    >
+      {{ t('hw-disabled') }}
+    </header>
 
     <!--about-->
     <section
       data-section="about"
       id="about"
-      class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15"
+      class="relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15 light:bg-black"
     >
-      <div class="light:text-white block px-15 pt-15 lg:hidden">
+      <div class="block px-15 pt-15 lg:hidden light:text-white">
         <h2>{{ t('menu-about') }}</h2>
       </div>
       <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
@@ -218,7 +231,9 @@
       id="projects"
       class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0"
     >
-      <div class="light:bg-white grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end">
+      <div
+        class="grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end light:bg-white"
+      >
         <h2 class="light:text-black">{{ t('menu-projects') }}</h2>
         <menu-desc
           class="lg:max-w-150"
@@ -262,7 +277,9 @@
         class="top-0 grid w-dvw overflow-visible will-change-transform lg:h-dvh lg:grid-flow-col lg:grid-rows-2"
         id="design-inner"
       >
-        <div class="light:bg-white light:lg:bg-black col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 p-15 lg:w-[25dvw]">
+        <div
+          class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 p-15 lg:w-[25dvw] light:bg-white light:lg:bg-black"
+        >
           <h2 class="light:text-black light:lg:text-white">{{ t('menu-designs') }}</h2>
           <menu-desc
             class="lg:max-w-150"
@@ -356,7 +373,9 @@
       id="creatives"
       class="relative min-h-dvh lg:py-[50dvh]"
     >
-      <div class="light:bg-white light:lg:bg-transparent scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center p-15 lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:p-0">
+      <div
+        class="scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center p-15 lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:p-0 light:bg-white light:lg:bg-transparent"
+      >
         <h2 class="light:text-black light:lg:text-white">{{ t('menu-creatives') }}</h2>
         <menu-desc
           class="lg:max-w-[23dvw]"
@@ -407,43 +426,64 @@
     >
       <div class="items-center gap-10 lg:flex">
         <a
-          class="group light:text-neutral-700 light:hover:text-white relative w-auto font-[Actay_Wide]"
+          class="group relative w-auto font-[Actay_Wide] light:text-neutral-700 light:hover:text-white"
           href="https://t.me/d1eruki"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--baseline-telegram] aspect-square"></span>{{ t('telegram') }}</h2>
-          <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
+          <h2 class="flex gap-2 text-nowrap">
+            <span class="icon-[ic--baseline-telegram] aspect-square"></span>{{ t('telegram') }}
+          </h2>
+          <div
+            class="absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block light:bg-white light:text-black"
+          >
+            https://t.me/d1eruki
+          </div>
         </a>
         <a
-          class="group light:text-neutral-700 light:hover:text-white relative w-auto font-[Actay_Wide]"
+          class="group relative w-auto font-[Actay_Wide] light:text-neutral-700 light:hover:text-white"
           href="https://www.behance.net/dieruki"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 class="flex gap-2 text-nowrap"><span class="icon-[eva--behance-fill]"></span>{{ t('behance') }}</h2>
-          <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">BEHANCE</div>
+          <h2 class="flex gap-2 text-nowrap">
+            <span class="icon-[eva--behance-fill]"></span>{{ t('behance') }}
+          </h2>
+          <div
+            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block light:bg-white light:text-black"
+          >
+            BEHANCE
+          </div>
         </a>
         <a
-          class="group light:text-neutral-700 light:hover:text-white relative w-auto font-[Actay_Wide]"
+          class="group relative w-auto font-[Actay_Wide] light:text-neutral-700 light:hover:text-white"
           href="mailto:stapps90@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--baseline-alternate-email] aspect-square"></span>{{ t('mail') }}</h2>
-          <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
+          <h2 class="flex gap-2 text-nowrap">
+            <span class="icon-[ic--baseline-alternate-email] aspect-square"></span>{{ t('mail') }}
+          </h2>
+          <div
+            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block light:bg-white light:text-black"
+          >
+            stapps90@gmail.com
+          </div>
         </a>
         <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
       </div>
-      <h2 class="footer-logo-text text-primary font-[Actay_Wide] text-nowrap lowercase">{{ t('logo') }}</h2>
+      <h2 class="footer-logo-text font-[Actay_Wide] text-nowrap text-primary lowercase">
+        {{ t('logo') }}
+      </h2>
     </section>
 
     <!--scroll-to-top-->
     <button
       id="scroll-to-top"
-      class="group light:hover:text-white light:text-neutral-700 fixed right-5 bottom-5 z-200 flex mix-blend-difference lg:right-15 lg:bottom-15"
+      class="group fixed right-5 bottom-5 z-200 flex mix-blend-difference lg:right-15 lg:bottom-15 light:text-neutral-700 light:hover:text-white"
     >
-      <small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small>
+      <small class="opacity-0 group-hover:opacity-100">/</small
+      ><small>{{ t('button-to-top') }}</small>
     </button>
   </body>
 </html>
