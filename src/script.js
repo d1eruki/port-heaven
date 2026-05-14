@@ -3,7 +3,6 @@ import "./style.css";
 import "./js/libraries/vue";
 import "./js/libraries/yandex-metrika";
 import "./js/libraries/swiper";
-import "./js/libraries/typograph";
 // import "./js/libraries/chart";
 
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
