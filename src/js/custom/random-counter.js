@@ -1,44 +1,37 @@
+import Odometer from "odometer";
+import "odometer/themes/odometer-theme-default.css";
+
 document.addEventListener("DOMContentLoaded", () => {
-  const counters = document.querySelectorAll("#counter");
+  const counters = document.querySelectorAll(".counter");
   if (counters.length === 0) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const rawTarget = el.dataset.target || "";
-          const targetNumber = parseInt(rawTarget) || 0;
-          const suffix = rawTarget.replace(/[0-9]/g, "");
+  const createOdometer = (el, value) => {
+    const odometer = new Odometer({
+      el: el,
+      value: 0,
+    });
 
-          animateRandomCounter(el, targetNumber, 1500, suffix);
-          observer.unobserve(el);
-        }
-      });
-    },
-    {
-      threshold: 0.4,
-    },
-  );
+    let hasRun = false;
 
-  counters.forEach((counter) => observer.observe(counter));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasRun) {
+            odometer.update(value);
+            hasRun = true;
+          }
+        });
+      },
+      {
+        threshold: [0, 0.9],
+      },
+    );
+
+    observer.observe(el);
+  };
+
+  counters.forEach((counter) => {
+    const targetNumber = parseInt(counter.dataset.target || "", 10) || 0;
+    createOdometer(counter, targetNumber);
+  });
 });
-
-function animateRandomCounter(el, target, duration = 1500, suffix = "") {
-  const start = performance.now();
-
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const factor = 1 - progress;
-
-    const randomValue = Math.floor(target + (Math.random() * 2 - 1) * factor * target * 0.2);
-
-    el.textContent = (progress < 1 ? randomValue : target) + suffix;
-
-    if (progress < 1) {
-      requestAnimationFrame(tick);
-    }
-  }
-
-  requestAnimationFrame(tick);
-}
