@@ -1,112 +1,113 @@
 import { smoothScrollTo } from "../utils/smooth-scroll";
 import { onReady } from "../utils/onReady";
 
-export const initScrollSection = () => onReady(() => {
-  const body = document.body;
-  const ACTIVE_CLASS = (body.getAttribute("data-active-class") || "!text-white").trim();
-  const THRESHOLD_FRACTION = Math.min(0.9, Math.max(0.05, Number(body.getAttribute("data-flip-threshold")) || 0.3));
+export const initScrollSection = () =>
+  onReady(() => {
+    const body = document.body;
+    const ACTIVE_CLASS = (body.getAttribute("data-active-class") || "!text-white").trim();
+    const THRESHOLD_FRACTION = Math.min(0.9, Math.max(0.05, Number(body.getAttribute("data-flip-threshold")) || 0.3));
 
-  const sections = Array.from(document.querySelectorAll("[data-section]"));
-  if (!sections.length) return;
+    const sections = Array.from(document.querySelectorAll("[data-section]"));
+    if (!sections.length) return;
 
-  const allNavButtons = Array.from(document.querySelectorAll("[data-scroll-target]"));
-  const navByName = new Map();
-  for (const btn of allNavButtons) {
-    const sel = btn.getAttribute("data-scroll-target");
-    const m = sel && sel.match(/\[data-section=['"]?([^'"\]]+)['"]?]/);
-    const name = m ? m[1] : "";
-    if (!name) continue;
-    if (!navByName.has(name)) navByName.set(name, []);
-    navByName.get(name).push(btn);
-  }
-
-  const meta = sections.map((el) => ({ el, name: el.getAttribute("data-section") || "", top: 0, bottom: 0 }));
-
-  const recomputePositions = () => {
-    for (const m of meta) {
-      const rect = m.el.getBoundingClientRect();
-      const top = Math.round(rect.top + window.scrollY);
-      m.top = top;
-      m.bottom = top + Math.round(m.el.offsetHeight || rect.height);
+    const allNavButtons = Array.from(document.querySelectorAll("[data-scroll-target]"));
+    const navByName = new Map();
+    for (const btn of allNavButtons) {
+      const sel = btn.getAttribute("data-scroll-target");
+      const m = sel && sel.match(/\[data-section=['"]?([^'"\]]+)['"]?]/);
+      const name = m ? m[1] : "";
+      if (!name) continue;
+      if (!navByName.has(name)) navByName.set(name, []);
+      navByName.get(name).push(btn);
     }
-  };
-  recomputePositions();
 
-  let lastActiveName = null;
+    const meta = sections.map((el) => ({ el, name: el.getAttribute("data-section") || "", top: 0, bottom: 0 }));
 
-  const currentIndex = () => {
-    const y = window.scrollY;
-    const vh = window.innerHeight;
-    const threshold = vh * THRESHOLD_FRACTION;
+    const recomputePositions = () => {
+      for (const m of meta) {
+        const rect = m.el.getBoundingClientRect();
+        const top = Math.round(rect.top + window.scrollY);
+        m.top = top;
+        m.bottom = top + Math.round(m.el.offsetHeight || rect.height);
+      }
+    };
+    recomputePositions();
 
-    let idx = 0;
-    for (let i = 0; i < meta.length; i++) {
-      if (meta[i].top <= y + vh - threshold) idx = i;
-      else break;
-    }
-    return idx;
-  };
+    let lastActiveName = null;
 
-  const setActiveByIndex = (i) => {
-    const m = meta[i];
-    if (!m || m.name === lastActiveName) return;
-    lastActiveName = m.name;
+    const currentIndex = () => {
+      const y = window.scrollY;
+      const vh = window.innerHeight;
+      const threshold = vh * THRESHOLD_FRACTION;
 
-    for (const btn of allNavButtons) btn.classList.remove(ACTIVE_CLASS);
-    const btns = navByName.get(m.name) || [];
-    btns.forEach((b) => b.classList.add(ACTIVE_CLASS));
-  };
+      let idx = 0;
+      for (let i = 0; i < meta.length; i++) {
+        if (meta[i].top <= y + vh - threshold) idx = i;
+        else break;
+      }
+      return idx;
+    };
 
-  document.addEventListener("click", (e) => {
-    const navButton = e.target.closest("[data-scroll-target]");
-    if (!navButton) return;
+    const setActiveByIndex = (i) => {
+      const m = meta[i];
+      if (!m || m.name === lastActiveName) return;
+      lastActiveName = m.name;
 
-    const sel = navButton.getAttribute("data-scroll-target");
-    if (!sel) return;
+      for (const btn of allNavButtons) btn.classList.remove(ACTIVE_CLASS);
+      const btns = navByName.get(m.name) || [];
+      btns.forEach((b) => b.classList.add(ACTIVE_CLASS));
+    };
 
-    const targetSection = document.querySelector(sel);
-    if (!targetSection) return;
+    document.addEventListener("click", (e) => {
+      const navButton = e.target.closest("[data-scroll-target]");
+      if (!navButton) return;
 
-    e.preventDefault();
+      const sel = navButton.getAttribute("data-scroll-target");
+      if (!sel) return;
 
-    // найти индекс и прыгнуть
-    const i = meta.findIndex((m) => m.el === targetSection);
-    if (i >= 0) {
-      smoothScrollTo(targetSection);
-      setActiveByIndex(i);
-    }
+      const targetSection = document.querySelector(sel);
+      if (!targetSection) return;
+
+      e.preventDefault();
+
+      // найти индекс и прыгнуть
+      const i = meta.findIndex((m) => m.el === targetSection);
+      if (i >= 0) {
+        smoothScrollTo(targetSection);
+        setActiveByIndex(i);
+      }
+    });
+
+    let scrollTimer = null;
+    const onScrollThrottled = () => {
+      if (scrollTimer) return;
+      scrollTimer = setTimeout(() => {
+        scrollTimer = null;
+        setActiveByIndex(currentIndex());
+      }, 80);
+    };
+    window.addEventListener("scroll", onScrollThrottled, { passive: true });
+
+    let resizeTimer = null;
+    const onResizeDebounced = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        recomputePositions();
+        setActiveByIndex(currentIndex());
+      }, 120);
+    };
+    window.addEventListener("resize", onResizeDebounced);
+
+    const ro = new ResizeObserver(() => onResizeDebounced());
+    meta.forEach((m) => ro.observe(m.el));
+
+    setTimeout(() => setActiveByIndex(currentIndex()), 50);
+
+    window.SectionClicksOnly = {
+      refresh() {
+        recomputePositions();
+        setActiveByIndex(currentIndex());
+      },
+      version: "1.0.0-min",
+    };
   });
-
-  let scrollTimer = null;
-  const onScrollThrottled = () => {
-    if (scrollTimer) return;
-    scrollTimer = setTimeout(() => {
-      scrollTimer = null;
-      setActiveByIndex(currentIndex());
-    }, 80);
-  };
-  window.addEventListener("scroll", onScrollThrottled, { passive: true });
-
-  let resizeTimer = null;
-  const onResizeDebounced = () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      recomputePositions();
-      setActiveByIndex(currentIndex());
-    }, 120);
-  };
-  window.addEventListener("resize", onResizeDebounced);
-
-  const ro = new ResizeObserver(() => onResizeDebounced());
-  meta.forEach((m) => ro.observe(m.el));
-
-  setTimeout(() => setActiveByIndex(currentIndex()), 50);
-
-  window.SectionClicksOnly = {
-    refresh() {
-      recomputePositions();
-      setActiveByIndex(currentIndex());
-    },
-    version: "1.0.0-min",
-  };
-});

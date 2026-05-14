@@ -1,30 +1,31 @@
 import { onReady } from "../utils/onReady";
 
-export const initRandomCounter = () => onReady(() => {
-  const counters = document.querySelectorAll("#counter");
-  if (counters.length === 0) return;
+export const initRandomCounter = () =>
+  onReady(() => {
+    const counters = document.querySelectorAll("#counter");
+    if (counters.length === 0) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const rawTarget = el.dataset.target || "";
-          const targetNumber = parseInt(rawTarget) || 0;
-          const suffix = rawTarget.replace(/[0-9]/g, "");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const rawTarget = el.dataset.target || "";
+            const targetNumber = parseInt(rawTarget) || 0;
+            const suffix = rawTarget.replace(/[0-9]/g, "");
 
-          animateRandomCounter(el, targetNumber, 1500, suffix);
-          observer.unobserve(el);
-        }
-      });
-    },
-    {
-      threshold: 0.4,
-    },
-  );
+            animateRandomCounter(el, targetNumber, 1500, suffix);
+            observer.unobserve(el);
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      },
+    );
 
-  counters.forEach((counter) => observer.observe(counter));
-});
+    counters.forEach((counter) => observer.observe(counter));
+  });
 
 function animateRandomCounter(el, target, duration = 1500, suffix = "") {
   const start = performance.now();
