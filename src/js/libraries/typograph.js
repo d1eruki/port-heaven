@@ -12,7 +12,9 @@ export const typographMessages = (messages) => {
   }
 
   if (messages && typeof messages === "object") {
-    return Object.fromEntries(Object.entries(messages).map(([key, value]) => [key, typographMessages(value)]));
+    return Object.fromEntries(
+      Object.entries(messages).map(([key, value]) => [key, typographMessages(value)]),
+    );
   }
 
   return messages;

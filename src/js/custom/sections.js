@@ -35,7 +35,9 @@ function initSectionDots(opts = {}) {
   const nav = document.querySelector(cfg.navSelector);
   if (!nav) return console.warn(`[section-dots] nav "${cfg.navSelector}" не найден`);
 
-  const sections = Array.from(document.querySelectorAll(cfg.sectionSelector)).filter((el) => el.id && typeof el.dataset.section === "string");
+  const sections = Array.from(document.querySelectorAll(cfg.sectionSelector)).filter(
+    (el) => el.id && typeof el.dataset.section === "string",
+  );
   if (!sections.length) return console.warn("[section-dots] секции не найдены");
 
   const frag = document.createDocumentFragment();
@@ -82,7 +84,12 @@ function initSectionDots(opts = {}) {
     const viewport = vp();
     return sections.map((s) => {
       const r = s.getBoundingClientRect();
-      return { id: s.id, rect: r, visible: visibleMetric(r, viewport), center: r.top + r.height / 2 };
+      return {
+        id: s.id,
+        rect: r,
+        visible: visibleMetric(r, viewport),
+        center: r.top + r.height / 2,
+      };
     });
   }
 
@@ -99,8 +106,10 @@ function initSectionDots(opts = {}) {
     const lead = best.visible - cur.visible;
     if (lead < cfg.switchThresholdPx) {
       if (cfg.centerAssist) {
-        const crossedDown = scrollDir > 0 && cur.center < viewport.center && best.center >= viewport.center;
-        const crossedUp = scrollDir < 0 && cur.center > viewport.center && best.center <= viewport.center;
+        const crossedDown =
+          scrollDir > 0 && cur.center < viewport.center && best.center >= viewport.center;
+        const crossedUp =
+          scrollDir < 0 && cur.center > viewport.center && best.center <= viewport.center;
         if (crossedDown || crossedUp) return best.id;
       }
       return activeId;
@@ -111,7 +120,8 @@ function initSectionDots(opts = {}) {
   function setActive(id) {
     if (id === activeId) return;
     activeId = id || "";
-    for (const [secId, btn] of btnById) btn.setAttribute("aria-current", String(secId === activeId));
+    for (const [secId, btn] of btnById)
+      btn.setAttribute("aria-current", String(secId === activeId));
     if (cfg.debug) console.log("[section-dots] active ->", activeId || "(none)");
   }
 
@@ -132,7 +142,8 @@ function initSectionDots(opts = {}) {
     });
   }
 
-  const hasLenis = typeof window.lenis === "object" && window.lenis && typeof window.lenis.on === "function";
+  const hasLenis =
+    typeof window.lenis === "object" && window.lenis && typeof window.lenis.on === "function";
   if (hasLenis) window.lenis.on("scroll", tick);
   else window.addEventListener("scroll", tick, { passive: true });
 

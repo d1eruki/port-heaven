@@ -10,7 +10,9 @@
   "scripts": {
     "start": "webpack serve --hot --mode development",
     "tunnel": "ngrok http 8080",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@iconify-json/eva": "^1.2.3",

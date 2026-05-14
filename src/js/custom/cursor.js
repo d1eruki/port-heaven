@@ -39,7 +39,9 @@ export const initCursor = () => {
     let label = "";
 
     if (target && target.closest) {
-      const actionable = target.closest("[data-cursor-label], a, button, [role='button'], [tabindex]");
+      const actionable = target.closest(
+        "[data-cursor-label], a, button, [role='button'], [tabindex]",
+      );
       if (actionable) {
         isActive = true;
         const custom = actionable.getAttribute && actionable.getAttribute("data-cursor-label");

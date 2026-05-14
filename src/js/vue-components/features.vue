@@ -1,7 +1,11 @@
 <template>
-  <div class="light:border-neutral-800 relative z-2 grid min-h-fit flex-1 justify-between gap-15 p-15 lg:min-h-full lg:gap-20 lg:border-l-1 lg:p-15 xl:[grid-template-rows:auto_1fr_auto]">
+  <div
+    class="relative z-2 grid min-h-fit flex-1 justify-between gap-15 p-15 lg:min-h-full lg:gap-20 lg:border-l-1 lg:p-15 xl:[grid-template-rows:auto_1fr_auto] light:border-neutral-800"
+  >
     <small class="light:text-white">{{ title }}</small>
-    <span class="light:text-primary inline-flex w-fit items-baseline gap-[0.08em] text-[8rem] font-black lg:text-9xl lg:font-bold">
+    <span
+      class="inline-flex w-fit items-baseline gap-[0.08em] text-[8rem] font-black lg:text-9xl lg:font-bold light:text-primary"
+    >
       <span
         :data-target="dataTarget"
         :class="idAttr"
@@ -32,6 +36,9 @@ const props = defineProps({
   },
 });
 
-const displayValue = typeof props.dataTarget === "string" ? props.dataTarget.replace(/[^\d]/g, "") || props.dataTarget : props.dataTarget;
+const displayValue =
+  typeof props.dataTarget === "string"
+    ? props.dataTarget.replace(/[^\d]/g, "") || props.dataTarget
+    : props.dataTarget;
 const suffix = typeof props.dataTarget === "string" ? props.dataTarget.replace(/[\d\s]/g, "") : "";
 </script>

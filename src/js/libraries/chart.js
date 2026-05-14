@@ -1,6 +1,23 @@
-import { Chart, RadarController, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from "chart.js";
+import {
+  Chart,
+  RadarController,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-Chart.register(RadarController, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
+Chart.register(
+  RadarController,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+);
 
 const ctx = document.getElementById("radar");
 
@@ -14,8 +31,12 @@ new Chart(ctx, {
         data: [4, 4, 3, 1, 2, 1],
         fill: true,
         backgroundColor: "hsla(0, 0%, 0%, 0.1)",
-        borderColor: getComputedStyle(document.documentElement).getPropertyValue("--color-black").trim(),
-        pointBackgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--color-black").trim(),
+        borderColor: getComputedStyle(document.documentElement)
+          .getPropertyValue("--color-black")
+          .trim(),
+        pointBackgroundColor: getComputedStyle(document.documentElement)
+          .getPropertyValue("--color-black")
+          .trim(),
       },
     ],
   },
