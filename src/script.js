@@ -40,11 +40,7 @@ if (!hwOn) {
 (async () => {
   try {
     if (hwOn) {
-      const imports = [
-        import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) => ensureModelViewerLoaded()),
-        import("./js/libraries/lenis").then(() => import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar())),
-        import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
-      ];
+      const imports = [import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) => ensureModelViewerLoaded()), import("./js/libraries/lenis").then(() => import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar())), import("./js/custom/parallax").then(({ initParallax }) => initParallax())];
 
       if (screenLg) {
         imports.push(
