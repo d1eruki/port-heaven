@@ -4,17 +4,39 @@ import en from "../../locales/en.json";
 import { typographMessages } from "./typograph";
 
 const DEFAULT_LOCALE = "ru";
+const LOCALE_STORAGE_KEY = "locale";
+
+const isSupportedLocale = (locale) => locale === "ru" || locale === "en";
+
+const readSavedLocale = () => {
+  try {
+    const locale = localStorage.getItem(LOCALE_STORAGE_KEY);
+    return isSupportedLocale(locale) ? locale : DEFAULT_LOCALE;
+  } catch {
+    return DEFAULT_LOCALE;
+  }
+};
+
+export const saveLocale = (locale) => {
+  if (!isSupportedLocale(locale)) return;
+
+  try {
+    localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+  } catch {}
+};
 
 export const setDocumentLanguage = (locale) => {
   document.documentElement.lang = locale === "en" ? "en" : "ru";
 };
 
-setDocumentLanguage(DEFAULT_LOCALE);
+const initialLocale = readSavedLocale();
+
+setDocumentLanguage(initialLocale);
 
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale: DEFAULT_LOCALE,
+  locale: initialLocale,
   fallbackLocale: "en",
   messages: {
     ru: typographMessages(ru),

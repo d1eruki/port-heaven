@@ -1,4 +1,4 @@
-import i18n, { setDocumentLanguage } from "../libraries/i18n";
+import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
 import { onReady } from "../utils/onReady";
 
 onReady(() => {
@@ -10,6 +10,7 @@ onReady(() => {
       const next = current === "ru" ? "en" : "ru";
       i18n.global.locale.value = next;
       setDocumentLanguage(next);
+      saveLocale(next);
     });
   });
 });

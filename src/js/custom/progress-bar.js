@@ -11,18 +11,62 @@ export const updateProgressBar = (scrollY) => {
   progressBar.style.height = `${progress}%`;
 };
 
+const SCROLL_STORAGE_KEY = "scrollY";
+
+const resetHorizontalScroll = () => {
+  document.documentElement.scrollLeft = 0;
+  document.body.scrollLeft = 0;
+};
+
+const scrollToY = (y) => {
+  resetHorizontalScroll();
+
+  if (window.lenis) {
+    window.lenis.scrollTo(y, { immediate: true });
+  } else {
+    window.scrollTo(0, y);
+  }
+
+  requestAnimationFrame(resetHorizontalScroll);
+};
+
+const readSavedScrollY = () => {
+  let saved = null;
+  try {
+    saved = localStorage.getItem(SCROLL_STORAGE_KEY);
+  } catch {}
+
+  const savedY = Number.parseInt(saved, 10);
+  return Number.isFinite(savedY) ? savedY : null;
+};
+
+const restoreScrollPosition = () => {
+  resetHorizontalScroll();
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const targetY = readSavedScrollY();
+      if (targetY !== null) {
+        scrollToY(targetY);
+      }
+
+      updateProgressBar(getScrollY());
+    });
+  });
+};
+
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
 window.addEventListener("beforeunload", () => {
-  localStorage.setItem("scrollY", getScrollY().toString());
+  try {
+    localStorage.setItem(SCROLL_STORAGE_KEY, getScrollY().toString());
+  } catch {}
 });
 
 window.addEventListener("load", () => {
-  const saved = localStorage.getItem("scrollY");
-  if (saved !== null && window.lenis) {
-    window.lenis.scrollTo(parseInt(saved, 10), { immediate: true });
-  } else if (saved !== null) {
-    window.scrollTo(0, parseInt(saved, 10));
-  }
-  updateProgressBar(getScrollY());
+  restoreScrollPosition();
 });
 
 window.addEventListener("resize", () => {
