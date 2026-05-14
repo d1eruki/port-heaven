@@ -51,9 +51,11 @@
     font-size: var(--subtext);
   }
 
+  /*noinspection CssInvalidPseudoSelector*/
   video::-webkit-media-controls {
     display: none;
   }
+  /*noinspection CssInvalidPseudoSelector*/
   video:hover::-webkit-media-controls {
     display: flex;
   }

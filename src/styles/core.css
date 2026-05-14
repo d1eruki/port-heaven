@@ -32,6 +32,12 @@
   --dot-current: var(--color-primary);
 }
 
+:root {
+  --cell: 25vw;
+  --parallax-offset: 0px;
+  --parallax-scale: 1;
+}
+
 @media (color-gamut: p3) {
   :root {
     --color-primary: color(display-p3 0.7 1 0);
