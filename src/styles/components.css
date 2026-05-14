@@ -105,13 +105,13 @@
   .hero {
     background-image: radial-gradient(circle at 0 0, var(--color-white) 1px, transparent 1px), linear-gradient(to right, var(--color-neutral-800) 1px, transparent 1px), linear-gradient(to bottom, var(--color-neutral-800) 1px, transparent 1px);
     background-size:
-      var(--cell) var(--cell),
-      var(--cell) var(--cell),
-      var(--cell) var(--cell);
+      var(--cell, 25vw) var(--cell, 25vw),
+      var(--cell, 25vw) var(--cell, 25vw),
+      var(--cell, 25vw) var(--cell, 25vw);
     background-position:
-      calc(var(--cell) / 2) calc(var(--cell) / 2),
-      calc(var(--cell) / 2) calc(var(--cell) / 2),
-      calc(var(--cell) / 2) calc(var(--cell) / 2);
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2),
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2),
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2);
   }
 
   [class*="scroll-speed-"] {
