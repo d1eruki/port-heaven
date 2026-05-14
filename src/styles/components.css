@@ -76,15 +76,6 @@
     transition: height 0.1s ease;
   }
 
-  .counter.plus {
-    position: relative;
-    display: inline-block;
-  }
-
-  .counter.plus::after {
-    content: "+";
-  }
-
   nav .dot {
     width: var(--dot-size);
     height: var(--dot-size);
