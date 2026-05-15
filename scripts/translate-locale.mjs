@@ -139,6 +139,7 @@ const translateBatch = async (items) => {
         "Return JSON only and keep every provided key exactly as-is.",
         "Preserve line breaks, bracket wrappers, product names, brand names, metrics, and URLs.",
         "Prefer concise portfolio/editorial English over literal machine translation.",
+        "Translate all output strings in lowercase.",
         "Do not add commentary, markdown, or missing keys.",
       ].join(" "),
       input: JSON.stringify({

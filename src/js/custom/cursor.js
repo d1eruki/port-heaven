@@ -45,7 +45,7 @@ export const initCursor = () => {
       if (actionable) {
         isActive = true;
         const custom = actionable.getAttribute && actionable.getAttribute("data-cursor-label");
-        label = custom || (actionable.tagName === "A" ? t("button-open") : "");
+        label = custom || (actionable.tagName === "A" ? t("buttons.open") : "");
         hasLabel = !!label;
       } else if (target.closest(".active")) {
         isActive = true;

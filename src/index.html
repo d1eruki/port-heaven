@@ -100,8 +100,8 @@
         <div
           class="z-2 flex w-full flex-col content-end justify-end gap-10 p-15 text-blend lg:flex-row lg:items-end lg:justify-between lg:mix-blend-difference"
         >
-          <h1 class="whitespace-pre-line text-fg">{{ t('hero') }}</h1>
-          <small class="hidden lg:block">{{ t('logo') }}</small>
+          <h1 class="whitespace-pre-line text-fg">{{ t('brand.hero') }}</h1>
+          <small class="hidden lg:block">{{ t('brand.logo') }}</small>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -126,27 +126,27 @@
         <nav-button
           nav-name="about"
           class="is-active hidden"
-          >{{ t('menu-about') }}</nav-button
+          >{{ t('menu.about.title') }}</nav-button
         >
         <nav-button
           nav-name="projects"
           class="hidden"
-          >{{ t('menu-projects') }}</nav-button
+          >{{ t('menu.projects.title') }}</nav-button
         >
         <nav-button
           nav-name="design"
           class="hidden"
-          >{{ t('menu-designs') }}</nav-button
+          >{{ t('menu.designs.title') }}</nav-button
         >
         <nav-button
           nav-name="creatives"
           class="hidden"
-          >{{ t('menu-creatives') }}</nav-button
+          >{{ t('menu.creatives.title') }}</nav-button
         >
         <nav-button
           nav-name="footer"
           class="hidden"
-          >{{ t('menu-footer') }}</nav-button
+          >{{ t('menu.footer.title') }}</nav-button
         >
       </nav>
     </div>
@@ -192,10 +192,10 @@
       <div
         class="z-2 content-center px-15 pt-15 text-accent-section-fg lg:justify-center lg:bg-transparent lg:pb-15"
       >
-        <h2 class="lg:justify-self-center">{{ t('menu-description') }}</h2>
+        <h2 class="lg:justify-self-center">{{ t('menu.description.title') }}</h2>
       </div>
       <p class="z-2 self-center p-15 text-accent-section-fg lg:h-fit lg:w-150">
-        {{ t('menu-description-description') }}
+        {{ t('menu.description.text') }}
       </p>
       <!--model viewer-->
     </section>
@@ -203,7 +203,7 @@
     <header
       class="sticky top-0 z-100 flex h-fit min-h-10 w-full bg-accent-section px-15 py-5 text-accent-section-fg hw:hidden"
     >
-      {{ t('hw-disabled') }}
+      {{ t('notices.hardwareAccelerationDisabled') }}
     </header>
 
     <!--about-->
@@ -213,22 +213,22 @@
       class="relative flex min-h-screen flex-col content-center bg-canvas lg:justify-center lg:gap-15"
     >
       <div class="block px-15 pt-15 text-fg lg:hidden">
-        <h2>{{ t('menu-about') }}</h2>
+        <h2>{{ t('menu.about.title') }}</h2>
       </div>
       <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
         <feature
           id-attr="counter"
           data-target="2+"
-          :title="'/ ' + t('menu-about-experience-title')"
-          :text="t('menu-about-experience-text')"
+          :title="'/ ' + t('menu.about.experience.title')"
+          :text="t('menu.about.experience.text')"
         ></feature>
         <feature
           id-attr="counter"
           data-target="10+"
-          :title="'/ ' + t('menu-about-projects-title')"
-          :text="t('menu-about-projects-text')"
+          :title="'/ ' + t('menu.about.projects.title')"
+          :text="t('menu.about.projects.text')"
         ></feature>
-        <feature :text="t('menu-about-hobbies-text')"></feature>
+        <feature :text="t('menu.about.hobbies.text')"></feature>
       </div>
       <img
         alt=""
@@ -246,35 +246,35 @@
       <div
         class="grid content-center gap-5 bg-inverse p-15 text-inverse-fg lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end"
       >
-        <h2>{{ t('menu-projects') }}</h2>
+        <h2>{{ t('menu.projects.title') }}</h2>
         <menu-desc
           class="lg:max-w-150"
-          :menu-desc="t('menu-projects-description')"
+          :menu-desc="t('menu.projects.description')"
         ></menu-desc>
       </div>
       <div class="">
         <project
-          :project-name="t('projects-varwinDotCom-title')"
-          :project-description="t('projects-varwinDotCom-description')"
+          :project-name="t('projects.varwinDotCom.title')"
+          :project-description="t('projects.varwinDotCom.description')"
           :project-tags="['Figma', 'Bootstrap', 'UX/UI', 'Design', 'Adaptive', 'Prototype', 'Frontend', 'Testing']"
-          :project-text="[ t('projects-varwinDotCom-text-1'), t('projects-varwinDotCom-text-2')]"
+          :project-text="[ t('projects.varwinDotCom.text[0]'), t('projects.varwinDotCom.text[1]')]"
           :project-links="[
-        { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects-button-design') },
-        { url: 'https://varwin.com/ru/education/download-xrms', name: t('projects-button-download-page') },
-        { url: 'https://varwin.com/ru/education/projects', name: t('projects-button-project-registry') }
+        { url: 'https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1', name: t('projects.buttons.design') },
+        { url: 'https://varwin.com/ru/education/download-xrms', name: t('projects.buttons.downloadPage') },
+        { url: 'https://varwin.com/ru/education/projects', name: t('projects.buttons.projectRegistry') }
       ]"
         ></project>
         <project
-          :project-name="t('projects-xrms-title')"
-          :project-description="t('projects-xrms-description')"
+          :project-name="t('projects.xrms.title')"
+          :project-description="t('projects.xrms.description')"
           :project-tags="['Figma', 'Desktop', 'Prototype', 'Testing', 'Design', 'UX/UI']"
           :project-text="[
-        t('projects-xrms-text')
+        t('projects.xrms.text')
       ]"
           :project-links="[
-        { url: 'https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1', name: t('projects-button-design') }
+        { url: 'https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1', name: t('projects.buttons.design') }
       ]"
-          :project-result="t('projects-xrms-result')"
+          :project-result="t('projects.xrms.result')"
         ></project>
       </div>
     </section>
@@ -292,86 +292,86 @@
         <div
           class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 bg-inverse p-15 text-inverse-fg lg:w-[25dvw] lg:bg-canvas lg:text-fg"
         >
-          <h2>{{ t('menu-designs') }}</h2>
+          <h2>{{ t('menu.designs.title') }}</h2>
           <menu-desc
             class="lg:max-w-150"
-            :menu-desc="t('menu-designs-description')"
+            :menu-desc="t('menu.designs.description')"
           ></menu-desc>
         </div>
         <design
-          :design-name="t('design-varwinMobile-title')"
-          :design-desc="t('design-varwinMobile-text')"
+          :design-name="t('designs.varwinMobile.title')"
+          :design-desc="t('designs.varwinMobile.text')"
           design-url="https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1"
           design-img-alt=""
           :design-tags="['Mobile app', 'Visual', 'Team work']"
         ></design>
 
         <design
-          :design-name="t('design-admaster-title')"
-          :design-desc="t('design-admaster-text')"
+          :design-name="t('designs.admaster.title')"
+          :design-desc="t('designs.admaster.text')"
           design-url="https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1"
           design-img-alt=""
           :design-tags="['Adaptive', 'Visual', 'Concept']"
         ></design>
 
         <design
-          :design-name="t('design-0xprocessing-title')"
-          :design-desc="t('design-0xprocessing-text')"
+          :design-name="t('designs.0xprocessing.title')"
+          :design-desc="t('designs.0xprocessing.text')"
           design-url="https://www.figma.com/design/eViD7HUkXMbie6XI9a8BLK/0x-processing-landing-page?node-id=2006-2&t=qwDbVxa6LRKoFTY5-1"
           design-img-alt=""
           :design-tags="['Adaptive', 'Visual', 'Concept']"
         ></design>
 
         <design
-          :design-name="t('design-stuff-title')"
-          :design-desc="t('design-stuff-text')"
+          :design-name="t('designs.stuff.title')"
+          :design-desc="t('designs.stuff.text')"
           design-url="https://www.figma.com/design/zkcugeK8gsTGqsDKiv5soC/Stuff-landing-design?node-id=3181-397&t=U01Vfxg6N5lwyUEv-1"
           design-img-alt=""
           :design-tags="['Desktop', 'Visual', 'Concept']"
         ></design>
 
         <design
-          :design-name="t('design-subscout-title')"
-          :design-desc="t('design-subscout-text')"
+          :design-name="t('designs.subscout.title')"
+          :design-desc="t('designs.subscout.text')"
           design-url="https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/Mobile-app-for-subscription-tracking?node-id=8201-5922&t=ny4TL8Y3mUFaQ0PB-1"
           design-img-alt=""
           :design-tags="['Mobile app', 'Prototype', 'Visual', 'Concept']"
         ></design>
 
         <design
-          :design-name="t('design-baikal-title')"
-          :design-desc="t('design-baikal-text')"
+          :design-name="t('designs.baikal.title')"
+          :design-desc="t('designs.baikal.text')"
           design-url="https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/Landing-page-for-a-travel-club?node-id=1-23&t=END5NzJfg1Z8PRH1-1"
           design-img-alt=""
           :design-tags="['Desktop', 'Visual', 'Concept']"
         ></design>
 
         <design
-          :design-name="t('design-pioner-title')"
-          :design-desc="t('design-pioner-text')"
+          :design-name="t('designs.pioner.title')"
+          :design-desc="t('designs.pioner.text')"
           design-url="https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/Redesign-of-the-Power-Machines-plant-webpage?node-id=1051-200&t=hfZVdTFUnt3JHWLN-1"
           design-img-alt=""
           :design-tags="['Desktop', 'Redesign', 'Concept']"
         ></design>
 
         <design
-          :design-name="t('design-robogrid-title')"
-          :design-desc="t('design-robogrid-text')"
+          :design-name="t('designs.robogrid.title')"
+          :design-desc="t('designs.robogrid.text')"
           design-url="https://www.figma.com/design/vGx3VZvjNgUGGsXgeMOnTz/RoboGrid-dashboard?node-id=49006-62828&t=BHLtfKFgJxVkYZTz-1"
           design-img-alt=""
           :design-tags="['Dashboard']"
         ></design>
 
         <design
-          :design-name="t('design-analyticalPlatform-title')"
-          :design-desc="t('design-analyticalPlatform-text')"
+          :design-name="t('designs.analyticalPlatform.title')"
+          :design-desc="t('designs.analyticalPlatform.text')"
           design-url="https://www.figma.com/design/TxZzzOnA3p8sTROyOKx3pC/Analytical-platform?node-id=60044-27&t=KbV07VHSG1w1dgWX-1"
           design-img-alt=""
           :design-tags="['Dashboard']"
         ></design>
         <design
-          :design-name="t('design-mooozik-title')"
-          :design-desc="t('design-mooozik-text')"
+          :design-name="t('designs.mooozik.title')"
+          :design-desc="t('designs.mooozik.text')"
           design-url="https://www.figma.com/design/voDUMRONK5sGFSo43BkcU9/Mooozik-%E2%80%94-a-music-label-for-cows?node-id=0-1&t=8jUM5sY9hUOspPua-1"
           design-img-alt=""
           :design-tags="['Adaptive', 'Visual', 'Concept']"
@@ -388,10 +388,10 @@
       <div
         class="scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center bg-inverse p-15 text-inverse-fg lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:bg-transparent lg:p-0 lg:text-fg"
       >
-        <h2>{{ t('menu-creatives') }}</h2>
+        <h2>{{ t('menu.creatives.title') }}</h2>
         <menu-desc
           class="lg:max-w-[23dvw]"
-          :menu-desc="t('menu-creatives-description')"
+          :menu-desc="t('menu.creatives.description')"
         ></menu-desc>
       </div>
       <div class="container-creatives h-fit w-full lg:mb-[35dvh] lg:grid lg:grid-cols-20 lg:p-10">
@@ -444,7 +444,8 @@
           rel="noopener noreferrer"
         >
           <h2 class="flex gap-2 text-nowrap">
-            <span class="icon-[ic--baseline-telegram] aspect-square"></span>{{ t('telegram') }}
+            <span class="icon-[ic--baseline-telegram] aspect-square"></span>{{
+            t('contacts.telegram') }}
           </h2>
           <div
             class="absolute -bottom-30 left-15 hidden -rotate-15 bg-inverse p-5 font-[Actay_Wide] text-inverse-fg lg:group-hover:block"
@@ -459,7 +460,7 @@
           rel="noopener noreferrer"
         >
           <h2 class="flex gap-2 text-nowrap">
-            <span class="icon-[eva--behance-fill]"></span>{{ t('behance') }}
+            <span class="icon-[eva--behance-fill]"></span>{{ t('contacts.behance') }}
           </h2>
           <div
             class="absolute -bottom-40 -left-25 hidden rotate-45 bg-inverse p-5 font-[Actay_Wide] text-inverse-fg lg:group-hover:block"
@@ -474,7 +475,8 @@
           rel="noopener noreferrer"
         >
           <h2 class="flex gap-2 text-nowrap">
-            <span class="icon-[ic--baseline-alternate-email] aspect-square"></span>{{ t('mail') }}
+            <span class="icon-[ic--baseline-alternate-email] aspect-square"></span>{{
+            t('contacts.mail') }}
           </h2>
           <div
             class="absolute -bottom-40 -left-25 hidden rotate-45 bg-inverse p-5 font-[Actay_Wide] text-inverse-fg lg:group-hover:block"
@@ -482,10 +484,10 @@
             stapps90@gmail.com
           </div>
         </a>
-        <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
+        <menu-desc :menu-desc="t('menu.footer.description')"></menu-desc>
       </div>
       <h2 class="footer-logo-text font-[Actay_Wide] text-nowrap text-primary lowercase">
-        {{ t('logo') }}
+        {{ t('brand.logo') }}
       </h2>
     </section>
 
@@ -495,7 +497,7 @@
       class="group fixed right-5 bottom-5 z-200 flex text-blend mix-blend-difference lg:right-15 lg:bottom-15"
     >
       <small class="opacity-0 group-hover:opacity-100">/</small
-      ><small>{{ t('button-to-top') }}</small>
+      ><small>{{ t('buttons.toTop') }}</small>
     </button>
   </body>
 </html>

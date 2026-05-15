@@ -4,7 +4,7 @@
     :data-scroll-target="`[data-section='${navName}']`"
     class="self-start text-start text-blend mix-blend-difference transition-colors duration-300"
   >
-    {{ t(navName === "design" ? "menu-designs" : `menu-${navName}`) }}
+    {{ t(navName === "design" ? "menu.designs.title" : `menu.${navName}.title`) }}
   </button>
 </template>
 
