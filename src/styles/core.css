@@ -31,9 +31,3 @@
   --dot-color: var(--color-neutral-700);
   --dot-current: var(--color-primary);
 }
-
-@media (color-gamut: p3) {
-  :root {
-    --color-primary: color(display-p3 0.7 1 0);
-  }
-}

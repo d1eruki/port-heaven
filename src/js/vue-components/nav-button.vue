@@ -2,7 +2,7 @@
   <button
     :data-open-block="navName"
     :data-scroll-target="`[data-section='${navName}']`"
-    class="light:text-neutral-500 self-start text-start mix-blend-difference transition-colors duration-300"
+    class="dark:text-neutral-500 self-start text-start mix-blend-difference transition-colors duration-300"
   >
     {{ t(navName === "design" ? "menu-designs" : `menu-${navName}`) }}
   </button>

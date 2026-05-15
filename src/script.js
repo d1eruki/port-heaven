@@ -8,6 +8,7 @@ import "./js/libraries/swiper";
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
 
 import "./js/custom/theme-toggle";
+import "./js/custom/theme-debug";
 import "./js/custom/locale-toggler";
 import "./js/custom/scroll-section";
 import "./js/custom/sections";

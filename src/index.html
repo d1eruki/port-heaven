@@ -2,6 +2,7 @@
 <html
   lang="en"
   prefix="og: https://ogp.me/ns#"
+  data-theme="dark"
 >
   <head>
     <title>port-heaven</title>
@@ -66,7 +67,7 @@
   <body
     lang="ru"
     id="app"
-    class="lg:justify-last article light:bg-black light:text-white relative container grid max-w-full overflow-x-hidden scroll-smooth"
+    class="lg:justify-last article dark:bg-black dark:text-white relative container grid max-w-full overflow-x-hidden scroll-smooth"
   >
     <noscript>
       <div>
@@ -104,7 +105,7 @@
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 756 1031"
-          class="light:fill-primary hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-dvh w-auto justify-self-center object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
+          class="dark:fill-primary hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-dvh w-auto justify-self-center object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
           data-parallax-anchor="top"
           data-parallax-scale="0.0001"
         >
@@ -150,7 +151,7 @@
     <!--progress bar-->
     <div
       id="progress-bar"
-      class="progress-bar light:bg-neutral-700 fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"
+      class="progress-bar dark:bg-neutral-700 fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex"
     ></div>
 
     <!--right menu-->
@@ -163,16 +164,16 @@
         id="theme-toggle"
         type="button"
         aria-label="Toggle theme"
-        class="group light:hover:text-white light:text-neutral-700 flex"
+        class="group dark:hover:text-white dark:text-neutral-700 flex"
       >
-        <small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('theme-toggle') }}</small>
+        <small class="opacity-0 group-hover:opacity-100">/</small><small data-theme-toggle-label>{{ t('theme-toggle.light') }}</small>
       </button>
 
       <button
         id="lang-toggle"
         type="button"
         aria-label="Toggle lang"
-        class="group light:hover:text-white light:text-neutral-700 flex"
+        class="group dark:hover:text-white dark:text-neutral-700 flex"
       >
         <small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('lang-toggle') }}</small>
       </button>
@@ -182,24 +183,24 @@
     <section
       data-section="description"
       id="description"
-      class="light:bg-primary relative lg:grid lg:min-h-dvh lg:grid-cols-2"
+      class="dark:bg-primary relative lg:grid lg:min-h-dvh lg:grid-cols-2"
     >
-      <div class="light:lg:bg-transparent light:text-black z-2 content-center px-15 pt-15 lg:justify-center lg:pb-15">
+      <div class="dark:lg:bg-transparent dark:text-black z-2 content-center px-15 pt-15 lg:justify-center lg:pb-15">
         <h2 class="lg:justify-self-center">{{ t('menu-description') }}</h2>
       </div>
-      <p class="light:text-black z-2 self-center p-15 lg:h-fit lg:w-150">{{ t('menu-description-description') }}</p>
+      <p class="dark:text-black z-2 self-center p-15 lg:h-fit lg:w-150">{{ t('menu-description-description') }}</p>
       <!--model viewer-->
     </section>
 
-    <header class="hw:hidden light:bg-primary sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5">{{ t('hw-disabled') }}</header>
+    <header class="hw:hidden dark:bg-primary sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5">{{ t('hw-disabled') }}</header>
 
     <!--about-->
     <section
       data-section="about"
       id="about"
-      class="light:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15"
+      class="dark:bg-black relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15"
     >
-      <div class="light:text-white block px-15 pt-15 lg:hidden">
+      <div class="dark:text-white block px-15 pt-15 lg:hidden">
         <h2>{{ t('menu-about') }}</h2>
       </div>
       <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
@@ -228,8 +229,8 @@
       id="projects"
       class="grid min-h-dvh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0"
     >
-      <div class="light:bg-white grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end">
-        <h2 class="light:text-black">{{ t('menu-projects') }}</h2>
+      <div class="dark:bg-white grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end">
+        <h2 class="dark:text-black">{{ t('menu-projects') }}</h2>
         <menu-desc
           class="lg:max-w-150"
           :menu-desc="t('menu-projects-description')"
@@ -272,8 +273,8 @@
         class="top-0 grid w-dvw overflow-visible will-change-transform lg:h-dvh lg:grid-flow-col lg:grid-rows-2"
         id="design-inner"
       >
-        <div class="light:bg-white light:lg:bg-black col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 p-15 lg:w-[25dvw]">
-          <h2 class="light:text-black light:lg:text-white">{{ t('menu-designs') }}</h2>
+        <div class="dark:bg-white dark:lg:bg-black col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 p-15 lg:w-[25dvw]">
+          <h2 class="dark:text-black dark:lg:text-white">{{ t('menu-designs') }}</h2>
           <menu-desc
             class="lg:max-w-150"
             :menu-desc="t('menu-designs-description')"
@@ -366,8 +367,8 @@
       id="creatives"
       class="relative min-h-dvh lg:py-[50dvh]"
     >
-      <div class="light:bg-white light:lg:bg-transparent scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center p-15 lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:p-0">
-        <h2 class="light:text-black light:lg:text-white">{{ t('menu-creatives') }}</h2>
+      <div class="dark:bg-white dark:lg:bg-transparent scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center p-15 lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:p-0">
+        <h2 class="dark:text-black dark:lg:text-white">{{ t('menu-creatives') }}</h2>
         <menu-desc
           class="lg:max-w-[23dvw]"
           :menu-desc="t('menu-creatives-description')"
@@ -417,28 +418,28 @@
     >
       <div class="items-center gap-10 lg:flex">
         <a
-          class="group light:text-neutral-700 light:hover:text-white relative w-auto font-[Actay_Wide]"
+          class="group dark:text-neutral-700 dark:hover:text-white relative w-auto font-[Actay_Wide]"
           href="https://t.me/d1eruki"
           target="_blank"
         >
           <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--baseline-telegram] aspect-square"></span>{{ t('telegram') }}</h2>
-          <div class="light:bg-white light:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
+          <div class="dark:bg-white dark:text-black absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block">https://t.me/d1eruki</div>
         </a>
         <a
-          class="group light:text-neutral-700 light:hover:text-white relative w-auto font-[Actay_Wide]"
+          class="group dark:text-neutral-700 dark:hover:text-white relative w-auto font-[Actay_Wide]"
           href="https://www.behance.net/dieruki"
           target="_blank"
         >
           <h2 class="flex gap-2 text-nowrap"><span class="icon-[eva--behance-fill]"></span>{{ t('behance') }}</h2>
-          <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">BEHANCE</div>
+          <div class="dark:bg-white dark:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">BEHANCE</div>
         </a>
         <a
-          class="group light:text-neutral-700 light:hover:text-white relative w-auto font-[Actay_Wide]"
+          class="group dark:text-neutral-700 dark:hover:text-white relative w-auto font-[Actay_Wide]"
           href="mailto:stapps90@gmail.com"
           target="_blank"
         >
           <h2 class="flex gap-2 text-nowrap"><span class="icon-[ic--baseline-alternate-email] aspect-square"></span>{{ t('mail') }}</h2>
-          <div class="light:bg-white light:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
+          <div class="dark:bg-white dark:text-black absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block">stapps90@gmail.com</div>
         </a>
         <menu-desc :menu-desc="t('menu-footer-description')"></menu-desc>
       </div>
@@ -448,7 +449,7 @@
     <!--scroll-to-top-->
     <button
       id="scroll-to-top"
-      class="group light:hover:text-white light:text-neutral-700 fixed right-5 bottom-5 z-200 flex mix-blend-difference lg:right-15 lg:bottom-15"
+      class="group dark:hover:text-white dark:text-neutral-700 fixed right-5 bottom-5 z-200 flex mix-blend-difference lg:right-15 lg:bottom-15"
     >
       <small class="opacity-0 group-hover:opacity-100">/</small><small>{{ t('button-to-top') }}</small>
     </button>

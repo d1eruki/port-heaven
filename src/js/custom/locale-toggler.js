@@ -8,6 +8,7 @@ onReady(() => {
     btn.addEventListener("click", () => {
       const current = i18n.global.locale.value;
       i18n.global.locale.value = current === "ru" ? "en" : "ru";
+      window.dispatchEvent(new Event("localechange"));
     });
   });
 });
