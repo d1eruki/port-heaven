@@ -5,7 +5,7 @@
       :key="index"
       class="flex"
     >
-      <small class="flex gap-1 rounded-4xl px-2 py-1.5 light:bg-neutral-800 light:text-neutral-500">
+      <small class="flex gap-1 rounded-4xl bg-chip px-2 py-1.5 text-chip-fg">
         <span
           v-if="showIcons && isAdaptive(tag)"
           class="icon-[ic--baseline-phone-android]"

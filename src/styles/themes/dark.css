@@ -1,0 +1,30 @@
+:root[data-theme="dark"] {
+  --theme-primary: hsl(83 100% 50%);
+  --theme-canvas: #000000;
+  --theme-fg: #ffffff;
+  --theme-action-muted: var(--color-neutral-700);
+  --theme-muted: var(--color-neutral-500);
+  --theme-progress: var(--color-neutral-700);
+  --theme-accent-section: var(--theme-primary);
+  --theme-accent-section-fg: #000000;
+  --theme-inverse: #ffffff;
+  --theme-inverse-fg: #000000;
+  --theme-chip: var(--color-neutral-800);
+  --theme-chip-fg: var(--color-neutral-500);
+  --theme-border-subtle: var(--color-neutral-800);
+  --theme-stat: var(--theme-primary);
+  --theme-hover-accent: var(--theme-primary);
+  --theme-hover-accent-fg: #000000;
+  --theme-hero-grid-dot: #ffffff;
+  --theme-hero-grid-line: var(--color-neutral-800);
+  --theme-corner-frame: var(--color-neutral-500);
+  --theme-creative-shadow: var(--theme-primary);
+  --theme-dot-color: var(--color-neutral-700);
+  --theme-dot-current: var(--theme-primary);
+}
+
+@media (color-gamut: p3) {
+  :root[data-theme="dark"] {
+    --theme-primary: color(display-p3 0.7 1 0);
+  }
+}

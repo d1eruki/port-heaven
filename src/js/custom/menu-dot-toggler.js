@@ -30,9 +30,15 @@ export const initMenuDotToggler = () =>
       }
     };
 
-    const recompute = () => {
+    const getScrollY = (event) => {
+      const lenisY = event?.detail?.y ?? window.lenis?.scroll;
+      if (typeof lenisY === "number") return lenisY;
+      return window.scrollY || window.pageYOffset || 0;
+    };
+
+    const recompute = (event) => {
       const threshold = getThreshold();
-      const y = window.scrollY || window.pageYOffset || 0;
+      const y = getScrollY(event);
       applyState(y >= threshold);
     };
 
@@ -45,6 +51,7 @@ export const initMenuDotToggler = () =>
     };
 
     window.addEventListener("scroll", onScrollThrottled, { passive: true });
+    window.addEventListener("lenis-scroll", recompute);
     window.addEventListener("resize", recompute);
 
     setTimeout(recompute, 50);

@@ -1,34 +1,30 @@
-@layer base {
-  @variant light {
-    *::selection {
-      background-color: var(--color-white);
-      color: var(--color-black);
-    }
+:root[data-theme="light"] {
+  --theme-primary: #e283ec;
+  --theme-canvas: #ffffff;
+  --theme-fg: #000000;
+  --theme-action-muted: #000000;
+  --theme-muted: var(--color-neutral-500);
+  --theme-progress: var(--color-neutral-700);
+  --theme-accent-section: var(--theme-primary);
+  --theme-accent-section-fg: #000000;
+  --theme-inverse: #000000;
+  --theme-inverse-fg: #ffffff;
+  --theme-chip: var(--color-neutral-100);
+  --theme-chip-fg: #000000;
+  --theme-border-subtle: currentColor;
+  --theme-stat: var(--theme-primary);
+  --theme-hover-accent: var(--theme-primary);
+  --theme-hover-accent-fg: #000000;
+  --theme-hero-grid-dot: #000000;
+  --theme-hero-grid-line: var(--color-neutral-300);
+  --theme-corner-frame: var(--color-neutral-500);
+  --theme-creative-shadow: var(--theme-primary);
+  --theme-dot-color: var(--color-neutral-700);
+  --theme-dot-current: var(--theme-primary);
+}
 
-    a {
-      color: var(--color-white);
-    }
-    a:hover {
-      color: var(--color-white);
-    }
-
-    svg:hover polygon,
-    svg:hover path,
-    svg:hover rect {
-      fill: var(--color-white);
-    }
-
-    .app-cursor {
-      background: var(--color-white);
-      color: var(--color-black);
-    }
-
-    nav circle {
-      fill: var(--dot-color);
-    }
-
-    nav button[aria-current="true"] circle {
-      fill: var(--dot-current);
-    }
+@media (color-gamut: p3) {
+  :root[data-theme="light"] {
+    --theme-primary: color(display-p3 0.855 0.525 0.91);
   }
 }

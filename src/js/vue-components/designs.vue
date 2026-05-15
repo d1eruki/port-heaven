@@ -4,7 +4,7 @@
     :data-design-name="designName"
     target="_blank"
     rel="noopener noreferrer"
-    class="group w-dvw shrink-0 lg:h-[50dvh] lg:w-[25dvw] lg:hover:z-51 light:text-white light:hover:bg-primary light:hover:text-black"
+    class="group w-dvw shrink-0 text-fg hover:bg-hover-accent hover:text-hover-accent-fg lg:h-[50dvh] lg:w-[25dvw] lg:hover:z-51"
   >
     <div
       class="anim-extrude relative z-10 grid gap-5 p-15 lg:h-full lg:grid-rows-[50%] lg:items-center"

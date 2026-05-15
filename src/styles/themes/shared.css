@@ -1,0 +1,11 @@
+@layer base {
+  :root {
+    --theme-blend: #ffffff;
+    --theme-cursor-fg: #000000;
+  }
+
+  .app-cursor {
+    background: var(--color-blend);
+    color: var(--color-cursor-fg);
+  }
+}

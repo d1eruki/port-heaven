@@ -10,7 +10,7 @@
   }
 
   .corner-frame {
-    --cf-color: var(--color-neutral-500);
+    --cf-color: var(--color-corner-frame);
     --cf-size: 1px;
     --cf-length: 24px;
     background:
@@ -89,6 +89,7 @@
     height: var(--dot-size);
   }
   nav circle {
+    fill: var(--dot-color);
     transition:
       transform 0.2s ease,
       fill 0.2s ease,
@@ -97,13 +98,14 @@
     transform-origin: center;
   }
   nav button[aria-current="true"] circle {
+    fill: var(--dot-current);
     transform: scale(1);
   }
 
   @media (min-width: 1024px) {
     .vanilla-tilt-creatives {
       transition: var(--transition);
-      box-shadow: -4px 4px 0 0 var(--color-primary);
+      box-shadow: -4px 4px 0 0 var(--color-creative-shadow);
     }
     .vanilla-tilt-creatives:hover {
       box-shadow: none;
@@ -112,9 +114,9 @@
 
   .hero {
     background-image:
-      radial-gradient(circle at 0 0, var(--color-white) 1px, transparent 1px),
-      linear-gradient(to right, var(--color-neutral-800) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-neutral-800) 1px, transparent 1px);
+      radial-gradient(circle at 0 0, var(--color-hero-grid-dot) 1px, transparent 1px),
+      linear-gradient(to right, var(--color-hero-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-hero-grid-line) 1px, transparent 1px);
     background-size:
       var(--cell, 25vw) var(--cell, 25vw),
       var(--cell, 25vw) var(--cell, 25vw),
@@ -133,17 +135,13 @@
   @media (max-width: 767px) {
     [data-section="design"] a.design-active,
     .design-active {
-      background-color: var(--color-primary) !important;
-      color: var(--color-black) !important;
-    }
-
-    [data-section="design"] a.design-active .light\:text-white {
-      color: var(--color-black) !important;
+      background-color: var(--color-hover-accent) !important;
+      color: var(--color-hover-accent-fg) !important;
     }
 
     [data-section="design"] a.design-active small {
-      background-color: var(--color-white) !important;
-      color: var(--color-neutral-800) !important;
+      background-color: var(--color-inverse) !important;
+      color: var(--color-inverse-fg) !important;
     }
   }
 }
