@@ -48,6 +48,7 @@ if (!hwOn) {
         import("./js/libraries/lenis").then(() =>
           import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar()),
         ),
+        import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
       ];
 
       if (screenLg) {
@@ -55,7 +56,6 @@ if (!hwOn) {
           import("./js/libraries/vanilla-tilt").then(({ initVanillaTilt }) =>
             onReady(initVanillaTilt),
           ),
-          import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
           import("./js/custom/cursor").then(({ initCursor }) => onReady(initCursor)),
           import("./js/custom/horizontal-scroll").then(({ initHorizontalScroll }) =>
             initHorizontalScroll(),

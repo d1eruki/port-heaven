@@ -30,7 +30,7 @@ const setupParallax = () => {
     .filter(Boolean);
 
   const update = () => {
-    const scroll = lenis.scroll;
+    const scroll = lenis?.scroll ?? window.scrollY;
     items.forEach(({ el, speed, initialY, anchor, scaleFactor }) => {
       let offset;
 
