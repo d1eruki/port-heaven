@@ -44,6 +44,30 @@ Packages involved:
 
 - `vue-i18n` — internationalization
 
+English locale strings are generated from `src/locales/ru.json`.
+
+Create `.env.local`:
+
+```bash
+OPENAI_API_KEY=your_api_key
+```
+
+Then run:
+
+```bash
+npm run translate:en
+```
+
+The script updates only missing or stale strings in `src/locales/en.json` and stores source
+hashes in `src/locales/.en.meta.json`. Use `npm run translate:en:check` to preview which keys
+would be translated without calling the API.
+
+Optional model override:
+
+```bash
+OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
+```
+
 ### Icons
 
 - `@iconify/tailwind4` — Iconify integration for Tailwind CSS v4

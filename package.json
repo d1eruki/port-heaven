@@ -11,6 +11,8 @@
     "start": "webpack serve --hot --mode development",
     "tunnel": "ngrok http 8080",
     "build": "webpack --mode production",
+    "translate:en": "node scripts/translate-locale.mjs",
+    "translate:en:check": "node scripts/translate-locale.mjs --dry-run",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
