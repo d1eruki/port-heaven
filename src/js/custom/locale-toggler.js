@@ -12,6 +12,7 @@ export const initLocaleToggle = () =>
         i18n.global.locale.value = next;
         setDocumentLanguage(next);
         saveLocale(next);
+        window.dispatchEvent(new Event("localechange"));
       });
     });
   });

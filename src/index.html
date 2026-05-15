@@ -2,6 +2,7 @@
 <html
   lang="ru"
   prefix="og: https://ogp.me/ns#"
+  data-theme="dark"
 >
   <head>
     <title>port-heaven</title>
@@ -66,7 +67,7 @@
   <body
     lang="ru"
     id="app"
-    class="lg:justify-last article relative container grid max-w-full overflow-x-hidden scroll-smooth light:bg-black light:text-white"
+    class="lg:justify-last article relative container grid max-w-full overflow-x-hidden scroll-smooth dark:bg-black dark:text-white"
   >
     <noscript>
       <div>
@@ -106,7 +107,7 @@
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 756 1031"
-          class="hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-svh w-auto justify-self-center object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end light:fill-primary"
+          class="hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-dvh w-auto justify-self-center object-cover dark:fill-primary lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
           data-parallax-anchor="top"
           data-parallax-scale="0.0001"
         >
@@ -154,7 +155,7 @@
     <!--progress bar-->
     <div
       id="progress-bar"
-      class="progress-bar fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex light:bg-neutral-700"
+      class="progress-bar fixed top-0 right-0 z-100 hidden mix-blend-difference dark:bg-neutral-700 lg:flex"
     ></div>
 
     <!--right menu-->
@@ -162,9 +163,21 @@
       id="menu-right"
       class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15"
     >
+
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Toggle theme"
+        class="group dark:hover:text-white dark:text-neutral-700 flex"
+      >
+        <small class="opacity-0 group-hover:opacity-100">/</small><small data-theme-toggle-label>{{ t('theme-toggle.light') }}</small>
+      </button>
+
       <button
         id="lang-toggle"
-        class="group flex light:text-neutral-700 light:hover:text-white"
+        type="button"
+        aria-label="Toggle lang"
+        class="group flex dark:text-neutral-700 dark:hover:text-white"
       >
         <small class="opacity-0 group-hover:opacity-100">/</small
         ><small>{{ t('lang-toggle') }}</small>
@@ -175,21 +188,21 @@
     <section
       data-section="description"
       id="description"
-      class="relative lg:grid lg:min-h-dvh lg:grid-cols-2 light:bg-primary"
+      class="relative dark:bg-primary lg:grid lg:min-h-dvh lg:grid-cols-2"
     >
       <div
-        class="z-2 content-center px-15 pt-15 lg:justify-center lg:pb-15 light:text-black light:lg:bg-transparent"
+        class="z-2 content-center px-15 pt-15 dark:text-black lg:justify-center lg:pb-15 dark:lg:bg-transparent"
       >
         <h2 class="lg:justify-self-center">{{ t('menu-description') }}</h2>
       </div>
-      <p class="z-2 self-center p-15 lg:h-fit lg:w-150 light:text-black">
+      <p class="z-2 self-center p-15 dark:text-black lg:h-fit lg:w-150">
         {{ t('menu-description-description') }}
       </p>
       <!--model viewer-->
     </section>
 
     <header
-      class="sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5 light:bg-primary hw:hidden"
+      class="sticky top-0 z-100 flex h-fit min-h-10 w-full px-15 py-5 dark:bg-primary hw:hidden"
     >
       {{ t('hw-disabled') }}
     </header>
@@ -198,9 +211,9 @@
     <section
       data-section="about"
       id="about"
-      class="relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15 light:bg-black"
+      class="relative flex min-h-screen flex-col content-center dark:bg-black lg:justify-center lg:gap-15"
     >
-      <div class="block px-15 pt-15 lg:hidden light:text-white">
+      <div class="block px-15 pt-15 dark:text-white lg:hidden">
         <h2>{{ t('menu-about') }}</h2>
       </div>
       <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
@@ -232,9 +245,9 @@
       class="grid min-h-svh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0"
     >
       <div
-        class="grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end light:bg-white"
+        class="grid content-center gap-5 p-15 dark:bg-white lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end"
       >
-        <h2 class="light:text-black">{{ t('menu-projects') }}</h2>
+        <h2 class="dark:text-black">{{ t('menu-projects') }}</h2>
         <menu-desc
           class="lg:max-w-150"
           :menu-desc="t('menu-projects-description')"
@@ -278,9 +291,9 @@
         id="design-inner"
       >
         <div
-          class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 p-15 lg:w-[25dvw] light:bg-white light:lg:bg-black"
+          class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 p-15 dark:bg-white dark:lg:bg-black lg:w-[25dvw]"
         >
-          <h2 class="light:text-black light:lg:text-white">{{ t('menu-designs') }}</h2>
+          <h2 class="dark:text-black dark:lg:text-white">{{ t('menu-designs') }}</h2>
           <menu-desc
             class="lg:max-w-150"
             :menu-desc="t('menu-designs-description')"
@@ -374,9 +387,9 @@
       class="relative min-h-svh lg:py-[50dvh]"
     >
       <div
-        class="scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center p-15 lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:p-0 light:bg-white light:lg:bg-transparent"
+        class="scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center p-15 dark:bg-white dark:lg:bg-transparent lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:p-0"
       >
-        <h2 class="light:text-black light:lg:text-white">{{ t('menu-creatives') }}</h2>
+        <h2 class="dark:text-black dark:lg:text-white">{{ t('menu-creatives') }}</h2>
         <menu-desc
           class="lg:max-w-[23dvw]"
           :menu-desc="t('menu-creatives-description')"
@@ -426,7 +439,7 @@
     >
       <div class="items-center gap-10 lg:flex">
         <a
-          class="group relative w-auto font-[Actay_Wide] light:text-neutral-700 light:hover:text-white"
+          class="group relative w-auto font-[Actay_Wide] dark:text-neutral-700 dark:hover:text-white"
           href="https://t.me/d1eruki"
           target="_blank"
           rel="noopener noreferrer"
@@ -435,13 +448,13 @@
             <span class="icon-[ic--baseline-telegram] aspect-square"></span>{{ t('telegram') }}
           </h2>
           <div
-            class="absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block light:bg-white light:text-black"
+            class="absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] dark:bg-white dark:text-black lg:group-hover:block"
           >
             https://t.me/d1eruki
           </div>
         </a>
         <a
-          class="group relative w-auto font-[Actay_Wide] light:text-neutral-700 light:hover:text-white"
+          class="group relative w-auto font-[Actay_Wide] dark:text-neutral-700 dark:hover:text-white"
           href="https://www.behance.net/dieruki"
           target="_blank"
           rel="noopener noreferrer"
@@ -450,13 +463,13 @@
             <span class="icon-[eva--behance-fill]"></span>{{ t('behance') }}
           </h2>
           <div
-            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block light:bg-white light:text-black"
+            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] dark:bg-white dark:text-black lg:group-hover:block"
           >
             BEHANCE
           </div>
         </a>
         <a
-          class="group relative w-auto font-[Actay_Wide] light:text-neutral-700 light:hover:text-white"
+          class="group relative w-auto font-[Actay_Wide] dark:text-neutral-700 dark:hover:text-white"
           href="mailto:stapps90@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
@@ -465,7 +478,7 @@
             <span class="icon-[ic--baseline-alternate-email] aspect-square"></span>{{ t('mail') }}
           </h2>
           <div
-            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block light:bg-white light:text-black"
+            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] dark:bg-white dark:text-black lg:group-hover:block"
           >
             stapps90@gmail.com
           </div>
@@ -480,7 +493,7 @@
     <!--scroll-to-top-->
     <button
       id="scroll-to-top"
-      class="group fixed right-5 bottom-5 z-200 flex mix-blend-difference lg:right-15 lg:bottom-15 light:text-neutral-700 light:hover:text-white"
+      class="group fixed right-5 bottom-5 z-200 flex mix-blend-difference dark:text-neutral-700 dark:hover:text-white lg:right-15 lg:bottom-15"
     >
       <small class="opacity-0 group-hover:opacity-100">/</small
       ><small>{{ t('button-to-top') }}</small>

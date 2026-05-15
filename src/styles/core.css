@@ -38,12 +38,6 @@
   --parallax-scale: 1;
 }
 
-@media (color-gamut: p3) {
-  :root {
-    --color-primary: color(display-p3 0.7 1 0);
-  }
-}
-
 .footer-logo-text {
   font-size: var(--footer-logo-text);
 }

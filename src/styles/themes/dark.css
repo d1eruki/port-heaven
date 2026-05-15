@@ -1,0 +1,13 @@
+:root[data-theme="dark"] {
+  --color-primary: hsl(83 100% 50%);
+}
+
+@media (color-gamut: p3) {
+  :root[data-theme="dark"] {
+    --color-primary: color(display-p3 0.7 1 0);
+  }
+}
+
+.app-cursor {
+  background: var(--color-primary);
+}

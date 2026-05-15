@@ -56,10 +56,14 @@
   "menu-pricing": "Pricing",
   "menu-pricing-description": "[ Pricing description. ]",
   "button-open": "open",
-  "button-to-top": "top",
-  "hw-disabled": "Hardware acceleration is off, visual effects are disabled",
-  "lang-toggle": "en",
-  "telegram": "telegram",
-  "mail": "mail",
+  "button-to-top": "to top",
+  "hw-disabled": "Hardware acceleration is disabled, and visual effects are turned off",
+  "lang-toggle": "ru",
+  "theme-toggle": {
+    "light": "light theme",
+    "dark": "dark theme"
+  },
+  "telegram": "Telegram",
+  "mail": "E-mail",
   "behance": "behance"
 }

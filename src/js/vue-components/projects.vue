@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-svh w-full light:lg:bg-black">
+  <div class="min-h-dvh w-full dark:lg:bg-black">
     <!--
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
@@ -18,13 +18,13 @@
           />
         </div>
       </div>
-      <div class="swiper-pagination light:bg-white light:text-black absolute bottom-0 left-0 z-100 w-fit px-2.5 py-1"></div>
+      <div class="swiper-pagination dark:bg-white dark:text-black absolute bottom-0 left-0 z-100 w-fit px-2.5 py-1"></div>
     </div>
 -->
     <div class="flex min-h-svh flex-col justify-between gap-10 p-15">
       <div class="flex flex-col gap-5">
-        <h3 class="light:text-white">{{ projectName }}</h3>
-        <p class="light:text-neutral-500">{{ projectDescription }}</p>
+        <h3 class="dark:text-white">{{ projectName }}</h3>
+        <p class="dark:text-neutral-500">{{ projectDescription }}</p>
         <Tags
           :tags="projectTags"
           :show-icons="true"
@@ -34,7 +34,7 @@
         <p
           v-for="(text, index) in projectText"
           :key="index"
-          class="light:text-white"
+          class="dark:text-white"
         >
           {{ text }}
         </p>
@@ -43,12 +43,12 @@
         <a
           v-for="(link, index) in projectLinks"
           :key="index"
-          class="anim-extrude active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5 light:bg-primary"
+          class="anim-extrude active flex w-fit px-5 py-2.5 dark:bg-primary lg:px-10 lg:py-5"
           :href="link.url"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <p class="font-[Actay_Wide] light:text-black">{{ link.name }}</p>
+          <p class="font-[Actay_Wide] dark:text-black">{{ link.name }}</p>
         </a>
       </div>
     </div>
