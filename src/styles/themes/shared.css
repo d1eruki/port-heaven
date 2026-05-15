@@ -1,0 +1,6 @@
+@layer base {
+  .app-cursor {
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+}

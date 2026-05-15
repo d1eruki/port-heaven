@@ -28,11 +28,6 @@
       fill: var(--color-white);
     }
 
-    .app-cursor {
-      background: var(--color-white);
-      color: var(--color-black);
-    }
-
     nav circle {
       fill: var(--dot-color);
     }

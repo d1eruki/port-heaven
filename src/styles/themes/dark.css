@@ -7,7 +7,3 @@
     --color-primary: color(display-p3 0.7 1 0);
   }
 }
-
-.app-cursor {
-  background: var(--color-primary);
-}
