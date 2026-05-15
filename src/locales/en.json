@@ -60,8 +60,8 @@
   "hw-disabled": "Hardware acceleration is disabled, and visual effects are turned off",
   "lang-toggle": "ru",
   "theme-toggle": {
-    "light": "light theme",
-    "dark": "dark theme"
+    "light": "Light theme",
+    "dark": "Dark theme"
   },
   "telegram": "Telegram",
   "mail": "E-mail",

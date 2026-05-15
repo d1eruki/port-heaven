@@ -64,8 +64,10 @@
     "lang-toggle": "dbd3a49d0d906b4ed9216b73330d2fb080ef2f758c12f3885068222e5e17151c",
     "telegram": "cb77e96dad25eb3d442f797ea7d2352cb593b4a39c9f0d6357cb0e931a889eaf",
     "mail": "beff42c3c10b0c00684a7933a57b60e2107c35b48c4c1528ce5be76baf56f147",
-    "behance": "59129789adac95a9b098ad3c92b5ee049d49c62a93fbfabd362789b6b8da81f7"
+    "behance": "59129789adac95a9b098ad3c92b5ee049d49c62a93fbfabd362789b6b8da81f7",
+    "theme-toggle.light": "5a75fc1a14f365c52e5fb7b9dece15afe55c038e6739651aa40ab84b070b5871",
+    "theme-toggle.dark": "7a385b822bd0e13c619a6dd64f232111d952c0705ac4d68c1f4a9f8fca441e71"
   },
   "model": "gpt-5.4-mini",
-  "updatedAt": "2026-05-15T00:50:53.932Z"
+  "updatedAt": "2026-05-15T12:28:23.658Z"
 }

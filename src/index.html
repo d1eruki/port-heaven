@@ -107,7 +107,7 @@
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 756 1031"
-          class="hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-dvh w-auto justify-self-center object-cover dark:fill-primary lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
+          class="hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-svh w-auto justify-self-center object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end dark:fill-primary"
           data-parallax-anchor="top"
           data-parallax-scale="0.0001"
         >
@@ -155,7 +155,7 @@
     <!--progress bar-->
     <div
       id="progress-bar"
-      class="progress-bar fixed top-0 right-0 z-100 hidden mix-blend-difference dark:bg-neutral-700 lg:flex"
+      class="progress-bar fixed top-0 right-0 z-100 hidden mix-blend-difference lg:flex dark:bg-neutral-700"
     ></div>
 
     <!--right menu-->
@@ -163,14 +163,14 @@
       id="menu-right"
       class="fixed top-5 right-5 z-200 flex justify-end gap-5 mix-blend-difference lg:top-15 lg:right-15"
     >
-
       <button
         id="theme-toggle"
         type="button"
         aria-label="Toggle theme"
-        class="group dark:hover:text-white dark:text-neutral-700 flex"
+        class="group flex dark:text-neutral-700 dark:hover:text-white"
       >
-        <small class="opacity-0 group-hover:opacity-100">/</small><small data-theme-toggle-label>{{ t('theme-toggle.light') }}</small>
+        <small class="opacity-0 group-hover:opacity-100">/</small
+        ><small data-theme-toggle-label>{{ t('theme-toggle.light') }}</small>
       </button>
 
       <button
@@ -188,14 +188,14 @@
     <section
       data-section="description"
       id="description"
-      class="relative dark:bg-primary lg:grid lg:min-h-dvh lg:grid-cols-2"
+      class="relative lg:grid lg:min-h-dvh lg:grid-cols-2 dark:bg-primary"
     >
       <div
-        class="z-2 content-center px-15 pt-15 dark:text-black lg:justify-center lg:pb-15 dark:lg:bg-transparent"
+        class="z-2 content-center px-15 pt-15 lg:justify-center lg:pb-15 dark:text-black dark:lg:bg-transparent"
       >
         <h2 class="lg:justify-self-center">{{ t('menu-description') }}</h2>
       </div>
-      <p class="z-2 self-center p-15 dark:text-black lg:h-fit lg:w-150">
+      <p class="z-2 self-center p-15 lg:h-fit lg:w-150 dark:text-black">
         {{ t('menu-description-description') }}
       </p>
       <!--model viewer-->
@@ -211,9 +211,9 @@
     <section
       data-section="about"
       id="about"
-      class="relative flex min-h-screen flex-col content-center dark:bg-black lg:justify-center lg:gap-15"
+      class="relative flex min-h-screen flex-col content-center lg:justify-center lg:gap-15 dark:bg-black"
     >
-      <div class="block px-15 pt-15 dark:text-white lg:hidden">
+      <div class="block px-15 pt-15 lg:hidden dark:text-white">
         <h2>{{ t('menu-about') }}</h2>
       </div>
       <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
@@ -245,7 +245,7 @@
       class="grid min-h-svh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0"
     >
       <div
-        class="grid content-center gap-5 p-15 dark:bg-white lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end"
+        class="grid content-center gap-5 p-15 lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end dark:bg-white"
       >
         <h2 class="dark:text-black">{{ t('menu-projects') }}</h2>
         <menu-desc
@@ -291,7 +291,7 @@
         id="design-inner"
       >
         <div
-          class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 p-15 dark:bg-white dark:lg:bg-black lg:w-[25dvw]"
+          class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 p-15 lg:w-[25dvw] dark:bg-white dark:lg:bg-black"
         >
           <h2 class="dark:text-black dark:lg:text-white">{{ t('menu-designs') }}</h2>
           <menu-desc
@@ -387,7 +387,7 @@
       class="relative min-h-svh lg:py-[50dvh]"
     >
       <div
-        class="scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center p-15 dark:bg-white dark:lg:bg-transparent lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:p-0"
+        class="scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center p-15 lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:p-0 dark:bg-white dark:lg:bg-transparent"
       >
         <h2 class="dark:text-black dark:lg:text-white">{{ t('menu-creatives') }}</h2>
         <menu-desc
@@ -448,7 +448,7 @@
             <span class="icon-[ic--baseline-telegram] aspect-square"></span>{{ t('telegram') }}
           </h2>
           <div
-            class="absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] dark:bg-white dark:text-black lg:group-hover:block"
+            class="absolute -bottom-30 left-15 hidden -rotate-15 p-5 font-[Actay_Wide] lg:group-hover:block dark:bg-white dark:text-black"
           >
             https://t.me/d1eruki
           </div>
@@ -463,7 +463,7 @@
             <span class="icon-[eva--behance-fill]"></span>{{ t('behance') }}
           </h2>
           <div
-            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] dark:bg-white dark:text-black lg:group-hover:block"
+            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block dark:bg-white dark:text-black"
           >
             BEHANCE
           </div>
@@ -478,7 +478,7 @@
             <span class="icon-[ic--baseline-alternate-email] aspect-square"></span>{{ t('mail') }}
           </h2>
           <div
-            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] dark:bg-white dark:text-black lg:group-hover:block"
+            class="absolute -bottom-40 -left-25 hidden rotate-45 p-5 font-[Actay_Wide] lg:group-hover:block dark:bg-white dark:text-black"
           >
             stapps90@gmail.com
           </div>
@@ -493,7 +493,7 @@
     <!--scroll-to-top-->
     <button
       id="scroll-to-top"
-      class="group fixed right-5 bottom-5 z-200 flex mix-blend-difference dark:text-neutral-700 dark:hover:text-white lg:right-15 lg:bottom-15"
+      class="group fixed right-5 bottom-5 z-200 flex mix-blend-difference lg:right-15 lg:bottom-15 dark:text-neutral-700 dark:hover:text-white"
     >
       <small class="opacity-0 group-hover:opacity-100">/</small
       ><small>{{ t('button-to-top') }}</small>
