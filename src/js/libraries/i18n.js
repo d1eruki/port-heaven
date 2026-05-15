@@ -37,7 +37,7 @@ const i18n = createI18n({
   legacy: false,
   globalInjection: true,
   locale: initialLocale,
-  fallbackLocale: "en",
+  fallbackLocale: "ru",
   messages: {
     ru: typographMessages(ru),
     en: typographMessages(en),
