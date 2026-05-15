@@ -1,5 +1,6 @@
 :root[data-theme="dark"] {
-  --theme-primary: hsl(83 100% 50%);
+  --theme-primary-srgb: hsl(83 100% 50%);
+  --theme-primary-p3: color(display-p3 0.7 1 0);
   --theme-canvas: #000000;
   --theme-fg: #ffffff;
   --theme-action-muted: var(--color-neutral-700);
@@ -21,10 +22,4 @@
   --theme-creative-shadow: var(--theme-primary);
   --theme-dot-color: var(--color-neutral-700);
   --theme-dot-current: var(--theme-primary);
-}
-
-@media (color-gamut: p3) {
-  :root[data-theme="dark"] {
-    --theme-primary: color(display-p3 0.7 1 0);
-  }
 }
