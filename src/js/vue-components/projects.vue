@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-dvh w-full light:lg:bg-black">
+  <div class="min-h-svh w-full light:lg:bg-black">
     <!--
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
@@ -21,7 +21,7 @@
       <div class="swiper-pagination light:bg-white light:text-black absolute bottom-0 left-0 z-100 w-fit px-2.5 py-1"></div>
     </div>
 -->
-    <div class="flex min-h-dvh flex-col justify-between gap-10 p-15">
+    <div class="flex min-h-svh flex-col justify-between gap-10 p-15">
       <div class="flex flex-col gap-5">
         <h3 class="light:text-white">{{ projectName }}</h3>
         <p class="light:text-neutral-500">{{ projectDescription }}</p>
