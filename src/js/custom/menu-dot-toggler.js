@@ -1,4 +1,5 @@
 import { onReady } from "../utils/onReady";
+import { getActiveLenis } from "../libraries/scroll-instance";
 
 export const initMenuDotToggler = () =>
   onReady(() => {
@@ -31,7 +32,7 @@ export const initMenuDotToggler = () =>
     };
 
     const getScrollY = (event) => {
-      const lenisY = event?.detail?.y ?? window.lenis?.scroll;
+      const lenisY = event?.detail?.y ?? getActiveLenis()?.scroll;
       if (typeof lenisY === "number") return lenisY;
       return window.scrollY || window.pageYOffset || 0;
     };

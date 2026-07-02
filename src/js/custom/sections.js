@@ -1,5 +1,6 @@
 import { smoothScrollTo as _smoothScrollTo } from "../utils/smooth-scroll";
 import { onReady } from "../utils/onReady";
+import { getActiveLenis } from "../libraries/scroll-instance";
 
 export const initSections = () => {
   const init = () =>
@@ -142,9 +143,9 @@ function initSectionDots(opts = {}) {
     });
   }
 
-  const hasLenis =
-    typeof window.lenis === "object" && window.lenis && typeof window.lenis.on === "function";
-  if (hasLenis) window.lenis.on("scroll", tick);
+  const lenis = getActiveLenis();
+  const hasLenis = typeof lenis === "object" && lenis && typeof lenis.on === "function";
+  if (hasLenis) lenis.on("scroll", tick);
   else window.addEventListener("scroll", tick, { passive: true });
 
   window.addEventListener("resize", tick, { passive: true });

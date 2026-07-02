@@ -1,9 +1,12 @@
+import { getActiveLenis } from "../libraries/scroll-instance";
+
 function hasLenis() {
+  const lenis = getActiveLenis();
   return (
     typeof window !== "undefined" &&
-    typeof window.lenis === "object" &&
-    window.lenis &&
-    typeof window.lenis.scrollTo === "function"
+    typeof lenis === "object" &&
+    lenis &&
+    typeof lenis.scrollTo === "function"
   );
 }
 
@@ -30,7 +33,7 @@ export function smoothScrollTo(target, opts = {}) {
   const y = Math.max(0, baseY - (offset | 0));
 
   if (hasLenis()) {
-    window.lenis.scrollTo(y, { offset: 0 });
+    getActiveLenis().scrollTo(y, { offset: 0 });
   } else {
     const reduce = prefersReducedMotion();
     try {
@@ -43,7 +46,7 @@ export function smoothScrollTo(target, opts = {}) {
 
 export function smoothScrollTop() {
   if (hasLenis()) {
-    window.lenis.scrollTo(0, { offset: 0 });
+    getActiveLenis().scrollTo(0, { offset: 0 });
   } else {
     const reduce = prefersReducedMotion();
     try {
