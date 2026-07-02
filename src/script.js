@@ -2,7 +2,6 @@ import "./style.css";
 
 import "./js/libraries/vue";
 import "./js/libraries/yandex-metrika";
-import "./js/libraries/swiper";
 // import "./js/libraries/chart";
 
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
@@ -10,7 +9,6 @@ import { onReady } from "./js/utils/onReady";
 
 import { applyInitialTheme, initThemeToggle } from "./js/custom/theme-toggle";
 import { initLocaleToggle } from "./js/custom/locale-toggler";
-import { initScrollSection } from "./js/custom/scroll-section";
 import { initSections } from "./js/custom/sections";
 import { initScrollToTop } from "./js/custom/scroll-to-top";
 import { initMenuDotToggler } from "./js/custom/menu-dot-toggler";
@@ -26,7 +24,6 @@ const screenLg = window.innerWidth >= 1024;
 applyInitialTheme();
 initThemeToggle();
 initLocaleToggle();
-initScrollSection();
 initSections();
 initScrollToTop();
 initMenuDotToggler();

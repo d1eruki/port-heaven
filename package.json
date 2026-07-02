@@ -32,24 +32,21 @@
     "lenis": "^1.3.21",
     "mini-css-extract-plugin": "^2.10.2",
     "ngrok": "^5.0.0-beta.2",
+    "odometer": "^0.4.8",
     "postcss": "^8.5.14",
     "postcss-loader": "^8.2.1",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "sharp": "^0.35.3",
     "style-loader": "^4.0.0",
-    "swiper": "^12.1.3",
     "tailwindcss": "^4.2.2",
-    "typograf": "^7.6.0",
+    "typograf": "^7.7.0",
     "vanilla-tilt": "^1.8.1",
     "vue": "^3.5.31",
-    "vue-i18n": "^11.3.0",
+    "vue-i18n": "^11.4.6",
     "vue-loader": "^17.4.2",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2",
     "webpack-dev-server": "^5.2.3"
-  },
-  "dependencies": {
-    "odometer": "^0.4.8"
   }
 }

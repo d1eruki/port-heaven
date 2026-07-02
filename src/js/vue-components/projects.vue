@@ -1,26 +1,5 @@
 <template>
   <div class="min-h-svh w-full lg:bg-canvas">
-    <!--
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img
-            src="../../assets/projects/varwin/cover.png"
-            alt="project-1"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="swiper-slide">
-          <img
-            src="../../assets/projects/varwin/screen-1.png"
-            alt="project-2"
-          />
-        </div>
-      </div>
-      <div class="swiper-pagination absolute bottom-0 left-0 z-100 w-fit bg-inverse px-2.5 py-1 text-inverse-fg"></div>
-    </div>
--->
     <div class="flex min-h-svh flex-col justify-between gap-10 p-15">
       <div class="flex flex-col gap-5">
         <h3 class="text-fg">{{ projectName }}</h3>
