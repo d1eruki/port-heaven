@@ -15,6 +15,12 @@ The agent must not edit, delete, rename, format, generate, or otherwise modify f
 
 If the plan changes during the work, the agent must stop, describe the updated plan, and wait for approval again before continuing.
 
+## Library Behavior
+
+When a library is already used for a task, prefer the library's built-in behavior, documented APIs, and established patterns over custom workarounds.
+
+Do not reimplement, bypass, or patch around baseline library behavior unless the built-in behavior is insufficient for the specific requirement. If a workaround is necessary, explain why the standard library behavior cannot handle the case.
+
 ## Vue Component Creation
 
 Do not create a separate Vue component for an element that is used only once on the page. Keep one-off UI anchors, buttons, overlays, notices, and technical DOM targets inside the nearest parent component, such as `App.vue`.
