@@ -21,6 +21,12 @@ When a library is already used for a task, prefer the library's built-in behavio
 
 Do not reimplement, bypass, or patch around baseline library behavior unless the built-in behavior is insufficient for the specific requirement. If a workaround is necessary, explain why the standard library behavior cannot handle the case.
 
+## Dependencies and Accessibility
+
+Whenever new dependencies are added, update the `README` with the relevant setup, usage, or dependency notes.
+
+Always include appropriate accessibility attributes for icons and SVGs, such as `aria-hidden` and `focusable` when they are decorative. Provide `aria-label` for navigation controls and keep image `alt` attributes accurate and up to date.
+
 ## Vue Component Creation
 
 Do not create a separate Vue component for an element that is used only once on the page. Keep one-off UI anchors, buttons, overlays, notices, and technical DOM targets inside the nearest parent component, such as `App.vue`.
