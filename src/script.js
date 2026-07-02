@@ -42,9 +42,6 @@ if (!hwOn) {
   try {
     if (hwOn) {
       const imports = [
-        import("./js/libraries/model-viewer").then(({ ensureModelViewerLoaded }) =>
-          ensureModelViewerLoaded(),
-        ),
         import("./js/libraries/lenis").then(() =>
           import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar()),
         ),
