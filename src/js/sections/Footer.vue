@@ -12,7 +12,10 @@
         rel="noopener noreferrer"
       >
         <h2 class="flex gap-2 text-nowrap">
-          <span class="icon-[ic--baseline-telegram] aspect-square"></span
+          <span
+            class="icon-[ic--baseline-telegram] aspect-square"
+            aria-hidden="true"
+          ></span
           >{{ t("contacts.telegram") }}
         </h2>
         <div
@@ -28,7 +31,11 @@
         rel="noopener noreferrer"
       >
         <h2 class="flex gap-2 text-nowrap">
-          <span class="icon-[eva--behance-fill]"></span>{{ t("contacts.behance") }}
+          <span
+            class="icon-[eva--behance-fill]"
+            aria-hidden="true"
+          ></span
+          >{{ t("contacts.behance") }}
         </h2>
         <div
           class="absolute -bottom-40 -left-25 hidden rotate-45 bg-inverse p-5 font-[Actay_Wide] text-inverse-fg lg:group-hover:block"
@@ -43,7 +50,10 @@
         rel="noopener noreferrer"
       >
         <h2 class="flex gap-2 text-nowrap">
-          <span class="icon-[ic--baseline-alternate-email] aspect-square"></span
+          <span
+            class="icon-[ic--baseline-alternate-email] aspect-square"
+            aria-hidden="true"
+          ></span
           >{{ t("contacts.mail") }}
         </h2>
         <div
