@@ -1,4 +1,4 @@
-import { getActiveLenis } from "../libraries/scroll-instance";
+import { getScrollY as getCurrentScrollY } from "../libraries/scroll-instance";
 
 export const isMobile = () => window.innerWidth < 1024;
 
@@ -17,4 +17,4 @@ export const initOnLoad = (initFn) => {
   }
 };
 
-export const getScrollY = () => getActiveLenis()?.scroll ?? window.scrollY;
+export const getScrollY = getCurrentScrollY;

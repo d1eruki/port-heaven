@@ -1,5 +1,5 @@
 import { onReady } from "../utils/onReady";
-import { getActiveLenis } from "../libraries/scroll-instance";
+import { getScrollY, onScroll } from "../libraries/scroll-instance";
 
 export const initMenuDotToggler = () =>
   onReady(() => {
@@ -31,16 +31,9 @@ export const initMenuDotToggler = () =>
       }
     };
 
-    const getScrollY = (event) => {
-      const lenisY = event?.detail?.y ?? getActiveLenis()?.scroll;
-      if (typeof lenisY === "number") return lenisY;
-      return window.scrollY || window.pageYOffset || 0;
-    };
-
-    const recompute = (event) => {
+    const recompute = (scrollY = getScrollY()) => {
       const threshold = getThreshold();
-      const y = getScrollY(event);
-      applyState(y >= threshold);
+      applyState(scrollY >= threshold);
     };
 
     const onScrollThrottled = () => {
@@ -51,8 +44,7 @@ export const initMenuDotToggler = () =>
       }, 80);
     };
 
-    window.addEventListener("scroll", onScrollThrottled, { passive: true });
-    window.addEventListener("lenis-scroll", recompute);
+    onScroll(onScrollThrottled);
     window.addEventListener("resize", recompute);
 
     setTimeout(recompute, 50);

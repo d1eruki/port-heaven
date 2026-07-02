@@ -1,4 +1,4 @@
-import { lenis } from "../libraries/lenis";
+import { getScrollY, onScroll } from "../libraries/scroll-instance";
 import { isMobile, calculateProgress, initOnLoad } from "../utils/scroll";
 
 const setupHorizontalScroll = () => {
@@ -32,7 +32,7 @@ const setupHorizontalScroll = () => {
 
     const sectionHeight = section.offsetHeight;
     const start = section.offsetTop;
-    const scroll = lenis.scroll;
+    const scroll = getScrollY();
 
     const progress = calculateProgress(scroll, start, start + (sectionHeight - viewportHeight));
 
@@ -43,7 +43,7 @@ const setupHorizontalScroll = () => {
   };
 
   update();
-  lenis.on("scroll", update);
+  onScroll(update);
   window.addEventListener("resize", update);
 };
 

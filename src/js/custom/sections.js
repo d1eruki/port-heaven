@@ -1,6 +1,6 @@
 import { smoothScrollTo as _smoothScrollTo } from "../utils/smooth-scroll";
 import { onReady } from "../utils/onReady";
-import { getActiveLenis } from "../libraries/scroll-instance";
+import { getScrollY, onScroll } from "../libraries/scroll-instance";
 
 export const initSections = () => {
   const init = () =>
@@ -65,7 +65,7 @@ function initSectionDots(opts = {}) {
   let activeId = "";
   let ticking = false;
   let lastTick = 0;
-  let lastY = window.pageYOffset;
+  let lastY = getScrollY();
   let scrollDir = 0;
   const EPS = 0.75;
 
@@ -132,7 +132,7 @@ function initSectionDots(opts = {}) {
     requestAnimationFrame(() => {
       const now = performance.now();
       if (now - lastTick >= cfg.throttleMs) {
-        const y = window.pageYOffset;
+        const y = getScrollY();
         const dy = y - lastY;
         scrollDir = Math.abs(dy) < 0.5 ? 0 : dy > 0 ? 1 : -1;
         lastY = y;
@@ -143,10 +143,7 @@ function initSectionDots(opts = {}) {
     });
   }
 
-  const lenis = getActiveLenis();
-  const hasLenis = typeof lenis === "object" && lenis && typeof lenis.on === "function";
-  if (hasLenis) lenis.on("scroll", tick);
-  else window.addEventListener("scroll", tick, { passive: true });
+  onScroll(tick);
 
   window.addEventListener("resize", tick, { passive: true });
   window.addEventListener("orientationchange", tick);

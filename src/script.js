@@ -37,11 +37,14 @@ if (!hwOn) {
 (async () => {
   try {
     if (hwOn) {
+      const lenisReady = import("./js/libraries/lenis");
       const imports = [
-        import("./js/libraries/lenis").then(() =>
+        lenisReady.then(() =>
           import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar()),
         ),
-        import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
+        lenisReady.then(() =>
+          import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
+        ),
       ];
 
       if (screenLg) {
@@ -50,8 +53,10 @@ if (!hwOn) {
             onReady(initVanillaTilt),
           ),
           import("./js/custom/cursor").then(({ initCursor }) => onReady(initCursor)),
-          import("./js/custom/horizontal-scroll").then(({ initHorizontalScroll }) =>
-            initHorizontalScroll(),
+          lenisReady.then(() =>
+            import("./js/custom/horizontal-scroll").then(({ initHorizontalScroll }) =>
+              initHorizontalScroll(),
+            ),
           ),
         );
       }
