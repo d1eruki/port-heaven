@@ -2,7 +2,6 @@ import "./style.css";
 
 import "./js/libraries/vue";
 import "./js/libraries/yandex-metrika";
-// import "./js/libraries/chart";
 
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
 import { onReady } from "./js/utils/onReady";

@@ -23,7 +23,6 @@
     "@iconify/tailwind4": "^1.2.3",
     "@tailwindcss/postcss": "^4.2.2",
     "@vue/compiler-sfc": "^3.5.31",
-    "chart.js": "^4.5.1",
     "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.4",
     "css-minimizer-webpack-plugin": "^8.0.0",
