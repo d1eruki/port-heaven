@@ -1,6 +1,8 @@
 import { readdir, rename, stat, unlink } from "node:fs/promises";
+import { spawn } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import ffmpegPath from "ffmpeg-static";
 import sharp from "sharp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -12,6 +14,7 @@ const resizeTargets = new Map([
   ["dist/assets/soma.webp", { width: 1000 }],
   ["dist/assets/creatives/siyay.webp", { width: 1600 }],
 ]);
+const videoTargets = ["dist/assets/creatives/varwin-opening.mp4"];
 
 const formatBytes = (bytes) => `${(bytes / 1024).toFixed(1)} KiB`;
 
@@ -63,10 +66,64 @@ const optimizeImage = async (filePath) => {
   return { filePath, before, after, changed: true };
 };
 
+const runFfmpeg = (args) =>
+  new Promise((resolve, reject) => {
+    const child = spawn(ffmpegPath, args, { stdio: ["ignore", "ignore", "pipe"] });
+    const errors = [];
+
+    child.stderr.on("data", (chunk) => errors.push(chunk));
+    child.on("error", reject);
+    child.on("close", (code) => {
+      if (code === 0) {
+        resolve();
+        return;
+      }
+
+      reject(new Error(Buffer.concat(errors).toString("utf8") || `ffmpeg exited with ${code}`));
+    });
+  });
+
+const optimizeVideo = async (relativePath) => {
+  const filePath = path.join(rootDir, relativePath);
+  const before = (await stat(filePath)).size;
+  const tempPath = `${filePath}.tmp.mp4`;
+
+  await runFfmpeg([
+    "-y",
+    "-i",
+    filePath,
+    "-vf",
+    "scale=min(1280\\,iw):-2",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "slow",
+    "-crf",
+    "30",
+    "-an",
+    "-movflags",
+    "+faststart",
+    tempPath,
+  ]);
+
+  const after = (await stat(tempPath)).size;
+  if (after >= before) {
+    await unlink(tempPath);
+    return { filePath, before, after: before, changed: false };
+  }
+
+  await rename(tempPath, filePath);
+  return { filePath, before, after, changed: true };
+};
+
 const main = async () => {
   const images = await collectImages(assetsDir);
-  const results = await Promise.all(images.map((filePath) => optimizeImage(filePath)));
+  const imageResults = await Promise.all(images.map((filePath) => optimizeImage(filePath)));
+  const videoResults = await Promise.all(videoTargets.map((filePath) => optimizeVideo(filePath)));
+  const results = [...imageResults, ...videoResults];
   const changed = results.filter((result) => result.changed);
+  const imageChanged = imageResults.filter((result) => result.changed);
+  const videoChanged = videoResults.filter((result) => result.changed);
   const saved = changed.reduce((total, result) => total + result.before - result.after, 0);
 
   changed.forEach((result) => {
@@ -75,7 +132,7 @@ const main = async () => {
   });
 
   console.log(
-    `Optimized ${changed.length}/${results.length} image(s), saved ${formatBytes(saved)}.`,
+    `Optimized ${imageChanged.length}/${imageResults.length} image(s) and ${videoChanged.length}/${videoResults.length} video(s), saved ${formatBytes(saved)}.`,
   );
 };
 
