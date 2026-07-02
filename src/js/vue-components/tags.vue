@@ -9,14 +9,17 @@
         <span
           v-if="showIcons && isAdaptive(tag)"
           class="icon-[ic--baseline-phone-android]"
+          aria-hidden="true"
         ></span>
         <span
           v-if="showIcons && isDesktop(tag)"
           class="icon-[ic--baseline-monitor]"
+          aria-hidden="true"
         ></span>
         <span
           v-if="showIcons && isMobile(tag)"
           class="icon-[ic--baseline-phone-android]"
+          aria-hidden="true"
         ></span>
         {{ getTagName(tag) }}
       </small>

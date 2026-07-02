@@ -1,5 +1,5 @@
 :root[data-theme="light"] {
-  --theme-primary-srgb: #ff33c2;
+  --theme-primary-srgb: rgb(255 51 194);
   --theme-primary-p3: color(display-p3 1 0.3 0.75);
   --theme-canvas: #ffffff;
   --theme-fg: #000000;

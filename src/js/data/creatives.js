@@ -1,0 +1,34 @@
+export const creatives = [
+  {
+    type: "image",
+    src: "assets/creatives/postcard.webp",
+    col: 2,
+    colSpan: 5,
+    row: 2,
+    rowSpan: 1,
+  },
+  {
+    type: "video",
+    src: "assets/creatives/varwin-opening.mp4",
+    col: 13,
+    colSpan: 6,
+    row: 3,
+    rowSpan: 1,
+  },
+  {
+    type: "image",
+    src: "assets/creatives/saasoft.webp",
+    col: 3,
+    colSpan: 6,
+    row: 4,
+    rowSpan: 1,
+  },
+  {
+    type: "image",
+    src: "assets/creatives/siyay.webp",
+    col: 14,
+    colSpan: 6,
+    row: 5,
+    rowSpan: 1,
+  },
+];

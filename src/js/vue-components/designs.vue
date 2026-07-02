@@ -24,6 +24,7 @@
       </div>
       <span
         class="absolute top-5 right-7.5 icon-[ic--baseline-arrow-outward] scale-200 opacity-0 group-hover:opacity-100"
+        aria-hidden="true"
       ></span>
     </div>
   </a>

@@ -1,4 +1,5 @@
 import { calculateProgress, getScrollY } from "../utils/scroll";
+import { getActiveLenis } from "../libraries/scroll-instance";
 
 export const updateProgressBar = (scrollY) => {
   const progressBar = document.getElementById("progress-bar");
@@ -21,8 +22,10 @@ const resetHorizontalScroll = () => {
 const scrollToY = (y) => {
   resetHorizontalScroll();
 
-  if (window.lenis) {
-    window.lenis.scrollTo(y, { immediate: true });
+  const lenis = getActiveLenis();
+
+  if (lenis) {
+    lenis.scrollTo(y, { immediate: true });
   } else {
     window.scrollTo(0, y);
   }
