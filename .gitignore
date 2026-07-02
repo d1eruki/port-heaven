@@ -4,4 +4,3 @@
 .env*
 .DS_Store
 *.map
-.prettierignore
