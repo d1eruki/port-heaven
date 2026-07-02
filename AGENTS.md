@@ -14,3 +14,11 @@ The plan must state:
 The agent must not edit, delete, rename, format, generate, or otherwise modify files until the user approves the plan.
 
 If the plan changes during the work, the agent must stop, describe the updated plan, and wait for approval again before continuing.
+
+## Vue Component Creation
+
+Do not create a separate Vue component for an element that is used only once on the page. Keep one-off UI anchors, buttons, overlays, notices, and technical DOM targets inside the nearest parent component, such as `App.vue`.
+
+Create a component without asking only when it is a large semantic page section or an already-established reusable block.
+
+If the same block appears more than once and extracting it into a component seems useful, ask the user whether they want a separate component and wait for their answer before making the extraction.
