@@ -35,6 +35,13 @@ module.exports = (_env, argv) => {
     module: {
       rules: [
         {
+          test: /\.(woff2?|otf)$/i,
+          type: "asset/resource",
+          generator: {
+            filename: "assets/fonts/[name][ext]",
+          },
+        },
+        {
           test: /\.(png|jpe?g|gif|svg)$/i,
           type: "asset/resource",
           generator: {
