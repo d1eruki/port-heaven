@@ -56,3 +56,49 @@ test("scroll to top returns from lower sections", async ({ page }) => {
   await page.locator("#scroll-to-top").click();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(100);
 });
+
+test("section dot navigation targets the explicit section nav", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const sectionNav = page.locator("[data-section-nav]");
+  const dots = sectionNav.locator("button.dot");
+
+  await expect(dots).toHaveCount(6);
+  await sectionNav.getByRole("button", { name: "projects" }).click();
+
+  await expect.poll(() => page.evaluate(() => location.hash)).toBe("#projects");
+  await expect(sectionNav.getByRole("button", { name: "projects" })).toHaveAttribute(
+    "aria-current",
+    "true",
+  );
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
+});
+
+test("mobile viewport keeps core controls working", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  await expect(page.locator("#hero")).toBeVisible();
+
+  for (const sectionId of ["#projects", "#design", "#creatives", "#footer"]) {
+    await page.locator(sectionId).scrollIntoViewIfNeeded();
+    await expect(page.locator(sectionId)).toBeVisible();
+  }
+
+  const root = page.locator("html");
+  await page.locator("#theme-toggle").click();
+  await expect(root).toHaveAttribute("data-theme", "light");
+
+  await page.locator("#lang-toggle").click();
+  await expect(root).toHaveAttribute("lang", "en");
+});
+
+test("reduced motion uses no-hardware fallback instead of custom cursor", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  await expect(page.locator("html")).toHaveClass(/no-hw/);
+  await expect(page.locator("html")).not.toHaveClass(/use-custom-cursor/);
+  await expect(page.locator(".app-cursor")).toHaveCount(0);
+});
