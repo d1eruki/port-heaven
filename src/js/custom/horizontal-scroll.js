@@ -6,10 +6,12 @@ const setupHorizontalScroll = () => {
   const inner = document.getElementById("design-inner");
   if (!section || !inner) return;
 
+  const intro = inner.querySelector("[data-design-intro]");
+
   const update = () => {
     if (isMobile()) {
       inner.style.transform = "none";
-      inner.children[0].style.transform = "none";
+      if (intro) intro.style.transform = "none";
       section.style.height = "auto";
       inner.style.position = "relative";
       inner.style.overflowX = "auto";

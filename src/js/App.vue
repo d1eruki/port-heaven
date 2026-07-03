@@ -6,6 +6,7 @@
     class="fixed top-0 left-0 z-50 flex min-h-svh w-15 items-center justify-center text-blend transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0 hw:mix-blend-difference"
   >
     <nav
+      data-section-nav
       class="flex w-fit flex-col gap-5"
       aria-label="Section navigation"
     ></nav>

@@ -6,7 +6,7 @@ export const initSections = () => {
   const init = () =>
     initSectionDots({
       sectionSelector: "section[data-section][id]",
-      navSelector: "nav",
+      navSelector: "[data-section-nav]",
       offset: 0,
       throttleMs: 80,
       switchThresholdPx: 48,
@@ -22,7 +22,7 @@ export const initSections = () => {
 function initSectionDots(opts = {}) {
   const cfg = {
     sectionSelector: "section[data-section][id]",
-    navSelector: "nav",
+    navSelector: "[data-section-nav]",
     offset: 0,
     throttleMs: 80,
     switchThresholdPx: 48,
