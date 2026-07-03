@@ -1,8 +1,9 @@
 import { calculateProgress, getScrollY } from "../utils/scroll";
 import { onScroll, scrollToY as scrollWindowToY } from "../libraries/scroll-instance";
+import { DOM_IDS } from "./dom-selectors";
 
 export const updateProgressBar = (scrollY) => {
-  const progressBar = document.getElementById("progress-bar");
+  const progressBar = document.getElementById(DOM_IDS.progressBar);
   if (!progressBar) return;
 
   const currentY = scrollY !== undefined ? scrollY : getScrollY();

@@ -1,9 +1,10 @@
 import { onReady } from "../utils/onReady";
 import { getScrollY, onScroll } from "../libraries/scroll-instance";
+import { DOM_SELECTORS } from "./dom-selectors";
 
 export const initMenuDotToggler = () =>
   onReady(() => {
-    const menuDot = document.querySelector("body > #menu-dot, #menu-dot");
+    const menuDot = document.querySelector(DOM_SELECTORS.menuDot);
     if (!menuDot) return;
 
     menuDot.classList.add("flex");

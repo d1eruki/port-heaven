@@ -1,12 +1,13 @@
 import { getScrollY, onScroll } from "../libraries/scroll-instance";
 import { isMobile, calculateProgress, initOnLoad } from "../utils/scroll";
+import { DOM_IDS, DOM_SELECTORS } from "./dom-selectors";
 
 const setupHorizontalScroll = () => {
-  const section = document.getElementById("design");
-  const inner = document.getElementById("design-inner");
+  const section = document.getElementById(DOM_IDS.design);
+  const inner = document.getElementById(DOM_IDS.designInner);
   if (!section || !inner) return;
 
-  const intro = inner.querySelector("[data-design-intro]");
+  const intro = inner.querySelector(DOM_SELECTORS.designIntro);
 
   const update = () => {
     if (isMobile()) {

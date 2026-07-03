@@ -1,4 +1,5 @@
 import { onReady } from "../utils/onReady";
+import { DOM_IDS, DOM_SELECTORS } from "./dom-selectors";
 
 const setupDesignActive = () => {
   const isMobile = () => {
@@ -7,7 +8,7 @@ const setupDesignActive = () => {
     return width < mobileWidth;
   };
 
-  const designSection = document.getElementById("design");
+  const designSection = document.getElementById(DOM_IDS.design);
   if (!designSection) return;
 
   const options = {
@@ -64,7 +65,7 @@ const setupDesignActive = () => {
   }, options);
 
   const observerCallback = () => {
-    const designs = designSection.querySelectorAll("[data-design-name]");
+    const designs = designSection.querySelectorAll(DOM_SELECTORS.designItems);
 
     if (designs.length > 0) {
       designs.forEach((a) => {
