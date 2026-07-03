@@ -9,13 +9,13 @@
     </div>
     <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
       <Feature
-        id-attr="counter"
+        is-counter
         data-target="2+"
         :title="'/ ' + t('menu.about.experience.title')"
         :text="t('menu.about.experience.text')"
       />
       <Feature
-        id-attr="counter"
+        is-counter
         data-target="10+"
         :title="'/ ' + t('menu.about.projects.title')"
         :text="t('menu.about.projects.text')"

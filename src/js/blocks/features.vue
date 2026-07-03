@@ -4,13 +4,12 @@
   >
     <small class="text-fg">{{ title }}</small>
     <span
-      :id="idAttr"
       :data-target="dataTarget"
       class="inline-flex w-fit items-baseline gap-[0.08em] text-[8rem] font-black text-stat lg:text-9xl lg:font-bold"
     >
       <span
         :data-target="dataTarget"
-        :class="idAttr"
+        :class="{ counter: isCounter }"
       >
         {{ displayValue }}
       </span>
@@ -22,8 +21,9 @@
 
 <script setup>
 const props = defineProps({
-  idAttr: {
-    type: String,
+  isCounter: {
+    type: Boolean,
+    default: false,
   },
   dataTarget: {
     type: [String, Number],

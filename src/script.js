@@ -13,7 +13,7 @@ import { initScrollToTop } from "./js/features/navigation/scroll-to-top";
 import { initMenuDotToggler } from "./js/features/navigation/menu-dot-toggler";
 import { initHeroBgCells } from "./js/features/effects/hero-bg-cells";
 import { initDesignActive } from "./js/features/effects/design-active";
-import { initRandomCounter } from "./js/features/effects/random-counter";
+import { initOdometerCounter } from "./js/features/effects/odometer-counter";
 
 const hwOn = applyHwClass();
 const screenLg = isViewportAtLeast("lg");
@@ -24,7 +24,7 @@ initScrollToTop();
 initMenuDotToggler();
 initHeroBgCells();
 initDesignActive();
-initRandomCounter();
+initOdometerCounter();
 
 (async () => {
   try {

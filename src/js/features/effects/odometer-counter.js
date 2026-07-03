@@ -53,7 +53,7 @@ const createOdometer = (el, value, Odometer) => {
   observer.observe(el);
 };
 
-export const initRandomCounter = () => {
+export const initOdometerCounter = () => {
   onReady(async () => {
     const counters = document.querySelectorAll(".counter");
     if (counters.length === 0) return;
