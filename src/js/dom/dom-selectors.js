@@ -11,6 +11,7 @@ export const SECTION_IDS = {
 };
 
 export const SECTION_NAV_IDS = [
+  SECTION_IDS.hero,
   SECTION_IDS.description,
   SECTION_IDS.about,
   SECTION_IDS.projects,
