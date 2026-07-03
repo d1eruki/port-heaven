@@ -34,8 +34,8 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { designs } from "../data/designs";
-import Design from "../vue-components/designs.vue";
-import MenuDesc from "../vue-components/menu-description.vue";
+import Design from "../blocks/designs.vue";
+import MenuDesc from "../blocks/menu-description.vue";
 
 const { t } = useI18n();
 

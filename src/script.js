@@ -6,8 +6,7 @@ import "./js/libraries/yandex-metrika";
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
 import { onReady } from "./js/utils/onReady";
 
-import { applyInitialTheme, initThemeToggle } from "./js/features/preferences/theme-toggle";
-import { initLocaleToggle } from "./js/features/preferences/locale-toggler";
+import { applyInitialTheme } from "./js/features/preferences/theme-toggle";
 import { initSections } from "./js/features/navigation/sections";
 import { initScrollToTop } from "./js/features/navigation/scroll-to-top";
 import { initMenuDotToggler } from "./js/features/navigation/menu-dot-toggler";
@@ -21,8 +20,6 @@ const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
 const screenLg = window.innerWidth >= 1024;
 
 applyInitialTheme();
-initThemeToggle();
-initLocaleToggle();
 initSections();
 initScrollToTop();
 initMenuDotToggler();
@@ -56,8 +53,8 @@ if (!hwOn) {
           ),
           import("./js/features/effects/cursor").then(({ initCursor }) => onReady(initCursor)),
           lenisReady.then(() =>
-            import("./js/features/navigation/horizontal-scroll").then(
-              ({ initHorizontalScroll }) => initHorizontalScroll(),
+            import("./js/features/navigation/horizontal-scroll").then(({ initHorizontalScroll }) =>
+              initHorizontalScroll(),
             ),
           ),
         );

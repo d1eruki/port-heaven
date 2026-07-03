@@ -1,13 +1,9 @@
-import { t } from "../../libraries/i18n";
-import { onReady } from "../../utils/onReady";
-import { DOM_SELECTORS } from "../../dom/dom-selectors";
-
 const root = document.documentElement;
 const THEME_STORAGE_KEY = "theme";
 const DEFAULT_THEME = "dark";
 const isSupportedTheme = (theme) => theme === "light" || theme === "dark";
 
-const readSavedTheme = () => {
+export const readSavedTheme = () => {
   try {
     const theme = localStorage.getItem(THEME_STORAGE_KEY);
     return isSupportedTheme(theme) ? theme : DEFAULT_THEME;
@@ -16,7 +12,7 @@ const readSavedTheme = () => {
   }
 };
 
-const saveTheme = (theme) => {
+export const saveTheme = (theme) => {
   if (!isSupportedTheme(theme)) return;
 
   try {
@@ -25,40 +21,24 @@ const saveTheme = (theme) => {
 };
 
 export const applyInitialTheme = () => {
-  root.setAttribute("data-theme", readSavedTheme());
+  applyTheme(readSavedTheme());
 };
 
-const getTargetTheme = () => (root.getAttribute("data-theme") === "dark" ? "light" : "dark");
-
-const updateThemeToggleLabel = () => {
-  const btn = document.querySelector(DOM_SELECTORS.themeToggle);
-  if (!btn) return;
-
-  const label = t(`theme-toggle.${getTargetTheme()}`);
-  const labelEl = btn.querySelector(DOM_SELECTORS.themeToggleLabel);
-
-  if (labelEl) {
-    labelEl.textContent = label;
-  }
-
-  btn.setAttribute("aria-label", label);
+export const getCurrentTheme = () => {
+  const theme = root.getAttribute("data-theme");
+  return isSupportedTheme(theme) ? theme : DEFAULT_THEME;
 };
 
-export const initThemeToggle = () => {
-  onReady(function () {
-    const btn = document.querySelector(DOM_SELECTORS.themeToggle);
-    if (btn) {
-      updateThemeToggleLabel();
+export const getTargetTheme = () => (getCurrentTheme() === "dark" ? "light" : "dark");
 
-      btn.onclick = function () {
-        const currentTheme = root.getAttribute("data-theme");
-        const nextTheme = currentTheme === "dark" ? "light" : "dark";
-        root.setAttribute("data-theme", nextTheme);
-        saveTheme(nextTheme);
-        updateThemeToggleLabel();
-      };
-    }
+export const applyTheme = (theme) => {
+  const nextTheme = isSupportedTheme(theme) ? theme : DEFAULT_THEME;
+  root.setAttribute("data-theme", nextTheme);
+  return nextTheme;
+};
 
-    window.addEventListener("localechange", updateThemeToggleLabel);
-  });
+export const setTheme = (theme) => {
+  const nextTheme = applyTheme(theme);
+  saveTheme(nextTheme);
+  return nextTheme;
 };

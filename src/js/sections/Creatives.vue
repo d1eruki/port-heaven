@@ -32,9 +32,9 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import { creatives } from "../data/creatives";
-import ImgCreative from "../vue-components/img-creatives.vue";
-import MenuDesc from "../vue-components/menu-description.vue";
-import VideoCreative from "../vue-components/video-creatives.vue";
+import ImgCreative from "../blocks/img-creatives.vue";
+import MenuDesc from "../blocks/menu-description.vue";
+import VideoCreative from "../blocks/video-creatives.vue";
 
 const { t } = useI18n();
 </script>

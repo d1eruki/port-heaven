@@ -45,10 +45,10 @@ test("theme and locale controls update the page", async ({ page }) => {
   const root = page.locator("html");
   await expect(root).toHaveAttribute("data-theme", "dark");
 
-  await page.locator("#theme-toggle").click();
+  await page.getByRole("button", { name: "светлая тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "light");
 
-  await page.locator("#lang-toggle").click();
+  await page.getByRole("button", { name: "en" }).click();
   await expect(root).toHaveAttribute("lang", "en");
   await expect(page.getByRole("heading", { name: /artem/i })).toBeVisible();
 });
@@ -93,10 +93,10 @@ test("mobile viewport keeps core controls working", async ({ page }) => {
   }
 
   const root = page.locator("html");
-  await page.locator("#theme-toggle").click();
+  await page.getByRole("button", { name: "светлая тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "light");
 
-  await page.locator("#lang-toggle").click();
+  await page.getByRole("button", { name: "en" }).click();
   await expect(root).toHaveAttribute("lang", "en");
 });
 
