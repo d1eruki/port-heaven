@@ -41,6 +41,11 @@ module.exports = {
         loader: "vue-loader",
       },
       {
+        test: /\.html$/i,
+        include: path.resolve(__dirname, "src/sections"),
+        type: "asset/source",
+      },
+      {
         test: /\.css$/i,
         use: [
           isDev ? "style-loader" : MiniCssExtractPlugin.loader,

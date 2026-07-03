@@ -135,4 +135,109 @@
       color: var(--color-neutral-800) !important;
     }
   }
+
+  .pricing-rings {
+    background:
+      radial-gradient(circle at 50% 18%, transparent 0 18rem, rgb(24 24 27 / 0.14) 18.05rem 18.12rem, transparent 18.17rem),
+      radial-gradient(circle at 50% 18%, transparent 0 34rem, rgb(24 24 27 / 0.12) 34.05rem 34.12rem, transparent 34.17rem),
+      radial-gradient(circle at 50% 18%, transparent 0 50rem, rgb(24 24 27 / 0.1) 50.05rem 50.12rem, transparent 50.17rem);
+  }
+
+  .pricing-card {
+    display: grid;
+    min-height: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 28px 80px rgb(0 0 0 / 0.12);
+  }
+
+  .pricing-section p {
+    line-height: 1.35;
+  }
+
+  .pricing-plan-title {
+    font-size: 2rem;
+  }
+
+  .pricing-price {
+    font-size: 4rem;
+  }
+
+  .pricing-card-light {
+    border: 1px solid rgb(229 229 229);
+    background: rgb(255 255 255 / 0.9);
+  }
+
+  .pricing-card-dark {
+    background: linear-gradient(180deg, rgb(47 47 50), rgb(18 18 20) 58%);
+    color: var(--color-white);
+    transform: translateY(-20px);
+  }
+
+  .pricing-card li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    min-height: 34px;
+    line-height: 1.25;
+  }
+
+  .pricing-check {
+    display: inline-grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--color-primary);
+    color: var(--color-black);
+    font-weight: 900;
+  }
+
+  .pricing-check-muted {
+    background: rgb(63 63 70);
+    color: var(--color-primary);
+  }
+
+  .pricing-button {
+    align-self: end;
+    display: grid;
+    min-height: 70px;
+    place-items: center;
+    padding: 18px 24px;
+    text-align: center;
+    font-weight: 900;
+    transition: var(--transition);
+  }
+
+  .pricing-button:hover {
+    filter: brightness(0.94);
+  }
+
+  .pricing-button-light {
+    border-top: 1px solid rgb(229 229 229);
+    background: rgb(250 250 250);
+    color: var(--color-black);
+  }
+
+  .pricing-button-primary {
+    background: var(--color-primary);
+    color: var(--color-black);
+  }
+
+  @media (max-width: 1023px) {
+    .pricing-card-dark {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pricing-plan-title {
+      font-size: 1.5rem;
+    }
+
+    .pricing-price {
+      font-size: 2.75rem;
+    }
+  }
 }
