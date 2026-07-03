@@ -21,9 +21,19 @@ When a library is already used for a task, prefer the library's built-in behavio
 
 Do not reimplement, bypass, or patch around baseline library behavior unless the built-in behavior is insufficient for the specific requirement. If a workaround is necessary, explain why the standard library behavior cannot handle the case.
 
+## Existing Mechanics and Patterns
+
+Before creating a new mechanic, first inspect the codebase to determine whether an equivalent mechanic, state flow, helper, composable, persistence layer, or established pattern already exists.
+
+If an existing mechanic covers the requirement, use it. If it is close but incomplete, extend or adjust the existing implementation instead of creating a parallel one.
+
+Do not duplicate mechanisms such as `localStorage` handling, state synchronization, UI behavior, routing logic, data loading, or persistence abstractions unless the existing approach is insufficient for the specific requirement. If a new mechanism is necessary, explain why the existing one cannot be reused or extended.
+
 ## Tailwind Usage
 
 When working with Tailwind, prefer built-in Tailwind classes, theme tokens, CSS variables, variants, and documented APIs over custom CSS, custom utilities, or hardcoded values.
+
+Use Tailwind classes as documented, preferring canonical utility names over arbitrary properties or unusual equivalent forms. For example, use `border-l` instead of `border-l-1` for the default 1px left border, and `grid-rows-[auto_1fr_auto]` instead of `[grid-template-rows:auto_1fr_auto]` when the documented utility covers the case.
 
 Do not manually duplicate Tailwind's default values, especially breakpoints, spacing, colors, typography, shadows, radii, transitions, or z-index values. Use Tailwind's base classes and default theme values where they already express the required behavior.
 

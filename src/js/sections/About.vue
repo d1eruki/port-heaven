@@ -8,19 +8,19 @@
       <h2>{{ t("menu.about.title") }}</h2>
     </div>
     <div class="flex flex-col gap-15 lg:flex-row lg:p-15">
-      <Feature
-        id-attr="counter"
+      <FeatureItem
+        is-counter
         data-target="2+"
         :title="'/ ' + t('menu.about.experience.title')"
         :text="t('menu.about.experience.text')"
       />
-      <Feature
-        id-attr="counter"
+      <FeatureItem
+        is-counter
         data-target="10+"
         :title="'/ ' + t('menu.about.projects.title')"
         :text="t('menu.about.projects.text')"
       />
-      <Feature :text="t('menu.about.hobbies.text')" />
+      <FeatureItem :text="t('menu.about.hobbies.text')" />
     </div>
     <img
       alt=""
@@ -35,7 +35,7 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import somaImage from "../../assets/soma.webp";
-import Feature from "../blocks/features.vue";
+import FeatureItem from "../components/FeatureItem.vue";
 
 const { t } = useI18n();
 </script>

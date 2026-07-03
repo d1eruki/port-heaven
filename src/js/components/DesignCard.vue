@@ -13,7 +13,7 @@
         {{ designName }}
       </h4>
       <div class="flex flex-col gap-5 self-end transition-all duration-100 ease-in-out">
-        <Tags
+        <TagsList
           :tags="designTags"
           :show-icons="true"
           class="opacity-100 lg:group-hover:hidden lg:group-hover:opacity-0"
@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import Tags from "./tags.vue";
+import TagsList from "./TagsList.vue";
 
 const props = defineProps({
   designUrl: {

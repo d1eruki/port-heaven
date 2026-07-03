@@ -85,7 +85,6 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 ### Developer Tooling
 
 - `prettier` + `prettier-plugin-tailwindcss` — code formatting
-- `ngrok` — public tunnel for local dev
 
 ## Scripts
 
@@ -93,7 +92,6 @@ Available npm scripts:
 
 - `npm start` — start dev server at http://localhost:8080 with HMR
 - `npm run build` — production build
-- `npm run tunnel` — open an ngrok tunnel to `localhost:8080`
 
 ## Installation
 
@@ -126,10 +124,4 @@ To create a production build:
 
 ```bash
 npm run build
-```
-
-To expose your local server via a public URL (for quick previews):
-
-```bash
-npm run tunnel
 ```

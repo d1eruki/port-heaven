@@ -2,7 +2,16 @@ export const projects = [
   {
     titleKey: "projects.varwinDotCom.title",
     descriptionKey: "projects.varwinDotCom.description",
-    tags: ["Figma", "Bootstrap", "UX/UI", "Design", "Adaptive", "Prototype", "Frontend", "Testing"],
+    tags: [
+      "Figma",
+      "Bootstrap",
+      "UX/UI",
+      "Design",
+      { label: "Adaptive", icon: "phone" },
+      "Prototype",
+      "Frontend",
+      "Testing",
+    ],
     textKeys: ["projects.varwinDotCom.text[0]", "projects.varwinDotCom.text[1]"],
     links: [
       {
@@ -22,7 +31,14 @@ export const projects = [
   {
     titleKey: "projects.xrms.title",
     descriptionKey: "projects.xrms.description",
-    tags: ["Figma", "Desktop", "Prototype", "Testing", "Design", "UX/UI"],
+    tags: [
+      "Figma",
+      { label: "Desktop", icon: "monitor" },
+      "Prototype",
+      "Testing",
+      "Design",
+      "UX/UI",
+    ],
     textKeys: ["projects.xrms.text"],
     resultKey: "projects.xrms.result",
     links: [

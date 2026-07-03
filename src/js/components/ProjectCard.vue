@@ -4,7 +4,7 @@
       <div class="flex flex-col gap-5">
         <h3 class="text-fg">{{ projectName }}</h3>
         <p class="text-muted">{{ projectDescription }}</p>
-        <Tags
+        <TagsList
           :tags="projectTags"
           :show-icons="true"
         />
@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import Tags from "./tags.vue";
+import TagsList from "./TagsList.vue";
 
 const props = defineProps({
   projectName: {

@@ -1,6 +1,7 @@
 import { createI18n } from "vue-i18n";
 import ru from "../../locales/ru.json";
 import en from "../../locales/en.json";
+import { readStorageValue, saveStorageValue } from "../utils/storage";
 import { typographMessages } from "./typograph";
 
 const DEFAULT_LOCALE = "ru";
@@ -8,22 +9,19 @@ const LOCALE_STORAGE_KEY = "locale";
 
 const isSupportedLocale = (locale) => locale === "ru" || locale === "en";
 
-const readSavedLocale = () => {
-  try {
-    const locale = localStorage.getItem(LOCALE_STORAGE_KEY);
-    return isSupportedLocale(locale) ? locale : DEFAULT_LOCALE;
-  } catch {
-    return DEFAULT_LOCALE;
-  }
-};
+const readSavedLocale = () =>
+  readStorageValue({
+    key: LOCALE_STORAGE_KEY,
+    fallback: DEFAULT_LOCALE,
+    isValid: isSupportedLocale,
+  });
 
-export const saveLocale = (locale) => {
-  if (!isSupportedLocale(locale)) return;
-
-  try {
-    localStorage.setItem(LOCALE_STORAGE_KEY, locale);
-  } catch {}
-};
+export const saveLocale = (locale) =>
+  saveStorageValue({
+    key: LOCALE_STORAGE_KEY,
+    value: locale,
+    isValid: isSupportedLocale,
+  });
 
 export const setDocumentLanguage = (locale) => {
   document.documentElement.lang = locale === "en" ? "en" : "ru";

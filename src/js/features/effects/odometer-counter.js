@@ -1,11 +1,18 @@
-import Odometer from "odometer";
-import "odometer/themes/odometer-theme-default.css";
-
 import { onReady } from "../../utils/onReady";
 
 const initializedCounters = new WeakSet();
+let odometerPromise = null;
 
-const createOdometer = (el, value) => {
+const loadOdometer = () => {
+  odometerPromise ??= Promise.all([
+    import("odometer"),
+    import("odometer/themes/odometer-theme-default.css"),
+  ]).then(([{ default: Odometer }]) => Odometer);
+
+  return odometerPromise;
+};
+
+const createOdometer = (el, value, Odometer) => {
   if (initializedCounters.has(el)) return;
 
   initializedCounters.add(el);
@@ -46,14 +53,16 @@ const createOdometer = (el, value) => {
   observer.observe(el);
 };
 
-export const initRandomCounter = () => {
-  onReady(() => {
+export const initOdometerCounter = () => {
+  onReady(async () => {
     const counters = document.querySelectorAll(".counter");
     if (counters.length === 0) return;
 
+    const Odometer = await loadOdometer();
+
     counters.forEach((counter) => {
       const targetNumber = parseInt(counter.dataset.target || "", 10) || 0;
-      createOdometer(counter, targetNumber);
+      createOdometer(counter, targetNumber, Odometer);
     });
   });
 };

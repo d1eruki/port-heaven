@@ -1,24 +1,23 @@
+import { readStorageValue, saveStorageValue } from "../../utils/storage";
+
 const root = document.documentElement;
 const THEME_STORAGE_KEY = "theme";
 const DEFAULT_THEME = "dark";
 const isSupportedTheme = (theme) => theme === "light" || theme === "dark";
 
-export const readSavedTheme = () => {
-  try {
-    const theme = localStorage.getItem(THEME_STORAGE_KEY);
-    return isSupportedTheme(theme) ? theme : DEFAULT_THEME;
-  } catch {
-    return DEFAULT_THEME;
-  }
-};
+export const readSavedTheme = () =>
+  readStorageValue({
+    key: THEME_STORAGE_KEY,
+    fallback: DEFAULT_THEME,
+    isValid: isSupportedTheme,
+  });
 
-export const saveTheme = (theme) => {
-  if (!isSupportedTheme(theme)) return;
-
-  try {
-    localStorage.setItem(THEME_STORAGE_KEY, theme);
-  } catch {}
-};
+export const saveTheme = (theme) =>
+  saveStorageValue({
+    key: THEME_STORAGE_KEY,
+    value: theme,
+    isValid: isSupportedTheme,
+  });
 
 export const applyInitialTheme = () => {
   applyTheme(readSavedTheme());
