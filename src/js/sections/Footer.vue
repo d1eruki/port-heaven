@@ -62,7 +62,7 @@
           stapps90@gmail.com
         </div>
       </a>
-      <MenuDesc :menu-desc="t('menu.footer.description')" />
+      <MenuDescription :menu-desc="t('menu.footer.description')" />
     </div>
     <h2 class="footer-logo-text font-[Actay_Wide] text-nowrap text-primary lowercase">
       {{ t("brand.logo") }}
@@ -72,7 +72,7 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import MenuDesc from "../blocks/menu-description.vue";
+import MenuDescription from "../components/MenuDescription.vue";
 
 const { t } = useI18n();
 </script>

@@ -13,12 +13,12 @@
         class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 bg-inverse p-15 text-inverse-fg lg:w-[25dvw] lg:bg-canvas lg:text-fg"
       >
         <h2>{{ t("menu.designs.title") }}</h2>
-        <MenuDesc
+        <MenuDescription
           class="lg:max-w-150"
           :menu-desc="t('menu.designs.description')"
         />
       </div>
-      <Design
+      <DesignCard
         v-for="design in translatedDesigns"
         :key="design.titleKey"
         :design-name="design.name"
@@ -34,8 +34,8 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { designs } from "../data/designs";
-import Design from "../blocks/designs.vue";
-import MenuDesc from "../blocks/menu-description.vue";
+import DesignCard from "../components/DesignCard.vue";
+import MenuDescription from "../components/MenuDescription.vue";
 
 const { t } = useI18n();
 

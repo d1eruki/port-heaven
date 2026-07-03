@@ -8,13 +8,13 @@
       class="grid content-center gap-5 bg-inverse p-15 text-inverse-fg lg:sticky lg:inset-y-[50dvh] lg:top-0 lg:h-dvh lg:place-items-end lg:text-end"
     >
       <h2>{{ t("menu.projects.title") }}</h2>
-      <MenuDesc
+      <MenuDescription
         class="lg:max-w-150"
         :menu-desc="t('menu.projects.description')"
       />
     </div>
     <div>
-      <Project
+      <ProjectCard
         v-for="project in translatedProjects"
         :key="project.titleKey"
         :project-name="project.name"
@@ -32,8 +32,8 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { projects } from "../data/projects";
-import MenuDesc from "../blocks/menu-description.vue";
-import Project from "../blocks/projects.vue";
+import MenuDescription from "../components/MenuDescription.vue";
+import ProjectCard from "../components/ProjectCard.vue";
 
 const { t } = useI18n();
 
