@@ -1,7 +1,7 @@
 import Odometer from "odometer";
 import "odometer/themes/odometer-theme-default.css";
 
-import { onReady } from "../utils/onReady";
+import { onReady } from "../../utils/onReady";
 
 const initializedCounters = new WeakSet();
 

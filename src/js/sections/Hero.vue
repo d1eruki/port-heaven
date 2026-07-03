@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     data-section="hero"
     id="hero"
     class="hero min-h-svh bg-scroll lg:bg-fixed"
@@ -37,7 +37,7 @@
         />
       </svg>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>

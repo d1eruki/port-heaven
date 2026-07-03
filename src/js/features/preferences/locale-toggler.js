@@ -1,6 +1,6 @@
-import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
-import { onReady } from "../utils/onReady";
-import { DOM_SELECTORS } from "./dom-selectors";
+import i18n, { saveLocale, setDocumentLanguage } from "../../libraries/i18n";
+import { onReady } from "../../utils/onReady";
+import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 export const initLocaleToggle = () =>
   onReady(() => {

@@ -1,5 +1,5 @@
-import { onReady } from "../utils/onReady";
-import { DOM_IDS, DOM_SELECTORS } from "./dom-selectors";
+import { onReady } from "../../utils/onReady";
+import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 
 const setupDesignActive = () => {
   const isMobile = () => {

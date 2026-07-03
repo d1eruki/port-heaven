@@ -1,12 +1,12 @@
-import { smoothScrollTo as _smoothScrollTo } from "../utils/smooth-scroll";
-import { onReady } from "../utils/onReady";
-import { getScrollY, onScroll } from "../libraries/scroll-instance";
-import { DOM_SELECTORS } from "./dom-selectors";
+import { smoothScrollTo as _smoothScrollTo } from "../../utils/smooth-scroll";
+import { onReady } from "../../utils/onReady";
+import { getScrollY, onScroll } from "../../libraries/scroll-instance";
+import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 export const initSections = () => {
   const init = () =>
     initSectionDots({
-      sectionSelector: DOM_SELECTORS.sections,
+      sectionSelector: DOM_SELECTORS.sectionNavTargets,
       navSelector: DOM_SELECTORS.sectionNav,
       offset: 0,
       throttleMs: 80,
@@ -22,7 +22,7 @@ export const initSections = () => {
 
 function initSectionDots(opts = {}) {
   const cfg = {
-    sectionSelector: DOM_SELECTORS.sections,
+    sectionSelector: DOM_SELECTORS.sectionNavTargets,
     navSelector: DOM_SELECTORS.sectionNav,
     offset: 0,
     throttleMs: 80,

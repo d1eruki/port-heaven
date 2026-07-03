@@ -1,6 +1,6 @@
-import { t } from "../libraries/i18n";
-import { onReady } from "../utils/onReady";
-import { DOM_SELECTORS } from "./dom-selectors";
+import { t } from "../../libraries/i18n";
+import { onReady } from "../../utils/onReady";
+import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 const root = document.documentElement;
 const THEME_STORAGE_KEY = "theme";

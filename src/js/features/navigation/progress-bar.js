@@ -1,6 +1,6 @@
-import { calculateProgress, getScrollY } from "../utils/scroll";
-import { onScroll, scrollToY as scrollWindowToY } from "../libraries/scroll-instance";
-import { DOM_SELECTORS } from "./dom-selectors";
+import { calculateProgress, getScrollY } from "../../utils/scroll";
+import { onScroll, scrollToY as scrollWindowToY } from "../../libraries/scroll-instance";
+import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 export const updateProgressBar = (scrollY) => {
   const progressBar = document.querySelector(DOM_SELECTORS.progressBar);

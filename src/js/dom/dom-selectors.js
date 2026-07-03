@@ -1,6 +1,7 @@
 const selectorById = (id) => `#${id}`;
 
 export const SECTION_IDS = {
+  hero: "hero",
   description: "description",
   about: "about",
   projects: "projects",
@@ -8,6 +9,15 @@ export const SECTION_IDS = {
   creatives: "creatives",
   footer: "footer",
 };
+
+export const SECTION_NAV_IDS = [
+  SECTION_IDS.description,
+  SECTION_IDS.about,
+  SECTION_IDS.projects,
+  SECTION_IDS.design,
+  SECTION_IDS.creatives,
+  SECTION_IDS.footer,
+];
 
 export const DOM_DATA_ATTRIBUTES = {
   designIntro: "data-design-intro",
@@ -36,6 +46,9 @@ export const DOM_SELECTORS = {
   progressBar: selectorById(DOM_IDS.progressBar),
   scrollToTop: `${selectorById(DOM_IDS.scrollToTop)}, [${DOM_DATA_ATTRIBUTES.scrollToTop}]`,
   sectionNav: `[${DOM_DATA_ATTRIBUTES.sectionNav}]`,
+  sectionNavTargets: SECTION_NAV_IDS.map(
+    (id) => `section[${DOM_DATA_ATTRIBUTES.section}="${id}"]${selectorById(id)}`,
+  ).join(", "),
   sections: Object.values(SECTION_IDS)
     .map((id) => `section[${DOM_DATA_ATTRIBUTES.section}="${id}"]${selectorById(id)}`)
     .join(", "),

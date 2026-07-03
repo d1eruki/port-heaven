@@ -1,6 +1,6 @@
-import { getScrollY, onScroll } from "../libraries/scroll-instance";
-import { isMobile, calculateProgress, initOnLoad } from "../utils/scroll";
-import { DOM_IDS, DOM_SELECTORS } from "./dom-selectors";
+import { getScrollY, onScroll } from "../../libraries/scroll-instance";
+import { isMobile, calculateProgress, initOnLoad } from "../../utils/scroll";
+import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 
 const setupHorizontalScroll = () => {
   const section = document.getElementById(DOM_IDS.design);
