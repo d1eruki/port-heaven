@@ -65,25 +65,30 @@ export function isHardwareAccelerationEnabled() {
 }
 
 export function applyHwClass(options = {}) {
-  const { recheckOnVisibility = false } = options;
+  const { recheckOnVisibility = false, respectReducedMotion = true } = options;
   const root = document.documentElement;
 
-  const set = (on) => {
-    if (on) root.classList.add("hw");
-    else root.classList.remove("hw");
+  const prefersReducedMotion = () =>
+    respectReducedMotion &&
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const set = () => {
+    const on = isHardwareAccelerationEnabled() && !prefersReducedMotion();
+
+    root.classList.toggle("hw", on);
+    root.classList.toggle("no-hw", !on);
+
+    return on;
   };
 
-  set(isHardwareAccelerationEnabled());
+  const hwOn = set();
 
   if (recheckOnVisibility) {
     document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) set(isHardwareAccelerationEnabled());
+      if (!document.hidden) set();
     });
   }
-}
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => applyHwClass());
-} else {
-  applyHwClass();
+  return hwOn;
 }

@@ -3,7 +3,7 @@ import "./style.css";
 import "./js/libraries/vue";
 import "./js/libraries/yandex-metrika";
 
-import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
+import { applyHwClass } from "./js/libraries/hw-detect";
 import { onReady } from "./js/utils/onReady";
 import { isViewportAtLeast } from "./js/utils/breakpoints";
 
@@ -15,9 +15,7 @@ import { initHeroBgCells } from "./js/features/effects/hero-bg-cells";
 import { initDesignActive } from "./js/features/effects/design-active";
 import { initRandomCounter } from "./js/features/effects/random-counter";
 
-const prefersReduce =
-  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
+const hwOn = applyHwClass();
 const screenLg = isViewportAtLeast("lg");
 
 applyInitialTheme();
@@ -27,10 +25,6 @@ initMenuDotToggler();
 initHeroBgCells();
 initDesignActive();
 initRandomCounter();
-
-if (!hwOn) {
-  document.documentElement.classList.add("no-hw");
-}
 
 (async () => {
   try {
