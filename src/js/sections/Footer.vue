@@ -72,7 +72,7 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import MenuDesc from "../vue-components/menu-description.vue";
+import MenuDesc from "../blocks/menu-description.vue";
 
 const { t } = useI18n();
 </script>

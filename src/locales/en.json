@@ -55,7 +55,7 @@
       "title": "Varwin.com website",
       "description": "A full refresh of varwin.com — redesign, UX optimization, and new sections.",
       "text": [
-        "Redesign of the Varwin XRMS download page to refresh the interface and improve conversion. I ran short interviews with marketing and users, сформулированы UX hypotheses and designed a prototype. After testing and revisions, the final version was implemented in Bootstrap 4.",
+        "Redesign of the Varwin XRMS download page to refresh the interface and improve conversion. I ran short interviews with marketing and users, formulated UX hypotheses, and designed a prototype. After testing and revisions, the final version was implemented in Bootstrap 4.",
         "Design of the user project registry in the Varwin Education section. The section brought the community together and made it possible to share your work and explore projects by other users."
       ]
     },
@@ -119,6 +119,14 @@
   },
   "notices": {
     "hardwareAccelerationDisabled": "Hardware acceleration is off, visual effects are disabled"
+  },
+  "privacy": {
+    "analytics": {
+      "title": "analytics",
+      "text": "Yandex Metrica is enabled on this site to understand which portfolio sections people view most.",
+      "accept": "got it",
+      "decline": "hide"
+    }
   },
   "lang-toggle": "ru",
   "theme-toggle": {

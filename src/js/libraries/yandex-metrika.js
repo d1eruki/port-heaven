@@ -10,14 +10,14 @@
       return;
     }
   }
-  ((k = e.createElement(t)),
-    (a = e.getElementsByTagName(t)[0]),
-    (k.async = 1),
-    (k.src = r),
-    a.parentNode.insertBefore(k, a));
+  k = e.createElement(t);
+  a = e.getElementsByTagName(t)[0];
+  k.async = 1;
+  k.src = r;
+  a.parentNode.insertBefore(k, a);
 })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-ym(103012336, "init", {
+window.ym(103012336, "init", {
   clickmap: true,
   trackLinks: true,
   accurateTrackBounce: true,

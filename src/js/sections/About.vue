@@ -25,7 +25,7 @@
     <img
       alt=""
       class="absolute right-0 bottom-20 z-1 hidden w-180 opacity-7.5 lg:block"
-      src="assets/soma.webp"
+      :src="somaImage"
       loading="lazy"
       decoding="async"
     />
@@ -34,7 +34,8 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import Feature from "../vue-components/features.vue";
+import somaImage from "../../assets/soma.webp";
+import Feature from "../blocks/features.vue";
 
 const { t } = useI18n();
 </script>

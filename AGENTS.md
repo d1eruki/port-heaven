@@ -11,7 +11,7 @@ The plan must state:
 - What will be changed or removed in each file.
 - Why each change is needed.
 
-The agent must not edit, delete, rename, format, generate, or otherwise modify files until the user approves the plan.
+The agent must not edit, delete, rename, format, generate, or otherwise modify files until the user approves the plan. Files may be deleted when they are left empty or become outdated.
 
 If the plan changes during the work, the agent must stop, describe the updated plan, and wait for approval again before continuing.
 
@@ -20,6 +20,20 @@ If the plan changes during the work, the agent must stop, describe the updated p
 When a library is already used for a task, prefer the library's built-in behavior, documented APIs, and established patterns over custom workarounds.
 
 Do not reimplement, bypass, or patch around baseline library behavior unless the built-in behavior is insufficient for the specific requirement. If a workaround is necessary, explain why the standard library behavior cannot handle the case.
+
+## Tailwind Usage
+
+When working with Tailwind, prefer built-in Tailwind classes, theme tokens, CSS variables, variants, and documented APIs over custom CSS, custom utilities, or hardcoded values.
+
+Do not manually duplicate Tailwind's default values, especially breakpoints, spacing, colors, typography, shadows, radii, transitions, or z-index values. Use Tailwind's base classes and default theme values where they already express the required behavior.
+
+Add custom CSS variables, custom utilities, or project-specific theme tokens only when Tailwind's built-in behavior is insufficient or the value is a deliberate project token. If JavaScript needs Tailwind values, prefer build-time access to Tailwind defaults or already-declared project theme variables instead of hardcoding numeric copies.
+
+## Dependencies and Accessibility
+
+Whenever new dependencies are added, update the `README` with the relevant setup, usage, or dependency notes.
+
+Always include appropriate accessibility attributes for icons and SVGs, such as `aria-hidden` and `focusable` when they are decorative. Provide `aria-label` for navigation controls and keep image `alt` attributes accurate and up to date.
 
 ## Vue Component Creation
 

@@ -1,8 +1,8 @@
-import { calculateProgress, getScrollY } from "../utils/scroll";
-import { getActiveLenis } from "../libraries/scroll-instance";
+import { calculateProgress, getScrollY, onScroll, scrollToY as scrollWindowToY } from "../../utils/scroll";
+import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 export const updateProgressBar = (scrollY) => {
-  const progressBar = document.getElementById("progress-bar");
+  const progressBar = document.querySelector(DOM_SELECTORS.progressBar);
   if (!progressBar) return;
 
   const currentY = scrollY !== undefined ? scrollY : getScrollY();
@@ -22,13 +22,7 @@ const resetHorizontalScroll = () => {
 const scrollToY = (y) => {
   resetHorizontalScroll();
 
-  const lenis = getActiveLenis();
-
-  if (lenis) {
-    lenis.scrollTo(y, { immediate: true });
-  } else {
-    window.scrollTo(0, y);
-  }
+  scrollWindowToY(y, { immediate: true });
 
   requestAnimationFrame(resetHorizontalScroll);
 };
@@ -83,7 +77,5 @@ export const initProgressBar = () => {
     updateProgressBar(getScrollY());
   });
 
-  window.addEventListener("lenis-scroll", (e) => {
-    updateProgressBar(e.detail.y);
-  });
+  onScroll((scrollY) => updateProgressBar(scrollY));
 };

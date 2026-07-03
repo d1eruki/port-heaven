@@ -1,5 +1,4 @@
-import { lenis } from "../libraries/lenis";
-import { initOnLoad, clamp } from "../utils/scroll";
+import { getScrollY, onScroll, initOnLoad, clamp } from "../../utils/scroll";
 
 const setupParallax = () => {
   const elements = document.querySelectorAll('[class*="scroll-speed-"]');
@@ -23,14 +22,14 @@ const setupParallax = () => {
       const scaleFactor = parseFloat(el.getAttribute("data-parallax-scale")) || 0;
 
       const rect = el.getBoundingClientRect();
-      const initialY = rect.top + window.scrollY;
+      const initialY = rect.top + getScrollY();
 
       return { el, speed, initialY, anchor, scaleFactor };
     })
     .filter(Boolean);
 
   const update = () => {
-    const scroll = lenis?.scroll ?? window.scrollY;
+    const scroll = getScrollY();
     items.forEach(({ el, speed, initialY, anchor, scaleFactor }) => {
       let offset;
 
@@ -52,13 +51,13 @@ const setupParallax = () => {
   };
 
   update();
-  lenis.on("scroll", update);
+  onScroll(update);
 
   window.addEventListener("resize", () => {
     items.forEach((item) => {
       item.el.style.setProperty("--parallax-offset", "0px");
       const rect = item.el.getBoundingClientRect();
-      item.initialY = rect.top + window.scrollY;
+      item.initialY = rect.top + getScrollY();
     });
     update();
   });

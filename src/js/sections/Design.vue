@@ -9,6 +9,7 @@
       id="design-inner"
     >
       <div
+        data-design-intro
         class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 bg-inverse p-15 text-inverse-fg lg:w-[25dvw] lg:bg-canvas lg:text-fg"
       >
         <h2>{{ t("menu.designs.title") }}</h2>
@@ -33,8 +34,8 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { designs } from "../data/designs";
-import Design from "../vue-components/designs.vue";
-import MenuDesc from "../vue-components/menu-description.vue";
+import Design from "../blocks/designs.vue";
+import MenuDesc from "../blocks/menu-description.vue";
 
 const { t } = useI18n();
 

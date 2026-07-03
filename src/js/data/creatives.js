@@ -1,7 +1,10 @@
+import { creativeAssets } from "./creative-assets";
+
 export const creatives = [
   {
     type: "image",
-    src: "assets/creatives/postcard.webp",
+    src: creativeAssets.postcard,
+    alt: "Postcard creative layout",
     col: 2,
     colSpan: 5,
     row: 2,
@@ -9,7 +12,7 @@ export const creatives = [
   },
   {
     type: "video",
-    src: "assets/creatives/varwin-opening.mp4",
+    src: creativeAssets.varwinOpening,
     col: 13,
     colSpan: 6,
     row: 3,
@@ -17,7 +20,8 @@ export const creatives = [
   },
   {
     type: "image",
-    src: "assets/creatives/saasoft.webp",
+    src: creativeAssets.saasoft,
+    alt: "Saasoft creative layout",
     col: 3,
     colSpan: 6,
     row: 4,
@@ -25,7 +29,8 @@ export const creatives = [
   },
   {
     type: "image",
-    src: "assets/creatives/siyay.webp",
+    src: creativeAssets.siyay,
+    alt: "Siyay creative layout",
     col: 14,
     colSpan: 6,
     row: 5,

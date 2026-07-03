@@ -1,9 +1,10 @@
-import { onReady } from "../utils/onReady";
-import { getActiveLenis } from "../libraries/scroll-instance";
+import { onReady } from "../../utils/onReady";
+import { getScrollY, onScroll } from "../../utils/scroll";
+import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 export const initMenuDotToggler = () =>
   onReady(() => {
-    const menuDot = document.querySelector("body > #menu-dot, #menu-dot");
+    const menuDot = document.querySelector(DOM_SELECTORS.menuDot);
     if (!menuDot) return;
 
     menuDot.classList.add("flex");
@@ -31,16 +32,9 @@ export const initMenuDotToggler = () =>
       }
     };
 
-    const getScrollY = (event) => {
-      const lenisY = event?.detail?.y ?? getActiveLenis()?.scroll;
-      if (typeof lenisY === "number") return lenisY;
-      return window.scrollY || window.pageYOffset || 0;
-    };
-
-    const recompute = (event) => {
+    const recompute = (scrollY = getScrollY()) => {
       const threshold = getThreshold();
-      const y = getScrollY(event);
-      applyState(y >= threshold);
+      applyState(scrollY >= threshold);
     };
 
     const onScrollThrottled = () => {
@@ -51,8 +45,7 @@ export const initMenuDotToggler = () =>
       }, 80);
     };
 
-    window.addEventListener("scroll", onScrollThrottled, { passive: true });
-    window.addEventListener("lenis-scroll", recompute);
+    onScroll(onScrollThrottled);
     window.addEventListener("resize", recompute);
 
     setTimeout(recompute, 50);

@@ -5,24 +5,22 @@ import "./js/libraries/yandex-metrika";
 
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
 import { onReady } from "./js/utils/onReady";
+import { isViewportAtLeast } from "./js/utils/breakpoints";
 
-import { applyInitialTheme, initThemeToggle } from "./js/custom/theme-toggle";
-import { initLocaleToggle } from "./js/custom/locale-toggler";
-import { initSections } from "./js/custom/sections";
-import { initScrollToTop } from "./js/custom/scroll-to-top";
-import { initMenuDotToggler } from "./js/custom/menu-dot-toggler";
-import { initHeroBgCells } from "./js/custom/hero-bg-cells";
-import { initDesignActive } from "./js/custom/design-active";
-import { initRandomCounter } from "./js/custom/random-counter";
+import { applyInitialTheme } from "./js/features/preferences/theme-toggle";
+import { initSections } from "./js/features/navigation/sections";
+import { initScrollToTop } from "./js/features/navigation/scroll-to-top";
+import { initMenuDotToggler } from "./js/features/navigation/menu-dot-toggler";
+import { initHeroBgCells } from "./js/features/effects/hero-bg-cells";
+import { initDesignActive } from "./js/features/effects/design-active";
+import { initRandomCounter } from "./js/features/effects/random-counter";
 
 const prefersReduce =
   window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
-const screenLg = window.innerWidth >= 1024;
+const screenLg = isViewportAtLeast("lg");
 
 applyInitialTheme();
-initThemeToggle();
-initLocaleToggle();
 initSections();
 initScrollToTop();
 initMenuDotToggler();
@@ -37,11 +35,16 @@ if (!hwOn) {
 (async () => {
   try {
     if (hwOn) {
+      const lenisReady = import("./js/libraries/lenis");
       const imports = [
-        import("./js/libraries/lenis").then(() =>
-          import("./js/custom/progress-bar").then(({ initProgressBar }) => initProgressBar()),
+        lenisReady.then(() =>
+          import("./js/features/navigation/progress-bar").then(({ initProgressBar }) =>
+            initProgressBar(),
+          ),
         ),
-        import("./js/custom/parallax").then(({ initParallax }) => initParallax()),
+        lenisReady.then(() =>
+          import("./js/features/effects/parallax").then(({ initParallax }) => initParallax()),
+        ),
       ];
 
       if (screenLg) {
@@ -49,9 +52,11 @@ if (!hwOn) {
           import("./js/libraries/vanilla-tilt").then(({ initVanillaTilt }) =>
             onReady(initVanillaTilt),
           ),
-          import("./js/custom/cursor").then(({ initCursor }) => onReady(initCursor)),
-          import("./js/custom/horizontal-scroll").then(({ initHorizontalScroll }) =>
-            initHorizontalScroll(),
+          import("./js/features/effects/cursor").then(({ initCursor }) => onReady(initCursor)),
+          lenisReady.then(() =>
+            import("./js/features/navigation/horizontal-scroll").then(({ initHorizontalScroll }) =>
+              initHorizontalScroll(),
+            ),
           ),
         );
       }

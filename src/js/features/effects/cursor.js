@@ -1,4 +1,4 @@
-import { t } from "../libraries/i18n";
+import { t } from "../../libraries/i18n";
 
 export const initCursor = () => {
   const supportsFine = matchMedia("(pointer: fine)").matches;

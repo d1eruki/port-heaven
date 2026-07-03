@@ -1,15 +1,17 @@
-import { lenis } from "../libraries/lenis";
-import { isMobile, calculateProgress, initOnLoad } from "../utils/scroll";
+import { getScrollY, onScroll, isMobile, calculateProgress, initOnLoad } from "../../utils/scroll";
+import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 
 const setupHorizontalScroll = () => {
-  const section = document.getElementById("design");
-  const inner = document.getElementById("design-inner");
+  const section = document.getElementById(DOM_IDS.design);
+  const inner = document.getElementById(DOM_IDS.designInner);
   if (!section || !inner) return;
+
+  const intro = inner.querySelector(DOM_SELECTORS.designIntro);
 
   const update = () => {
     if (isMobile()) {
       inner.style.transform = "none";
-      inner.children[0].style.transform = "none";
+      if (intro) intro.style.transform = "none";
       section.style.height = "auto";
       inner.style.position = "relative";
       inner.style.overflowX = "auto";
@@ -32,7 +34,7 @@ const setupHorizontalScroll = () => {
 
     const sectionHeight = section.offsetHeight;
     const start = section.offsetTop;
-    const scroll = lenis.scroll;
+    const scroll = getScrollY();
 
     const progress = calculateProgress(scroll, start, start + (sectionHeight - viewportHeight));
 
@@ -43,7 +45,7 @@ const setupHorizontalScroll = () => {
   };
 
   update();
-  lenis.on("scroll", update);
+  onScroll(update);
   window.addEventListener("resize", update);
 };
 

@@ -19,6 +19,7 @@
 
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
+import { getCreativeGridStyle } from "../utils/creative-grid-style";
 
 const props = defineProps({
   creativeSrc: { type: String, required: true },
@@ -28,10 +29,7 @@ const props = defineProps({
   colSpan: { type: Number, default: 1 },
 });
 
-const computedStyle = computed(() => ({
-  ...(props.row && { gridRow: `${props.row} / span ${props.rowSpan}` }),
-  ...(props.col && { gridColumn: `${props.col} / span ${props.colSpan}` }),
-}));
+const computedStyle = computed(() => getCreativeGridStyle(props));
 
 const videoEl = ref(null);
 const isSourceLoaded = ref(false);

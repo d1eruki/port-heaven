@@ -8,7 +8,7 @@
     width: 100%;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: theme(--breakpoint-lg)) {
     .lg\:justify-last {
       text-align: justify;
     }

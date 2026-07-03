@@ -32,8 +32,8 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { projects } from "../data/projects";
-import MenuDesc from "../vue-components/menu-description.vue";
-import Project from "../vue-components/projects.vue";
+import MenuDesc from "../blocks/menu-description.vue";
+import Project from "../blocks/projects.vue";
 
 const { t } = useI18n();
 
