@@ -7,18 +7,8 @@
     >
       <small class="flex gap-1 rounded-4xl bg-chip px-2 py-1.5 text-chip-fg">
         <span
-          v-if="showIcons && isAdaptive(tag)"
-          class="icon-[ic--baseline-phone-android]"
-          aria-hidden="true"
-        ></span>
-        <span
-          v-if="showIcons && isDesktop(tag)"
-          class="icon-[ic--baseline-monitor]"
-          aria-hidden="true"
-        ></span>
-        <span
-          v-if="showIcons && isMobile(tag)"
-          class="icon-[ic--baseline-phone-android]"
+          v-if="showIcons && getTagIconClass(tag)"
+          :class="getTagIconClass(tag)"
           aria-hidden="true"
         ></span>
         {{ getTagName(tag) }}
@@ -39,9 +29,10 @@ const props = defineProps({
   },
 });
 
-const isAdaptive = (tag) => (getTagName(tag) || "").toLowerCase().includes("adaptive");
-const isDesktop = (tag) => (getTagName(tag) || "").toLowerCase().includes("desktop");
-const isMobile = (tag) => (getTagName(tag) || "").toLowerCase().includes("mobile app");
+const tagIconClassByName = {
+  monitor: "icon-[ic--baseline-monitor]",
+  phone: "icon-[ic--baseline-phone-android]",
+};
 
 function getTagName(tag) {
   if (tag == null) return "";
@@ -50,5 +41,11 @@ function getTagName(tag) {
     return tag.name || tag.label || tag.title || "";
   }
   return "";
+}
+
+function getTagIconClass(tag) {
+  if (!tag || typeof tag !== "object") return "";
+
+  return tagIconClassByName[tag.icon] || "";
 }
 </script>
