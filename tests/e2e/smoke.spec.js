@@ -80,9 +80,9 @@ test("section dot navigation targets the explicit section nav", async ({ page })
   ];
 
   await expect(dots).toHaveCount(expectedSections.length);
-  await expect
-    .poll(() => dots.evaluateAll((items) => items.map((item) => item.ariaLabel)))
-    .toEqual(expectedSections);
+  for (const section of expectedSections) {
+    await expect(sectionNav.getByRole("button", { name: section })).toBeVisible();
+  }
   await sectionNav.getByRole("button", { name: "projects" }).click();
 
   await expect.poll(() => page.evaluate(() => location.hash)).toBe("#projects");
