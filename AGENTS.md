@@ -11,7 +11,7 @@ The plan must state:
 - What will be changed or removed in each file.
 - Why each change is needed.
 
-The agent must not edit, delete, rename, format, generate, or otherwise modify files until the user approves the plan.
+The agent must not edit, delete, rename, format, generate, or otherwise modify files until the user approves the plan. Files may be deleted when they are left empty or become outdated.
 
 If the plan changes during the work, the agent must stop, describe the updated plan, and wait for approval again before continuing.
 
