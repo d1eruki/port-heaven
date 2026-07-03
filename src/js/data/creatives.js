@@ -1,12 +1,9 @@
-import postcardImage from "../../assets/creatives/postcard.webp";
-import saasoftImage from "../../assets/creatives/saasoft.webp";
-import siyayImage from "../../assets/creatives/siyay.webp";
-import varwinOpeningVideo from "../../assets/creatives/varwin-opening.mp4";
+import { creativeAssets } from "./creative-assets";
 
 export const creatives = [
   {
     type: "image",
-    src: postcardImage,
+    src: creativeAssets.postcard,
     alt: "Postcard creative layout",
     col: 2,
     colSpan: 5,
@@ -15,7 +12,7 @@ export const creatives = [
   },
   {
     type: "video",
-    src: varwinOpeningVideo,
+    src: creativeAssets.varwinOpening,
     col: 13,
     colSpan: 6,
     row: 3,
@@ -23,7 +20,7 @@ export const creatives = [
   },
   {
     type: "image",
-    src: saasoftImage,
+    src: creativeAssets.saasoft,
     alt: "Saasoft creative layout",
     col: 3,
     colSpan: 6,
@@ -32,7 +29,7 @@ export const creatives = [
   },
   {
     type: "image",
-    src: siyayImage,
+    src: creativeAssets.siyay,
     alt: "Siyay creative layout",
     col: 14,
     colSpan: 6,
