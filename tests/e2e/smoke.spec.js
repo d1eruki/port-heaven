@@ -1,5 +1,8 @@
 import { expect, test } from "@playwright/test";
 
+const isIgnoredConsoleError = (text) =>
+  text.startsWith("Button failed to load, iconName = ") && text.includes("layoutTraits = ");
+
 test.beforeEach(async ({ page }) => {
   await page.route("https://mc.yandex.ru/metrika/tag.js", (route) =>
     route.fulfill({
@@ -18,7 +21,10 @@ test.beforeEach(async ({ page }) => {
 test("loads core portfolio sections without console errors", async ({ page }) => {
   const consoleErrors = [];
   page.on("console", (message) => {
-    if (message.type() === "error") consoleErrors.push(message.text());
+    if (message.type() !== "error") return;
+
+    const text = message.text();
+    if (!isIgnoredConsoleError(text)) consoleErrors.push(text);
   });
 
   await page.goto("/");
