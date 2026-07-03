@@ -14,6 +14,7 @@ const metaPath = path.join(rootDir, "src", "locales", `.${TARGET_LOCALE}.meta.js
 
 const force = process.argv.includes("--force");
 const dryRun = process.argv.includes("--dry-run");
+const cyrillicPattern = /[\u0400-\u04ff]/;
 
 const readJson = async (filePath, fallback = undefined) => {
   try {
@@ -83,6 +84,14 @@ const collectStrings = (value, prefix = []) => {
   return Object.entries(value).flatMap(([key, nestedValue]) =>
     collectStrings(nestedValue, [...prefix, key]),
   );
+};
+
+const assertTargetHasNoCyrillic = (target) => {
+  const invalidItems = collectStrings(target).filter((item) => cyrillicPattern.test(item.value));
+  if (!invalidItems.length) return;
+
+  const keyList = invalidItems.map((item) => item.key).join(", ");
+  throw new Error(`${TARGET_LOCALE}.json contains Cyrillic text in: ${keyList}`);
 };
 
 const removeStaleKeys = (target, source) => {
@@ -184,6 +193,8 @@ const main = async () => {
     hashes: {},
   });
   const sourceItems = collectStrings(source);
+
+  if (dryRun) assertTargetHasNoCyrillic(target);
 
   const changedItems = sourceItems.filter((item) => {
     const existingTranslation = getAtPath(target, item.path);
