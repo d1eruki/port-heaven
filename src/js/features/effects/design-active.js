@@ -1,12 +1,9 @@
 import { onReady } from "../../utils/onReady";
+import { isViewportBelow } from "../../utils/breakpoints";
 import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 
 const setupDesignActive = () => {
-  const isMobile = () => {
-    const width = window.innerWidth;
-    const mobileWidth = 48 * 16;
-    return width < mobileWidth;
-  };
+  const isMobile = () => isViewportBelow("md");
 
   const designSection = document.getElementById(DOM_IDS.design);
   if (!designSection) return;

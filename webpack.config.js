@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const tailwindDefaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = (_env, argv) => {
   const mode = argv.mode || process.env.NODE_ENV || "production";
@@ -85,6 +86,7 @@ module.exports = (_env, argv) => {
         patterns: [{ from: "src/assets", to: "assets" }],
       }),
       new DefinePlugin({
+        __TAILWIND_SCREENS__: JSON.stringify(tailwindDefaultTheme.screens),
         __VUE_OPTIONS_API__: JSON.stringify(false),
         __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),

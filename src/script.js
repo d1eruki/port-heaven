@@ -5,6 +5,7 @@ import "./js/libraries/yandex-metrika";
 
 import { isHardwareAccelerationEnabled } from "./js/libraries/hw-detect";
 import { onReady } from "./js/utils/onReady";
+import { isViewportAtLeast } from "./js/utils/breakpoints";
 
 import { applyInitialTheme } from "./js/features/preferences/theme-toggle";
 import { initSections } from "./js/features/navigation/sections";
@@ -17,7 +18,7 @@ import { initRandomCounter } from "./js/features/effects/random-counter";
 const prefersReduce =
   window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hwOn = isHardwareAccelerationEnabled() && !prefersReduce;
-const screenLg = window.innerWidth >= 1024;
+const screenLg = isViewportAtLeast("lg");
 
 applyInitialTheme();
 initSections();

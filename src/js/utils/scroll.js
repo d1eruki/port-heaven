@@ -1,6 +1,7 @@
 export { getScrollY, onScroll, scrollToY } from "../libraries/scroll-instance";
+import { isViewportBelow } from "./breakpoints";
 
-export const isMobile = () => window.innerWidth < 1024;
+export const isMobile = () => isViewportBelow("lg");
 
 export const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
 

@@ -1,11 +1,12 @@
-const BP = { sm: 640, md: 768, lg: 1024, xl: 1280 };
+import { getBreakpointPx } from "../../utils/breakpoints";
+
 const CELLS = { base: 4, sm: 5, md: 6, lg: 7, xl: 8 };
 
 function pickCellCount(w) {
-  if (w >= BP.xl) return CELLS.xl;
-  if (w >= BP.lg) return CELLS.lg;
-  if (w >= BP.md) return CELLS.md;
-  if (w >= BP.sm) return CELLS.sm;
+  if (w >= getBreakpointPx("xl")) return CELLS.xl;
+  if (w >= getBreakpointPx("lg")) return CELLS.lg;
+  if (w >= getBreakpointPx("md")) return CELLS.md;
+  if (w >= getBreakpointPx("sm")) return CELLS.sm;
   return CELLS.base;
 }
 
