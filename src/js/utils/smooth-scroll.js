@@ -1,4 +1,4 @@
-import { getScrollY, scrollToY } from "../libraries/scroll-instance";
+import { getScrollY, scrollToY } from "./scroll";
 
 function prefersReducedMotion() {
   try {

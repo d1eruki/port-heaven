@@ -1,4 +1,4 @@
-import { onScroll } from "../../../libraries/scroll-instance";
+import { onScroll } from "../../../utils/scroll";
 
 export function attachSectionDotEvents({ sections, btnById, tick, setActive }) {
   onScroll(tick);

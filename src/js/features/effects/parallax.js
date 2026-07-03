@@ -1,5 +1,4 @@
-import { getScrollY, onScroll } from "../../libraries/scroll-instance";
-import { initOnLoad, clamp } from "../../utils/scroll";
+import { getScrollY, onScroll, initOnLoad, clamp } from "../../utils/scroll";
 
 const setupParallax = () => {
   const elements = document.querySelectorAll('[class*="scroll-speed-"]');

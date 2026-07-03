@@ -1,4 +1,4 @@
-import { getScrollY } from "../../../libraries/scroll-instance";
+import { getScrollY } from "../../../utils/scroll";
 import { DOM_SELECTORS } from "../../../dom/dom-selectors";
 import { chooseActiveSectionId, getViewportMetrics, measureSections } from "./active-section";
 import { createSectionDots } from "./create-section-dots";

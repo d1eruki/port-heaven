@@ -1,5 +1,5 @@
 import { onReady } from "../../utils/onReady";
-import { getScrollY, onScroll } from "../../libraries/scroll-instance";
+import { getScrollY, onScroll } from "../../utils/scroll";
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 export const initMenuDotToggler = () =>

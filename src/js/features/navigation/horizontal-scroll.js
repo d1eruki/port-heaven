@@ -1,5 +1,4 @@
-import { getScrollY, onScroll } from "../../libraries/scroll-instance";
-import { isMobile, calculateProgress, initOnLoad } from "../../utils/scroll";
+import { getScrollY, onScroll, isMobile, calculateProgress, initOnLoad } from "../../utils/scroll";
 import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 
 const setupHorizontalScroll = () => {

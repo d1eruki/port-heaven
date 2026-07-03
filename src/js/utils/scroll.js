@@ -1,4 +1,4 @@
-import { getScrollY as getCurrentScrollY } from "../libraries/scroll-instance";
+export { getScrollY, onScroll, scrollToY } from "../libraries/scroll-instance";
 
 export const isMobile = () => window.innerWidth < 1024;
 
@@ -16,5 +16,3 @@ export const initOnLoad = (initFn) => {
     window.addEventListener("load", initFn);
   }
 };
-
-export const getScrollY = getCurrentScrollY;
