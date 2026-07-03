@@ -59,6 +59,10 @@
     "buttons.open": "6b45f0159bcdf06ec99ee8d64c6306ecdd913ad0c813bb7da751adc02c5e278f",
     "buttons.toTop": "280317fd237b6a116173096c52bd5bc55d92868ffb90bd8823f50b01a826af98",
     "notices.hardwareAccelerationDisabled": "86ee8891f30705c34b06f2ab8da4332699572c47979bf276cf83dcf8a6cb3eb2",
+    "privacy.analytics.title": "fa773991fb1011c218fefb02b32d52c7dd12fa158a5112f2b2c19bb7b488c6a5",
+    "privacy.analytics.text": "0efad47a78a93db773f37699dd3298314a438a6dfa24d056f534de39cb99b48a",
+    "privacy.analytics.accept": "f70b9a847699f971a8560256e3d16a61881d11b02a687f22da3cb6b3fc915878",
+    "privacy.analytics.decline": "5b8f72b377ef0ec185daab492f561dd6c9e86bc1ecdc415ba781f152d5cd9352",
     "contacts.telegram": "cb77e96dad25eb3d442f797ea7d2352cb593b4a39c9f0d6357cb0e931a889eaf",
     "contacts.mail": "beff42c3c10b0c00684a7933a57b60e2107c35b48c4c1528ce5be76baf56f147",
     "contacts.behance": "59129789adac95a9b098ad3c92b5ee049d49c62a93fbfabd362789b6b8da81f7"

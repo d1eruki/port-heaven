@@ -120,6 +120,14 @@
   "notices": {
     "hardwareAccelerationDisabled": "Hardware acceleration is off, visual effects are disabled"
   },
+  "privacy": {
+    "analytics": {
+      "title": "analytics",
+      "text": "Yandex Metrica is enabled on this site to understand which portfolio sections people view most.",
+      "accept": "got it",
+      "decline": "hide"
+    }
+  },
   "lang-toggle": "ru",
   "theme-toggle": {
     "light": "Light theme",
