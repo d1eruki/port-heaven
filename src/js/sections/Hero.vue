@@ -7,7 +7,7 @@
     <div class="relative isolate flex min-h-svh w-full overflow-x-hidden">
       <img
         :src="heroImageSrc"
-        class="hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 h-svh w-auto justify-self-center object-cover grayscale transition-opacity duration-300 lg:right-30 lg:z-3 lg:h-9/10 lg:self-center lg:justify-self-end"
+        class="hero-image scroll-speed-50 absolute right-0 left-0 z-1 h-svh w-auto justify-self-center object-cover grayscale transition-opacity duration-300 lg:right-30 lg:z-3 lg:h-9/10 lg:self-center lg:justify-self-end"
         data-parallax-anchor="top"
         data-parallax-scale="0.0001"
         alt=""
@@ -26,7 +26,7 @@
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 756 1031"
-        class="hero-image scroll-speed-50 lg:top-50% absolute right-0 left-0 z-1 hidden h-svh w-auto justify-self-center fill-primary object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
+        class="hero-image scroll-speed-50 absolute right-0 left-0 z-1 hidden h-svh w-auto justify-self-center fill-primary object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
         data-parallax-anchor="top"
         data-parallax-scale="0.0001"
         aria-hidden="true"
