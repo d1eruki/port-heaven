@@ -22,6 +22,10 @@ Packages involved:
 - `css-loader` — allows importing CSS into JS
 - `style-loader` — injects styles into DOM during development
 
+Production JS, CSS, chunks, and imported assets use content hashes in their filenames for safer
+browser caching. Static files referenced by literal `assets/...` paths are copied from `src/assets`
+to `dist/assets` with stable filenames.
+
 ### PostCSS
 
 PostCSS is used together with Tailwind CSS v4 via `@tailwindcss/postcss` and `postcss-loader`.

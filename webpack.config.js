@@ -12,7 +12,8 @@ module.exports = {
   entry: "./src/script.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "script.js",
+    filename: isDev ? "script.js" : "script.[contenthash].js",
+    chunkFilename: isDev ? "[name].js" : "[name].[contenthash].js",
     clean: true,
   },
   mode: isDev ? "development" : "production",
@@ -34,7 +35,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: "asset/resource",
-        generator: { filename: "assets/[name][ext]" },
+        generator: { filename: isDev ? "assets/[name][ext]" : "assets/[name].[contenthash][ext]" },
       },
       {
         test: /\.vue$/,
@@ -68,7 +69,7 @@ module.exports = {
       filename: "index.html",
       inject: true,
     }),
-    ...(isDev ? [] : [new MiniCssExtractPlugin({ filename: "style.css" })]),
+    ...(isDev ? [] : [new MiniCssExtractPlugin({ filename: "style.[contenthash].css" })]),
     new CopyWebpackPlugin({
       patterns: [{ from: "src/assets", to: "assets" }],
     }),
