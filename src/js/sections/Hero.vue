@@ -43,10 +43,12 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import somaLancetImage from "../../assets/soma-lancet.webp";
+import somaLancetHoverImage from "../../assets/soma-lancet-2.webp";
 
 const { t } = useI18n();
 const isHeroHovered = ref(false);
 const heroImageSrc = computed(() =>
-  isHeroHovered.value ? "assets/soma-lancet-2.webp" : "assets/soma-lancet.webp",
+  isHeroHovered.value ? somaLancetHoverImage : somaLancetImage,
 );
 </script>

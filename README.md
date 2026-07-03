@@ -15,7 +15,6 @@ Packages involved:
 - `webpack` — the bundler
 - `webpack-cli` — command-line interface for Webpack
 - `webpack-dev-server` — local dev server with HMR
-- `copy-webpack-plugin` — copies static assets to the build
 - `html-webpack-plugin` — generates HTML and injects built assets
 - `css-minimizer-webpack-plugin` — minimizes CSS in production
 - `mini-css-extract-plugin` — extracts CSS into separate files for production
@@ -23,8 +22,8 @@ Packages involved:
 - `style-loader` — injects styles into DOM during development
 
 Production JS, CSS, chunks, and imported assets use content hashes in their filenames for safer
-browser caching. Static files referenced by literal `assets/...` paths are copied from `src/assets`
-to `dist/assets` with stable filenames.
+browser caching. Project assets are imported through Webpack from `src/assets`; avoid literal
+`assets/...` paths for local files so unused assets are not copied into production builds.
 
 ### PostCSS
 
@@ -76,6 +75,7 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 
 - `@iconify/tailwind4` — Iconify integration for Tailwind CSS v4
 - `@iconify-json/ic` — Iconify icon set (Material Icons)
+- `@iconify-json/eva` — Iconify icon set (Eva Icons)
 
 ### UI Utilities
 

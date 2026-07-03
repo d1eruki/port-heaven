@@ -2,7 +2,6 @@ const path = require("path");
 const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const tailwindDefaultTheme = require("tailwindcss/defaultTheme");
@@ -50,6 +49,13 @@ module.exports = (_env, argv) => {
           },
         },
         {
+          test: /\.mp4$/i,
+          type: "asset/resource",
+          generator: {
+            filename: isDev ? "assets/[name][ext]" : "assets/[name].[contenthash][ext]",
+          },
+        },
+        {
           test: /\.vue$/,
           loader: "vue-loader",
         },
@@ -80,11 +86,9 @@ module.exports = (_env, argv) => {
         template: "src/index.html",
         filename: "index.html",
         inject: true,
+        favicon: "src/assets/favicon.png",
       }),
       ...(isDev ? [] : [new MiniCssExtractPlugin({ filename: "style.[contenthash].css" })]),
-      new CopyWebpackPlugin({
-        patterns: [{ from: "src/assets", to: "assets" }],
-      }),
       new DefinePlugin({
         __TAILWIND_SCREENS__: JSON.stringify(tailwindDefaultTheme.screens),
         __VUE_OPTIONS_API__: JSON.stringify(false),

@@ -9,12 +9,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const assetsDir = path.join(rootDir, "dist", "assets");
 const supportedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
-const resizeTargets = new Map([
-  ["dist/assets/creatives/postcard.webp", { width: 1000 }],
-  ["dist/assets/soma.webp", { width: 1000 }],
-  ["dist/assets/creatives/siyay.webp", { width: 1600 }],
-]);
-const videoTargets = ["dist/assets/creatives/varwin-opening.mp4"];
+const supportedVideoExtensions = new Set([".mp4"]);
+const resizeTargets = [
+  { pattern: /^postcard(?:\.[a-f0-9]+)?\.webp$/i, resize: { width: 1000 } },
+  { pattern: /^soma(?:\.[a-f0-9]+)?\.webp$/i, resize: { width: 1000 } },
+  { pattern: /^siyay(?:\.[a-f0-9]+)?\.webp$/i, resize: { width: 1600 } },
+];
+const videoTargets = [/^varwin-opening(?:\.[a-f0-9]+)?\.mp4$/i];
 
 const formatBytes = (bytes) => `${(bytes / 1024).toFixed(1)} KiB`;
 
@@ -34,10 +35,35 @@ const collectImages = async (dir) => {
   return files.flat();
 };
 
+const collectVideos = async (dir) => {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files = await Promise.all(
+    entries.map(async (entry) => {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) return collectVideos(fullPath);
+      if (!entry.isFile()) return [];
+
+      const ext = path.extname(entry.name).toLowerCase();
+      return supportedVideoExtensions.has(ext) ? [fullPath] : [];
+    }),
+  );
+
+  return files.flat();
+};
+
+const findResizeTarget = (filePath) => {
+  const basename = path.basename(filePath);
+  return resizeTargets.find((target) => target.pattern.test(basename))?.resize;
+};
+
+const isVideoTarget = (filePath) => {
+  const basename = path.basename(filePath);
+  return videoTargets.some((pattern) => pattern.test(basename));
+};
+
 const optimizeImage = async (filePath) => {
   const ext = path.extname(filePath).toLowerCase();
-  const relativePath = path.relative(rootDir, filePath);
-  const resizeTarget = resizeTargets.get(relativePath);
+  const resizeTarget = findResizeTarget(filePath);
   const before = (await stat(filePath)).size;
   const tempPath = `${filePath}.tmp`;
 
@@ -83,8 +109,7 @@ const runFfmpeg = (args) =>
     });
   });
 
-const optimizeVideo = async (relativePath) => {
-  const filePath = path.join(rootDir, relativePath);
+const optimizeVideo = async (filePath) => {
   const before = (await stat(filePath)).size;
   const tempPath = `${filePath}.tmp.mp4`;
 
@@ -118,8 +143,9 @@ const optimizeVideo = async (relativePath) => {
 
 const main = async () => {
   const images = await collectImages(assetsDir);
+  const videos = (await collectVideos(assetsDir)).filter(isVideoTarget);
   const imageResults = await Promise.all(images.map((filePath) => optimizeImage(filePath)));
-  const videoResults = await Promise.all(videoTargets.map((filePath) => optimizeVideo(filePath)));
+  const videoResults = await Promise.all(videos.map((filePath) => optimizeVideo(filePath)));
   const results = [...imageResults, ...videoResults];
   const changed = results.filter((result) => result.changed);
   const imageChanged = imageResults.filter((result) => result.changed);
