@@ -69,8 +69,20 @@ test("section dot navigation targets the explicit section nav", async ({ page })
 
   const sectionNav = page.locator("[data-section-nav]");
   const dots = sectionNav.locator("button.dot");
+  const expectedSections = [
+    "hero",
+    "description",
+    "about",
+    "projects",
+    "design",
+    "creatives",
+    "footer",
+  ];
 
-  await expect(dots).toHaveCount(6);
+  await expect(dots).toHaveCount(expectedSections.length);
+  await expect
+    .poll(() => dots.evaluateAll((items) => items.map((item) => item.ariaLabel)))
+    .toEqual(expectedSections);
   await sectionNav.getByRole("button", { name: "projects" }).click();
 
   await expect.poll(() => page.evaluate(() => location.hash)).toBe("#projects");
