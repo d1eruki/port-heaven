@@ -2,7 +2,6 @@
   * {
     font-family: "JetBrains Mono", monospace;
     font-optical-sizing: auto;
-    cursor: none;
     line-height: 1;
     /* text-wrap: balance;
     word-break: normal;
@@ -11,6 +10,10 @@
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .use-custom-cursor * {
+    cursor: none;
   }
 
   h1,
