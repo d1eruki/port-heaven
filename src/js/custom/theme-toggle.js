@@ -1,6 +1,6 @@
 import { t } from "../libraries/i18n";
 import { onReady } from "../utils/onReady";
-import { DOM_IDS, DOM_SELECTORS } from "./dom-selectors";
+import { DOM_SELECTORS } from "./dom-selectors";
 
 const root = document.documentElement;
 const THEME_STORAGE_KEY = "theme";
@@ -31,7 +31,7 @@ export const applyInitialTheme = () => {
 const getTargetTheme = () => (root.getAttribute("data-theme") === "dark" ? "light" : "dark");
 
 const updateThemeToggleLabel = () => {
-  const btn = document.getElementById(DOM_IDS.themeToggle);
+  const btn = document.querySelector(DOM_SELECTORS.themeToggle);
   if (!btn) return;
 
   const label = t(`theme-toggle.${getTargetTheme()}`);
@@ -46,7 +46,7 @@ const updateThemeToggleLabel = () => {
 
 export const initThemeToggle = () => {
   onReady(function () {
-    const btn = document.getElementById(DOM_IDS.themeToggle);
+    const btn = document.querySelector(DOM_SELECTORS.themeToggle);
     if (btn) {
       updateThemeToggleLabel();
 
