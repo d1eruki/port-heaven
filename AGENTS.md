@@ -29,6 +29,20 @@ Do not manually duplicate Tailwind's default values, especially breakpoints, spa
 
 Add custom CSS variables, custom utilities, or project-specific theme tokens only when Tailwind's built-in behavior is insufficient or the value is a deliberate project token. If JavaScript needs Tailwind values, prefer build-time access to Tailwind defaults or already-declared project theme variables instead of hardcoding numeric copies.
 
+## Formatting
+
+After making code, markup, style, or documentation changes, run Prettier through the project's existing script before handing off the work:
+
+```sh
+npm run format
+```
+
+If only checking the current state without modifying files, use:
+
+```sh
+npm run format:check
+```
+
 ## Dependencies and Accessibility
 
 Whenever new dependencies are added, update the `README` with the relevant setup, usage, or dependency notes.

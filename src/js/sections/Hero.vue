@@ -48,7 +48,5 @@ import somaLancetHoverImage from "../../assets/soma-lancet-2.webp";
 
 const { t } = useI18n();
 const isHeroHovered = ref(false);
-const heroImageSrc = computed(() =>
-  isHeroHovered.value ? somaLancetHoverImage : somaLancetImage,
-);
+const heroImageSrc = computed(() => (isHeroHovered.value ? somaLancetHoverImage : somaLancetImage));
 </script>
