@@ -18,6 +18,7 @@
         :is="creative.type === 'video' ? VideoCreative : ImgCreative"
         v-for="creative in creatives"
         :key="creative.src"
+        :creative-alt="creative.alt"
         :creative-src="creative.src"
         :col="creative.col"
         :col-span="creative.colSpan"

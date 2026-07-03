@@ -6,7 +6,7 @@
     <img
       class="transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0"
       :src="creativeSrc"
-      alt="post-card"
+      :alt="creativeAlt"
       loading="lazy"
       decoding="async"
     />
@@ -18,6 +18,7 @@ import { computed } from "vue";
 
 const props = defineProps({
   creativeSrc: { type: String, required: true },
+  creativeAlt: { type: String, required: true },
   row: { type: [Number, String], required: true, default: 1 },
   rowSpan: { type: Number, default: 1 },
   col: { type: [Number, String], required: true, default: 1 },

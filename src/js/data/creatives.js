@@ -2,6 +2,7 @@ export const creatives = [
   {
     type: "image",
     src: "assets/creatives/postcard.webp",
+    alt: "Postcard creative layout",
     col: 2,
     colSpan: 5,
     row: 2,
@@ -18,6 +19,7 @@ export const creatives = [
   {
     type: "image",
     src: "assets/creatives/saasoft.webp",
+    alt: "Saasoft creative layout",
     col: 3,
     colSpan: 6,
     row: 4,
@@ -26,6 +28,7 @@ export const creatives = [
   {
     type: "image",
     src: "assets/creatives/siyay.webp",
+    alt: "Siyay creative layout",
     col: 14,
     colSpan: 6,
     row: 5,
