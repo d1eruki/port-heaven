@@ -21,6 +21,14 @@ When a library is already used for a task, prefer the library's built-in behavio
 
 Do not reimplement, bypass, or patch around baseline library behavior unless the built-in behavior is insufficient for the specific requirement. If a workaround is necessary, explain why the standard library behavior cannot handle the case.
 
+## Tailwind Usage
+
+When working with Tailwind, prefer built-in Tailwind classes, theme tokens, CSS variables, variants, and documented APIs over custom CSS, custom utilities, or hardcoded values.
+
+Do not manually duplicate Tailwind's default values, especially breakpoints, spacing, colors, typography, shadows, radii, transitions, or z-index values. Use Tailwind's base classes and default theme values where they already express the required behavior.
+
+Add custom CSS variables, custom utilities, or project-specific theme tokens only when Tailwind's built-in behavior is insufficient or the value is a deliberate project token. If JavaScript needs Tailwind values, prefer build-time access to Tailwind defaults or already-declared project theme variables instead of hardcoding numeric copies.
+
 ## Dependencies and Accessibility
 
 Whenever new dependencies are added, update the `README` with the relevant setup, usage, or dependency notes.
