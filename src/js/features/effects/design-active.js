@@ -1,6 +1,7 @@
-import { onReady } from "../../utils/onReady";
 import { isViewportBelow } from "../../utils/breakpoints";
 import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
+import { VARIANT_FEATURES } from "../../variants/registry";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
 
 const setupDesignActive = () => {
   const isMobile = () => isViewportBelow("md");
@@ -80,6 +81,17 @@ const setupDesignActive = () => {
   mutationObserver.observe(designSection, { childList: true, subtree: true });
 
   observerCallback();
+
+  return () => {
+    mutationObserver.disconnect();
+    designObserver.disconnect();
+    trackedElements.forEach((el) => el.classList.remove("design-active"));
+    trackedElements = new Set();
+  };
 };
 
-export const initDesignActive = () => onReady(setupDesignActive);
+export const initDesignActive = () =>
+  onVariantLayoutReady({
+    feature: VARIANT_FEATURES.DESIGN_ACTIVE,
+    setup: setupDesignActive,
+  });

@@ -1,7 +1,7 @@
 import { lenis } from "../../libraries/lenis";
 import { getScrollY, onScroll } from "../../utils/scroll";
 import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
-import { LANCET_VARIANT } from "../../variants/registry";
+import { VARIANT_FEATURES } from "../../variants/registry";
 import {
   chooseActiveSectionId,
   getViewportMetrics,
@@ -169,6 +169,6 @@ const setupSectionScroll = () => {
 
 export const initLancetSectionScroll = () =>
   onVariantLayoutReady({
-    variants: LANCET_VARIANT,
+    feature: VARIANT_FEATURES.LANCET_SECTION_SCROLL,
     setup: setupSectionScroll,
   });

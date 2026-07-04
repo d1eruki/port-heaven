@@ -1,4 +1,6 @@
-import { getScrollY, onScroll, initOnLoad, clamp } from "../../utils/scroll";
+import { getScrollY, onScroll, clamp } from "../../utils/scroll";
+import { VARIANT_FEATURES } from "../../variants/registry";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
 
 const setupParallax = () => {
   const elements = document.querySelectorAll('[class*="scroll-speed-"]');
@@ -51,16 +53,31 @@ const setupParallax = () => {
   };
 
   update();
-  onScroll(update);
+  const offScroll = onScroll(update);
 
-  window.addEventListener("resize", () => {
+  const onResize = () => {
     items.forEach((item) => {
       item.el.style.setProperty("--parallax-offset", "0px");
       const rect = item.el.getBoundingClientRect();
       item.initialY = rect.top + getScrollY();
     });
     update();
-  });
+  };
+
+  window.addEventListener("resize", onResize);
+
+  return () => {
+    if (typeof offScroll === "function") offScroll();
+    window.removeEventListener("resize", onResize);
+    items.forEach((item) => {
+      item.el.style.removeProperty("--parallax-offset");
+      item.el.style.removeProperty("--parallax-scale");
+    });
+  };
 };
 
-export const initParallax = () => initOnLoad(setupParallax);
+export const initParallax = () =>
+  onVariantLayoutReady({
+    feature: VARIANT_FEATURES.PARALLAX,
+    setup: setupParallax,
+  });

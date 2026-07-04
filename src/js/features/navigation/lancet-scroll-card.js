@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
-import { LANCET_VARIANT } from "../../variants/registry";
+import { VARIANT_FEATURES } from "../../variants/registry";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,7 +84,7 @@ const setupScrollCards = () => {
 
 export const initLancetScrollCard = () =>
   onVariantLayoutReady({
-    variants: LANCET_VARIANT,
+    feature: VARIANT_FEATURES.LANCET_SCROLL_CARD,
     setup: () => {
       setupScrollCards();
       const refresh = () => ScrollTrigger.refresh();

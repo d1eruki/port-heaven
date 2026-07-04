@@ -1,5 +1,5 @@
 import { initOnLoad } from "../../utils/scroll";
-import { BASE_VARIANT } from "../../variants/registry";
+import { BASE_VARIANT, variantHasFeature } from "../../variants/registry";
 
 const root = document.documentElement;
 
@@ -10,16 +10,27 @@ const normalizeList = (value) => {
 
 export const getActiveVariant = () => root.getAttribute("data-variant") || BASE_VARIANT;
 
-export const matchesVariant = (variant, { variants = null, exclude = null } = {}) => {
+export const matchesVariant = (
+  variant,
+  { variants = null, exclude = null, feature = null } = {},
+) => {
   const allowed = normalizeList(variants);
   const excluded = normalizeList(exclude);
+  const features = normalizeList(feature);
 
   if (excluded?.includes(variant)) return false;
+  if (features && !features.some((item) => variantHasFeature(variant, item))) return false;
 
   return !allowed || allowed.includes(variant);
 };
 
-export const onVariantLayoutReady = ({ variants = null, exclude = null, setup, cleanup }) => {
+export const onVariantLayoutReady = ({
+  variants = null,
+  exclude = null,
+  feature = null,
+  setup,
+  cleanup,
+}) => {
   let activeCleanup = null;
   let isListening = false;
 
@@ -31,7 +42,7 @@ export const onVariantLayoutReady = ({ variants = null, exclude = null, setup, c
 
   const runSetup = (variant = getActiveVariant()) => {
     teardown();
-    if (!matchesVariant(variant, { variants, exclude })) return;
+    if (!matchesVariant(variant, { variants, exclude, feature })) return;
 
     const result = setup?.({ variant });
     if (typeof result === "function") activeCleanup = result;

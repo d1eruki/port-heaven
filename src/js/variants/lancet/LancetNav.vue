@@ -34,21 +34,29 @@
     <div class="flex gap-5">
       <a
         class="w-fit"
-        href="mailto:stapps90@gmail.com"
+        :href="contacts.mail.url"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Mail"
       >
-        <span class="icon-[ic--baseline-alternate-email] size-7.5"></span>
+        <span
+          class="icon-[ic--baseline-alternate-email] size-7.5"
+          aria-hidden="true"
+          focusable="false"
+        ></span>
       </a>
       <a
         class="w-fit"
-        href="https://t.me/d1eruki"
+        :href="contacts.telegram.url"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Telegram"
       >
-        <span class="icon-[ic--baseline-telegram] size-7.5"></span>
+        <span
+          class="icon-[ic--baseline-telegram] size-7.5"
+          aria-hidden="true"
+          focusable="false"
+        ></span>
       </a>
       <button
         id="variant-toggler"
@@ -69,6 +77,7 @@
 <script setup>
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import { contacts } from "../../data/contacts";
 import { getTargetVariant, setVariant } from "../../features/preferences/variant-toggle";
 import { getVariantLabel } from "../registry";
 

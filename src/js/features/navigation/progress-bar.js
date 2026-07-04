@@ -5,6 +5,8 @@ import {
   scrollToY as scrollWindowToY,
 } from "../../utils/scroll";
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
+import { VARIANT_FEATURES } from "../../variants/registry";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
 
 export const updateProgressBar = (scrollY) => {
   const progressBar = document.querySelector(DOM_SELECTORS.progressBar);
@@ -18,6 +20,7 @@ export const updateProgressBar = (scrollY) => {
 };
 
 const SCROLL_STORAGE_KEY = "scrollY";
+let hasRestoredScrollPosition = false;
 
 const resetHorizontalScroll = () => {
   document.documentElement.scrollLeft = 0;
@@ -57,18 +60,22 @@ const restoreScrollPosition = () => {
   });
 };
 
-export const initProgressBar = () => {
+const setupProgressBar = () => {
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
   }
 
-  window.addEventListener("beforeunload", () => {
+  const onBeforeUnload = () => {
     try {
       localStorage.setItem(SCROLL_STORAGE_KEY, getScrollY().toString());
     } catch {}
-  });
+  };
+
+  window.addEventListener("beforeunload", onBeforeUnload);
 
   const onLoad = () => {
+    if (hasRestoredScrollPosition) return;
+    hasRestoredScrollPosition = true;
     restoreScrollPosition();
   };
 
@@ -78,9 +85,24 @@ export const initProgressBar = () => {
     window.addEventListener("load", onLoad);
   }
 
-  window.addEventListener("resize", () => {
+  const onResize = () => {
     updateProgressBar(getScrollY());
-  });
+  };
 
-  onScroll((scrollY) => updateProgressBar(scrollY));
+  window.addEventListener("resize", onResize);
+
+  const offScroll = onScroll((scrollY) => updateProgressBar(scrollY));
+
+  return () => {
+    window.removeEventListener("beforeunload", onBeforeUnload);
+    window.removeEventListener("load", onLoad);
+    window.removeEventListener("resize", onResize);
+    if (typeof offScroll === "function") offScroll();
+  };
 };
+
+export const initProgressBar = () =>
+  onVariantLayoutReady({
+    feature: VARIANT_FEATURES.PROGRESS_BAR,
+    setup: setupProgressBar,
+  });

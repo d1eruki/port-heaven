@@ -1,6 +1,8 @@
 import VanillaTilt from "vanilla-tilt";
+import { VARIANT_FEATURES } from "../variants/registry";
+import { onVariantLayoutReady } from "../features/preferences/variant-lifecycle";
 
-export function initVanillaTilt() {
+const setupVanillaTilt = () => {
   const cards = document.querySelectorAll(".vanilla-tilt-creatives");
   if (!cards.length) return;
 
@@ -18,5 +20,18 @@ export function initVanillaTilt() {
       transition: true,
       scale: 1.5,
     });
+  });
+
+  return () => {
+    cards.forEach((card) => {
+      card.vanillaTilt?.destroy?.();
+    });
+  };
+};
+
+export function initVanillaTilt() {
+  onVariantLayoutReady({
+    feature: VARIANT_FEATURES.VANILLA_TILT,
+    setup: setupVanillaTilt,
   });
 }

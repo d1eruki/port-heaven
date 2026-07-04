@@ -1,4 +1,6 @@
 import { getBreakpointPx } from "../../utils/breakpoints";
+import { VARIANT_FEATURES } from "../../variants/registry";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
 
 const CELLS = { base: 4, sm: 5, md: 6, lg: 7, xl: 8 };
 
@@ -28,7 +30,19 @@ function updateGrid() {
   root.style.setProperty("--cell-count", count);
 }
 
-export function initHeroBgCells() {
-  window.addEventListener("resize", debounce(updateGrid, 100));
+const setupHeroBgCells = () => {
+  const onResize = debounce(updateGrid, 100);
+  window.addEventListener("resize", onResize);
   updateGrid();
+
+  return () => {
+    window.removeEventListener("resize", onResize);
+  };
+};
+
+export function initHeroBgCells() {
+  onVariantLayoutReady({
+    feature: VARIANT_FEATURES.HERO_BG_CELLS,
+    setup: setupHeroBgCells,
+  });
 }

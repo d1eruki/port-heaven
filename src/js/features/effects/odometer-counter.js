@@ -1,4 +1,6 @@
 import { onReady } from "../../utils/onReady";
+import { VARIANT_FEATURES } from "../../variants/registry";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
 
 const initializedCounters = new WeakSet();
 let odometerPromise = null;
@@ -13,7 +15,7 @@ const loadOdometer = () => {
 };
 
 const createOdometer = (el, value, Odometer) => {
-  if (initializedCounters.has(el)) return;
+  if (initializedCounters.has(el)) return null;
 
   initializedCounters.add(el);
 
@@ -33,7 +35,7 @@ const createOdometer = (el, value, Odometer) => {
 
   if (!("IntersectionObserver" in window)) {
     updateCounter();
-    return;
+    return null;
   }
 
   const observer = new IntersectionObserver(
@@ -51,18 +53,37 @@ const createOdometer = (el, value, Odometer) => {
   );
 
   observer.observe(el);
+
+  return () => {
+    observer.disconnect();
+  };
 };
 
 export const initOdometerCounter = () => {
-  onReady(async () => {
-    const counters = document.querySelectorAll(".counter");
-    if (counters.length === 0) return;
+  onVariantLayoutReady({
+    feature: VARIANT_FEATURES.ODOMETER_COUNTER,
+    setup: () => {
+      let cancelled = false;
+      const cleanups = [];
 
-    const Odometer = await loadOdometer();
+      onReady(async () => {
+        const counters = document.querySelectorAll(".counter");
+        if (counters.length === 0 || cancelled) return;
 
-    counters.forEach((counter) => {
-      const targetNumber = parseInt(counter.dataset.target || "", 10) || 0;
-      createOdometer(counter, targetNumber, Odometer);
-    });
+        const Odometer = await loadOdometer();
+        if (cancelled) return;
+
+        counters.forEach((counter) => {
+          const targetNumber = parseInt(counter.dataset.target || "", 10) || 0;
+          const cleanup = createOdometer(counter, targetNumber, Odometer);
+          if (typeof cleanup === "function") cleanups.push(cleanup);
+        });
+      });
+
+      return () => {
+        cancelled = true;
+        cleanups.forEach((cleanup) => cleanup());
+      };
+    },
   });
 };

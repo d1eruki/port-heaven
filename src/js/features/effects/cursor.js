@@ -1,6 +1,8 @@
 import { t } from "../../libraries/i18n";
+import { VARIANT_FEATURES } from "../../variants/registry";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
 
-export const initCursor = () => {
+const setupCursor = () => {
   const supportsFine = matchMedia("(pointer: fine)").matches;
   const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!supportsFine || prefersReduced) return;
@@ -65,67 +67,74 @@ export const initCursor = () => {
   const onPointerMove = (e) => {
     moveTo(e.clientX, e.clientY);
   };
-  document.addEventListener("pointermove", onPointerMove, { passive: true });
-
-  document.addEventListener(
-    "pointerenter",
-    (e) => {
-      moveTo(e.clientX, e.clientY);
-      cursor.style.opacity = "1";
-    },
-    { passive: true },
-  );
-
-  // Обновляем активность при смене ховера
-  document.addEventListener(
-    "pointerover",
-    (e) => {
-      if (!initialized) moveTo(e.clientX, e.clientY);
-      updateActive(e.target);
-    },
-    { passive: true },
-  );
-
-  document.addEventListener(
-    "pointerout",
-    (e) => {
-      updateActive(e.relatedTarget || document.body);
-    },
-    { passive: true },
-  );
-
-  document.addEventListener(
-    "mousemove",
-    (e) => {
-      if (!initialized) moveTo(e.clientX, e.clientY);
-    },
-    { passive: true, once: true },
-  );
-
-  document.addEventListener(
-    "pointerleave",
-    () => {
-      cursor.style.opacity = "0";
-    },
-    { passive: true },
-  );
-
-  document.addEventListener("visibilitychange", () => {
+  const onPointerEnter = (e) => {
+    moveTo(e.clientX, e.clientY);
+    cursor.style.opacity = "1";
+  };
+  const onPointerOver = (e) => {
+    if (!initialized) moveTo(e.clientX, e.clientY);
+    updateActive(e.target);
+  };
+  const onPointerOut = (e) => {
+    updateActive(e.relatedTarget || document.body);
+  };
+  const onMouseMove = (e) => {
+    if (!initialized) moveTo(e.clientX, e.clientY);
+  };
+  const onPointerLeave = () => {
+    cursor.style.opacity = "0";
+  };
+  const onVisibilityChange = () => {
     if (document.visibilityState === "visible" && initialized) {
       cursor.style.opacity = "1";
     } else {
       cursor.style.opacity = "0";
     }
-  });
-
-  window.addEventListener("blur", () => {
+  };
+  const onBlur = () => {
     cursor.style.opacity = "0";
-  });
-  window.addEventListener("focus", () => {
+  };
+  const onFocus = () => {
     if (initialized) cursor.style.opacity = "1";
-  });
-
-  window.addEventListener("resize", () => {
+  };
+  const onResize = () => {
     if (initialized) render();
+  };
+
+  document.addEventListener("pointermove", onPointerMove, { passive: true });
+  document.addEventListener("pointerenter", onPointerEnter, { passive: true });
+
+  // Обновляем активность при смене ховера
+  document.addEventListener("pointerover", onPointerOver, { passive: true });
+  document.addEventListener("pointerout", onPointerOut, { passive: true });
+  document.addEventListener("mousemove", onMouseMove, { passive: true, once: true });
+  document.addEventListener("pointerleave", onPointerLeave, { passive: true });
+  document.addEventListener("visibilitychange", onVisibilityChange);
+
+  window.addEventListener("blur", onBlur);
+  window.addEventListener("focus", onFocus);
+  window.addEventListener("resize", onResize);
+
+  return () => {
+    if (rafId != null) cancelAnimationFrame(rafId);
+    document.removeEventListener("pointermove", onPointerMove);
+    document.removeEventListener("pointerenter", onPointerEnter);
+    document.removeEventListener("pointerover", onPointerOver);
+    document.removeEventListener("pointerout", onPointerOut);
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("pointerleave", onPointerLeave);
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+    window.removeEventListener("blur", onBlur);
+    window.removeEventListener("focus", onFocus);
+    window.removeEventListener("resize", onResize);
+    root.classList.remove("use-custom-cursor");
+    cursor.remove();
+  };
+};
+
+export const initCursor = () => {
+  onVariantLayoutReady({
+    feature: VARIANT_FEATURES.CURSOR,
+    setup: setupCursor,
   });
 };
