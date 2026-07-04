@@ -15,7 +15,7 @@
         <article
           v-for="project in translatedProjects"
           :key="project.titleKey"
-          class="project light:bg-(--color-white) project absolute top-0 left-0 col-span-1 flex h-full w-full flex-col gap-5 border border-solid border-black will-change-transform lg:rounded-4xl"
+          class="project project absolute top-0 left-0 col-span-1 flex h-full w-full flex-col gap-5 border border-solid border-black will-change-transform lg:rounded-4xl light:bg-(--color-white)"
         >
           <div class="flex h-full flex-col gap-5 p-5 lg:justify-between lg:p-15">
             <div class="flex flex-col gap-5">
@@ -28,7 +28,7 @@
                   class="flex"
                 >
                   <small
-                    class="light:text-(--color-black) rounded-4xl border border-solid border-black px-5 py-2.5"
+                    class="rounded-4xl border border-solid border-black px-5 py-2.5 light:text-(--color-black)"
                   >
                     {{ getTagName(tag) }}
                   </small>
@@ -40,7 +40,7 @@
               <a
                 v-for="(link, index) in project.links"
                 :key="index"
-                class="light:bg-(--color-black) active flex w-fit rounded-full px-5 py-2.5 lg:px-10 lg:py-5"
+                class="active flex w-fit rounded-full px-5 py-2.5 lg:px-10 lg:py-5 light:bg-(--color-black)"
                 :href="link.url"
                 target="_blank"
                 rel="noopener noreferrer"

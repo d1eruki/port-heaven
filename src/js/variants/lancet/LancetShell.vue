@@ -6,7 +6,7 @@
     <LancetNav />
     <div
       id="progress-bar"
-      class="progress-bar light:bg-(--color-white) fixed top-0 right-0"
+      class="progress-bar fixed top-0 right-0 light:bg-(--color-white)"
     ></div>
     <LancetAbout />
     <LancetProjects />

@@ -248,8 +248,8 @@
     background:
       linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top left /
         var(--cf-length) var(--cf-size) no-repeat,
-      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top left /
-        var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top left / var(--cf-size)
+        var(--cf-length) no-repeat,
       linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top right /
         var(--cf-length) var(--cf-size) no-repeat,
       linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top right /

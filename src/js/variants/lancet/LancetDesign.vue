@@ -16,7 +16,7 @@
       rel="noopener noreferrer"
       class="group design relative z-10 grid gap-5 p-10 hover:z-100 lg:h-150 lg:items-center lg:rounded-4xl"
     >
-      <h4 class="light:text-(--color-white) flex gap-3 group-hover:lg:text-(--color-black)">
+      <h4 class="flex gap-3 group-hover:lg:text-(--color-black) light:text-(--color-white)">
         {{ design.name }}
       </h4>
       <div
@@ -25,7 +25,7 @@
         <div
           v-for="(tag, index) in design.tags"
           :key="index"
-          class="light:text-(--color-grey) flex gap-2.5"
+          class="flex gap-2.5 light:text-(--color-grey)"
         >
           <small class="flex gap-2.5">
             <span
@@ -40,7 +40,9 @@
           </small>
         </div>
       </div>
-      <p class="right-10 bottom-10 left-10 block self-end lg:absolute lg:hidden lg:group-hover:block">
+      <p
+        class="right-10 bottom-10 left-10 block self-end lg:absolute lg:hidden lg:group-hover:block"
+      >
         {{ design.description }}
       </p>
     </a>
