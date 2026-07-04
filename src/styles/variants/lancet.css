@@ -171,6 +171,12 @@
     animation: noise 1s steps(2) infinite;
   }
 
+  .lancet-shell .lancet-soma {
+    max-width: none;
+    transform: translateY(var(--parallax-offset, 0));
+    will-change: transform;
+  }
+
   .lancet-shell .glow-xl {
     filter: drop-shadow(0 0 200px #ffffff);
   }

@@ -19,7 +19,9 @@
     ></div>
     <img
       alt=""
-      class="fixed right-[5%] bottom-0 -z-1 md:h-[85%]"
+      aria-hidden="true"
+      class="lancet-soma scroll-speed---8 pointer-events-none fixed right-[5%] bottom-0 -z-1 md:h-[85%]"
+      data-parallax-anchor="top"
       :src="somaImage"
     />
   </div>

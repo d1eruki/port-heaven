@@ -31,10 +31,14 @@
             <span
               v-if="isAdaptiveTag(tag)"
               class="icon-[ic--baseline-phone-android]"
+              aria-hidden="true"
+              focusable="false"
             ></span>
             <span
               v-if="isDesktopTag(tag)"
               class="icon-[ic--baseline-monitor]"
+              aria-hidden="true"
+              focusable="false"
             ></span>
             {{ getTagName(tag) }}
           </small>
