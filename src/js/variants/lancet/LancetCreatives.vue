@@ -11,13 +11,13 @@
       <p>{{ t("menu.creatives.description") }}</p>
     </div>
     <div
-      v-for="creative in creatives"
+      v-for="creative in lancetCreatives"
       :key="creative.src"
       class="card-rotate h-fit"
       :style="getCreativeGridStyle(creative)"
     >
       <img
-        v-if="creative.type === 'image'"
+        v-if="!creative.isVideo"
         class="card-rotate-face backface-hidden"
         :src="creative.src"
         :alt="creative.alt"
@@ -59,6 +59,9 @@
 import { useI18n } from "vue-i18n";
 import { creatives } from "../../data/creatives";
 import { getCreativeGridStyle } from "../../utils/creative-grid-style";
+import { adaptLancetCreatives } from "./adapters/creatives";
 
 const { t } = useI18n();
+
+const lancetCreatives = adaptLancetCreatives(creatives);
 </script>

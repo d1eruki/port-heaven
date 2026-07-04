@@ -59,25 +59,10 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { projects } from "../../data/projects";
+import { adaptLancetProjects } from "./adapters/projects";
+import { getTagName } from "./adapters/tags";
 
 const { t } = useI18n();
 
-const getTagName = (tag) => {
-  if (tag == null) return "";
-  if (typeof tag === "string" || typeof tag === "number") return String(tag);
-  return tag.name || tag.label || tag.title || "";
-};
-
-const translatedProjects = computed(() =>
-  projects.map((project) => ({
-    ...project,
-    name: t(project.titleKey),
-    description: t(project.descriptionKey),
-    text: project.textKeys.map((key) => t(key)).join(" "),
-    links: project.links.map((link) => ({
-      url: link.url,
-      name: t(link.labelKey),
-    })),
-  })),
-);
+const translatedProjects = computed(() => adaptLancetProjects(t, projects));
 </script>

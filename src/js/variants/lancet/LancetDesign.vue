@@ -29,11 +29,11 @@
         >
           <small class="flex gap-2.5">
             <span
-              v-if="isAdaptiveLanding(tag)"
+              v-if="isAdaptiveTag(tag)"
               class="icon-[ic--baseline-phone-android]"
             ></span>
             <span
-              v-if="isDesktopLanding(tag)"
+              v-if="isDesktopTag(tag)"
               class="icon-[ic--baseline-monitor]"
             ></span>
             {{ getTagName(tag) }}
@@ -53,23 +53,10 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { designs } from "../../data/designs";
+import { adaptLancetDesigns } from "./adapters/designs";
+import { getTagName, isAdaptiveTag, isDesktopTag } from "./adapters/tags";
 
 const { t } = useI18n();
 
-const getTagName = (tag) => {
-  if (tag == null) return "";
-  if (typeof tag === "string" || typeof tag === "number") return String(tag);
-  return tag.name || tag.label || tag.title || "";
-};
-
-const isAdaptiveLanding = (tag) => (getTagName(tag) || "").toLowerCase().includes("adaptive");
-const isDesktopLanding = (tag) => (getTagName(tag) || "").toLowerCase().includes("desktop");
-
-const translatedDesigns = computed(() =>
-  designs.map((design) => ({
-    ...design,
-    name: t(design.titleKey),
-    description: t(design.textKey),
-  })),
-);
+const translatedDesigns = computed(() => adaptLancetDesigns(t, designs));
 </script>
