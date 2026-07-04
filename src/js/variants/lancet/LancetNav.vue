@@ -69,19 +69,12 @@
 <script setup>
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import {
-  BASE_VARIANT,
-  currentVariant,
-  getTargetVariant,
-  LANCET_VARIANT,
-  setVariant,
-} from "../../features/preferences/variant-toggle";
+import { getTargetVariant, setVariant } from "../../features/preferences/variant-toggle";
+import { getVariantLabel } from "../registry";
 
 const { t } = useI18n();
 
-const variantToggleLabel = computed(() =>
-  currentVariant.value === LANCET_VARIANT ? BASE_VARIANT : LANCET_VARIANT,
-);
+const variantToggleLabel = computed(() => getVariantLabel(getTargetVariant()));
 
 const items = computed(() => [
   { id: "about", label: t("menu.about.title") },

@@ -2,7 +2,7 @@
   <section
     data-section="design"
     id="design"
-    class="grid min-h-dvh grid-cols-1 pr-[5px] lg:ml-50 lg:auto-rows-fr lg:grid-cols-3"
+    class="grid min-h-dvh grid-cols-1 pr-1.25 lg:ml-50 lg:auto-rows-fr lg:grid-cols-3"
   >
     <div class="col-span-1 grid h-fit content-center gap-5 p-10 lg:top-0 lg:h-full">
       <h2 class="glow-lg">{{ t("menu.designs.title") }}</h2>
@@ -16,7 +16,7 @@
       rel="noopener noreferrer"
       class="group design relative z-10 grid gap-5 p-10 hover:z-100 lg:h-150 lg:items-center lg:rounded-4xl"
     >
-      <h4 class="flex gap-3 group-hover:lg:text-(--color-black) light:text-(--color-white)">
+      <h4 class="flex gap-3 group-hover:lg:text-black light:text-white">
         {{ design.name }}
       </h4>
       <div

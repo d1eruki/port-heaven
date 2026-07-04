@@ -1,5 +1,5 @@
 import { initOnLoad } from "../../utils/scroll";
-import { BASE_VARIANT } from "./variant-toggle";
+import { BASE_VARIANT } from "../../variants/registry";
 
 const root = document.documentElement;
 
@@ -21,6 +21,7 @@ export const matchesVariant = (variant, { variants = null, exclude = null } = {}
 
 export const onVariantLayoutReady = ({ variants = null, exclude = null, setup, cleanup }) => {
   let activeCleanup = null;
+  let isListening = false;
 
   const teardown = () => {
     if (typeof activeCleanup === "function") activeCleanup();
@@ -36,14 +37,26 @@ export const onVariantLayoutReady = ({ variants = null, exclude = null, setup, c
     if (typeof result === "function") activeCleanup = result;
   };
 
+  const onWillChange = () => teardown();
+  const onLayoutReady = ({ detail }) => {
+    requestAnimationFrame(() => runSetup(detail?.variant));
+  };
+
   initOnLoad(() => {
+    if (isListening) return;
+    isListening = true;
+
     runSetup();
 
-    window.addEventListener("variant:will-change", teardown);
-    window.addEventListener("variant:layout-ready", ({ detail }) => {
-      requestAnimationFrame(() => runSetup(detail?.variant));
-    });
+    window.addEventListener("variant:will-change", onWillChange);
+    window.addEventListener("variant:layout-ready", onLayoutReady);
   });
 
-  return teardown;
+  return () => {
+    teardown();
+    if (!isListening) return;
+    window.removeEventListener("variant:will-change", onWillChange);
+    window.removeEventListener("variant:layout-ready", onLayoutReady);
+    isListening = false;
+  };
 };

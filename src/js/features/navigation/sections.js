@@ -1,6 +1,6 @@
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
 import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
-import { LANCET_VARIANT } from "../preferences/variant-toggle";
+import { LANCET_VARIANT } from "../../variants/registry";
 import { initSectionDots } from "./section-dots/init-section-dots";
 
 export const initSections = () => {

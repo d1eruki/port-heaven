@@ -64,20 +64,13 @@ import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
 import { getCurrentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
-import {
-  BASE_VARIANT,
-  currentVariant,
-  getTargetVariant,
-  LANCET_VARIANT,
-  setVariant,
-} from "../features/preferences/variant-toggle";
+import { getTargetVariant, setVariant } from "../features/preferences/variant-toggle";
+import { getVariantLabel } from "../variants/registry";
 
 const { t } = useI18n();
 const currentTheme = ref(getCurrentTheme());
 
-const variantToggleLabel = computed(() =>
-  currentVariant.value === LANCET_VARIANT ? BASE_VARIANT : LANCET_VARIANT,
-);
+const variantToggleLabel = computed(() => getVariantLabel(getTargetVariant()));
 const themeToggleLabel = computed(() =>
   t(`theme-toggle.${currentTheme.value === "dark" ? "light" : "dark"}`),
 );

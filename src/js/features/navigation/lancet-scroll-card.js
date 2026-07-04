@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
-import { LANCET_VARIANT } from "../preferences/variant-toggle";
+import { LANCET_VARIANT } from "../../variants/registry";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,13 +87,14 @@ export const initLancetScrollCard = () =>
     variants: LANCET_VARIANT,
     setup: () => {
       setupScrollCards();
+      const refresh = () => ScrollTrigger.refresh();
 
-      window.addEventListener("orientationchange", ScrollTrigger.refresh);
-      window.addEventListener("resize", ScrollTrigger.refresh);
+      window.addEventListener("orientationchange", refresh);
+      window.addEventListener("resize", refresh);
 
       return () => {
-        window.removeEventListener("orientationchange", ScrollTrigger.refresh);
-        window.removeEventListener("resize", ScrollTrigger.refresh);
+        window.removeEventListener("orientationchange", refresh);
+        window.removeEventListener("resize", refresh);
       };
     },
     cleanup: clearScrollCards,

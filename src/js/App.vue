@@ -1,13 +1,20 @@
 <template>
-  <LancetShell v-if="currentVariant === LANCET_VARIANT" />
-  <DefaultShell v-else />
+  <component :is="currentShell" />
 </template>
 
 <script setup>
-import { nextTick, watch } from "vue";
+import { computed, nextTick, watch } from "vue";
 import DefaultShell from "./variants/layouts/DefaultShell.vue";
 import LancetShell from "./variants/lancet/LancetShell.vue";
-import { currentVariant, LANCET_VARIANT } from "./features/preferences/variant-toggle";
+import { currentVariant } from "./features/preferences/variant-toggle";
+import { getVariantShell } from "./variants/registry";
+
+const shells = {
+  default: DefaultShell,
+  lancet: LancetShell,
+};
+
+const currentShell = computed(() => shells[getVariantShell(currentVariant.value)] || DefaultShell);
 
 watch(
   currentVariant,

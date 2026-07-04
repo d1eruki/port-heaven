@@ -1,18 +1,24 @@
 import { ref } from "vue";
 import { readStorageValue, saveStorageValue } from "../../utils/storage";
+import {
+  BASE_VARIANT,
+  DEFAULT_THEME,
+  DEFAULT_VARIANT,
+  getNextVariantKey,
+  getVariantThemeValue,
+  isSupportedVariant,
+  LANCET_VARIANT,
+  VARIANT_KEYS,
+} from "../../variants/registry";
 
 const root = document.documentElement;
 const VARIANT_STORAGE_KEY = "variant";
 const THEME_STORAGE_KEY = "theme";
-export const BASE_VARIANT = "stasis";
-export const LANCET_VARIANT = "lancet";
-const DEFAULT_VARIANT = BASE_VARIANT;
-const DEFAULT_THEME = "dark";
-export const VARIANTS = [BASE_VARIANT, LANCET_VARIANT];
+export { BASE_VARIANT, LANCET_VARIANT };
+export const VARIANTS = VARIANT_KEYS;
 const VARIANT_WILL_CHANGE_EVENT = "variant:will-change";
 const VARIANT_DID_CHANGE_EVENT = "variant:did-change";
 
-const isSupportedVariant = (variant) => VARIANTS.includes(variant);
 const getCurrentVariant = () => {
   const variant = root.getAttribute("data-variant");
   return isSupportedVariant(variant) ? variant : DEFAULT_VARIANT;
@@ -50,15 +56,13 @@ export const applyVariant = (variant) => {
   }
 
   root.setAttribute("data-variant", nextVariant);
-
-  if (nextVariant === LANCET_VARIANT) {
-    root.setAttribute("data-theme", "dark");
-  } else {
-    root.setAttribute(
-      "data-theme",
+  root.setAttribute(
+    "data-theme",
+    getVariantThemeValue(
+      nextVariant,
       readStorageValue({ key: THEME_STORAGE_KEY, fallback: DEFAULT_THEME }),
-    );
-  }
+    ),
+  );
 
   currentVariant.value = nextVariant;
 
@@ -75,9 +79,7 @@ export const applyInitialVariant = () => {
 };
 
 export const getTargetVariant = () => {
-  const index = VARIANTS.indexOf(currentVariant.value);
-  const nextIndex = index >= 0 ? (index + 1) % VARIANTS.length : 0;
-  return VARIANTS[nextIndex];
+  return getNextVariantKey(currentVariant.value);
 };
 
 export const setVariant = (variant) => {

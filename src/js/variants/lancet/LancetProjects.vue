@@ -15,11 +15,11 @@
         <article
           v-for="project in translatedProjects"
           :key="project.titleKey"
-          class="project project absolute top-0 left-0 col-span-1 flex h-full w-full flex-col gap-5 border border-solid border-black will-change-transform lg:rounded-4xl light:bg-(--color-white)"
+          class="project project absolute top-0 left-0 col-span-1 flex h-full w-full flex-col gap-5 border border-solid border-black will-change-transform lg:rounded-4xl light:bg-white"
         >
           <div class="flex h-full flex-col gap-5 p-5 lg:justify-between lg:p-15">
             <div class="flex flex-col gap-5">
-              <h3 class="light:text-(--color-black)">{{ project.name }}</h3>
+              <h3 class="light:text-black">{{ project.name }}</h3>
               <p class="light:text-(--color-grey)">{{ project.description }}</p>
               <div class="hidden flex-wrap gap-2 lg:flex">
                 <div
@@ -28,24 +28,24 @@
                   class="flex"
                 >
                   <small
-                    class="rounded-4xl border border-solid border-black px-5 py-2.5 light:text-(--color-black)"
+                    class="rounded-4xl border border-solid border-black px-5 py-2.5 light:text-black"
                   >
                     {{ getTagName(tag) }}
                   </small>
                 </div>
               </div>
             </div>
-            <p class="light:text-(--color-black)">{{ project.text }}</p>
+            <p class="light:text-black">{{ project.text }}</p>
             <div class="flex flex-wrap gap-2">
               <a
                 v-for="(link, index) in project.links"
                 :key="index"
-                class="active flex w-fit rounded-full px-5 py-2.5 lg:px-10 lg:py-5 light:bg-(--color-black)"
+                class="active flex w-fit rounded-full px-5 py-2.5 lg:px-10 lg:py-5 light:bg-black"
                 :href="link.url"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <p class="light:text-(--color-white)">{{ link.name }}</p>
+                <p class="light:text-white">{{ link.name }}</p>
               </a>
             </div>
           </div>

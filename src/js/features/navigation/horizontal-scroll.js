@@ -1,7 +1,7 @@
 import { getScrollY, onScroll, isMobile, calculateProgress } from "../../utils/scroll";
 import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
-import { LANCET_VARIANT } from "../preferences/variant-toggle";
+import { LANCET_VARIANT } from "../../variants/registry";
 
 let cleanupHorizontalScroll = null;
 

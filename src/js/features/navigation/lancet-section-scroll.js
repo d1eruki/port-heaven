@@ -1,7 +1,7 @@
 import { lenis } from "../../libraries/lenis";
 import { getScrollY, onScroll } from "../../utils/scroll";
 import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
-import { LANCET_VARIANT } from "../preferences/variant-toggle";
+import { LANCET_VARIANT } from "../../variants/registry";
 import {
   chooseActiveSectionId,
   getViewportMetrics,

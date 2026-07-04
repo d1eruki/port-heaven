@@ -35,19 +35,17 @@
         preload="none"
         playsinline
       ></video>
-      <div
-        class="card-rotate-shirt absolute top-0 h-full w-full backface-hidden light:bg-(--color-black)"
-      >
+      <div class="card-rotate-shirt absolute top-0 h-full w-full backface-hidden light:bg-black">
         <fieldset class="absolute top-0 w-full">
           <legend>вредина</legend>
         </fieldset>
-        <fieldset class="absolute top-[100%] w-full origin-top-right rotate-90">
+        <fieldset class="absolute top-full w-full origin-top-right rotate-90">
           <legend>негодяй</legend>
         </fieldset>
         <fieldset class="absolute bottom-0 w-full rotate-180">
           <legend>злюка</legend>
         </fieldset>
-        <fieldset class="absolute top-[100%] w-full origin-top-left -rotate-90">
+        <fieldset class="absolute top-full w-full origin-top-left -rotate-90">
           <legend>лиходей</legend>
         </fieldset>
       </div>
