@@ -1,32 +1,20 @@
 <template>
-  <Hero />
-  <AppControls />
-
-  <Description />
-
-  <header
-    class="sticky top-0 z-100 flex h-fit min-h-10 w-full bg-accent-section px-15 py-5 text-accent-section-fg hw:hidden"
-  >
-    {{ t("notices.hardwareAccelerationDisabled") }}
-  </header>
-
-  <About />
-  <Projects />
-  <Design />
-  <Creatives />
-  <Footer />
+  <LancetShell v-if="currentVariant === 'lancet'" />
+  <DefaultShell v-else />
 </template>
 
 <script setup>
-import { useI18n } from "vue-i18n";
-import AppControls from "./components/AppControls.vue";
-import Hero from "./sections/Hero.vue";
-import Description from "./sections/Description.vue";
-import About from "./sections/About.vue";
-import Projects from "./sections/Projects.vue";
-import Design from "./sections/Design.vue";
-import Creatives from "./sections/Creatives.vue";
-import Footer from "./sections/Footer.vue";
+import { nextTick, watch } from "vue";
+import DefaultShell from "./variants/layouts/DefaultShell.vue";
+import LancetShell from "./variants/lancet/LancetShell.vue";
+import { currentVariant } from "./features/preferences/variant-toggle";
 
-const { t } = useI18n();
+watch(
+  currentVariant,
+  async (variant) => {
+    await nextTick();
+    window.dispatchEvent(new CustomEvent("layoutchange", { detail: { variant } }));
+  },
+  { immediate: true },
+);
 </script>

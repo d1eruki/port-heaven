@@ -1,7 +1,17 @@
 import { getScrollY, onScroll, isMobile, calculateProgress, initOnLoad } from "../../utils/scroll";
 import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 
+let cleanupHorizontalScroll = null;
+let isListeningForLayoutChange = false;
+
+const clearHorizontalScroll = () => {
+  if (typeof cleanupHorizontalScroll === "function") cleanupHorizontalScroll();
+  cleanupHorizontalScroll = null;
+};
+
 const setupHorizontalScroll = () => {
+  clearHorizontalScroll();
+
   const section = document.getElementById(DOM_IDS.design);
   const inner = document.getElementById(DOM_IDS.designInner);
   if (!section || !inner) return;
@@ -45,8 +55,23 @@ const setupHorizontalScroll = () => {
   };
 
   update();
-  onScroll(update);
+  const offScroll = onScroll(update);
   window.addEventListener("resize", update);
+
+  cleanupHorizontalScroll = () => {
+    if (typeof offScroll === "function") offScroll();
+    window.removeEventListener("resize", update);
+  };
 };
 
-export const initHorizontalScroll = () => initOnLoad(setupHorizontalScroll);
+export const initHorizontalScroll = () =>
+  initOnLoad(() => {
+    setupHorizontalScroll();
+
+    if (isListeningForLayoutChange) return;
+    isListeningForLayoutChange = true;
+
+    window.addEventListener("layoutchange", () => {
+      requestAnimationFrame(setupHorizontalScroll);
+    });
+  });

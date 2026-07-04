@@ -1,0 +1,325 @@
+@keyframes animateBg {
+  0% {
+    background-position:
+      0 0,
+      0 0;
+    background-size: 25px 25px;
+  }
+  25% {
+    background-position:
+      50px 25px,
+      25px 50px;
+    background-size: 26px 26px;
+  }
+  50% {
+    background-position:
+      100px 50px,
+      50px 100px;
+    background-size: 25px 25px;
+  }
+  75% {
+    background-position:
+      50px 75px,
+      75px 50px;
+    background-size: 24px 24px;
+  }
+  100% {
+    background-position:
+      0 0,
+      0 0;
+    background-size: 25px 25px;
+  }
+}
+
+@keyframes noise {
+  0% {
+    transform: translate3d(0, 9rem, 0);
+  }
+  10% {
+    transform: translate3d(-1rem, -4rem, 0);
+  }
+  20% {
+    transform: translate3d(-8rem, 2rem, 0);
+  }
+  30% {
+    transform: translate3d(9rem, -9rem, 0);
+  }
+  40% {
+    transform: translate3d(-2rem, 7rem, 0);
+  }
+  50% {
+    transform: translate3d(-9rem, -4rem, 0);
+  }
+  60% {
+    transform: translate3d(2rem, 6rem, 0);
+  }
+  70% {
+    transform: translate3d(7rem, -8rem, 0);
+  }
+  80% {
+    transform: translate3d(-9rem, 1rem, 0);
+  }
+  90% {
+    transform: translate3d(6rem, -5rem, 0);
+  }
+  100% {
+    transform: translate3d(-7rem, 0, 0);
+  }
+}
+
+@keyframes move {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 50%;
+  }
+}
+
+@layer base {
+  :root[data-variant="lancet"] {
+    --text-h1: clamp(3rem, 12.5vw, 17.5rem);
+    --leading-h1: 12.5vw;
+    --text-h2: clamp(2.5rem, 4vw, 8rem);
+    --text-h3: clamp(2rem, 3vw, 4.5rem);
+    --text-h4: clamp(1.75rem, 2vw, 3rem);
+    --text-body: clamp(1.25rem, 1.25vw, 2rem);
+    --text-small: clamp(1rem, 1vw, 1.25rem);
+  }
+
+  :root[data-variant="lancet"] body {
+    background-color: #000000;
+    background-image:
+      linear-gradient(#080808 1px, transparent 1px),
+      linear-gradient(to right, #080808 1px, transparent 1px);
+    animation: animateBg 40s ease-in-out infinite;
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  .lancet-shell,
+  .lancet-shell * {
+    font-family: "basis33", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    text-transform: uppercase;
+    cursor: none;
+  }
+
+  .lancet-shell *::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lancet-shell {
+    position: relative;
+    color: #ffffff;
+  }
+
+  .lancet-shell h1,
+  .lancet-shell h2,
+  .lancet-shell h3,
+  .lancet-shell h4 {
+    font-family: "Actay", sans-serif;
+    text-transform: uppercase;
+  }
+
+  .lancet-shell h1 {
+    font-size: var(--text-h1);
+    line-height: var(--leading-h1);
+  }
+
+  .lancet-shell h2 {
+    font-size: var(--text-h2);
+  }
+
+  .lancet-shell h3 {
+    font-size: var(--text-h3);
+  }
+
+  .lancet-shell p,
+  .lancet-shell a,
+  .lancet-shell button {
+    font-size: var(--text-body);
+  }
+
+  .lancet-shell h4,
+  .lancet-shell small {
+    font-size: var(--text-small);
+  }
+
+  .lancet-shell #menu-dot {
+    display: none !important;
+  }
+
+  .lancet-shell .grain {
+    position: fixed;
+    inset: 0;
+    transform: translateZ(0);
+  }
+
+  .lancet-shell .grain::before {
+    content: "";
+    position: fixed;
+    top: -10rem;
+    left: -10rem;
+    width: calc(100% + 20rem);
+    height: calc(100% + 20rem);
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png");
+    opacity: 0.15;
+    pointer-events: none;
+    animation: noise 1s steps(2) infinite;
+  }
+
+  .lancet-shell .glow-xl {
+    filter: drop-shadow(0 0 200px #ffffff);
+  }
+
+  .lancet-shell .glow-lg {
+    filter: drop-shadow(0 0 75px #ffffff);
+  }
+
+  .lancet-shell a {
+    color: #ffffff;
+  }
+
+  :root[data-variant="lancet"] *::selection {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  .lancet-shell .progress-bar {
+    background-color: #ffffff;
+  }
+
+  .lancet-shell [data-scroll-target] {
+    color: #808080;
+  }
+
+  .lancet-shell [data-open-block="creatives"] {
+    color: #ff0000;
+  }
+
+  .lancet-shell [data-scroll-target].\!text-white {
+    color: #ffffff !important;
+  }
+
+  .lancet-shell .project {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  .lancet-shell .project h3,
+  .lancet-shell .project p,
+  .lancet-shell .project small {
+    color: #000000;
+  }
+
+  .lancet-shell .project h3 + p {
+    color: #808080;
+  }
+
+  .lancet-shell .project small {
+    border-color: #000000;
+  }
+
+  .lancet-shell .project a {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  .lancet-shell .project a p {
+    color: #ffffff;
+  }
+
+  .lancet-shell .design h4 {
+    color: #ffffff;
+  }
+
+  .lancet-shell .design small,
+  .lancet-shell .design small span {
+    color: #808080;
+  }
+
+  .corner-frame {
+    --cf-color: #808080;
+    --cf-size: 1px;
+    --cf-length: 24px;
+    background:
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top left /
+        var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top left /
+        var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top right /
+        var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top right /
+        var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom left /
+        var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom left /
+        var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom right /
+        var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom right /
+        var(--cf-size) var(--cf-length) no-repeat;
+    background-origin: padding-box;
+  }
+
+  .lancet-shell .design {
+    transition: var(--transition);
+  }
+
+  @media (min-width: 64rem) {
+    .lancet-shell .design:hover {
+      transform: translate(5px, 5px);
+    }
+  }
+
+  .lancet-shell .design:hover {
+    background-color: #ffffff;
+  }
+
+  .lancet-shell .design:hover * {
+    color: #000000;
+  }
+
+  .lancet-shell .card-rotate,
+  .lancet-shell .card-rotate-face,
+  .lancet-shell .card-rotate-shirt {
+    transition: transform 0.5s ease;
+  }
+
+  .lancet-shell .card-rotate {
+    position: relative;
+    transform-style: preserve-3d;
+  }
+
+  .lancet-shell .card-rotate-face,
+  .lancet-shell .card-rotate-shirt {
+    backface-visibility: hidden;
+  }
+
+  .lancet-shell .card-rotate-face {
+    width: 100%;
+  }
+
+  .lancet-shell .card-rotate-shirt {
+    background-color: #000000;
+    color: #000000;
+    transform: rotateY(180deg);
+  }
+
+  .lancet-shell .card-rotate:hover .card-rotate-face {
+    transform: rotateY(180deg);
+  }
+
+  .lancet-shell .card-rotate:hover .card-rotate-shirt {
+    transform: rotateY(0deg);
+  }
+
+  .lancet-shell .card-rotate-shirt legend {
+    animation: move 5s infinite linear alternate;
+    background-color: #ffffff;
+    color: #000000;
+  }
+}

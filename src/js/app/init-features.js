@@ -3,8 +3,11 @@ import { onReady } from "../utils/onReady";
 import { isViewportAtLeast } from "../utils/breakpoints";
 
 import { applyInitialTheme } from "../features/preferences/theme-toggle";
+import { applyInitialVariant } from "../features/preferences/variant-toggle";
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
+import { initLancetSectionScroll } from "../features/navigation/lancet-section-scroll";
+import { initLancetScrollCard } from "../features/navigation/lancet-scroll-card";
 import { initMenuDotToggler } from "../features/navigation/menu-dot-toggler";
 import { initHeroBgCells } from "../features/effects/hero-bg-cells";
 import { initDesignActive } from "../features/effects/design-active";
@@ -15,8 +18,11 @@ export const initFeatures = async () => {
   const screenLg = isViewportAtLeast("lg");
 
   applyInitialTheme();
+  applyInitialVariant();
   initSections();
   initScrollToTop();
+  initLancetSectionScroll();
+  initLancetScrollCard();
   initMenuDotToggler();
   initHeroBgCells();
   initDesignActive();
