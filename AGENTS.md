@@ -4,6 +4,8 @@
 
 Before making any file changes, the agent must first explain the intended plan and wait for explicit approval from the user.
 
+If the user has already given a direct execution command such as "делай", "go", "do it", or an equivalent instruction after a proposed or implied scope, treat that as explicit approval for the current plan. Do not ask for the same approval again unless the plan changes.
+
 The plan must state:
 
 - Which files will be changed.
