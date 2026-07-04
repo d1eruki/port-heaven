@@ -1,5 +1,5 @@
 <template>
-  <LancetShell v-if="currentVariant === 'lancet'" />
+  <LancetShell v-if="currentVariant === LANCET_VARIANT" />
   <DefaultShell v-else />
 </template>
 
@@ -7,13 +7,13 @@
 import { nextTick, watch } from "vue";
 import DefaultShell from "./variants/layouts/DefaultShell.vue";
 import LancetShell from "./variants/lancet/LancetShell.vue";
-import { currentVariant } from "./features/preferences/variant-toggle";
+import { currentVariant, LANCET_VARIANT } from "./features/preferences/variant-toggle";
 
 watch(
   currentVariant,
   async (variant) => {
     await nextTick();
-    window.dispatchEvent(new CustomEvent("layoutchange", { detail: { variant } }));
+    window.dispatchEvent(new CustomEvent("variant:layout-ready", { detail: { variant } }));
   },
   { immediate: true },
 );

@@ -2,8 +2,6 @@ import { applyHwClass } from "../libraries/hw-detect";
 import { onReady } from "../utils/onReady";
 import { isViewportAtLeast } from "../utils/breakpoints";
 
-import { applyInitialTheme } from "../features/preferences/theme-toggle";
-import { applyInitialVariant } from "../features/preferences/variant-toggle";
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
 import { initLancetSectionScroll } from "../features/navigation/lancet-section-scroll";
@@ -17,8 +15,6 @@ export const initFeatures = async () => {
   const hwOn = applyHwClass();
   const screenLg = isViewportAtLeast("lg");
 
-  applyInitialTheme();
-  applyInitialVariant();
   initSections();
   initScrollToTop();
   initLancetSectionScroll();

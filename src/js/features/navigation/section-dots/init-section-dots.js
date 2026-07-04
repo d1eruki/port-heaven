@@ -20,6 +20,7 @@ export function initSectionDots(opts = {}) {
 
   const nav = document.querySelector(cfg.navSelector);
   if (!nav) return console.warn(`[section-dots] nav "${cfg.navSelector}" не найден`);
+  nav.replaceChildren();
 
   const sections = Array.from(document.querySelectorAll(cfg.sectionSelector)).filter(
     (el) => el.id && typeof el.dataset.section === "string",
@@ -71,6 +72,8 @@ export function initSectionDots(opts = {}) {
     });
   }
 
-  attachSectionDotEvents({ sections, btnById, tick, setActive });
+  const cleanup = attachSectionDotEvents({ sections, btnById, tick, setActive });
   tick();
+
+  return cleanup;
 }

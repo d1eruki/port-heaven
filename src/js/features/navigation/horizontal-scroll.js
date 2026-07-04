@@ -1,8 +1,9 @@
-import { getScrollY, onScroll, isMobile, calculateProgress, initOnLoad } from "../../utils/scroll";
+import { getScrollY, onScroll, isMobile, calculateProgress } from "../../utils/scroll";
 import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
+import { LANCET_VARIANT } from "../preferences/variant-toggle";
 
 let cleanupHorizontalScroll = null;
-let isListeningForLayoutChange = false;
 
 const clearHorizontalScroll = () => {
   if (typeof cleanupHorizontalScroll === "function") cleanupHorizontalScroll();
@@ -65,13 +66,8 @@ const setupHorizontalScroll = () => {
 };
 
 export const initHorizontalScroll = () =>
-  initOnLoad(() => {
-    setupHorizontalScroll();
-
-    if (isListeningForLayoutChange) return;
-    isListeningForLayoutChange = true;
-
-    window.addEventListener("layoutchange", () => {
-      requestAnimationFrame(setupHorizontalScroll);
-    });
+  onVariantLayoutReady({
+    exclude: LANCET_VARIANT,
+    setup: setupHorizontalScroll,
+    cleanup: clearHorizontalScroll,
   });

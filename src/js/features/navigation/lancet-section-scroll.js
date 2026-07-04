@@ -1,5 +1,7 @@
 import { lenis } from "../../libraries/lenis";
-import { getScrollY, initOnLoad, onScroll } from "../../utils/scroll";
+import { getScrollY, onScroll } from "../../utils/scroll";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
+import { LANCET_VARIANT } from "../preferences/variant-toggle";
 import {
   chooseActiveSectionId,
   getViewportMetrics,
@@ -10,20 +12,7 @@ const EPS = 8;
 const DELTA_THRESHOLD = 2;
 const LOCK_MS = 800;
 
-let teardownSectionScroll = null;
-let isListeningForLayoutChange = false;
-
-const isLancet = () => document.documentElement.getAttribute("data-variant") === "lancet";
-
-const clearSectionScroll = () => {
-  if (typeof teardownSectionScroll === "function") teardownSectionScroll();
-  teardownSectionScroll = null;
-};
-
 const setupSectionScroll = () => {
-  clearSectionScroll();
-  if (!isLancet()) return;
-
   const sections = Array.from(document.querySelectorAll(".lancet-shell [data-section]"));
   if (!sections.length) return;
 
@@ -91,6 +80,12 @@ const setupSectionScroll = () => {
     });
   };
 
+  const currentIndex = () => {
+    const id = resolveActiveId(0);
+    const index = sections.findIndex((section) => section.id === id);
+    return index >= 0 ? index : 0;
+  };
+
   const scrollToElement = (target) => {
     if (!target) return;
 
@@ -103,8 +98,6 @@ const setupSectionScroll = () => {
   };
 
   const onWheel = (event) => {
-    if (!isLancet()) return;
-
     const dy = event.deltaY || 0;
     const absY = Math.abs(dy);
     const absX = Math.abs(event.deltaX || 0);
@@ -115,23 +108,34 @@ const setupSectionScroll = () => {
       return;
     }
 
-    const hero = document.getElementById("me");
-    const about = document.getElementById("about");
-    if (!hero || !about) return;
+    const current = currentIndex();
+    const currentSection = sections[current];
+    if (!currentSection) return;
 
-    const heroRect = hero.getBoundingClientRect();
-    const aboutRect = about.getBoundingClientRect();
+    const rect = currentSection.getBoundingClientRect();
     const vh = window.innerHeight;
 
-    if (dy > 0 && heroRect.bottom <= vh + EPS && aboutRect.top > EPS) {
+    if (dy > 0) {
+      if (rect.bottom > vh - EPS) return;
+
+      const target = sections[Math.min(sections.length - 1, current + 1)];
+      if (!target || target === currentSection) return;
+
       event.preventDefault();
-      scrollToElement(about);
+      setActiveNavButton(target.id);
+      scrollToElement(target);
       return;
     }
 
-    if (dy < 0 && aboutRect.top >= -EPS && heroRect.bottom < vh - EPS) {
+    if (dy < 0) {
+      if (rect.top < -EPS) return;
+
+      const target = sections[Math.max(0, current - 1)];
+      if (!target || target === currentSection) return;
+
       event.preventDefault();
-      scrollToElement(hero);
+      setActiveNavButton(target.id);
+      scrollToElement(target);
     }
   };
 
@@ -155,7 +159,7 @@ const setupSectionScroll = () => {
   document.addEventListener("click", onClick);
   updateActiveNavButton();
 
-  teardownSectionScroll = () => {
+  return () => {
     if (typeof offScroll === "function") offScroll();
     window.removeEventListener("wheel", onWheel, { passive: false });
     document.removeEventListener("click", onClick);
@@ -164,13 +168,7 @@ const setupSectionScroll = () => {
 };
 
 export const initLancetSectionScroll = () =>
-  initOnLoad(() => {
-    setupSectionScroll();
-
-    if (isListeningForLayoutChange) return;
-    isListeningForLayoutChange = true;
-
-    window.addEventListener("layoutchange", () => {
-      requestAnimationFrame(setupSectionScroll);
-    });
+  onVariantLayoutReady({
+    variants: LANCET_VARIANT,
+    setup: setupSectionScroll,
   });

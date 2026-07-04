@@ -65,8 +65,10 @@ import { useI18n } from "vue-i18n";
 import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
 import { getCurrentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 import {
+  BASE_VARIANT,
   currentVariant,
   getTargetVariant,
+  LANCET_VARIANT,
   setVariant,
 } from "../features/preferences/variant-toggle";
 
@@ -74,7 +76,7 @@ const { t } = useI18n();
 const currentTheme = ref(getCurrentTheme());
 
 const variantToggleLabel = computed(() =>
-  currentVariant.value === "lancet" ? "stasis" : "lancet",
+  currentVariant.value === LANCET_VARIANT ? BASE_VARIANT : LANCET_VARIANT,
 );
 const themeToggleLabel = computed(() =>
   t(`theme-toggle.${currentTheme.value === "dark" ? "light" : "dark"}`),

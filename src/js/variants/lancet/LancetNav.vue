@@ -13,7 +13,7 @@
         type="button"
         :data-open-block="item.id"
         :data-scroll-target="`[data-section='${item.id}']`"
-        class="light:text-(--color-grey) self-start transition-colors duration-300"
+        class="self-start transition-colors duration-300 light:text-(--color-grey)"
         :class="item.class"
       >
         {{ item.label }}
@@ -70,15 +70,17 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import {
+  BASE_VARIANT,
   currentVariant,
   getTargetVariant,
+  LANCET_VARIANT,
   setVariant,
 } from "../../features/preferences/variant-toggle";
 
 const { t } = useI18n();
 
 const variantToggleLabel = computed(() =>
-  currentVariant.value === "lancet" ? "stasis" : "lancet",
+  currentVariant.value === LANCET_VARIANT ? BASE_VARIANT : LANCET_VARIANT,
 );
 
 const items = computed(() => [

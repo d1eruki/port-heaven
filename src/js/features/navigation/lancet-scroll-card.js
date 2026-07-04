@@ -1,13 +1,11 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { initOnLoad } from "../../utils/scroll";
+import { onVariantLayoutReady } from "../preferences/variant-lifecycle";
+import { LANCET_VARIANT } from "../preferences/variant-toggle";
 
 gsap.registerPlugin(ScrollTrigger);
 
 let triggers = [];
-let isListeningForLayoutChange = false;
-
-const isLancet = () => document.documentElement.getAttribute("data-variant") === "lancet";
 
 const clearScrollCards = () => {
   triggers.forEach((trigger) => trigger.kill());
@@ -60,7 +58,6 @@ const initScroll = (section, projects, direction) => {
 
 const setupScrollCards = () => {
   clearScrollCards();
-  if (!isLancet()) return;
 
   const scrollSections = document.querySelectorAll(".lancet-shell .scroll-section");
 
@@ -86,16 +83,18 @@ const setupScrollCards = () => {
 };
 
 export const initLancetScrollCard = () =>
-  initOnLoad(() => {
-    setupScrollCards();
+  onVariantLayoutReady({
+    variants: LANCET_VARIANT,
+    setup: () => {
+      setupScrollCards();
 
-    if (!isListeningForLayoutChange) {
-      isListeningForLayoutChange = true;
+      window.addEventListener("orientationchange", ScrollTrigger.refresh);
+      window.addEventListener("resize", ScrollTrigger.refresh);
 
-      window.addEventListener("layoutchange", () => {
-        requestAnimationFrame(setupScrollCards);
-      });
-      window.addEventListener("orientationchange", () => ScrollTrigger.refresh());
-      window.addEventListener("resize", () => ScrollTrigger.refresh());
-    }
+      return () => {
+        window.removeEventListener("orientationchange", ScrollTrigger.refresh);
+        window.removeEventListener("resize", ScrollTrigger.refresh);
+      };
+    },
+    cleanup: clearScrollCards,
   });
