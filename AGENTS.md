@@ -1,8 +1,8 @@
 # Repository Instructions
 
-## Approval Before Changes
+## Change Approval
 
-Before making any file changes, the agent must first explain the intended plan and wait for explicit approval from the user.
+Before making any file changes, explain the intended plan and wait for explicit user approval.
 
 The plan must state:
 
@@ -11,58 +11,81 @@ The plan must state:
 - What will be changed or removed in each file.
 - Why each change is needed.
 
-The agent must not edit, delete, rename, format, generate, or otherwise modify files until the user approves the plan. Files may be deleted when they are left empty or become outdated.
+Do not edit, delete, rename, format, generate, or otherwise modify files before the user approves the plan. Files may be deleted when they are left empty or become outdated.
 
-If the plan changes during the work, the agent must stop, describe the updated plan, and wait for approval again before continuing.
+If the plan changes during the work, stop, describe the updated plan, and wait for approval again before continuing.
 
-## Library Behavior
+## Implementation Principles
 
-When a library is already used for a task, prefer the library's built-in behavior, documented APIs, and established patterns over custom workarounds.
+Prefer a library's built-in behavior, documented APIs, and established patterns over custom workarounds. Reimplement, bypass, or patch around baseline library behavior only when it is insufficient for the specific requirement, and explain why the standard behavior cannot handle the case.
 
-Do not reimplement, bypass, or patch around baseline library behavior unless the built-in behavior is insufficient for the specific requirement. If a workaround is necessary, explain why the standard library behavior cannot handle the case.
+Before creating a new mechanic, inspect the codebase for an equivalent mechanic, state flow, helper, composable, persistence layer, or established pattern. Reuse an existing implementation when it covers the requirement, or extend it when it is close but incomplete.
 
-## Existing Mechanics and Patterns
+Do not duplicate mechanisms such as `localStorage` handling, state synchronization, UI behavior, routing logic, data loading, or persistence abstractions unless the existing approach is insufficient. If a new mechanism is necessary, explain why the existing one cannot be reused or extended.
 
-Before creating a new mechanic, first inspect the codebase to determine whether an equivalent mechanic, state flow, helper, composable, persistence layer, or established pattern already exists.
+## Runtime Diagnosis
 
-If an existing mechanic covers the requirement, use it. If it is close but incomplete, extend or adjust the existing implementation instead of creating a parallel one.
+When observed application behavior contradicts the expected code path, do not diagnose the cause or propose a fix from static inspection alone. Treat visually similar CSS, browser, and JavaScript effects as separate hypotheses until the active runtime source is confirmed.
 
-Do not duplicate mechanisms such as `localStorage` handling, state synchronization, UI behavior, routing logic, data loading, or persistence abstractions unless the existing approach is insufficient for the specific requirement. If a new mechanism is necessary, explain why the existing one cannot be reused or extended.
+Where practical, verify:
 
-## Tailwind Usage
+- The active state classes, attributes, media-query results, and feature-detection result.
+- The conditional branch and dynamic imports that were activated.
+- The code or stylesheet controlling the relevant DOM property, CSS variable, inline style, or computed style.
+- Whether the behavior is owned by a library, the browser, or project code.
 
-When working with Tailwind, prefer built-in Tailwind classes, theme tokens, CSS variables, variants, and documented APIs over custom CSS, custom utilities, or hardcoded values.
+For capability-gated effects, trace the full path from capability detection through state classes and module initialization to the final computed styles. Do not assume that a browser setting and a project feature-detection heuristic produce the same result.
 
-Use Tailwind classes as documented, preferring canonical utility names over arbitrary properties or unusual equivalent forms. For example, use `border-l` instead of `border-l-1` for the default 1px left border, and `grid-rows-[auto_1fr_auto]` instead of `[grid-template-rows:auto_1fr_auto]` when the documented utility covers the case.
+Clearly distinguish confirmed causes from unverified hypotheses. Before claiming that a fallback disables an effect, add or run a negative-path test that verifies the effect remains inactive after the triggering interaction, such as scrolling, resizing, or changing media preferences.
 
-Do not manually duplicate Tailwind's default values, especially breakpoints, spacing, colors, typography, shadows, radii, transitions, or z-index values. Use Tailwind's base classes and default theme values where they already express the required behavior.
+## Frontend Conventions
 
-Add custom CSS variables, custom utilities, or project-specific theme tokens only when Tailwind's built-in behavior is insufficient or the value is a deliberate project token. If JavaScript needs Tailwind values, prefer build-time access to Tailwind defaults or already-declared project theme variables instead of hardcoding numeric copies.
+### Tailwind
 
-## Formatting
+Prefer built-in Tailwind classes, theme tokens, CSS variables, variants, and documented APIs over custom CSS, custom utilities, or hardcoded values.
 
-After making code, markup, style, or documentation changes, run Prettier through the project's existing script before handing off the work:
+Use canonical utilities when Tailwind already covers the requirement. For example, use `border-l` instead of `border-l-1`, and `grid-rows-[auto_1fr_auto]` instead of `[grid-template-rows:auto_1fr_auto]`.
+
+Do not manually duplicate Tailwind defaults for breakpoints, spacing, colors, typography, shadows, radii, transitions, or z-index values. Add custom CSS variables, utilities, or theme tokens only when built-in behavior is insufficient or the value is a deliberate project token. When JavaScript needs Tailwind values, prefer build-time access to Tailwind defaults or existing project theme variables over hardcoded numeric copies.
+
+### Accessibility
+
+Add appropriate accessibility attributes to icons and SVGs, including `aria-hidden` and `focusable` for decorative graphics. Give navigation controls an `aria-label`, and keep image `alt` attributes accurate.
+
+### Vue Components
+
+Do not create a separate Vue component for an element used only once. Keep one-off UI anchors, buttons, overlays, notices, and technical DOM targets in the nearest parent component, such as `App.vue`.
+
+Create a component without asking only when it is a large semantic page section or an established reusable block. If the same block appears more than once and extraction seems useful, ask the user whether they want a separate component and wait for their answer before extracting it.
+
+## Dependencies and Documentation
+
+When adding a dependency, update the `README` with the relevant setup, usage, or dependency notes.
+
+## Verification
+
+After changing code, markup, styles, or documentation, run:
 
 ```sh
 npm run format
 ```
 
-If only checking the current state without modifying files, use:
+When only checking the current state without modifying files, run:
 
 ```sh
 npm run format:check
 ```
 
-## Dependencies and Accessibility
+## Maintaining These Instructions
 
-Whenever new dependencies are added, update the `README` with the relevant setup, usage, or dependency notes.
+Add a new instruction only when it captures a recurring, repository-specific requirement that is not already covered by this file or enforced by project tooling.
 
-Always include appropriate accessibility attributes for icons and SVGs, such as `aria-hidden` and `focusable` when they are decorative. Provide `aria-label` for navigation controls and keep image `alt` attributes accurate and up to date.
+Before adding it:
 
-## Vue Component Creation
+- Check whether an existing instruction can be clarified or extended instead.
+- Place the instruction in the most relevant existing section.
+- Keep it concise, actionable, and limited to one concern.
+- Put directory-specific guidance in the closest applicable `AGENTS.md`.
+- Avoid duplicating behavior already enforced by formatters, linters, tests, or other project tooling.
 
-Do not create a separate Vue component for an element that is used only once on the page. Keep one-off UI anchors, buttons, overlays, notices, and technical DOM targets inside the nearest parent component, such as `App.vue`.
-
-Create a component without asking only when it is a large semantic page section or an already-established reusable block.
-
-If the same block appears more than once and extracting it into a component seems useful, ask the user whether they want a separate component and wait for their answer before making the extraction.
+If the new instruction changes the scope or intent of an approved plan, stop and request approval for the updated plan before editing files.
