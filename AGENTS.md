@@ -58,6 +58,10 @@ Do not create a separate Vue component for an element used only once. Keep one-o
 
 Create a component without asking only when it is a large semantic page section or an established reusable block. If the same block appears more than once and extraction seems useful, ask the user whether they want a separate component and wait for their answer before extracting it.
 
+## Localization
+
+When adding or changing a localization key or variable, update the corresponding entry in every locale available in the project as part of the same change.
+
 ## Dependencies and Documentation
 
 When adding a dependency, update the `README` with the relevant setup, usage, or dependency notes.
