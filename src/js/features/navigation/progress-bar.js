@@ -1,9 +1,4 @@
-import {
-  calculateProgress,
-  getScrollY,
-  onScroll,
-  scrollToY as scrollWindowToY,
-} from "../../utils/scroll";
+import { calculateProgress, getScrollY, onScroll } from "../../utils/scroll";
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 export const updateProgressBar = (scrollY) => {
@@ -17,67 +12,7 @@ export const updateProgressBar = (scrollY) => {
   progressBar.style.height = `${progress}%`;
 };
 
-const SCROLL_STORAGE_KEY = "scrollY";
-
-const resetHorizontalScroll = () => {
-  document.documentElement.scrollLeft = 0;
-  document.body.scrollLeft = 0;
-};
-
-const scrollToY = (y) => {
-  resetHorizontalScroll();
-
-  scrollWindowToY(y, { immediate: true });
-
-  requestAnimationFrame(resetHorizontalScroll);
-};
-
-const readSavedScrollY = () => {
-  let saved = null;
-  try {
-    saved = localStorage.getItem(SCROLL_STORAGE_KEY);
-  } catch {}
-
-  const savedY = Number.parseInt(saved, 10);
-  return Number.isFinite(savedY) ? savedY : null;
-};
-
-const restoreScrollPosition = () => {
-  resetHorizontalScroll();
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const targetY = readSavedScrollY();
-      if (targetY !== null) {
-        scrollToY(targetY);
-      }
-
-      updateProgressBar(getScrollY());
-    });
-  });
-};
-
 export const initProgressBar = () => {
-  if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-  }
-
-  window.addEventListener("beforeunload", () => {
-    try {
-      localStorage.setItem(SCROLL_STORAGE_KEY, getScrollY().toString());
-    } catch {}
-  });
-
-  const onLoad = () => {
-    restoreScrollPosition();
-  };
-
-  if (document.readyState === "complete") {
-    onLoad();
-  } else {
-    window.addEventListener("load", onLoad);
-  }
-
   window.addEventListener("resize", () => {
     updateProgressBar(getScrollY());
   });

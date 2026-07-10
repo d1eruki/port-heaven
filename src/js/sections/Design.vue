@@ -5,12 +5,12 @@
     class="relative overflow-visible"
   >
     <div
-      class="top-0 grid w-dvw overflow-visible will-change-transform lg:h-dvh lg:grid-flow-col lg:grid-rows-2"
+      class="top-0 grid w-dvw overflow-x-hidden will-change-transform effects:lg:h-dvh effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:min-h-dvh no-effects:grid-cols-1 no-effects:md:grid-cols-2 no-effects:lg:auto-rows-fr no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
       id="design-inner"
     >
       <div
         data-design-intro
-        class="col-span-1 grid h-full w-dvw shrink-0 content-center gap-5 bg-inverse p-15 text-inverse-fg lg:w-[25dvw] lg:bg-canvas lg:text-fg"
+        class="col-span-1 grid h-full w-full shrink-0 content-center gap-5 bg-inverse p-15 text-inverse-fg lg:bg-canvas lg:text-fg effects:lg:w-[25dvw]"
       >
         <h2>{{ t("menu.designs.title") }}</h2>
         <MenuDescription

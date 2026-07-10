@@ -5,9 +5,9 @@
   <Description />
 
   <header
-    class="sticky top-0 z-100 flex h-fit min-h-10 w-full bg-accent-section px-15 py-5 text-accent-section-fg hw:hidden"
+    class="sticky top-0 z-100 hidden h-fit min-h-10 w-full bg-accent-section px-15 py-5 text-accent-section-fg no-effects:flex"
   >
-    {{ t("notices.hardwareAccelerationDisabled") }}
+    {{ t("notices.effectsDisabled") }}
   </header>
 
   <About />

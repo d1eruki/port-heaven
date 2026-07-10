@@ -3,27 +3,32 @@ import { onReady } from "../utils/onReady";
 import { isViewportAtLeast } from "../utils/breakpoints";
 
 import { applyInitialTheme } from "../features/preferences/theme-toggle";
+import { applyEffectsMode } from "../features/preferences/effects-toggle";
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
+import { initScrollRestoration } from "../features/navigation/scroll-restoration";
 import { initMenuDotToggler } from "../features/navigation/menu-dot-toggler";
 import { initHeroBgCells } from "../features/effects/hero-bg-cells";
 import { initDesignActive } from "../features/effects/design-active";
 import { initOdometerCounter } from "../features/effects/odometer-counter";
 
 export const initFeatures = async () => {
-  const hwOn = applyHwClass();
+  const capabilities = applyHwClass();
+  const { effectsOn } = applyEffectsMode(capabilities);
   const screenLg = isViewportAtLeast("lg");
 
   applyInitialTheme();
   initSections();
   initScrollToTop();
+  initScrollRestoration();
   initMenuDotToggler();
   initHeroBgCells();
-  initDesignActive();
-  initOdometerCounter();
 
   try {
-    if (hwOn) {
+    if (effectsOn) {
+      initDesignActive();
+      initOdometerCounter();
+
       const lenisReady = import("../libraries/lenis");
       const imports = [
         lenisReady.then(() =>
@@ -34,6 +39,11 @@ export const initFeatures = async () => {
         lenisReady.then(() =>
           import("../features/effects/parallax").then(({ initParallax }) => initParallax()),
         ),
+        lenisReady.then(() =>
+          import("../features/navigation/horizontal-scroll").then(({ initHorizontalScroll }) =>
+            initHorizontalScroll(),
+          ),
+        ),
       ];
 
       if (screenLg) {
@@ -42,17 +52,12 @@ export const initFeatures = async () => {
             onReady(initVanillaTilt),
           ),
           import("../features/effects/cursor").then(({ initCursor }) => onReady(initCursor)),
-          lenisReady.then(() =>
-            import("../features/navigation/horizontal-scroll").then(({ initHorizontalScroll }) =>
-              initHorizontalScroll(),
-            ),
-          ),
         );
       }
 
       await Promise.all(imports);
     } else {
-      await import("../../styles/no-hw.css");
+      await import("../../styles/no-effects.css");
     }
   } catch (e) {
     console.error("Failed to load dynamic modules:", e);
