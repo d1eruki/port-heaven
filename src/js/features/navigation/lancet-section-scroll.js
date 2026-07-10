@@ -56,13 +56,13 @@ const setupSectionScroll = () => {
 
     const navButtons = document.querySelectorAll(".lancet-shell [data-scroll-target]");
     navButtons.forEach((btn) => {
-      btn.classList.remove("!text-white");
+      btn.removeAttribute("aria-current");
     });
 
     const activeButton = activeId
       ? document.querySelector(`.lancet-shell [data-scroll-target="[data-section='${activeId}']"]`)
       : null;
-    if (activeButton) activeButton.classList.add("!text-white");
+    if (activeButton) activeButton.setAttribute("aria-current", "page");
   };
 
   const updateActiveNavButton = () => {

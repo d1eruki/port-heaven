@@ -14,9 +14,9 @@
       :href="design.url"
       target="_blank"
       rel="noopener noreferrer"
-      class="group design relative z-10 grid gap-5 p-10 hover:z-100 lg:h-150 lg:items-center lg:rounded-4xl"
+      class="group design relative z-10 grid gap-5 p-10 transition hover:z-100 hover:bg-lancet-card-hover hover:text-lancet-card-hover-fg lg:h-150 lg:items-center lg:rounded-4xl lg:hover:translate-x-[5px] lg:hover:translate-y-[5px]"
     >
-      <h4 class="flex gap-3 group-hover:lg:text-black light:text-white">
+      <h4 class="flex gap-3 text-fg group-hover:text-lancet-card-hover-fg">
         {{ design.name }}
       </h4>
       <div
@@ -25,18 +25,18 @@
         <div
           v-for="(tag, index) in design.tags"
           :key="index"
-          class="flex gap-2.5 light:text-(--color-grey)"
+          class="flex gap-2.5 text-muted group-hover:text-lancet-card-hover-fg"
         >
-          <small class="flex gap-2.5">
+          <small class="flex gap-2.5 text-muted group-hover:text-lancet-card-hover-fg">
             <span
               v-if="isAdaptiveTag(tag)"
-              class="icon-[ic--baseline-phone-android]"
+              class="icon-[ic--baseline-phone-android] text-muted group-hover:text-lancet-card-hover-fg"
               aria-hidden="true"
               focusable="false"
             ></span>
             <span
               v-if="isDesktopTag(tag)"
-              class="icon-[ic--baseline-monitor]"
+              class="icon-[ic--baseline-monitor] text-muted group-hover:text-lancet-card-hover-fg"
               aria-hidden="true"
               focusable="false"
             ></span>
@@ -45,7 +45,7 @@
         </div>
       </div>
       <p
-        class="right-10 bottom-10 left-10 block self-end lg:absolute lg:hidden lg:group-hover:block"
+        class="right-10 bottom-10 left-10 block self-end group-hover:text-lancet-card-hover-fg lg:absolute lg:hidden lg:group-hover:block"
       >
         {{ design.description }}
       </p>

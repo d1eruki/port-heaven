@@ -35,7 +35,9 @@
         preload="none"
         playsinline
       ></video>
-      <div class="card-rotate-shirt absolute top-0 h-full w-full backface-hidden light:bg-black">
+      <div
+        class="card-rotate-shirt absolute top-0 h-full w-full bg-canvas text-canvas backface-hidden"
+      >
         <fieldset class="absolute top-0 w-full">
           <legend>вредина</legend>
         </fieldset>

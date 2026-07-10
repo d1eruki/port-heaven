@@ -1,12 +1,12 @@
 <template>
   <div
-    class="lancet-shell container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-20"
+    class="lancet-shell relative container grid max-w-full gap-10 leading-none text-balance break-normal wrap-break-word hyphens-auto whitespace-pre-line lg:gap-20"
   >
     <LancetHero />
     <LancetNav />
     <div
       id="progress-bar"
-      class="progress-bar fixed top-0 right-0 light:bg-white"
+      class="progress-bar fixed top-0 right-0 bg-progress"
     ></div>
     <LancetAbout />
     <LancetProjects />

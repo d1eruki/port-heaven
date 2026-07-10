@@ -13,7 +13,7 @@
         type="button"
         :data-open-block="item.id"
         :data-scroll-target="`[data-section='${item.id}']`"
-        class="self-start transition-colors duration-300 light:text-(--color-grey)"
+        class="self-start text-muted transition-colors duration-300 aria-[current=page]:text-fg!"
         :class="item.class"
       >
         {{ item.label }}
@@ -89,7 +89,7 @@ const items = computed(() => [
   { id: "about", label: t("menu.about.title") },
   { id: "projects", label: t("menu.projects.title") },
   { id: "design", label: t("menu.designs.title") },
-  { id: "creatives", label: t("menu.creatives.title"), class: "light:text-(--color-red)" },
+  { id: "creatives", label: t("menu.creatives.title"), class: "text-lancet-creative" },
   { id: "footer", label: t("menu.footer.title") },
 ]);
 

@@ -36,6 +36,10 @@
   --color-hero-grid-line: var(--theme-hero-grid-line);
   --color-corner-frame: var(--theme-corner-frame);
   --color-creative-shadow: var(--theme-creative-shadow);
+  --color-lancet-grid-line: var(--theme-lancet-grid-line);
+  --color-lancet-creative: var(--theme-lancet-creative);
+  --color-lancet-card-hover: var(--theme-lancet-card-hover);
+  --color-lancet-card-hover-fg: var(--theme-lancet-card-hover-fg);
 
   /* типографика */
   --h1: clamp(3rem, 12vw, 20rem);
