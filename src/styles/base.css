@@ -3,6 +3,7 @@
     font-family: "JetBrains Mono", monospace;
     font-optical-sizing: auto;
     line-height: 1;
+  }
 
   html.effects::-webkit-scrollbar,
   html.effects *::-webkit-scrollbar {
