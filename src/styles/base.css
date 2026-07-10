@@ -4,9 +4,9 @@
     font-optical-sizing: auto;
     line-height: 1;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  html.effects::-webkit-scrollbar,
+  html.effects *::-webkit-scrollbar {
+    display: none;
   }
 
   .use-custom-cursor * {

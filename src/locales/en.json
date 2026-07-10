@@ -118,7 +118,7 @@
     "toTop": "top"
   },
   "notices": {
-    "hardwareAccelerationDisabled": "Hardware acceleration is off, visual effects are disabled"
+    "effectsDisabled": "Visual effects are disabled. You can change the mode in the menu."
   },
   "privacy": {
     "analytics": {
@@ -132,6 +132,11 @@
   "theme-toggle": {
     "light": "Light theme",
     "dark": "Dark theme"
+  },
+  "effects-toggle": {
+    "auto": "effects: auto",
+    "on": "effects: on",
+    "off": "effects: off"
   },
   "contacts": {
     "telegram": "telegram",

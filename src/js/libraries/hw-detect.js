@@ -7,7 +7,7 @@ export function isHardwareAccelerationEnabled() {
       depth: false,
       stencil: false,
       powerPreference: "high-performance",
-      failIfMajorPerformanceCaveat: false,
+      failIfMajorPerformanceCaveat: true,
     };
 
     const gl =
@@ -19,11 +19,13 @@ export function isHardwareAccelerationEnabled() {
 
     let renderer = "";
     let vendor = "";
+    let hasReliableRendererInfo = false;
     try {
       const dbg = gl.getExtension("WEBGL_debug_renderer_info");
       if (dbg) {
         renderer = gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) || "";
         vendor = gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) || "";
+        hasReliableRendererInfo = Boolean(renderer || vendor);
       } else {
         renderer = gl.getParameter(gl.RENDERER) || "";
         vendor = gl.getParameter(gl.VENDOR) || "";
@@ -52,13 +54,11 @@ export function isHardwareAccelerationEnabled() {
     ];
     const looksSoftware = softwareMarkers.some((m) => signature.includes(m));
 
-    let maxTextureSize = 0;
     try {
-      maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE) || 0;
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
     } catch {}
 
-    if (looksSoftware) return false;
-    return !(maxTextureSize && maxTextureSize <= 2048);
+    return hasReliableRendererInfo && !looksSoftware;
   } catch {
     return false;
   }
@@ -74,15 +74,18 @@ export function applyHwClass(options = {}) {
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const set = () => {
-    const on = isHardwareAccelerationEnabled() && !prefersReducedMotion();
+    const hwOn = isHardwareAccelerationEnabled();
+    const motionOn = !prefersReducedMotion();
 
-    root.classList.toggle("hw", on);
-    root.classList.toggle("no-hw", !on);
+    root.classList.toggle("hw", hwOn);
+    root.classList.toggle("no-hw", !hwOn);
+    root.classList.toggle("motion", motionOn);
+    root.classList.toggle("reduced-motion", !motionOn);
 
-    return on;
+    return { hwOn, motionOn };
   };
 
-  const hwOn = set();
+  const capabilities = set();
 
   if (recheckOnVisibility) {
     document.addEventListener("visibilitychange", () => {
@@ -90,5 +93,5 @@ export function applyHwClass(options = {}) {
     });
   }
 
-  return hwOn;
+  return capabilities;
 }

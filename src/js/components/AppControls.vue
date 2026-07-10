@@ -21,6 +21,16 @@
   >
     <button
       type="button"
+      :aria-label="effectsToggleLabel"
+      class="group flex"
+      @click="toggleEffects"
+    >
+      <small class="opacity-0 group-hover:opacity-100">/</small
+      ><small>{{ effectsToggleLabel }}</small>
+    </button>
+
+    <button
+      type="button"
       :aria-label="themeToggleLabel"
       class="group flex"
       @click="toggleTheme"
@@ -53,15 +63,23 @@
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
+import { readSavedEffectsMode, toggleEffectsMode } from "../features/preferences/effects-toggle";
 import { getCurrentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 
 const { t } = useI18n();
 const currentTheme = ref(getCurrentTheme());
+const currentEffectsMode = ref(readSavedEffectsMode());
 
 const themeToggleLabel = computed(() =>
   t(`theme-toggle.${currentTheme.value === "dark" ? "light" : "dark"}`),
 );
 const langToggleLabel = computed(() => t("lang-toggle"));
+const effectsToggleLabel = computed(() => t(`effects-toggle.${currentEffectsMode.value}`));
+
+const toggleEffects = () => {
+  currentEffectsMode.value = toggleEffectsMode();
+  window.location.reload();
+};
 
 const toggleTheme = () => {
   currentTheme.value = setTheme(getTargetTheme());
