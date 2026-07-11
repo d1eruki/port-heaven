@@ -1,7 +1,7 @@
 import { getScrollY } from "../../../utils/scroll";
+import { smoothScrollTo } from "../../../utils/smooth-scroll";
 import { DOM_SELECTORS } from "../../../dom/dom-selectors";
 import { chooseActiveSectionId, getViewportMetrics, measureSections } from "./active-section";
-import { createSectionDots } from "./create-section-dots";
 import { attachSectionDotEvents } from "./events";
 
 export function initSectionDots(opts = {}) {
@@ -41,12 +41,23 @@ export function initSectionDots(opts = {}) {
     if (cfg.debug) console.log("[section-dots] active ->", activeId || "(none)");
   }
 
-  const btnById = createSectionDots({
-    nav,
-    sections,
-    offset: cfg.offset,
-    onSelect: setActive,
+  const sectionById = new Map(sections.map((section) => [section.id, section]));
+  const btnById = new Map();
+
+  nav.querySelectorAll("button.dot[data-target]").forEach((btn) => {
+    const id = btn.dataset.target?.replace(/^#/, "");
+    const section = sectionById.get(id);
+    if (!section) return;
+
+    btn.addEventListener("click", () => {
+      smoothScrollTo(section, { offset: cfg.offset });
+      setActive(id);
+      history.replaceState(null, "", `#${id}`);
+    });
+    btnById.set(id, btn);
   });
+
+  if (!btnById.size) return console.warn("[section-dots] кнопки навигации не найдены");
 
   function resolveActiveId() {
     const viewport = getViewportMetrics(cfg);

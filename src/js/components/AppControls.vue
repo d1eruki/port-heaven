@@ -6,8 +6,30 @@
     <nav
       data-section-nav
       class="flex w-fit flex-col gap-5"
-      aria-label="Section navigation"
-    ></nav>
+      :aria-label="t('navigation.label')"
+    >
+      <button
+        v-for="section in SECTION_NAV_ITEMS"
+        :key="section.id"
+        type="button"
+        class="dot"
+        :data-target="`#${section.id}`"
+        :aria-label="t(section.labelKey)"
+        aria-current="false"
+      >
+        <svg
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <circle
+            cx="10"
+            cy="10"
+            r="6"
+          />
+        </svg>
+      </button>
+    </nav>
   </div>
 
   <div
@@ -62,6 +84,7 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { SECTION_NAV_ITEMS } from "../dom/dom-selectors";
 import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
 import { toggleEffectsMode } from "../features/preferences/effects-toggle";
 import { getCurrentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
@@ -99,6 +122,5 @@ const toggleLocale = () => {
   i18n.global.locale.value = next;
   setDocumentLanguage(next);
   saveLocale(next);
-  window.dispatchEvent(new Event("localechange"));
 };
 </script>

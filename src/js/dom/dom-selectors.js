@@ -10,15 +10,17 @@ export const SECTION_IDS = {
   footer: "footer",
 };
 
-export const SECTION_NAV_IDS = [
-  SECTION_IDS.hero,
-  SECTION_IDS.description,
-  SECTION_IDS.about,
-  SECTION_IDS.projects,
-  SECTION_IDS.design,
-  SECTION_IDS.creatives,
-  SECTION_IDS.footer,
+export const SECTION_NAV_ITEMS = [
+  { id: SECTION_IDS.hero, labelKey: "navigation.sections.hero" },
+  { id: SECTION_IDS.description, labelKey: "navigation.sections.description" },
+  { id: SECTION_IDS.about, labelKey: "navigation.sections.about" },
+  { id: SECTION_IDS.projects, labelKey: "navigation.sections.projects" },
+  { id: SECTION_IDS.design, labelKey: "navigation.sections.design" },
+  { id: SECTION_IDS.creatives, labelKey: "navigation.sections.creatives" },
+  { id: SECTION_IDS.footer, labelKey: "navigation.sections.footer" },
 ];
+
+export const SECTION_NAV_IDS = SECTION_NAV_ITEMS.map(({ id }) => id);
 
 export const DOM_DATA_ATTRIBUTES = {
   designIntro: "data-design-intro",

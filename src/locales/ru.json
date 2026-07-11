@@ -4,6 +4,19 @@
     "hero": "Артем\nТресков"
   },
 
+  "navigation": {
+    "label": "навигация по разделам",
+    "sections": {
+      "hero": "главная",
+      "description": "дизайнер",
+      "about": "обо мне",
+      "projects": "коммерческие проекты",
+      "design": "макеты",
+      "creatives": "креативы",
+      "footer": "связь"
+    }
+  },
+
   "menu": {
     "description": {
       "title": "дизайнер",

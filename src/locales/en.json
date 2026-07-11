@@ -3,6 +3,18 @@
     "logo": "dayruki",
     "hero": "Artem\nTreskov"
   },
+  "navigation": {
+    "label": "section navigation",
+    "sections": {
+      "hero": "home",
+      "description": "designer",
+      "about": "about me",
+      "projects": "commercial projects",
+      "design": "layouts",
+      "creatives": "creatives",
+      "footer": "contact"
+    }
+  },
   "menu": {
     "description": {
       "title": "designer",

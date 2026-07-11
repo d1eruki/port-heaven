@@ -246,24 +246,41 @@ test("section dot navigation targets the explicit section nav", async ({ page })
 
   const sectionNav = page.locator("[data-section-nav]");
   const dots = sectionNav.locator("button.dot");
-  const expectedSections = [
-    "hero",
-    "description",
-    "about",
-    "projects",
-    "design",
+  const russianSectionLabels = [
+    "главная",
+    "дизайнер",
+    "обо мне",
+    "коммерческие проекты",
+    "макеты",
+    "креативы",
+    "связь",
+  ];
+  const englishSectionLabels = [
+    "home",
+    "designer",
+    "about me",
+    "commercial projects",
+    "layouts",
     "creatives",
-    "footer",
+    "contact",
   ];
 
-  await expect(dots).toHaveCount(expectedSections.length);
-  for (const section of expectedSections) {
-    await expect(sectionNav.getByRole("button", { name: section })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "навигация по разделам" })).toBeVisible();
+  await expect(dots).toHaveCount(russianSectionLabels.length);
+  for (const label of russianSectionLabels) {
+    await expect(sectionNav.getByRole("button", { name: label })).toBeVisible();
   }
-  await sectionNav.getByRole("button", { name: "projects" }).click();
+
+  await page.getByRole("button", { name: "english" }).click();
+  await expect(page.getByRole("navigation", { name: "section navigation" })).toBeVisible();
+  for (const label of englishSectionLabels) {
+    await expect(sectionNav.getByRole("button", { name: label })).toBeVisible();
+  }
+
+  await sectionNav.getByRole("button", { name: "commercial projects" }).click();
 
   await expect.poll(() => page.evaluate(() => location.hash)).toBe("#projects");
-  await expect(sectionNav.getByRole("button", { name: "projects" })).toHaveAttribute(
+  await expect(sectionNav.getByRole("button", { name: "commercial projects" })).toHaveAttribute(
     "aria-current",
     "true",
   );
@@ -285,7 +302,7 @@ test("mobile viewport keeps core controls working", async ({ page }) => {
   await page.getByRole("button", { name: "светлая тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "light");
 
-  await page.getByRole("button", { name: "en" }).click();
+  await page.getByRole("button", { name: "english" }).click();
   await expect(root).toHaveAttribute("lang", "en");
 });
 

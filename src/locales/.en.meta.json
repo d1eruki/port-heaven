@@ -9,6 +9,14 @@
     "effects-toggle.disable": "3fd896a13c004c68da15ef957ad51ccdedd697f591ffbb4c940892f1fb6dc9fd",
     "brand.logo": "16470cc2a0e1115a979102162bd439121721a3786eb70c8b334eb4ad059dd39f",
     "brand.hero": "483a2d07fd1fbf3577fec1f4f17f3c7037a7df8cff4771f8d6cdab59f1628bbe",
+    "navigation.label": "35df3f3831ac0928c134f8055cced1e8998c4ae4878ecfe3d4c051e63c0e766b",
+    "navigation.sections.hero": "717a05c2cb550e8a7dbed63fe58c1e7feeffd8abd12b4e41801a576a7c4125f1",
+    "navigation.sections.description": "2b350aa7256718234e6a0bd8331fdea592db90ec9a304c396df3dbf79a320604",
+    "navigation.sections.about": "49b5f3ea4c027a6bd35f7d8d6ef9ae69950ea9e0e5cc86a8ee17753ba94a6876",
+    "navigation.sections.projects": "2315dc9dbd66b983206746b0d738b1d050c0bd8cddfe2e09ecb274942421e881",
+    "navigation.sections.design": "c4e32e6e0e463eb3c7ed3167cf79a55ebc1e70999ae9a295d3b4ecdf5fac5ce0",
+    "navigation.sections.creatives": "e6c6230f6b74dee02d79104fe2ba2a3a541e7e021f8fb4c390edf095416a4f8c",
+    "navigation.sections.footer": "46293bc66a06af374613425741f30fdc8034c08c9ff1d477840d166be5457848",
     "menu.description.title": "2b350aa7256718234e6a0bd8331fdea592db90ec9a304c396df3dbf79a320604",
     "menu.description.text": "8efd571fa274e5e0fb978f499502a929f4250574e5d9db3307cad5ba4c0a5dbb",
     "menu.about.title": "4288b455518491f5622bb02208a5a1e295b759a6befab4ae8eece5ce6ff360bd",
@@ -70,5 +78,5 @@
     "contacts.behance": "59129789adac95a9b098ad3c92b5ee049d49c62a93fbfabd362789b6b8da81f7"
   },
   "model": "gpt-5.4-mini",
-  "updatedAt": "2026-05-15T13:38:09.350Z"
+  "updatedAt": "2026-07-11T21:06:25.000Z"
 }
