@@ -9,8 +9,8 @@
       :src="isSourceLoaded ? creativeSrc : undefined"
       muted
       controls
-      autoplay
-      loop
+      :autoplay="!prefersReducedMotion"
+      :loop="!prefersReducedMotion"
       preload="none"
       playsinline
     />
@@ -33,6 +33,9 @@ const computedStyle = computed(() => getCreativeGridStyle(props));
 
 const videoEl = ref(null);
 const isSourceLoaded = ref(false);
+const prefersReducedMotion = ref(
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
+);
 let observer = null;
 
 const loadVideo = async () => {
@@ -45,7 +48,7 @@ const loadVideo = async () => {
   if (!video) return;
 
   video.load();
-  video.play().catch(() => {});
+  if (!prefersReducedMotion.value) video.play().catch(() => {});
 };
 
 onMounted(() => {

@@ -135,15 +135,14 @@
     }
   },
 
-  "lang-toggle": "en",
+  "lang-toggle": "english",
   "theme-toggle": {
     "light": "светлая тема",
     "dark": "темная тема"
   },
   "effects-toggle": {
-    "auto": "эффекты: авто",
-    "on": "эффекты: вкл",
-    "off": "эффекты: выкл"
+    "enable": "включить эффекты",
+    "disable": "выключить эффекты"
   },
 
   "contacts": {

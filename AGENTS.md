@@ -52,6 +52,10 @@ Do not manually duplicate Tailwind defaults for breakpoints, spacing, colors, ty
 
 Add appropriate accessibility attributes to icons and SVGs, including `aria-hidden` and `focusable` for decorative graphics. Give navigation controls an `aria-label`, and keep image `alt` attributes accurate.
 
+### Toggle Labels
+
+Keep toggle labels consistent across the project: show the action or alternative state that will be applied after activation, not the current state. Write labels in full, without abbreviations or colons, and use lowercase to match the interface style.
+
 ### Vue Components
 
 Do not create a separate Vue component for an element used only once. Keep one-off UI anchors, buttons, overlays, notices, and technical DOM targets in the nearest parent component, such as `App.vue`.
