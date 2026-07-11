@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
 
+const ANALYTICS_CONSENT_STORAGE_KEY = "analytics-consent";
+const ANALYTICS_TEST_BYPASS_KEY = "test-analytics-consent";
+const METRIKA_SCRIPT_URL = "https://mc.yandex.ru/metrika/tag.js";
+
 const isIgnoredConsoleError = (text) =>
   text.startsWith("Button failed to load, iconName = ") && text.includes("layoutTraits = ");
 
@@ -69,8 +73,35 @@ const expectVideoEffectsMode = async (page, effectsOn) => {
     .toEqual({ hasSource: true, paused: !effectsOn });
 };
 
+const openAnalyticsConsent = async (page) => {
+  await page.goto("/");
+  await page.evaluate(
+    ({ bypassKey, storageKey }) => {
+      sessionStorage.setItem(bypassKey, "true");
+      localStorage.removeItem(storageKey);
+    },
+    {
+      bypassKey: ANALYTICS_TEST_BYPASS_KEY,
+      storageKey: ANALYTICS_CONSENT_STORAGE_KEY,
+    },
+  );
+  await page.reload();
+};
+
 test.beforeEach(async ({ page }) => {
-  await page.route("https://mc.yandex.ru/metrika/tag.js", (route) =>
+  await page.addInitScript(
+    ({ bypassKey, storageKey }) => {
+      if (sessionStorage.getItem(bypassKey) !== "true") {
+        localStorage.setItem(storageKey, "declined");
+      }
+    },
+    {
+      bypassKey: ANALYTICS_TEST_BYPASS_KEY,
+      storageKey: ANALYTICS_CONSENT_STORAGE_KEY,
+    },
+  );
+
+  await page.route(METRIKA_SCRIPT_URL, (route) =>
     route.fulfill({
       contentType: "application/javascript",
       body: "window.ym = window.ym || function () {};",
@@ -82,6 +113,57 @@ test.beforeEach(async ({ page }) => {
       body: "",
     }),
   );
+});
+
+test("analytics starts only after consent and restores the accepted choice", async ({ page }) => {
+  let scriptRequests = 0;
+  page.on("request", (request) => {
+    if (request.url() === METRIKA_SCRIPT_URL) scriptRequests += 1;
+  });
+
+  await openAnalyticsConsent(page);
+
+  const notification = page.locator('[aria-labelledby="analytics-notification-title"]');
+  await expect(notification).toBeVisible();
+  expect(scriptRequests).toBe(0);
+
+  await page.getByRole("button", { name: "разрешить аналитику" }).click();
+
+  await expect(notification).toBeHidden();
+  await expect.poll(() => scriptRequests).toBe(1);
+  await expect
+    .poll(() => page.evaluate((key) => localStorage.getItem(key), ANALYTICS_CONSENT_STORAGE_KEY))
+    .toBe("accepted");
+
+  await page.reload();
+
+  await expect(notification).toBeHidden();
+  await expect.poll(() => scriptRequests).toBe(2);
+});
+
+test("declining analytics persists without loading Metrica", async ({ page }) => {
+  let scriptRequests = 0;
+  page.on("request", (request) => {
+    if (request.url() === METRIKA_SCRIPT_URL) scriptRequests += 1;
+  });
+
+  await openAnalyticsConsent(page);
+
+  const notification = page.locator('[aria-labelledby="analytics-notification-title"]');
+  await expect(notification).toBeVisible();
+
+  await page.getByRole("button", { name: "не разрешать" }).click();
+
+  await expect(notification).toBeHidden();
+  expect(scriptRequests).toBe(0);
+  await expect
+    .poll(() => page.evaluate((key) => localStorage.getItem(key), ANALYTICS_CONSENT_STORAGE_KEY))
+    .toBe("declined");
+
+  await page.reload();
+
+  await expect(notification).toBeHidden();
+  expect(scriptRequests).toBe(0);
 });
 
 test("loads core portfolio sections without console errors", async ({ page }) => {
