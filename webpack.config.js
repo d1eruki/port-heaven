@@ -7,6 +7,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const tailwindDefaultTheme = require("tailwindcss/defaultTheme");
 
 const mediaOptimizationLoader = path.resolve(__dirname, "scripts/optimize-media-loader.cjs");
+const typographLocaleLoader = path.resolve(__dirname, "scripts/typograph-locale-loader.cjs");
 
 module.exports = (_env, argv) => {
   const mode = argv.mode || process.env.NODE_ENV || "production";
@@ -33,6 +34,11 @@ module.exports = (_env, argv) => {
     },
     module: {
       rules: [
+        {
+          test: /src[\\/]locales[\\/].+\.json$/i,
+          type: "json",
+          use: [typographLocaleLoader],
+        },
         {
           test: /\.(woff2?|otf)$/i,
           type: "asset/resource",

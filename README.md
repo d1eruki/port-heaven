@@ -51,8 +51,11 @@ Packages involved:
 ### i18n
 
 - `vue-i18n` — internationalization
+- `typograf` — applies typography rules to locale strings during the Webpack build
 
 English locale strings are generated from `src/locales/ru.json`.
+Source locale files remain unchanged and readable. Webpack processes their strings with Typograf
+before bundling them, so the Typograf library is not shipped to the browser.
 
 Create `.env.local`:
 

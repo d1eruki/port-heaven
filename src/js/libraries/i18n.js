@@ -2,7 +2,6 @@ import { createI18n } from "vue-i18n";
 import ru from "../../locales/ru.json";
 import en from "../../locales/en.json";
 import { readStorageValue, saveStorageValue } from "../utils/storage";
-import { typographMessages } from "./typograph";
 
 const DEFAULT_LOCALE = "ru";
 const LOCALE_STORAGE_KEY = "locale";
@@ -37,8 +36,8 @@ const i18n = createI18n({
   locale: initialLocale,
   fallbackLocale: "ru",
   messages: {
-    ru: typographMessages(ru),
-    en: typographMessages(en),
+    ru,
+    en,
   },
 });
 
