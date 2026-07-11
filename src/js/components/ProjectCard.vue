@@ -56,7 +56,6 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-  projectResult: String,
   projectStatistic: Array,
   projectLinks: {
     type: Array,

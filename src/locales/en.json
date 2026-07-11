@@ -75,7 +75,6 @@
       "title": "Varwin XRMS platform",
       "description": "Varwin XRMS UI kit and prototypes for visualizing ideas and testing changes",
       "text": "The main layout with components and prototypes, bringing together all the interface elements needed to visualize and test new features in the Varwin XRMS platform. The layout serves as a basis for discussion, testing, and implementing changes in the product.",
-      "result": "Developers started building interfaces faster thanks to ready-made components and clear prototypes. The layout reduced the number of revisions and ensured visual consistency.",
       "stats": [
         "Faster mockup design through ready-made components",
         "Prototypes reduced revisions",

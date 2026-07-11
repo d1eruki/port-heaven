@@ -22,7 +22,6 @@
         :project-tags="project.tags"
         :project-text="project.text"
         :project-links="project.links"
-        :project-result="project.result"
       />
     </div>
   </section>
@@ -43,7 +42,6 @@ const translatedProjects = computed(() =>
     name: t(project.titleKey),
     description: t(project.descriptionKey),
     text: project.textKeys.map((key) => t(key)),
-    result: project.resultKey ? t(project.resultKey) : undefined,
     links: project.links.map((link) => ({
       url: link.url,
       name: t(link.labelKey),
