@@ -177,6 +177,7 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
 
   await page.goto("/");
 
+  await expect(page.locator("main")).toHaveCount(1);
   const video = page.locator("video");
   await expect(video).not.toHaveAttribute("src", /.+/);
   await expect(video).toHaveAttribute("preload", "auto");
@@ -193,8 +194,14 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   await expect(page.locator("#projects")).toBeVisible();
   await expect(page.locator("#design")).toBeVisible();
   await expect(page.locator("#creatives")).toBeVisible();
-  await expect(page.locator("#footer")).toBeVisible();
+  await expect(page.locator("footer#footer")).toBeVisible();
   await expect(page.getByRole("heading", { name: /артем/i })).toBeVisible();
+  await expect(
+    page.locator("#about").getByRole("heading", { name: "Обо мне", level: 2 }),
+  ).toHaveCount(1);
+  await expect(
+    page.locator("#design").getByRole("heading", { name: "Мобильный клиент Varwin", level: 3 }),
+  ).toHaveCount(1);
 
   expect(consoleErrors).toEqual([]);
 });
@@ -285,6 +292,13 @@ test("section dot navigation targets the explicit section nav", async ({ page })
     "true",
   );
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
+
+  await sectionNav.getByRole("button", { name: "contact" }).click();
+  await expect.poll(() => page.evaluate(() => location.hash)).toBe("#footer");
+  await expect(sectionNav.getByRole("button", { name: "contact" })).toHaveAttribute(
+    "aria-current",
+    "true",
+  );
 });
 
 test("mobile viewport keeps core controls working", async ({ page }) => {

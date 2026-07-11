@@ -46,9 +46,9 @@ export const DOM_SELECTORS = {
   scrollToTop: `${selectorById(DOM_IDS.scrollToTop)}, [${DOM_DATA_ATTRIBUTES.scrollToTop}]`,
   sectionNav: `[${DOM_DATA_ATTRIBUTES.sectionNav}]`,
   sectionNavTargets: SECTION_NAV_IDS.map(
-    (id) => `section[${DOM_DATA_ATTRIBUTES.section}="${id}"]${selectorById(id)}`,
+    (id) => `[${DOM_DATA_ATTRIBUTES.section}="${id}"]${selectorById(id)}`,
   ).join(", "),
   sections: Object.values(SECTION_IDS)
-    .map((id) => `section[${DOM_DATA_ATTRIBUTES.section}="${id}"]${selectorById(id)}`)
+    .map((id) => `[${DOM_DATA_ATTRIBUTES.section}="${id}"]${selectorById(id)}`)
     .join(", "),
 };

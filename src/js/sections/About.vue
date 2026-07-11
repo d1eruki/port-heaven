@@ -4,7 +4,7 @@
     id="about"
     class="relative flex min-h-screen flex-col content-center bg-canvas lg:justify-center lg:gap-15"
   >
-    <div class="block px-15 pt-15 text-fg lg:hidden">
+    <div class="block px-15 pt-15 text-fg lg:sr-only">
       <h2>{{ t("menu.about.title") }}</h2>
     </div>
     <div class="flex flex-col gap-15 lg:flex-row lg:p-15">

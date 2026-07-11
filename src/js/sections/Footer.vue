@@ -1,5 +1,5 @@
 <template>
-  <section
+  <footer
     data-section="footer"
     id="footer"
     class="flex min-h-svh flex-col justify-end gap-5 p-15"
@@ -67,7 +67,7 @@
     <h2 class="footer-logo-text font-[Actay_Wide] text-nowrap text-primary lowercase">
       {{ t("brand.logo") }}
     </h2>
-  </section>
+  </footer>
 </template>
 
 <script setup>
