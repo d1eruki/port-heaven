@@ -100,6 +100,22 @@ test("theme and locale controls update the page", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /artem/i })).toBeVisible();
 });
 
+test("saved light theme is synchronized before Vue mounts", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("theme", "light");
+  });
+  await page.goto("/");
+
+  const root = page.locator("html");
+  const themeToggle = page.getByRole("button", { name: "темная тема" });
+
+  await expect(root).toHaveAttribute("data-theme", "light");
+  await expect(themeToggle).toBeVisible();
+
+  await themeToggle.click();
+  await expect(root).toHaveAttribute("data-theme", "dark");
+});
+
 test("scroll to top returns from lower sections", async ({ page }) => {
   await page.goto("/");
 
