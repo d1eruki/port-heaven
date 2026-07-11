@@ -25,6 +25,10 @@ Production JS, CSS, chunks, and imported assets use content hashes in their file
 browser caching. Project assets are imported through Webpack from `src/assets`; avoid literal
 `assets/...` paths for local files so unused assets are not copied into production builds.
 
+Production images and targeted videos are optimized by a local Webpack loader before their content
+hashes are calculated. The original files in `src/assets` remain unchanged; only emitted `dist`
+assets are compressed.
+
 ### PostCSS
 
 PostCSS is used together with Tailwind CSS v4 via `@tailwindcss/postcss` and `postcss-loader`.

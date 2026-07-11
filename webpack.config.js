@@ -6,6 +6,8 @@ const { VueLoaderPlugin } = require("vue-loader");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const tailwindDefaultTheme = require("tailwindcss/defaultTheme");
 
+const mediaOptimizationLoader = path.resolve(__dirname, "scripts/optimize-media-loader.cjs");
+
 module.exports = (_env, argv) => {
   const mode = argv.mode || process.env.NODE_ENV || "production";
   const isDev = mode === "development";
@@ -44,6 +46,7 @@ module.exports = (_env, argv) => {
         {
           test: /\.(png|jpe?g|gif|svg|webp)$/i,
           type: "asset/resource",
+          use: isDev ? [] : [mediaOptimizationLoader],
           generator: {
             filename: isDev ? "assets/[name][ext]" : "assets/[name].[contenthash][ext]",
           },
@@ -51,6 +54,7 @@ module.exports = (_env, argv) => {
         {
           test: /\.mp4$/i,
           type: "asset/resource",
+          use: isDev ? [] : [mediaOptimizationLoader],
           generator: {
             filename: isDev ? "assets/[name][ext]" : "assets/[name].[contenthash][ext]",
           },

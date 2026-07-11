@@ -9,7 +9,7 @@
   "directories": {},
   "scripts": {
     "start": "webpack serve --hot --mode development",
-    "build": "webpack --mode production && node scripts/optimize-dist-assets.mjs",
+    "build": "webpack --mode production",
     "build:webpack": "webpack --mode production",
     "translate:en": "node scripts/translate-locale.mjs",
     "translate:en:check": "node scripts/translate-locale.mjs --dry-run",
