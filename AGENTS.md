@@ -11,6 +11,8 @@ The plan must state:
 - What will be changed or removed in each file.
 - Why each change is needed.
 
+After the plan, briefly explain its pros and cons in plain language that is easy to understand without programming knowledge. If there are multiple pros or multiple cons, format each group as a numbered list.
+
 Do not edit, delete, rename, format, generate, or otherwise modify files before the user approves the plan. Files may be deleted when they are left empty or become outdated.
 
 If the plan changes during the work, stop, describe the updated plan, and wait for approval again before continuing.
