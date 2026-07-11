@@ -5,13 +5,13 @@
   >
     <video
       ref="videoEl"
-      class="transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0"
+      class="aspect-video w-full transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0"
       :src="isSourceLoaded ? creativeSrc : undefined"
       muted
       controls
-      :autoplay="!prefersReducedMotion"
-      :loop="!prefersReducedMotion"
-      preload="none"
+      :autoplay="effectsEnabled"
+      :loop="effectsEnabled"
+      preload="auto"
       playsinline
     />
   </div>
@@ -33,10 +33,20 @@ const computedStyle = computed(() => getCreativeGridStyle(props));
 
 const videoEl = ref(null);
 const isSourceLoaded = ref(false);
-const prefersReducedMotion = ref(
-  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
-);
+const effectsEnabled = ref(false);
 let observer = null;
+let effectsObserver = null;
+
+const syncEffectsMode = () => {
+  const enabled = document.documentElement.classList.contains("effects");
+  effectsEnabled.value = enabled;
+
+  const video = videoEl.value;
+  if (!video || !isSourceLoaded.value) return;
+
+  if (enabled) video.play().catch(() => {});
+  else video.pause();
+};
 
 const loadVideo = async () => {
   if (isSourceLoaded.value) return;
@@ -48,10 +58,17 @@ const loadVideo = async () => {
   if (!video) return;
 
   video.load();
-  if (!prefersReducedMotion.value) video.play().catch(() => {});
+  if (effectsEnabled.value) video.play().catch(() => {});
 };
 
 onMounted(() => {
+  effectsObserver = new MutationObserver(syncEffectsMode);
+  effectsObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  syncEffectsMode();
+
   if (!("IntersectionObserver" in window)) {
     loadVideo();
     return;
@@ -76,5 +93,6 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   observer?.disconnect();
+  effectsObserver?.disconnect();
 });
 </script>

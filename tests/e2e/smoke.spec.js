@@ -50,6 +50,25 @@ const setEffectsMode = async (page, mode) => {
   }, mode);
 };
 
+const expectVideoEffectsMode = async (page, effectsOn) => {
+  const video = page.locator("video");
+  const attributeAssertion = effectsOn ? expect(video) : expect(video).not;
+
+  await attributeAssertion.toHaveAttribute("autoplay", "");
+  await attributeAssertion.toHaveAttribute("loop", "");
+  await expect(video).toHaveAttribute("controls", "");
+
+  await video.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      video.evaluate((element) => ({
+        hasSource: Boolean(element.currentSrc),
+        paused: element.paused,
+      })),
+    )
+    .toEqual({ hasSource: true, paused: !effectsOn });
+};
+
 test.beforeEach(async ({ page }) => {
   await page.route("https://mc.yandex.ru/metrika/tag.js", (route) =>
     route.fulfill({
@@ -75,6 +94,10 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   });
 
   await page.goto("/");
+
+  const video = page.locator("video");
+  await expect(video).not.toHaveAttribute("src", /.+/);
+  await expect(video).toHaveAttribute("preload", "auto");
 
   await expect(page.locator('script[src^="script."]')).toHaveAttribute(
     "src",
@@ -208,20 +231,7 @@ test("reduced motion disables enhanced effects", async ({ page }) => {
       { offset: "", scale: "" },
     ]);
 
-  const video = page.locator("video");
-  await expect(video).not.toHaveAttribute("autoplay", "");
-  await expect(video).not.toHaveAttribute("loop", "");
-  await expect(video).toHaveAttribute("controls", "");
-
-  await video.scrollIntoViewIfNeeded();
-  await expect
-    .poll(() =>
-      video.evaluate((element) => ({
-        hasSource: Boolean(element.currentSrc),
-        paused: element.paused,
-      })),
-    )
-    .toEqual({ hasSource: true, paused: true });
+  await expectVideoEffectsMode(page, false);
 });
 
 test("unavailable WebGL keeps Hero static and Design in its desktop grid", async ({ page }) => {
@@ -271,6 +281,7 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
   expect(designMetrics.cards[4].top).toBeGreaterThan(designMetrics.cards[0].top);
   expect(designMetrics.cards.every((card) => card.width === 320)).toBe(true);
   expect(designMetrics.cards.every((card) => card.height === 400)).toBe(true);
+  await expectVideoEffectsMode(page, false);
 });
 
 test("manual effects mode overrides browser capability detection", async ({ page }) => {
@@ -293,6 +304,7 @@ test("manual effects mode overrides browser capability detection", async ({ page
     ]);
 
   await expect(page.locator("#design-inner")).toHaveCSS("position", "sticky");
+  await expectVideoEffectsMode(page, true);
 });
 
 test("manual effects off overrides available hardware", async ({ page }) => {
@@ -320,6 +332,7 @@ test("manual effects off overrides available hardware", async ({ page }) => {
       { offset: "", scale: "" },
       { offset: "", scale: "" },
     ]);
+  await expectVideoEffectsMode(page, false);
 });
 
 test("effects control persists explicit off and on modes", async ({ page }) => {
