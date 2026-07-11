@@ -114,7 +114,13 @@ cd port-heaven
 
 2. Install dependencies:
 
-   Make sure you have Node.js installed: https://nodejs.org/
+   Use Node.js 22. If you use nvm, select the project version first:
+
+```bash
+nvm use
+```
+
+Then install the dependencies:
 
 ```bash
 npm install

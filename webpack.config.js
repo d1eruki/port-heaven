@@ -71,14 +71,7 @@ module.exports = (_env, argv) => {
           use: [
             isDev ? "style-loader" : MiniCssExtractPlugin.loader,
             "css-loader",
-            {
-              loader: "postcss-loader",
-              options: {
-                postcssOptions: {
-                  plugins: [require("@tailwindcss/postcss")],
-                },
-              },
-            },
+            "postcss-loader",
           ],
         },
       ],

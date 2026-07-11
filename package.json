@@ -7,6 +7,9 @@
   "author": "",
   "license": "ISC",
   "directories": {},
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "start": "webpack serve --hot --mode development",
     "serve:dist": "http-server dist -a 127.0.0.1 -p 4173 -c-1",
