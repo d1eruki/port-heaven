@@ -36,6 +36,8 @@ Where practical, verify:
 
 For capability-gated effects, trace the full path from capability detection through state classes and module initialization to the final computed styles. Do not assume that a browser setting and a project feature-detection heuristic produce the same result.
 
+Keep diagnostic causes such as `hw/no-hw` and `motion/reduced-motion` separate, but make effect-dependent components consume the resolved `effects/no-effects` state. Behavior under `no-effects` must remain identical whether it came from reduced motion, manual mode, or a capability fallback, unless a difference is explicitly required and documented. Cover every supported off path with equivalent negative-path tests.
+
 Clearly distinguish confirmed causes from unverified hypotheses. Before claiming that a fallback disables an effect, add or run a negative-path test that verifies the effect remains inactive after the triggering interaction, such as scrolling, resizing, or changing media preferences.
 
 ## Frontend Conventions
@@ -51,6 +53,10 @@ Do not manually duplicate Tailwind defaults for breakpoints, spacing, colors, ty
 ### Accessibility
 
 Add appropriate accessibility attributes to icons and SVGs, including `aria-hidden` and `focusable` for decorative graphics. Give navigation controls an `aria-label`, and keep image `alt` attributes accurate.
+
+### Toggle Labels
+
+Keep toggle labels consistent across the project: show the action or alternative state that will be applied after activation, not the current state. Write labels in full, without abbreviations or colons, and use lowercase to match the interface style.
 
 ### Vue Components
 

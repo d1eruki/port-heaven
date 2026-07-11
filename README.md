@@ -15,6 +15,7 @@ Packages involved:
 - `webpack` — the bundler
 - `webpack-cli` — command-line interface for Webpack
 - `webpack-dev-server` — local dev server with HMR
+- `http-server` — serves the production `dist` build during Playwright tests
 - `html-webpack-plugin` — generates HTML and injects built assets
 - `css-minimizer-webpack-plugin` — minimizes CSS in production
 - `mini-css-extract-plugin` — extracts CSS into separate files for production
@@ -24,6 +25,10 @@ Packages involved:
 Production JS, CSS, chunks, and imported assets use content hashes in their filenames for safer
 browser caching. Project assets are imported through Webpack from `src/assets`; avoid literal
 `assets/...` paths for local files so unused assets are not copied into production builds.
+
+Production images and targeted videos are optimized by a local Webpack loader before their content
+hashes are calculated. The original files in `src/assets` remain unchanged; only emitted `dist`
+assets are compressed.
 
 ### PostCSS
 
@@ -91,7 +96,9 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 Available npm scripts:
 
 - `npm start` — start dev server at http://localhost:8080 with HMR
+- `npm run serve:dist` — serve the existing production build at http://127.0.0.1:4173
 - `npm run build` — production build
+- `npm run test:e2e` — build and test the production `dist` output with Playwright
 
 ## Installation
 

@@ -2,7 +2,6 @@ import { applyHwClass } from "../libraries/hw-detect";
 import { onReady } from "../utils/onReady";
 import { isViewportAtLeast } from "../utils/breakpoints";
 
-import { applyInitialTheme } from "../features/preferences/theme-toggle";
 import { applyEffectsMode } from "../features/preferences/effects-toggle";
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
@@ -17,7 +16,6 @@ export const initFeatures = async () => {
   const { effectsOn } = applyEffectsMode(capabilities);
   const screenLg = isViewportAtLeast("lg");
 
-  applyInitialTheme();
   initSections();
   initScrollToTop();
   initScrollRestoration();

@@ -128,15 +128,14 @@
       "decline": "hide"
     }
   },
-  "lang-toggle": "ru",
+  "lang-toggle": "русский",
   "theme-toggle": {
     "light": "Light theme",
     "dark": "Dark theme"
   },
   "effects-toggle": {
-    "auto": "effects: auto",
-    "on": "effects: on",
-    "off": "effects: off"
+    "enable": "enable effects",
+    "disable": "disable effects"
   },
   "contacts": {
     "telegram": "telegram",

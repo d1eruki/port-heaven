@@ -50,6 +50,25 @@ const setEffectsMode = async (page, mode) => {
   }, mode);
 };
 
+const expectVideoEffectsMode = async (page, effectsOn) => {
+  const video = page.locator("video");
+  const attributeAssertion = effectsOn ? expect(video) : expect(video).not;
+
+  await attributeAssertion.toHaveAttribute("autoplay", "");
+  await attributeAssertion.toHaveAttribute("loop", "");
+  await expect(video).toHaveAttribute("controls", "");
+
+  await video.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      video.evaluate((element) => ({
+        hasSource: Boolean(element.currentSrc),
+        paused: element.paused,
+      })),
+    )
+    .toEqual({ hasSource: true, paused: !effectsOn });
+};
+
 test.beforeEach(async ({ page }) => {
   await page.route("https://mc.yandex.ru/metrika/tag.js", (route) =>
     route.fulfill({
@@ -76,6 +95,18 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
 
   await page.goto("/");
 
+  const video = page.locator("video");
+  await expect(video).not.toHaveAttribute("src", /.+/);
+  await expect(video).toHaveAttribute("preload", "auto");
+
+  await expect(page.locator('script[src^="script."]')).toHaveAttribute(
+    "src",
+    /^script\.[a-f0-9]+\.js$/,
+  );
+  await expect(page.locator('link[rel="stylesheet"][href^="style."]')).toHaveAttribute(
+    "href",
+    /^style\.[a-f0-9]+\.css$/,
+  );
   await expect(page.locator("#hero")).toBeVisible();
   await expect(page.locator("#projects")).toBeVisible();
   await expect(page.locator("#design")).toBeVisible();
@@ -95,9 +126,26 @@ test("theme and locale controls update the page", async ({ page }) => {
   await page.getByRole("button", { name: "светлая тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "light");
 
-  await page.getByRole("button", { name: "en" }).click();
+  await page.getByRole("button", { name: "english" }).click();
   await expect(root).toHaveAttribute("lang", "en");
   await expect(page.getByRole("heading", { name: /artem/i })).toBeVisible();
+  await expect(page.getByRole("button", { name: "русский" })).toBeVisible();
+});
+
+test("saved light theme is synchronized before Vue mounts", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("theme", "light");
+  });
+  await page.goto("/");
+
+  const root = page.locator("html");
+  const themeToggle = page.getByRole("button", { name: "темная тема" });
+
+  await expect(root).toHaveAttribute("data-theme", "light");
+  await expect(themeToggle).toBeVisible();
+
+  await themeToggle.click();
+  await expect(root).toHaveAttribute("data-theme", "dark");
 });
 
 test("scroll to top returns from lower sections", async ({ page }) => {
@@ -182,6 +230,8 @@ test("reduced motion disables enhanced effects", async ({ page }) => {
       { offset: "", scale: "" },
       { offset: "", scale: "" },
     ]);
+
+  await expectVideoEffectsMode(page, false);
 });
 
 test("unavailable WebGL keeps Hero static and Design in its desktop grid", async ({ page }) => {
@@ -231,6 +281,7 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
   expect(designMetrics.cards[4].top).toBeGreaterThan(designMetrics.cards[0].top);
   expect(designMetrics.cards.every((card) => card.width === 320)).toBe(true);
   expect(designMetrics.cards.every((card) => card.height === 400)).toBe(true);
+  await expectVideoEffectsMode(page, false);
 });
 
 test("manual effects mode overrides browser capability detection", async ({ page }) => {
@@ -253,6 +304,7 @@ test("manual effects mode overrides browser capability detection", async ({ page
     ]);
 
   await expect(page.locator("#design-inner")).toHaveCSS("position", "sticky");
+  await expectVideoEffectsMode(page, true);
 });
 
 test("manual effects off overrides available hardware", async ({ page }) => {
@@ -280,6 +332,7 @@ test("manual effects off overrides available hardware", async ({ page }) => {
       { offset: "", scale: "" },
       { offset: "", scale: "" },
     ]);
+  await expectVideoEffectsMode(page, false);
 });
 
 test("effects control persists explicit off and on modes", async ({ page }) => {
@@ -287,7 +340,16 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
   await mockWebGl(page, "hardware");
   await page.goto("/");
 
-  await expect(page.locator("html")).toHaveAttribute("data-effects-mode", "auto");
+  const root = page.locator("html");
+  await expect(root).toHaveAttribute("data-effects-mode", "auto");
+  const effectsInitiallyOn = await root.evaluate((element) =>
+    element.classList.contains("effects"),
+  );
+  const firstAction = effectsInitiallyOn ? "выключить эффекты" : "включить эффекты";
+  const secondAction = effectsInitiallyOn ? "включить эффекты" : "выключить эффекты";
+  const firstMode = effectsInitiallyOn ? "off" : "on";
+  const secondMode = effectsInitiallyOn ? "on" : "off";
+  await expect(page.getByRole("button", { name: firstAction })).toBeVisible();
   expect(
     await page.evaluate(
       () => getComputedStyle(document.documentElement, "::-webkit-scrollbar").display,
@@ -300,12 +362,11 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
 
   await Promise.all([
     page.waitForNavigation(),
-    page.getByRole("button", { name: "эффекты: авто" }).click(),
+    page.getByRole("button", { name: firstAction }).click(),
   ]);
 
-  await expect(page.locator("html")).toHaveClass(/no-effects/);
-  await expect(page.locator("html")).toHaveAttribute("data-effects-mode", "off");
-  await expect(page.getByRole("button", { name: "эффекты: выкл" })).toBeVisible();
+  await expect(root).toHaveAttribute("data-effects-mode", firstMode);
+  await expect(page.getByRole("button", { name: secondAction })).toBeVisible();
   await expect
     .poll(() =>
       page.locator("#design").evaluate((section) => {
@@ -317,12 +378,11 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
 
   await Promise.all([
     page.waitForNavigation(),
-    page.getByRole("button", { name: "эффекты: выкл" }).click(),
+    page.getByRole("button", { name: secondAction }).click(),
   ]);
 
-  await expect(page.locator("html")).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
-  await expect(page.locator("html")).toHaveAttribute("data-effects-mode", "on");
-  await expect(page.getByRole("button", { name: "эффекты: вкл" })).toBeVisible();
+  await expect(root).toHaveAttribute("data-effects-mode", secondMode);
+  await expect(page.getByRole("button", { name: firstAction })).toBeVisible();
   await expect
     .poll(() =>
       page.locator("#design").evaluate((section) => {

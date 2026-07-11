@@ -60,24 +60,32 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
-import { readSavedEffectsMode, toggleEffectsMode } from "../features/preferences/effects-toggle";
+import { toggleEffectsMode } from "../features/preferences/effects-toggle";
 import { getCurrentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 
 const { t } = useI18n();
 const currentTheme = ref(getCurrentTheme());
-const currentEffectsMode = ref(readSavedEffectsMode());
+const effectsOn = ref(false);
 
 const themeToggleLabel = computed(() =>
   t(`theme-toggle.${currentTheme.value === "dark" ? "light" : "dark"}`),
 );
 const langToggleLabel = computed(() => t("lang-toggle"));
-const effectsToggleLabel = computed(() => t(`effects-toggle.${currentEffectsMode.value}`));
+const effectsToggleLabel = computed(() =>
+  t(`effects-toggle.${effectsOn.value ? "disable" : "enable"}`),
+);
+
+onMounted(() => {
+  queueMicrotask(() => {
+    effectsOn.value = document.documentElement.classList.contains("effects");
+  });
+});
 
 const toggleEffects = () => {
-  currentEffectsMode.value = toggleEffectsMode();
+  toggleEffectsMode();
   window.location.reload();
 };
 
