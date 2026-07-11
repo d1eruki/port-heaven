@@ -76,6 +76,14 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
 
   await page.goto("/");
 
+  await expect(page.locator('script[src^="script."]')).toHaveAttribute(
+    "src",
+    /^script\.[a-f0-9]+\.js$/,
+  );
+  await expect(page.locator('link[rel="stylesheet"][href^="style."]')).toHaveAttribute(
+    "href",
+    /^style\.[a-f0-9]+\.css$/,
+  );
   await expect(page.locator("#hero")).toBeVisible();
   await expect(page.locator("#projects")).toBeVisible();
   await expect(page.locator("#design")).toBeVisible();

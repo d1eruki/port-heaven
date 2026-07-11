@@ -15,6 +15,7 @@ Packages involved:
 - `webpack` — the bundler
 - `webpack-cli` — command-line interface for Webpack
 - `webpack-dev-server` — local dev server with HMR
+- `http-server` — serves the production `dist` build during Playwright tests
 - `html-webpack-plugin` — generates HTML and injects built assets
 - `css-minimizer-webpack-plugin` — minimizes CSS in production
 - `mini-css-extract-plugin` — extracts CSS into separate files for production
@@ -95,7 +96,9 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 Available npm scripts:
 
 - `npm start` — start dev server at http://localhost:8080 with HMR
+- `npm run serve:dist` — serve the existing production build at http://127.0.0.1:4173
 - `npm run build` — production build
+- `npm run test:e2e` — build and test the production `dist` output with Playwright
 
 ## Installation
 

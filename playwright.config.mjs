@@ -1,5 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const distServerUrl = "http://127.0.0.1:4173";
+const distServerCommand = process.env.CI
+  ? "npm run serve:dist"
+  : "npm run build && npm run serve:dist";
+
 export default defineConfig({
   testDir: "./tests/e2e",
   timeout: 30_000,
@@ -7,13 +12,13 @@ export default defineConfig({
     timeout: 5_000,
   },
   use: {
-    baseURL: "http://127.0.0.1:8080",
+    baseURL: distServerUrl,
     trace: "on-first-retry",
   },
   webServer: {
-    command: "npm run start -- --host 127.0.0.1",
-    url: "http://127.0.0.1:8080",
-    reuseExistingServer: !process.env.CI,
+    command: distServerCommand,
+    url: distServerUrl,
+    reuseExistingServer: false,
     timeout: 120_000,
   },
   projects: [
