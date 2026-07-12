@@ -1,6 +1,3 @@
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
-
 @theme static {
   --breakpoint-3xl: 120rem; /* 1920 */
   --breakpoint-4xl: 160rem; /* 2560 */
@@ -19,7 +16,6 @@
   --color-fg: var(--theme-fg);
   --color-action-muted: var(--theme-action-muted);
   --color-muted: var(--theme-muted);
-  --color-progress: var(--theme-progress);
   --color-accent-section: var(--theme-accent-section);
   --color-accent-section-fg: var(--theme-accent-section-fg);
   --color-inverse: var(--theme-inverse);

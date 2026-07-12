@@ -5,7 +5,6 @@
   --theme-fg: #000000;
   --theme-action-muted: #000000;
   --theme-muted: var(--color-neutral-500);
-  --theme-progress: var(--color-neutral-700);
   --theme-accent-section: var(--theme-primary);
   --theme-accent-section-fg: var(--color-white);
   --theme-inverse: #000000;

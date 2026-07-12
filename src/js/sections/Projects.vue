@@ -21,6 +21,7 @@
         :project-description="project.description"
         :project-tags="project.tags"
         :project-text="project.text"
+        :project-statistic="project.statistics"
         :project-links="project.links"
       />
     </div>
@@ -42,6 +43,7 @@ const translatedProjects = computed(() =>
     name: t(project.titleKey),
     description: t(project.descriptionKey),
     text: project.textKeys.map((key) => t(key)),
+    statistics: (project.statisticKeys || []).map((key) => t(key)),
     links: project.links.map((link) => ({
       url: link.url,
       name: t(link.labelKey),

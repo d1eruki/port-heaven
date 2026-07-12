@@ -206,6 +206,18 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   expect(consoleErrors).toEqual([]);
 });
 
+test("renders localized XRMS project statistics", async ({ page }) => {
+  await page.goto("/");
+
+  const statistics = page.locator("[data-project-statistics]");
+  await expect(statistics.locator("li")).toHaveCount(3);
+  await expect(statistics).toContainText(
+    "Ускорено проектирование макетов за счёт использования готовых компонентов",
+  );
+  await expect(statistics).toContainText("Прототипы сократили количество правок");
+  await expect(statistics).toContainText("Интерфейс стал визуально консистентным");
+});
+
 test("theme and locale controls update the page", async ({ page }) => {
   await page.goto("/");
 
