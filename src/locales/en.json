@@ -139,6 +139,11 @@
       "decline": "do not allow"
     }
   },
+  "seo": {
+    "title": "port heaven space",
+    "description": "Design, interfaces, prototypes, motion, and other things I make.",
+    "imageAlt": "Preview"
+  },
   "lang-toggle": "русский",
   "theme-toggle": {
     "light": "Light theme",

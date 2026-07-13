@@ -229,6 +229,12 @@ test("theme and locale controls update the page", async ({ page }) => {
 
   await page.getByRole("button", { name: "english" }).click();
   await expect(root).toHaveAttribute("lang", "en");
+  await expect(page).toHaveTitle("port heaven space");
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    "content",
+    /^Design, interfaces, prototypes, motion, and other things I\smake\.$/,
+  );
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", "Preview");
   await expect(page.getByRole("heading", { name: /artem/i })).toBeVisible();
   await expect(page.getByRole("button", { name: "русский" })).toBeVisible();
 });

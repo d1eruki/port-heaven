@@ -5,6 +5,13 @@ import { readStorageValue, saveStorageValue } from "../utils/storage";
 
 const DEFAULT_LOCALE = "ru";
 const LOCALE_STORAGE_KEY = "locale";
+const localeMessages = { ru, en };
+const localizedMetaTags = [
+  ['meta[name="description"]', "description"],
+  ['meta[property="og:title"]', "title"],
+  ['meta[property="og:description"]', "description"],
+  ['meta[property="og:image:alt"]', "imageAlt"],
+];
 
 const isSupportedLocale = (locale) => locale === "ru" || locale === "en";
 
@@ -22,23 +29,28 @@ export const saveLocale = (locale) =>
     isValid: isSupportedLocale,
   });
 
-export const setDocumentLanguage = (locale) => {
-  document.documentElement.lang = locale === "en" ? "en" : "ru";
+export const applyDocumentLocale = (locale) => {
+  const normalizedLocale = isSupportedLocale(locale) ? locale : DEFAULT_LOCALE;
+  const metadata = localeMessages[normalizedLocale].seo;
+
+  document.documentElement.lang = normalizedLocale;
+  document.title = metadata.title;
+
+  localizedMetaTags.forEach(([selector, key]) => {
+    document.querySelector(selector)?.setAttribute("content", metadata[key]);
+  });
 };
 
 const initialLocale = readSavedLocale();
 
-setDocumentLanguage(initialLocale);
+applyDocumentLocale(initialLocale);
 
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
   locale: initialLocale,
   fallbackLocale: "ru",
-  messages: {
-    ru,
-    en,
-  },
+  messages: localeMessages,
 });
 
 export default i18n;

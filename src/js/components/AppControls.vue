@@ -85,7 +85,7 @@
 import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { SECTION_NAV_ITEMS } from "../dom/dom-selectors";
-import i18n, { saveLocale, setDocumentLanguage } from "../libraries/i18n";
+import i18n, { applyDocumentLocale, saveLocale } from "../libraries/i18n";
 import { toggleEffectsMode } from "../features/preferences/effects-toggle";
 import { getCurrentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 
@@ -120,7 +120,7 @@ const toggleLocale = () => {
   const current = i18n.global.locale.value;
   const next = current === "ru" ? "en" : "ru";
   i18n.global.locale.value = next;
-  setDocumentLanguage(next);
+  applyDocumentLocale(next);
   saveLocale(next);
 };
 </script>
