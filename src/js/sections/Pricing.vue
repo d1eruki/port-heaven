@@ -70,7 +70,7 @@
 
       <div class="pricing-action">
         <a
-          class="anim-extrude flex w-fit bg-primary px-5 py-2.5 text-accent-section-fg lg:px-10 lg:py-5"
+          class="anim-extrude flex w-full justify-center bg-primary px-5 py-2.5 text-center text-accent-section-fg lg:w-fit lg:px-10 lg:py-5"
           href="https://t.me/d1eruki"
           target="_blank"
           rel="noopener noreferrer"
