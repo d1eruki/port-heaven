@@ -15,6 +15,7 @@
     <Projects />
     <Design />
     <Creatives />
+    <Pricing />
   </main>
   <Footer />
   <Notification
@@ -35,6 +36,7 @@ import About from "./sections/About.vue";
 import Projects from "./sections/Projects.vue";
 import Design from "./sections/Design.vue";
 import Creatives from "./sections/Creatives.vue";
+import Pricing from "./sections/Pricing.vue";
 import Footer from "./sections/Footer.vue";
 import { initYandexMetrika } from "./libraries/yandex-metrika";
 import { readStorageValue, saveStorageValue } from "./utils/storage";

@@ -144,4 +144,211 @@
       color: var(--color-inverse-fg) !important;
     }
   }
+
+  .pricing-section {
+    position: relative;
+    isolation: isolate;
+    min-height: 100dvh;
+    overflow: hidden;
+    padding: clamp(72px, 8vw, 128px) 60px;
+    background: var(--color-inverse);
+    color: var(--color-inverse-fg);
+  }
+
+  .pricing-shell {
+    width: min(100%, 1440px);
+    margin-inline: auto;
+  }
+
+  .pricing-header {
+    position: relative;
+    display: grid;
+    min-height: clamp(150px, 20vw, 290px);
+  }
+
+  .pricing-display {
+    position: absolute;
+    right: -0.035em;
+    bottom: -0.17em;
+    left: -0.035em;
+    z-index: 0;
+    color: var(--color-inverse-fg);
+    font-family: "Actay Wide", sans-serif;
+    font-size: clamp(8rem, 23vw, 22rem);
+    font-weight: 900;
+    line-height: 0.72;
+    letter-spacing: -0.075em;
+    text-align: center;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+
+  .pricing-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 14px;
+  }
+
+  .pricing-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+    background: var(--color-primary);
+    color: var(--color-accent-section-fg);
+    box-shadow:
+      0 -28px 64px rgb(0 0 0 / 0.72),
+      0 30px 80px rgb(0 0 0 / 0.32);
+  }
+
+  .pricing-card-head {
+    display: grid;
+    align-content: start;
+    min-height: 244px;
+    padding: 28px 30px 24px;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent-section-fg) 18%, transparent);
+  }
+
+  .pricing-plan-row {
+    display: flex;
+    min-height: 34px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .pricing-plan-title {
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    text-transform: none;
+  }
+
+  .pricing-card-head > p {
+    min-height: 44px;
+    margin-top: 12px;
+    color: color-mix(in srgb, var(--color-accent-section-fg) 62%, transparent);
+    line-height: 1.35;
+  }
+
+  .pricing-cost {
+    display: flex;
+    margin-top: 26px;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .pricing-cost strong {
+    font-family: "Actay Wide", sans-serif;
+    font-size: clamp(2.65rem, 4.1vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: -0.055em;
+    white-space: nowrap;
+  }
+
+  .pricing-cost span {
+    color: color-mix(in srgb, var(--color-accent-section-fg) 62%, transparent);
+    font-size: 0.9rem;
+  }
+
+  .pricing-card-head small {
+    margin-top: 10px;
+    color: color-mix(in srgb, var(--color-accent-section-fg) 70%, transparent);
+  }
+
+  .pricing-card-body {
+    display: grid;
+    padding: 26px 30px 28px;
+    align-content: start;
+  }
+
+  .pricing-card .pricing-includes-item {
+    color: var(--color-accent-section-fg);
+    font-weight: 900;
+  }
+
+  .pricing-includes-placeholder {
+    visibility: hidden;
+  }
+
+  .pricing-card ul {
+    display: grid;
+    gap: 14px;
+  }
+
+  .pricing-card li {
+    display: grid;
+    grid-template-columns: 10px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    min-height: 26px;
+    color: color-mix(in srgb, var(--color-accent-section-fg) 76%, transparent);
+    font-size: clamp(0.68rem, 0.8vw, 0.78rem);
+    line-height: 1.35;
+  }
+
+  .pricing-check {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent-section-fg);
+  }
+
+  .pricing-action {
+    display: flex;
+    margin-top: 36px;
+    justify-content: center;
+  }
+
+  @media (max-width: 1023px) {
+    .pricing-section {
+      padding-inline: 60px;
+    }
+
+    .pricing-header {
+      min-height: 190px;
+    }
+
+    .pricing-display {
+      font-size: clamp(7rem, 25vw, 13rem);
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .pricing-card {
+      min-height: 0;
+    }
+
+    .pricing-card-head {
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pricing-section {
+      padding: 72px 20px;
+    }
+
+    .pricing-header {
+      min-height: 150px;
+    }
+
+    .pricing-display {
+      bottom: -0.08em;
+      font-size: clamp(5.5rem, 29vw, 8rem);
+    }
+
+    .pricing-card-head,
+    .pricing-card-body {
+      padding-inline: 22px;
+    }
+
+    .pricing-cost strong {
+      font-size: clamp(2.4rem, 12vw, 3.5rem);
+    }
+  }
 }

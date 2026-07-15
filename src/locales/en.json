@@ -12,6 +12,7 @@
       "projects": "commercial projects",
       "design": "layouts",
       "creatives": "creatives",
+      "pricing": "pricing",
       "footer": "contact"
     }
   },
@@ -56,6 +57,47 @@
       "description": "[ If the project feels vague, but you sense there’s something there. I’ll help find the core idea and shape it into something solid. ]"
     }
   },
+  "pricing": {
+    "pricePrefix": "from",
+    "currency": "₽",
+    "includes": "Everything in {plan}, plus:",
+    "action": "discuss a project on Telegram",
+    "plans": {
+      "base": {
+        "description": "For a quick landing page design built around a clear offer.",
+        "duration": "5–7 business days",
+        "features": [
+          "Moodboard and visual direction",
+          "Landing page structure with up to 5 sections",
+          "Desktop design of the main page",
+          "1 call and 1 revision round"
+        ]
+      },
+      "advanced": {
+        "description": "For a landing page where flow, responsiveness, and prototyping matter.",
+        "duration": "10–14 business days",
+        "features": [
+          "Audience analysis and user profile",
+          "Wireframes for up to 8 sections",
+          "Desktop, tablet, and mobile layouts",
+          "Clickable prototype and mini UI kit",
+          "2 calls and 2 revision rounds"
+        ]
+      },
+      "pro": {
+        "description": "For a product or campaign that needs hypothesis validation.",
+        "duration": "3–4 weeks",
+        "features": [
+          "Hypotheses and testing scenarios",
+          "User flow and key screen map",
+          "Design system: tokens, styles, and components",
+          "Up to 12 interface screens or sections",
+          "UX test, handoff, and 3 revision rounds"
+        ]
+      }
+    }
+  },
+
   "projects": {
     "buttons": {
       "design": "design",

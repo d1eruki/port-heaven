@@ -7,6 +7,7 @@ export const SECTION_IDS = {
   projects: "projects",
   design: "design",
   creatives: "creatives",
+  pricing: "pricing",
   footer: "footer",
 };
 
@@ -17,6 +18,7 @@ export const SECTION_NAV_ITEMS = [
   { id: SECTION_IDS.projects, labelKey: "navigation.sections.projects" },
   { id: SECTION_IDS.design, labelKey: "navigation.sections.design" },
   { id: SECTION_IDS.creatives, labelKey: "navigation.sections.creatives" },
+  { id: SECTION_IDS.pricing, labelKey: "navigation.sections.pricing" },
   { id: SECTION_IDS.footer, labelKey: "navigation.sections.footer" },
 ];
 
