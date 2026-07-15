@@ -1,108 +1,98 @@
 <!--pricing-->
-<section
-  data-section="pricing"
-  id="pricing"
-  class="pricing-section light:bg-white light:text-black relative isolate overflow-hidden bg-white px-15 py-20 text-black lg:min-h-dvh lg:px-20 lg:py-24"
->
-  <div class="pricing-rings pointer-events-none absolute inset-0 -z-1"></div>
-  <div class="mx-auto grid max-w-[1160px] gap-14">
-    <div class="grid justify-items-center gap-4 text-center">
-      <small class="text-primary font-bold uppercase tracking-[0.18em]">no tricks or fluff</small>
-      <h2 class="max-w-[900px] text-balance uppercase">пакеты для запуска дизайна</h2>
-      <p class="max-w-[680px] text-neutral-500">
-        Проектные цены без абонентки. Объемы собраны по реальным фриланс-пакетам для лендингов, UI/UX и быстрых продуктовых проверок.
-      </p>
+<section data-section="pricing" id="pricing" class="pricing-section">
+  <div class="pricing-shell">
+    <header class="pricing-header">
+      <h2 class="pricing-display" aria-label="Цены">цены</h2>
+    </header>
+
+    <div class="pricing-grid">
+      <article class="pricing-card">
+        <div class="pricing-card-head">
+          <div class="pricing-plan-row">
+            <h3 class="pricing-plan-title">Base</h3>
+          </div>
+          <p>Для быстрого макета лендинга под понятный оффер.</p>
+          <div class="pricing-cost">
+            <span>от</span>
+            <strong>35 000</strong>
+            <span>₽</span>
+          </div>
+          <small>5–7 рабочих дней</small>
+        </div>
+
+        <div class="pricing-card-body">
+          <ul>
+            <li class="pricing-includes-item pricing-includes-placeholder" aria-hidden="true"><span class="pricing-check"></span>&nbsp;</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Мудборд и визуальное направление</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Структура лендинга до 5 блоков</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Desktop-макет главной страницы</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>1 созвон и 1 круг правок</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="pricing-card">
+        <div class="pricing-card-head">
+          <div class="pricing-plan-row">
+            <h3 class="pricing-plan-title">Advanced</h3>
+          </div>
+          <p>Для лендинга, где важны сценарий, адаптив и прототип.</p>
+          <div class="pricing-cost">
+            <span>от</span>
+            <strong>75 000</strong>
+            <span>₽</span>
+          </div>
+          <small>10–14 рабочих дней</small>
+        </div>
+
+        <div class="pricing-card-body">
+          <ul>
+            <li class="pricing-includes-item"><span class="pricing-check" aria-hidden="true"></span>Всё из Base, плюс:</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Анализ ЦА и портрет пользователя</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Вайрфреймы до 8 блоков</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Адаптивы desktop / tablet / mobile</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Кликабельный прототип и mini UI-kit</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>2 созвона и 2 круга правок</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="pricing-card">
+        <div class="pricing-card-head">
+          <div class="pricing-plan-row">
+            <h3 class="pricing-plan-title">Pro</h3>
+          </div>
+          <p>Для продукта или кампании, где нужно проверить гипотезы.</p>
+          <div class="pricing-cost">
+            <span>от</span>
+            <strong>145 000</strong>
+            <span>₽</span>
+          </div>
+          <small>3–4 недели</small>
+        </div>
+
+        <div class="pricing-card-body">
+          <ul>
+            <li class="pricing-includes-item"><span class="pricing-check" aria-hidden="true"></span>Всё из Advanced, плюс:</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Гипотезы и сценарии тестирования</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>User flow и карта ключевых экранов</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>Дизайн-система: токены, стили, компоненты</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>До 12 экранов или блоков интерфейса</li>
+            <li><span class="pricing-check" aria-hidden="true"></span>UX-тест, handoff и 3 круга правок</li>
+          </ul>
+        </div>
+      </article>
     </div>
 
-    <div class="grid items-start gap-8 lg:grid-cols-3">
-      <article class="pricing-card pricing-card-light">
-        <div class="grid gap-4 border-b border-neutral-200 p-8 text-center">
-          <h3 class="pricing-plan-title normal-case">Base</h3>
-          <p class="text-neutral-500">Для быстрого макета лендинга под понятный оффер.</p>
-        </div>
-        <div class="grid gap-7 p-8">
-          <div class="grid gap-2 text-center">
-            <div><span class="align-top text-base">от </span><strong class="pricing-price font-[Actay_Wide] leading-none">35 000</strong><span class="text-base"> ₽</span></div>
-            <small class="text-neutral-500">5-7 рабочих дней</small>
-          </div>
-          <ul class="grid gap-4">
-            <li><span class="pricing-check">✓</span>Мудборд и визуальное направление</li>
-            <li><span class="pricing-check">✓</span>Структура лендинга до 5 блоков</li>
-            <li><span class="pricing-check">✓</span>Desktop-макет главной страницы</li>
-            <li><span class="pricing-check">✓</span>1 созвон и 1 круг правок</li>
-          </ul>
-        </div>
-        <a
-          class="pricing-button pricing-button-light"
-          href="https://t.me/d1eruki"
-          target="_blank"
-        >
-          обсудить Base
-        </a>
-      </article>
-
-      <article class="pricing-card pricing-card-dark">
-        <div class="grid gap-4 border-b border-neutral-700 p-8 text-center">
-          <h3 class="pricing-plan-title normal-case">Advanced</h3>
-          <p class="text-neutral-400">Для лендинга, где важны сценарий, адаптив и прототип.</p>
-        </div>
-        <div class="grid gap-7 p-8">
-          <div class="grid gap-2 text-center">
-            <div><span class="align-top text-base">от </span><strong class="pricing-price font-[Actay_Wide] leading-none">75 000</strong><span class="text-base"> ₽</span></div>
-            <small class="text-neutral-400">10-14 рабочих дней</small>
-          </div>
-          <div class="flex items-center gap-3 text-primary">
-            <span class="icon-[ic--round-arrow-back] size-6"></span>
-            <small>Все из Base, плюс:</small>
-          </div>
-          <ul class="grid gap-4">
-            <li><span class="pricing-check pricing-check-muted">✓</span>Анализ ЦА и портрет пользователя</li>
-            <li><span class="pricing-check pricing-check-muted">✓</span>Вайрфреймы до 8 блоков</li>
-            <li><span class="pricing-check pricing-check-muted">✓</span>Адаптивы desktop / tablet / mobile</li>
-            <li><span class="pricing-check pricing-check-muted">✓</span>Кликабельный прототип и mini UI-kit</li>
-            <li><span class="pricing-check pricing-check-muted">✓</span>2 созвона и 2 круга правок</li>
-          </ul>
-        </div>
-        <a
-          class="pricing-button pricing-button-primary"
-          href="https://t.me/d1eruki"
-          target="_blank"
-        >
-          обсудить Advanced
-        </a>
-      </article>
-
-      <article class="pricing-card pricing-card-light">
-        <div class="grid gap-4 border-b border-neutral-200 p-8 text-center">
-          <h3 class="pricing-plan-title normal-case">Pro</h3>
-          <p class="text-neutral-500">Для продукта или кампании, где нужно проверить гипотезы.</p>
-        </div>
-        <div class="grid gap-7 p-8">
-          <div class="grid gap-2 text-center">
-            <div><span class="align-top text-base">от </span><strong class="pricing-price font-[Actay_Wide] leading-none">145 000</strong><span class="text-base"> ₽</span></div>
-            <small class="text-neutral-500">3-4 недели</small>
-          </div>
-          <div class="flex items-center gap-3 text-neutral-500">
-            <span class="icon-[ic--round-arrow-back] size-6"></span>
-            <small>Все из Advanced, плюс:</small>
-          </div>
-          <ul class="grid gap-4">
-            <li><span class="pricing-check">✓</span>Гипотезы и сценарии тестирования</li>
-            <li><span class="pricing-check">✓</span>User flow и карта ключевых экранов</li>
-            <li><span class="pricing-check">✓</span>Дизайн-система: токены, стили, компоненты</li>
-            <li><span class="pricing-check">✓</span>До 12 экранов или блоков интерфейса</li>
-            <li><span class="pricing-check">✓</span>UX-тест на 5 респондентах и отчет</li>
-            <li><span class="pricing-check">✓</span>4 созвона, handoff и 3 круга правок</li>
-          </ul>
-        </div>
-        <a
-          class="pricing-button pricing-button-light"
-          href="https://t.me/d1eruki"
-          target="_blank"
-        >
-          обсудить Pro
-        </a>
-      </article>
+    <div class="pricing-action">
+      <a
+        class="anim-extrude light:bg-primary active flex w-fit px-5 py-2.5 lg:px-10 lg:py-5"
+        href="https://t.me/d1eruki"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <p class="light:text-black font-[Actay_Wide]">обсудить проект в телеге</p>
+      </a>
     </div>
   </div>
 </section>
