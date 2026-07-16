@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 @import "./styles/fonts.css";
+@import "./styles/tokens/palette.css";
+@import "./styles/tokens/semantic.css";
+@import "./styles/tokens/components.css";
 @import "./styles/core.css";
 @import "./styles/base.css";
 @import "./styles/utilities.css";
-@import "./styles/themes/shared.css";
 @import "./styles/themes/light.css";
 @import "./styles/themes/dark.css";
 @import "./styles/components.css";

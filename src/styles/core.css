@@ -10,43 +10,18 @@
   --cursor-size-active: 35px;
   --cursor-size-label: 150px;
 
-  /* colors (HSL) */
-  --color-primary: var(--theme-primary);
-  --color-canvas: var(--theme-canvas);
-  --color-fg: var(--theme-fg);
-  --color-action-muted: var(--theme-action-muted);
-  --color-muted: var(--theme-muted);
-  --color-accent-section: var(--theme-accent-section);
-  --color-accent-section-fg: var(--theme-accent-section-fg);
-  --color-inverse: var(--theme-inverse);
-  --color-inverse-fg: var(--theme-inverse-fg);
-  --color-chip: var(--theme-chip);
-  --color-chip-fg: var(--theme-chip-fg);
-  --color-border-subtle: var(--theme-border-subtle);
-  --color-stat: var(--theme-stat);
-  --color-hover-accent: var(--theme-hover-accent);
-  --color-hover-accent-fg: var(--theme-hover-accent-fg);
-  --color-blend: var(--theme-blend);
-  --color-cursor-fg: var(--theme-cursor-fg);
-  --color-hero-grid-dot: var(--theme-hero-grid-dot);
-  --color-hero-grid-line: var(--theme-hero-grid-line);
-  --color-corner-frame: var(--theme-corner-frame);
-  --color-creative-shadow: var(--theme-creative-shadow);
-
   /* типографика */
-  --h1: clamp(3rem, 12vw, 20rem);
-  --h2: clamp(1.75rem, 4vw, 8rem);
-  --h3: clamp(1.5rem, 3vw, 4.5rem);
-  --h4: clamp(1.25rem, 2vw, 3rem);
+  --text-heading-xl: clamp(3rem, 12vw, 20rem);
+  --text-heading-xl--line-height: 10vw;
+  --text-heading-lg: clamp(1.75rem, 4vw, 8rem);
+  --text-heading-md: clamp(1.5rem, 3vw, 4.5rem);
+  --text-heading-sm: clamp(1.25rem, 2vw, 3rem);
   --paragraph: clamp(0.75rem, 0.7071rem + 0.1831vw, 1rem);
   --subtext: clamp(0.75rem, 0.75vw, 1.25rem);
   --footer-logo-text: clamp(3rem, -1.6339rem + 19.7712vw, 30rem);
-  --h1-leading: 10vw;
 
   --dot-size: 14px;
   --dot-gap: 10px;
-  --dot-color: var(--theme-dot-color);
-  --dot-current: var(--theme-dot-current);
 }
 
 :root {

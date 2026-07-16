@@ -1,0 +1,25 @@
+:root {
+  --component-chip-bg: var(--semantic-surface-muted);
+  --component-chip-fg: var(--semantic-text-on-muted);
+  --component-stat-fg: var(--semantic-accent);
+  --component-hover-bg: var(--semantic-accent);
+  --component-hover-fg: var(--semantic-text-on-accent);
+  --component-blend-fg: var(--color-white);
+  --component-cursor-bg: var(--color-white);
+  --component-cursor-fg: var(--color-black);
+  --component-hero-grid-dot: var(--semantic-text-primary);
+  --component-hero-grid-line: var(--semantic-border-decoration);
+  --component-corner-frame: var(--semantic-text-muted);
+  --component-creative-shadow: var(--semantic-accent);
+  --component-section-dot: var(--color-neutral-700);
+  --component-section-dot-current: var(--semantic-accent);
+}
+
+@theme inline {
+  --color-chip: var(--component-chip-bg);
+  --color-chip-fg: var(--component-chip-fg);
+  --color-stat: var(--component-stat-fg);
+  --color-hover-accent: var(--component-hover-bg);
+  --color-hover-accent-fg: var(--component-hover-fg);
+  --color-blend: var(--component-blend-fg);
+}

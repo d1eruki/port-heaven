@@ -26,7 +26,7 @@
       <svg
         xmlns="http://www.w3.org/2000/svg"
         :viewBox="svgShapes.heroLancet.viewBox"
-        class="hero-image scroll-speed-50 absolute right-0 left-0 z-1 hidden h-svh w-auto justify-self-center fill-primary object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
+        class="hero-image scroll-speed-50 absolute right-0 left-0 z-1 hidden h-svh w-auto justify-self-center fill-accent object-cover lg:right-30 lg:block lg:h-9/10 lg:self-center lg:justify-self-end"
         data-parallax-anchor="top"
         data-parallax-scale="0.0001"
         aria-hidden="true"

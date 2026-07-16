@@ -64,7 +64,7 @@
       </a>
       <MenuDescription :menu-desc="t('menu.footer.description')" />
     </div>
-    <h2 class="footer-logo-text font-[Actay_Wide] text-nowrap text-primary lowercase">
+    <h2 class="footer-logo-text font-[Actay_Wide] text-nowrap text-accent lowercase">
       {{ t("brand.logo") }}
     </h2>
   </footer>

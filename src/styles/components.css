@@ -10,7 +10,7 @@
   }
 
   .corner-frame {
-    --cf-color: var(--color-corner-frame);
+    --cf-color: var(--component-corner-frame);
     --cf-size: 1px;
     --cf-length: 24px;
     background:
@@ -51,6 +51,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--component-cursor-bg);
+    color: var(--component-cursor-fg);
   }
 
   .app-cursor::after {
@@ -89,7 +91,7 @@
     height: var(--dot-size);
   }
   nav circle {
-    fill: var(--dot-color);
+    fill: var(--component-section-dot);
     transition:
       transform 0.2s ease,
       fill 0.2s ease,
@@ -98,14 +100,14 @@
     transform-origin: center;
   }
   nav button[aria-current="true"] circle {
-    fill: var(--dot-current);
+    fill: var(--component-section-dot-current);
     transform: scale(1);
   }
 
   @media (min-width: theme(--breakpoint-lg)) {
     .vanilla-tilt-creatives {
       transition: var(--transition);
-      box-shadow: -4px 4px 0 0 var(--color-creative-shadow);
+      box-shadow: -4px 4px 0 0 var(--component-creative-shadow);
     }
     .vanilla-tilt-creatives:hover {
       box-shadow: none;
@@ -114,9 +116,9 @@
 
   .hero {
     background-image:
-      radial-gradient(circle at 0 0, var(--color-hero-grid-dot) 1px, transparent 1px),
-      linear-gradient(to right, var(--color-hero-grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-hero-grid-line) 1px, transparent 1px);
+      radial-gradient(circle at 0 0, var(--component-hero-grid-dot) 1px, transparent 1px),
+      linear-gradient(to right, var(--component-hero-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--component-hero-grid-line) 1px, transparent 1px);
     background-size:
       var(--cell, 25vw) var(--cell, 25vw),
       var(--cell, 25vw) var(--cell, 25vw),

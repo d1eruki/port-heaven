@@ -18,64 +18,62 @@
         <article
           v-for="plan in pricingPlans"
           :key="plan.id"
-          class="flex min-w-0 flex-col overflow-hidden bg-primary text-accent-section-fg"
+          class="flex min-w-0 flex-col overflow-hidden bg-accent text-on-accent"
         >
           <div
-            class="grid min-w-0 content-start gap-5 border-b border-accent-section-fg/20 p-15 xl:h-90 xl:flex-none"
+            class="grid min-w-0 content-start gap-5 border-b border-on-accent/20 p-15 xl:h-90 xl:flex-none"
           >
             <div class="flex items-center justify-between gap-5">
               <h3 class="min-w-0 text-2xl wrap-anywhere normal-case lg:text-3xl">
                 {{ plan.name }}
               </h3>
             </div>
-            <p class="min-w-0 leading-snug wrap-anywhere text-accent-section-fg/60">
+            <p class="min-w-0 leading-snug wrap-anywhere text-on-accent/60">
               {{ plan.description }}
             </p>
             <div class="flex w-full min-w-0 items-baseline gap-2">
-              <span class="flex-none text-sm text-accent-section-fg/60">{{
+              <span class="flex-none text-sm text-on-accent/60">{{
                 t("pricing.pricePrefix")
               }}</span>
               <strong
                 class="flex min-w-0 items-baseline gap-2 font-[Actay_Wide] text-5xl leading-none font-black tracking-tighter whitespace-nowrap tabular-nums"
               >
                 {{ plan.price }}
-                <span class="flex-none text-2xl text-accent-section-fg/60">{{
+                <span class="flex-none text-2xl text-on-accent/60">{{
                   t("pricing.currency")
                 }}</span>
               </strong>
             </div>
-            <small class="min-w-0 wrap-anywhere text-accent-section-fg/70">{{
-              plan.duration
-            }}</small>
+            <small class="min-w-0 wrap-anywhere text-on-accent/70">{{ plan.duration }}</small>
           </div>
 
           <div class="grid min-w-0 flex-1 content-start p-15">
             <ul class="grid gap-3.5">
               <li
                 v-if="plan.includes"
-                class="flex min-w-0 items-center gap-5 text-xs leading-snug font-black text-accent-section-fg"
+                class="flex min-w-0 items-center gap-5 text-xs leading-snug font-black text-on-accent"
               >
                 <span
-                  class="block size-2 flex-none rounded-full bg-accent-section-fg"
+                  class="block size-2 flex-none rounded-full bg-on-accent"
                   aria-hidden="true"
                 ></span>
                 <span class="min-w-0 wrap-anywhere">{{ plan.includes }}</span>
               </li>
               <li
                 v-else
-                class="invisible flex min-w-0 items-center gap-5 text-xs leading-snug font-black text-accent-section-fg"
+                class="invisible flex min-w-0 items-center gap-5 text-xs leading-snug font-black text-on-accent"
                 aria-hidden="true"
               >
-                <span class="block size-2 flex-none rounded-full bg-accent-section-fg"></span>
+                <span class="block size-2 flex-none rounded-full bg-on-accent"></span>
                 <span class="min-w-0">&nbsp;</span>
               </li>
               <li
                 v-for="feature in plan.features"
                 :key="feature"
-                class="flex min-w-0 items-center gap-5 text-xs leading-snug text-accent-section-fg/75"
+                class="flex min-w-0 items-center gap-5 text-xs leading-snug text-on-accent/75"
               >
                 <span
-                  class="block size-2 flex-none rounded-full bg-accent-section-fg"
+                  class="block size-2 flex-none rounded-full bg-on-accent"
                   aria-hidden="true"
                 ></span>
                 <span class="min-w-0 wrap-anywhere">{{ feature }}</span>
@@ -87,7 +85,7 @@
 
       <div class="mt-9 flex justify-center px-5 lg:px-0">
         <a
-          class="anim-extrude active flex w-full justify-center bg-accent-section px-5 py-2.5 text-center text-accent-section-fg lg:w-fit lg:px-10 lg:py-5"
+          class="anim-extrude active flex w-full justify-center bg-accent px-5 py-2.5 text-center text-on-accent lg:w-fit lg:px-10 lg:py-5"
           href="https://t.me/d1eruki"
           target="_blank"
           rel="noopener noreferrer"
