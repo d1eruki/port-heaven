@@ -1,0 +1,6 @@
+:root {
+  --palette-pink-srgb: rgb(255 51 194);
+  --palette-pink-p3: color(display-p3 1 0.3 0.75);
+  --palette-lime-srgb: hsl(83 100% 50%);
+  --palette-lime-p3: color(display-p3 0.7 1 0);
+}

@@ -1,0 +1,15 @@
+:root[data-theme="dark"] {
+  --semantic-accent-srgb: var(--palette-lime-srgb);
+  --semantic-accent-p3: var(--palette-lime-p3);
+  --semantic-surface-canvas: var(--color-black);
+  --semantic-surface-inverse: var(--color-white);
+  --semantic-surface-muted: var(--color-neutral-800);
+  --semantic-text-primary: var(--color-white);
+  --semantic-text-action-muted: var(--color-neutral-700);
+  --semantic-text-muted: var(--color-neutral-500);
+  --semantic-text-on-accent: var(--color-black);
+  --semantic-text-inverse: var(--color-black);
+  --semantic-text-on-muted: var(--color-neutral-500);
+  --semantic-border-subtle: var(--color-neutral-800);
+  --semantic-border-decoration: var(--color-neutral-800);
+}

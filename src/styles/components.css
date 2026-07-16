@@ -3,25 +3,33 @@
     transition: var(--transition);
   }
 
-  @media (min-width: theme(screens.lg)) {
+  @media (min-width: theme(--breakpoint-lg)) {
     .anim-extrude:hover {
       transform: translate(5px, 5px);
     }
   }
 
   .corner-frame {
-    --cf-color: var(--color-neutral-500);
+    --cf-color: var(--component-corner-frame);
     --cf-size: 1px;
     --cf-length: 24px;
     background:
-      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top left / var(--cf-length) var(--cf-size) no-repeat,
-      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top left / var(--cf-size) var(--cf-length) no-repeat,
-      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top right / var(--cf-length) var(--cf-size) no-repeat,
-      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top right / var(--cf-size) var(--cf-length) no-repeat,
-      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom left / var(--cf-length) var(--cf-size) no-repeat,
-      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom left / var(--cf-size) var(--cf-length) no-repeat,
-      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom right / var(--cf-length) var(--cf-size) no-repeat,
-      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom right / var(--cf-size) var(--cf-length) no-repeat;
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top left /
+        var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top left / var(--cf-size)
+        var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) top right /
+        var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) top right /
+        var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom left /
+        var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom left /
+        var(--cf-size) var(--cf-length) no-repeat,
+      linear-gradient(to right, var(--cf-color) 0%, var(--cf-color) 100%) bottom right /
+        var(--cf-length) var(--cf-size) no-repeat,
+      linear-gradient(to bottom, var(--cf-color) 0%, var(--cf-color) 100%) bottom right /
+        var(--cf-size) var(--cf-length) no-repeat;
     background-origin: padding-box;
   }
 
@@ -43,7 +51,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Actay Wide", sans-serif;
+    background: var(--component-cursor-bg);
+    color: var(--component-cursor-fg);
   }
 
   .app-cursor::after {
@@ -82,6 +91,7 @@
     height: var(--dot-size);
   }
   nav circle {
+    fill: var(--component-section-dot);
     transition:
       transform 0.2s ease,
       fill 0.2s ease,
@@ -90,13 +100,14 @@
     transform-origin: center;
   }
   nav button[aria-current="true"] circle {
+    fill: var(--component-section-dot-current);
     transform: scale(1);
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: theme(--breakpoint-lg)) {
     .vanilla-tilt-creatives {
       transition: var(--transition);
-      box-shadow: -4px 4px 0 0 var(--color-primary);
+      box-shadow: -4px 4px 0 0 var(--component-creative-shadow);
     }
     .vanilla-tilt-creatives:hover {
       box-shadow: none;
@@ -104,24 +115,35 @@
   }
 
   .hero {
-    background-image: radial-gradient(circle at 0 0, var(--color-white) 1px, transparent 1px), linear-gradient(to right, var(--color-neutral-800) 1px, transparent 1px), linear-gradient(to bottom, var(--color-neutral-800) 1px, transparent 1px);
+    background-image:
+      radial-gradient(circle at 0 0, var(--component-hero-grid-dot) 1px, transparent 1px),
+      linear-gradient(to right, var(--component-hero-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--component-hero-grid-line) 1px, transparent 1px);
     background-size:
-      var(--cell) var(--cell),
-      var(--cell) var(--cell),
-      var(--cell) var(--cell);
+      var(--cell, 25vw) var(--cell, 25vw),
+      var(--cell, 25vw) var(--cell, 25vw),
+      var(--cell, 25vw) var(--cell, 25vw);
     background-position:
-      calc(var(--cell) / 2) calc(var(--cell) / 2),
-      calc(var(--cell) / 2) calc(var(--cell) / 2),
-      calc(var(--cell) / 2) calc(var(--cell) / 2);
-    background-attachment: fixed;
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2),
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2),
+      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2);
   }
-}
 
-/* Compose hero-image transforms from CSS variables set by JS */
-@layer components {
-  .hero-image {
-    transform: translateY(var(--parallaxY, 0)) scale(var(--heroScale, 1));
+  [class*="scroll-speed-"] {
+    transform: translateY(var(--parallax-offset, 0)) scale(var(--parallax-scale, 1));
     will-change: transform;
-    transition: transform 0.3s ease-out;
+  }
+
+  @media (max-width: 767px) {
+    [data-section="design"] a.design-active,
+    .design-active {
+      background-color: var(--color-hover-accent) !important;
+      color: var(--color-hover-accent-fg) !important;
+    }
+
+    [data-section="design"] a.design-active small {
+      background-color: var(--color-inverse) !important;
+      color: var(--color-inverse-fg) !important;
+    }
   }
 }

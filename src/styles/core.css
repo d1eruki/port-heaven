@@ -1,35 +1,35 @@
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
-@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
-
-@theme {
-  --breakpoint-lg: 64rem; /* 1024 */
+@theme static {
   --breakpoint-3xl: 120rem; /* 1920 */
   --breakpoint-4xl: 160rem; /* 2560 */
+}
 
+@theme {
   --transition: all 0.25s;
 
   --cursor-size: 15px;
   --cursor-size-active: 35px;
   --cursor-size-label: 150px;
 
-  --color-primary: hsl(83 100% 50%);
-
-  --text-h1: clamp(3rem, 12vw, 20rem);
-  --leading-h1: 10vw;
-  --text-h2: clamp(2.5rem, 4vw, 8rem);
-  --text-h3: clamp(2rem, 3vw, 4.5rem);
-  --text-h4: clamp(1.75rem, 2vw, 3rem);
-  --text-body: clamp(1rem, 1vw, 2rem);
-  --text-small: clamp(0.75rem, 0.75vw, 1.25rem);
+  /* типографика */
+  --text-heading-xl: clamp(3rem, 12vw, 20rem);
+  --text-heading-xl--line-height: 10vw;
+  --text-heading-lg: clamp(1.75rem, 4vw, 8rem);
+  --text-heading-md: clamp(1.5rem, 3vw, 4.5rem);
+  --text-heading-sm: clamp(1.25rem, 2vw, 3rem);
+  --paragraph: clamp(0.75rem, 0.7071rem + 0.1831vw, 1rem);
+  --subtext: clamp(0.75rem, 0.75vw, 1.25rem);
+  --footer-logo-text: clamp(3rem, -1.6339rem + 19.7712vw, 30rem);
 
   --dot-size: 14px;
   --dot-gap: 10px;
-  --dot-color: var(--color-white);
-  --dot-current: var(--color-primary);
 }
 
-@media (color-gamut: p3) {
-  :root {
-    --color-primary: color(display-p3 0.7 1 0);
-  }
+:root {
+  --cell: 25vw;
+  --parallax-offset: 0px;
+  --parallax-scale: 1;
+}
+
+.footer-logo-text {
+  font-size: var(--footer-logo-text);
 }

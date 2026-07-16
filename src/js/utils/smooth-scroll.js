@@ -1,6 +1,4 @@
-function hasLenis() {
-  return typeof window !== "undefined" && typeof window.lenis === "object" && window.lenis && typeof window.lenis.scrollTo === "function";
-}
+import { getScrollY, scrollToY } from "./scroll";
 
 function prefersReducedMotion() {
   try {
@@ -14,7 +12,7 @@ function normalizeTarget(target) {
   if (typeof target === "number") return Math.max(0, target | 0);
   if (target && typeof target.getBoundingClientRect === "function") {
     const rect = target.getBoundingClientRect();
-    return Math.max(0, Math.round(rect.top + window.pageYOffset));
+    return Math.max(0, Math.round(rect.top + getScrollY()));
   }
   return 0;
 }
@@ -24,27 +22,11 @@ export function smoothScrollTo(target, opts = {}) {
   const baseY = normalizeTarget(target);
   const y = Math.max(0, baseY - (offset | 0));
 
-  if (hasLenis()) {
-    window.lenis.scrollTo(y, { offset: 0 });
-  } else {
-    const reduce = prefersReducedMotion();
-    try {
-      window.scrollTo({ top: y, left: 0, behavior: reduce ? "auto" : "smooth" });
-    } catch {
-      window.scrollTo(0, y);
-    }
-  }
+  const reduce = prefersReducedMotion();
+  scrollToY(y, { offset: 0, behavior: reduce ? "auto" : "smooth" });
 }
 
 export function smoothScrollTop() {
-  if (hasLenis()) {
-    window.lenis.scrollTo(0, { offset: 0 });
-  } else {
-    const reduce = prefersReducedMotion();
-    try {
-      window.scrollTo({ top: 0, left: 0, behavior: reduce ? "auto" : "smooth" });
-    } catch {
-      window.scrollTo(0, 0);
-    }
-  }
+  const reduce = prefersReducedMotion();
+  scrollToY(0, { offset: 0, behavior: reduce ? "auto" : "smooth" });
 }

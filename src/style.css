@@ -1,16 +1,17 @@
 @import "tailwindcss";
-
-@custom-variant hw (&:where(html.hw &));
+@import "lenis/dist/lenis.css";
+@import "./styles/fonts.css";
+@import "./styles/tokens/palette.css";
+@import "./styles/tokens/semantic.css";
+@import "./styles/tokens/components.css";
+@import "./styles/core.css";
+@import "./styles/base.css";
+@import "./styles/utilities.css";
+@import "./styles/themes/light.css";
+@import "./styles/themes/dark.css";
+@import "./styles/components.css";
 
 @plugin "@iconify/tailwind4";
-@import "lenis/dist/lenis.css";
-
-@import "./styles/fonts.css";
-@import "./styles/core.css";
-
-@import "./styles/base.css";
-@import "./styles/utilits.css";
-
-@import "./styles/themes/light.css";
-
-@import "./styles/components.css";
+@custom-variant hw (&:where(html.hw &));
+@custom-variant effects (&:where(html.effects &));
+@custom-variant no-effects (&:where(html.no-effects &));

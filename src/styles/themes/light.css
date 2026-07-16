@@ -1,34 +1,15 @@
-@layer base {
-  @variant light {
-    *::selection {
-      background-color: var(--color-white);
-      color: var(--color-black);
-    }
-
-    a {
-      color: var(--color-white);
-    }
-    a:hover {
-      color: var(--color-white);
-    }
-
-    svg:hover polygon,
-    svg:hover path,
-    svg:hover rect {
-      fill: var(--color-white);
-    }
-
-    .app-cursor {
-      background: var(--color-white);
-      color: var(--color-black);
-    }
-
-    nav circle {
-      fill: var(--dot-color);
-    }
-
-    nav button[aria-current="true"] circle {
-      fill: var(--dot-current);
-    }
-  }
+:root[data-theme="light"] {
+  --semantic-accent-srgb: var(--palette-pink-srgb);
+  --semantic-accent-p3: var(--palette-pink-p3);
+  --semantic-surface-canvas: var(--color-white);
+  --semantic-surface-inverse: var(--color-black);
+  --semantic-surface-muted: var(--color-neutral-100);
+  --semantic-text-primary: var(--color-black);
+  --semantic-text-action-muted: var(--color-black);
+  --semantic-text-muted: var(--color-neutral-500);
+  --semantic-text-on-accent: var(--color-white);
+  --semantic-text-inverse: var(--color-white);
+  --semantic-text-on-muted: var(--color-black);
+  --semantic-border-subtle: currentColor;
+  --semantic-border-decoration: var(--color-neutral-300);
 }

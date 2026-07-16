@@ -2,19 +2,26 @@
   * {
     font-family: "JetBrains Mono", monospace;
     font-optical-sizing: auto;
-    font-weight: 100;
-    cursor: none;
     line-height: 1;
+    /* text-wrap: balance;
+    word-break: normal;
+    overflow-wrap: break-word;*/
+  }
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  html.effects::-webkit-scrollbar,
+  html.effects *::-webkit-scrollbar {
+    display: none;
+  }
+
+  .use-custom-cursor * {
+    cursor: none;
   }
 
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  .app-cursor {
     font-weight: 900;
     font-family: "Actay Wide", sans-serif;
     text-transform: lowercase;
@@ -23,34 +30,36 @@
   }
 
   h1 {
-    font-size: var(--text-h1);
-    line-height: var(--leading-h1);
+    font-size: var(--text-heading-xl);
+    line-height: var(--text-heading-xl--line-height);
   }
   h2 {
-    font-size: var(--text-h2);
+    font-size: var(--text-heading-lg);
   }
   h3 {
-    font-size: var(--text-h3);
+    font-size: var(--text-heading-md);
   }
   h4 {
-    font-size: var(--text-h4);
+    font-size: var(--text-heading-sm);
   }
 
   p,
   a,
   button,
   .app-cursor {
-    font-size: var(--text-body);
+    font-size: var(--paragraph);
   }
 
   small,
   .design span {
-    font-size: var(--text-small);
+    font-size: var(--subtext);
   }
 
+  /*noinspection CssInvalidPseudoSelector*/
   video::-webkit-media-controls {
     display: none;
   }
+  /*noinspection CssInvalidPseudoSelector*/
   video:hover::-webkit-media-controls {
     display: flex;
   }

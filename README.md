@@ -15,12 +15,20 @@ Packages involved:
 - `webpack` — the bundler
 - `webpack-cli` — command-line interface for Webpack
 - `webpack-dev-server` — local dev server with HMR
-- `copy-webpack-plugin` — copies static assets to the build
+- `http-server` — serves the production `dist` build during Playwright tests
 - `html-webpack-plugin` — generates HTML and injects built assets
 - `css-minimizer-webpack-plugin` — minimizes CSS in production
 - `mini-css-extract-plugin` — extracts CSS into separate files for production
 - `css-loader` — allows importing CSS into JS
 - `style-loader` — injects styles into DOM during development
+
+Production JS, CSS, chunks, and imported assets use content hashes in their filenames for safer
+browser caching. Project assets are imported through Webpack from `src/assets`; avoid literal
+`assets/...` paths for local files so unused assets are not copied into production builds.
+
+Production images and targeted videos are optimized by a local Webpack loader before their content
+hashes are calculated. The original files in `src/assets` remain unchanged; only emitted `dist`
+assets are compressed.
 
 ### PostCSS
 
@@ -43,11 +51,39 @@ Packages involved:
 ### i18n
 
 - `vue-i18n` — internationalization
+- `typograf` — applies typography rules to locale strings during the Webpack build
+
+English locale strings are generated from `src/locales/ru.json`.
+Source locale files remain unchanged and readable. Webpack processes their strings with Typograf
+before bundling them, so the Typograf library is not shipped to the browser.
+
+Create `.env.local`:
+
+```bash
+OPENAI_API_KEY=your_api_key
+```
+
+Then run:
+
+```bash
+npm run translate:en
+```
+
+The script updates only missing or stale strings in `src/locales/en.json` and stores source
+hashes in `src/locales/.en.meta.json`. Use `npm run translate:en:check` to preview which keys
+would be translated without calling the API.
+
+Optional model override:
+
+```bash
+OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
+```
 
 ### Icons
 
 - `@iconify/tailwind4` — Iconify integration for Tailwind CSS v4
 - `@iconify-json/ic` — Iconify icon set (Material Icons)
+- `@iconify-json/eva` — Iconify icon set (Eva Icons)
 
 ### UI Utilities
 
@@ -57,15 +93,15 @@ Packages involved:
 ### Developer Tooling
 
 - `prettier` + `prettier-plugin-tailwindcss` — code formatting
-- `ngrok` — public tunnel for local dev
 
 ## Scripts
 
 Available npm scripts:
 
 - `npm start` — start dev server at http://localhost:8080 with HMR
+- `npm run serve:dist` — serve the existing production build at http://127.0.0.1:4173
 - `npm run build` — production build
-- `npm run tunnel` — open an ngrok tunnel to `localhost:8080`
+- `npm run test:e2e` — build and test the production `dist` output with Playwright
 
 ## Installation
 
@@ -78,7 +114,13 @@ cd port-heaven
 
 2. Install dependencies:
 
-   Make sure you have Node.js installed: https://nodejs.org/
+   Use Node.js 22. If you use nvm, select the project version first:
+
+```bash
+nvm use
+```
+
+Then install the dependencies:
 
 ```bash
 npm install
@@ -98,10 +140,4 @@ To create a production build:
 
 ```bash
 npm run build
-```
-
-To expose your local server via a public URL (for quick previews):
-
-```bash
-npm run tunnel
 ```
