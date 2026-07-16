@@ -13,7 +13,7 @@
     <div class="flex flex-wrap gap-5">
       <button
         type="button"
-        class="anim-extrude active bg-accent-section px-5 py-2.5 text-accent-section-fg"
+        class="anim-extrude active bg-accent px-5 py-2.5 text-on-accent"
         @click="emit('accept')"
       >
         <small>{{ t("privacy.analytics.accept") }}</small>

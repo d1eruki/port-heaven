@@ -1,24 +1,15 @@
 :root[data-theme="dark"] {
-  --theme-primary-srgb: hsl(83 100% 50%);
-  --theme-primary-p3: color(display-p3 0.7 1 0);
-  --theme-canvas: #000000;
-  --theme-fg: #ffffff;
-  --theme-action-muted: var(--color-neutral-700);
-  --theme-muted: var(--color-neutral-500);
-  --theme-accent-section: var(--theme-primary);
-  --theme-accent-section-fg: #000000;
-  --theme-inverse: #ffffff;
-  --theme-inverse-fg: #000000;
-  --theme-chip: var(--color-neutral-800);
-  --theme-chip-fg: var(--color-neutral-500);
-  --theme-border-subtle: var(--color-neutral-800);
-  --theme-stat: var(--theme-primary);
-  --theme-hover-accent: var(--theme-primary);
-  --theme-hover-accent-fg: #000000;
-  --theme-hero-grid-dot: #ffffff;
-  --theme-hero-grid-line: var(--color-neutral-800);
-  --theme-corner-frame: var(--color-neutral-500);
-  --theme-creative-shadow: var(--theme-primary);
-  --theme-dot-color: var(--color-neutral-700);
-  --theme-dot-current: var(--theme-primary);
+  --semantic-accent-srgb: var(--palette-lime-srgb);
+  --semantic-accent-p3: var(--palette-lime-p3);
+  --semantic-surface-canvas: var(--color-black);
+  --semantic-surface-inverse: var(--color-white);
+  --semantic-surface-muted: var(--color-neutral-800);
+  --semantic-text-primary: var(--color-white);
+  --semantic-text-action-muted: var(--color-neutral-700);
+  --semantic-text-muted: var(--color-neutral-500);
+  --semantic-text-on-accent: var(--color-black);
+  --semantic-text-inverse: var(--color-black);
+  --semantic-text-on-muted: var(--color-neutral-500);
+  --semantic-border-subtle: var(--color-neutral-800);
+  --semantic-border-decoration: var(--color-neutral-800);
 }

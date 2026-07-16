@@ -1,0 +1,23 @@
+:root {
+  --semantic-accent: var(--semantic-accent-srgb);
+}
+
+@supports (color: color(display-p3 1 0 0)) {
+  @media (color-gamut: p3) {
+    :root {
+      --semantic-accent: var(--semantic-accent-p3, var(--semantic-accent-srgb));
+    }
+  }
+}
+
+@theme inline {
+  --color-accent: var(--semantic-accent);
+  --color-canvas: var(--semantic-surface-canvas);
+  --color-fg: var(--semantic-text-primary);
+  --color-action-muted: var(--semantic-text-action-muted);
+  --color-muted: var(--semantic-text-muted);
+  --color-on-accent: var(--semantic-text-on-accent);
+  --color-inverse: var(--semantic-surface-inverse);
+  --color-inverse-fg: var(--semantic-text-inverse);
+  --color-border-subtle: var(--semantic-border-subtle);
+}
