@@ -270,6 +270,7 @@ test("scroll to top returns from lower sections", async ({ page }) => {
 });
 
 test("section dot navigation targets the explicit section nav", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
