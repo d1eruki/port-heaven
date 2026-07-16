@@ -2,75 +2,92 @@
   <section
     id="pricing"
     data-section="pricing"
-    class="pricing-section"
+    class="relative isolate min-h-svh overflow-hidden bg-inverse px-0 pt-18 pb-9 text-inverse-fg lg:px-15 lg:py-32"
   >
-    <div class="pricing-shell">
-      <header class="pricing-header">
+    <div class="mx-auto w-full max-w-360">
+      <header class="relative grid min-h-37.5 lg:min-h-72">
         <h2
-          class="pricing-display"
+          class="absolute inset-x-0 bottom-[-0.08em] z-0 text-center text-[clamp(5.5rem,29vw,8rem)] tracking-tighter whitespace-nowrap text-inverse-fg lowercase lg:bottom-[-0.17em] lg:text-[clamp(8rem,23vw,22rem)]"
           :aria-label="t('menu.pricing.title')"
         >
           {{ t("menu.pricing.title") }}
         </h2>
       </header>
 
-      <div class="pricing-grid">
+      <div class="relative z-2 grid grid-cols-1 items-start gap-5 xl:grid-cols-3 xl:items-stretch">
         <article
           v-for="plan in pricingPlans"
           :key="plan.id"
-          class="pricing-card"
+          class="flex min-w-0 flex-col overflow-hidden bg-primary text-accent-section-fg"
         >
-          <div class="pricing-card-head">
-            <div class="pricing-plan-row">
-              <h3 class="pricing-plan-title">{{ plan.name }}</h3>
+          <div
+            class="grid min-w-0 content-start gap-5 border-b border-accent-section-fg/20 p-15 xl:h-90 xl:flex-none"
+          >
+            <div class="flex items-center justify-between gap-5">
+              <h3 class="min-w-0 text-2xl wrap-anywhere normal-case lg:text-3xl">
+                {{ plan.name }}
+              </h3>
             </div>
-            <p>{{ plan.description }}</p>
-            <div class="pricing-cost">
-              <span>{{ t("pricing.pricePrefix") }}</span>
-              <strong>{{ plan.price }}</strong>
-              <span>{{ t("pricing.currency") }}</span>
+            <p class="min-w-0 leading-snug wrap-anywhere text-accent-section-fg/60">
+              {{ plan.description }}
+            </p>
+            <div class="flex w-full min-w-0 items-baseline gap-2">
+              <span class="flex-none text-sm text-accent-section-fg/60">{{
+                t("pricing.pricePrefix")
+              }}</span>
+              <strong
+                class="flex min-w-0 items-baseline gap-2 font-[Actay_Wide] text-5xl leading-none font-black tracking-tighter whitespace-nowrap tabular-nums"
+              >
+                {{ plan.price }}
+                <span class="flex-none text-2xl text-accent-section-fg/60">{{
+                  t("pricing.currency")
+                }}</span>
+              </strong>
             </div>
-            <small>{{ plan.duration }}</small>
+            <small class="min-w-0 wrap-anywhere text-accent-section-fg/70">{{
+              plan.duration
+            }}</small>
           </div>
 
-          <div class="pricing-card-body">
-            <ul>
+          <div class="grid min-w-0 flex-1 content-start p-15">
+            <ul class="grid gap-3.5">
               <li
                 v-if="plan.includes"
-                class="pricing-includes-item"
+                class="flex min-w-0 items-center gap-5 text-xs leading-snug font-black text-accent-section-fg"
               >
                 <span
-                  class="pricing-check"
+                  class="block size-2 flex-none rounded-full bg-accent-section-fg"
                   aria-hidden="true"
                 ></span>
-                {{ plan.includes }}
+                <span class="min-w-0 wrap-anywhere">{{ plan.includes }}</span>
               </li>
               <li
                 v-else
-                class="pricing-includes-item pricing-includes-placeholder"
+                class="invisible flex min-w-0 items-center gap-5 text-xs leading-snug font-black text-accent-section-fg"
                 aria-hidden="true"
               >
-                <span class="pricing-check"></span>
-                &nbsp;
+                <span class="block size-2 flex-none rounded-full bg-accent-section-fg"></span>
+                <span class="min-w-0">&nbsp;</span>
               </li>
               <li
                 v-for="feature in plan.features"
                 :key="feature"
+                class="flex min-w-0 items-center gap-5 text-xs leading-snug text-accent-section-fg/75"
               >
                 <span
-                  class="pricing-check"
+                  class="block size-2 flex-none rounded-full bg-accent-section-fg"
                   aria-hidden="true"
                 ></span>
-                {{ feature }}
+                <span class="min-w-0 wrap-anywhere">{{ feature }}</span>
               </li>
             </ul>
           </div>
         </article>
       </div>
 
-      <div class="pricing-action">
+      <div class="mt-9 flex justify-center px-5 lg:px-0">
         <a
-          class="anim-extrude flex w-full justify-center bg-primary px-5 py-2.5 text-center text-accent-section-fg lg:w-fit lg:px-10 lg:py-5"
+          class="anim-extrude active flex w-full justify-center bg-accent-section px-5 py-2.5 text-center text-accent-section-fg lg:w-fit lg:px-10 lg:py-5"
           href="https://t.me/d1eruki"
           target="_blank"
           rel="noopener noreferrer"
@@ -92,20 +109,20 @@ const planDefinitions = [
   {
     id: "base",
     name: "Base",
-    price: "35 000",
+    price: "5 000",
     featureCount: 4,
   },
   {
     id: "advanced",
     name: "Advanced",
-    price: "75 000",
+    price: "15 000",
     featureCount: 5,
     includesPlan: "base",
   },
   {
     id: "pro",
     name: "Pro",
-    price: "145 000",
+    price: "30 000",
     featureCount: 5,
     includesPlan: "advanced",
   },
