@@ -36,7 +36,7 @@
                 t("pricing.pricePrefix")
               }}</span>
               <strong
-                class="flex min-w-0 items-baseline gap-2 font-[Actay_Wide] text-5xl leading-none font-black tracking-tighter whitespace-nowrap tabular-nums"
+                class="flex min-w-0 items-baseline gap-2 font-heading text-5xl leading-none font-black tracking-tighter whitespace-nowrap tabular-nums"
               >
                 {{ plan.price }}
                 <span class="flex-none text-2xl text-on-accent/60">{{
@@ -90,7 +90,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span class="font-[Actay_Wide]">{{ t("pricing.action") }}</span>
+          <span class="font-heading">{{ t("pricing.action") }}</span>
         </a>
       </div>
     </div>

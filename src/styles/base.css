@@ -1,6 +1,6 @@
 @layer base {
   * {
-    font-family: "JetBrains Mono", monospace;
+    font-family: var(--font-sans);
     font-optical-sizing: auto;
     line-height: 1;
     /* text-wrap: balance;
@@ -23,7 +23,7 @@
   h4,
   .app-cursor {
     font-weight: 900;
-    font-family: "Actay Wide", sans-serif;
+    font-family: var(--font-heading);
     text-transform: lowercase;
     hyphens: auto;
     line-height: 1;

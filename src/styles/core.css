@@ -6,6 +6,9 @@
 @theme {
   --transition: all 0.25s;
 
+  --font-sans: Helvetica, Arial, sans-serif;
+  --font-heading: "Bounded", sans-serif;
+
   --cursor-size: 15px;
   --cursor-size-active: 35px;
   --cursor-size-label: 150px;
@@ -18,18 +21,11 @@
   --text-heading-sm: clamp(1.25rem, 2vw, 3rem);
   --paragraph: clamp(0.75rem, 0.7071rem + 0.1831vw, 1rem);
   --subtext: clamp(0.75rem, 0.75vw, 1.25rem);
-  --footer-logo-text: clamp(3rem, -1.6339rem + 19.7712vw, 30rem);
-
   --dot-size: 14px;
   --dot-gap: 10px;
 }
 
 :root {
-  --cell: 25vw;
   --parallax-offset: 0px;
   --parallax-scale: 1;
-}
-
-.footer-logo-text {
-  font-size: var(--footer-logo-text);
 }

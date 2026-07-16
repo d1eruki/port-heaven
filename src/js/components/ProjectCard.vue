@@ -41,7 +41,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <p class="font-[Actay_Wide] text-on-accent">{{ link.name }}</p>
+          <p class="font-heading text-on-accent">{{ link.name }}</p>
         </a>
       </div>
     </div>

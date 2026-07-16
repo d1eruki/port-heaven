@@ -7,8 +7,6 @@
   --component-blend-fg: var(--color-white);
   --component-cursor-bg: var(--color-white);
   --component-cursor-fg: var(--color-black);
-  --component-hero-grid-dot: var(--semantic-text-primary);
-  --component-hero-grid-line: var(--semantic-border-decoration);
   --component-corner-frame: var(--semantic-text-muted);
   --component-creative-shadow: var(--semantic-accent);
   --component-section-dot: var(--color-neutral-700);

@@ -1,7 +1,7 @@
 <template>
   <AppControls />
 
-  <main>
+  <main class="w-full max-w-full min-w-0">
     <Hero />
     <Description />
 

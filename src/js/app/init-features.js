@@ -7,7 +7,6 @@ import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
 import { initScrollRestoration } from "../features/navigation/scroll-restoration";
 import { initMenuDotToggler } from "../features/navigation/menu-dot-toggler";
-import { initHeroBgCells } from "../features/effects/hero-bg-cells";
 import { initDesignActive } from "../features/effects/design-active";
 import { initOdometerCounter } from "../features/effects/odometer-counter";
 
@@ -20,8 +19,6 @@ export const initFeatures = async () => {
   initScrollToTop();
   initScrollRestoration();
   initMenuDotToggler();
-  initHeroBgCells();
-
   try {
     if (effectsOn) {
       initDesignActive();

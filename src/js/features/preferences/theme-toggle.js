@@ -2,7 +2,7 @@ import { readStorageValue, saveStorageValue } from "../../utils/storage";
 
 const root = document.documentElement;
 const THEME_STORAGE_KEY = "theme";
-const DEFAULT_THEME = "dark";
+const DEFAULT_THEME = "light";
 const isSupportedTheme = (theme) => theme === "light" || theme === "dark";
 
 export const readSavedTheme = () =>

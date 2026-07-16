@@ -114,21 +114,6 @@
     }
   }
 
-  .hero {
-    background-image:
-      radial-gradient(circle at 0 0, var(--component-hero-grid-dot) 1px, transparent 1px),
-      linear-gradient(to right, var(--component-hero-grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--component-hero-grid-line) 1px, transparent 1px);
-    background-size:
-      var(--cell, 25vw) var(--cell, 25vw),
-      var(--cell, 25vw) var(--cell, 25vw),
-      var(--cell, 25vw) var(--cell, 25vw);
-    background-position:
-      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2),
-      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2),
-      calc(var(--cell, 25vw) / 2) calc(var(--cell, 25vw) / 2);
-  }
-
   [class*="scroll-speed-"] {
     transform: translateY(var(--parallax-offset, 0)) scale(var(--parallax-scale, 1));
     will-change: transform;
