@@ -9,7 +9,7 @@
     <div
       class="anim-extrude relative z-10 grid gap-5 p-15 effects:lg:h-full effects:lg:grid-rows-[50%] effects:lg:items-center no-effects:lg:h-full no-effects:lg:grid-rows-[50%] no-effects:lg:items-center"
     >
-      <h3 class="flex gap-3">
+      <h3 class="flex gap-3 text-heading-sm">
         {{ designName }}
       </h3>
       <div class="flex flex-col gap-5 self-end transition-all duration-100 ease-in-out">

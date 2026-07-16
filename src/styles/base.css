@@ -30,17 +30,17 @@
   }
 
   h1 {
-    font-size: var(--h1);
-    line-height: var(--h1-leading);
+    font-size: var(--text-heading-xl);
+    line-height: var(--text-heading-xl--line-height);
   }
   h2 {
-    font-size: var(--h2);
+    font-size: var(--text-heading-lg);
   }
   h3 {
-    font-size: var(--h3);
+    font-size: var(--text-heading-md);
   }
   h4 {
-    font-size: var(--h4);
+    font-size: var(--text-heading-sm);
   }
 
   p,

@@ -34,14 +34,14 @@
   --color-creative-shadow: var(--theme-creative-shadow);
 
   /* типографика */
-  --h1: clamp(3rem, 12vw, 20rem);
-  --h2: clamp(1.75rem, 4vw, 8rem);
-  --h3: clamp(1.5rem, 3vw, 4.5rem);
-  --h4: clamp(1.25rem, 2vw, 3rem);
+  --text-heading-xl: clamp(3rem, 12vw, 20rem);
+  --text-heading-xl--line-height: 10vw;
+  --text-heading-lg: clamp(1.75rem, 4vw, 8rem);
+  --text-heading-md: clamp(1.5rem, 3vw, 4.5rem);
+  --text-heading-sm: clamp(1.25rem, 2vw, 3rem);
   --paragraph: clamp(0.75rem, 0.7071rem + 0.1831vw, 1rem);
   --subtext: clamp(0.75rem, 0.75vw, 1.25rem);
   --footer-logo-text: clamp(3rem, -1.6339rem + 19.7712vw, 30rem);
-  --h1-leading: 10vw;
 
   --dot-size: 14px;
   --dot-gap: 10px;
