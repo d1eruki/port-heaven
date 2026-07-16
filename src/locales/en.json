@@ -3,6 +3,19 @@
     "logo": "dayruki",
     "hero": "Artem\nTreskov"
   },
+  "navigation": {
+    "label": "section navigation",
+    "sections": {
+      "hero": "home",
+      "description": "designer",
+      "about": "about me",
+      "projects": "commercial projects",
+      "design": "layouts",
+      "creatives": "creatives",
+      "pricing": "pricing",
+      "footer": "contact"
+    }
+  },
   "menu": {
     "description": {
       "title": "designer",
@@ -44,6 +57,47 @@
       "description": "[ If the project feels vague, but you sense there’s something there. I’ll help find the core idea and shape it into something solid. ]"
     }
   },
+  "pricing": {
+    "pricePrefix": "from",
+    "currency": "₽",
+    "includes": "Everything in {plan}, plus:",
+    "action": "discuss a project on Telegram",
+    "plans": {
+      "base": {
+        "description": "For a quick landing page design built around a clear offer.",
+        "duration": "5–7 business days",
+        "features": [
+          "Moodboard and visual direction",
+          "Landing page structure with up to 5 sections",
+          "Desktop design of the main page",
+          "1 call and 1 revision round"
+        ]
+      },
+      "advanced": {
+        "description": "For a landing page where flow, responsiveness, and prototyping matter.",
+        "duration": "10–14 business days",
+        "features": [
+          "Audience analysis and user profile",
+          "Wireframes for up to 8 sections",
+          "Desktop, tablet, and mobile layouts",
+          "Clickable prototype and mini UI kit",
+          "2 calls and 2 revision rounds"
+        ]
+      },
+      "pro": {
+        "description": "For a product or campaign that needs hypothesis validation.",
+        "duration": "3–4 weeks",
+        "features": [
+          "Hypotheses and testing scenarios",
+          "User flow and key screen map",
+          "Design system: tokens, styles, and components",
+          "Up to 12 interface screens or sections",
+          "UX test, handoff, and 3 revision rounds"
+        ]
+      }
+    }
+  },
+
   "projects": {
     "buttons": {
       "design": "design",
@@ -63,7 +117,6 @@
       "title": "Varwin XRMS platform",
       "description": "Varwin XRMS UI kit and prototypes for visualizing ideas and testing changes",
       "text": "The main layout with components and prototypes, bringing together all the interface elements needed to visualize and test new features in the Varwin XRMS platform. The layout serves as a basis for discussion, testing, and implementing changes in the product.",
-      "result": "Developers started building interfaces faster thanks to ready-made components and clear prototypes. The layout reduced the number of revisions and ensured visual consistency.",
       "stats": [
         "Faster mockup design through ready-made components",
         "Prototypes reduced revisions",
@@ -123,10 +176,15 @@
   "privacy": {
     "analytics": {
       "title": "analytics",
-      "text": "Yandex Metrica is enabled on this site to understand which portfolio sections people view most.",
-      "accept": "got it",
-      "decline": "hide"
+      "text": "Allow Yandex Metrica to understand which portfolio sections people view most?",
+      "accept": "allow analytics",
+      "decline": "do not allow"
     }
+  },
+  "seo": {
+    "title": "port heaven space",
+    "description": "Design, interfaces, prototypes, motion, and other things I make.",
+    "imageAlt": "Preview"
   },
   "lang-toggle": "русский",
   "theme-toggle": {

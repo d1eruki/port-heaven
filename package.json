@@ -7,6 +7,9 @@
   "author": "",
   "license": "ISC",
   "directories": {},
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "start": "webpack serve --hot --mode development",
     "serve:dist": "http-server dist -a 127.0.0.1 -p 4173 -c-1",
@@ -53,7 +56,7 @@
     "vue-i18n": "^11.4.6",
     "vue-loader": "^17.4.2",
     "webpack": "^5.108.3",
-    "webpack-cli": "^7.1.0",
-    "webpack-dev-server": "^5.2.6"
+    "webpack-cli": "^7.2.1",
+    "webpack-dev-server": "^6.0.0"
   }
 }

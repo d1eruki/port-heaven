@@ -46,7 +46,7 @@ export const initMenuDotToggler = () =>
     };
 
     onScroll(onScrollThrottled);
-    window.addEventListener("resize", recompute);
+    window.addEventListener("resize", () => recompute());
 
     setTimeout(recompute, 50);
   });

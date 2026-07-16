@@ -40,7 +40,7 @@ export const projects = [
       "UX/UI",
     ],
     textKeys: ["projects.xrms.text"],
-    resultKey: "projects.xrms.result",
+    statisticKeys: ["projects.xrms.stats[0]", "projects.xrms.stats[1]", "projects.xrms.stats[2]"],
     links: [
       {
         url: "https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1",

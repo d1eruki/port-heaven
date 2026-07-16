@@ -51,8 +51,11 @@ Packages involved:
 ### i18n
 
 - `vue-i18n` — internationalization
+- `typograf` — applies typography rules to locale strings during the Webpack build
 
 English locale strings are generated from `src/locales/ru.json`.
+Source locale files remain unchanged and readable. Webpack processes their strings with Typograf
+before bundling them, so the Typograf library is not shipped to the browser.
 
 Create `.env.local`:
 
@@ -111,7 +114,13 @@ cd port-heaven
 
 2. Install dependencies:
 
-   Make sure you have Node.js installed: https://nodejs.org/
+   Use Node.js 22. If you use nvm, select the project version first:
+
+```bash
+nvm use
+```
+
+Then install the dependencies:
 
 ```bash
 npm install

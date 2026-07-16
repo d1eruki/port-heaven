@@ -8,8 +8,22 @@ const setupHorizontalScroll = () => {
 
   const intro = inner.querySelector(DOM_SELECTORS.designIntro);
 
-  const update = () => {
+  let isDesktopLayout = false;
+  let sectionStart = 0;
+  let scrollDistance = 0;
+  let measureFrame = null;
+
+  const render = (scrollY = getScrollY()) => {
+    if (!isDesktopLayout) return;
+
+    const progress = calculateProgress(scrollY, sectionStart, sectionStart + scrollDistance);
+
+    inner.style.transform = `translateX(${-progress * scrollDistance}px)`;
+  };
+
+  const measure = () => {
     if (isMobile()) {
+      isDesktopLayout = false;
       inner.style.transform = "none";
       if (intro) intro.style.transform = "none";
       section.style.height = "auto";
@@ -22,31 +36,37 @@ const setupHorizontalScroll = () => {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    const horizontalDistance = innerWidth - viewportWidth;
-    const dynamicSectionHeight = horizontalDistance + viewportHeight;
+    scrollDistance = Math.max(0, innerWidth - viewportWidth);
 
-    section.style.height = `${dynamicSectionHeight}px`;
+    section.style.height = `${scrollDistance + viewportHeight}px`;
     inner.style.position = "sticky";
     inner.style.overflow = "visible";
     inner.style.display = "grid";
 
     section.style.overflow = "visible";
 
-    const sectionHeight = section.offsetHeight;
-    const start = section.offsetTop;
-    const scroll = getScrollY();
-
-    const progress = calculateProgress(scroll, start, start + (sectionHeight - viewportHeight));
-
-    const maxTranslate = innerWidth - viewportWidth;
-    const translateX = -progress * maxTranslate;
-
-    inner.style.transform = `translateX(${translateX}px)`;
+    sectionStart = section.offsetTop;
+    isDesktopLayout = true;
+    render();
   };
 
-  update();
-  onScroll(update);
-  window.addEventListener("resize", update);
+  const scheduleMeasure = () => {
+    if (measureFrame !== null) return;
+
+    measureFrame = requestAnimationFrame(() => {
+      measureFrame = null;
+      measure();
+    });
+  };
+
+  measure();
+  onScroll((scrollY) => render(scrollY));
+  window.addEventListener("resize", scheduleMeasure);
+
+  if ("ResizeObserver" in window) {
+    const resizeObserver = new ResizeObserver(scheduleMeasure);
+    resizeObserver.observe(inner);
+  }
 };
 
 export const initHorizontalScroll = () => initOnLoad(setupHorizontalScroll);
