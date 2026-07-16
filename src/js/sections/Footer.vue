@@ -19,7 +19,6 @@
           >{{ t("contacts.telegram") }}
         </h2>
         <div
-          data-footer-link-badge
           class="absolute -bottom-30 left-15 z-2 hidden -rotate-15 bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
         >
           https://t.me/d1eruki
@@ -39,7 +38,6 @@
           >{{ t("contacts.behance") }}
         </h2>
         <div
-          data-footer-link-badge
           class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
         >
           BEHANCE
@@ -59,7 +57,6 @@
           >{{ t("contacts.mail") }}
         </h2>
         <div
-          data-footer-link-badge
           class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
         >
           stapps90@gmail.com
@@ -73,7 +70,6 @@
     >
       <h2
         ref="footerLogoRef"
-        data-footer-logo
         class="mx-auto block w-max max-w-none font-heading text-5xl leading-none text-nowrap text-accent lowercase"
       >
         {{ t("brand.logo") }}

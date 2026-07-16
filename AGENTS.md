@@ -17,6 +17,16 @@ Do not edit, delete, rename, format, generate, or otherwise modify files before 
 
 If the plan changes during the work, stop, describe the updated plan, and wait for approval again before continuing.
 
+## Agent Communication
+
+Keep user-facing communication concise by default:
+
+- Limit implementation plans to five short bullets while still covering every required approval detail.
+- Limit routine progress updates to two sentences and send another only when the state materially changes or work exceeds 60 seconds.
+- Limit final handoffs to five short lines unless the user asks for detail or additional explanation is necessary to report risk, failure, or a blocker.
+- Do not narrate individual tool calls, repeat previously reported results, or list every passing command when a shorter outcome summary is sufficient.
+- Clearly label hypotheses as unverified. Say that an issue is fixed only after reproducing and verifying the exact user-visible state that was reported.
+
 ## Implementation Principles
 
 Prefer a library's built-in behavior, documented APIs, and established patterns over custom workarounds. Reimplement, bypass, or patch around baseline library behavior only when it is insufficient for the specific requirement, and explain why the standard behavior cannot handle the case.
@@ -113,6 +123,23 @@ When adding or changing a localization key or variable, update the corresponding
 When adding a dependency, update the `README` with the relevant setup, usage, or dependency notes.
 
 ## Verification
+
+### Test Design
+
+Prefer tests for durable, user-visible guarantees and broad failure classes. Examples include viewport containment, usable controls, correct navigation, persisted preferences, non-overlapping sections, accessible state, and effects being active or inactive when required.
+
+Do not add regression tests for a single CSS class, Tailwind utility, `z-index`, exact font family, exact pixel value, or other implementation detail unless that value is an explicit product contract. Do not preserve a one-off visual bug as a dedicated test when a broader invariant covers the same risk. Generalize the assertion or rely on targeted visual verification.
+
+Test behavior through real interactions and observable outcomes. A hover issue must exercise hover; a responsive issue must resize the viewport; a layering issue must verify readability or hit testing rather than computed `z-index` values. When editing an existing suite, remove nearby brittle implementation assertions that duplicate broader behavioral coverage.
+
+### Verification Scope
+
+Use the smallest verification set proportional to the change:
+
+- For a local UI change, run formatting, the directly relevant test, and one visual check of the reported state.
+- For shared typography, tokens, layout foundations, preferences, or effects, check affected consumers and supported off paths, then run the broader suite once after the related changes are complete.
+- Run a production build when build configuration, dependencies, asset processing, or production-only behavior is affected, or once at the end of a larger iteration.
+- Batch related edits before verification. Do not repeatedly rerun the same broad suite after each small class or markup adjustment.
 
 For responsive component changes, verify the rendered result immediately before, at, and after every breakpoint where the layout changes. Include the longest available locale and the widest realistic content values.
 
