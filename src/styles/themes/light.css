@@ -7,9 +7,11 @@
   --semantic-text-primary: var(--color-black);
   --semantic-text-action-muted: var(--color-black);
   --semantic-text-muted: var(--color-neutral-500);
+  --semantic-text-footer-link: var(--color-neutral-200);
+  --semantic-text-footer-link-hover: var(--color-black);
   --semantic-text-on-accent: var(--color-white);
   --semantic-text-inverse: var(--color-white);
-  --semantic-text-on-muted: var(--color-black);
+  --semantic-text-on-muted: var(--semantic-text-muted);
   --semantic-border-subtle: currentColor;
   --semantic-border-decoration: var(--color-neutral-300);
 }

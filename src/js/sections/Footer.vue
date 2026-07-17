@@ -6,7 +6,7 @@
   >
     <div class="max-w-full min-w-0 items-center gap-10 lg:flex">
       <a
-        class="group relative w-auto font-heading text-gray-200 hover:text-black"
+        class="group relative w-auto font-heading text-footer-link hover:text-footer-link-hover"
         href="https://t.me/d1eruki"
         target="_blank"
         rel="noopener noreferrer"
@@ -25,7 +25,7 @@
         </div>
       </a>
       <a
-        class="group relative w-auto font-heading text-gray-200 hover:text-black"
+        class="group relative w-auto font-heading text-footer-link hover:text-footer-link-hover"
         href="https://www.behance.net/dieruki"
         target="_blank"
         rel="noopener noreferrer"
@@ -44,7 +44,7 @@
         </div>
       </a>
       <a
-        class="group relative w-auto font-heading text-gray-200 hover:text-black"
+        class="group relative w-auto font-heading text-footer-link hover:text-footer-link-hover"
         href="mailto:stapps90@gmail.com"
         target="_blank"
         rel="noopener noreferrer"

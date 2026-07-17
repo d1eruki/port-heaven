@@ -16,6 +16,8 @@
   --color-fg: var(--semantic-text-primary);
   --color-action-muted: var(--semantic-text-action-muted);
   --color-muted: var(--semantic-text-muted);
+  --color-footer-link: var(--semantic-text-footer-link);
+  --color-footer-link-hover: var(--semantic-text-footer-link-hover);
   --color-on-accent: var(--semantic-text-on-accent);
   --color-inverse: var(--semantic-surface-inverse);
   --color-inverse-fg: var(--semantic-text-inverse);
