@@ -5,7 +5,7 @@
     class="relative overflow-visible"
   >
     <div
-      class="top-0 grid w-dvw overflow-x-hidden will-change-transform effects:lg:h-dvh effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:min-h-dvh no-effects:grid-cols-1 no-effects:md:grid-cols-2 no-effects:lg:auto-rows-fr no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
+      class="top-0 grid w-full overflow-x-hidden will-change-transform effects:lg:h-dvh effects:lg:w-dvw effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:min-h-dvh no-effects:grid-cols-1 no-effects:md:grid-cols-2 no-effects:lg:auto-rows-fr no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
       id="design-inner"
     >
       <div
