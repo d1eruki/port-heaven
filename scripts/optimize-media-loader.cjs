@@ -9,7 +9,6 @@ const sharp = require("sharp");
 
 const resizeTargets = new Map([
   ["postcard.webp", { width: 1000 }],
-  ["soma.webp", { width: 1000 }],
   ["siyay.webp", { width: 1600 }],
 ]);
 const videoTargets = new Set(["varwin-opening.mp4"]);

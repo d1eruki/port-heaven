@@ -22,19 +22,11 @@
       />
       <FeatureItem :text="t('menu.about.hobbies.text')" />
     </div>
-    <img
-      alt=""
-      class="absolute right-0 bottom-20 z-1 hidden w-180 opacity-7.5 lg:block"
-      :src="somaImage"
-      loading="lazy"
-      decoding="async"
-    />
   </section>
 </template>
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import somaImage from "../../assets/soma.webp";
 import FeatureItem from "../components/FeatureItem.vue";
 
 const { t } = useI18n();
