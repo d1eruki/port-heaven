@@ -7,7 +7,7 @@
     <div class="mx-auto w-full max-w-360">
       <header class="relative grid min-h-37.5 lg:min-h-72">
         <h2
-          class="text-pricing-title lg:text-pricing-title-lg absolute inset-x-0 bottom-[-0.08em] z-0 text-center tracking-tighter whitespace-nowrap text-inverse-fg lowercase lg:bottom-[-0.17em]"
+          class="text-pricing-title lg:text-pricing-title-lg absolute inset-x-0 bottom-[-0.1em] z-0 text-center tracking-tighter whitespace-nowrap text-inverse-fg lowercase lg:bottom-[-0.2em]"
           :aria-label="t('menu.pricing.title')"
         >
           {{ t("menu.pricing.title") }}
