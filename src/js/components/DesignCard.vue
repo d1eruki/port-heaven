@@ -12,14 +12,16 @@
       <h3 class="flex gap-3 text-heading-sm">
         {{ designName }}
       </h3>
-      <div class="flex flex-col gap-5 self-end transition-all duration-100 ease-in-out">
+      <div
+        class="flex flex-col gap-5 self-end effects:lg:grid no-effects:lg:grid"
+      >
         <TagsList
           :tags="designTags"
           :show-icons="true"
-          class="opacity-100 effects:lg:group-hover:hidden effects:lg:group-hover:opacity-0 no-effects:lg:group-hover:hidden no-effects:lg:group-hover:opacity-0"
+          class="opacity-100 transition-opacity duration-200 ease-in-out effects:lg:col-start-1 effects:lg:row-start-1 effects:lg:self-start effects:lg:group-hover:opacity-0 no-effects:lg:col-start-1 no-effects:lg:row-start-1 no-effects:lg:self-start no-effects:lg:group-hover:opacity-0"
         />
         <p
-          class="effects:lg:hidden effects:lg:opacity-0 effects:lg:group-hover:block effects:lg:group-hover:opacity-100 no-effects:lg:hidden no-effects:lg:opacity-0 no-effects:lg:group-hover:block no-effects:lg:group-hover:opacity-100"
+          class="transition-opacity duration-200 ease-in-out effects:lg:col-start-1 effects:lg:row-start-1 effects:lg:opacity-0 effects:lg:group-hover:opacity-100 no-effects:lg:col-start-1 no-effects:lg:row-start-1 no-effects:lg:opacity-0 no-effects:lg:group-hover:opacity-100"
         >
           {{ designDesc }}
         </p>
