@@ -1,11 +1,10 @@
 <template>
   <div
-    class="relative z-2 grid min-h-fit flex-1 justify-between gap-15 border-border-subtle p-15 lg:min-h-full lg:gap-20 lg:border-l lg:p-15 xl:grid-rows-[auto_1fr_auto]"
+    class="relative z-2 grid min-h-fit justify-between gap-15 p-15 lg:min-h-full lg:gap-20 lg:p-15 xl:grid-rows-[1fr_auto]"
   >
-    <small class="text-fg">{{ title }}</small>
     <span
       :data-target="dataTarget"
-      class="inline-flex w-fit items-baseline gap-[0.08em] font-heading text-[8rem] font-black text-stat lg:text-9xl lg:font-bold"
+      class="text-feature-stat inline-flex w-fit items-baseline gap-[0.08em] font-heading font-black text-stat lg:font-bold"
     >
       <span
         :data-target="dataTarget"
@@ -28,9 +27,6 @@ const props = defineProps({
   },
   dataTarget: {
     type: [String, Number],
-  },
-  title: {
-    type: String,
   },
   text: {
     type: String,

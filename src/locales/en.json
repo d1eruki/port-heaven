@@ -24,11 +24,9 @@
     "about": {
       "title": "About me",
       "experience": {
-        "title": "Experience",
         "text": "years working on commercial projects: from interface design in Figma to building UI kits and interactive prototypes. I’ve done layout in CSS, frameworks, and website builders. I know the guidelines and adapt design for different platforms; I’ve also created promo materials and videos."
       },
       "projects": {
-        "title": "Projects",
         "text": "projects delivered — from landing pages to complex web platforms. I developed several design systems, cutting build and revision time by up to 40%. I worked with products in VR, e-learning, and marketing, improving UX and visual consistency."
       },
       "hobbies": {

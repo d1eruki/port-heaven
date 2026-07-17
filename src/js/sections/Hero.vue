@@ -10,7 +10,7 @@
       <div
         class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden text-fg"
       >
-        <h1 class="text-center text-[clamp(4.5rem,15vw,24rem)] leading-[0.75] whitespace-pre-line">
+        <h1 class="text-hero-title text-center leading-[0.75] whitespace-pre-line">
           {{ t("brand.hero") }}
         </h1>
       </div>

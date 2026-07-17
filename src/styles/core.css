@@ -14,8 +14,12 @@
   --cursor-size-label: 150px;
 
   /* типографика */
+  --text-hero-title: clamp(4.5rem, 15vw, 24rem);
+  --text-pricing-title: clamp(5.5rem, 29vw, 8rem);
+  --text-pricing-title-lg: clamp(8rem, 23vw, 22rem);
+  --text-feature-stat: clamp(5rem, 20vw, 8rem);
   --text-heading-xl: clamp(3rem, 12vw, 20rem);
-  --text-heading-xl--line-height: 10vw;
+  --text-heading-xl--line-height: clamp(2.4rem, 10vw, 16rem);
   --text-heading-lg: clamp(1.75rem, 4vw, 8rem);
   --text-heading-md: clamp(1.5rem, 3vw, 4.5rem);
   --text-heading-sm: clamp(1.25rem, 2vw, 3rem);
