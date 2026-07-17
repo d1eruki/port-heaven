@@ -5,10 +5,11 @@
     <small class="text-fg">{{ title }}</small>
     <span
       :data-target="dataTarget"
-      class="inline-flex w-fit items-baseline gap-[0.08em] text-[8rem] font-black text-stat lg:text-9xl lg:font-bold"
+      class="inline-flex w-fit items-baseline gap-[0.08em] font-heading text-[8rem] font-black text-stat lg:text-9xl lg:font-bold"
     >
       <span
         :data-target="dataTarget"
+        class="font-heading! whitespace-nowrap tabular-nums [&_.odometer-last-value]:w-full"
         :class="{ counter: isCounter }"
       >
         {{ displayValue }}

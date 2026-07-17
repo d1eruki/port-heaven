@@ -19,7 +19,7 @@
   "menu": {
     "description": {
       "title": "designer",
-      "text": "[ I create design that solves problems, boosts conversions, and looks great. I work at the intersection of web design, product, and front-end, taking metrics, MVPs, and development constraints into account. I turn business goals into clear interfaces. I know layout, and I build prototypes and landing pages fast. I use video editing for presentations, promo videos, and UI animations. ]"
+      "text": "I create design that solves problems, boosts conversions, and looks great. I work at the intersection of web design, product, and front-end, taking metrics, MVPs, and development constraints into account. I turn business goals into clear interfaces. I know layout, and I build prototypes and landing pages fast. I use video editing for presentations, promo videos, and UI animations."
     },
     "about": {
       "title": "About me",
@@ -38,23 +38,23 @@
     },
     "projects": {
       "title": "commercial projects",
-      "description": "[ Real commercial cases brought to completion. These are things that weren’t just imagined, but launched and working in the wild. ]"
+      "description": "Real commercial cases brought to completion. These are things that weren’t just imagined, but launched and working in the wild."
     },
     "designs": {
       "title": "layouts",
-      "description": "[ Concepts and prototypes without implementation: educational, freelance projects, and personal experiments. Here, the idea, structure, and presentation matter more than the code. ]"
+      "description": "Concepts and prototypes without implementation: educational, freelance projects, and personal experiments. Here, the idea, structure, and presentation matter more than the code."
     },
     "creatives": {
       "title": "creatives",
-      "description": "[ A selection of visuals I generate, assemble, and refine. It includes client work and personal experiments — everything where I could play with the idea, atmosphere, and style. ]"
+      "description": "A selection of visuals I generate, assemble, and refine. It includes client work and personal experiments — everything where I could play with the idea, atmosphere, and style."
     },
     "pricing": {
       "title": "Pricing",
-      "description": "[ Pricing description. ]"
+      "description": "Pricing description."
     },
     "footer": {
       "title": "contact",
-      "description": "[ If the project feels vague, but you sense there’s something there. I’ll help find the core idea and shape it into something solid. ]"
+      "description": "If the project feels vague, but you sense there’s something there. I’ll help find the core idea and shape it into something solid."
     }
   },
   "pricing": {
