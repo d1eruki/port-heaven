@@ -25,7 +25,7 @@ Keep user-facing communication concise by default:
 - Limit routine progress updates to two sentences and send another only when the state materially changes or work exceeds 60 seconds.
 - Limit final handoffs to five short lines unless the user asks for detail or additional explanation is necessary to report risk, failure, or a blocker.
 - Do not narrate individual tool calls, repeat previously reported results, or list every passing command when a shorter outcome summary is sufficient.
-- Clearly label hypotheses as unverified. Say that an issue is fixed only after reproducing and verifying the exact user-visible state that was reported.
+- Clearly label hypotheses as unverified. Do not claim that the interface's visual appearance has been verified; visual review belongs to the user.
 
 ## Implementation Principles
 
@@ -128,7 +128,7 @@ When adding a dependency, update the `README` with the relevant setup, usage, or
 
 Prefer tests for durable, user-visible guarantees and broad failure classes. Examples include viewport containment, usable controls, correct navigation, persisted preferences, non-overlapping sections, accessible state, and effects being active or inactive when required.
 
-Do not add regression tests for a single CSS class, Tailwind utility, `z-index`, exact font family, exact pixel value, or other implementation detail unless that value is an explicit product contract. Do not preserve a one-off visual bug as a dedicated test when a broader invariant covers the same risk. Generalize the assertion or rely on targeted visual verification.
+Do not add regression tests for a single CSS class, Tailwind utility, `z-index`, exact font family, exact pixel value, or other implementation detail unless that value is an explicit product contract. Do not preserve a one-off visual bug as a dedicated test when a broader invariant covers the same risk. Generalize the assertion or leave visual review to the user.
 
 Test behavior through real interactions and observable outcomes. A hover issue must exercise hover; a responsive issue must resize the viewport; a layering issue must verify readability or hit testing rather than computed `z-index` values. When editing an existing suite, remove nearby brittle implementation assertions that duplicate broader behavioral coverage.
 
@@ -136,14 +136,16 @@ Test behavior through real interactions and observable outcomes. A hover issue m
 
 Use the smallest verification set proportional to the change:
 
-- For a local UI change, run formatting, the directly relevant test, and one visual check of the reported state.
-- For shared typography, tokens, layout foundations, preferences, or effects, check affected consumers and supported off paths, then run the broader suite once after the related changes are complete.
+- For a local UI change, run formatting and leave visual review to the user.
+- For shared typography, tokens, layout foundations, preferences, or effects, identify affected consumers and supported off paths for the user to review.
 - Run a production build when build configuration, dependencies, asset processing, or production-only behavior is affected, or once at the end of a larger iteration.
 - Batch related edits before verification. Do not repeatedly rerun the same broad suite after each small class or markup adjustment.
 
-For responsive component changes, verify the rendered result immediately before, at, and after every breakpoint where the layout changes. Include the longest available locale and the widest realistic content values.
+Do not run Playwright tests locally during implementation unless the user explicitly requests it. The Playwright suite runs in CI after changes are pushed to `master`.
 
-For card layouts, verify text overflow, card dimensions, and the coordinates of shared internal landmarks such as dividers. Do not infer correct alignment from equal outer heights alone.
+For responsive component changes, tell the user which breakpoints, locales, and content extremes need visual review. The user performs that review.
+
+For card layouts, ask the user to review text overflow, card dimensions, and shared internal landmarks such as dividers. Do not claim correct alignment from equal outer heights alone.
 
 After changing code, markup, styles, or documentation, run:
 
