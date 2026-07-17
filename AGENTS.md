@@ -15,7 +15,7 @@ After the plan, briefly explain its pros and cons in plain language that is easy
 
 Do not edit, delete, rename, format, generate, or otherwise modify files before the user approves the plan. Files may be deleted when they are left empty or become outdated.
 
-If the plan changes during the work, stop, describe the updated plan, and wait for approval again before continuing.
+If the approved file list changes, a deletion becomes necessary, or the task materially expands during the work, stop, describe the updated plan, and wait for approval again before continuing. Implementation details that stay within the approved files and intent do not require another approval.
 
 ## Agent Communication
 
@@ -48,9 +48,9 @@ Where practical, verify:
 
 For capability-gated effects, trace the full path from capability detection through state classes and module initialization to the final computed styles. Do not assume that a browser setting and a project feature-detection heuristic produce the same result.
 
-Keep diagnostic causes such as `hw/no-hw` and `motion/reduced-motion` separate, but make effect-dependent components consume the resolved `effects/no-effects` state. Behavior under `no-effects` must remain identical whether it came from reduced motion, manual mode, or a capability fallback, unless a difference is explicitly required and documented. Cover every supported off path with equivalent negative-path tests.
+Keep diagnostic causes such as `hw/no-hw` and `motion/reduced-motion` separate, but make effect-dependent components consume the resolved `effects/no-effects` state. Behavior under `no-effects` must remain identical whether it came from reduced motion, manual mode, or a capability fallback, unless a difference is explicitly required and documented.
 
-Clearly distinguish confirmed causes from unverified hypotheses. Before claiming that a fallback disables an effect, add or run a negative-path test that verifies the effect remains inactive after the triggering interaction, such as scrolling, resizing, or changing media preferences.
+Clearly distinguish confirmed causes from unverified hypotheses. Confirm the active runtime source before attributing behavior to a fallback; do not require a new regression test unless it satisfies the test-design rules below and the user approves it.
 
 ## Frontend Conventions
 
@@ -58,7 +58,7 @@ Clearly distinguish confirmed causes from unverified hypotheses. Before claiming
 
 Before styling a new or modified component, inspect nearby components that solve a similar task. Reuse their Tailwind classes, typography, spacing, button styles, interaction states, theme tokens, and breakpoints where applicable.
 
-Inherit the complete project pattern rather than isolated classes. Do not copy a pattern blindly: verify that its behavior remains correct for the target component's content and at every supported layout size.
+Inherit the complete project pattern rather than isolated classes. Do not copy a pattern blindly: adapt it to the target component's content and supported layouts, then leave visual review to the user.
 
 Prefer extending or composing an established project pattern over introducing component-specific CSS, arbitrary Tailwind values, or a parallel implementation.
 
@@ -126,37 +126,34 @@ When adding a dependency, update the `README` with the relevant setup, usage, or
 
 ### Test Design
 
-Prefer tests for durable, user-visible guarantees and broad failure classes. Examples include viewport containment, usable controls, correct navigation, persisted preferences, non-overlapping sections, accessible state, and effects being active or inactive when required.
+Prefer tests for durable, global guarantees and broad failure classes. Examples include viewport containment, usable core controls, correct navigation, persisted critical preferences, and accessible state.
+
+Do not add a test merely because code changed or a one-off bug was fixed. Add a test only for a new critical, durable guarantee that is likely to regress and is not already covered. Prefer extending an existing broad test over creating a new test. Before adding any test, state the guarantee it protects in the implementation plan and wait for explicit user approval.
 
 Do not add regression tests for a single CSS class, Tailwind utility, `z-index`, exact font family, exact pixel value, or other implementation detail unless that value is an explicit product contract. Do not preserve a one-off visual bug as a dedicated test when a broader invariant covers the same risk. Generalize the assertion or leave visual review to the user.
 
-Test behavior through real interactions and observable outcomes. A hover issue must exercise hover; a responsive issue must resize the viewport; a layering issue must verify readability or hit testing rather than computed `z-index` values. When editing an existing suite, remove nearby brittle implementation assertions that duplicate broader behavioral coverage.
+When an approved test is added or changed, test behavior through real interactions and observable outcomes. A hover test must exercise hover; a responsive test must resize the viewport; a layering test must verify usability or hit testing rather than computed `z-index` values. When editing an existing suite, remove nearby brittle implementation assertions that duplicate broader behavioral coverage.
 
 ### Verification Scope
 
-Use the smallest verification set proportional to the change:
+Batch related edits and run the proportional verification set once after the approved work is complete. Do not repeatedly rerun the same checks after individual edits.
 
-- For a local UI change, run formatting and leave visual review to the user.
-- For shared typography, tokens, layout foundations, preferences, or effects, identify affected consumers and supported off paths for the user to review.
-- Run a production build when build configuration, dependencies, asset processing, or production-only behavior is affected, or once at the end of a larger iteration.
-- Batch related edits before verification. Do not repeatedly rerun the same broad suite after each small class or markup adjustment.
+For a UI task:
 
-Do not run Playwright tests locally during implementation unless the user explicitly requests it. The Playwright suite runs in CI after changes are pushed to `master`.
+1. Complete the approved implementation without running formatting or tests.
+2. Leave visual review to the user. Use a structured prompt with the options `Всё нормально` and `Нужны правки` when available; otherwise ask the user for visual approval and feedback in one concise question.
+3. If the user chooses `Нужны правки`, do not run formatting or tests. Apply the feedback within the approved scope and request visual review again.
+4. If the user chooses `Всё нормально`, run `npm run format` once, followed by `npm run test:integrity` and `npm run test:e2e` once each.
+5. If a relevant test failure requires file changes, treat the task as incomplete and repeat the visual-review gate after the fix. Report unrelated or pre-existing failures without hiding them or claiming that the suite passed.
 
-For responsive component changes, tell the user which breakpoints, locales, and content extremes need visual review. The user performs that review.
+For a non-visual task, do not use the visual-review prompt. Run only the approved, relevant checks once after implementation. For instruction-only changes, run formatting and no application tests.
 
-For card layouts, ask the user to review text overflow, card dimensions, and shared internal landmarks such as dividers. Do not claim correct alignment from equal outer heights alone.
+Run a production build when build configuration, dependencies, asset processing, or production-only behavior is affected, or once at the end of a larger iteration.
 
-After changing code, markup, styles, or documentation, run:
+For non-visual and instruction-only changes, run formatting once after completing the approved batch and before handing off that version. For UI tasks, use the visual-review gate above instead:
 
 ```sh
 npm run format
-```
-
-When only checking the current state without modifying files, run:
-
-```sh
-npm run format:check
 ```
 
 ## Maintaining These Instructions
@@ -165,6 +162,8 @@ Add a new instruction only when it captures a recurring, repository-specific req
 
 Before adding it:
 
+- Search the complete applicable instruction set for overlapping or contradictory requirements.
+- List every potential conflict in the implementation plan and include the necessary resolutions in the approved change; do not update only one side of a contradiction.
 - Check whether an existing instruction can be clarified or extended instead.
 - Place the instruction in the most relevant existing section.
 - Keep it concise, actionable, and limited to one concern.
