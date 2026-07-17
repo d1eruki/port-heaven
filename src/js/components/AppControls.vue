@@ -1,7 +1,7 @@
 <template>
   <div
     id="menu-dot"
-    class="fixed top-0 left-0 z-50 flex min-h-svh w-15 items-center justify-center text-blend transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0 hw:mix-blend-difference"
+    class="fixed top-0 left-0 z-50 flex min-h-svh w-15 items-center justify-center text-blend mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:opacity-0"
   >
     <nav
       data-section-nav
@@ -23,6 +23,7 @@
           focusable="false"
         >
           <circle
+            class="fill-current"
             cx="10"
             cy="10"
             r="6"

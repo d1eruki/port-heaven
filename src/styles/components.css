@@ -91,16 +91,11 @@
     height: var(--dot-size);
   }
   nav circle {
-    fill: var(--component-section-dot);
-    transition:
-      transform 0.2s ease,
-      fill 0.2s ease,
-      opacity 0.2s ease;
+    transition: transform 0.2s ease;
     transform: scale(0.5);
     transform-origin: center;
   }
   nav button[aria-current="true"] circle {
-    fill: var(--component-section-dot-current);
     transform: scale(1);
   }
 
