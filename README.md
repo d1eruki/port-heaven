@@ -83,7 +83,7 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 
 - `@iconify/tailwind4` — Iconify integration for Tailwind CSS v4
 - `@iconify-json/ic` — Iconify icon set (Material Icons)
-- `@iconify-json/eva` — Iconify icon set (Eva Icons)
+- `@iconify-json/simple-icons` — Iconify icon set (brand icons)
 
 ### UI Utilities
 
