@@ -12,7 +12,7 @@
         v-for="section in SECTION_NAV_ITEMS"
         :key="section.id"
         type="button"
-        class="dot"
+        class="dot group"
         :data-target="`#${section.id}`"
         :aria-label="t(section.labelKey)"
         aria-current="false"
@@ -23,7 +23,7 @@
           focusable="false"
         >
           <circle
-            class="fill-current"
+            class="fill-current opacity-25 group-aria-current:opacity-100"
             cx="10"
             cy="10"
             r="6"

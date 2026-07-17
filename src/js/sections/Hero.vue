@@ -8,7 +8,7 @@
       class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center overflow-hidden bg-canvas"
     >
       <div
-        class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden text-fg lg:text-blend lg:mix-blend-difference"
+        class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden text-fg"
       >
         <h1 class="text-center text-[clamp(4.5rem,15vw,24rem)] leading-[0.75] whitespace-pre-line">
           {{ t("brand.hero") }}
