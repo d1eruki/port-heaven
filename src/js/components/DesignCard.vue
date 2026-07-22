@@ -18,7 +18,7 @@
         <TagsList
           :tags="designTags"
           :show-icons="true"
-          class="opacity-100 transition-opacity duration-200 ease-in-out effects:lg:col-start-1 effects:lg:row-start-1 effects:lg:group-hover:opacity-0 no-effects:lg:col-start-1 no-effects:lg:row-start-1 no-effects:lg:group-hover:opacity-0"
+          class="opacity-100 transition-opacity duration-200 ease-in-out group-hover:[&_small]:bg-black group-hover:[&_small]:text-white group-[.design-active]:[&_small]:bg-black group-[.design-active]:[&_small]:text-white effects:lg:col-start-1 effects:lg:row-start-1 effects:lg:group-hover:opacity-0 no-effects:lg:col-start-1 no-effects:lg:row-start-1 no-effects:lg:group-hover:opacity-0"
         />
         <p
           class="transition-opacity duration-200 ease-in-out effects:lg:col-start-1 effects:lg:row-start-1 effects:lg:opacity-0 effects:lg:group-hover:opacity-100 no-effects:lg:col-start-1 no-effects:lg:row-start-1 no-effects:lg:opacity-0 no-effects:lg:group-hover:opacity-100"
