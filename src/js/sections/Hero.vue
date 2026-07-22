@@ -33,12 +33,24 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import heroCharacterImage from "../../assets/hero-character.png";
-import heroCharacterHoverImage from "../../assets/hero-character-hover.png";
+import heroCharacterDarkImage from "../../assets/hero-character-dark.png";
+import heroCharacterDarkHoverImage from "../../assets/hero-character-dark-hover.png";
+import heroCharacterLightImage from "../../assets/hero-character-light.png";
+import heroCharacterLightHoverImage from "../../assets/hero-character-light-hover.png";
 
 const { t } = useI18n();
+const props = defineProps({
+  currentTheme: {
+    type: String,
+    required: true,
+  },
+});
 const isHeroHovered = ref(false);
-const heroImageSrc = computed(() =>
-  isHeroHovered.value ? heroCharacterHoverImage : heroCharacterImage,
-);
+const heroImageSrc = computed(() => {
+  if (props.currentTheme === "dark") {
+    return isHeroHovered.value ? heroCharacterDarkHoverImage : heroCharacterDarkImage;
+  }
+
+  return isHeroHovered.value ? heroCharacterLightHoverImage : heroCharacterLightImage;
+});
 </script>

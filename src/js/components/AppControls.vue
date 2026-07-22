@@ -88,14 +88,20 @@ import { useI18n } from "vue-i18n";
 import { SECTION_NAV_ITEMS } from "../dom/dom-selectors";
 import i18n, { applyDocumentLocale, saveLocale } from "../libraries/i18n";
 import { toggleEffectsMode } from "../features/preferences/effects-toggle";
-import { getCurrentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
+import { getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 
 const { t } = useI18n();
-const currentTheme = ref(getCurrentTheme());
+const props = defineProps({
+  currentTheme: {
+    type: String,
+    required: true,
+  },
+});
+const emit = defineEmits(["theme-change"]);
 const effectsOn = ref(false);
 
 const themeToggleLabel = computed(() =>
-  t(`theme-toggle.${currentTheme.value === "dark" ? "light" : "dark"}`),
+  t(`theme-toggle.${props.currentTheme === "dark" ? "light" : "dark"}`),
 );
 const langToggleLabel = computed(() => t("lang-toggle"));
 const effectsToggleLabel = computed(() =>
@@ -114,7 +120,7 @@ const toggleEffects = () => {
 };
 
 const toggleTheme = () => {
-  currentTheme.value = setTheme(getTargetTheme());
+  emit("theme-change", setTheme(getTargetTheme()));
 };
 
 const toggleLocale = () => {

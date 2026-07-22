@@ -1,8 +1,11 @@
 <template>
-  <AppControls />
+  <AppControls
+    :current-theme="currentTheme"
+    @theme-change="currentTheme = $event"
+  />
 
   <main class="w-full max-w-full min-w-0">
-    <Hero />
+    <Hero :current-theme="currentTheme" />
     <Description />
 
     <header
@@ -38,10 +41,12 @@ import Design from "./sections/Design.vue";
 import Creatives from "./sections/Creatives.vue";
 import Pricing from "./sections/Pricing.vue";
 import Footer from "./sections/Footer.vue";
+import { getCurrentTheme } from "./features/preferences/theme-toggle";
 import { initYandexMetrika } from "./libraries/yandex-metrika";
 import { readStorageValue, saveStorageValue } from "./utils/storage";
 
 const { t } = useI18n();
+const currentTheme = ref(getCurrentTheme());
 const ANALYTICS_CONSENT_STORAGE_KEY = "analytics-consent";
 const isSupportedAnalyticsConsent = (value) => value === "accepted" || value === "declined";
 const analyticsConsent = ref(
