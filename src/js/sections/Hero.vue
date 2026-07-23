@@ -7,16 +7,14 @@
     <div
       class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center overflow-hidden bg-canvas"
     >
-      <div
-        class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden text-fg"
-      >
-        <h1 class="text-hero-title text-center leading-[0.75] whitespace-pre-line">
+      <div class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden text-fg">
+        <h1 class="text-center text-hero-title leading-[0.75] whitespace-pre-line">
           {{ t("brand.hero") }}
         </h1>
       </div>
       <img
         :src="heroImageSrc"
-        class="scroll-speed-50 relative z-2 h-[86svh] w-full object-cover transition-opacity duration-300 sm:h-[90svh] sm:w-auto sm:max-w-none sm:object-contain lg:h-[94svh] self-center"
+        class="scroll-speed-50 relative z-2 h-[86svh] w-full self-center object-cover transition-opacity duration-300 sm:h-[90svh] sm:w-auto sm:max-w-none sm:object-contain lg:h-[94svh]"
         data-parallax-anchor="top"
         data-parallax-scale="0.0001"
         alt=""

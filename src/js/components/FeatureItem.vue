@@ -4,7 +4,7 @@
   >
     <span
       :data-target="dataTarget"
-      class="text-feature-stat inline-flex w-fit items-baseline gap-[0.1em] font-heading font-black text-stat lg:font-bold"
+      class="inline-flex w-fit items-baseline gap-[0.1em] font-heading text-feature-stat font-black text-stat lg:font-bold"
     >
       <span
         :data-target="dataTarget"
