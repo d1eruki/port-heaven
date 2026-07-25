@@ -15,7 +15,7 @@ After the plan, briefly explain its pros and cons in plain language that is easy
 
 Do not edit, delete, rename, format, generate, or otherwise modify files before the user approves the plan. Files may be deleted when they are left empty or become outdated.
 
-If the approved file list changes, a deletion becomes necessary, or the task materially expands during the work, stop, describe the updated plan, and wait for approval again before continuing. Implementation details that stay within the approved files and intent do not require another approval.
+If the approved file list changes, a deletion becomes necessary, or the task materially expands during the work, stop, describe the updated plan, and wait for approval again before continuing. Implementation details that stay within the approved files and intent do not require another approval, but explicitly tell the user that the change continues the approved plan before editing.
 
 ## Agent Communication
 
@@ -86,6 +86,8 @@ Prefer built-in Tailwind classes, theme tokens, CSS variables, variants, and doc
 
 Use canonical utilities when Tailwind already covers the requirement. For example, use `border-l` instead of `border-l-1`, and `grid-rows-[auto_1fr_auto]` instead of `[grid-template-rows:auto_1fr_auto]`.
 
+Avoid complex arbitrary `calc()` classes when standard layout behavior can produce the result. Prefer letting the browser resolve available space through normal sizing, padding, flex, or grid; use a complex calculation only when those mechanisms are insufficient, and explain the need in the implementation plan.
+
 Do not manually duplicate Tailwind defaults for breakpoints, spacing, colors, typography, shadows, radii, transitions, or z-index values. Add custom CSS variables, utilities, or theme tokens only when built-in behavior is insufficient or the value is a deliberate project token. When JavaScript needs Tailwind values, prefer build-time access to Tailwind defaults or existing project theme variables over hardcoded numeric copies.
 
 For Vue templates, implement layout, spacing, sizing, colors, typography, responsive behavior, borders, and shadows with Tailwind utilities by default.
@@ -143,7 +145,7 @@ For a UI task:
 1. Complete the approved implementation without running formatting or tests.
 2. Leave visual review to the user. Use a structured prompt with the options `Всё нормально` and `Нужны правки` when available; otherwise ask the user for visual approval and feedback in one concise question.
 3. If the user chooses `Нужны правки`, do not run formatting or tests. Apply the feedback within the approved scope and request visual review again.
-4. If the user chooses `Всё нормально`, run `npm run format` once, followed by `npm run test:integrity` and `npm run test:e2e` once each.
+4. Keep the task in visual iteration until the user gives explicit visual approval. Only then run `npm run format` once, followed by `npm run test:integrity` and `npm run test:e2e` once each.
 5. If a relevant test failure requires file changes, treat the task as incomplete and repeat the visual-review gate after the fix. Report unrelated or pre-existing failures without hiding them or claiming that the suite passed.
 
 For a non-visual task, do not use the visual-review prompt. Run only the approved, relevant checks once after implementation. For instruction-only changes, run formatting and no application tests.
