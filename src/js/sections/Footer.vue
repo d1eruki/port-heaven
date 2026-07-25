@@ -68,12 +68,12 @@
       ref="footerLogoContainerRef"
       class="relative left-1/2 z-1 w-screen -translate-x-1/2 overflow-hidden"
     >
-      <h2
+      <div
         ref="footerLogoRef"
-        class="mx-auto block w-max max-w-none font-heading text-5xl leading-none text-nowrap text-accent lowercase"
+        class="mx-auto block w-max max-w-none font-heading text-5xl leading-none font-black text-nowrap text-accent lowercase"
       >
         {{ t("brand.logo") }}
-      </h2>
+      </div>
     </div>
   </footer>
 </template>
