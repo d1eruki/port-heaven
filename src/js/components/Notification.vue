@@ -1,7 +1,7 @@
 <template>
   <aside
     v-if="isVisible"
-    class="fixed right-5 bottom-20 left-5 z-300 grid gap-5 bg-inverse p-5 text-inverse-fg lg:right-15 lg:bottom-15 lg:left-auto lg:w-150"
+    class="fixed right-5 bottom-20 left-5 z-300 grid gap-5 rounded-3xl bg-inverse p-5 text-inverse-fg lg:right-15 lg:bottom-15 lg:left-auto lg:w-150"
     aria-live="polite"
     aria-labelledby="analytics-notification-title"
     aria-describedby="analytics-notification-text"
@@ -13,7 +13,7 @@
     <div class="flex flex-wrap gap-5">
       <button
         type="button"
-        class="anim-extrude active bg-accent px-5 py-2.5 text-on-accent"
+        class="anim-extrude active rounded-full bg-accent px-5 py-2.5 text-on-accent"
         @click="emit('accept')"
       >
         <small>{{ t("privacy.analytics.accept") }}</small>

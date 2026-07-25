@@ -19,7 +19,7 @@
           >{{ t("contacts.telegram") }}
         </h2>
         <div
-          class="absolute -bottom-30 left-15 z-2 hidden -rotate-15 bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
+          class="absolute -bottom-30 left-15 z-2 hidden -rotate-15 rounded-2xl bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
         >
           https://t.me/d1eruki
         </div>
@@ -38,7 +38,7 @@
           >{{ t("contacts.behance") }}
         </h2>
         <div
-          class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
+          class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 rounded-2xl bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
         >
           BEHANCE
         </div>
@@ -57,7 +57,7 @@
           >{{ t("contacts.mail") }}
         </h2>
         <div
-          class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
+          class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 rounded-2xl bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
         >
           stapps90@gmail.com
         </div>

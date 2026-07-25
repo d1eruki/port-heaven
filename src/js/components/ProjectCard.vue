@@ -33,22 +33,20 @@
         </li>
       </ol>
       <div class="flex flex-wrap gap-5 lg:gap-10">
-        <a
+        <ActionLink
           v-for="(link, index) in projectLinks"
           :key="index"
-          class="anim-extrude active flex w-fit bg-accent px-5 py-2.5 lg:px-10 lg:py-5"
           :href="link.url"
-          target="_blank"
-          rel="noopener noreferrer"
         >
-          <p class="font-heading text-on-accent">{{ link.name }}</p>
-        </a>
+          {{ link.name }}
+        </ActionLink>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import ActionLink from "./ActionLink.vue";
 import TagsList from "./TagsList.vue";
 
 const props = defineProps({

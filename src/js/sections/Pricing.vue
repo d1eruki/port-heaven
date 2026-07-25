@@ -18,7 +18,7 @@
         <article
           v-for="plan in pricingPlans"
           :key="plan.id"
-          class="flex min-w-0 flex-col overflow-hidden bg-accent text-on-accent"
+          class="flex min-w-0 flex-col overflow-hidden rounded-4xl bg-accent text-on-accent"
         >
           <div
             class="grid min-w-0 content-start gap-5 border-b border-on-accent/20 p-15 xl:h-90 xl:flex-none"
@@ -84,14 +84,12 @@
       </div>
 
       <div class="mt-9 flex justify-center px-5 lg:px-0">
-        <a
-          class="anim-extrude active flex w-full justify-center bg-accent px-5 py-2.5 text-center text-on-accent lg:w-fit lg:px-10 lg:py-5"
+        <ActionLink
           href="https://t.me/d1eruki"
-          target="_blank"
-          rel="noopener noreferrer"
+          mobile-full-width
         >
-          <span class="font-heading">{{ t("pricing.action") }}</span>
-        </a>
+          {{ t("pricing.action") }}
+        </ActionLink>
       </div>
     </div>
   </section>
@@ -100,6 +98,7 @@
 <script setup>
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import ActionLink from "../components/ActionLink.vue";
 
 const { t } = useI18n();
 
