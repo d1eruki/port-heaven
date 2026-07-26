@@ -1,4 +1,4 @@
-import { getScrollY, onScroll, initOnLoad, clamp } from "../../utils/scroll";
+import { getScrollY, onScroll, isMobile, initOnLoad, clamp } from "../../utils/scroll";
 
 const setupParallax = () => {
   const elements = document.querySelectorAll('[class*="scroll-speed-"]');
@@ -20,17 +20,24 @@ const setupParallax = () => {
 
       const anchor = el.getAttribute("data-parallax-anchor") || "center";
       const scaleFactor = parseFloat(el.getAttribute("data-parallax-scale")) || 0;
+      const desktopOnly = el.hasAttribute("data-parallax-desktop-only");
 
       const rect = el.getBoundingClientRect();
       const initialY = rect.top + getScrollY();
 
-      return { el, speed, initialY, anchor, scaleFactor };
+      return { el, speed, initialY, anchor, scaleFactor, desktopOnly };
     })
     .filter(Boolean);
 
   const update = () => {
     const scroll = getScrollY();
-    items.forEach(({ el, speed, initialY, anchor, scaleFactor }) => {
+    items.forEach(({ el, speed, initialY, anchor, scaleFactor, desktopOnly }) => {
+      if (desktopOnly && isMobile()) {
+        el.style.removeProperty("--parallax-offset");
+        el.style.removeProperty("--parallax-scale");
+        return;
+      }
+
       let offset;
 
       if (anchor === "top") {

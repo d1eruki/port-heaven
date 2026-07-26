@@ -2,7 +2,7 @@
   <footer
     data-section="footer"
     id="footer"
-    class="flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-5 overflow-hidden p-15"
+    class="flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-5 overflow-hidden p-10 lg:p-15"
   >
     <div class="max-w-full min-w-0 items-center gap-10 lg:flex">
       <a

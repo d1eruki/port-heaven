@@ -2,16 +2,18 @@
   <section
     data-section="description"
     id="description"
-    class="relative mx-5 overflow-hidden rounded-4xl bg-accent lg:mx-15 lg:grid lg:min-h-dvh lg:grid-cols-2"
+    class="relative z-3 p-10 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-10 after:bg-canvas after:content-[''] lg:h-dvh lg:p-15 lg:after:h-15"
   >
-    <div
-      class="z-2 content-center px-15 pt-15 text-on-accent lg:justify-center lg:bg-transparent lg:pb-15"
-    >
-      <h2 class="lg:justify-self-center">{{ t("menu.description.title") }}</h2>
+    <div class="overflow-hidden rounded-4xl bg-accent lg:grid lg:h-full lg:grid-cols-2">
+      <div
+        class="z-2 content-center px-5 pt-5 text-on-accent lg:justify-center lg:bg-transparent lg:px-15 lg:pt-15 lg:pb-15"
+      >
+        <h2 class="lg:justify-self-center">{{ t("menu.description.title") }}</h2>
+      </div>
+      <p class="z-2 self-center p-5 text-on-accent lg:h-fit lg:w-150 lg:p-15">
+        {{ t("menu.description.text") }}
+      </p>
     </div>
-    <p class="z-2 self-center p-15 text-on-accent lg:h-fit lg:w-150">
-      {{ t("menu.description.text") }}
-    </p>
   </section>
 </template>
 

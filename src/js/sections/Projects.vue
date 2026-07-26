@@ -4,14 +4,16 @@
     id="projects"
     class="grid min-h-svh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0"
   >
-    <div
-      class="m-5 grid content-center gap-5 overflow-hidden rounded-4xl bg-inverse p-15 text-inverse-fg lg:sticky lg:inset-y-[50dvh] lg:top-15 lg:mx-0 lg:my-15 lg:mr-0 lg:ml-15 lg:h-[calc(100dvh-7.5rem)] lg:place-items-end lg:text-end"
-    >
-      <h2>{{ t("menu.projects.title") }}</h2>
-      <MenuDescription
-        class="lg:max-w-150"
-        :menu-desc="t('menu.projects.description')"
-      />
+    <div class="p-10 lg:sticky lg:top-0 lg:h-dvh lg:p-15 lg:pr-0">
+      <div
+        class="grid content-center gap-5 overflow-hidden rounded-4xl bg-inverse p-5 text-inverse-fg lg:h-full lg:place-items-end lg:p-15 lg:text-end"
+      >
+        <h2>{{ t("menu.projects.title") }}</h2>
+        <MenuDescription
+          class="lg:max-w-150"
+          :menu-desc="t('menu.projects.description')"
+        />
+      </div>
     </div>
     <div>
       <ProjectCard

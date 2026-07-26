@@ -419,19 +419,27 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
   const designMetrics = await page.locator("#design-inner").evaluate((element) => {
     const section = element.closest("#design");
     const nextSection = section?.nextElementSibling;
+    const bounds = element.getBoundingClientRect();
 
     return {
       clientWidth: element.clientWidth,
       scrollWidth: element.scrollWidth,
-      height: element.getBoundingClientRect().height,
+      left: bounds.left,
+      right: bounds.right,
+      height: bounds.height,
       sectionBottom: section?.getBoundingClientRect().bottom,
       nextSectionTop: nextSection?.getBoundingClientRect().top,
-      cards: Array.from(element.querySelectorAll("[data-design-name]")).map((card) => ({
-        left: card.offsetLeft,
-        top: card.offsetTop,
-        width: card.clientWidth,
-        height: card.clientHeight,
-      })),
+      cards: Array.from(element.querySelectorAll("[data-design-name]")).map((card) => {
+        const cardBounds = card.getBoundingClientRect();
+
+        return {
+          left: cardBounds.left,
+          right: cardBounds.right,
+          top: cardBounds.top,
+          width: cardBounds.width,
+          height: cardBounds.height,
+        };
+      }),
     };
   });
   expect(designMetrics.scrollWidth).toBeLessThanOrEqual(designMetrics.clientWidth + 1);
@@ -445,8 +453,8 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
       (card) =>
         card.width > 0 &&
         card.height > 0 &&
-        card.left >= 0 &&
-        card.left + card.width <= designMetrics.clientWidth + 1,
+        card.left >= designMetrics.left - 1 &&
+        card.right <= designMetrics.right + 1,
     ),
   ).toBe(true);
   await expectVideoEffectsMode(page, false);

@@ -3,8 +3,7 @@
     :href="href"
     target="_blank"
     rel="noopener noreferrer"
-    class="anim-extrude active flex rounded-full bg-accent px-5 py-2.5 text-on-accent lg:px-10 lg:py-5"
-    :class="mobileFullWidth ? 'w-full justify-center text-center lg:w-fit' : 'w-fit'"
+    class="anim-extrude active flex w-full justify-center rounded-full bg-accent px-5 py-5 text-center text-on-accent lg:w-fit lg:px-10"
   >
     <span class="font-heading"><slot /></span>
   </a>
@@ -15,10 +14,6 @@ defineProps({
   href: {
     type: String,
     required: true,
-  },
-  mobileFullWidth: {
-    type: Boolean,
-    default: false,
   },
 });
 </script>

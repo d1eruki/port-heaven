@@ -4,9 +4,11 @@ import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 const setupHorizontalScroll = () => {
   const section = document.getElementById(DOM_IDS.design);
   const inner = document.getElementById(DOM_IDS.designInner);
-  if (!section || !inner) return;
+  const viewport = document.getElementById(DOM_IDS.designViewport);
+  if (!section || !inner || !viewport) return;
 
   const intro = inner.querySelector(DOM_SELECTORS.designIntro);
+  const frame = inner.parentElement;
 
   let isDesktopLayout = false;
   let sectionStart = 0;
@@ -27,19 +29,20 @@ const setupHorizontalScroll = () => {
       inner.style.transform = "none";
       if (intro) intro.style.transform = "none";
       section.style.height = "auto";
-      inner.style.position = "relative";
+      viewport.style.position = "relative";
       inner.style.overflowX = "auto";
       return;
     }
 
     const innerWidth = inner.scrollWidth;
-    const viewportWidth = window.innerWidth;
+    const viewportWidth = frame.clientWidth;
     const viewportHeight = window.innerHeight;
 
     scrollDistance = Math.max(0, innerWidth - viewportWidth);
 
     section.style.height = `${scrollDistance + viewportHeight}px`;
-    inner.style.position = "sticky";
+    viewport.style.position = "sticky";
+    viewport.style.top = "0";
     inner.style.overflow = "visible";
     inner.style.display = "grid";
 

@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-svh w-full lg:bg-canvas">
-    <div class="flex min-h-svh flex-col justify-between gap-10 p-15">
+    <div class="flex min-h-svh flex-col justify-between gap-10 p-10 lg:p-15">
       <div class="flex flex-col gap-5">
         <h3 class="text-fg">{{ projectName }}</h3>
         <p class="text-muted">{{ projectDescription }}</p>
@@ -32,7 +32,7 @@
           <p class="text-fg">{{ statistic }}</p>
         </li>
       </ol>
-      <div class="flex flex-wrap gap-5 lg:gap-10">
+      <div class="flex flex-wrap gap-2 lg:gap-10">
         <ActionLink
           v-for="(link, index) in projectLinks"
           :key="index"

@@ -4,10 +4,10 @@
     id="about"
     class="relative flex min-h-screen flex-col content-center bg-canvas lg:justify-center lg:gap-15"
   >
-    <div class="block px-15 pt-15 text-fg lg:sr-only">
+    <div class="block px-10 pt-10 text-fg lg:sr-only lg:px-15 lg:pt-15">
       <h2>{{ t("menu.about.title") }}</h2>
     </div>
-    <div class="grid grid-cols-1 gap-15 lg:grid-cols-3 lg:p-15">
+    <div class="grid grid-cols-1 gap-5 lg:grid-cols-3 lg:gap-15 lg:p-15">
       <FeatureItem
         is-counter
         data-target="2+"

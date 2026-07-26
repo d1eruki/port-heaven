@@ -35,6 +35,7 @@ export const DOM_DATA_ATTRIBUTES = {
 export const DOM_IDS = {
   design: SECTION_IDS.design,
   designInner: "design-inner",
+  designViewport: "design-viewport",
   menuDot: "menu-dot",
   progressBar: "progress-bar",
   scrollToTop: "scroll-to-top",

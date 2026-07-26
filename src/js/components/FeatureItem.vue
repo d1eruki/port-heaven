@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative z-2 grid min-h-fit justify-between gap-15 p-15 lg:min-h-full lg:gap-20 lg:p-15 xl:grid-rows-[1fr_auto]"
+    class="relative z-2 grid min-h-fit justify-between gap-5 p-10 lg:min-h-full lg:gap-20 lg:p-15 xl:grid-rows-[1fr_auto]"
   >
     <span
       :data-target="dataTarget"

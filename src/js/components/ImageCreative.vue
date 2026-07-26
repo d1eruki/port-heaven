@@ -1,6 +1,6 @@
 <template>
   <div
-    class="vanilla-tilt-creatives group h-fit overflow-hidden rounded-3xl hover:z-100"
+    class="vanilla-tilt-creatives group h-fit overflow-hidden rounded-4xl hover:z-100"
     :style="computedStyle"
   >
     <img

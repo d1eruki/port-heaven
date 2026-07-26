@@ -2,11 +2,9 @@
   <section
     data-section="hero"
     id="hero"
-    class="min-h-svh w-full min-w-0 overflow-hidden bg-canvas"
+    class="min-h-svh w-full min-w-0 bg-canvas"
   >
-    <div
-      class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center overflow-hidden bg-canvas"
-    >
+    <div class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center bg-canvas">
       <div class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden text-fg">
         <h1 class="text-center text-hero-title leading-[0.75] whitespace-pre-line">
           {{ t("brand.hero") }}

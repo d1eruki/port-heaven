@@ -4,10 +4,10 @@
     :data-design-name="designName"
     target="_blank"
     rel="noopener noreferrer"
-    class="group w-full shrink-0 overflow-hidden rounded-4xl text-fg hover:bg-hover-accent hover:text-hover-accent-fg effects:lg:h-[50dvh] effects:lg:w-[25dvw] effects:lg:hover:z-51 no-effects:lg:h-[50dvh] no-effects:lg:hover:z-51"
+    class="group w-full shrink-0 overflow-hidden rounded-4xl text-fg hover:bg-hover-accent hover:text-hover-accent-fg effects:lg:w-[25dvw] effects:lg:hover:z-51 no-effects:lg:hover:z-51"
   >
     <div
-      class="anim-extrude relative z-10 grid gap-5 p-15 effects:lg:h-full effects:lg:grid-rows-[50%] effects:lg:items-center no-effects:lg:h-full no-effects:lg:grid-rows-[50%] no-effects:lg:items-center no-effects:lg:hover:transform-none"
+      class="anim-extrude relative z-10 grid gap-5 p-5 lg:p-15 effects:lg:h-full effects:lg:grid-rows-[50%] effects:lg:items-center no-effects:lg:h-full no-effects:lg:grid-rows-[50%] no-effects:lg:items-center no-effects:lg:hover:transform-none"
     >
       <h3 class="flex gap-3 text-heading-sm">
         {{ designName }}

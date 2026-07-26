@@ -5,7 +5,8 @@
     class="relative min-h-svh lg:py-[50dvh]"
   >
     <div
-      class="scroll-speed-05 pointer-events-none left-0 flex w-fit flex-col gap-5 justify-self-center bg-inverse p-15 text-inverse-fg lg:sticky lg:top-[50%] lg:-translate-y-1/2 lg:items-center lg:bg-transparent lg:p-0 lg:text-fg"
+      data-parallax-desktop-only
+      class="scroll-speed-05 pointer-events-none left-0 mx-10 mb-10 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-inverse-fg lg:sticky lg:top-[50%] lg:m-0 lg:w-fit lg:-translate-y-1/2 lg:items-center lg:justify-self-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-fg"
     >
       <h2>{{ t("menu.creatives.title") }}</h2>
       <MenuDescription
@@ -13,7 +14,9 @@
         :menu-desc="t('menu.creatives.description')"
       />
     </div>
-    <div class="container-creatives h-fit w-full lg:mb-[35dvh] lg:grid lg:grid-cols-20 lg:p-10">
+    <div
+      class="container-creatives flex h-fit w-full flex-col gap-5 px-10 pb-10 lg:mb-[35dvh] lg:grid lg:grid-cols-20 lg:gap-0 lg:p-10"
+    >
       <component
         :is="creative.type === 'video' ? VideoCreative : ImageCreative"
         v-for="creative in creatives"

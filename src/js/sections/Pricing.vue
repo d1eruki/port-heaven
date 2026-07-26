@@ -14,14 +14,16 @@
         </h2>
       </header>
 
-      <div class="relative z-2 grid grid-cols-1 items-start gap-5 xl:grid-cols-3 xl:items-stretch">
+      <div
+        class="relative z-2 grid grid-cols-1 items-start gap-5 px-10 lg:px-0 xl:grid-cols-3 xl:items-stretch"
+      >
         <article
           v-for="plan in pricingPlans"
           :key="plan.id"
           class="flex min-w-0 flex-col overflow-hidden rounded-4xl bg-accent text-on-accent"
         >
           <div
-            class="grid min-w-0 content-start gap-5 border-b border-on-accent/20 p-15 xl:h-90 xl:flex-none"
+            class="grid min-w-0 content-start gap-5 border-b border-on-accent/20 p-5 lg:p-15 xl:h-90 xl:flex-none"
           >
             <div class="flex items-center justify-between gap-5">
               <h3 class="min-w-0 text-heading-sm wrap-anywhere normal-case">
@@ -47,7 +49,7 @@
             <small class="min-w-0 wrap-anywhere text-on-accent/70">{{ plan.duration }}</small>
           </div>
 
-          <div class="grid min-w-0 flex-1 content-start p-15">
+          <div class="grid min-w-0 flex-1 content-start p-5 lg:p-15">
             <ul class="grid gap-3.5">
               <li
                 v-if="plan.includes"
@@ -83,11 +85,8 @@
         </article>
       </div>
 
-      <div class="mt-9 flex justify-center px-5 lg:px-0">
-        <ActionLink
-          href="https://t.me/d1eruki"
-          mobile-full-width
-        >
+      <div class="mt-9 flex justify-center px-10 lg:px-0">
+        <ActionLink href="https://t.me/d1eruki">
           {{ t("pricing.action") }}
         </ActionLink>
       </div>
