@@ -5,6 +5,7 @@
   --semantic-surface-inverse: var(--color-black);
   --semantic-surface-muted: var(--color-neutral-100);
   --semantic-text-primary: var(--color-black);
+  --semantic-text-hero: var(--color-black);
   --semantic-text-action-muted: var(--color-black);
   --semantic-text-muted: var(--color-neutral-500);
   --semantic-text-footer-link: var(--color-neutral-200);

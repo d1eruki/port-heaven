@@ -14,6 +14,7 @@
   --color-accent: var(--semantic-accent);
   --color-canvas: var(--semantic-surface-canvas);
   --color-fg: var(--semantic-text-primary);
+  --color-hero: var(--semantic-text-hero);
   --color-action-muted: var(--semantic-text-action-muted);
   --color-muted: var(--semantic-text-muted);
   --color-footer-link: var(--semantic-text-footer-link);
