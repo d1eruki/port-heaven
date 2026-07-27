@@ -4,14 +4,14 @@
     id="footer"
     class="flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-5 overflow-hidden p-10 lg:p-15"
   >
-    <div class="max-w-full min-w-0 items-center gap-10 lg:flex">
+    <div class="max-w-full min-w-0 items-baseline gap-10 lg:flex">
       <a
         class="group relative w-auto font-heading text-footer-link hover:text-footer-link-hover"
         href="https://t.me/d1eruki"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <h2 class="flex gap-2 text-nowrap">
+        <h2 class="inline-flex items-baseline gap-2 text-nowrap">
           <span
             class="icon-[ic--baseline-telegram] aspect-square"
             aria-hidden="true"
@@ -30,7 +30,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <h2 class="flex gap-2 text-nowrap">
+        <h2 class="inline-flex items-baseline gap-2 text-nowrap">
           <span
             class="icon-[eva--behance-fill]"
             aria-hidden="true"
@@ -41,25 +41,6 @@
           class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 rounded-2xl bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
         >
           BEHANCE
-        </div>
-      </a>
-      <a
-        class="group relative w-auto font-heading text-footer-link hover:text-footer-link-hover"
-        href="mailto:stapps90@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <h2 class="flex gap-2 text-nowrap">
-          <span
-            class="icon-[ic--baseline-alternate-email] aspect-square"
-            aria-hidden="true"
-          ></span
-          >{{ t("contacts.mail") }}
-        </h2>
-        <div
-          class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 rounded-2xl bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
-        >
-          stapps90@gmail.com
         </div>
       </a>
       <MenuDescription :menu-desc="t('menu.footer.description')" />
