@@ -14,7 +14,7 @@
   --cursor-size-label: 150px;
 
   /* типографика */
-  --text-hero-title: clamp(4.5rem, 15vw, 24rem);
+  --text-hero-title: clamp(4rem, 15vw, 24rem);
   --text-pricing-title: clamp(5.5rem, 29vw, 8rem);
   --text-pricing-title-lg: clamp(8rem, 23vw, 22rem);
   --text-feature-stat: clamp(5rem, 20vw, 8rem);
