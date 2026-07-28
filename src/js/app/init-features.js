@@ -39,6 +39,11 @@ export const initFeatures = async () => {
             initHorizontalScroll(),
           ),
         ),
+        lenisReady.then(() =>
+          import("../features/navigation/section-snap").then(({ initSectionSnap }) =>
+            initSectionSnap(),
+          ),
+        ),
       ];
 
       if (screenLg) {
