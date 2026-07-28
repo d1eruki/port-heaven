@@ -1,5 +1,9 @@
 # Repository Instructions
 
+## Repository Identity
+
+Before modifying files, verify that the resolved Git root matches the repository established for the task. Do not edit another checkout, clone, or worktree merely because it became the current working directory. If the paths differ, stop and resolve the intended repository before making changes.
+
 ## Change Approval
 
 Before making any file changes, explain the intended plan and wait for explicit user approval.
@@ -34,6 +38,8 @@ Prefer a library's built-in behavior, documented APIs, and established patterns 
 Before creating a new mechanic, inspect the codebase for an equivalent mechanic, state flow, helper, composable, persistence layer, or established pattern. Reuse an existing implementation when it covers the requirement, or extend it when it is close but incomplete.
 
 Do not duplicate mechanisms such as `localStorage` handling, state synchronization, UI behavior, routing logic, data loading, or persistence abstractions unless the existing approach is insufficient. If a new mechanism is necessary, explain why the existing one cannot be reused or extended.
+
+Identify the smallest existing property or mechanism that directly controls the requested result, and change that first. Do not restructure the DOM, positioning, layout, components, or state when a local adjustment to the existing mechanism is sufficient. Expand the implementation scope only after confirming that the smaller change cannot satisfy the requirement.
 
 ## Runtime Diagnosis
 
@@ -79,6 +85,10 @@ When cards are stacked vertically:
 - Preserve consistent external spacing between cards.
 
 Apply this behavior by default unless an explicit requirement or design reference demonstrates a different layout. Equal outer card heights are not sufficient when corresponding internal sections remain misaligned.
+
+### Nested Corner Geometry
+
+For nested rounded surfaces, calculate the inner radius as `max(0, outer radius - distance between contours)`. When horizontal and vertical insets differ, calculate each radius axis separately. Include padding, gap, and border thickness in the contour distance. Do not give nested surfaces the same radius when the inset is nonzero unless the design explicitly requires it. Use an existing radius token when it exactly matches the calculated value.
 
 ### Tailwind
 
