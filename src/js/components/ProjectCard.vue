@@ -1,5 +1,8 @@
 <template>
-  <div class="min-h-svh w-full lg:bg-canvas">
+  <div
+    data-project-snap
+    class="min-h-svh w-full lg:bg-canvas"
+  >
     <div class="flex min-h-svh flex-col justify-center gap-10 p-10 lg:p-15">
       <div class="flex flex-col gap-5">
         <h3 class="text-fg">{{ projectName }}</h3>

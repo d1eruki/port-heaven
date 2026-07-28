@@ -91,6 +91,47 @@ const setEffectsMode = async (page, mode) => {
   }, mode);
 };
 
+const positionBeforeSecondProject = async (page) => {
+  const metrics = await page.evaluate(() => {
+    const project = document.querySelectorAll("[data-project-snap]")[1];
+    if (!project) return null;
+
+    const target = Math.round(project.getBoundingClientRect().top + window.scrollY);
+    const start = target - 100;
+    window.scrollTo(0, start);
+
+    return { start, target };
+  });
+
+  expect(metrics).not.toBeNull();
+  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(metrics.start);
+
+  return metrics;
+};
+
+const wheelAndWaitForScrollToSettle = async (page) => {
+  let previousY;
+  let settledY = 0;
+  let stableSamples = 0;
+
+  await page.mouse.wheel(0, 20);
+  await expect
+    .poll(
+      async () => {
+        const currentY = await page.evaluate(() => Math.round(window.scrollY));
+        stableSamples =
+          previousY !== undefined && Math.abs(currentY - previousY) <= 1 ? stableSamples + 1 : 0;
+        previousY = currentY;
+        settledY = currentY;
+        return stableSamples;
+      },
+      { intervals: [100], timeout: 5_000 },
+    )
+    .toBeGreaterThanOrEqual(4);
+
+  return settledY;
+};
+
 const expectVideoEffectsMode = async (page, effectsOn) => {
   const video = page.locator("video");
   const attributeAssertion = effectsOn ? expect(video) : expect(video).not;
@@ -354,6 +395,43 @@ test("section dot navigation targets the explicit section nav", async ({ page })
     "aria-current",
     "true",
   );
+});
+
+test("project cards snap only in enhanced desktop mode", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === "mobile-safari", "Mobile WebKit has no mouse wheel API");
+
+  await page.addInitScript(() => localStorage.removeItem("scroll-position"));
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
+  await page.evaluate(() => localStorage.setItem("effects-mode", "on"));
+  await page.reload();
+
+  const root = page.locator("html");
+  await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
+  await expect(root).toHaveClass(/(?:^|\s)lenis(?:\s|$)/);
+
+  const desktop = await positionBeforeSecondProject(page);
+  const desktopY = await wheelAndWaitForScrollToSettle(page);
+  expect(Math.abs(desktopY - desktop.target)).toBeLessThan(50);
+
+  await page.evaluate(() => localStorage.setItem("effects-mode", "off"));
+  await page.reload();
+  await expect(root).toHaveClass(/no-effects/);
+
+  const noEffects = await positionBeforeSecondProject(page);
+  const noEffectsY = await wheelAndWaitForScrollToSettle(page);
+  expect(noEffectsY).toBeGreaterThan(noEffects.start);
+  expect(Math.abs(noEffectsY - noEffects.target)).toBeGreaterThan(60);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.evaluate(() => localStorage.setItem("effects-mode", "on"));
+  await page.reload();
+  await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
+
+  const mobile = await positionBeforeSecondProject(page);
+  const mobileY = await wheelAndWaitForScrollToSettle(page);
+  expect(mobileY).toBeGreaterThan(mobile.start);
+  expect(Math.abs(mobileY - mobile.target)).toBeGreaterThan(60);
 });
 
 test("mobile viewport keeps core controls working", async ({ page }) => {

@@ -6,6 +6,7 @@ import { isViewportAtLeast } from "../../utils/breakpoints";
 
 export const initSectionSnap = () => {
   const sections = document.querySelectorAll(DOM_SELECTORS.sections);
+  const projects = document.querySelectorAll(DOM_SELECTORS.projectSnap);
   if (!sections.length) return;
 
   const snap = new Snap(lenis, {
@@ -16,6 +17,7 @@ export const initSectionSnap = () => {
   });
 
   snap.addElements(sections, { align: "start" });
+  snap.addElements(projects, { align: "start" });
 
   let enabled = true;
 
