@@ -1,8 +1,15 @@
 import { readStorageValue, saveStorageValue } from "../../utils/storage";
+import darkFaviconUrl from "../../../assets/favicon-dark.png";
+import lightFaviconUrl from "../../../assets/favicon-light.png";
 
 const root = document.documentElement;
+const faviconLink = document.querySelector('link[rel~="icon"]');
 const THEME_STORAGE_KEY = "theme";
 const DEFAULT_THEME = "light";
+const faviconByTheme = {
+  dark: darkFaviconUrl,
+  light: lightFaviconUrl,
+};
 const isSupportedTheme = (theme) => theme === "light" || theme === "dark";
 
 export const readSavedTheme = () =>
@@ -33,6 +40,7 @@ export const getTargetTheme = () => (getCurrentTheme() === "dark" ? "light" : "d
 export const applyTheme = (theme) => {
   const nextTheme = isSupportedTheme(theme) ? theme : DEFAULT_THEME;
   root.setAttribute("data-theme", nextTheme);
+  if (faviconLink) faviconLink.href = faviconByTheme[nextTheme];
   return nextTheme;
 };
 

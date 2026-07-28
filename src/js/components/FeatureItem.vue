@@ -1,12 +1,12 @@
 <template>
   <div
-    class="relative z-2 grid min-h-fit min-w-0 max-w-full grid-rows-[auto_1fr] gap-10 overflow-hidden rounded-3xl bg-canvas p-10 text-left lg:min-h-full"
+    class="relative z-2 grid min-h-fit max-w-full min-w-0 grid-rows-[auto_1fr] gap-10 overflow-hidden rounded-3xl bg-canvas p-10 text-left lg:min-h-full"
   >
-    <p class="min-w-0 max-w-full wrap-anywhere">{{ title }}</p>
-    <div class="grid w-full min-w-0 max-w-full content-end gap-5 overflow-hidden">
+    <p class="max-w-full min-w-0 wrap-anywhere">{{ title }}</p>
+    <div class="grid w-full max-w-full min-w-0 content-end gap-5 overflow-hidden">
       <span
         :data-target="dataTarget"
-        class="inline-flex w-full min-w-0 max-w-full items-baseline gap-[0.1em] font-heading text-feature-stat font-black text-stat lg:font-bold"
+        class="inline-flex w-full max-w-full min-w-0 items-baseline gap-[0.1em] font-heading text-feature-stat font-black text-stat lg:font-bold"
       >
         <small
           v-if="statPrefix"
@@ -28,7 +28,7 @@
           {{ suffix }}
         </span>
       </span>
-      <p class="w-full min-w-0 max-w-full wrap-anywhere">{{ text }}</p>
+      <p class="w-full max-w-full min-w-0 wrap-anywhere">{{ text }}</p>
     </div>
   </div>
 </template>

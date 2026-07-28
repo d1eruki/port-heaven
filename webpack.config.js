@@ -86,7 +86,7 @@ module.exports = (_env, argv) => {
         template: "src/index.html",
         filename: "index.html",
         inject: true,
-        favicon: "src/assets/favicon.png",
+        favicon: "src/assets/favicon-light.png",
       }),
       ...(isDev ? [] : [new MiniCssExtractPlugin({ filename: "style.[contenthash].css" })]),
       new DefinePlugin({
