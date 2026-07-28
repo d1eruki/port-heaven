@@ -1,9 +1,14 @@
 :root[data-theme="dark"] {
+  /* Accent */
   --semantic-accent-srgb: var(--palette-lime-srgb);
   --semantic-accent-p3: var(--palette-lime-p3);
+
+  /* Surfaces */
   --semantic-surface-canvas: var(--color-black);
   --semantic-surface-inverse: var(--color-white);
   --semantic-surface-muted: var(--color-neutral-800);
+
+  /* Text */
   --semantic-text-primary: var(--color-white);
   --semantic-text-hero: var(--color-white);
   --semantic-text-action-muted: var(--color-neutral-700);
@@ -13,6 +18,11 @@
   --semantic-text-on-accent: var(--color-black);
   --semantic-text-inverse: var(--color-black);
   --semantic-text-on-muted: var(--color-neutral-500);
+
+  /* Icons */
+  --semantic-icon-pattern: var(--color-neutral-700);
+
+  /* Borders */
   --semantic-border-subtle: var(--color-neutral-800);
   --semantic-border-decoration: var(--color-neutral-800);
 }

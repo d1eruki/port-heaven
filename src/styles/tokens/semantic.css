@@ -11,8 +11,14 @@
 }
 
 @theme inline {
+  /* Accent */
   --color-accent: var(--semantic-accent);
+
+  /* Surfaces */
   --color-canvas: var(--semantic-surface-canvas);
+  --color-inverse: var(--semantic-surface-inverse);
+
+  /* Text */
   --color-fg: var(--semantic-text-primary);
   --color-hero: var(--semantic-text-hero);
   --color-action-muted: var(--semantic-text-action-muted);
@@ -20,7 +26,11 @@
   --color-footer-link: var(--semantic-text-footer-link);
   --color-footer-link-hover: var(--semantic-text-footer-link-hover);
   --color-on-accent: var(--semantic-text-on-accent);
-  --color-inverse: var(--semantic-surface-inverse);
   --color-inverse-fg: var(--semantic-text-inverse);
+
+  /* Icons */
+  --color-icon-pattern: var(--semantic-icon-pattern);
+
+  /* Borders */
   --color-border-subtle: var(--semantic-border-subtle);
 }
