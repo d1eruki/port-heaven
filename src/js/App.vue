@@ -6,7 +6,6 @@
 
   <main class="w-full max-w-full min-w-0">
     <Hero :current-theme="currentTheme" />
-    <Description />
 
     <header
       class="sticky top-0 z-100 hidden h-fit min-h-10 w-full bg-accent px-15 py-5 text-on-accent no-effects:flex"
@@ -34,7 +33,6 @@ import { useI18n } from "vue-i18n";
 import AppControls from "./components/AppControls.vue";
 import Notification from "./components/Notification.vue";
 import Hero from "./sections/Hero.vue";
-import Description from "./sections/Description.vue";
 import About from "./sections/About.vue";
 import Projects from "./sections/Projects.vue";
 import Design from "./sections/Design.vue";

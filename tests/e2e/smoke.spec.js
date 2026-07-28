@@ -310,7 +310,6 @@ test("section dot navigation targets the explicit section nav", async ({ page })
   const dots = sectionNav.locator("button.dot");
   const russianSectionLabels = [
     "главная",
-    "дизайнер",
     "обо мне",
     "коммерческие проекты",
     "макеты",
@@ -320,7 +319,6 @@ test("section dot navigation targets the explicit section nav", async ({ page })
   ];
   const englishSectionLabels = [
     "home",
-    "designer",
     "about me",
     "commercial projects",
     "layouts",

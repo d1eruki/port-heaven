@@ -2,7 +2,6 @@ const selectorById = (id) => `#${id}`;
 
 export const SECTION_IDS = {
   hero: "hero",
-  description: "description",
   about: "about",
   projects: "projects",
   design: "design",
@@ -13,7 +12,6 @@ export const SECTION_IDS = {
 
 export const SECTION_NAV_ITEMS = [
   { id: SECTION_IDS.hero, labelKey: "navigation.sections.hero" },
-  { id: SECTION_IDS.description, labelKey: "navigation.sections.description" },
   { id: SECTION_IDS.about, labelKey: "navigation.sections.about" },
   { id: SECTION_IDS.projects, labelKey: "navigation.sections.projects" },
   { id: SECTION_IDS.design, labelKey: "navigation.sections.design" },

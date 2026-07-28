@@ -2,7 +2,7 @@
   <section
     data-section="hero"
     id="hero"
-    class="min-h-svh w-full min-w-0 bg-canvas"
+    class="relative z-0 min-h-svh w-full min-w-0 overflow-visible bg-canvas"
   >
     <div class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center bg-canvas">
       <div
