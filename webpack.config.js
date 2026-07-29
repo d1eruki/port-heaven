@@ -28,6 +28,13 @@ module.exports = (_env, argv) => {
       open: false,
       allowedHosts: "all",
       hot: true,
+      client: {
+        overlay: {
+          runtimeErrors: (error) =>
+            error.message !== "ResizeObserver loop completed with undelivered notifications." &&
+            error.message !== "ResizeObserver loop limit exceeded",
+        },
+      },
     },
     resolve: {
       extensions: [".js", ".vue", ".json"],
