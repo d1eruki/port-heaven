@@ -550,6 +550,26 @@ test("manual effects mode overrides browser capability detection", async ({ page
   await page.evaluate(() => window.scrollTo(0, 500));
   await expect.poll(() => readHeroParallaxStyles(page)).not.toEqual([{ offset: "", scale: "" }]);
 
+  const designLayout = await page.locator("#design-inner").evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    const columnRights = new Map();
+
+    for (const child of element.children) {
+      const childBounds = child.getBoundingClientRect();
+      columnRights.set(Math.round(childBounds.left), childBounds.right);
+    }
+
+    return {
+      right: bounds.right,
+      firstFourColumnRights: Array.from(columnRights.values()).slice(0, 4),
+    };
+  });
+
+  expect(designLayout.firstFourColumnRights).toHaveLength(4);
+  expect(designLayout.firstFourColumnRights.every((right) => right <= designLayout.right + 1)).toBe(
+    true,
+  );
+
   await expectVideoEffectsMode(page, true);
 });
 

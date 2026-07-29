@@ -10,12 +10,12 @@
     >
       <div class="effects:lg:h-full">
         <div
-          class="grid w-full gap-5 overflow-x-hidden will-change-transform lg:gap-0 effects:lg:h-full effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:min-h-dvh no-effects:grid-cols-1 no-effects:md:grid-cols-2 no-effects:lg:auto-rows-fr no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
+          class="grid w-full gap-5 overflow-x-hidden will-change-transform lg:gap-0 effects:lg:h-full effects:lg:auto-cols-[25%] effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:min-h-dvh no-effects:grid-cols-1 no-effects:md:grid-cols-2 no-effects:lg:auto-rows-fr no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
           id="design-inner"
         >
           <div
             data-design-intro
-            class="col-span-1 grid w-full shrink-0 content-center gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:rounded-none lg:bg-canvas lg:p-15 lg:text-primary effects:lg:w-[25dvw]"
+            class="col-span-1 grid w-full shrink-0 content-center gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:rounded-none lg:bg-canvas lg:p-15 lg:text-primary"
           >
             <h2>{{ t("menu.designs.title") }}</h2>
             <MenuDescription
