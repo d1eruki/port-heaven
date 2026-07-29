@@ -4,7 +4,6 @@
   --component-cursor-background: var(--semantic-surface-adaptive-contrast);
   --component-cursor-foreground: var(--semantic-text-on-adaptive-contrast);
   --component-corner-frame: var(--semantic-decoration-subtle);
-  --component-creative-shadow: var(--semantic-accent);
   --component-chip-background: var(--semantic-surface-subtle);
   --component-chip-foreground: var(--semantic-text-muted);
   --component-chip-active-background: var(--semantic-surface-contrast);

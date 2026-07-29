@@ -101,10 +101,6 @@
   @media (min-width: theme(--breakpoint-lg)) {
     .vanilla-tilt-creatives {
       transition: var(--transition);
-      box-shadow: -4px 4px 0 0 var(--component-creative-shadow);
-    }
-    .vanilla-tilt-creatives:hover {
-      box-shadow: none;
     }
   }
 }
