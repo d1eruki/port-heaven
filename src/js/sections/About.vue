@@ -19,18 +19,21 @@
       </div>
       <div class="relative z-1 grid gap-2 p-2 lg:grid-cols-2">
         <FeatureItem
+          data-about-feature
           is-counter
           data-target="2+"
           :title="t('menu.about.experience.title')"
           :text="t('menu.about.experience.text')"
         />
         <FeatureItem
+          data-about-feature
           is-counter
           data-target="10+"
           :title="t('menu.about.projects.title')"
           :text="t('menu.about.projects.text')"
         />
         <FeatureItem
+          data-about-feature
           class="lg:col-span-2"
           is-counter
           data-target="50"

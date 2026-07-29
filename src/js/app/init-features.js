@@ -10,6 +10,7 @@ import { initScrollRestoration } from "../features/navigation/scroll-restoration
 import { initMenuDotToggler } from "../features/navigation/menu-dot-toggler";
 import { initCreativeHeadingPin } from "../features/navigation/creative-heading-pin";
 import { initProjectPin } from "../features/navigation/project-pin";
+import { initAboutReveal } from "../features/effects/about-reveal";
 import { initDesignActive } from "../features/effects/design-active";
 import { initOdometerCounter } from "../features/effects/odometer-counter";
 
@@ -28,6 +29,7 @@ export const initFeatures = async () => {
 
   try {
     if (effectsOn) {
+      initAboutReveal();
       initDesignActive();
       initOdometerCounter();
 
