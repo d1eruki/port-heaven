@@ -91,6 +91,12 @@ const setEffectsMode = async (page, mode) => {
   }, mode);
 };
 
+const readSectionVisualProgress = (section) =>
+  section.evaluate((element) => {
+    const distance = element.offsetHeight - window.innerHeight;
+    return distance > 0 ? -element.getBoundingClientRect().top / distance : 0;
+  });
+
 const positionBeforeSecondProject = async (page) => {
   const metrics = await page.evaluate(() => {
     const project = document.querySelectorAll("[data-project-snap]")[1];
@@ -109,12 +115,12 @@ const positionBeforeSecondProject = async (page) => {
   return metrics;
 };
 
-const wheelAndWaitForScrollToSettle = async (page) => {
+const scrollAndWaitForScrollToSettle = async (page) => {
   let previousY;
   let settledY = 0;
   let stableSamples = 0;
 
-  await page.mouse.wheel(0, 20);
+  await page.evaluate(() => window.scrollBy(0, 20));
   await expect
     .poll(
       async () => {
@@ -335,11 +341,13 @@ test("saved dark theme is synchronized before Vue mounts", async ({ page }) => {
 test("scroll to top returns from lower sections", async ({ page }) => {
   await page.goto("/");
 
-  await page.locator("#footer").scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
+  await expect(page.locator("#footer")).toBeInViewport();
 
   await page.locator("#scroll-to-top").click();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(100);
+  await expect(page.locator("#hero")).toBeInViewport();
 });
 
 test("section dot navigation targets the explicit section nav", async ({ page }) => {
@@ -410,7 +418,7 @@ test("project cards snap only in enhanced desktop mode", async ({ page }, testIn
   await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
 
   const desktop = await positionBeforeSecondProject(page);
-  const desktopY = await wheelAndWaitForScrollToSettle(page);
+  const desktopY = await scrollAndWaitForScrollToSettle(page);
   expect(Math.abs(desktopY - desktop.target)).toBeLessThan(50);
 
   const projectPanel = page.locator("[data-project-panel]");
@@ -422,18 +430,36 @@ test("project cards snap only in enhanced desktop mode", async ({ page }, testIn
     .poll(() => projectPanel.evaluate((element) => Math.abs(element.getBoundingClientRect().top)))
     .toBeLessThan(10);
 
+  const designSection = page.locator("#design");
   const designInner = page.locator("#design-inner");
-  await page.evaluate(() => {
+  const designMetrics = await page.evaluate(() => {
     const design = document.querySelector("#design");
+    const inner = document.querySelector("#design-inner");
+    const distance = inner.scrollWidth - inner.parentElement.clientWidth;
     window.scrollTo(0, design.offsetTop);
+    return {
+      start: design.offsetTop,
+      step: Math.min(400, distance / 4),
+    };
   });
+  await expect
+    .poll(() => designSection.evaluate((element) => Math.abs(element.getBoundingClientRect().top)))
+    .toBeLessThan(2);
   const initialDesignLeft = await designInner.evaluate(
     (element) => element.getBoundingClientRect().left,
   );
-  await page.mouse.wheel(0, 200);
+  await page.evaluate(({ start, step }) => window.scrollTo(0, start + step), designMetrics);
   await expect
-    .poll(() => designInner.evaluate((element) => element.getBoundingClientRect().left))
-    .toBeLessThan(initialDesignLeft - 50);
+    .poll(() => page.evaluate(() => Math.round(window.scrollY)))
+    .toBe(Math.round(designMetrics.start + designMetrics.step));
+  await expect
+    .poll(async () => {
+      const currentLeft = await designInner.evaluate(
+        (element) => element.getBoundingClientRect().left,
+      );
+      return initialDesignLeft - currentLeft;
+    })
+    .toBeGreaterThan(20);
 
   await page.evaluate(() => {
     const inner = document.querySelector("#design-inner");
@@ -472,7 +498,7 @@ test("project cards snap only in enhanced desktop mode", async ({ page }, testIn
   await expect(root).toHaveClass(/no-effects/);
 
   const noEffects = await positionBeforeSecondProject(page);
-  const noEffectsY = await wheelAndWaitForScrollToSettle(page);
+  const noEffectsY = await scrollAndWaitForScrollToSettle(page);
   expect(noEffectsY).toBeGreaterThan(noEffects.start);
   expect(Math.abs(noEffectsY - noEffects.target)).toBeGreaterThan(60);
 
@@ -482,7 +508,7 @@ test("project cards snap only in enhanced desktop mode", async ({ page }, testIn
   await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
 
   const mobile = await positionBeforeSecondProject(page);
-  const mobileY = await wheelAndWaitForScrollToSettle(page);
+  const mobileY = await scrollAndWaitForScrollToSettle(page);
   expect(mobileY).toBeGreaterThan(mobile.start);
   expect(Math.abs(mobileY - mobile.target)).toBeGreaterThan(60);
 });
@@ -667,9 +693,12 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
   const secondMode = effectsInitiallyOn ? "on" : "off";
   await expect(page.getByRole("button", { name: firstAction })).toBeVisible();
 
-  await page.locator("#design").evaluate((section) => {
+  const designSection = page.locator("#design");
+
+  await designSection.evaluate((section) => {
     window.scrollTo(0, section.offsetTop + (section.offsetHeight - window.innerHeight) * 0.5);
   });
+  await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
 
   await Promise.all([
     page.waitForNavigation(),
@@ -678,14 +707,7 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
 
   await expect(root).toHaveAttribute("data-effects-mode", firstMode);
   await expect(page.getByRole("button", { name: secondAction })).toBeVisible();
-  await expect
-    .poll(() =>
-      page.locator("#design").evaluate((section) => {
-        const distance = section.offsetHeight - window.innerHeight;
-        return distance > 0 ? (window.scrollY - section.offsetTop) / distance : 0;
-      }),
-    )
-    .toBeCloseTo(0.5, 1);
+  await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
 
   await Promise.all([
     page.waitForNavigation(),
@@ -694,12 +716,5 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
 
   await expect(root).toHaveAttribute("data-effects-mode", secondMode);
   await expect(page.getByRole("button", { name: firstAction })).toBeVisible();
-  await expect
-    .poll(() =>
-      page.locator("#design").evaluate((section) => {
-        const distance = section.offsetHeight - window.innerHeight;
-        return distance > 0 ? (window.scrollY - section.offsetTop) / distance : 0;
-      }),
-    )
-    .toBeCloseTo(0.5, 1);
+  await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
 });
