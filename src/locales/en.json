@@ -158,7 +158,7 @@
       "text": "Dashboard development for RoboGrid — a system for analyzing failures, department workloads, and robot performance."
     },
     "analyticalPlatform": {
-      "title": "Analytical platform",
+      "title": "Analytics platform",
       "text": "An interface for analyzing A/B test results with convenient filtering and metric comparison."
     },
     "mooozik": {
