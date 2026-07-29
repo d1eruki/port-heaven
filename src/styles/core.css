@@ -21,7 +21,7 @@
   --text-heading-xl: clamp(3rem, 12vw, 20rem);
   --text-heading-xl--line-height: clamp(2.5rem, 10vw, 16rem);
   --text-heading-lg: clamp(1.75rem, 3vw, 6rem);
-  --text-heading-md: clamp(1.5rem, 2.75vw, 4.5rem);
+  --text-heading-md: clamp(1.5rem, 2.5vw, 4.5rem);
   --text-heading-sm: clamp(1.25rem, 2vw, 3rem);
   --paragraph: clamp(0.75rem, 0.7071rem + 0.1831vw, 1rem);
   --subtext: clamp(0.75rem, 0.75vw, 1.25rem);
