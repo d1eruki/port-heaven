@@ -47,6 +47,18 @@ Do not duplicate mechanisms such as `localStorage` handling, state synchronizati
 
 Identify the smallest existing property or mechanism that directly controls the requested result, and change that first. Do not restructure the DOM, positioning, layout, components, or state when a local adjustment to the existing mechanism is sufficient. Expand the implementation scope only after confirming that the smaller change cannot satisfy the requirement.
 
+## Cross-Cutting Changes
+
+When replacing a shared mechanism or changing multiple coupled behaviors, first confirm that the smallest direct adjustment is insufficient. Then complete a read-only map of only the affected path before proposing edits: current baseline or reference, target contract, responsible mechanism, inputs and lifecycle, consumers and interactions, invariants, relevant states or environments, and observable acceptance checks.
+
+Give each behavior one responsible mechanism. Do not let old and new implementations control the same outcome simultaneously unless a temporary migration stage is explicitly approved. Plan coherent, independently reviewable batches, but keep a connected system atomic when another project instruction requires it. Treat each approved batch as one verification batch.
+
+Keep product behavior, diagnostics, and tests as distinct plan items. They may change together, but diagnostics or test scaffolding must not alter production behavior, conceal a regression, or substitute for a product fix. Remove temporary instrumentation before handoff.
+
+If the same acceptance check remains broken after two local fixes, or a fix regresses another mapped behavior, stop symptom-level patching. Return to read-only diagnosis, update the behavior map, and request approval again when the responsible mechanism, files, or scope changes.
+
+A batch is complete only when its mapped checks pass, required visual review is accepted, and required automated verification passes. Do not claim the overall change complete until all mapped behaviors and cross-batch interactions satisfy the target contract.
+
 ## Dependencies and Documentation
 
 When adding a dependency, update the `README` with the relevant setup, usage, or dependency notes.
