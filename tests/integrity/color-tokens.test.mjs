@@ -1,10 +1,8 @@
-import { readFile, readdir } from "node:fs/promises";
-import path from "node:path";
+import { readFile } from "node:fs/promises";
 import assert from "node:assert/strict";
 import test from "node:test";
+import { collectProjectSourceFiles } from "./source-files.mjs";
 
-const sourceRoots = ["src/index.html", "src/js", "src/styles"];
-const supportedSourceExtensions = new Set([".css", ".html", ".js", ".vue"]);
 const primitiveReferenceFiles = new Set([
   "src/styles/themes/dark.css",
   "src/styles/themes/light.css",
@@ -15,20 +13,10 @@ const rawUtilityPattern =
 const primitiveVariablePattern = /var\(--color-(?:black|white|neutral-\d+)\b/g;
 const paletteVariablePattern = /var\(--palette-[^)]+\)/g;
 
-const collectSourceFiles = async (entryPath) => {
-  const entries = await readdir(entryPath, { withFileTypes: true }).catch(() => null);
-  if (!entries) return supportedSourceExtensions.has(path.extname(entryPath)) ? [entryPath] : [];
-
-  const nestedFiles = await Promise.all(
-    entries.map((entry) => collectSourceFiles(path.join(entryPath, entry.name))),
-  );
-  return nestedFiles.flat();
-};
-
 const collectMatches = (source, pattern) => Array.from(source.matchAll(pattern), (match) => match[0]);
 
 test("application colors use semantic or component tokens", async () => {
-  const sourceFiles = (await Promise.all(sourceRoots.map(collectSourceFiles))).flat();
+  const sourceFiles = await collectProjectSourceFiles();
   const violations = [];
 
   for (const filePath of sourceFiles) {
@@ -51,4 +39,16 @@ test("application colors use semantic or component tokens", async () => {
   }
 
   assert.deepEqual(violations, []);
+});
+
+test("component color tokens reference only semantic tokens", async () => {
+  const source = await readFile("src/styles/tokens/components.css", "utf8");
+  const componentDefinitions = Array.from(
+    source.matchAll(/^\s*(--component-[a-z0-9-]+):\s*([^;]+);/gm),
+  );
+  const invalidDefinitions = componentDefinitions
+    .filter(([, , value]) => !/^var\(--semantic-[a-z0-9-]+\)$/.test(value.trim()))
+    .map(([, name, value]) => `${name}: ${value.trim()}`);
+
+  assert.deepEqual(invalidDefinitions, []);
 });

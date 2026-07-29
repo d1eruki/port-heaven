@@ -1,26 +1,15 @@
-import { access, readdir, readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import assert from "node:assert/strict";
 import test from "node:test";
+import { collectProjectSourceFiles } from "./source-files.mjs";
 
-const sourceRoots = ["src/index.html", "src/js", "src/styles"];
-const supportedSourceExtensions = new Set([".css", ".html", ".js", ".vue"]);
 const assetPathPattern = /assets\/[A-Za-z0-9._~:/?#[\]@!$&'()*+,;=%-]+/g;
-
-const collectSourceFiles = async (entryPath) => {
-  const entries = await readdir(entryPath, { withFileTypes: true }).catch(() => null);
-  if (!entries) return supportedSourceExtensions.has(path.extname(entryPath)) ? [entryPath] : [];
-
-  const nestedFiles = await Promise.all(
-    entries.map((entry) => collectSourceFiles(path.join(entryPath, entry.name))),
-  );
-  return nestedFiles.flat();
-};
 
 const normalizeAssetPath = (assetPath) => assetPath.split(/[?#]/, 1)[0];
 
 test("string asset references point to existing source assets", async () => {
-  const sourceFiles = (await Promise.all(sourceRoots.map(collectSourceFiles))).flat();
+  const sourceFiles = await collectProjectSourceFiles();
   const references = new Map();
 
   for (const filePath of sourceFiles) {
