@@ -146,15 +146,32 @@ const expectVideoEffectsMode = async (page, effectsOn) => {
   await attributeAssertion.toHaveAttribute("loop", "");
   await expect(video).toHaveAttribute("controls", "");
 
-  await video.scrollIntoViewIfNeeded();
+  await video.evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    let documentTop = 0;
+    let current = element;
+
+    while (current) {
+      documentTop += current.offsetTop;
+      current = current.offsetParent;
+    }
+
+    const centeredTop = documentTop - (window.innerHeight - bounds.height) / 2;
+    window.scrollTo(0, Math.max(0, centeredTop));
+  });
+
   await expect
     .poll(() =>
-      video.evaluate((element) => ({
-        hasSource: Boolean(element.currentSrc),
-        paused: element.paused,
-      })),
+      video.evaluate((element) => {
+        const bounds = element.getBoundingClientRect();
+        return bounds.top < window.innerHeight && bounds.bottom > 0;
+      }),
     )
-    .toEqual({ hasSource: true, paused: !effectsOn });
+    .toBe(true);
+
+  await expect(video).toHaveAttribute("src", /.+/);
+  await expect.poll(() => video.evaluate((element) => Boolean(element.currentSrc))).toBe(true);
+  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(!effectsOn);
 };
 
 const openAnalyticsConsent = async (page) => {
