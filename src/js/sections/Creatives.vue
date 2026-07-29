@@ -35,7 +35,10 @@
         :row-span="creative.rowSpan"
       />
     </div>
-    <div aria-hidden="true" class="hidden lg:block lg:h-dvh"></div>
+    <div
+      aria-hidden="true"
+      class="hidden lg:block lg:h-dvh"
+    ></div>
   </section>
 </template>
 

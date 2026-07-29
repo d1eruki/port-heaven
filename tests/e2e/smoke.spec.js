@@ -443,10 +443,13 @@ test("project cards snap only in enhanced desktop mode", async ({ page }, testIn
   });
   await expect
     .poll(() =>
-      designInner.locator("[data-design-name]").last().evaluate((element) => {
-        const bounds = element.getBoundingClientRect();
-        return bounds.left >= 0 && bounds.right <= window.innerWidth;
-      }),
+      designInner
+        .locator("[data-design-name]")
+        .last()
+        .evaluate((element) => {
+          const bounds = element.getBoundingClientRect();
+          return bounds.left >= 0 && bounds.right <= window.innerWidth;
+        }),
     )
     .toBe(true);
 
@@ -603,9 +606,7 @@ test("manual effects mode overrides browser capability detection", async ({ page
 
   const heroOffset = await readHeroParallaxOffset(page);
   await page.evaluate(() => window.scrollTo(0, 500));
-  await expect
-    .poll(() => readHeroParallaxOffset(page))
-    .toBeGreaterThan(heroOffset + 100);
+  await expect.poll(() => readHeroParallaxOffset(page)).toBeGreaterThan(heroOffset + 100);
 
   const designLayout = await page.locator("#design-inner").evaluate((element) => {
     const bounds = element.getBoundingClientRect();

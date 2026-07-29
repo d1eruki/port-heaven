@@ -1,9 +1,5 @@
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
-import {
-  getScrollSmoother,
-  gsap,
-  ScrollTrigger,
-} from "../../libraries/gsap-scroll";
+import { getScrollSmoother, gsap, ScrollTrigger } from "../../libraries/gsap-scroll";
 import { getBreakpointPx } from "../../utils/breakpoints";
 
 export const initSectionSnap = () => {
@@ -16,6 +12,7 @@ export const initSectionSnap = () => {
   gsap.matchMedia().add(`(min-width: ${getBreakpointPx("lg")}px)`, () => {
     ScrollTrigger.create({
       id: "section-snap",
+      scroller: window,
       start: 0,
       end: "max",
       snap: {
@@ -32,12 +29,12 @@ export const initSectionSnap = () => {
             ),
           ].sort((a, b) => a - b);
           const snappedValue = ScrollTrigger.snapDirectional(points)(value, self.direction);
-          const threshold = (window.innerHeight * 0.18) / maxScroll;
+          const threshold = (window.innerHeight * 0.75) / maxScroll;
 
           return Math.abs(snappedValue - value) <= threshold ? snappedValue : value;
         },
-        delay: 0.18,
-        duration: 0.8,
+        delay: 0.05,
+        duration: 0.5,
         inertia: false,
       },
       invalidateOnRefresh: true,
