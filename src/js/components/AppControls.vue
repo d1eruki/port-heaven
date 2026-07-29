@@ -40,7 +40,7 @@
 
   <div
     id="menu-right"
-    class="fixed top-0 right-0 z-200 flex h-10 items-center justify-end gap-5 px-5 text-app-controls mix-blend-difference lg:h-15"
+    class="fixed top-1/2 right-0 z-200 flex h-10 w-10 -translate-y-1/2 rotate-90 items-center justify-center gap-5 whitespace-nowrap text-app-controls mix-blend-difference lg:top-0 lg:h-15 lg:w-auto lg:translate-y-0 lg:rotate-0 lg:justify-end lg:px-5"
   >
     <button
       type="button"
@@ -75,7 +75,7 @@
   <button
     id="scroll-to-top"
     type="button"
-    class="group fixed right-0 bottom-0 z-200 flex h-10 items-center px-5 text-app-controls mix-blend-difference lg:h-15"
+    class="group fixed right-0 bottom-5 z-200 flex h-10 w-10 rotate-90 items-center justify-end whitespace-nowrap text-app-controls mix-blend-difference lg:bottom-0 lg:h-15 lg:w-auto lg:rotate-0 lg:px-5"
   >
     <small class="opacity-0 group-hover:opacity-100">/</small
     ><small>{{ t("buttons.toTop") }}</small>
