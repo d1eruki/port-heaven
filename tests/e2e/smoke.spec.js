@@ -40,13 +40,13 @@ const mockWebGl = async (page, mode) => {
   }, mode);
 };
 
-const readHeroParallaxStyles = (page) =>
-  page.locator("#hero").evaluate((hero) =>
-    Array.from(hero.querySelectorAll('[class*="scroll-speed-"]')).map((element) => ({
-      offset: element.style.getPropertyValue("--parallax-offset"),
-      scale: element.style.getPropertyValue("--parallax-scale"),
-    })),
-  );
+const readHeroParallaxOffset = (page) =>
+  page.locator("[data-hero-parallax]").evaluate((element) => {
+    const imageBounds = element.getBoundingClientRect();
+    const heroBounds = element.closest("#hero").getBoundingClientRect();
+
+    return imageBounds.top - heroBounds.top;
+  });
 
 const readRootLayoutWidths = (page) =>
   page.evaluate(() => {
@@ -408,11 +408,61 @@ test("project cards snap only in enhanced desktop mode", async ({ page }, testIn
 
   const root = page.locator("html");
   await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
-  await expect(root).toHaveClass(/(?:^|\s)lenis(?:\s|$)/);
 
   const desktop = await positionBeforeSecondProject(page);
   const desktopY = await wheelAndWaitForScrollToSettle(page);
   expect(Math.abs(desktopY - desktop.target)).toBeLessThan(50);
+
+  const projectPanel = page.locator("[data-project-panel]");
+  await page.evaluate(() => {
+    const projects = document.querySelector("#projects");
+    window.scrollTo(0, projects.offsetTop + 400);
+  });
+  await expect
+    .poll(() => projectPanel.evaluate((element) => Math.abs(element.getBoundingClientRect().top)))
+    .toBeLessThan(10);
+
+  const designInner = page.locator("#design-inner");
+  await page.evaluate(() => {
+    const design = document.querySelector("#design");
+    window.scrollTo(0, design.offsetTop);
+  });
+  const initialDesignLeft = await designInner.evaluate(
+    (element) => element.getBoundingClientRect().left,
+  );
+  await page.mouse.wheel(0, 200);
+  await expect
+    .poll(() => designInner.evaluate((element) => element.getBoundingClientRect().left))
+    .toBeLessThan(initialDesignLeft - 50);
+
+  await page.evaluate(() => {
+    const inner = document.querySelector("#design-inner");
+    const design = document.querySelector("#design");
+    const distance = inner.scrollWidth - inner.parentElement.clientWidth;
+    window.scrollTo(0, design.offsetTop + distance);
+  });
+  await expect
+    .poll(() =>
+      designInner.locator("[data-design-name]").last().evaluate((element) => {
+        const bounds = element.getBoundingClientRect();
+        return bounds.left >= 0 && bounds.right <= window.innerWidth;
+      }),
+    )
+    .toBe(true);
+
+  const creativeHeading = page.locator("[data-creatives-heading-pin]");
+  await page.evaluate(() => {
+    const creatives = document.querySelector("#creatives");
+    window.scrollTo(0, creatives.offsetTop + 400);
+  });
+  await expect
+    .poll(() =>
+      creativeHeading.evaluate((element) => {
+        const bounds = element.getBoundingClientRect();
+        return bounds.top < window.innerHeight && bounds.bottom > 0;
+      }),
+    )
+    .toBe(true);
 
   await page.evaluate(() => localStorage.setItem("effects-mode", "off"));
   await page.reload();
@@ -473,8 +523,10 @@ test("reduced motion disables enhanced effects", async ({ page }) => {
   await expect(page.locator(".counter.odometer")).toHaveCount(0);
   await expect(page.locator(".design-active")).toHaveCount(0);
 
+  const heroOffset = await readHeroParallaxOffset(page);
   await page.evaluate(() => window.scrollTo(0, 500));
-  await expect.poll(() => readHeroParallaxStyles(page)).toEqual([{ offset: "", scale: "" }]);
+  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
+  expect(await readHeroParallaxOffset(page)).toBeCloseTo(heroOffset, 0);
 
   await expectVideoEffectsMode(page, false);
 });
@@ -489,8 +541,10 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
   await expect(root).toHaveClass(/no-effects/);
   await expect(root).not.toHaveClass(/(?:^|\s)hw(?:\s|$)/);
 
+  const heroOffset = await readHeroParallaxOffset(page);
   await page.evaluate(() => window.scrollTo(0, 500));
-  await expect.poll(() => readHeroParallaxStyles(page)).toEqual([{ offset: "", scale: "" }]);
+  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
+  expect(await readHeroParallaxOffset(page)).toBeCloseTo(heroOffset, 0);
 
   const designMetrics = await page.locator("#design-inner").evaluate((element) => {
     const section = element.closest("#design");
@@ -547,8 +601,11 @@ test("manual effects mode overrides browser capability detection", async ({ page
   await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
   await expect(root).toHaveAttribute("data-effects-mode", "on");
 
+  const heroOffset = await readHeroParallaxOffset(page);
   await page.evaluate(() => window.scrollTo(0, 500));
-  await expect.poll(() => readHeroParallaxStyles(page)).not.toEqual([{ offset: "", scale: "" }]);
+  await expect
+    .poll(() => readHeroParallaxOffset(page))
+    .toBeGreaterThan(heroOffset + 100);
 
   const designLayout = await page.locator("#design-inner").evaluate((element) => {
     const bounds = element.getBoundingClientRect();
@@ -586,8 +643,10 @@ test("manual effects off overrides available hardware", async ({ page }) => {
   await expect(page.getByText(/Визуальные эффекты отключены/i)).toBeVisible();
   await expect(page.locator(".counter.odometer")).toHaveCount(0);
 
+  const heroOffset = await readHeroParallaxOffset(page);
   await page.evaluate(() => window.scrollTo(0, 500));
-  await expect.poll(() => readHeroParallaxStyles(page)).toEqual([{ offset: "", scale: "" }]);
+  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
+  expect(await readHeroParallaxOffset(page)).toBeCloseTo(heroOffset, 0);
   await expectVideoEffectsMode(page, false);
 });
 

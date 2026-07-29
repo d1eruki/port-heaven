@@ -14,9 +14,9 @@
       </div>
       <img
         :src="heroImageSrc"
-        class="scroll-speed-50 relative z-2 h-[86svh] w-full self-center object-cover transition-opacity duration-300 sm:h-[90svh] sm:w-auto sm:max-w-none sm:object-contain lg:h-[94svh]"
-        data-parallax-anchor="top"
-        data-parallax-scale="0.0001"
+        class="relative z-2 h-[86svh] w-full self-center object-cover transition-opacity duration-300 sm:h-[90svh] sm:w-auto sm:max-w-none sm:object-contain lg:h-[94svh]"
+        data-hero-parallax
+        data-speed="0.5"
         alt=""
         fetchpriority="high"
         decoding="sync"

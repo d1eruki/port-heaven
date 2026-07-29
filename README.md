@@ -87,7 +87,7 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 
 ### UI Utilities
 
-- `lenis` — smooth scrolling
+- `gsap` — smooth scrolling, scroll triggers, and animation timelines
 - `vanilla-tilt` — tilt/hover 3D effect
 
 ### Developer Tooling

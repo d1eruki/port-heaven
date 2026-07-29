@@ -4,22 +4,29 @@
     @theme-change="currentTheme = $event"
   />
 
-  <main class="w-full max-w-full min-w-0">
-    <Hero :current-theme="currentTheme" />
-
-    <header
-      class="sticky top-0 z-100 hidden h-fit min-h-10 w-full bg-accent px-15 py-5 text-on-accent no-effects:flex"
+  <div id="smooth-wrapper">
+    <div
+      id="smooth-content"
+      class="w-full max-w-full min-w-0"
     >
-      {{ t("notices.effectsDisabled") }}
-    </header>
+      <main class="w-full max-w-full min-w-0">
+        <Hero :current-theme="currentTheme" />
 
-    <About />
-    <Projects />
-    <Design />
-    <Creatives />
-    <Pricing />
-  </main>
-  <Footer />
+        <header
+          class="sticky top-0 z-100 hidden h-fit min-h-10 w-full bg-accent px-15 py-5 text-on-accent no-effects:flex"
+        >
+          {{ t("notices.effectsDisabled") }}
+        </header>
+
+        <About />
+        <Projects />
+        <Design />
+        <Creatives />
+        <Pricing />
+      </main>
+      <Footer />
+    </div>
+  </div>
   <Notification
     :is-visible="analyticsConsent === null"
     @accept="acceptAnalytics"

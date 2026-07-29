@@ -4,7 +4,10 @@
     id="projects"
     class="grid min-h-svh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0"
   >
-    <div class="p-10 lg:sticky lg:top-0 lg:h-dvh lg:p-15 lg:pr-0">
+    <div
+      data-project-panel
+      class="p-10 lg:h-dvh lg:p-15 lg:pr-0"
+    >
       <div
         class="grid content-center gap-5 overflow-hidden rounded-4xl bg-inverse p-5 text-on-inverse lg:h-full lg:place-items-end lg:p-15 lg:text-end"
       >

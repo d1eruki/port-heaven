@@ -1,16 +1,23 @@
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
-import { calculateProgress, getScrollY, scrollToY } from "../../utils/scroll";
+import { getScrollSmoother } from "../../libraries/gsap-scroll";
+import { calculateProgress } from "../../utils/scroll";
 
 const SCROLL_POSITION_STORAGE_KEY = "scroll-position";
 
 const getSections = () => Array.from(document.querySelectorAll(DOM_SELECTORS.sections));
+
+const getScrollY = () => getScrollSmoother()?.scrollTop() ?? window.scrollY;
+
+const getSectionStart = (section) =>
+  getScrollSmoother()?.offset(section, "top top") ??
+  section.getBoundingClientRect().top + window.scrollY;
 
 const getCurrentSection = (scrollY) => {
   const sections = getSections();
 
   return (
     sections.find((section) => {
-      const start = section.offsetTop;
+      const start = getSectionStart(section);
       return scrollY >= start && scrollY < start + section.offsetHeight;
     }) ?? sections.at(-1)
   );
@@ -21,9 +28,10 @@ const saveScrollPosition = () => {
   const section = getCurrentSection(scrollY);
   if (!section) return;
 
+  const sectionStart = getSectionStart(section);
   const scrollableDistance = Math.max(section.offsetHeight - window.innerHeight, 0);
   const progress = scrollableDistance
-    ? calculateProgress(scrollY, section.offsetTop, section.offsetTop + scrollableDistance)
+    ? calculateProgress(scrollY, sectionStart, sectionStart + scrollableDistance)
     : 0;
 
   try {
@@ -63,10 +71,12 @@ const restoreScrollPosition = () => {
   if (!section) return;
 
   const scrollableDistance = Math.max(section.offsetHeight - window.innerHeight, 0);
-  const targetY = section.offsetTop + savedPosition.progress * scrollableDistance;
+  const targetY = getSectionStart(section) + savedPosition.progress * scrollableDistance;
+  const smoother = getScrollSmoother();
 
   resetHorizontalScroll();
-  scrollToY(targetY, { immediate: true });
+  if (smoother) smoother.scrollTop(targetY);
+  else window.scrollTo(0, targetY);
   requestAnimationFrame(resetHorizontalScroll);
 };
 

@@ -1,14 +1,21 @@
-import { onScroll } from "../../../utils/scroll";
+import { ScrollTrigger } from "../../../libraries/gsap-scroll";
 
-export function attachSectionDotEvents({ sections, btnById, tick, setActive }) {
-  onScroll(tick);
+export function attachSectionDotEvents({ sections, btnById, setActive, centerBiasPx }) {
+  const center = `center+=${centerBiasPx}px`;
 
-  window.addEventListener("resize", tick, { passive: true });
-  window.addEventListener("orientationchange", tick);
-  window.addEventListener("load", tick);
+  sections.forEach((section) => {
+    if (!btnById.has(section.id)) return;
 
-  const ro = new ResizeObserver(tick);
-  sections.forEach((section) => ro.observe(section));
+    ScrollTrigger.create({
+      trigger: section,
+      start: `top ${center}`,
+      end: `bottom ${center}`,
+      onToggle: (self) => {
+        if (self.isActive) setActive(section.id);
+      },
+      invalidateOnRefresh: true,
+    });
+  });
 
   window.addEventListener("hashchange", () => {
     const id = location.hash.slice(1);

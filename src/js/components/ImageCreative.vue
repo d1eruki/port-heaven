@@ -7,6 +7,8 @@
       class="transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0"
       :src="creativeSrc"
       :alt="creativeAlt"
+      :width="imageWidth"
+      :height="imageHeight"
       loading="lazy"
       decoding="async"
     />
@@ -20,6 +22,8 @@ import { getCreativeGridStyle } from "../utils/creative-grid-style";
 const props = defineProps({
   creativeSrc: { type: String, required: true },
   creativeAlt: { type: String, required: true },
+  imageWidth: { type: Number, required: true },
+  imageHeight: { type: Number, required: true },
   row: { type: [Number, String], required: true, default: 1 },
   rowSpan: { type: Number, default: 1 },
   col: { type: [Number, String], required: true, default: 1 },

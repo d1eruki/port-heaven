@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "lenis/dist/lenis.css";
 @import "./styles/fonts.css";
 @import "./styles/tokens/palette.css";
 @import "./styles/tokens/semantic.css";

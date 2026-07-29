@@ -1,75 +1,31 @@
-import { getScrollY, onScroll, isMobile, calculateProgress, initOnLoad } from "../../utils/scroll";
-import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
+import { gsap } from "../../libraries/gsap-scroll";
+import { DOM_IDS } from "../../dom/dom-selectors";
+import { getBreakpointPx } from "../../utils/breakpoints";
 
-const setupHorizontalScroll = () => {
+export const initHorizontalScroll = () => {
   const section = document.getElementById(DOM_IDS.design);
   const inner = document.getElementById(DOM_IDS.designInner);
   const viewport = document.getElementById(DOM_IDS.designViewport);
   if (!section || !inner || !viewport) return;
 
-  const intro = inner.querySelector(DOM_SELECTORS.designIntro);
   const frame = inner.parentElement;
+  const getScrollDistance = () => Math.max(0, inner.scrollWidth - frame.clientWidth);
 
-  let isDesktopLayout = false;
-  let sectionStart = 0;
-  let scrollDistance = 0;
-  let measureFrame = null;
-
-  const render = (scrollY = getScrollY()) => {
-    if (!isDesktopLayout) return;
-
-    const progress = calculateProgress(scrollY, sectionStart, sectionStart + scrollDistance);
-
-    inner.style.transform = `translateX(${-progress * scrollDistance}px)`;
-  };
-
-  const measure = () => {
-    if (isMobile()) {
-      isDesktopLayout = false;
-      inner.style.transform = "none";
-      if (intro) intro.style.transform = "none";
-      section.style.height = "auto";
-      viewport.style.position = "relative";
-      inner.style.overflowX = "auto";
-      return;
-    }
-
-    const innerWidth = inner.scrollWidth;
-    const viewportWidth = frame.clientWidth;
-    const viewportHeight = window.innerHeight;
-
-    scrollDistance = Math.max(0, innerWidth - viewportWidth);
-
-    section.style.height = `${scrollDistance + viewportHeight}px`;
-    viewport.style.position = "sticky";
-    viewport.style.top = "0";
-    inner.style.overflow = "visible";
-    inner.style.display = "grid";
-
-    section.style.overflow = "visible";
-
-    sectionStart = section.offsetTop;
-    isDesktopLayout = true;
-    render();
-  };
-
-  const scheduleMeasure = () => {
-    if (measureFrame !== null) return;
-
-    measureFrame = requestAnimationFrame(() => {
-      measureFrame = null;
-      measure();
+  gsap.matchMedia().add(`(min-width: ${getBreakpointPx("lg")}px)`, () => {
+    gsap.set(inner, { overflow: "visible" });
+    gsap.to(inner, {
+      x: () => -getScrollDistance(),
+      ease: "none",
+      scrollTrigger: {
+        id: "design-horizontal",
+        trigger: section,
+        start: "top top",
+        end: () => `+=${getScrollDistance()}`,
+        pin: viewport,
+        scrub: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
     });
-  };
-
-  measure();
-  onScroll((scrollY) => render(scrollY));
-  window.addEventListener("resize", scheduleMeasure);
-
-  if ("ResizeObserver" in window) {
-    const resizeObserver = new ResizeObserver(scheduleMeasure);
-    resizeObserver.observe(inner);
-  }
+  });
 };
-
-export const initHorizontalScroll = () => initOnLoad(setupHorizontalScroll);

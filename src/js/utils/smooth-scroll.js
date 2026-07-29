@@ -1,4 +1,4 @@
-import { getScrollY, scrollToY } from "./scroll";
+import { getScrollSmoother } from "../libraries/gsap-scroll";
 
 function prefersReducedMotion() {
   try {
@@ -9,10 +9,13 @@ function prefersReducedMotion() {
 }
 
 function normalizeTarget(target) {
-  if (typeof target === "number") return Math.max(0, target | 0);
+  if (typeof target === "number") return Math.max(0, Math.round(target));
   if (target && typeof target.getBoundingClientRect === "function") {
+    const smoother = getScrollSmoother();
+    if (smoother) return Math.max(0, Math.round(smoother.offset(target, "top top")));
+
     const rect = target.getBoundingClientRect();
-    return Math.max(0, Math.round(rect.top + getScrollY()));
+    return Math.max(0, Math.round(rect.top + window.scrollY));
   }
   return 0;
 }
@@ -23,10 +26,24 @@ export function smoothScrollTo(target, opts = {}) {
   const y = Math.max(0, baseY - (offset | 0));
 
   const reduce = prefersReducedMotion();
-  scrollToY(y, { offset: 0, behavior: reduce ? "auto" : "smooth" });
+  const smoother = getScrollSmoother();
+
+  if (smoother) {
+    smoother.scrollTo(y, !reduce);
+    return;
+  }
+
+  window.scrollTo({ top: y, left: 0, behavior: reduce ? "auto" : "smooth" });
 }
 
 export function smoothScrollTop() {
   const reduce = prefersReducedMotion();
-  scrollToY(0, { offset: 0, behavior: reduce ? "auto" : "smooth" });
+  const smoother = getScrollSmoother();
+
+  if (smoother) {
+    smoother.scrollTo(0, !reduce);
+    return;
+  }
+
+  window.scrollTo({ top: 0, left: 0, behavior: reduce ? "auto" : "smooth" });
 }

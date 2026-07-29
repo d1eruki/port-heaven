@@ -1,21 +1,18 @@
-import { calculateProgress, getScrollY, onScroll } from "../../utils/scroll";
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
+import { gsap } from "../../libraries/gsap-scroll";
 
-export const updateProgressBar = (scrollY) => {
+export const initProgressBar = () => {
   const progressBar = document.querySelector(DOM_SELECTORS.progressBar);
   if (!progressBar) return;
 
-  const currentY = scrollY !== undefined ? scrollY : getScrollY();
-  const totalHeight = document.body.scrollHeight - window.innerHeight;
-  const progress = calculateProgress(currentY, 0, totalHeight) * 100;
-
-  progressBar.style.height = `${progress}%`;
-};
-
-export const initProgressBar = () => {
-  window.addEventListener("resize", () => {
-    updateProgressBar(getScrollY());
+  gsap.to(progressBar, {
+    height: "100%",
+    ease: "none",
+    scrollTrigger: {
+      start: 0,
+      end: "max",
+      scrub: true,
+      invalidateOnRefresh: true,
+    },
   });
-
-  onScroll((scrollY) => updateProgressBar(scrollY));
 };

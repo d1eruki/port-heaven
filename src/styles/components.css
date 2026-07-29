@@ -83,7 +83,6 @@
   .progress-bar {
     width: 1px;
     height: 0;
-    transition: height 0.1s ease;
   }
 
   nav .dot {
@@ -109,8 +108,4 @@
     }
   }
 
-  [class*="scroll-speed-"] {
-    transform: translateY(var(--parallax-offset, 0)) scale(var(--parallax-scale, 1));
-    will-change: transform;
-  }
 }

@@ -1,35 +1,46 @@
-import Snap from "lenis/snap";
-
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
-import { lenis } from "../../libraries/lenis";
-import { isViewportAtLeast } from "../../utils/breakpoints";
+import {
+  getScrollSmoother,
+  gsap,
+  ScrollTrigger,
+} from "../../libraries/gsap-scroll";
+import { getBreakpointPx } from "../../utils/breakpoints";
 
 export const initSectionSnap = () => {
-  const sections = document.querySelectorAll(DOM_SELECTORS.sections);
-  const projects = document.querySelectorAll(DOM_SELECTORS.projectSnap);
+  const sections = Array.from(document.querySelectorAll(DOM_SELECTORS.sections));
+  const projects = Array.from(document.querySelectorAll(DOM_SELECTORS.projectSnap));
   if (!sections.length) return;
 
-  const snap = new Snap(lenis, {
-    type: "proximity",
-    distanceThreshold: "18%",
-    debounce: 180,
-    duration: 0.8,
+  const targets = [...sections, ...projects];
+
+  gsap.matchMedia().add(`(min-width: ${getBreakpointPx("lg")}px)`, () => {
+    ScrollTrigger.create({
+      id: "section-snap",
+      start: 0,
+      end: "max",
+      snap: {
+        snapTo: (value, self) => {
+          const smoother = getScrollSmoother();
+          const maxScroll = ScrollTrigger.maxScroll(window);
+          if (!smoother || maxScroll <= 0) return value;
+
+          const points = [
+            ...new Set(
+              targets.map((element) =>
+                gsap.utils.clamp(0, 1, smoother.offset(element, "top top") / maxScroll),
+              ),
+            ),
+          ].sort((a, b) => a - b);
+          const snappedValue = ScrollTrigger.snapDirectional(points)(value, self.direction);
+          const threshold = (window.innerHeight * 0.18) / maxScroll;
+
+          return Math.abs(snappedValue - value) <= threshold ? snappedValue : value;
+        },
+        delay: 0.18,
+        duration: 0.8,
+        inertia: false,
+      },
+      invalidateOnRefresh: true,
+    });
   });
-
-  snap.addElements(sections, { align: "start" });
-  snap.addElements(projects, { align: "start" });
-
-  let enabled = true;
-
-  const syncWithViewport = () => {
-    const shouldEnable = isViewportAtLeast("lg");
-    if (shouldEnable === enabled) return;
-
-    enabled = shouldEnable;
-    if (enabled) snap.start();
-    else snap.stop();
-  };
-
-  window.addEventListener("resize", syncWithViewport, { passive: true });
-  syncWithViewport();
 };
