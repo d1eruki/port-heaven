@@ -5,6 +5,12 @@ description: Apply Port Heaven approval, test-design, visual-review, formatting,
 
 # Port Heaven Verification
 
+## Reuse Test Infrastructure
+
+Before creating a test helper, fixture, source-file traversal, setup hook, parser, loader, matcher, or assertion utility, search the complete applicable test tree for an equivalent or extendable implementation. Reuse or extract the shared mechanism before adding another copy.
+
+Include every affected test and shared helper in the implementation plan. If duplication is necessary, explain the concrete incompatibility that prevents reuse and wait for approval. Do not accept a new duplicated support mechanism merely because each individual test passes.
+
 ## Design Durable Tests
 
 Prefer tests for durable global guarantees and broad failure classes, including viewport containment, usable core controls, correct navigation, persisted critical preferences, and accessible state.

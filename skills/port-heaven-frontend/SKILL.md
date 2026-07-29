@@ -64,7 +64,15 @@ Implement layout, spacing, sizing, colors, typography, responsive behavior, bord
 
 ## Maintain the Color System
 
-Treat color changes as changes to one connected system. Before changing a color token, name, value, or utility, inventory the chain from palette or Tailwind primitive through semantic and component tokens to every consumer. Check both themes and all interaction states. Update the chain atomically without synonyms, stale aliases, or mixed naming.
+Treat color changes as changes to one connected system. Before proposing file edits, complete a read-only audit and present one table with these columns:
+
+```text
+role | light | dark | semantic token | component token | utility | consumers | states | background
+```
+
+Trace every row from palette or Tailwind primitive through semantic and component tokens to every consumer. Check both themes and every default, hover, active, focus, and disabled state that exists. Mark unverified assumptions, and list direct primitives, layer bypasses, mixed terminology, stale aliases, unused tokens, context-dependent values, and colors that fail in their actual background context.
+
+Derive one complete target graph from the audit before requesting approval. Do not rename or edit any part of the color system until the table, contradictions, and target graph are complete. After approval, update the full graph atomically without synonyms, stale aliases, or mixed naming.
 
 Keep dependencies strictly layered:
 
