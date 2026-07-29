@@ -92,7 +92,7 @@ For nested rounded surfaces, calculate the inner radius as `max(0, outer radius 
 
 ### Tailwind
 
-Prefer built-in Tailwind classes, theme tokens, CSS variables, variants, and documented APIs over custom CSS, custom utilities, or hardcoded values.
+Prefer built-in Tailwind classes, theme tokens, CSS variables, variants, and documented APIs over custom CSS, custom utilities, or hardcoded values. For colors, the semantic and component token rules below take precedence over direct Tailwind palette utilities.
 
 Use canonical utilities when Tailwind already covers the requirement. For example, use `border-l` instead of `border-l-1`, and `grid-rows-[auto_1fr_auto]` instead of `[grid-template-rows:auto_1fr_auto]`.
 
@@ -101,6 +101,24 @@ Avoid complex arbitrary `calc()` classes when standard layout behavior can produ
 Do not manually duplicate Tailwind defaults for breakpoints, spacing, colors, typography, shadows, radii, transitions, or z-index values. Add custom CSS variables, utilities, or theme tokens only when built-in behavior is insufficient or the value is a deliberate project token. When JavaScript needs Tailwind values, prefer build-time access to Tailwind defaults or existing project theme variables over hardcoded numeric copies.
 
 For Vue templates, implement layout, spacing, sizing, colors, typography, responsive behavior, borders, and shadows with Tailwind utilities by default.
+
+### Color Tokens
+
+Treat color changes as changes to one connected system, not as isolated class replacements. Before changing a color token, name, value, or utility, inventory the complete chain from palette or Tailwind primitive through every semantic and component token to every consumer. Check both themes and all interaction states. Update the complete chain atomically; do not leave synonyms, stale aliases, or mixed naming at different layers.
+
+Keep color dependencies strictly layered:
+
+- Palette values and Tailwind color primitives may be referenced only when defining semantic tokens in the semantic or theme token layer.
+- Semantic tokens must describe reusable visual roles rather than concrete colors, implementation techniques, page locations, or component names.
+- Component tokens must describe the element and state they style, and may reference only semantic tokens. They must never reference palette values or Tailwind color primitives directly.
+- Application CSS and templates must consume semantic tokens for global roles and component tokens for component-specific roles. A component with an established component token must not bypass it by using its underlying semantic token.
+- Do not use raw Tailwind palette utilities such as `bg-black`, `text-white`, or `border-neutral-*` in application code.
+
+Use one vocabulary consistently across the full chain. Do not abbreviate or substitute terms between layers. Name paired colors as a surface and its content, using forms such as `surface-*` and `text-on-*`. Reserve `muted` for enabled, low-priority content and `disabled` for controls or content that are actually unavailable; never use the terms interchangeably. Name a component token after the element being styled, not the parent page or section where it happens to appear.
+
+Do not use `currentColor` as a semantic token value unless inheriting the consumer's text color is the explicit, verified behavior. Otherwise assign a deterministic semantic value for every theme.
+
+Keep a reusable component's color states inside that component. Expose a prop, variant, or state when a parent needs to select them; do not make the parent target the child's private elements or depend on its internal markup.
 
 Do not add or extend component-specific CSS selectors when the same result can be expressed with Tailwind utilities, arbitrary utilities, variants, or existing theme tokens. Existing custom CSS is not permission to continue extending it. When modifying a component that already uses avoidable custom CSS, move the affected styling to Tailwind instead of adding more declarations.
 
