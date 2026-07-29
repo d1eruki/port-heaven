@@ -113,5 +113,4 @@
     transform: translateY(var(--parallax-offset, 0)) scale(var(--parallax-scale, 1));
     will-change: transform;
   }
-
 }

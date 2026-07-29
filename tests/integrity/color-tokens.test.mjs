@@ -13,7 +13,8 @@ const rawUtilityPattern =
 const primitiveVariablePattern = /var\(--color-(?:black|white|neutral-\d+)\b/g;
 const paletteVariablePattern = /var\(--palette-[^)]+\)/g;
 
-const collectMatches = (source, pattern) => Array.from(source.matchAll(pattern), (match) => match[0]);
+const collectMatches = (source, pattern) =>
+  Array.from(source.matchAll(pattern), (match) => match[0]);
 
 test("application colors use semantic or component tokens", async () => {
   const sourceFiles = await collectProjectSourceFiles();
