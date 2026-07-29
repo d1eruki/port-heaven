@@ -6,7 +6,7 @@
   >
     <div
       data-parallax-desktop-only
-      class="scroll-speed-05 pointer-events-none left-0 mx-10 mb-10 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-inverse-fg lg:sticky lg:top-[50%] lg:m-0 lg:w-fit lg:-translate-y-1/2 lg:items-center lg:justify-self-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-fg"
+      class="scroll-speed-05 pointer-events-none left-0 mx-10 mb-10 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:sticky lg:top-[50%] lg:m-0 lg:w-fit lg:-translate-y-1/2 lg:items-center lg:justify-self-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-primary"
     >
       <h2>{{ t("menu.creatives.title") }}</h2>
       <MenuDescription

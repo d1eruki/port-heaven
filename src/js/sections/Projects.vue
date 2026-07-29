@@ -6,7 +6,7 @@
   >
     <div class="p-10 lg:sticky lg:top-0 lg:h-dvh lg:p-15 lg:pr-0">
       <div
-        class="grid content-center gap-5 overflow-hidden rounded-4xl bg-inverse p-5 text-inverse-fg lg:h-full lg:place-items-end lg:p-15 lg:text-end"
+        class="grid content-center gap-5 overflow-hidden rounded-4xl bg-inverse p-5 text-on-inverse lg:h-full lg:place-items-end lg:p-15 lg:text-end"
       >
         <h2>{{ t("menu.projects.title") }}</h2>
         <MenuDescription

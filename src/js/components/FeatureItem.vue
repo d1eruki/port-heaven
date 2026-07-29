@@ -6,11 +6,11 @@
     <div class="grid w-full max-w-full min-w-0 content-end gap-5 overflow-hidden">
       <span
         :data-target="dataTarget"
-        class="inline-flex w-full max-w-full min-w-0 items-baseline gap-[0.1em] font-heading text-feature-stat font-black text-stat lg:font-bold"
+        class="inline-flex w-full max-w-full min-w-0 items-baseline gap-[0.1em] font-heading text-feature-stat font-black text-accent lg:font-bold"
       >
         <small
           v-if="statPrefix"
-          class="font-heading! text-fg"
+          class="font-heading! text-primary"
         >
           {{ statPrefix }}
         </small>

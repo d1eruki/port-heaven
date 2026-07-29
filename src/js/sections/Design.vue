@@ -15,7 +15,7 @@
         >
           <div
             data-design-intro
-            class="col-span-1 grid w-full shrink-0 content-center gap-5 rounded-4xl bg-inverse p-5 text-inverse-fg lg:rounded-none lg:bg-canvas lg:p-15 lg:text-fg effects:lg:w-[25dvw]"
+            class="col-span-1 grid w-full shrink-0 content-center gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:rounded-none lg:bg-canvas lg:p-15 lg:text-primary effects:lg:w-[25dvw]"
           >
             <h2>{{ t("menu.designs.title") }}</h2>
             <MenuDescription

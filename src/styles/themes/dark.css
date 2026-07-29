@@ -6,23 +6,24 @@
   /* Surfaces */
   --semantic-surface-canvas: var(--color-black);
   --semantic-surface-inverse: var(--color-white);
-  --semantic-surface-muted: var(--color-neutral-800);
+  --semantic-surface-subtle: var(--color-neutral-800);
 
   /* Text */
   --semantic-text-primary: var(--color-white);
   --semantic-text-hero: var(--color-white);
-  --semantic-text-action-muted: var(--color-neutral-700);
+  --semantic-text-action-secondary: var(--color-neutral-500);
   --semantic-text-muted: var(--color-neutral-500);
-  --semantic-text-footer-link: var(--color-neutral-700);
-  --semantic-text-footer-link-hover: var(--color-white);
+  --semantic-text-link: var(--color-neutral-700);
+  --semantic-text-link-hover: var(--color-white);
   --semantic-text-on-accent: var(--color-black);
-  --semantic-text-inverse: var(--color-black);
-  --semantic-text-on-muted: var(--color-neutral-500);
+  --semantic-text-on-inverse: var(--color-black);
 
   /* Icons */
-  --semantic-icon-pattern: var(--color-neutral-700);
+  --semantic-icon-pattern: var(--color-neutral-900);
 
   /* Borders */
   --semantic-border-subtle: var(--color-neutral-800);
-  --semantic-border-decoration: var(--color-neutral-800);
+
+  /* Decorations */
+  --semantic-decoration-subtle: var(--color-neutral-500);
 }

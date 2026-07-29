@@ -4,8 +4,10 @@
     id="about"
     class="relative z-3 flex min-h-svh p-10 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-10 after:bg-canvas after:content-[''] lg:p-15 lg:after:h-15"
   >
-    <div class="grid w-full flex-1 overflow-hidden rounded-4xl bg-chip text-fg lg:grid-cols-2">
-      <div class="flex flex-col justify-between gap-20 p-10 lg:p-15">
+    <div
+      class="relative isolate grid w-full flex-1 overflow-hidden rounded-4xl bg-surface-subtle text-primary before:pointer-events-none before:absolute before:inset-0 before:z-0 before:block before:h-full before:w-full before:bg-current before:text-icon-pattern before:opacity-20 before:content-[''] before:icon-[ic--baseline-star] before:icon-pattern-checker lg:grid-cols-2"
+    >
+      <div class="relative z-1 flex flex-col justify-between gap-20 p-10 lg:p-15">
         <div class="grid gap-5">
           <h2>{{ t("menu.about.title") }}</h2>
           <p class="max-w-150">{{ t("menu.about.intro") }}</p>
@@ -15,7 +17,7 @@
           <p class="text-muted">{{ t("menu.about.hobbies.text") }}</p>
         </div>
       </div>
-      <div class="grid gap-2 p-2 lg:grid-cols-2">
+      <div class="relative z-1 grid gap-2 p-2 lg:grid-cols-2">
         <FeatureItem
           is-counter
           data-target="2+"

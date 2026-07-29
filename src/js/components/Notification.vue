@@ -1,7 +1,7 @@
 <template>
   <aside
     v-if="isVisible"
-    class="fixed right-5 bottom-20 left-5 z-300 grid gap-5 rounded-3xl bg-inverse p-5 text-inverse-fg lg:right-15 lg:bottom-15 lg:left-auto lg:w-150"
+    class="fixed right-5 bottom-20 left-5 z-300 grid gap-5 rounded-3xl bg-inverse p-5 text-on-inverse lg:right-15 lg:bottom-15 lg:left-auto lg:w-150"
     aria-live="polite"
     aria-labelledby="analytics-notification-title"
     aria-describedby="analytics-notification-text"
@@ -20,7 +20,7 @@
       </button>
       <button
         type="button"
-        class="text-action-muted hover:text-inverse-fg"
+        class="text-action-secondary hover:text-on-inverse"
         @click="emit('decline')"
       >
         <small>{{ t("privacy.analytics.decline") }}</small>

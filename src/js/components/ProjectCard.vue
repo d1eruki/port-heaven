@@ -5,7 +5,7 @@
   >
     <div class="flex min-h-svh flex-col justify-center gap-10 p-10 lg:p-15">
       <div class="flex flex-col gap-5">
-        <h3 class="text-fg">{{ projectName }}</h3>
+        <h3 class="text-primary">{{ projectName }}</h3>
         <p class="text-muted">{{ projectDescription }}</p>
         <TagsList
           :tags="projectTags"
@@ -16,23 +16,23 @@
         <p
           v-for="(text, index) in projectText"
           :key="index"
-          class="text-fg"
+          class="text-primary"
         >
           {{ text }}
         </p>
       </div>
       <ol
         v-if="projectStatistic.length"
-        class="grid border-y border-border-subtle lg:grid-cols-3"
+        class="grid border-y border-subtle lg:grid-cols-3"
         data-project-statistics
       >
         <li
           v-for="(statistic, index) in projectStatistic"
           :key="statistic"
-          class="grid gap-5 border-b border-border-subtle py-5 last:border-b-0 lg:border-r lg:border-b-0 lg:px-5 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
+          class="grid gap-5 border-b border-subtle py-5 last:border-b-0 lg:border-r lg:border-b-0 lg:px-5 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
         >
           <small class="text-muted">/ {{ String(index + 1).padStart(2, "0") }}</small>
-          <p class="text-fg">{{ statistic }}</p>
+          <p class="text-primary">{{ statistic }}</p>
         </li>
       </ol>
       <div class="flex flex-wrap gap-2 lg:gap-10">

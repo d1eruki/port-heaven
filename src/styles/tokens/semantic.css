@@ -1,5 +1,10 @@
 :root {
   --semantic-accent: var(--semantic-accent-srgb);
+  --semantic-surface-adaptive-contrast: var(--color-white);
+  --semantic-text-adaptive-contrast: var(--color-white);
+  --semantic-text-on-adaptive-contrast: var(--color-black);
+  --semantic-surface-contrast: var(--color-black);
+  --semantic-text-on-contrast: var(--color-white);
 }
 
 @supports (color: color(display-p3 1 0 0)) {
@@ -17,20 +22,21 @@
   /* Surfaces */
   --color-canvas: var(--semantic-surface-canvas);
   --color-inverse: var(--semantic-surface-inverse);
+  --color-surface-subtle: var(--semantic-surface-subtle);
 
   /* Text */
-  --color-fg: var(--semantic-text-primary);
+  --color-primary: var(--semantic-text-primary);
   --color-hero: var(--semantic-text-hero);
-  --color-action-muted: var(--semantic-text-action-muted);
+  --color-action-secondary: var(--semantic-text-action-secondary);
   --color-muted: var(--semantic-text-muted);
-  --color-footer-link: var(--semantic-text-footer-link);
-  --color-footer-link-hover: var(--semantic-text-footer-link-hover);
+  --color-link: var(--semantic-text-link);
+  --color-link-hover: var(--semantic-text-link-hover);
   --color-on-accent: var(--semantic-text-on-accent);
-  --color-inverse-fg: var(--semantic-text-inverse);
+  --color-on-inverse: var(--semantic-text-on-inverse);
 
   /* Icons */
   --color-icon-pattern: var(--semantic-icon-pattern);
 
   /* Borders */
-  --color-border-subtle: var(--semantic-border-subtle);
+  --color-subtle: var(--semantic-border-subtle);
 }

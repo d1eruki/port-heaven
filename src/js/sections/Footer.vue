@@ -6,7 +6,7 @@
   >
     <div class="max-w-full min-w-0 items-baseline gap-10 lg:flex">
       <a
-        class="group relative w-auto font-heading text-footer-link hover:text-footer-link-hover"
+        class="group relative w-auto font-heading text-link hover:text-link-hover"
         href="https://t.me/d1eruki"
         target="_blank"
         rel="noopener noreferrer"
@@ -19,13 +19,13 @@
           >{{ t("contacts.telegram") }}
         </h2>
         <div
-          class="absolute -bottom-30 left-15 z-2 hidden -rotate-15 rounded-2xl bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
+          class="absolute -bottom-30 left-15 z-2 hidden -rotate-15 rounded-2xl bg-inverse p-5 font-heading text-on-inverse lg:group-hover:block"
         >
           https://t.me/d1eruki
         </div>
       </a>
       <a
-        class="group relative w-auto font-heading text-footer-link hover:text-footer-link-hover"
+        class="group relative w-auto font-heading text-link hover:text-link-hover"
         href="https://www.behance.net/dieruki"
         target="_blank"
         rel="noopener noreferrer"
@@ -38,7 +38,7 @@
           >{{ t("contacts.behance") }}
         </h2>
         <div
-          class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 rounded-2xl bg-inverse p-5 font-heading text-inverse-fg lg:group-hover:block"
+          class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 rounded-2xl bg-inverse p-5 font-heading text-on-inverse lg:group-hover:block"
         >
           BEHANCE
         </div>

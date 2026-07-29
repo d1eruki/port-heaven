@@ -1,0 +1,10 @@
+@utility icon-pattern-checker {
+  -webkit-mask-image: var(--svg), conic-gradient(black 25%, transparent 0 50%, black 0 75%, transparent 0);
+  mask-image: var(--svg), conic-gradient(black 25%, transparent 0 50%, black 0 75%, transparent 0);
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  -webkit-mask-size: 4rem 4rem, 8rem 8rem;
+  mask-size: 4rem 4rem, 8rem 8rem;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}

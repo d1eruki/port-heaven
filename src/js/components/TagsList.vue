@@ -5,7 +5,14 @@
       :key="index"
       class="flex"
     >
-      <small class="flex gap-1 rounded-4xl bg-chip px-2 py-1.5 text-chip-fg">
+      <small
+        class="flex gap-1 rounded-4xl bg-chip px-2 py-1.5 text-on-chip"
+        :class="
+          interactiveContrast
+            ? 'group-hover:bg-chip-active group-hover:text-on-chip-active group-[.design-active]:bg-chip-active group-[.design-active]:text-on-chip-active'
+            : ''
+        "
+      >
         <span
           v-if="showIcons && getTagIconClass(tag)"
           :class="getTagIconClass(tag)"
@@ -24,6 +31,10 @@ const props = defineProps({
     default: () => [],
   },
   showIcons: {
+    type: Boolean,
+    default: false,
+  },
+  interactiveContrast: {
     type: Boolean,
     default: false,
   },

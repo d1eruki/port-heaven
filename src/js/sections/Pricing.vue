@@ -2,12 +2,12 @@
   <section
     id="pricing"
     data-section="pricing"
-    class="relative isolate min-h-svh overflow-hidden bg-inverse px-0 pt-18 pb-9 text-inverse-fg lg:px-15 lg:py-32"
+    class="relative isolate min-h-svh overflow-hidden bg-inverse px-0 pt-18 pb-9 text-on-inverse lg:px-15 lg:py-32"
   >
     <div class="mx-auto w-full max-w-360">
       <header class="relative grid min-h-37.5 lg:min-h-72">
         <h2
-          class="absolute inset-x-0 bottom-[-0.1em] z-0 text-center text-pricing-title tracking-tighter whitespace-nowrap text-inverse-fg lowercase lg:bottom-[-0.2em] lg:text-pricing-title-lg"
+          class="absolute inset-x-0 bottom-[-0.1em] z-0 text-center text-pricing-title tracking-tighter whitespace-nowrap text-on-inverse lowercase lg:bottom-[-0.2em] lg:text-pricing-title-lg"
           :aria-label="t('menu.pricing.title')"
         >
           {{ t("menu.pricing.title") }}

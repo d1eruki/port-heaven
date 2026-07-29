@@ -4,7 +4,7 @@
     :data-design-name="designName"
     target="_blank"
     rel="noopener noreferrer"
-    class="group w-full shrink-0 overflow-hidden rounded-4xl text-fg hover:bg-hover-accent hover:text-hover-accent-fg effects:lg:w-[25dvw] effects:lg:hover:z-51 no-effects:lg:hover:z-51"
+    class="group w-full shrink-0 overflow-hidden rounded-4xl text-primary hover:bg-design-card-active hover:text-on-design-card-active max-md:[&.design-active]:bg-design-card-active max-md:[&.design-active]:text-on-design-card-active effects:lg:w-[25dvw] effects:lg:hover:z-51 no-effects:lg:hover:z-51"
   >
     <div
       class="anim-extrude relative z-10 grid gap-5 p-5 lg:p-15 effects:lg:h-full effects:lg:grid-rows-[50%] effects:lg:items-center no-effects:lg:h-full no-effects:lg:grid-rows-[50%] no-effects:lg:items-center no-effects:lg:hover:transform-none"
@@ -18,7 +18,8 @@
         <TagsList
           :tags="designTags"
           :show-icons="true"
-          class="opacity-100 transition-opacity duration-200 ease-in-out effects:lg:col-start-1 effects:lg:row-start-1 effects:lg:group-hover:opacity-0 no-effects:lg:col-start-1 no-effects:lg:row-start-1 no-effects:lg:group-hover:opacity-0 group-hover:[&_small]:bg-black group-hover:[&_small]:text-white group-[.design-active]:[&_small]:bg-black group-[.design-active]:[&_small]:text-white"
+          interactive-contrast
+          class="opacity-100 transition-opacity duration-200 ease-in-out effects:lg:col-start-1 effects:lg:row-start-1 effects:lg:group-hover:opacity-0 no-effects:lg:col-start-1 no-effects:lg:row-start-1 no-effects:lg:group-hover:opacity-0"
         />
         <p
           class="transition-opacity duration-200 ease-in-out effects:lg:col-start-1 effects:lg:row-start-1 effects:lg:opacity-0 effects:lg:group-hover:opacity-100 no-effects:lg:col-start-1 no-effects:lg:row-start-1 no-effects:lg:opacity-0 no-effects:lg:group-hover:opacity-100"
