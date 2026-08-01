@@ -8,7 +8,9 @@ Before modifying files, verify that the resolved Git root matches the repository
 
 - Use `$port-heaven-frontend` for frontend implementation, review, or diagnosis involving `src/`, Vue, CSS, Tailwind, themes, color tokens, responsive behavior, accessibility, or localization.
 - Use `$port-heaven-verification` whenever changing repository files, planning or modifying tests, or validating completed work.
-- If either skill is not discoverable, read its `SKILL.md` directly from `skills/` before continuing.
+- Use `$port-heaven-maintenance` only when the user explicitly requests a project-currency audit, dependency updates, compatibility review, or research into replacing custom mechanisms with maintained public libraries.
+- Store each new project skill in `skills/<skill-name>/`, then immediately create `${CODEX_HOME:-~/.codex}/skills/<skill-name>` as a symbolic link to that repository directory. Resolve both paths first; never overwrite a non-symlink or a symbolic link targeting a different path, and ask the user how to proceed instead.
+- If a required skill is not discoverable, read its `SKILL.md` directly from `skills/` before continuing.
 
 ## Change Approval
 
