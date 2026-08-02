@@ -105,4 +105,6 @@ Add appropriate accessibility attributes to icons and SVGs, including `aria-hidd
 
 Write toggle labels as the action or alternative state applied after activation, not the current state. Write labels in full, without abbreviations or colons, and use lowercase to match the interface style.
 
+Keep equivalent interface copy consistent across locales in capitalization and punctuation unless a language-specific convention requires a difference.
+
 When adding or changing a localization key or variable, update its entry in every available locale in the same change.
