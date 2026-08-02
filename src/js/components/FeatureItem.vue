@@ -44,7 +44,9 @@
 
 <script setup>
 import NumberFlow, { continuous } from "@number-flow/vue";
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { useIntersectionObserver } from "@vueuse/core";
+import { onMounted, ref } from "vue";
+import { effectsEnabled } from "../features/preferences/effects-toggle";
 
 const counterPlugins = [continuous];
 const counterTransformTiming = { duration: 0 };
@@ -92,38 +94,36 @@ const suffix =
 const counterRoot = ref(null);
 const counterValue = ref(0);
 const animatedCounter = ref(false);
-let counterObserver = null;
 
 const showTargetValue = () => {
   counterValue.value = parseInt(displayValue, 10) || 0;
 };
 
+const { isSupported, resume, stop } = useIntersectionObserver(
+  counterRoot,
+  ([entry]) => {
+    if (!entry?.isIntersecting) return;
+
+    showTargetValue();
+    stop();
+  },
+  {
+    immediate: false,
+    threshold: [0, 0.9],
+  },
+);
+
 onMounted(() => {
   queueMicrotask(() => {
-    const effectsOn = document.documentElement.classList.contains("effects");
-    if (!props.isCounter || !effectsOn) return;
-
-    animatedCounter.value = true;
-
-    if (!("IntersectionObserver" in window)) {
-      showTargetValue();
+    if (!props.isCounter || !effectsEnabled.value) {
+      stop();
       return;
     }
 
-    counterObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
+    animatedCounter.value = true;
 
-        showTargetValue();
-        counterObserver?.disconnect();
-        counterObserver = null;
-      },
-      { threshold: [0, 0.9] },
-    );
-
-    counterObserver.observe(counterRoot.value);
+    if (isSupported.value) resume();
+    else showTargetValue();
   });
 });
-
-onBeforeUnmount(() => counterObserver?.disconnect());
 </script>

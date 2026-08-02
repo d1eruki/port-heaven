@@ -1,12 +1,5 @@
 import { getScrollSmoother } from "../libraries/gsap-scroll";
-
-function prefersReducedMotion() {
-  try {
-    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  } catch {
-    return false;
-  }
-}
+import { reducedMotion } from "../features/preferences/motion";
 
 function normalizeTarget(target) {
   if (typeof target === "number") return Math.max(0, Math.round(target));
@@ -25,7 +18,7 @@ export function smoothScrollTo(target, opts = {}) {
   const baseY = normalizeTarget(target);
   const y = Math.max(0, baseY - (offset | 0));
 
-  const reduce = prefersReducedMotion();
+  const reduce = reducedMotion.value;
   const smoother = getScrollSmoother();
 
   if (smoother) {
@@ -37,7 +30,7 @@ export function smoothScrollTo(target, opts = {}) {
 }
 
 export function smoothScrollTop() {
-  const reduce = prefersReducedMotion();
+  const reduce = reducedMotion.value;
   const smoother = getScrollSmoother();
 
   if (smoother) {

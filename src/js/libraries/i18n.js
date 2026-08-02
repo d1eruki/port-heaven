@@ -1,7 +1,8 @@
 import { createI18n } from "vue-i18n";
+import { watch } from "vue";
 import ru from "../../locales/ru.json";
 import en from "../../locales/en.json";
-import { readStorageValue, saveStorageValue } from "../utils/storage";
+import { useValidatedStorage } from "../features/preferences/storage";
 
 const DEFAULT_LOCALE = "ru";
 const LOCALE_STORAGE_KEY = "locale";
@@ -14,20 +15,11 @@ const localizedMetaTags = [
 ];
 
 const isSupportedLocale = (locale) => locale === "ru" || locale === "en";
-
-const readSavedLocale = () =>
-  readStorageValue({
-    key: LOCALE_STORAGE_KEY,
-    fallback: DEFAULT_LOCALE,
-    isValid: isSupportedLocale,
-  });
-
-export const saveLocale = (locale) =>
-  saveStorageValue({
-    key: LOCALE_STORAGE_KEY,
-    value: locale,
-    isValid: isSupportedLocale,
-  });
+const savedLocale = useValidatedStorage({
+  key: LOCALE_STORAGE_KEY,
+  fallback: DEFAULT_LOCALE,
+  isValid: isSupportedLocale,
+});
 
 export const applyDocumentLocale = (locale) => {
   const normalizedLocale = isSupportedLocale(locale) ? locale : DEFAULT_LOCALE;
@@ -41,7 +33,7 @@ export const applyDocumentLocale = (locale) => {
   });
 };
 
-const initialLocale = readSavedLocale();
+const initialLocale = savedLocale.value;
 
 applyDocumentLocale(initialLocale);
 
@@ -52,6 +44,21 @@ const i18n = createI18n({
   fallbackLocale: "ru",
   messages: localeMessages,
 });
+
+watch(savedLocale, (locale) => {
+  if (i18n.global.locale.value !== locale) i18n.global.locale.value = locale;
+  applyDocumentLocale(locale);
+});
+
+watch(
+  i18n.global.locale,
+  (locale) => {
+    const normalizedLocale = isSupportedLocale(locale) ? locale : DEFAULT_LOCALE;
+    if (savedLocale.value !== normalizedLocale) savedLocale.value = normalizedLocale;
+    applyDocumentLocale(normalizedLocale);
+  },
+  { flush: "sync" },
+);
 
 export default i18n;
 export const t = (...args) => i18n.global.t(...args);

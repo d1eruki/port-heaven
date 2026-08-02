@@ -1,9 +1,8 @@
 import { t } from "../../libraries/i18n";
+import { finePointer, reducedMotion } from "../preferences/motion";
 
 export const initCursor = () => {
-  const supportsFine = matchMedia("(pointer: fine)").matches;
-  const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!supportsFine || prefersReduced) return;
+  if (!finePointer.value || reducedMotion.value) return;
 
   const root = document.documentElement;
   root.classList.add("use-custom-cursor");

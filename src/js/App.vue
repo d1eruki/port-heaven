@@ -1,8 +1,5 @@
 <template>
-  <AppControls
-    :current-theme="currentTheme"
-    @theme-change="currentTheme = $event"
-  />
+  <AppControls />
 
   <div id="smooth-wrapper">
     <div
@@ -13,7 +10,7 @@
         <Hero :current-theme="currentTheme" />
 
         <header
-          class="sticky top-0 z-100 hidden h-10 w-full items-center bg-accent px-10 text-on-accent no-effects:flex lg:h-15 lg:px-15"
+          class="sticky top-0 z-100 hidden h-10 w-full items-center bg-accent px-10 text-on-accent lg:h-15 lg:px-15 no-effects:flex"
         >
           {{ t("notices.effectsDisabled") }}
         </header>
@@ -35,7 +32,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import AppControls from "./components/AppControls.vue";
 import Notification from "./components/Notification.vue";
@@ -46,29 +43,21 @@ import Design from "./sections/Design.vue";
 import Creatives from "./sections/Creatives.vue";
 import Pricing from "./sections/Pricing.vue";
 import Footer from "./sections/Footer.vue";
-import { getCurrentTheme } from "./features/preferences/theme-toggle";
+import { currentTheme } from "./features/preferences/theme-toggle";
+import { useValidatedStorage } from "./features/preferences/storage";
 import { initYandexMetrika } from "./libraries/yandex-metrika";
-import { readStorageValue, saveStorageValue } from "./utils/storage";
 
 const { t } = useI18n();
-const currentTheme = ref(getCurrentTheme());
 const ANALYTICS_CONSENT_STORAGE_KEY = "analytics-consent";
 const isSupportedAnalyticsConsent = (value) => value === "accepted" || value === "declined";
-const analyticsConsent = ref(
-  readStorageValue({
-    key: ANALYTICS_CONSENT_STORAGE_KEY,
-    fallback: null,
-    isValid: isSupportedAnalyticsConsent,
-  }),
-);
+const analyticsConsent = useValidatedStorage({
+  key: ANALYTICS_CONSENT_STORAGE_KEY,
+  fallback: null,
+  isValid: isSupportedAnalyticsConsent,
+});
 
 const saveAnalyticsConsent = (value) => {
   analyticsConsent.value = value;
-  saveStorageValue({
-    key: ANALYTICS_CONSENT_STORAGE_KEY,
-    value,
-    isValid: isSupportedAnalyticsConsent,
-  });
 };
 
 const acceptAnalytics = () => {

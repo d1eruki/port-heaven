@@ -60,6 +60,7 @@
 </template>
 
 <script setup>
+import { useResizeObserver } from "@vueuse/core";
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import MenuDescription from "../components/MenuDescription.vue";
@@ -70,7 +71,6 @@ const MEASUREMENT_FONT_SIZE = 100;
 const footerLogoContainerRef = ref(null);
 const footerLogoRef = ref(null);
 
-let resizeObserver;
 let measureFrame;
 
 const fitFooterLogo = () => {
@@ -96,10 +96,9 @@ const scheduleFooterLogoFit = () => {
   measureFrame = requestAnimationFrame(fitFooterLogo);
 };
 
-onMounted(() => {
-  resizeObserver = new ResizeObserver(scheduleFooterLogoFit);
-  resizeObserver.observe(footerLogoContainerRef.value);
+useResizeObserver(footerLogoContainerRef, scheduleFooterLogoFit);
 
+onMounted(() => {
   scheduleFooterLogoFit();
   document.fonts.ready.then(scheduleFooterLogoFit);
 });
@@ -107,7 +106,6 @@ onMounted(() => {
 watch(locale, () => nextTick(scheduleFooterLogoFit));
 
 onBeforeUnmount(() => {
-  resizeObserver?.disconnect();
   cancelAnimationFrame(measureFrame);
 });
 </script>

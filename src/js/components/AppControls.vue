@@ -1,7 +1,7 @@
 <template>
   <div
     id="menu-dot"
-    class="fixed top-0 left-0 z-[2147483647] flex min-h-svh w-10 items-center justify-center text-app-controls mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:z-50 lg:w-15 lg:opacity-0"
+    class="fixed top-0 left-0 z-2147483647 flex min-h-svh w-10 items-center justify-center text-app-controls mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:z-50 lg:w-15 lg:opacity-0"
   >
     <nav
       data-section-nav
@@ -83,36 +83,21 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { SECTION_NAV_ITEMS } from "../dom/dom-selectors";
-import i18n, { applyDocumentLocale, saveLocale } from "../libraries/i18n";
-import { toggleEffectsMode } from "../features/preferences/effects-toggle";
-import { getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
+import { effectsEnabled, toggleEffectsMode } from "../features/preferences/effects-toggle";
+import { currentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 
-const { t } = useI18n();
-const props = defineProps({
-  currentTheme: {
-    type: String,
-    required: true,
-  },
-});
-const emit = defineEmits(["theme-change"]);
-const effectsOn = ref(false);
+const { locale, t } = useI18n();
 
 const themeToggleLabel = computed(() =>
-  t(`theme-toggle.${props.currentTheme === "dark" ? "light" : "dark"}`),
+  t(`theme-toggle.${currentTheme.value === "dark" ? "light" : "dark"}`),
 );
 const langToggleLabel = computed(() => t("lang-toggle"));
 const effectsToggleLabel = computed(() =>
-  t(`effects-toggle.${effectsOn.value ? "disable" : "enable"}`),
+  t(`effects-toggle.${effectsEnabled.value ? "disable" : "enable"}`),
 );
-
-onMounted(() => {
-  queueMicrotask(() => {
-    effectsOn.value = document.documentElement.classList.contains("effects");
-  });
-});
 
 const toggleEffects = () => {
   toggleEffectsMode();
@@ -120,14 +105,12 @@ const toggleEffects = () => {
 };
 
 const toggleTheme = () => {
-  emit("theme-change", setTheme(getTargetTheme()));
+  setTheme(getTargetTheme());
 };
 
 const toggleLocale = () => {
-  const current = i18n.global.locale.value;
-  const next = current === "ru" ? "en" : "ru";
-  i18n.global.locale.value = next;
-  applyDocumentLocale(next);
-  saveLocale(next);
+  const current = locale.value;
+
+  locale.value = current === "ru" ? "en" : "ru";
 };
 </script>

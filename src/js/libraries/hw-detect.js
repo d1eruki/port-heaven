@@ -1,3 +1,5 @@
+import { reducedMotion } from "../features/preferences/motion";
+
 export function isHardwareAccelerationEnabled() {
   try {
     const canvas = document.createElement("canvas");
@@ -68,10 +70,7 @@ export function applyHwClass(options = {}) {
   const { recheckOnVisibility = false, respectReducedMotion = true } = options;
   const root = document.documentElement;
 
-  const prefersReducedMotion = () =>
-    respectReducedMotion &&
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prefersReducedMotion = () => respectReducedMotion && reducedMotion.value;
 
   const set = () => {
     const hwOn = isHardwareAccelerationEnabled();
