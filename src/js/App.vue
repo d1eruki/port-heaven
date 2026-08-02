@@ -13,7 +13,7 @@
         <Hero :current-theme="currentTheme" />
 
         <header
-          class="sticky top-0 z-100 hidden h-fit min-h-10 w-full bg-accent px-15 py-5 text-on-accent no-effects:flex"
+          class="sticky top-0 z-100 hidden h-10 w-full items-center bg-accent px-10 text-on-accent no-effects:flex lg:h-15 lg:px-15"
         >
           {{ t("notices.effectsDisabled") }}
         </header>

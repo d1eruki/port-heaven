@@ -19,7 +19,7 @@
       </div>
     </div>
     <div
-      class="container-creatives flex h-fit w-full flex-col gap-5 px-10 pb-10 lg:grid lg:grid-cols-20 lg:gap-0 lg:p-10"
+      class="container-creatives flex h-fit w-full flex-col gap-5 px-10 pb-10 lg:grid lg:grid-cols-20 lg:gap-0 lg:p-15"
     >
       <component
         :is="creative.type === 'video' ? VideoCreative : ImageCreative"
