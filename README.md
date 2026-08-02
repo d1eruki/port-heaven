@@ -88,6 +88,7 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 ### UI Utilities
 
 - `gsap` — smooth scrolling, scroll triggers, and animation timelines
+- `@number-flow/vue` — accessible animated statistics in Vue components
 - `vanilla-tilt` — tilt/hover 3D effect
 
 ### Developer Tooling

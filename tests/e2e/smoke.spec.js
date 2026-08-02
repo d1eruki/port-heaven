@@ -566,8 +566,10 @@ test("reduced motion disables enhanced effects", async ({ page }) => {
   await expect(page.locator("html")).toHaveClass(/no-effects/);
   await expect(page.locator("html")).not.toHaveClass(/use-custom-cursor/);
   await expect(page.locator(".app-cursor")).toHaveCount(0);
-  await expect(page.locator(".counter.odometer")).toHaveCount(0);
   await expect(page.locator(".design-active")).toHaveCount(0);
+  await expect(page.locator("#about [data-about-feature]").nth(0)).toContainText("2+");
+  await expect(page.locator("#about [data-about-feature]").nth(1)).toContainText("10+");
+  await expect(page.locator("#about [data-about-feature]").nth(2)).toContainText("50/50");
 
   const heroOffset = await readHeroParallaxOffset(page);
   await page.evaluate(() => window.scrollTo(0, 500));
@@ -685,7 +687,6 @@ test("manual effects off overrides available hardware", async ({ page }) => {
   await expect(root).toHaveClass(/no-effects/);
   await expect(root).toHaveAttribute("data-effects-mode", "off");
   await expect(page.getByText(/Визуальные эффекты отключены/i)).toBeVisible();
-  await expect(page.locator(".counter.odometer")).toHaveCount(0);
 
   const heroOffset = await readHeroParallaxOffset(page);
   await page.evaluate(() => window.scrollTo(0, 500));

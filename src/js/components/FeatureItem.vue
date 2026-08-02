@@ -5,7 +5,7 @@
     <p class="max-w-full min-w-0 wrap-anywhere">{{ title }}</p>
     <div class="grid w-full max-w-full min-w-0 content-end gap-5 overflow-hidden">
       <span
-        :data-target="dataTarget"
+        ref="counterRoot"
         class="inline-flex w-full max-w-full min-w-0 items-baseline gap-[0.1em] font-heading text-feature-stat font-black text-accent lg:font-bold"
       >
         <small
@@ -14,10 +14,19 @@
         >
           {{ statPrefix }}
         </small>
+        <NumberFlow
+          v-if="animatedCounter"
+          :value="counterValue"
+          :trend="1"
+          :plugins="counterPlugins"
+          :transform-timing="counterTransformTiming"
+          :spin-timing="counterSpinTiming"
+          :opacity-timing="counterOpacityTiming"
+          class="font-heading! whitespace-nowrap tabular-nums [--number-flow-mask-height:0px] [--number-flow-mask-width:0px]"
+        />
         <span
-          :data-target="dataTarget"
-          class="font-heading! whitespace-nowrap tabular-nums [&_.odometer-last-value]:w-full"
-          :class="{ counter: isCounter }"
+          v-else
+          class="font-heading! whitespace-nowrap tabular-nums"
         >
           {{ displayValue }}
         </span>
@@ -34,6 +43,17 @@
 </template>
 
 <script setup>
+import NumberFlow, { continuous } from "@number-flow/vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
+
+const counterPlugins = [continuous];
+const counterTransformTiming = { duration: 0 };
+const counterSpinTiming = {
+  duration: 800,
+  easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+};
+const counterOpacityTiming = { duration: 0 };
+
 const props = defineProps({
   title: {
     type: String,
@@ -68,4 +88,42 @@ const displayValue =
 const suffix =
   props.statSuffix ||
   (typeof props.dataTarget === "string" ? props.dataTarget.replace(/[\d\s]/g, "") : "");
+
+const counterRoot = ref(null);
+const counterValue = ref(0);
+const animatedCounter = ref(false);
+let counterObserver = null;
+
+const showTargetValue = () => {
+  counterValue.value = parseInt(displayValue, 10) || 0;
+};
+
+onMounted(() => {
+  queueMicrotask(() => {
+    const effectsOn = document.documentElement.classList.contains("effects");
+    if (!props.isCounter || !effectsOn) return;
+
+    animatedCounter.value = true;
+
+    if (!("IntersectionObserver" in window)) {
+      showTargetValue();
+      return;
+    }
+
+    counterObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+
+        showTargetValue();
+        counterObserver?.disconnect();
+        counterObserver = null;
+      },
+      { threshold: [0, 0.9] },
+    );
+
+    counterObserver.observe(counterRoot.value);
+  });
+});
+
+onBeforeUnmount(() => counterObserver?.disconnect());
 </script>
