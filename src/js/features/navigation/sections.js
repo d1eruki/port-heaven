@@ -8,11 +8,7 @@ export const initSections = () => {
       sectionSelector: DOM_SELECTORS.sectionNavTargets,
       navSelector: DOM_SELECTORS.sectionNav,
       offset: 0,
-      throttleMs: 80,
-      switchThresholdPx: 48,
-      centerAssist: true,
       centerBiasPx: 12,
-      minActivateVisiblePx: 96,
       debug: false,
     });
 
