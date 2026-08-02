@@ -45,13 +45,10 @@
       </a>
       <MenuDescription :menu-desc="t('menu.footer.description')" />
     </div>
-    <div
-      ref="footerLogoContainerRef"
-      class="relative left-1/2 z-1 w-screen -translate-x-1/2"
-    >
+    <div class="relative left-1/2 z-1 flex w-screen -translate-x-1/2 justify-center">
       <div
         ref="footerLogoRef"
-        class="mx-auto block w-max max-w-none font-heading text-5xl leading-none font-black text-nowrap text-accent lowercase"
+        class="inline-block w-max max-w-none font-heading text-5xl leading-none font-black text-nowrap text-accent lowercase"
       >
         {{ t("brand.logo") }}
       </div>
@@ -60,52 +57,28 @@
 </template>
 
 <script setup>
-import { useResizeObserver } from "@vueuse/core";
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import fitty from "fitty";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import MenuDescription from "../components/MenuDescription.vue";
 
-const { locale, t } = useI18n();
+const { t } = useI18n();
 
-const MEASUREMENT_FONT_SIZE = 100;
-const footerLogoContainerRef = ref(null);
 const footerLogoRef = ref(null);
-
-let measureFrame;
-
-const fitFooterLogo = () => {
-  const container = footerLogoContainerRef.value;
-  const logo = footerLogoRef.value;
-
-  if (!container || !logo) return;
-
-  logo.style.fontSize = `${MEASUREMENT_FONT_SIZE}px`;
-
-  const availableWidth = Math.floor(container.getBoundingClientRect().width);
-  const measuredWidth = logo.getBoundingClientRect().width;
-  const fittedFontSize = Math.max(
-    1,
-    Math.floor((MEASUREMENT_FONT_SIZE * availableWidth) / measuredWidth),
-  );
-
-  logo.style.fontSize = `${fittedFontSize}px`;
-};
-
-const scheduleFooterLogoFit = () => {
-  cancelAnimationFrame(measureFrame);
-  measureFrame = requestAnimationFrame(fitFooterLogo);
-};
-
-useResizeObserver(footerLogoContainerRef, scheduleFooterLogoFit);
+let footerLogoFit;
 
 onMounted(() => {
-  scheduleFooterLogoFit();
-  document.fonts.ready.then(scheduleFooterLogoFit);
+  footerLogoFit = fitty(footerLogoRef.value, {
+    minSize: 1,
+    maxSize: Number.POSITIVE_INFINITY,
+    multiLine: false,
+  });
+
+  document.fonts.ready.then(() => footerLogoFit?.fit());
 });
 
-watch(locale, () => nextTick(scheduleFooterLogoFit));
-
 onBeforeUnmount(() => {
-  cancelAnimationFrame(measureFrame);
+  footerLogoFit?.unsubscribe();
+  footerLogoFit = null;
 });
 </script>
