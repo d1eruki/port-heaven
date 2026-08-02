@@ -12,7 +12,7 @@ Treat maintenance as a compatibility problem across one connected system, not as
 1. Confirm the repository root and preserve unrelated worktree changes.
 2. Read the manifest, lockfile, runtime declarations, build configuration, test configuration, CI or hosting configuration, and dependency documentation relevant to the requested scope.
 3. Record the current Node.js and package-manager requirements, lockfile format, framework and bundler versions, browser or deployment constraints, and any pinned packages or documented workarounds.
-4. Distinguish direct dependencies, development dependencies, optional dependencies, and important transitive dependencies. Do not move packages between groups without a runtime or deployment reason.
+4. Distinguish direct dependencies, development dependencies, optional dependencies, and important transitive dependencies. Put libraries imported by browser application code and responsible for shipped product behavior in `dependencies`, even when Webpack bundles them at build time. Keep bundlers, compilers, loaders, asset processors, linters, formatters, test tools, and local servers in `devDependencies`. Do not move packages between groups without a runtime or deployment reason.
 5. Run the audit read-only until the user approves a file-change plan required by `AGENTS.md`.
 
 ## Audit Currency and Maintenance

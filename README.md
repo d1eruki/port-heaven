@@ -15,7 +15,7 @@ Packages involved:
 - `webpack` — the bundler
 - `webpack-cli` — command-line interface for Webpack
 - `webpack-dev-server` — local dev server with HMR
-- `http-server` — serves the production `dist` build during Playwright tests
+- `serve` — serves the production `dist` build during Playwright tests
 - `html-webpack-plugin` — generates HTML and injects built assets
 - `css-minimizer-webpack-plugin` — minimizes CSS in production
 - `mini-css-extract-plugin` — extracts CSS into separate files for production
