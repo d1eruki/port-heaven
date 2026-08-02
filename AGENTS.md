@@ -45,7 +45,7 @@ Prefer a library's built-in behavior, documented APIs, and established patterns 
 
 Before creating a new mechanic, inspect the codebase for an equivalent mechanic, state flow, helper, composable, persistence layer, or established pattern. Reuse an existing implementation when it covers the requirement, or extend it when it is close but incomplete.
 
-Do not duplicate mechanisms such as `localStorage` handling, state synchronization, UI behavior, routing logic, data loading, or persistence abstractions unless the existing approach is insufficient. If a new mechanism is necessary, explain why the existing one cannot be reused or extended.
+Do not duplicate mechanisms such as `localStorage` handling, state synchronization, UI behavior, routing logic, data loading, or persistence abstractions unless the existing approach is insufficient. Reuse or extract equivalent multi-line logic when its copies share the same contract and lifecycle. Do not introduce an abstraction solely to silence duplication warnings for intentionally similar declarative markup or data. If a new mechanism is necessary, explain why the existing one cannot be reused or extended.
 
 Identify the smallest existing property or mechanism that directly controls the requested result, and change that first. Do not restructure the DOM, positioning, layout, components, or state when a local adjustment to the existing mechanism is sufficient. Expand the implementation scope only after confirming that the smaller change cannot satisfy the requirement.
 
