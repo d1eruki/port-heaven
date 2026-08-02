@@ -47,7 +47,7 @@
     </div>
     <div
       ref="footerLogoContainerRef"
-      class="relative left-1/2 z-1 w-screen -translate-x-1/2 overflow-hidden"
+      class="relative left-1/2 z-1 w-screen -translate-x-1/2"
     >
       <div
         ref="footerLogoRef"
