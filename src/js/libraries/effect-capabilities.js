@@ -19,48 +19,11 @@ export function isGpuCapable() {
 
     if (!gl) return false;
 
-    let renderer = "";
-    let vendor = "";
-    let hasReliableRendererInfo = false;
-    try {
-      const dbg = gl.getExtension("WEBGL_debug_renderer_info");
-      if (dbg) {
-        renderer = gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) || "";
-        vendor = gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) || "";
-        hasReliableRendererInfo = Boolean(renderer || vendor);
-      } else {
-        renderer = gl.getParameter(gl.RENDERER) || "";
-        vendor = gl.getParameter(gl.VENDOR) || "";
-      }
-    } catch {}
-
-    const signature = (String(renderer) + " " + String(vendor)).toLowerCase();
-    const softwareMarkers = [
-      "swiftshader",
-      "swift shader",
-      "google swiftshader",
-      "llvmpipe",
-      "llvm",
-      "softpipe",
-      "software",
-      "mesa",
-      "angle (swiftshader",
-      "angle (mesa",
-      "warp",
-      "d3d11 warp",
-      "microsoft basic render driver",
-      "basic render",
-      "software adapter",
-      "angle (d3d11 warp",
-      "angle (microsoft",
-    ];
-    const looksSoftware = softwareMarkers.some((m) => signature.includes(m));
-
     try {
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     } catch {}
 
-    return hasReliableRendererInfo && !looksSoftware;
+    return true;
   } catch {
     return false;
   }

@@ -10,10 +10,6 @@ const isIgnoredConsoleError = (text) =>
 const mockWebGl = async (page, mode) => {
   await page.addInitScript((webGlMode) => {
     const originalGetContext = HTMLCanvasElement.prototype.getContext;
-    const debugInfo = {
-      UNMASKED_RENDERER_WEBGL: 0x9246,
-      UNMASKED_VENDOR_WEBGL: 0x9245,
-    };
 
     HTMLCanvasElement.prototype.getContext = function (type, ...args) {
       if (!["webgl2", "webgl", "experimental-webgl"].includes(type)) {
@@ -23,17 +19,9 @@ const mockWebGl = async (page, mode) => {
       if (webGlMode === "unavailable") return null;
 
       return {
-        RENDERER: 0x1f01,
-        VENDOR: 0x1f00,
         getExtension(name) {
-          if (name === "WEBGL_debug_renderer_info") return debugInfo;
           if (name === "WEBGL_lose_context") return { loseContext() {} };
           return null;
-        },
-        getParameter(parameter) {
-          if (parameter === debugInfo.UNMASKED_RENDERER_WEBGL) return "Test Hardware GPU";
-          if (parameter === debugInfo.UNMASKED_VENDOR_WEBGL) return "Test Hardware Vendor";
-          return "";
         },
       };
     };
