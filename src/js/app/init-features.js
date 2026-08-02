@@ -1,4 +1,4 @@
-import { applyHwClass } from "../libraries/hw-detect";
+import { detectEffectCapabilities } from "../libraries/effect-capabilities";
 import { initScrollSmoother, ScrollTrigger } from "../libraries/gsap-scroll";
 import { onReady } from "../utils/onReady";
 import { isViewportAtLeast } from "../utils/breakpoints";
@@ -14,7 +14,7 @@ import { initAboutReveal } from "../features/effects/about-reveal";
 import { initDesignActive } from "../features/effects/design-active";
 
 export const initFeatures = async () => {
-  const capabilities = applyHwClass();
+  const capabilities = detectEffectCapabilities();
   const { effectsOn } = applyEffectsMode(capabilities);
   const screenLg = isViewportAtLeast("lg");
 

@@ -1,6 +1,6 @@
 import { reducedMotion } from "../features/preferences/motion";
 
-export function isHardwareAccelerationEnabled() {
+export function isGpuCapable() {
   try {
     const canvas = document.createElement("canvas");
     const attrs = {
@@ -66,29 +66,27 @@ export function isHardwareAccelerationEnabled() {
   }
 }
 
-export function applyHwClass(options = {}) {
+export function detectEffectCapabilities(options = {}) {
   const { recheckOnVisibility = false, respectReducedMotion = true } = options;
   const root = document.documentElement;
 
   const prefersReducedMotion = () => respectReducedMotion && reducedMotion.value;
 
-  const set = () => {
-    const hwOn = isHardwareAccelerationEnabled();
-    const motionOn = !prefersReducedMotion();
+  const detect = () => {
+    const gpuCapable = isGpuCapable();
+    const motionAllowed = !prefersReducedMotion();
 
-    root.classList.toggle("hw", hwOn);
-    root.classList.toggle("no-hw", !hwOn);
-    root.classList.toggle("motion", motionOn);
-    root.classList.toggle("reduced-motion", !motionOn);
+    root.classList.toggle("motion", motionAllowed);
+    root.classList.toggle("reduced-motion", !motionAllowed);
 
-    return { hwOn, motionOn };
+    return { gpuCapable, motionAllowed };
   };
 
-  const capabilities = set();
+  const capabilities = detect();
 
   if (recheckOnVisibility) {
     document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) set();
+      if (!document.hidden) detect();
     });
   }
 

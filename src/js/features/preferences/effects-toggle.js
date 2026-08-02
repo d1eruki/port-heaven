@@ -13,9 +13,9 @@ const effectsMode = useValidatedStorage({
 
 export const effectsEnabled = shallowRef(false);
 
-export const applyEffectsMode = ({ hwOn, motionOn }) => {
+export const applyEffectsMode = ({ gpuCapable, motionAllowed }) => {
   const mode = effectsMode.value;
-  const effectsOn = mode === "on" || (mode === "auto" && hwOn && motionOn);
+  const effectsOn = mode === "on" || (mode === "auto" && gpuCapable && motionAllowed);
 
   effectsEnabled.value = effectsOn;
   root.dataset.effectsMode = mode;

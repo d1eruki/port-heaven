@@ -48,6 +48,24 @@ const readHeroParallaxOffset = (page) =>
     return imageBounds.top - heroBounds.top;
   });
 
+const expectHeroParallaxToRemainStatic = async (page) => {
+  const heroOffset = await readHeroParallaxOffset(page);
+
+  await page.evaluate(() => window.scrollTo(0, 500));
+  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
+  expect(await readHeroParallaxOffset(page)).toBeCloseTo(heroOffset, 0);
+};
+
+const trackMetrikaScriptRequests = (page) => {
+  let requestCount = 0;
+
+  page.on("request", (request) => {
+    if (request.url() === METRIKA_SCRIPT_URL) requestCount += 1;
+  });
+
+  return () => requestCount;
+};
+
 const readRootLayoutWidths = (page) =>
   page.evaluate(() => {
     const roots = [
@@ -217,21 +235,18 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("analytics starts only after consent and restores the accepted choice", async ({ page }) => {
-  let scriptRequests = 0;
-  page.on("request", (request) => {
-    if (request.url() === METRIKA_SCRIPT_URL) scriptRequests += 1;
-  });
+  const readScriptRequests = trackMetrikaScriptRequests(page);
 
   await openAnalyticsConsent(page);
 
   const notification = page.locator('[aria-labelledby="analytics-notification-title"]');
   await expect(notification).toBeVisible();
-  expect(scriptRequests).toBe(0);
+  expect(readScriptRequests()).toBe(0);
 
   await page.getByRole("button", { name: "разрешить аналитику" }).click();
 
   await expect(notification).toBeHidden();
-  await expect.poll(() => scriptRequests).toBe(1);
+  await expect.poll(readScriptRequests).toBe(1);
   await expect
     .poll(() => page.evaluate((key) => localStorage.getItem(key), ANALYTICS_CONSENT_STORAGE_KEY))
     .toBe("accepted");
@@ -239,14 +254,11 @@ test("analytics starts only after consent and restores the accepted choice", asy
   await page.reload();
 
   await expect(notification).toBeHidden();
-  await expect.poll(() => scriptRequests).toBe(2);
+  await expect.poll(readScriptRequests).toBe(2);
 });
 
 test("declining analytics persists without loading Metrica", async ({ page }) => {
-  let scriptRequests = 0;
-  page.on("request", (request) => {
-    if (request.url() === METRIKA_SCRIPT_URL) scriptRequests += 1;
-  });
+  const readScriptRequests = trackMetrikaScriptRequests(page);
 
   await openAnalyticsConsent(page);
 
@@ -256,7 +268,7 @@ test("declining analytics persists without loading Metrica", async ({ page }) =>
   await page.getByRole("button", { name: "не разрешать" }).click();
 
   await expect(notification).toBeHidden();
-  expect(scriptRequests).toBe(0);
+  expect(readScriptRequests()).toBe(0);
   await expect
     .poll(() => page.evaluate((key) => localStorage.getItem(key), ANALYTICS_CONSENT_STORAGE_KEY))
     .toBe("declined");
@@ -264,7 +276,7 @@ test("declining analytics persists without loading Metrica", async ({ page }) =>
   await page.reload();
 
   await expect(notification).toBeHidden();
-  expect(scriptRequests).toBe(0);
+  expect(readScriptRequests()).toBe(0);
 });
 
 test("loads core portfolio sections without console errors", async ({ page }) => {
@@ -573,10 +585,7 @@ test("reduced motion disables enhanced effects", async ({ page }) => {
   await expect(page.locator("#about [data-about-feature]").nth(1)).toContainText("10+");
   await expect(page.locator("#about [data-about-feature]").nth(2)).toContainText("50/50");
 
-  const heroOffset = await readHeroParallaxOffset(page);
-  await page.evaluate(() => window.scrollTo(0, 500));
-  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
-  expect(await readHeroParallaxOffset(page)).toBeCloseTo(heroOffset, 0);
+  await expectHeroParallaxToRemainStatic(page);
 
   await expectVideoEffectsMode(page, false);
 });
@@ -587,14 +596,9 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
   await page.goto("/");
 
   const root = page.locator("html");
-  await expect(root).toHaveClass(/no-hw/);
   await expect(root).toHaveClass(/no-effects/);
-  await expect(root).not.toHaveClass(/(?:^|\s)hw(?:\s|$)/);
 
-  const heroOffset = await readHeroParallaxOffset(page);
-  await page.evaluate(() => window.scrollTo(0, 500));
-  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
-  expect(await readHeroParallaxOffset(page)).toBeCloseTo(heroOffset, 0);
+  await expectHeroParallaxToRemainStatic(page);
 
   const designMetrics = await page.locator("#design-inner").evaluate((element) => {
     const section = element.closest("#design");
@@ -659,7 +663,6 @@ test("manual effects mode overrides browser capability detection", async ({ page
   await page.goto("/");
 
   const root = page.locator("html");
-  await expect(root).toHaveClass(/no-hw/);
   await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
   await expect(root).toHaveAttribute("data-effects-mode", "on");
 
@@ -697,15 +700,11 @@ test("manual effects off overrides available hardware", async ({ page }) => {
   await page.goto("/");
 
   const root = page.locator("html");
-  await expect(root).toHaveClass(/(?:^|\s)hw(?:\s|$)/);
   await expect(root).toHaveClass(/no-effects/);
   await expect(root).toHaveAttribute("data-effects-mode", "off");
   await expect(page.getByText(/Визуальные эффекты отключены/i)).toBeVisible();
 
-  const heroOffset = await readHeroParallaxOffset(page);
-  await page.evaluate(() => window.scrollTo(0, 500));
-  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
-  expect(await readHeroParallaxOffset(page)).toBeCloseTo(heroOffset, 0);
+  await expectHeroParallaxToRemainStatic(page);
   await expectVideoEffectsMode(page, false);
 });
 

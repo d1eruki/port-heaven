@@ -11,6 +11,5 @@
 @import "./styles/utilities.css";
 
 @plugin "@iconify/tailwind4";
-@custom-variant hw (&:where(html.hw &));
 @custom-variant effects (&:where(html.effects &));
 @custom-variant no-effects (&:where(html.no-effects &));
