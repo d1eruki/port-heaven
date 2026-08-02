@@ -5,7 +5,14 @@ description: Audit and modernize Port Heaven dependencies, tooling, and custom m
 
 # Port Heaven Maintenance
 
-Treat maintenance as a compatibility problem across one connected system, not as a sequence of isolated package upgrades. Prefer the newest level the whole project can support safely over the newest version of each package independently.
+Treat maintenance as a compatibility problem across one connected system, not as a sequence of isolated package upgrades. Prefer the newest stable level the whole project can support safely within its selected supported runtime line over the newest version of each package independently.
+
+## Runtime Support Policy
+
+1. For runtimes and platforms with an LTS lifecycle, default to the newest active LTS major and its latest stable patch that the complete project stack supports.
+2. Do not choose Current, nightly, prerelease, or experimental runtime lines merely because they are newer. Use them only for an explicit product requirement, and document why the active LTS is insufficient.
+3. During every project-currency or support audit, check the selected runtime's current lifecycle phase, maintenance date, end-of-life date, and the newest active LTS. Schedule a separately verified migration when a newer LTS is supported by the complete stack; do not wait for the current line to reach end of life.
+4. For dependencies without an LTS policy, prefer the latest mutually compatible stable release. Exclude prerelease dist-tags unless the user explicitly requests them or they are necessary to meet an approved requirement.
 
 ## Establish the Baseline
 
@@ -48,7 +55,7 @@ Include these audit totals in the report: direct dependencies reviewed, confirme
 ## Derive a Compatible Target
 
 1. Build a compatibility graph for every coupled upgrade. Identify which packages constrain each other through engines, peer dependencies, compiler APIs, plugin APIs, or lockfile behavior.
-2. Select the highest mutually supported target versions. State separately which newer versions exist but remain blocked, why they are blocked, and what future change would unblock them.
+2. Select the highest mutually supported stable target versions within the runtime support policy. State separately which newer versions or LTS lines exist but remain blocked, why they are blocked, and what future change would unblock them.
 3. Group coupled packages into one atomic batch. Do not upgrade a framework, bundler, dev server, compiler, loader, or test adapter independently when its compatibility depends on the rest of the chain.
 4. Separate low-risk independent updates from major migrations. Keep each batch independently reviewable, but do not split a connected compatibility change into temporarily invalid states.
 5. Define observable acceptance checks before editing: clean installation, dependency-tree validity, formatting, integrity tests, browser tests, production build, and any migration-specific behavior.
@@ -69,4 +76,4 @@ Follow `$port-heaven-verification` for approval, visual review, test ordering, a
 1. Verify each approved compatibility batch once after implementation, including a production build whenever dependencies, build configuration, asset processing, or production-only behavior changes.
 2. Confirm both declared dependency validity and actual clean installation. A working existing `node_modules` directory is not evidence that the lockfile installs cleanly.
 3. Report selected versions, skipped versions and blockers, removed workarounds, remaining temporary workarounds, custom mechanisms retained or replaced, and the evidence supporting each decision.
-4. Record any intentionally deferred update with its blocking constraint and a concrete revisit condition. Do not describe the project as fully current when known compatible or blocked updates remain undisclosed.
+4. Record any intentionally deferred update or LTS migration with its blocking constraint and a concrete revisit condition. Do not describe the project as fully current when known compatible or blocked updates remain undisclosed.
