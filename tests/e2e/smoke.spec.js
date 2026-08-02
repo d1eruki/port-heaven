@@ -599,7 +599,9 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
   const designMetrics = await page.locator("#design-inner").evaluate((element) => {
     const section = element.closest("#design");
     const nextSection = section?.nextElementSibling;
+    const viewport = element.closest("#design-viewport");
     const bounds = element.getBoundingClientRect();
+    const viewportStyles = viewport ? getComputedStyle(viewport) : null;
 
     return {
       clientWidth: element.clientWidth,
@@ -609,6 +611,8 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
       height: bounds.height,
       sectionBottom: section?.getBoundingClientRect().bottom,
       nextSectionTop: nextSection?.getBoundingClientRect().top,
+      viewportHeight: window.innerHeight,
+      viewportPaddingTop: viewportStyles ? parseFloat(viewportStyles.paddingTop) : 0,
       cards: Array.from(element.querySelectorAll("[data-design-name]")).map((card) => {
         const cardBounds = card.getBoundingClientRect();
 
@@ -628,6 +632,14 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
   expect(designMetrics.cards.length).toBeGreaterThan(1);
   expect(new Set(designMetrics.cards.map((card) => card.left)).size).toBeGreaterThan(1);
   expect(new Set(designMetrics.cards.map((card) => card.top)).size).toBeGreaterThan(1);
+  const rowTops = [...new Set(designMetrics.cards.map((card) => card.top))].sort(
+    (first, second) => first - second,
+  );
+  expect(rowTops.length).toBeGreaterThan(2);
+  expect(rowTops[2] - rowTops[0]).toBeCloseTo(
+    designMetrics.viewportHeight - designMetrics.viewportPaddingTop,
+    0,
+  );
   expect(
     designMetrics.cards.every(
       (card) =>

@@ -10,7 +10,7 @@
     >
       <div class="effects:lg:h-full">
         <div
-          class="grid w-full gap-5 overflow-x-hidden will-change-transform lg:gap-0 effects:lg:h-full effects:lg:auto-cols-[25%] effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:min-h-dvh no-effects:grid-cols-1 no-effects:md:grid-cols-2 no-effects:lg:auto-rows-fr no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
+          class="grid w-full gap-5 overflow-x-hidden will-change-transform lg:gap-0 effects:lg:h-full effects:lg:auto-cols-[25%] effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:min-h-dvh no-effects:grid-cols-1 no-effects:md:grid-cols-2 no-effects:lg:auto-rows-[calc((100dvh---spacing(15))/2)] no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
           id="design-inner"
         >
           <div
