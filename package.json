@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "webpack serve --hot --mode development",
-    "serve:dist": "http-server dist -a 127.0.0.1 -p 4173 -c-1",
+    "serve:dist": "serve dist --listen tcp://127.0.0.1:4173 --no-clipboard",
     "build": "webpack --mode production",
     "build:webpack": "webpack --mode production",
     "translate:en": "node scripts/translate-locale.mjs",
@@ -29,7 +29,6 @@
     "@iconify-json/ic": "^1.2.4",
     "@iconify-json/simple-icons": "^1.2.90",
     "@iconify/tailwind4": "^1.2.3",
-    "@number-flow/vue": "^0.5.2",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.3.2",
     "@vue/compiler-sfc": "^3.5.39",
@@ -40,26 +39,27 @@
     "ffmpeg-static": "^5.3.0",
     "globals": "^17.7.0",
     "html-webpack-plugin": "^5.6.7",
-    "http-server": "^14.1.1",
     "mini-css-extract-plugin": "^2.10.2",
     "postcss": "^8.5.16",
     "postcss-loader": "^8.2.1",
     "prettier": "^3.9.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "serve": "^14.2.6",
     "sharp": "^0.35.3",
     "style-loader": "^4.0.0",
     "tailwindcss": "^4.3.2",
     "typograf": "^7.7.0",
-    "vanilla-tilt": "^1.8.1",
-    "vue": "^3.5.39",
     "vue-eslint-parser": "^10.4.1",
-    "vue-i18n": "^11.4.6",
     "vue-loader": "^17.4.2",
     "webpack": "^5.108.3",
     "webpack-cli": "^7.2.1",
     "webpack-dev-server": "^6.0.0"
   },
   "dependencies": {
-    "gsap": "^3.15.0"
+    "@number-flow/vue": "^0.5.2",
+    "gsap": "^3.15.0",
+    "vanilla-tilt": "^1.8.1",
+    "vue": "^3.5.39",
+    "vue-i18n": "^11.4.6"
   }
 }
