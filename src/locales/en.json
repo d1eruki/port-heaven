@@ -188,8 +188,8 @@
   },
   "lang-toggle": "русский",
   "theme-toggle": {
-    "light": "Light theme",
-    "dark": "Dark theme"
+    "light": "light theme",
+    "dark": "dark theme"
   },
   "effects-toggle": {
     "enable": "enable effects",
