@@ -312,6 +312,17 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   expect(consoleErrors).toEqual([]);
 });
 
+test("loads the interactive 3D badge in enhanced desktop mode", async ({ page }) => {
+  await setEffectsMode(page, "on");
+  await page.goto("/");
+
+  const badge = page.locator("[data-3d-badge]");
+
+  await expect(badge).toBeVisible();
+  await expect.poll(() => page.evaluate(() => Boolean(customElements.get("model-viewer")))).toBe(true);
+  await expect(badge).toHaveAttribute("src", /tag\..+\.glb$/);
+});
+
 test("theme and locale controls update the page", async ({ page }) => {
   await page.goto("/");
 

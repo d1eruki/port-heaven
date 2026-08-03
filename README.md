@@ -92,6 +92,7 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 - `@number-flow/vue` — accessible animated statistics in Vue components
 - `fitty` — responsive text fitting for the footer wordmark
 - `vanilla-tilt` — tilt/hover 3D effect
+- `@google/model-viewer` — lazily loaded interactive 3D badge for capable desktop devices
 
 ### Developer Tooling
 

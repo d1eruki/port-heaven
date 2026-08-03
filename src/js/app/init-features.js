@@ -38,7 +38,11 @@ export const initFeatures = async () => {
       initDesignActive();
 
       const desktopModules = screenLg
-        ? Promise.all([import("../libraries/vanilla-tilt"), import("../features/effects/cursor")])
+        ? Promise.all([
+            import("@google/model-viewer"),
+            import("../libraries/vanilla-tilt"),
+            import("../features/effects/cursor"),
+          ])
         : null;
       const [{ initHorizontalScroll }, { initProgressBar }, { initSectionSnap }] =
         await Promise.all([
@@ -52,7 +56,7 @@ export const initFeatures = async () => {
       initSectionSnap();
 
       if (desktopModules) {
-        const [{ initVanillaTilt }, { initCursor }] = await desktopModules;
+        const [, { initVanillaTilt }, { initCursor }] = await desktopModules;
         onReady(initVanillaTilt);
         onReady(initCursor);
       }

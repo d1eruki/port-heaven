@@ -70,6 +70,13 @@ module.exports = (_env, argv) => {
           },
         },
         {
+          test: /\.glb$/i,
+          type: "asset/resource",
+          generator: {
+            filename: isDev ? "assets/[name][ext]" : "assets/[name].[contenthash][ext]",
+          },
+        },
+        {
           test: /\.vue$/,
           loader: "vue-loader",
         },
