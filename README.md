@@ -90,6 +90,7 @@ OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 - `@vueuse/core` — reactive browser state, preferences, and observer lifecycle utilities
 - `gsap` — smooth scrolling, scroll triggers, and animation timelines
 - `@number-flow/vue` — accessible animated statistics in Vue components
+- `reka-ui` — accessible tooltip primitives and collision-aware positioning for section navigation
 - `fitty` — responsive text fitting for the footer wordmark
 - `vanilla-tilt` — tilt/hover 3D effect
 

@@ -430,6 +430,28 @@ test("section dot navigation targets the explicit section nav", async ({ page })
   );
 });
 
+test("section dots show their labels on hover and keyboard focus", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const sectionNav = page.locator("[data-section-nav]");
+  const aboutDot = sectionNav.getByRole("button", { name: "обо мне" });
+  const tooltip = page.locator("[data-section-tooltip]");
+
+  await aboutDot.hover();
+  await expect(tooltip).toContainText("обо мне");
+  await expect(tooltip).toBeVisible();
+  await expect(aboutDot).toHaveAttribute("aria-describedby", /.+/);
+
+  await page.mouse.move(300, 300);
+  await expect(tooltip).toHaveCount(0);
+
+  await aboutDot.focus();
+  await expect(tooltip).toContainText("обо мне");
+  await expect(tooltip).toBeVisible();
+});
+
 test("project cards snap only in enhanced desktop mode", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name === "mobile-safari", "Mobile WebKit has no mouse wheel API");
 

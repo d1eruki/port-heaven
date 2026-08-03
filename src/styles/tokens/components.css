@@ -10,6 +10,8 @@
   --component-chip-active-foreground: var(--semantic-text-on-contrast);
   --component-design-card-active-background: var(--semantic-accent);
   --component-design-card-active-foreground: var(--semantic-text-on-accent);
+  --component-section-tooltip-background: var(--semantic-surface-inverse);
+  --component-section-tooltip-foreground: var(--semantic-text-on-inverse);
 }
 
 @theme inline {
@@ -21,4 +23,6 @@
   --color-on-chip-active: var(--component-chip-active-foreground);
   --color-design-card-active: var(--component-design-card-active-background);
   --color-on-design-card-active: var(--component-design-card-active-foreground);
+  --color-section-tooltip: var(--component-section-tooltip-background);
+  --color-on-section-tooltip: var(--component-section-tooltip-foreground);
 }
