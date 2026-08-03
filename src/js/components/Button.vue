@@ -15,10 +15,7 @@
       /
     </small>
     <small v-if="size === 'compact'"><slot /></small>
-    <span
-      v-else
-      class="font-heading"
-    >
+    <span v-else>
       <slot />
     </span>
   </component>
@@ -72,6 +69,7 @@ const secondaryClassesByTone = {
 
 const isLink = computed(() => Boolean(props.href));
 const buttonClasses = computed(() => [
+  "font-heading",
   classesByVariantAndSize[props.variant][props.size],
   props.variant === "secondary" ? secondaryClassesByTone[props.tone] : undefined,
 ]);
