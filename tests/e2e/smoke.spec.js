@@ -356,7 +356,7 @@ test("saved dark theme is synchronized before Vue mounts", async ({ page }) => {
 });
 
 test("scroll to top returns from lower sections", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "networkidle" });
 
   const hero = page.locator("#hero");
 
