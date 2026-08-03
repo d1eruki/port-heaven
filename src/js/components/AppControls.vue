@@ -42,49 +42,52 @@
     id="menu-right"
     class="fixed top-1/2 right-0 z-200 flex h-10 w-10 -translate-y-1/2 rotate-90 items-center justify-center gap-5 whitespace-nowrap mix-blend-difference lg:top-0 lg:h-15 lg:w-auto lg:translate-y-0 lg:rotate-0 lg:justify-end lg:px-5"
   >
-    <button
-      type="button"
+    <Button
+      variant="secondary"
+      size="compact"
+      tone="control"
       :aria-label="effectsToggleLabel"
-      class="group flex text-link hover:text-link-hover"
       @click="toggleEffects"
     >
-      <small class="opacity-0 group-hover:opacity-100">/</small
-      ><small>{{ effectsToggleLabel }}</small>
-    </button>
+      {{ effectsToggleLabel }}
+    </Button>
 
-    <button
-      type="button"
+    <Button
+      variant="secondary"
+      size="compact"
+      tone="control"
       :aria-label="themeToggleLabel"
-      class="group flex text-link hover:text-link-hover"
       @click="toggleTheme"
     >
-      <small class="opacity-0 group-hover:opacity-100">/</small
-      ><small>{{ themeToggleLabel }}</small>
-    </button>
+      {{ themeToggleLabel }}
+    </Button>
 
-    <button
-      type="button"
+    <Button
+      variant="secondary"
+      size="compact"
+      tone="control"
       :aria-label="langToggleLabel"
-      class="group flex text-link hover:text-link-hover"
       @click="toggleLocale"
     >
-      <small class="opacity-0 group-hover:opacity-100">/</small><small>{{ langToggleLabel }}</small>
-    </button>
+      {{ langToggleLabel }}
+    </Button>
   </div>
 
-  <button
+  <Button
     id="scroll-to-top"
-    type="button"
-    class="group fixed right-0 bottom-5 z-200 flex h-10 w-10 rotate-90 items-center justify-end whitespace-nowrap text-link mix-blend-difference hover:text-link-hover lg:bottom-0 lg:h-15 lg:w-auto lg:rotate-0 lg:px-5"
+    variant="secondary"
+    size="compact"
+    tone="control"
+    class="fixed right-0 bottom-5 z-200 h-10 w-10 rotate-90 items-center justify-end whitespace-nowrap mix-blend-difference lg:bottom-0 lg:h-15 lg:w-auto lg:rotate-0 lg:px-5"
   >
-    <small class="opacity-0 group-hover:opacity-100">/</small
-    ><small>{{ t("buttons.toTop") }}</small>
-  </button>
+    {{ t("buttons.toTop") }}
+  </Button>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import Button from "./Button.vue";
 import { SECTION_NAV_ITEMS } from "../dom/dom-selectors";
 import { effectsEnabled, toggleEffectsMode } from "../features/preferences/effects-toggle";
 import { currentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";

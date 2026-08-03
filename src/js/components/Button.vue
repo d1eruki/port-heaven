@@ -7,6 +7,13 @@
     :type="isLink ? undefined : type"
     :class="buttonClasses"
   >
+    <small
+      v-if="variant === 'secondary'"
+      class="opacity-0 group-hover:opacity-100"
+      aria-hidden="true"
+    >
+      /
+    </small>
     <small v-if="size === 'compact'"><slot /></small>
     <span
       v-else
@@ -39,6 +46,11 @@ const props = defineProps({
     default: "default",
     validator: (value) => ["default", "compact"].includes(value),
   },
+  tone: {
+    type: String,
+    default: "inverse",
+    validator: (value) => ["inverse", "control"].includes(value),
+  },
 });
 
 const classesByVariantAndSize = {
@@ -48,11 +60,19 @@ const classesByVariantAndSize = {
     compact: "anim-extrude active rounded-full bg-accent px-5 py-2.5 text-on-accent",
   },
   secondary: {
-    default: "text-action-secondary hover:text-on-inverse",
-    compact: "text-action-secondary hover:text-on-inverse",
+    default: "group flex items-center",
+    compact: "group flex items-center",
   },
 };
 
+const secondaryClassesByTone = {
+  inverse: "text-action-secondary hover:text-on-inverse",
+  control: "text-link hover:text-link-hover",
+};
+
 const isLink = computed(() => Boolean(props.href));
-const buttonClasses = computed(() => classesByVariantAndSize[props.variant][props.size]);
+const buttonClasses = computed(() => [
+  classesByVariantAndSize[props.variant][props.size],
+  props.variant === "secondary" ? secondaryClassesByTone[props.tone] : undefined,
+]);
 </script>
