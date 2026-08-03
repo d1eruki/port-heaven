@@ -9,7 +9,7 @@
       :aria-label="t('navigation.label')"
     >
       <button
-        v-for="section in SECTION_NAV_ITEMS"
+        v-for="section in sectionNavItems"
         :key="section.id"
         type="button"
         class="dot group"
@@ -88,11 +88,16 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import Button from "./Button.vue";
-import { SECTION_NAV_ITEMS } from "../dom/dom-selectors";
 import { effectsEnabled, toggleEffectsMode } from "../features/preferences/effects-toggle";
 import { currentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 
-const { locale, t } = useI18n();
+const { locale, t, tm } = useI18n();
+const sectionNavItems = computed(() =>
+  Object.keys(tm("navigation.sections")).map((id) => ({
+    id,
+    labelKey: `navigation.sections.${id}`,
+  })),
+);
 
 const themeToggleLabel = computed(() =>
   t(`theme-toggle.${currentTheme.value === "dark" ? "light" : "dark"}`),

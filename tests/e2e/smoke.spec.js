@@ -296,6 +296,7 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   await expect(page.locator("#design")).toBeVisible();
   await expect(page.locator("#creatives")).toBeVisible();
   await expect(page.locator("#pricing")).toBeVisible();
+  await expect(page.locator("#reviews")).toBeVisible();
   await expect(page.locator("footer#footer")).toBeVisible();
   await expectRootLayoutFitsViewport(page);
   await expect(page.getByRole("heading", { name: /артем/i })).toBeVisible();
@@ -307,6 +308,9 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   ).toHaveCount(1);
   await expect(
     page.locator("#pricing").getByRole("heading", { name: "Цены", level: 2 }),
+  ).toHaveCount(1);
+  await expect(
+    page.locator("#reviews").getByRole("heading", { name: "Отзывы", level: 2 }),
   ).toHaveCount(1);
 
   expect(consoleErrors).toEqual([]);
@@ -383,6 +387,7 @@ test("section dot navigation targets the explicit section nav", async ({ page })
     "макеты",
     "креативы",
     "цены",
+    "отзывы",
     "связь",
   ];
   const englishSectionLabels = [
@@ -392,6 +397,7 @@ test("section dot navigation targets the explicit section nav", async ({ page })
     "layouts",
     "creatives",
     "pricing",
+    "reviews",
     "contact",
   ];
 
@@ -547,7 +553,14 @@ test("mobile viewport keeps core controls working", async ({ page }) => {
   await page.getByRole("button", { name: "темная тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "dark");
 
-  for (const sectionId of ["#projects", "#design", "#creatives", "#pricing", "#footer"]) {
+  for (const sectionId of [
+    "#projects",
+    "#design",
+    "#creatives",
+    "#pricing",
+    "#reviews",
+    "#footer",
+  ]) {
     await page.locator(sectionId).scrollIntoViewIfNeeded();
     await expect(page.locator(sectionId)).toBeVisible();
   }

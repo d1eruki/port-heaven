@@ -20,6 +20,7 @@
         <Design />
         <Creatives />
         <Pricing />
+        <Reviews />
       </main>
       <Footer />
     </div>
@@ -42,6 +43,7 @@ import Projects from "./sections/Projects.vue";
 import Design from "./sections/Design.vue";
 import Creatives from "./sections/Creatives.vue";
 import Pricing from "./sections/Pricing.vue";
+import Reviews from "./sections/Reviews.vue";
 import Footer from "./sections/Footer.vue";
 import { currentTheme } from "./features/preferences/theme-toggle";
 import { useValidatedStorage } from "./features/preferences/storage";

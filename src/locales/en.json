@@ -12,6 +12,7 @@
       "design": "layouts",
       "creatives": "creatives",
       "pricing": "pricing",
+      "reviews": "reviews",
       "footer": "contact"
     }
   },
@@ -51,6 +52,9 @@
     "pricing": {
       "title": "Pricing",
       "description": "Pricing description."
+    },
+    "reviews": {
+      "title": "Reviews"
     },
     "footer": {
       "title": "contact",
