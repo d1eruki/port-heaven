@@ -23,7 +23,7 @@ The plan must state:
 - What will be changed or removed in each file.
 - Why each change is needed.
 
-After the plan, briefly explain its pros and cons in plain language that is easy to understand without programming knowledge. If there are multiple pros or multiple cons, format each group as a numbered list.
+After the plan, briefly explain its material pros and cons in plain language that is easy to understand without programming knowledge. Include only concrete tradeoffs supported by the inspected context; do not invent a con to balance the presentation, and state plainly when there are no material cons. If there are multiple pros or multiple cons, format each group as a numbered list.
 
 Do not edit, delete, rename, format, generate, or otherwise modify files before the user approves the plan. Files may be deleted when they are left empty or become outdated.
 
@@ -34,6 +34,7 @@ If the approved file list changes, a deletion becomes necessary, or the task mat
 Keep user-facing communication concise by default:
 
 - Limit implementation plans to five short bullets while still covering every required approval detail.
+- After inspecting the relevant code and constraints, present one coherent implementation approach. Do not replace it in response to questions unless new evidence or a changed user requirement invalidates it; explain the current approach and its concrete constraints instead.
 - Limit routine progress updates to two sentences and send another only when the state materially changes or work exceeds 60 seconds.
 - Limit final handoffs to five short lines unless the user asks for detail or additional explanation is necessary to report risk, failure, or a blocker.
 - Do not narrate individual tool calls, repeat previously reported results, or list every passing command when a shorter outcome summary is sufficient.
