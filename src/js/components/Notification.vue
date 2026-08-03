@@ -11,26 +11,27 @@
       <p id="analytics-notification-text">{{ t("privacy.analytics.text") }}</p>
     </div>
     <div class="flex flex-wrap gap-5">
-      <button
-        type="button"
-        class="anim-extrude active rounded-full bg-accent px-5 py-2.5 text-on-accent"
+      <Button
+        variant="primary"
+        size="compact"
         @click="emit('accept')"
       >
-        <small>{{ t("privacy.analytics.accept") }}</small>
-      </button>
-      <button
-        type="button"
-        class="text-action-secondary hover:text-on-inverse"
+        {{ t("privacy.analytics.accept") }}
+      </Button>
+      <Button
+        variant="secondary"
+        size="compact"
         @click="emit('decline')"
       >
-        <small>{{ t("privacy.analytics.decline") }}</small>
-      </button>
+        {{ t("privacy.analytics.decline") }}
+      </Button>
     </div>
   </aside>
 </template>
 
 <script setup>
 import { useI18n } from "vue-i18n";
+import Button from "./Button.vue";
 
 const { t } = useI18n();
 defineProps({

@@ -86,9 +86,9 @@
       </div>
 
       <div class="mt-9 flex justify-center px-10 lg:px-0">
-        <ActionLink href="https://t.me/d1eruki">
+        <Button href="https://t.me/d1eruki">
           {{ t("pricing.action") }}
-        </ActionLink>
+        </Button>
       </div>
     </div>
   </section>
@@ -97,7 +97,7 @@
 <script setup>
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import ActionLink from "../components/ActionLink.vue";
+import Button from "../components/Button.vue";
 
 const { t } = useI18n();
 

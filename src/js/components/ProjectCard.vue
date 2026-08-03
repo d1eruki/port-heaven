@@ -36,20 +36,20 @@
         </li>
       </ol>
       <div class="flex flex-wrap gap-2 lg:gap-10">
-        <ActionLink
+        <Button
           v-for="(link, index) in projectLinks"
           :key="index"
           :href="link.url"
         >
           {{ link.name }}
-        </ActionLink>
+        </Button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import ActionLink from "./ActionLink.vue";
+import Button from "./Button.vue";
 import TagsList from "./TagsList.vue";
 
 const props = defineProps({
