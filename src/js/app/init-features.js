@@ -12,7 +12,14 @@ import { initProjectPin } from "../features/navigation/project-pin";
 import { initAboutReveal } from "../features/effects/about-reveal";
 import { initDesignActive } from "../features/effects/design-active";
 
+const enableNativeScrollRestoration = () => {
+  if ("scrollRestoration" in history) history.scrollRestoration = "auto";
+};
+
 export const initFeatures = async () => {
+  enableNativeScrollRestoration();
+  window.addEventListener("pagehide", enableNativeScrollRestoration);
+
   const capabilities = detectEffectCapabilities();
   const { effectsOn } = applyEffectsMode(capabilities);
   const screenLg = isViewportAtLeast("lg");

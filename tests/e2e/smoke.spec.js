@@ -735,4 +735,9 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
   await expect(root).toHaveAttribute("data-effects-mode", secondMode);
   await expect(page.getByRole("button", { name: firstAction })).toBeVisible();
   await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
+
+  await page.reload();
+
+  await expect(root).toHaveAttribute("data-effects-mode", secondMode);
+  await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
 });
