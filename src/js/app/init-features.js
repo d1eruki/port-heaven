@@ -6,7 +6,6 @@ import { isViewportAtLeast } from "../utils/breakpoints";
 import { applyEffectsMode } from "../features/preferences/effects-toggle";
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
-import { initScrollRestoration } from "../features/navigation/scroll-restoration";
 import { initMenuDotToggler } from "../features/navigation/menu-dot-toggler";
 import { initCreativeHeadingPin } from "../features/navigation/creative-heading-pin";
 import { initProjectPin } from "../features/navigation/project-pin";
@@ -58,5 +57,4 @@ export const initFeatures = async () => {
   }
 
   ScrollTrigger.refresh();
-  initScrollRestoration();
 };

@@ -427,7 +427,6 @@ test("section dot navigation targets the explicit section nav", async ({ page })
 test("project cards snap only in enhanced desktop mode", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name === "mobile-safari", "Mobile WebKit has no mouse wheel API");
 
-  await page.addInitScript(() => localStorage.removeItem("scroll-position"));
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
   await page.evaluate(() => localStorage.setItem("effects-mode", "on"));
