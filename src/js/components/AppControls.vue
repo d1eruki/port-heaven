@@ -40,7 +40,7 @@
 
   <div
     id="menu-right"
-    class="fixed top-1/2 right-0 z-200 flex h-10 w-10 -translate-y-1/2 rotate-90 items-center justify-center gap-5 whitespace-nowrap mix-blend-difference lg:top-0 lg:h-15 lg:w-auto lg:translate-y-0 lg:rotate-0 lg:justify-end lg:px-5"
+    class="fixed top-1/2 right-0 z-200 flex h-10 w-10 -translate-y-1/2 rotate-90 items-center justify-center gap-5 whitespace-nowrap lg:top-0 lg:h-15 lg:w-auto lg:translate-y-0 lg:rotate-0 lg:justify-end lg:px-5"
   >
     <Button
       variant="secondary"
@@ -78,7 +78,7 @@
     variant="secondary"
     size="compact"
     tone="control"
-    class="fixed right-0 bottom-5 z-200 h-10 w-10 rotate-90 items-center justify-end whitespace-nowrap mix-blend-difference lg:bottom-0 lg:h-15 lg:w-auto lg:rotate-0 lg:px-5"
+    class="fixed right-0 bottom-5 z-200 h-10 w-10 rotate-90 items-center justify-end whitespace-nowrap lg:bottom-0 lg:h-15 lg:w-auto lg:rotate-0 lg:px-5"
   >
     {{ t("buttons.toTop") }}
   </Button>
