@@ -1,4 +1,0 @@
-interface:
-  display_name: "Port Heaven Maintenance"
-  short_description: "Audit and safely modernize project dependencies"
-  default_prompt: "Use $port-heaven-maintenance to audit project currency and propose compatible dependency updates."

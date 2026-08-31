@@ -1,4 +1,0 @@
-interface:
-  display_name: "Port Heaven Verification"
-  short_description: "Testing workflow for Port Heaven changes"
-  default_prompt: "Use $port-heaven-verification to validate a Port Heaven change safely."

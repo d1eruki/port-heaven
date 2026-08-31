@@ -1,4 +1,0 @@
-interface:
-  display_name: "Port Heaven Frontend"
-  short_description: "Frontend conventions for Port Heaven"
-  default_prompt: "Use $port-heaven-frontend to implement or review a Port Heaven frontend change."
