@@ -3,7 +3,9 @@
 ## Required Project Skills
 
 - Use `$repository-workflow` whenever planning or making repository file changes, including instruction and skill changes.
-- Use `$frontend-engineering` for frontend implementation, review, or diagnosis involving `src/`, Vue, CSS, Tailwind, themes, color tokens, responsive behavior, accessibility, effects, or localization.
+- Use `$vue-engineering` for Vue implementation, review, or diagnosis involving Single-File Components, component boundaries, reactivity, composables, state ownership, or lifecycle behavior.
+- Use `$tailwind-engineering` for Tailwind CSS implementation, review, or diagnosis involving utilities, variants, theme tokens, responsive behavior, dynamic classes, or custom CSS.
+- Use `$frontend-engineering` only for cross-cutting frontend systems whose ownership spans application state, browser runtime behavior, and styling, including color-system changes. Do not load it for ordinary Vue or Tailwind work covered by the technology-specific skills.
 - Use `$frontend-verification` whenever changing repository files, planning or modifying tests, or validating completed work.
 - Use `$frontend-maintenance` only when the user explicitly requests a project-currency audit, dependency updates, compatibility review, or research into replacing custom mechanisms with maintained public libraries.
 - Reusable skills live in the `skills` submodule. Keep Port Heaven-specific requirements in this file unless they form a self-contained reusable workflow suitable for the shared skills repository.
