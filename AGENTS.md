@@ -8,9 +8,7 @@
 - Use `$frontend-engineering` only for cross-cutting frontend systems whose ownership spans application state, browser runtime behavior, and styling, including color-system changes. Do not load it for ordinary Vue or Tailwind work covered by the technology-specific skills.
 - Use `$frontend-verification` whenever changing repository files, planning or modifying tests, or validating completed work.
 - Use `$frontend-maintenance` only when the user explicitly requests a project-currency audit, dependency updates, compatibility review, or research into replacing custom mechanisms with maintained public libraries.
-- Reusable skills live in the `skills` submodule. Keep Port Heaven-specific requirements in this file unless they form a self-contained reusable workflow suitable for the shared skills repository.
-- When adding a reusable skill, create `${CODEX_HOME:-~/.codex}/skills/<skill-name>` as a symbolic link to its directory in the initialized submodule. Resolve both paths first; never overwrite a non-symlink or a symbolic link targeting a different path, and ask the user how to proceed instead.
-- If a required skill is not discoverable, initialize the submodule when permitted and read its `SKILL.md` directly from `skills/` before continuing.
+- Keep Port Heaven-specific requirements in this file unless they form a self-contained reusable workflow suitable for the shared skills repository.
 
 ## Port Heaven Frontend Conventions
 
