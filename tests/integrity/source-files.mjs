@@ -1,7 +1,7 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
 
-const sourceRoots = ["src/index.html", "src/js", "src/styles"];
+const sourceRoots = ["index.html", "src/js", "src/styles"];
 const supportedSourceExtensions = new Set([".css", ".html", ".js", ".vue"]);
 
 const collectSourceFiles = async (entryPath) => {

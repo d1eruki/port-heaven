@@ -4,6 +4,11 @@ import { onReady } from "../utils/onReady";
 import { isViewportAtLeast } from "../utils/breakpoints";
 
 import { applyEffectsMode } from "../features/preferences/effects-toggle";
+import {
+  captureEffectsScrollPosition,
+  hasPendingEffectsScrollPosition,
+  restoreEffectsScrollPosition,
+} from "../features/preferences/effects-scroll-restoration";
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
 import { initMenuDotToggler } from "../features/navigation/menu-dot-toggler";
@@ -13,12 +18,19 @@ import { initAboutReveal } from "../features/effects/about-reveal";
 import { initDesignActive } from "../features/effects/design-active";
 
 const enableNativeScrollRestoration = () => {
-  if ("scrollRestoration" in history) history.scrollRestoration = "auto";
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = hasPendingEffectsScrollPosition() ? "manual" : "auto";
+  }
+};
+
+const preserveScrollPosition = () => {
+  captureEffectsScrollPosition();
+  enableNativeScrollRestoration();
 };
 
 export const initFeatures = async () => {
   enableNativeScrollRestoration();
-  window.addEventListener("pagehide", enableNativeScrollRestoration);
+  window.addEventListener("pagehide", preserveScrollPosition);
 
   const capabilities = detectEffectCapabilities();
   const { effectsOn } = applyEffectsMode(capabilities);
@@ -64,4 +76,5 @@ export const initFeatures = async () => {
   }
 
   ScrollTrigger.refresh();
+  await restoreEffectsScrollPosition();
 };

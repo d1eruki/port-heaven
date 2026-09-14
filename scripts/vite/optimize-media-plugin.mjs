@@ -1,11 +1,9 @@
-/* global Buffer, module, require */
-
-const { spawn } = require("node:child_process");
-const { mkdtemp, readFile, rm, stat } = require("node:fs/promises");
-const os = require("node:os");
-const path = require("node:path");
-const ffmpegPath = require("ffmpeg-static");
-const sharp = require("sharp");
+import { spawn } from "node:child_process";
+import { mkdtemp, readFile, rm, stat } from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import ffmpegPath from "ffmpeg-static";
+import sharp from "sharp";
 
 const resizeTargets = new Map([
   ["postcard.webp", { width: 1000 }],
@@ -13,6 +11,7 @@ const resizeTargets = new Map([
 ]);
 const videoTargets = new Set(["varwin-opening.mp4"]);
 const supportedImageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
+const supportedMediaExtensions = new Set([...supportedImageExtensions, ".mp4"]);
 
 const runFfmpeg = (args) =>
   new Promise((resolve, reject) => {
@@ -38,9 +37,7 @@ const optimizeImage = async (content, resourcePath) => {
   const resize = resizeTargets.get(path.basename(resourcePath));
   let pipeline = sharp(content, { animated: true }).rotate();
 
-  if (resize) {
-    pipeline = pipeline.resize({ ...resize, withoutEnlargement: true });
-  }
+  if (resize) pipeline = pipeline.resize({ ...resize, withoutEnlargement: true });
 
   if (extension === ".webp") {
     pipeline = pipeline.webp({ quality: 78, effort: 6, smartSubsample: true });
@@ -86,17 +83,35 @@ const optimizeVideo = async (content, resourcePath) => {
   }
 };
 
-function optimizeMediaLoader(content) {
-  const callback = this.async();
-  const extension = path.extname(this.resourcePath).toLowerCase();
-  const optimize = extension === ".mp4" ? optimizeVideo : optimizeImage;
+export const optimizeMediaPlugin = ({ assetsRoot }) => {
+  const normalizedAssetsRoot = `${path.resolve(assetsRoot)}${path.sep}`;
 
-  optimize(content, this.resourcePath).then(
-    (optimized) => callback(null, optimized),
-    (error) => callback(error),
-  );
-}
+  return {
+    name: "port-heaven-optimize-media",
+    apply: "build",
+    enforce: "pre",
+    async load(id) {
+      const resourcePath = id.split("?", 1)[0];
+      const extension = path.extname(resourcePath).toLowerCase();
+      if (
+        !resourcePath.startsWith(normalizedAssetsRoot) ||
+        !supportedMediaExtensions.has(extension)
+      ) {
+        return null;
+      }
 
-optimizeMediaLoader.raw = true;
+      const content = await readFile(resourcePath);
+      const optimized =
+        extension === ".mp4"
+          ? await optimizeVideo(content, resourcePath)
+          : await optimizeImage(content, resourcePath);
+      const referenceId = this.emitFile({
+        type: "asset",
+        name: path.basename(resourcePath),
+        source: optimized,
+      });
 
-module.exports = optimizeMediaLoader;
+      return `export default import.meta.ROLLDOWN_FILE_URL_${referenceId};`;
+    },
+  };
+};
