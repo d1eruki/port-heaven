@@ -112,7 +112,7 @@ cd port-heaven
 
 2. Install dependencies:
 
-   Use Node.js 24.18.1 LTS or a newer Node.js 24 release. The project `.nvmrc` pins the
+   Use Node.js 24.21.0 LTS or a newer Node.js 24 release. The project `.nvmrc` pins the
    currently verified LTS patch. If you use nvm, install and select it first:
 
 ```bash
