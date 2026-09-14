@@ -35,7 +35,7 @@
           <p class="text-primary">{{ statistic }}</p>
         </li>
       </ol>
-      <div class="flex flex-wrap gap-2 lg:gap-10">
+      <div class="flex flex-wrap gap-0">
         <Button
           v-for="(link, index) in projectLinks"
           :key="index"

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap gap-2">
+  <div class="flex flex-wrap gap-0">
     <div
       v-for="(tag, index) in tags"
       :key="index"
