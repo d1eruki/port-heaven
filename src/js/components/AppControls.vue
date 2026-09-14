@@ -62,52 +62,56 @@
 
   <div
     id="menu-right"
-    class="fixed top-1/2 right-0 z-200 flex h-10 w-10 -translate-y-1/2 rotate-90 items-center justify-center gap-5 whitespace-nowrap lg:top-0 lg:h-15 lg:w-auto lg:translate-y-0 lg:rotate-0 lg:justify-end lg:px-5"
+    class="fixed top-0 right-0 z-200 flex min-h-svh w-10 items-center justify-center lg:w-15"
   >
-    <Button
-      variant="secondary"
-      size="compact"
-      tone="control"
-      :aria-label="effectsToggleLabel"
-      @click="toggleEffects"
-    >
-      {{ effectsToggleLabel }}
-    </Button>
+    <div class="flex w-fit rotate-90 items-center justify-center gap-5 whitespace-nowrap">
+      <Button
+        variant="secondary"
+        size="compact"
+        tone="control"
+        :aria-label="effectsToggleLabel"
+        @click="toggleEffects"
+      >
+        {{ effectsToggleLabel }}
+      </Button>
 
-    <Button
-      variant="secondary"
-      size="compact"
-      tone="control"
-      :aria-label="themeToggleLabel"
-      @click="toggleTheme"
-    >
-      {{ themeToggleLabel }}
-    </Button>
+      <Button
+        variant="secondary"
+        size="compact"
+        tone="control"
+        :aria-label="themeToggleLabel"
+        @click="toggleTheme"
+      >
+        {{ themeToggleLabel }}
+      </Button>
 
-    <Button
-      variant="secondary"
-      size="compact"
-      tone="control"
-      :aria-label="langToggleLabel"
-      @click="toggleLocale"
-    >
-      {{ langToggleLabel }}
-    </Button>
+      <Button
+        variant="secondary"
+        size="compact"
+        tone="control"
+        :aria-label="langToggleLabel"
+        @click="toggleLocale"
+      >
+        {{ langToggleLabel }}
+      </Button>
+
+      <Button
+        id="scroll-to-top"
+        variant="secondary"
+        size="compact"
+        tone="control"
+        class="transition-opacity duration-300 ease-in-out disabled:pointer-events-none disabled:opacity-25"
+        :disabled="isHeroVisible"
+      >
+        {{ t("buttons.toTop") }}
+      </Button>
+    </div>
   </div>
-
-  <Button
-    id="scroll-to-top"
-    variant="secondary"
-    size="compact"
-    tone="control"
-    class="fixed right-0 bottom-5 z-200 h-10 w-10 rotate-90 items-center justify-end whitespace-nowrap lg:bottom-0 lg:h-15 lg:w-auto lg:rotate-0 lg:px-5"
-  >
-    {{ t("buttons.toTop") }}
-  </Button>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { useIntersectionObserver } from "@vueuse/core";
+import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import {
   TooltipContent,
@@ -135,6 +139,21 @@ const langToggleLabel = computed(() => t("lang-toggle"));
 const effectsToggleLabel = computed(() =>
   t(`effects-toggle.${effectsEnabled.value ? "disable" : "enable"}`),
 );
+const heroElement = ref(null);
+const isHeroVisible = ref(true);
+
+useIntersectionObserver(
+  heroElement,
+  ([entry]) => {
+    isHeroVisible.value = (entry?.intersectionRatio ?? 0) >= 0.01;
+  },
+  { threshold: [0, 0.01] },
+);
+
+onMounted(() => {
+  heroElement.value = document.getElementById("hero");
+  if (!heroElement.value) isHeroVisible.value = false;
+});
 
 const toggleEffects = () => {
   toggleEffectsMode();

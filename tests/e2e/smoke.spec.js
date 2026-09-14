@@ -363,14 +363,19 @@ test("scroll to top returns from lower sections", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
 
   const hero = page.locator("#hero");
+  const scrollToTop = page.locator("#scroll-to-top");
+
+  await expect(scrollToTop).toBeDisabled();
 
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
   await expect(page.locator("#footer")).toBeInViewport();
+  await expect(scrollToTop).toBeEnabled();
 
-  await page.locator("#scroll-to-top").click();
+  await scrollToTop.click();
   await expect(hero).toBeInViewport({ timeout: 10_000 });
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(100);
+  await expect(scrollToTop).toBeDisabled();
 });
 
 test("section dot navigation targets the explicit section nav", async ({ page }) => {
