@@ -50,15 +50,24 @@ export const initFeatures = async () => {
       initDesignActive();
 
       const desktopModules = screenLg
-        ? Promise.all([import("../libraries/vanilla-tilt"), import("../features/effects/cursor")])
+        ? Promise.all([
+            import("../libraries/vanilla-tilt"),
+            import("../features/effects/cursor"),
+          ])
         : null;
-      const [{ initHorizontalScroll }, { initProgressBar }, { initSectionSnap }] =
-        await Promise.all([
-          import("../features/navigation/horizontal-scroll"),
-          import("../features/navigation/progress-bar"),
-          import("../features/navigation/section-snap"),
-        ]);
+      const [
+        { initCreativeParallax },
+        { initHorizontalScroll },
+        { initProgressBar },
+        { initSectionSnap },
+      ] = await Promise.all([
+        import("../features/effects/creative-parallax"),
+        import("../features/navigation/horizontal-scroll"),
+        import("../features/navigation/progress-bar"),
+        import("../features/navigation/section-snap"),
+      ]);
 
+      onReady(initCreativeParallax);
       initHorizontalScroll();
       initProgressBar();
       initSectionSnap();

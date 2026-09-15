@@ -1,11 +1,10 @@
 <template>
   <div
     class="vanilla-tilt-creatives group h-fit overflow-hidden rounded-4xl hover:z-100"
-    :style="computedStyle"
   >
     <video
       ref="videoEl"
-      class="aspect-video w-full transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0"
+      class="aspect-video w-full transition-all duration-1000 ease-in-out"
       :src="isSourceLoaded ? creativeSrc : undefined"
       muted
       controls
@@ -19,19 +18,12 @@
 
 <script setup>
 import { useIntersectionObserver } from "@vueuse/core";
-import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import { effectsEnabled } from "../features/preferences/effects-toggle";
-import { getCreativeGridStyle } from "../utils/creative-grid-style";
 
-const props = defineProps({
+defineProps({
   creativeSrc: { type: String, required: true },
-  row: { type: [Number, String], required: true, default: 1 },
-  rowSpan: { type: Number, default: 1 },
-  col: { type: [Number, String], required: true, default: 1 },
-  colSpan: { type: Number, default: 1 },
 });
-
-const computedStyle = computed(() => getCreativeGridStyle(props));
 
 const videoEl = ref(null);
 const isSourceLoaded = ref(false);

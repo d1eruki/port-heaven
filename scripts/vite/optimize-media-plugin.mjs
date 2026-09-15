@@ -6,12 +6,17 @@ import ffmpegPath from "ffmpeg-static";
 import sharp from "sharp";
 
 const resizeTargets = new Map([
-  ["postcard.webp", { width: 1000 }],
+  ["2025-artem-y.webp", { width: 1000 }],
   ["siyay.webp", { width: 1600 }],
 ]);
 const videoTargets = new Set(["varwin-opening.mp4"]);
-const supportedImageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
-const supportedMediaExtensions = new Set([...supportedImageExtensions, ".mp4"]);
+const supportedImageExtensions = new Set([".avif", ".jpg", ".jpeg", ".png", ".webp"]);
+const supportedVideoExtensions = new Set([".mp4", ".ogg", ".webm"]);
+const supportedMediaExtensions = new Set([
+  ...supportedImageExtensions,
+  ...supportedVideoExtensions,
+]);
+const priorityDirectoryPattern = /[\\/]priority-[123][\\/]/;
 
 const runFfmpeg = (args) =>
   new Promise((resolve, reject) => {
@@ -34,12 +39,18 @@ const optimizeImage = async (content, resourcePath) => {
   const extension = path.extname(resourcePath).toLowerCase();
   if (!supportedImageExtensions.has(extension)) return content;
 
-  const resize = resizeTargets.get(path.basename(resourcePath));
+  const resize =
+    resizeTargets.get(path.basename(resourcePath)) ??
+    (priorityDirectoryPattern.test(resourcePath)
+      ? { width: 1920, height: 1920, fit: "inside" }
+      : undefined);
   let pipeline = sharp(content, { animated: true }).rotate();
 
   if (resize) pipeline = pipeline.resize({ ...resize, withoutEnlargement: true });
 
-  if (extension === ".webp") {
+  if (extension === ".avif") {
+    pipeline = pipeline.avif({ quality: 55, effort: 6 });
+  } else if (extension === ".webp") {
     pipeline = pipeline.webp({ quality: 78, effort: 6, smartSubsample: true });
   } else if (extension === ".jpg" || extension === ".jpeg") {
     pipeline = pipeline.jpeg({ quality: 82, mozjpeg: true });
@@ -102,7 +113,7 @@ export const optimizeMediaPlugin = ({ assetsRoot }) => {
 
       const content = await readFile(resourcePath);
       const optimized =
-        extension === ".mp4"
+        supportedVideoExtensions.has(extension)
           ? await optimizeVideo(content, resourcePath)
           : await optimizeImage(content, resourcePath);
       const referenceId = this.emitFile({

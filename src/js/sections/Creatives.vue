@@ -2,7 +2,8 @@
   <section
     data-section="creatives"
     id="creatives"
-    class="relative min-h-svh"
+    class="relative min-h-svh lg:h-[var(--creative-stream-height)]"
+    :style="creativeSectionStyle"
   >
     <div
       data-creatives-heading-pin
@@ -19,35 +20,56 @@
       </div>
     </div>
     <div
-      class="container-creatives flex h-fit w-full flex-col gap-5 px-10 pb-10 lg:grid lg:grid-cols-20 lg:gap-0 lg:p-15"
+      data-creative-cloud
+      aria-label="Creative work gallery"
+      class="w-full columns-2 gap-3 px-10 pb-10 sm:columns-3 sm:gap-5 lg:absolute lg:inset-0 lg:block lg:columns-auto lg:overflow-clip lg:p-0"
     >
-      <component
-        :is="creative.type === 'video' ? VideoCreative : ImageCreative"
-        v-for="creative in creatives"
+      <div
+        v-for="creative in creativeCloud"
         :key="creative.src"
-        :creative-alt="creative.alt"
-        :creative-src="creative.src"
-        :image-height="creative.height"
-        :image-width="creative.width"
-        :col="creative.col"
-        :col-span="creative.colSpan"
-        :row="creative.row"
-        :row-span="creative.rowSpan"
-      />
+        data-creative-cloud-item
+        :data-depth="creative.depth"
+        :data-drift-x="creative.driftX"
+        :data-drift-y="creative.driftY"
+        class="relative mb-3 inline-block w-full break-inside-avoid hover:z-100! sm:mb-5 lg:absolute lg:top-[var(--creative-top)] lg:left-[var(--creative-left)] lg:z-[var(--creative-z-index)] lg:mb-0 lg:block lg:w-[var(--creative-width)] lg:rotate-[var(--creative-rotation)] lg:will-change-transform"
+        :style="creative.style"
+      >
+        <VideoCreative
+          v-if="creative.type === 'video'"
+          :creative-src="creative.src"
+        />
+        <ImageCreative
+          v-else
+          :creative-alt="creative.alt"
+          :creative-src="creative.src"
+          :image-height="creative.height"
+          :image-width="creative.width"
+        />
+      </div>
     </div>
-    <div
-      aria-hidden="true"
-      class="hidden lg:block lg:h-dvh"
-    ></div>
   </section>
 </template>
 
 <script setup>
+import { useWindowSize } from "@vueuse/core";
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { creatives } from "../data/creatives";
 import ImageCreative from "../components/ImageCreative.vue";
 import MenuDescription from "../components/MenuDescription.vue";
 import VideoCreative from "../components/VideoCreative.vue";
+import {
+  createCreativeCloudItem,
+  getCreativeCloudHeight,
+} from "../utils/creative-cloud-layout";
 
 const { t } = useI18n();
+const { width: viewportWidth, height: viewportHeight } = useWindowSize();
+const creativeCloud = computed(() => creatives.map(createCreativeCloudItem));
+const creativeSectionStyle = computed(() => ({
+  "--creative-stream-height": `${getCreativeCloudHeight(
+    creativeCloud.value,
+    viewportWidth.value / Math.max(viewportHeight.value, 1),
+  )}dvh`,
+}));
 </script>

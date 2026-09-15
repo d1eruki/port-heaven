@@ -1,10 +1,9 @@
 <template>
   <div
     class="vanilla-tilt-creatives group h-fit overflow-hidden rounded-4xl hover:z-100"
-    :style="computedStyle"
   >
     <img
-      class="transition-all duration-1000 ease-in-out lg:grayscale lg:group-hover:grayscale-0"
+      class="h-auto w-full transition-all duration-1000 ease-in-out"
       :src="creativeSrc"
       :alt="creativeAlt"
       :width="imageWidth"
@@ -16,19 +15,10 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { getCreativeGridStyle } from "../utils/creative-grid-style";
-
-const props = defineProps({
+defineProps({
   creativeSrc: { type: String, required: true },
   creativeAlt: { type: String, required: true },
-  imageWidth: { type: Number, required: true },
-  imageHeight: { type: Number, required: true },
-  row: { type: [Number, String], required: true, default: 1 },
-  rowSpan: { type: Number, default: 1 },
-  col: { type: [Number, String], required: true, default: 1 },
-  colSpan: { type: Number, default: 1 },
+  imageWidth: { type: Number, default: undefined },
+  imageHeight: { type: Number, default: undefined },
 });
-
-const computedStyle = computed(() => getCreativeGridStyle(props));
 </script>
