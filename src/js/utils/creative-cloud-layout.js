@@ -3,21 +3,18 @@ const STREAM_INTRO_HEIGHT = 112;
 const STREAM_ITEM_STEP = 14;
 const STREAM_ITEM_JITTER = 8;
 const STREAM_OUTRO_HEIGHT = 100;
-const MIN_ITEM_WIDTH = 18;
-const MAX_ITEM_WIDTH = 24;
 const DEFAULT_PRIORITY = 2;
 
-const DEPTHS = [
-  { scale: 0.8, speed: 0.25, zIndex: 10 },
-  { scale: 0.95, speed: 0.45, zIndex: 20 },
-  { scale: 1.1, speed: 0.7, zIndex: 30 },
-  { scale: 1.25, speed: 1, zIndex: 40 },
-];
+const PRIORITY_LAYERS = {
+  1: { minWidth: 22, maxWidth: 25, speed: 1, zIndex: 40 },
+  2: { minWidth: 19, maxWidth: 22, speed: 0.65, zIndex: 30 },
+  3: { minWidth: 13, maxWidth: 16, speed: 0.3, zIndex: 10 },
+};
 
 const PRIORITY_ANCHORS = {
   1: [18, 31, 44, 57, 70],
   2: HORIZONTAL_ANCHORS,
-  3: [-3, 7, 70, 82],
+  3: HORIZONTAL_ANCHORS,
 };
 
 const hashString = (value) => {
@@ -44,13 +41,6 @@ const round = (value) => Math.round(value * 10) / 10;
 const normalizePriority = (priority) =>
   Math.min(3, Math.max(1, Math.round(Number(priority) || DEFAULT_PRIORITY)));
 
-const biasRandomByPriority = (value, priority) => {
-  if (priority === 1) return 1 - (1 - value) ** 2;
-  if (priority === 3) return value ** 2;
-
-  return value;
-};
-
 const getCreativeAspectRatio = (creative) => {
   if (creative.width && creative.height) return creative.width / creative.height;
   if (creative.type === "video") return 16 / 9;
@@ -61,16 +51,15 @@ const getCreativeAspectRatio = (creative) => {
   return 4 / 3;
 };
 
-export const createCreativeCloudItem = (creative, index) => {
-  const random = createRandom(hashString(creative.id ?? creative.src));
+export const createCreativeCloudItem = (creative, index, seed = 0) => {
+  const identity = creative.id ?? creative.src;
+  const random = createRandom(hashString(seed === 0 ? identity : `${seed}:${identity}`));
   const priority = normalizePriority(creative.priority);
+  const layer = PRIORITY_LAYERS[priority];
   const horizontalAnchors = PRIORITY_ANCHORS[priority];
   const horizontalAnchor =
     horizontalAnchors[(index * 3 + Math.floor(random() * 2)) % horizontalAnchors.length];
-  const depthRandom = biasRandomByPriority(random(), priority);
-  const depth = DEPTHS[Math.min(Math.floor(depthRandom * DEPTHS.length), DEPTHS.length - 1)];
-  const widthRandom = biasRandomByPriority(random(), priority);
-  const width = round(MIN_ITEM_WIDTH + widthRandom * (MAX_ITEM_WIDTH - MIN_ITEM_WIDTH));
+  const width = round(layer.minWidth + random() * (layer.maxWidth - layer.minWidth));
   const left = round(
     Math.min(98 - width, Math.max(-3, horizontalAnchor + (random() - 0.5) * 10)),
   );
@@ -83,7 +72,7 @@ export const createCreativeCloudItem = (creative, index) => {
   return {
     ...creative,
     aspectRatio,
-    depth: depth.speed,
+    depth: layer.speed,
     driftX,
     driftY,
     layoutTop: top,
@@ -94,7 +83,7 @@ export const createCreativeCloudItem = (creative, index) => {
       "--creative-rotation": `${rotation}deg`,
       "--creative-top": `${top}dvh`,
       "--creative-width": `${width}vw`,
-      "--creative-z-index": depth.zIndex,
+      "--creative-z-index": layer.zIndex,
     },
   };
 };

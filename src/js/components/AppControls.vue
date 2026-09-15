@@ -96,6 +96,16 @@
       </Button>
 
       <Button
+        variant="secondary"
+        size="compact"
+        tone="control"
+        :aria-label="devModeToggleLabel"
+        @click="toggleDevMode"
+      >
+        {{ devModeToggleLabel }}
+      </Button>
+
+      <Button
         id="scroll-to-top"
         variant="secondary"
         size="compact"
@@ -121,6 +131,7 @@ import {
   TooltipTrigger,
 } from "reka-ui";
 import Button from "./Button.vue";
+import { devModeEnabled, toggleDevMode } from "../features/preferences/dev-mode";
 import { effectsEnabled, toggleEffectsMode } from "../features/preferences/effects-toggle";
 import { currentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 
@@ -138,6 +149,9 @@ const themeToggleLabel = computed(() =>
 const langToggleLabel = computed(() => t("lang-toggle"));
 const effectsToggleLabel = computed(() =>
   t(`effects-toggle.${effectsEnabled.value ? "disable" : "enable"}`),
+);
+const devModeToggleLabel = computed(() =>
+  t(`dev-mode-toggle.${devModeEnabled.value ? "disable" : "enable"}`),
 );
 const heroElement = ref(null);
 const isHeroVisible = ref(true);

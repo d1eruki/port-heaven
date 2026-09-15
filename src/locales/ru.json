@@ -177,6 +177,7 @@
 
   "buttons": {
     "open": "открыть",
+    "shuffleCreatives": "перетасовать",
     "toTop": "вверх"
   },
 
@@ -207,6 +208,10 @@
   "effects-toggle": {
     "enable": "включить эффекты",
     "disable": "выключить эффекты"
+  },
+  "dev-mode-toggle": {
+    "enable": "включить режим разработчика",
+    "disable": "выключить режим разработчика"
   },
 
   "contacts": {

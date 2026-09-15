@@ -51,21 +51,26 @@ const hashString = (value) => {
   return hash >>> 0;
 };
 
-const shuffleStable = (items, salt) =>
+const getSeededSalt = (salt, seed) => (seed === 0 ? salt : `${salt}:${seed}`);
+
+const shuffleStable = (items, salt, seed) =>
   [...items].sort(
     (first, second) =>
-      hashString(`${salt}:${first.id}`) - hashString(`${salt}:${second.id}`),
+      hashString(`${getSeededSalt(salt, seed)}:${first.id}`) -
+      hashString(`${getSeededSalt(salt, seed)}:${second.id}`),
   );
 
-const distributePriorityCreatives = () => {
+const distributePriorityCreatives = (seed) => {
   const normalizedCreatives = creativeAssets.map(normalizeCreative);
   const important = shuffleStable(
     normalizedCreatives.filter(({ priority }) => priority === 1),
     "priority-1",
+    seed,
   );
   const supporting = shuffleStable(
     normalizedCreatives.filter(({ priority }) => priority !== 1),
     "supporting",
+    seed,
   );
   const bucketCount = important.length + 1;
 
@@ -78,4 +83,6 @@ const distributePriorityCreatives = () => {
   }).flat();
 };
 
-export const creatives = distributePriorityCreatives();
+export const createCreatives = (seed = 0) => distributePriorityCreatives(seed);
+
+export const creatives = createCreatives();

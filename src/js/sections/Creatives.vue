@@ -7,7 +7,7 @@
   >
     <div
       data-creatives-heading-pin
-      class="contents lg:grid lg:h-dvh lg:w-full lg:place-items-center"
+      class="contents lg:pointer-events-none lg:relative lg:z-20 lg:grid lg:h-dvh lg:w-full lg:place-items-center"
     >
       <div
         class="pointer-events-none left-0 mx-10 mb-10 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:m-0 lg:w-fit lg:items-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-primary"
@@ -17,6 +17,14 @@
           class="lg:max-w-[23dvw]"
           :menu-desc="t('menu.creatives.description')"
         />
+        <Button
+          v-if="devModeEnabled"
+          size="compact"
+          class="pointer-events-auto"
+          @click="shuffleCreatives"
+        >
+          {{ t("buttons.shuffleCreatives") }}
+        </Button>
       </div>
     </div>
     <div
@@ -52,12 +60,15 @@
 
 <script setup>
 import { useWindowSize } from "@vueuse/core";
-import { computed } from "vue";
+import { computed, nextTick, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { creatives } from "../data/creatives";
+import Button from "../components/Button.vue";
+import { createCreatives } from "../data/creatives";
 import ImageCreative from "../components/ImageCreative.vue";
 import MenuDescription from "../components/MenuDescription.vue";
 import VideoCreative from "../components/VideoCreative.vue";
+import { devModeEnabled } from "../features/preferences/dev-mode";
+import { ScrollTrigger } from "../libraries/gsap-scroll";
 import {
   createCreativeCloudItem,
   getCreativeCloudHeight,
@@ -65,11 +76,22 @@ import {
 
 const { t } = useI18n();
 const { width: viewportWidth, height: viewportHeight } = useWindowSize();
-const creativeCloud = computed(() => creatives.map(createCreativeCloudItem));
+const layoutSeed = ref(0);
+const creativeCloud = computed(() =>
+  createCreatives(layoutSeed.value).map((creative, index) =>
+    createCreativeCloudItem(creative, index, layoutSeed.value),
+  ),
+);
 const creativeSectionStyle = computed(() => ({
   "--creative-stream-height": `${getCreativeCloudHeight(
     creativeCloud.value,
     viewportWidth.value / Math.max(viewportHeight.value, 1),
   )}dvh`,
 }));
+
+const shuffleCreatives = async () => {
+  layoutSeed.value += 1;
+  await nextTick();
+  ScrollTrigger.refresh();
+};
 </script>

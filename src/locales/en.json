@@ -172,6 +172,7 @@
   },
   "buttons": {
     "open": "open",
+    "shuffleCreatives": "shuffle",
     "toTop": "top"
   },
   "notices": {
@@ -198,6 +199,10 @@
   "effects-toggle": {
     "enable": "enable effects",
     "disable": "disable effects"
+  },
+  "dev-mode-toggle": {
+    "enable": "enable developer mode",
+    "disable": "disable developer mode"
   },
   "contacts": {
     "telegram": "telegram",
