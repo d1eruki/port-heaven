@@ -9,7 +9,6 @@ const resizeTargets = new Map([
   ["2025-artem-y.webp", { width: 1000 }],
   ["siyay.webp", { width: 1600 }],
 ]);
-const videoTargets = new Set(["varwin-opening.mp4"]);
 const supportedImageExtensions = new Set([".avif", ".jpg", ".jpeg", ".png", ".webp"]);
 const supportedVideoExtensions = new Set([".mp4", ".ogg", ".webm"]);
 const supportedMediaExtensions = new Set([
@@ -17,6 +16,41 @@ const supportedMediaExtensions = new Set([
   ...supportedVideoExtensions,
 ]);
 const priorityDirectoryPattern = /[\\/]priority-[123][\\/]/;
+const videoEncodingByExtension = {
+  ".mp4": [
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-crf",
+    "28",
+    "-pix_fmt",
+    "yuv420p",
+    "-c:a",
+    "aac",
+    "-b:a",
+    "96k",
+    "-movflags",
+    "+faststart",
+  ],
+  ".webm": [
+    "-c:v",
+    "libvpx-vp9",
+    "-deadline",
+    "good",
+    "-cpu-used",
+    "3",
+    "-crf",
+    "35",
+    "-b:v",
+    "0",
+    "-c:a",
+    "libopus",
+    "-b:a",
+    "96k",
+  ],
+  ".ogg": ["-c:v", "libtheora", "-q:v", "5", "-c:a", "libvorbis", "-q:a", "4"],
+};
 
 const runFfmpeg = (args) =>
   new Promise((resolve, reject) => {
@@ -63,32 +97,27 @@ const optimizeImage = async (content, resourcePath) => {
 };
 
 const optimizeVideo = async (content, resourcePath) => {
-  if (!videoTargets.has(path.basename(resourcePath))) return content;
-
+  const extension = path.extname(resourcePath).toLowerCase();
   const tempDir = await mkdtemp(path.join(os.tmpdir(), "port-heaven-media-"));
-  const outputPath = path.join(tempDir, "optimized.mp4");
+  const outputPath = path.join(tempDir, `optimized${extension}`);
 
   try {
     await runFfmpeg([
       "-y",
       "-i",
       resourcePath,
+      "-map",
+      "0:v:0",
+      "-map",
+      "0:a:0?",
       "-vf",
-      "scale=min(1280\\,iw):-2",
-      "-c:v",
-      "libx264",
-      "-preset",
-      "slow",
-      "-crf",
-      "30",
-      "-an",
-      "-movflags",
-      "+faststart",
+      "scale=w=min(1280\\,iw):h=min(1280\\,ih):force_original_aspect_ratio=decrease:force_divisible_by=2",
+      ...videoEncodingByExtension[extension],
       outputPath,
     ]);
 
     const optimizedSize = (await stat(outputPath)).size;
-    return optimizedSize < content.length ? readFile(outputPath) : content;
+    return optimizedSize < content.length ? await readFile(outputPath) : content;
   } finally {
     await rm(tempDir, { recursive: true, force: true });
   }

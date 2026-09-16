@@ -19,9 +19,11 @@ Production JS, CSS, chunks, and imported assets use content hashes in their file
 browser caching. Project assets are imported through Vite from `src/assets`; avoid literal
 `assets/...` paths for local files so unused assets are not copied into production builds.
 
-Production images and targeted videos are optimized by a local Vite plugin before their content
-hashes are calculated. The original files in `src/assets` remain unchanged; only emitted `dist`
-assets are compressed.
+Production images and imported `.mp4`, `.webm`, and `.ogg` videos are optimized by a local Vite
+plugin before their content hashes are calculated. Videos keep their format and audio, are scaled
+down to fit within 1280 × 1280 without upscaling, and are replaced only when the result is smaller.
+The original files in `src/assets` remain unchanged; only emitted `dist` assets are compressed.
+Developer controls are available in the local dev server but hidden in production builds.
 
 ### PostCSS
 

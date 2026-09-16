@@ -343,6 +343,14 @@ test("theme and locale controls update the page", async ({ page }) => {
   await expect(page.getByRole("button", { name: "русский" })).toBeVisible();
 });
 
+test("production hides developer controls even when the preference was saved", async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem("dev-mode", "on"));
+  await page.goto("/");
+
+  await expect(page.getByRole("button", { name: /режим разработчика/ })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "перетасовать" })).toHaveCount(0);
+});
+
 test("saved dark theme is synchronized before Vue mounts", async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem("theme", "dark");

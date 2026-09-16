@@ -3,6 +3,7 @@ import { useValidatedStorage } from "./storage";
 
 const DEV_MODE_STORAGE_KEY = "dev-mode";
 const DEFAULT_DEV_MODE = "off";
+const isDevelopment = import.meta.env.DEV;
 const isSupportedDevMode = (mode) => mode === "on" || mode === "off";
 const devMode = useValidatedStorage({
   key: DEV_MODE_STORAGE_KEY,
@@ -10,9 +11,11 @@ const devMode = useValidatedStorage({
   isValid: isSupportedDevMode,
 });
 
-export const devModeEnabled = computed(() => devMode.value === "on");
+export const devModeEnabled = computed(() => isDevelopment && devMode.value === "on");
 
 export const toggleDevMode = () => {
+  if (!isDevelopment) return DEFAULT_DEV_MODE;
+
   const nextMode = devModeEnabled.value ? "off" : "on";
   devMode.value = nextMode;
   return nextMode;

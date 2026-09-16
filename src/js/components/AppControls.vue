@@ -96,6 +96,7 @@
       </Button>
 
       <Button
+        v-if="isDevelopment"
         variant="secondary"
         size="compact"
         tone="control"
@@ -135,6 +136,7 @@ import { devModeEnabled, toggleDevMode } from "../features/preferences/dev-mode"
 import { effectsEnabled, toggleEffectsMode } from "../features/preferences/effects-toggle";
 import { currentTheme, getTargetTheme, setTheme } from "../features/preferences/theme-toggle";
 
+const isDevelopment = import.meta.env.DEV;
 const { locale, t, tm } = useI18n();
 const sectionNavItems = computed(() =>
   Object.keys(tm("navigation.sections")).map((id) => ({
