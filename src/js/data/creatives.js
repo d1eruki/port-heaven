@@ -34,9 +34,7 @@ const normalizeCreative = (creative) => {
     ...normalized,
     alt: normalized.alt ?? `Creative ${normalized.id.replaceAll("-", " ")}`,
     priority: normalized.priority ?? DEFAULT_PRIORITY,
-    type:
-      normalized.type ??
-      (VIDEO_SOURCE_PATTERN.test(normalized.src) ? "video" : "image"),
+    type: normalized.type ?? (VIDEO_SOURCE_PATTERN.test(normalized.src) ? "video" : "image"),
   };
 };
 

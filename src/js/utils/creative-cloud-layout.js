@@ -60,9 +60,7 @@ export const createCreativeCloudItem = (creative, index, seed = 0) => {
   const horizontalAnchor =
     horizontalAnchors[(index * 3 + Math.floor(random() * 2)) % horizontalAnchors.length];
   const width = round(layer.minWidth + random() * (layer.maxWidth - layer.minWidth));
-  const left = round(
-    Math.min(98 - width, Math.max(-3, horizontalAnchor + (random() - 0.5) * 10)),
-  );
+  const left = round(Math.min(98 - width, Math.max(-3, horizontalAnchor + (random() - 0.5) * 10)));
   const top = round(STREAM_INTRO_HEIGHT + index * STREAM_ITEM_STEP + random() * STREAM_ITEM_JITTER);
   const driftX = round((random() - 0.5) * 8);
   const driftY = round(12 + random() * 18);

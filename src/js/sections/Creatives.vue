@@ -69,10 +69,7 @@ import MenuDescription from "../components/MenuDescription.vue";
 import VideoCreative from "../components/VideoCreative.vue";
 import { devModeEnabled } from "../features/preferences/dev-mode";
 import { ScrollTrigger } from "../libraries/gsap-scroll";
-import {
-  createCreativeCloudItem,
-  getCreativeCloudHeight,
-} from "../utils/creative-cloud-layout";
+import { createCreativeCloudItem, getCreativeCloudHeight } from "../utils/creative-cloud-layout";
 
 const { t } = useI18n();
 const { width: viewportWidth, height: viewportHeight } = useWindowSize();

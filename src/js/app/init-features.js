@@ -50,10 +50,7 @@ export const initFeatures = async () => {
       initDesignActive();
 
       const desktopModules = screenLg
-        ? Promise.all([
-            import("../libraries/vanilla-tilt"),
-            import("../features/effects/cursor"),
-          ])
+        ? Promise.all([import("../libraries/vanilla-tilt"), import("../features/effects/cursor")])
         : null;
       const [
         { initCreativeParallax },

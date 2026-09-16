@@ -141,10 +141,9 @@ export const optimizeMediaPlugin = ({ assetsRoot }) => {
       }
 
       const content = await readFile(resourcePath);
-      const optimized =
-        supportedVideoExtensions.has(extension)
-          ? await optimizeVideo(content, resourcePath)
-          : await optimizeImage(content, resourcePath);
+      const optimized = supportedVideoExtensions.has(extension)
+        ? await optimizeVideo(content, resourcePath)
+        : await optimizeImage(content, resourcePath);
       const referenceId = this.emitFile({
         type: "asset",
         name: path.basename(resourcePath),

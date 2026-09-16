@@ -4,7 +4,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { collectProjectSourceFiles } from "./source-files.mjs";
 
-const assetPathPattern = /assets\/[A-Za-z0-9._~:/?#[\]@!$&'()*+,;=%-]+/g;
+const assetPathPattern = /assets\/[A-Za-z0-9._~:/?#[\]@!$&'()*+,;=%{}-]+/g;
+const globSyntaxPattern = /[{}*]/;
 
 const normalizeAssetPath = (assetPath) => assetPath.split(/[?#]/, 1)[0];
 
@@ -17,6 +18,8 @@ test("string asset references point to existing source assets", async () => {
     const matches = source.matchAll(assetPathPattern);
 
     for (const match of matches) {
+      if (globSyntaxPattern.test(match[0])) continue;
+
       const assetPath = normalizeAssetPath(match[0]);
       if (!references.has(assetPath)) references.set(assetPath, new Set());
       references.get(assetPath).add(filePath);

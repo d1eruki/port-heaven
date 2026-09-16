@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="vanilla-tilt-creatives group h-fit overflow-hidden hover:z-100"
-  >
+  <div class="vanilla-tilt-creatives group h-fit overflow-hidden hover:z-100">
     <video
       ref="videoEl"
       class="aspect-video w-full transition-all duration-1000 ease-in-out"
