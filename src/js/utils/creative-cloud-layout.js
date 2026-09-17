@@ -6,9 +6,9 @@ const STREAM_OUTRO_HEIGHT = 100;
 const DEFAULT_PRIORITY = 2;
 
 const PRIORITY_LAYERS = {
-  1: { minWidth: 22, maxWidth: 25, speed: 1, zIndex: 40 },
-  2: { minWidth: 19, maxWidth: 22, speed: 0.65, zIndex: 30 },
-  3: { minWidth: 13, maxWidth: 16, speed: 0.3, zIndex: 10 },
+  1: { minWidth: 22, maxWidth: 25, speed: 0, zIndex: 40 },
+  2: { minWidth: 19, maxWidth: 22, speed: 1, zIndex: 30 },
+  3: { minWidth: 13, maxWidth: 16, speed: 2, zIndex: 10 },
 };
 
 const PRIORITY_ANCHORS = {

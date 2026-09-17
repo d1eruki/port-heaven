@@ -1,6 +1,11 @@
 import { gsap, ScrollTrigger } from "../../libraries/gsap-scroll";
 import { getBreakpointPx } from "../../utils/breakpoints";
 
+const getDepth = (item) => {
+  const depth = Number(item.dataset.depth);
+  return Number.isFinite(depth) ? depth : 0.5;
+};
+
 export const initCreativeParallax = () => {
   const section = document.getElementById("creatives");
   const items = section?.querySelectorAll("[data-creative-cloud-item]");
@@ -11,7 +16,7 @@ export const initCreativeParallax = () => {
 
   media.add(`(max-width: ${breakpointLg - 0.02}px)`, () => {
     const animations = Array.from(items, (item) => {
-      const depth = Number(item.dataset.depth) || 0.5;
+      const depth = getDepth(item);
 
       return gsap.fromTo(
         item,
@@ -42,7 +47,7 @@ export const initCreativeParallax = () => {
 
   media.add(`(min-width: ${breakpointLg}px)`, () => {
     const animations = Array.from(items, (item) => {
-      const depth = Number(item.dataset.depth) || 0.5;
+      const depth = getDepth(item);
       const driftX = Number(item.dataset.driftX) || 0;
       const driftY = Number(item.dataset.driftY) || 16;
 

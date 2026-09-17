@@ -13,7 +13,7 @@
   --semantic-text-hero: var(--color-black);
   --semantic-text-action-secondary: var(--color-neutral-500);
   --semantic-text-muted: var(--color-neutral-500);
-  --semantic-text-link: var(--color-neutral-500);
+  --semantic-text-link: var(--color-neutral-400);
   --semantic-text-link-hover: var(--color-black);
   --semantic-text-on-accent: var(--color-white);
   --semantic-text-on-inverse: var(--color-white);
