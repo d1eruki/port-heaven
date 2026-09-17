@@ -53,14 +53,17 @@ const props = defineProps({
 const classesByVariantAndSize = {
   primary: {
     default:
-      "anim-extrude active flex w-full justify-center rounded-full bg-accent px-5 py-5 text-center text-on-accent lg:w-fit lg:px-10",
-    compact: "anim-extrude active rounded-full bg-accent px-5 py-2.5 text-on-accent",
+      "anim-extrude active flex w-full justify-center rounded-full px-5 py-5 text-center lg:w-fit lg:px-10",
+    compact: "anim-extrude active rounded-full px-5 py-2.5",
   },
   secondary: {
     default: "group flex items-center",
     compact: "group flex items-center",
   },
 };
+
+const primarySurfaceClasses =
+  "bg-linear-to-b from-[color-mix(in_srgb,var(--color-accent),white_15%)] via-accent via-45% to-[color-mix(in_srgb,var(--color-accent),black_35%)] text-on-accent shadow-xl shadow-accent/25 ring-1 ring-inset ring-white/20 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
 const secondaryClassesByTone = {
   inverse: "text-action-secondary hover:text-on-inverse",
@@ -71,6 +74,7 @@ const isLink = computed(() => Boolean(props.href));
 const buttonClasses = computed(() => [
   "font-heading",
   classesByVariantAndSize[props.variant][props.size],
+  props.variant === "primary" ? primarySurfaceClasses : undefined,
   props.variant === "secondary" ? secondaryClassesByTone[props.tone] : undefined,
 ]);
 </script>
