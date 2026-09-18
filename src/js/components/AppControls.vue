@@ -45,9 +45,13 @@
               side="right"
               :side-offset="12"
               :collision-padding="16"
-              class="z-2147483647 w-max max-w-70 rounded-full bg-section-tooltip px-5 py-3 leading-snug text-on-section-tooltip"
+              class="z-2147483647 w-max max-w-70 origin-center effects:animate-[section-tooltip-pop_360ms_ease-out_both] effects:data-[state=closed]:animate-[section-tooltip-out_180ms_ease-in_both]"
             >
-              {{ t(section.labelKey) }}
+              <span
+                class="block origin-center rounded-full bg-section-tooltip px-5 py-3 leading-snug text-on-section-tooltip effects:animate-[section-tooltip-idle_3s_ease-in-out_infinite]"
+              >
+                {{ t(section.labelKey) }}
+              </span>
             </TooltipContent>
           </TooltipPortal>
         </TooltipRoot>

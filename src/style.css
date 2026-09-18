@@ -13,3 +13,47 @@
 @plugin "@iconify/tailwind4";
 @custom-variant effects (&:where(html.effects &));
 @custom-variant no-effects (&:where(html.no-effects &));
+
+@keyframes section-tooltip-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.16, 0.87);
+  }
+  70% {
+    transform: scale(0.94, 1.07);
+  }
+  85% {
+    transform: scale(1.03, 0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes section-tooltip-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes section-tooltip-idle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg) scale(1);
+  }
+  50% {
+    transform: translateY(-1px) rotate(1deg) scale(1.03);
+  }
+}
