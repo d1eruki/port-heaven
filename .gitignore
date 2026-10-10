@@ -6,3 +6,6 @@
 *.map
 /test-results/
 /playwright-report/
+
+# Local task list
+/todo.md
