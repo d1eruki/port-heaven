@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Черновая модель тела — Port Heaven</title>
+  </head>
+  <body>
+    <h1>Черновая модель тела</h1>
+    <p>Перетаскивай модель для вращения. Колесо — приближение. Двойной щелчок — вид спереди.</p>
+    <p>Тело обведено по выбранной картинке в её позе. Голова — болванка; глубина и скрытые части додуманы.</p>
+    <p>
+      <button id="front" type="button">ракурс референса</button>
+      <button id="side" type="button">вид сбоку</button>
+      <button id="back" type="button">вид сзади</button>
+      <label><input id="head" type="checkbox" checked /> показывать болванку головы</label>
+      <a href="./src/assets/models/hero-body.glb" download>скачать GLB</a>
+    </p>
+    <p id="status" role="status">Загрузка модели…</p>
+    <canvas id="scene" width="640" height="850" aria-label="Трёхмерная модель тела с вращением" tabindex="0"></canvas>
+    <details open>
+      <summary>Обводка на выбранном референсе</summary>
+      <p>Цветные линии — контуры, из которых построен объём. Кисти, скрытые в карманах, приближены.</p>
+      <svg id="tracing" xmlns="http://www.w3.org/2000/svg" width="420" height="560" viewBox="0 0 1086 1448" role="img" aria-label="Обведённые контуры тела поверх выбранной картинки">
+        <rect width="1086" height="1448" fill="#e9ebef"></rect>
+        <image href="./src/assets/hero-body-reference.png" width="1086" height="1448"></image>
+      </svg>
+    </details>
+    <script type="module">
+      // Самостоятельный просмотр стандартного GLB без сторонних библиотек.
+      const canvas = document.querySelector("#scene");
+      const status = document.querySelector("#status");
+      const gl = canvas.getContext("webgl2", { antialias: true, alpha: false });
+      const headCheckbox = document.querySelector("#head");
+      let yaw = 0;
+      let pitch = 0;
+      let distance = 2.7;
+      let dragging = false;
+      let last = [0, 0];
+      let meshes = [];
+      let program;
+      const identity = () => new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+      const normalize = (v) => { const length = Math.hypot(...v); return v.map((value) => value / length); };
+      const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+      const dot = (a, b) => a.reduce((sum, value, index) => sum + value * b[index], 0);
+      const multiply = (a, b) => {
+        const result = new Float32Array(16);
+        for (let column = 0; column < 4; column++) for (let row = 0; row < 4; row++) for (let k = 0; k < 4; k++) result[column * 4 + row] += a[k * 4 + row] * b[column * 4 + k];
+        return result;
+      };
+      const shader = (type, source) => {
+        const result = gl.createShader(type);
+        gl.shaderSource(result, source);
+        gl.compileShader(result);
+        if (!gl.getShaderParameter(result, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(result));
+        return result;
+      };
+      function draw() {
+        if (!program || document.hidden) return;
+        const cssWidth = Math.max(280, Math.min(640, window.innerWidth - 32));
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.style.width = `${cssWidth}px`;
+        canvas.style.height = `${Math.round(cssWidth * 850 / 640)}px`;
+        const width = Math.round(cssWidth * ratio);
+        const height = Math.round(cssWidth * 850 / 640 * ratio);
+        if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
+        gl.viewport(0, 0, width, height);
+        gl.clearColor(0.94, 0.945, 0.96, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        gl.useProgram(program);
+        const eye = [Math.sin(yaw) * Math.cos(pitch) * distance, 0.84 + Math.sin(pitch) * distance, Math.cos(yaw) * Math.cos(pitch) * distance];
+        const target = [0, 0.84, 0];
+        const z = normalize(eye.map((value, axis) => value - target[axis]));
+        const x = normalize(cross([0, 1, 0], z));
+        const y = cross(z, x);
+        const view = new Float32Array([x[0], y[0], z[0], 0, x[1], y[1], z[1], 0, x[2], y[2], z[2], 0, -dot(x, eye), -dot(y, eye), -dot(z, eye), 1]);
+        const halfHeight = distance / 2.97;
+        const halfWidth = halfHeight * width / height;
+        const projection = new Float32Array([1 / halfWidth, 0, 0, 0, 0, 1 / halfHeight, 0, 0, 0, 0, -0.02, 0, 0, 0, -1.001, 1]);
+        gl.uniformMatrix4fv(gl.getUniformLocation(program, "uMvp"), false, multiply(projection, view));
+        gl.uniformMatrix4fv(gl.getUniformLocation(program, "uModel"), false, identity());
+        gl.uniform3fv(gl.getUniformLocation(program, "uEye"), eye);
+        for (const mesh of meshes) {
+          if (mesh.name === "head-placeholder" && !headCheckbox.checked) continue;
+          gl.bindVertexArray(mesh.vao);
+          gl.uniform3fv(gl.getUniformLocation(program, "uColor"), mesh.color);
+          gl.drawElements(gl.TRIANGLES, mesh.count, gl.UNSIGNED_INT, 0);
+        }
+      }
+      async function load() {
+        if (!gl) throw new Error("Для просмотра нужен WebGL 2. Файл GLB можно скачать и открыть в 3D-редакторе.");
+        program = gl.createProgram();
+        gl.attachShader(program, shader(gl.VERTEX_SHADER, `#version 300 es
+          in vec3 aPosition; in vec3 aNormal;
+          uniform mat4 uMvp; uniform mat4 uModel;
+          out vec3 vNormal; out vec3 vPosition;
+          void main() { vNormal = mat3(uModel) * aNormal; vPosition = (uModel * vec4(aPosition,1.0)).xyz; gl_Position = uMvp * vec4(aPosition,1.0); }`));
+        gl.attachShader(program, shader(gl.FRAGMENT_SHADER, `#version 300 es
+          precision highp float;
+          in vec3 vNormal; in vec3 vPosition;
+          uniform vec3 uColor; uniform vec3 uEye;
+          out vec4 color;
+          void main() {
+            vec3 n = normalize(vNormal); if (!gl_FrontFacing) n = -n;
+            vec3 light = normalize(vec3(-0.6,1.0,0.8));
+            vec3 view = normalize(uEye - vPosition);
+            float key = max(dot(n,light),0.0);
+            float fill = max(dot(n,normalize(vec3(0.7,0.4,-0.6))),0.0);
+            float rim = pow(1.0-max(dot(n,view),0.0),3.0);
+            float spec = pow(max(dot(n,normalize(light+view)),0.0),35.0);
+            vec3 lit = uColor*(0.38+0.65*key+0.18*fill)+vec3(0.07)*rim+vec3(0.09)*spec;
+            color = vec4(pow(lit,vec3(1.0/2.2)),1.0);
+          }`));
+        gl.linkProgram(program);
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
+        gl.enable(gl.DEPTH_TEST);
+        const response = await fetch("./src/assets/models/hero-body.glb", { cache: "no-store" });
+        if (!response.ok) throw new Error(`Не удалось загрузить модель: ${response.status}`);
+        const buffer = await response.arrayBuffer();
+        const data = new DataView(buffer);
+        const jsonLength = data.getUint32(12, true);
+        const document = JSON.parse(new TextDecoder().decode(new Uint8Array(buffer, 20, jsonLength)));
+        const binaryStart = 20 + jsonLength + 8;
+        const tracing = window.document.querySelector("#tracing");
+        const colors = ["#ed4b51", "#33a8ba", "#33a8ba", "#9a5cf0", "#9a5cf0", "#ed8e28", "#ed8e28", "#208b65", "#208b65"];
+        for (const [index, contour] of document.extras.contours.entries()) {
+          const path = window.document.createElementNS("http://www.w3.org/2000/svg", "path");
+          path.setAttribute("d", `M${contour.points.map((point) => point.join(",")).join(" L")} Z`);
+          path.setAttribute("fill", "none");
+          path.setAttribute("stroke", colors[index % colors.length]);
+          path.setAttribute("stroke-width", "4");
+          const title = window.document.createElementNS("http://www.w3.org/2000/svg", "title");
+          title.textContent = contour.name;
+          path.append(title);
+          tracing.append(path);
+        }
+        const accessorData = (index) => {
+          const accessor = document.accessors[index];
+          const view = document.bufferViews[accessor.bufferView];
+          const Constructor = accessor.componentType === 5125 ? Uint32Array : Float32Array;
+          return new Constructor(buffer, binaryStart + (view.byteOffset || 0) + (accessor.byteOffset || 0), accessor.count * (accessor.type === "VEC3" ? 3 : 1));
+        };
+        meshes = document.meshes.map((mesh) => {
+          const primitive = mesh.primitives[0];
+          const vao = gl.createVertexArray();
+          gl.bindVertexArray(vao);
+          for (const [attribute, name] of [["POSITION", "aPosition"], ["NORMAL", "aNormal"]]) {
+            gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+            gl.bufferData(gl.ARRAY_BUFFER, accessorData(primitive.attributes[attribute]), gl.STATIC_DRAW);
+            const location = gl.getAttribLocation(program, name);
+            gl.enableVertexAttribArray(location);
+            gl.vertexAttribPointer(location, 3, gl.FLOAT, false, 0, 0);
+          }
+          const indices = accessorData(primitive.indices);
+          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
+          gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+          return { name: mesh.name, vao, count: indices.length, color: document.materials[primitive.material].pbrMetallicRoughness.baseColorFactor.slice(0, 3) };
+        });
+        status.textContent = "Модель готова к просмотру. Перетаскивай для вращения.";
+        draw();
+      }
+      canvas.addEventListener("pointerdown", (event) => { dragging = true; last = [event.clientX, event.clientY]; canvas.setPointerCapture(event.pointerId); });
+      canvas.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        yaw -= (event.clientX - last[0]) * 0.009;
+        pitch = Math.max(-1.2, Math.min(1.2, pitch + (event.clientY - last[1]) * 0.006));
+        last = [event.clientX, event.clientY]; draw();
+      });
+      for (const type of ["pointerup", "pointercancel", "lostpointercapture"]) canvas.addEventListener(type, () => { dragging = false; });
+      canvas.addEventListener("wheel", (event) => { event.preventDefault(); distance = Math.max(1.3, Math.min(5, distance * Math.exp(event.deltaY * 0.001))); draw(); }, { passive: false });
+      const front = () => { yaw = 0; pitch = 0; distance = 2.7; draw(); };
+      canvas.addEventListener("dblclick", front);
+      canvas.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "+", "-", "Home"].includes(event.key)) return;
+        event.preventDefault();
+        if (event.key === "ArrowLeft") yaw -= 0.1;
+        if (event.key === "ArrowRight") yaw += 0.1;
+        if (event.key === "ArrowUp") pitch = Math.min(1.2, pitch + 0.1);
+        if (event.key === "ArrowDown") pitch = Math.max(-1.2, pitch - 0.1);
+        if (event.key === "+") distance = Math.max(1.3, distance - 0.1);
+        if (event.key === "-") distance = Math.min(5, distance + 0.1);
+        if (event.key === "Home") front(); else draw();
+      });
+      document.querySelector("#front").addEventListener("click", front);
+      document.querySelector("#side").addEventListener("click", () => { yaw = Math.PI / 2; pitch = 0; draw(); });
+      document.querySelector("#back").addEventListener("click", () => { yaw = Math.PI; pitch = 0; draw(); });
+      headCheckbox.addEventListener("change", draw);
+      window.addEventListener("resize", draw);
+      document.addEventListener("visibilitychange", draw);
+      canvas.addEventListener("webglcontextlost", (event) => { event.preventDefault(); program = null; status.textContent = "Графический контекст потерян. Перезагрузи страницу для просмотра."; });
+      load().catch((error) => { status.textContent = error.message; });
+    </script>
+  </body>
+</html>
