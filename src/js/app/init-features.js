@@ -1,63 +1,89 @@
-import { applyHwClass } from "../libraries/hw-detect";
+import { detectEffectCapabilities } from "../libraries/effect-capabilities";
+import { initScrollSmoother, ScrollTrigger } from "../libraries/gsap-scroll";
 import { onReady } from "../utils/onReady";
 import { isViewportAtLeast } from "../utils/breakpoints";
 
 import { applyEffectsMode } from "../features/preferences/effects-toggle";
+import {
+  captureEffectsScrollPosition,
+  hasPendingEffectsScrollPosition,
+  restoreEffectsScrollPosition,
+} from "../features/preferences/effects-scroll-restoration";
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
-import { initScrollRestoration } from "../features/navigation/scroll-restoration";
 import { initMenuDotToggler } from "../features/navigation/menu-dot-toggler";
-import { initHeroBgCells } from "../features/effects/hero-bg-cells";
+import { initCreativeHeadingPin } from "../features/navigation/creative-heading-pin";
+import { initProjectPin } from "../features/navigation/project-pin";
+import { initAboutReveal } from "../features/effects/about-reveal";
 import { initDesignActive } from "../features/effects/design-active";
-import { initOdometerCounter } from "../features/effects/odometer-counter";
+
+const enableNativeScrollRestoration = () => {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = hasPendingEffectsScrollPosition() ? "manual" : "auto";
+  }
+};
+
+const preserveScrollPosition = () => {
+  captureEffectsScrollPosition();
+  enableNativeScrollRestoration();
+};
 
 export const initFeatures = async () => {
-  const capabilities = applyHwClass();
+  enableNativeScrollRestoration();
+  window.addEventListener("pagehide", preserveScrollPosition);
+
+  const capabilities = detectEffectCapabilities();
   const { effectsOn } = applyEffectsMode(capabilities);
   const screenLg = isViewportAtLeast("lg");
 
+  if (effectsOn) initScrollSmoother();
+
   initSections();
   initScrollToTop();
-  initScrollRestoration();
   initMenuDotToggler();
-  initHeroBgCells();
+  initProjectPin();
+  initCreativeHeadingPin();
 
   try {
     if (effectsOn) {
+      initAboutReveal();
       initDesignActive();
-      initOdometerCounter();
 
-      const lenisReady = import("../libraries/lenis");
-      const imports = [
-        lenisReady.then(() =>
-          import("../features/navigation/progress-bar").then(({ initProgressBar }) =>
-            initProgressBar(),
-          ),
-        ),
-        lenisReady.then(() =>
-          import("../features/effects/parallax").then(({ initParallax }) => initParallax()),
-        ),
-        lenisReady.then(() =>
-          import("../features/navigation/horizontal-scroll").then(({ initHorizontalScroll }) =>
-            initHorizontalScroll(),
-          ),
-        ),
-      ];
+      const desktopModules = screenLg
+        ? Promise.all([import("../libraries/vanilla-tilt"), import("../features/effects/cursor")])
+        : null;
+      const [
+        { initCreativeParallax },
+        { initHorizontalScroll },
+        { initProgressBar },
+        { initSectionSnap },
+        { initReviews },
+      ] = await Promise.all([
+        import("../features/effects/creative-parallax"),
+        import("../features/navigation/horizontal-scroll"),
+        import("../features/navigation/progress-bar"),
+        import("../features/navigation/section-snap"),
+        import("../features/effects/reviews"),
+      ]);
 
-      if (screenLg) {
-        imports.push(
-          import("../libraries/vanilla-tilt").then(({ initVanillaTilt }) =>
-            onReady(initVanillaTilt),
-          ),
-          import("../features/effects/cursor").then(({ initCursor }) => onReady(initCursor)),
-        );
+      onReady(initCreativeParallax);
+      onReady(initReviews);
+      initHorizontalScroll();
+      initProgressBar();
+      initSectionSnap();
+
+      if (desktopModules) {
+        const [{ initVanillaTilt }, { initCursor }] = await desktopModules;
+        onReady(initVanillaTilt);
+        onReady(initCursor);
       }
-
-      await Promise.all(imports);
     } else {
       await import("../../styles/no-effects.css");
     }
   } catch (e) {
     console.error("Failed to load dynamic modules:", e);
   }
+
+  ScrollTrigger.refresh();
+  await restoreEffectsScrollPosition();
 };

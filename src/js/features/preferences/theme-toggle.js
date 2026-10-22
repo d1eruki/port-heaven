@@ -1,43 +1,47 @@
-import { readStorageValue, saveStorageValue } from "../../utils/storage";
+import { useColorMode } from "@vueuse/core";
+import darkFaviconUrl from "../../../assets/favicon-dark.png";
+import lightFaviconUrl from "../../../assets/favicon-light.png";
+import { useValidatedStorage } from "./storage";
 
 const root = document.documentElement;
+const faviconLink = document.querySelector('link[rel~="icon"]');
 const THEME_STORAGE_KEY = "theme";
-const DEFAULT_THEME = "dark";
+const DEFAULT_THEME = "light";
+const faviconByTheme = {
+  dark: darkFaviconUrl,
+  light: lightFaviconUrl,
+};
 const isSupportedTheme = (theme) => theme === "light" || theme === "dark";
+const savedTheme = useValidatedStorage({
+  key: THEME_STORAGE_KEY,
+  fallback: DEFAULT_THEME,
+  isValid: isSupportedTheme,
+});
 
-export const readSavedTheme = () =>
-  readStorageValue({
-    key: THEME_STORAGE_KEY,
-    fallback: DEFAULT_THEME,
-    isValid: isSupportedTheme,
-  });
+const applyThemeToDocument = (theme) => {
+  const nextTheme = isSupportedTheme(theme) ? theme : DEFAULT_THEME;
+  root.setAttribute("data-theme", nextTheme);
+  if (faviconLink) faviconLink.href = faviconByTheme[nextTheme];
+};
 
-export const saveTheme = (theme) =>
-  saveStorageValue({
-    key: THEME_STORAGE_KEY,
-    value: theme,
-    isValid: isSupportedTheme,
-  });
+export const currentTheme = useColorMode({
+  attribute: "data-theme",
+  initialValue: DEFAULT_THEME,
+  storageRef: savedTheme,
+  disableTransition: false,
+  onChanged: applyThemeToDocument,
+});
 
 export const applyInitialTheme = () => {
-  applyTheme(readSavedTheme());
+  applyThemeToDocument(currentTheme.value);
 };
 
-export const getCurrentTheme = () => {
-  const theme = root.getAttribute("data-theme");
-  return isSupportedTheme(theme) ? theme : DEFAULT_THEME;
-};
+export const getCurrentTheme = () => currentTheme.value;
 
 export const getTargetTheme = () => (getCurrentTheme() === "dark" ? "light" : "dark");
 
-export const applyTheme = (theme) => {
-  const nextTheme = isSupportedTheme(theme) ? theme : DEFAULT_THEME;
-  root.setAttribute("data-theme", nextTheme);
-  return nextTheme;
-};
-
 export const setTheme = (theme) => {
-  const nextTheme = applyTheme(theme);
-  saveTheme(nextTheme);
+  const nextTheme = isSupportedTheme(theme) ? theme : DEFAULT_THEME;
+  currentTheme.value = nextTheme;
   return nextTheme;
 };

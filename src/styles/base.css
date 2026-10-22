@@ -1,8 +1,15 @@
 @layer base {
+  body {
+    font-family: var(--font-sans), serif;
+    font-weight: 300;
+  }
+
   * {
-    font-family: "JetBrains Mono", monospace;
     font-optical-sizing: auto;
     line-height: 1;
+    /* text-wrap: balance;
+    word-break: normal;
+    overflow-wrap: break-word;*/
   }
 
   html.effects::-webkit-scrollbar,
@@ -20,7 +27,7 @@
   h4,
   .app-cursor {
     font-weight: 900;
-    font-family: "Actay Wide", sans-serif;
+    font-family: var(--font-heading), serif;
     text-transform: lowercase;
     hyphens: auto;
     line-height: 1;

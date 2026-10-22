@@ -1,5 +1,5 @@
 <template>
-  <p class="w-full text-muted">{{ menuDesc }}</p>
+  <p class="w-full min-w-0 text-muted">{{ menuDesc }}</p>
 </template>
 
 <script setup>

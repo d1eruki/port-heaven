@@ -1,15 +1,29 @@
 :root[data-theme="light"] {
+  /* Accent */
   --semantic-accent-srgb: var(--palette-pink-srgb);
   --semantic-accent-p3: var(--palette-pink-p3);
+
+  /* Surfaces */
   --semantic-surface-canvas: var(--color-white);
   --semantic-surface-inverse: var(--color-black);
-  --semantic-surface-muted: var(--color-neutral-100);
+  --semantic-surface-subtle: var(--color-neutral-100);
+
+  /* Text */
   --semantic-text-primary: var(--color-black);
-  --semantic-text-action-muted: var(--color-black);
+  --semantic-text-hero: var(--color-black);
+  --semantic-text-action-secondary: var(--color-neutral-500);
   --semantic-text-muted: var(--color-neutral-500);
+  --semantic-text-link: var(--color-neutral-400);
+  --semantic-text-link-hover: var(--color-black);
   --semantic-text-on-accent: var(--color-white);
-  --semantic-text-inverse: var(--color-white);
-  --semantic-text-on-muted: var(--color-black);
-  --semantic-border-subtle: currentColor;
-  --semantic-border-decoration: var(--color-neutral-300);
+  --semantic-text-on-inverse: var(--color-white);
+
+  /* Icons */
+  --semantic-icon-pattern: var(--color-neutral-200);
+
+  /* Borders */
+  --semantic-border-subtle: var(--color-neutral-300);
+
+  /* Decorations */
+  --semantic-decoration-subtle: var(--color-neutral-500);
 }

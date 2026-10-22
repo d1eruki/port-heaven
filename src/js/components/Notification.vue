@@ -1,7 +1,7 @@
 <template>
   <aside
     v-if="isVisible"
-    class="fixed right-5 bottom-20 left-5 z-300 grid gap-5 bg-inverse p-5 text-inverse-fg lg:right-15 lg:bottom-15 lg:left-auto lg:w-150"
+    class="fixed right-5 bottom-20 left-5 z-300 grid gap-5 rounded-3xl bg-inverse p-5 text-on-inverse lg:right-15 lg:bottom-15 lg:left-auto lg:w-150"
     aria-live="polite"
     aria-labelledby="analytics-notification-title"
     aria-describedby="analytics-notification-text"
@@ -11,26 +11,27 @@
       <p id="analytics-notification-text">{{ t("privacy.analytics.text") }}</p>
     </div>
     <div class="flex flex-wrap gap-5">
-      <button
-        type="button"
-        class="anim-extrude active bg-accent px-5 py-2.5 text-on-accent"
+      <Button
+        variant="primary"
+        size="compact"
         @click="emit('accept')"
       >
-        <small>{{ t("privacy.analytics.accept") }}</small>
-      </button>
-      <button
-        type="button"
-        class="text-action-muted hover:text-inverse-fg"
+        {{ t("privacy.analytics.accept") }}
+      </Button>
+      <Button
+        variant="secondary"
+        size="compact"
         @click="emit('decline')"
       >
-        <small>{{ t("privacy.analytics.decline") }}</small>
-      </button>
+        {{ t("privacy.analytics.decline") }}
+      </Button>
     </div>
   </aside>
 </template>
 
 <script setup>
 import { useI18n } from "vue-i18n";
+import Button from "./Button.vue";
 
 const { t } = useI18n();
 defineProps({

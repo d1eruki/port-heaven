@@ -1,60 +1,64 @@
 {
   "brand": {
     "logo": "dayruki",
-    "hero": "Artem\nTreskov"
+    "hero": "artem\ntreskov"
   },
   "navigation": {
     "label": "section navigation",
     "sections": {
       "hero": "home",
-      "description": "designer",
       "about": "about me",
       "projects": "commercial projects",
       "design": "layouts",
       "creatives": "creatives",
       "pricing": "pricing",
+      "reviews": "reviews",
       "footer": "contact"
     }
   },
   "menu": {
-    "description": {
-      "title": "designer",
-      "text": "[ I create design that solves problems, boosts conversions, and looks great. I work at the intersection of web design, product, and front-end, taking metrics, MVPs, and development constraints into account. I turn business goals into clear interfaces. I know layout, and I build prototypes and landing pages fast. I use video editing for presentations, promo videos, and UI animations. ]"
-    },
     "about": {
       "title": "About me",
+      "intro": "I create design that solves problems, improves conversions, and looks great. I work at the intersection of web design, product, and front-end, taking metrics, MVPs, and development constraints into account. I turn business goals into clear interfaces.",
       "experience": {
-        "title": "Experience",
-        "text": "years working on commercial projects: from interface design in Figma to building UI kits and interactive prototypes. I’ve done layout in CSS, frameworks, and website builders. I know the guidelines and adapt design for different platforms; I’ve also created promo materials and videos."
+        "title": "Commercial experience",
+        "text": "Designed interfaces, built UI kits and interactive prototypes, and developed layouts with CSS, frameworks, and website builders."
       },
       "projects": {
-        "title": "Projects",
-        "text": "projects delivered — from landing pages to complex web platforms. I developed several design systems, cutting build and revision time by up to 40%. I worked with products in VR, e-learning, and marketing, improving UX and visual consistency."
+        "title": "Delivered projects",
+        "text": "Launched projects ranging from landing pages to complex web platforms across VR, e-learning, and marketing."
+      },
+      "balance": {
+        "title": "Balance at work",
+        "text": "Visuals and logic. I like interfaces that not only look good, but are also clearly structured and genuinely work."
       },
       "hobbies": {
         "title": "Hobbies",
-        "text": "In my free time, I keep growing as a designer, take on freelance work, and try new directions. I follow my favorite designers and draw inspiration from their work. Sometimes I go out to hang at cool spots, or I stay home to recharge — movies, a bit of gaming, and the gym for balance."
+        "text": "In my free time, I keep growing as a designer and explore new directions. For balance: movies, a bit of gaming, the gym, and good places."
       }
     },
     "projects": {
       "title": "commercial projects",
-      "description": "[ Real commercial cases brought to completion. These are things that weren’t just imagined, but launched and working in the wild. ]"
+      "description": "Real commercial cases brought to completion. These are things that weren’t just imagined, but launched and working in the wild."
     },
     "designs": {
       "title": "layouts",
-      "description": "[ Concepts and prototypes without implementation: educational, freelance projects, and personal experiments. Here, the idea, structure, and presentation matter more than the code. ]"
+      "description": "Concepts and prototypes without implementation: educational, freelance projects, and personal experiments. Here, the idea, structure, and presentation matter more than the code."
     },
     "creatives": {
       "title": "creatives",
-      "description": "[ A selection of visuals I generate, assemble, and refine. It includes client work and personal experiments — everything where I could play with the idea, atmosphere, and style. ]"
+      "description": "A selection of visuals I generate, assemble, and refine. It includes client work and personal experiments — everything where I could play with the idea, atmosphere, and style."
     },
     "pricing": {
       "title": "Pricing",
-      "description": "[ Pricing description. ]"
+      "description": "Pricing description."
+    },
+    "reviews": {
+      "title": "Reviews"
     },
     "footer": {
       "title": "contact",
-      "description": "[ If the project feels vague, but you sense there’s something there. I’ll help find the core idea and shape it into something solid. ]"
+      "description": "If the project feels vague, but you sense there’s something there. I’ll help find the core idea and shape it into something solid."
     }
   },
   "pricing": {
@@ -158,7 +162,7 @@
       "text": "Dashboard development for RoboGrid — a system for analyzing failures, department workloads, and robot performance."
     },
     "analyticalPlatform": {
-      "title": "Analytical platform",
+      "title": "Analytics platform",
       "text": "An interface for analyzing A/B test results with convenient filtering and metric comparison."
     },
     "mooozik": {
@@ -168,6 +172,7 @@
   },
   "buttons": {
     "open": "open",
+    "shuffleCreatives": "shuffle",
     "toTop": "top"
   },
   "notices": {
@@ -188,16 +193,19 @@
   },
   "lang-toggle": "русский",
   "theme-toggle": {
-    "light": "Light theme",
-    "dark": "Dark theme"
+    "light": "light theme",
+    "dark": "dark theme"
   },
   "effects-toggle": {
     "enable": "enable effects",
     "disable": "disable effects"
   },
+  "dev-mode-toggle": {
+    "enable": "enable developer mode",
+    "disable": "disable developer mode"
+  },
   "contacts": {
     "telegram": "telegram",
-    "mail": "email",
     "behance": "behance"
   }
 }

@@ -1,17 +1,18 @@
+<!-- Контакты и масштабируемая подпись автора внизу страницы. -->
 <template>
   <footer
     data-section="footer"
     id="footer"
-    class="flex min-h-svh flex-col justify-end gap-5 p-15"
+    class="flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-5 overflow-hidden p-10 lg:p-15"
   >
-    <div class="items-center gap-10 lg:flex">
+    <div class="max-w-full min-w-0 items-baseline gap-10 lg:flex">
       <a
-        class="group relative w-auto font-[Actay_Wide] text-action-muted hover:text-fg"
+        class="group relative w-auto font-heading text-link hover:text-link-hover"
         href="https://t.me/d1eruki"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <h2 class="flex gap-2 text-nowrap">
+        <h2 class="inline-flex items-baseline gap-2 text-nowrap">
           <span
             class="icon-[ic--baseline-telegram] aspect-square"
             aria-hidden="true"
@@ -19,18 +20,18 @@
           >{{ t("contacts.telegram") }}
         </h2>
         <div
-          class="absolute -bottom-30 left-15 hidden -rotate-15 bg-inverse p-5 font-[Actay_Wide] text-inverse-fg lg:group-hover:block"
+          class="absolute -bottom-30 left-15 z-2 hidden -rotate-15 rounded-2xl bg-inverse p-5 font-heading text-on-inverse lg:group-hover:block"
         >
           https://t.me/d1eruki
         </div>
       </a>
       <a
-        class="group relative w-auto font-[Actay_Wide] text-action-muted hover:text-fg"
+        class="group relative w-auto font-heading text-link hover:text-link-hover"
         href="https://www.behance.net/dieruki"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <h2 class="flex gap-2 text-nowrap">
+        <h2 class="inline-flex items-baseline gap-2 text-nowrap">
           <span
             class="icon-[eva--behance-fill]"
             aria-hidden="true"
@@ -38,41 +39,47 @@
           >{{ t("contacts.behance") }}
         </h2>
         <div
-          class="absolute -bottom-40 -left-25 hidden rotate-45 bg-inverse p-5 font-[Actay_Wide] text-inverse-fg lg:group-hover:block"
+          class="absolute -bottom-40 -left-25 z-2 hidden rotate-45 rounded-2xl bg-inverse p-5 font-heading text-on-inverse lg:group-hover:block"
         >
           BEHANCE
         </div>
       </a>
-      <a
-        class="group relative w-auto font-[Actay_Wide] text-action-muted hover:text-fg"
-        href="mailto:stapps90@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <h2 class="flex gap-2 text-nowrap">
-          <span
-            class="icon-[ic--baseline-alternate-email] aspect-square"
-            aria-hidden="true"
-          ></span
-          >{{ t("contacts.mail") }}
-        </h2>
-        <div
-          class="absolute -bottom-40 -left-25 hidden rotate-45 bg-inverse p-5 font-[Actay_Wide] text-inverse-fg lg:group-hover:block"
-        >
-          stapps90@gmail.com
-        </div>
-      </a>
       <MenuDescription :menu-desc="t('menu.footer.description')" />
     </div>
-    <h2 class="footer-logo-text font-[Actay_Wide] text-nowrap text-accent lowercase">
-      {{ t("brand.logo") }}
-    </h2>
+    <div class="relative z-1 flex w-full justify-center lg:left-1/2 lg:w-screen lg:-translate-x-1/2">
+      <div
+        ref="footerLogoRef"
+        class="inline-block w-max max-w-none font-heading text-5xl leading-none font-black text-nowrap text-accent lowercase"
+      >
+        {{ t("brand.logo") }}
+      </div>
+    </div>
   </footer>
 </template>
 
 <script setup>
+import fitty from "fitty";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import MenuDescription from "../components/MenuDescription.vue";
 
 const { t } = useI18n();
+
+const footerLogoRef = ref(null);
+let footerLogoFit;
+
+onMounted(() => {
+  footerLogoFit = fitty(footerLogoRef.value, {
+    minSize: 1,
+    maxSize: Number.POSITIVE_INFINITY,
+    multiLine: false,
+  });
+
+  document.fonts.ready.then(() => footerLogoFit?.fit());
+});
+
+onBeforeUnmount(() => {
+  footerLogoFit?.unsubscribe();
+  footerLogoFit = null;
+});
 </script>

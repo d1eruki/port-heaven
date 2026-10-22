@@ -1,62 +1,64 @@
+import { createCategorizedTags } from "./tagCategories.js";
+
 export const designs = [
   {
     titleKey: "designs.varwinMobile.title",
     textKey: "designs.varwinMobile.text",
     url: "https://www.figma.com/design/fzw69g7xoolEWeRiqOXkJx/Varwin-Mobile-Client?m=auto&t=6YGeaXmXAcmtvjRZ-1",
-    tags: [{ label: "Mobile app", icon: "phone" }, "Visual", "Team work"],
+    tags: createCategorizedTags({ format: "mobileApp", workType: "design" }),
   },
   {
     titleKey: "designs.admaster.title",
     textKey: "designs.admaster.text",
     url: "https://www.figma.com/design/NZFNIxoY98Tt6jjbRjWjOC/Landing-page-for-AdMaster?node-id=416-615&t=5ihOPTJviOftyidn-1",
-    tags: [{ label: "Adaptive", icon: "phone" }, "Visual", "Concept"],
+    tags: createCategorizedTags({ format: "adaptive", workType: "design" }),
   },
   {
     titleKey: "designs.0xprocessing.title",
     textKey: "designs.0xprocessing.text",
     url: "https://www.figma.com/design/eViD7HUkXMbie6XI9a8BLK/0x-processing-landing-page?node-id=2006-2&t=qwDbVxa6LRKoFTY5-1",
-    tags: [{ label: "Adaptive", icon: "phone" }, "Visual", "Concept"],
+    tags: createCategorizedTags({ format: "adaptive", workType: "concept" }),
   },
   {
     titleKey: "designs.stuff.title",
     textKey: "designs.stuff.text",
     url: "https://www.figma.com/design/zkcugeK8gsTGqsDKiv5soC/Stuff-landing-design?node-id=3181-397&t=U01Vfxg6N5lwyUEv-1",
-    tags: [{ label: "Desktop", icon: "monitor" }, "Visual", "Concept"],
+    tags: createCategorizedTags({ format: "desktop", workType: "concept" }),
   },
   {
     titleKey: "designs.subscout.title",
     textKey: "designs.subscout.text",
     url: "https://www.figma.com/design/CwXLxZTzgnAwNtTYR4jlIy/Mobile-app-for-subscription-tracking?node-id=8201-5922&t=ny4TL8Y3mUFaQ0PB-1",
-    tags: [{ label: "Mobile app", icon: "phone" }, "Prototype", "Visual", "Concept"],
+    tags: createCategorizedTags({ format: "mobileApp", workType: "prototype" }),
   },
   {
     titleKey: "designs.baikal.title",
     textKey: "designs.baikal.text",
     url: "https://www.figma.com/design/3guaIoPCUsvlHYjlqyoUlB/Landing-page-for-a-travel-club?node-id=1-23&t=END5NzJfg1Z8PRH1-1",
-    tags: [{ label: "Desktop", icon: "monitor" }, "Visual", "Concept"],
+    tags: createCategorizedTags({ format: "desktop", workType: "design" }),
   },
   {
     titleKey: "designs.pioner.title",
     textKey: "designs.pioner.text",
     url: "https://www.figma.com/design/Osr20bZq5VITub93mkJT6d/Redesign-of-the-Power-Machines-plant-webpage?node-id=1051-200&t=hfZVdTFUnt3JHWLN-1",
-    tags: [{ label: "Desktop", icon: "monitor" }, "Redesign", "Concept"],
+    tags: createCategorizedTags({ format: "desktop", workType: "redesign" }),
   },
   {
     titleKey: "designs.robogrid.title",
     textKey: "designs.robogrid.text",
     url: "https://www.figma.com/design/vGx3VZvjNgUGGsXgeMOnTz/RoboGrid-dashboard?node-id=49006-62828&t=BHLtfKFgJxVkYZTz-1",
-    tags: ["Dashboard"],
+    tags: createCategorizedTags({ format: "dashboard", workType: "concept" }),
   },
   {
     titleKey: "designs.analyticalPlatform.title",
     textKey: "designs.analyticalPlatform.text",
     url: "https://www.figma.com/design/TxZzzOnA3p8sTROyOKx3pC/Analytical-platform?node-id=60044-27&t=KbV07VHSG1w1dgWX-1",
-    tags: ["Dashboard"],
+    tags: createCategorizedTags({ format: "dashboard", workType: "concept" }),
   },
   {
     titleKey: "designs.mooozik.title",
     textKey: "designs.mooozik.text",
     url: "https://www.figma.com/design/voDUMRONK5sGFSo43BkcU9/Mooozik-%E2%80%94-a-music-label-for-cows?node-id=0-1&t=8jUM5sY9hUOspPua-1",
-    tags: [{ label: "Adaptive", icon: "phone" }, "Visual", "Concept"],
+    tags: createCategorizedTags({ format: "adaptive", workType: "concept" }),
   },
 ];

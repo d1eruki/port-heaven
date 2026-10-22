@@ -1,6 +1,6 @@
 import { onReady } from "../../utils/onReady";
-import { getScrollY, onScroll } from "../../utils/scroll";
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
+import { ScrollTrigger } from "../../libraries/gsap-scroll";
 
 export const initMenuDotToggler = () =>
   onReady(() => {
@@ -10,10 +10,7 @@ export const initMenuDotToggler = () =>
     menuDot.classList.add("flex");
     menuDot.classList.add("lg:opacity-0");
 
-    const getThreshold = () => window.innerHeight / 2;
-
     let lastState = null;
-    let scrollTimer = null;
 
     const ensureTransitionClasses = () => {
       menuDot.classList.add("transition-opacity", "duration-300", "ease-in-out");
@@ -32,21 +29,12 @@ export const initMenuDotToggler = () =>
       }
     };
 
-    const recompute = (scrollY = getScrollY()) => {
-      const threshold = getThreshold();
-      applyState(scrollY >= threshold);
-    };
-
-    const onScrollThrottled = () => {
-      if (scrollTimer) return;
-      scrollTimer = setTimeout(() => {
-        scrollTimer = null;
-        recompute();
-      }, 80);
-    };
-
-    onScroll(onScrollThrottled);
-    window.addEventListener("resize", () => recompute());
-
-    setTimeout(recompute, 50);
+    ScrollTrigger.create({
+      start: () => window.innerHeight / 2,
+      end: "max",
+      onEnter: () => applyState(true),
+      onLeaveBack: () => applyState(false),
+      onRefresh: (self) => applyState(self.scroll() >= self.start),
+      invalidateOnRefresh: true,
+    });
   });

@@ -1,11 +1,20 @@
-import postcard from "../../assets/creatives/postcard.webp";
-import saasoft from "../../assets/creatives/saasoft.webp";
-import siyay from "../../assets/creatives/siyay.webp";
-import varwinOpening from "../../assets/creatives/varwin-opening.mp4";
+const creativeModules = import.meta.glob(
+  "../../assets/creatives/priority-{1,2,3}/*.{avif,jpeg,jpg,mp4,ogg,png,webm,webp}",
+  {
+    eager: true,
+    import: "default",
+    query: "?url",
+  },
+);
 
-export const creativeAssets = {
-  postcard,
-  saasoft,
-  siyay,
-  varwinOpening,
-};
+export const creativeAssets = Object.entries(creativeModules)
+  .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath))
+  .map(([assetPath, src]) => {
+    const [, priority, id] = assetPath.match(/\/priority-([123])\/([^/]+)\.[^.]+$/) ?? [];
+
+    return {
+      id,
+      priority: Number(priority),
+      src,
+    };
+  });

@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { loadEnvFile as loadNodeEnvFile } from "node:process";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -15,6 +16,7 @@ const metaPath = path.join(rootDir, "src", "locales", `.${TARGET_LOCALE}.meta.js
 const force = process.argv.includes("--force");
 const dryRun = process.argv.includes("--dry-run");
 const cyrillicPattern = /[\u0400-\u04ff]/;
+const allowedCyrillicKeys = new Set(["lang-toggle"]);
 
 const readJson = async (filePath, fallback = undefined) => {
   try {
@@ -29,31 +31,13 @@ const writeJson = async (filePath, value) => {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 };
 
-const loadEnvFile = async (filePath) => {
-  let content;
-
+const loadOptionalEnvFile = (filePath) => {
   try {
-    content = await readFile(filePath, "utf8");
+    loadNodeEnvFile(filePath);
   } catch (error) {
     if (error?.code === "ENOENT") return;
     throw error;
   }
-
-  content.split(/\r?\n/).forEach((line) => {
-    const trimmedLine = line.trim();
-    if (!trimmedLine || trimmedLine.startsWith("#")) return;
-
-    const separatorIndex = trimmedLine.indexOf("=");
-    if (separatorIndex === -1) return;
-
-    const key = trimmedLine.slice(0, separatorIndex).trim();
-    const value = trimmedLine
-      .slice(separatorIndex + 1)
-      .trim()
-      .replace(/^['"]|['"]$/g, "");
-
-    if (key && !process.env[key]) process.env[key] = value;
-  });
 };
 
 const hashText = (text) => createHash("sha256").update(text).digest("hex");
@@ -87,7 +71,9 @@ const collectStrings = (value, prefix = []) => {
 };
 
 const assertTargetHasNoCyrillic = (target) => {
-  const invalidItems = collectStrings(target).filter((item) => cyrillicPattern.test(item.value));
+  const invalidItems = collectStrings(target).filter(
+    (item) => !allowedCyrillicKeys.has(item.key) && cyrillicPattern.test(item.value),
+  );
   if (!invalidItems.length) return;
 
   const keyList = invalidItems.map((item) => item.key).join(", ");
@@ -182,8 +168,8 @@ const translateBatch = async (items) => {
 };
 
 const main = async () => {
-  await loadEnvFile(path.join(rootDir, ".env"));
-  await loadEnvFile(path.join(rootDir, ".env.local"));
+  loadOptionalEnvFile(path.join(rootDir, ".env"));
+  loadOptionalEnvFile(path.join(rootDir, ".env.local"));
 
   const source = await readJson(sourcePath);
   const target = await readJson(targetPath, {});
