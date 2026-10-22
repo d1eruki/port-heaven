@@ -143,10 +143,12 @@ import { currentTheme, getTargetTheme, setTheme } from "../features/preferences/
 const isDevelopment = import.meta.env.DEV;
 const { locale, t, tm } = useI18n();
 const sectionNavItems = computed(() =>
-  Object.keys(tm("navigation.sections")).map((id) => ({
-    id,
-    labelKey: `navigation.sections.${id}`,
-  })),
+  Object.keys(tm("navigation.sections"))
+    .filter((id) => id !== "pricing")
+    .map((id) => ({
+      id,
+      labelKey: `navigation.sections.${id}`,
+    })),
 );
 
 const themeToggleLabel = computed(() =>
