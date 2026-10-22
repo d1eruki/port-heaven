@@ -5,6 +5,7 @@ import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
 import { optimizeMediaPlugin } from "./scripts/vite/optimize-media-plugin.mjs";
 import { typographLocalesPlugin } from "./scripts/vite/typograph-locales-plugin.mjs";
+import { creativeLayoutPlugin } from "./scripts/vite/creative-layout-plugin.mjs";
 
 const require = createRequire(import.meta.url);
 const tailwindDefaultTheme = require("tailwindcss/defaultTheme");
@@ -22,6 +23,9 @@ const relativeEntryAssetUrlsPlugin = () => ({
 export default defineConfig({
   base: "./",
   plugins: [
+    creativeLayoutPlugin({
+      layoutFile: path.join(projectRoot, "src/js/data/creative-layout.json"),
+    }),
     typographLocalesPlugin({ localesRoot: path.join(projectRoot, "src/locales") }),
     optimizeMediaPlugin({ assetsRoot: path.join(projectRoot, "src/assets") }),
     relativeEntryAssetUrlsPlugin(),

@@ -25,6 +25,12 @@ down to fit within 1280 × 1280 without upscaling, and are replaced only when th
 The original files in `src/assets` remain unchanged; only emitted `dist` assets are compressed.
 Developer controls are available in the local dev server but hidden in production builds.
 
+Кнопка «перетасовать» в локальном режиме разработчика сохраняет выбранную раскладку
+в `src/js/data/creative-layout.json`. После обновления страницы используется та же
+раскладка. Чтобы она стала общей для посетителей GitHub Pages, включите этот файл
+в коммит и опубликуйте сайт обычным способом. Опубликованный сайт не изменяет файл;
+при изменении ширины экрана раскладка адаптируется к устройству посетителя.
+
 ### PostCSS
 
 PostCSS is used together with Tailwind CSS v4 via `@tailwindcss/postcss` and Vite's built-in CSS

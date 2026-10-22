@@ -1,3 +1,4 @@
+<!-- Кнопка или ссылка с основным и вторичным оформлением. -->
 <template>
   <component
     :is="isLink ? 'a' : 'button'"
@@ -63,7 +64,7 @@ const classesByVariantAndSize = {
 };
 
 const primarySurfaceClasses =
-  "bg-linear-to-b from-[color-mix(in_srgb,var(--color-accent),white_15%)] via-accent via-45% to-[color-mix(in_srgb,var(--color-accent),black_35%)] text-on-accent shadow-xl shadow-accent/25 ring-1 ring-inset ring-white/20 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
+  "bg-linear-to-b from-[color-mix(in_srgb,var(--color-accent),white_15%)] via-accent via-45% to-[color-mix(in_srgb,var(--color-accent),black_35%)] text-on-accent shadow-xl shadow-accent/25 ring-1 ring-inset ring-highlight/20 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
 const secondaryClassesByTone = {
   inverse: "text-action-secondary hover:text-on-inverse",
