@@ -1,3 +1,4 @@
+<!-- Контакты и масштабируемая подпись автора внизу страницы. -->
 <template>
   <footer
     data-section="footer"
@@ -45,7 +46,7 @@
       </a>
       <MenuDescription :menu-desc="t('menu.footer.description')" />
     </div>
-    <div class="relative left-1/2 z-1 flex w-screen -translate-x-1/2 justify-center">
+    <div class="relative z-1 flex w-full justify-center lg:left-1/2 lg:w-screen lg:-translate-x-1/2">
       <div
         ref="footerLogoRef"
         class="inline-block w-max max-w-none font-heading text-5xl leading-none font-black text-nowrap text-accent lowercase"

@@ -1,3 +1,4 @@
+<!-- Первый экран с именем автора и изображением персонажа. -->
 <template>
   <section
     data-section="hero"
@@ -6,11 +7,20 @@
   >
     <div class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center bg-canvas">
       <div
-        class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden text-hero lg:items-end lg:pb-[12svh]"
+        class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden px-10 text-hero lg:items-end lg:px-0 lg:pb-[12svh]"
       >
-        <h1 class="text-center text-hero-title leading-[0.75] whitespace-pre-line">
-          {{ t("brand.hero") }}
-        </h1>
+        <div class="w-full text-center lg:w-auto">
+          <h1
+            ref="heroTitleRef"
+            class="inline-block w-max text-center text-hero-title leading-[0.75]"
+          >
+            <span
+              v-for="(line, index) in t('brand.hero').split('\n')"
+              :key="index"
+              class="block"
+            >{{ line }}</span>
+          </h1>
+        </div>
       </div>
       <img
         :src="heroImageSrc"
@@ -29,8 +39,10 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import fitty from "fitty";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { getBreakpointPx } from "../utils/breakpoints";
 import heroCharacterDarkImage from "../../assets/hero-character-dark.png";
 import heroCharacterDarkHoverImage from "../../assets/hero-character-dark-hover.png";
 import heroCharacterLightImage from "../../assets/hero-character-light.png";
@@ -44,6 +56,36 @@ const props = defineProps({
   },
 });
 const isHeroHovered = ref(false);
+const heroTitleRef = ref(null);
+let heroTitleFit;
+let mobileMedia;
+
+const syncHeroTitleFit = () => {
+  heroTitleFit?.unsubscribe();
+  heroTitleFit = null;
+
+  if (!mobileMedia?.matches) return;
+
+  heroTitleFit = fitty(heroTitleRef.value, {
+    minSize: 1,
+    maxSize: Number.POSITIVE_INFINITY,
+    multiLine: false,
+  });
+};
+
+onMounted(() => {
+  mobileMedia = window.matchMedia(`(width < ${getBreakpointPx("lg")}px)`);
+  mobileMedia.addEventListener("change", syncHeroTitleFit);
+  syncHeroTitleFit();
+  document.fonts.ready.then(() => heroTitleFit?.fit());
+});
+
+onBeforeUnmount(() => {
+  mobileMedia?.removeEventListener("change", syncHeroTitleFit);
+  heroTitleFit?.unsubscribe();
+  heroTitleFit = null;
+});
+
 const heroImageSrc = computed(() => {
   if (props.currentTheme === "dark") {
     return isHeroHovered.value ? heroCharacterDarkHoverImage : heroCharacterDarkImage;
