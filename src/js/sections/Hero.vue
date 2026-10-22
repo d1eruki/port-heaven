@@ -18,7 +18,8 @@
               v-for="(line, index) in t('brand.hero').split('\n')"
               :key="index"
               class="block"
-            >{{ line }}</span>
+              >{{ line }}</span
+            >
           </h1>
         </div>
       </div>
