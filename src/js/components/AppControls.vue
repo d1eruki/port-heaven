@@ -1,3 +1,4 @@
+<!-- Общие элементы управления, навигация по секциям и индикатор прокрутки страницы. -->
 <template>
   <div
     id="menu-dot"
@@ -61,7 +62,7 @@
 
   <div
     id="progress-bar"
-    class="progress-bar fixed top-0 right-0 z-100 hidden bg-progress-bar mix-blend-difference lg:flex"
+    class="progress-bar fixed top-0 right-0 z-100 flex bg-progress-bar mix-blend-difference max-lg:w-[2px] max-lg:rounded-b-full"
   ></div>
 
   <div
