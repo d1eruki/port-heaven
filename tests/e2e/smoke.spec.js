@@ -725,9 +725,20 @@ test("manual effects mode overrides browser capability detection", async ({ page
   await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
   await expect(root).toHaveAttribute("data-effects-mode", "on");
 
-  const heroOffset = await readHeroParallaxOffset(page);
-  await page.evaluate(() => window.scrollTo(0, 500));
-  await expect.poll(() => readHeroParallaxOffset(page)).toBeGreaterThan(heroOffset + 100);
+  await page.waitForLoadState("networkidle");
+  await page.evaluate(() => document.fonts.ready);
+  // Как и в проверке автодоводки, удерживаем указатель во время подготовки позиции.
+  // Здесь проверяется параллакс, поэтому автодоводка не должна менять прокрутку.
+  await page.mouse.move(0, 0);
+  await page.mouse.down();
+  try {
+    const heroOffset = await readHeroParallaxOffset(page);
+    await page.evaluate(() => window.scrollTo(0, 500));
+    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
+    await expect.poll(() => readHeroParallaxOffset(page)).toBeGreaterThan(heroOffset + 100);
+  } finally {
+    await page.mouse.up();
+  }
 
   const designLayout = await page.locator("#design-inner").evaluate((element) => {
     const bounds = element.getBoundingClientRect();
