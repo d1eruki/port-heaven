@@ -1,3 +1,4 @@
+<!-- Креативы с общей сохраняемой раскладкой и локальной кнопкой перетасовки. -->
 <template>
   <section
     data-section="creatives"
@@ -21,10 +22,18 @@
           v-if="devModeEnabled"
           size="compact"
           class="pointer-events-auto"
+          :disabled="isSavingLayout"
+          :aria-busy="isSavingLayout"
           @click="shuffleCreatives"
         >
           {{ t("buttons.shuffleCreatives") }}
         </Button>
+        <p
+          v-if="saveError"
+          role="alert"
+        >
+          {{ saveError }}
+        </p>
       </div>
     </div>
     <div
@@ -60,10 +69,11 @@
 
 <script setup>
 import { useWindowSize } from "@vueuse/core";
-import { computed, nextTick, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import Button from "../components/Button.vue";
 import { createCreatives } from "../data/creatives";
+import savedLayout from "../data/creative-layout.json";
 import ImageCreative from "../components/ImageCreative.vue";
 import MenuDescription from "../components/MenuDescription.vue";
 import VideoCreative from "../components/VideoCreative.vue";
@@ -73,7 +83,9 @@ import { createCreativeCloudItem, getCreativeCloudHeight } from "../utils/creati
 
 const { t } = useI18n();
 const { width: viewportWidth, height: viewportHeight } = useWindowSize();
-const layoutSeed = ref(0);
+const layoutSeed = ref(savedLayout.seed);
+const isSavingLayout = ref(false);
+const saveError = ref("");
 const creativeCloud = computed(() =>
   createCreatives(layoutSeed.value).map((creative, index) =>
     createCreativeCloudItem(creative, index, layoutSeed.value),
@@ -86,9 +98,38 @@ const creativeSectionStyle = computed(() => ({
   )}dvh`,
 }));
 
-const shuffleCreatives = async () => {
-  layoutSeed.value += 1;
+const applyLayout = async ({ seed }) => {
+  if (!Number.isSafeInteger(seed) || seed < 0) {
+    throw new Error("Invalid creative layout seed");
+  }
+  if (seed === layoutSeed.value) return;
+
+  layoutSeed.value = seed;
   await nextTick();
   ScrollTrigger.refresh();
 };
+
+const shuffleCreatives = async () => {
+  if (!import.meta.env.DEV || isSavingLayout.value) return;
+
+  isSavingLayout.value = true;
+  saveError.value = "";
+  try {
+    const response = await fetch(`${import.meta.env.BASE_URL}__creative-layout/shuffle`, {
+      method: "POST",
+    });
+    if (!response.ok) throw new Error("Failed to save creative layout");
+
+    await applyLayout(await response.json());
+  } catch (error) {
+    saveError.value = error.message;
+  } finally {
+    isSavingLayout.value = false;
+  }
+};
+
+if (import.meta.hot) {
+  import.meta.hot.on("creative-layout:saved", applyLayout);
+  onBeforeUnmount(() => import.meta.hot.off("creative-layout:saved", applyLayout));
+}
 </script>

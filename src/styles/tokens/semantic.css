@@ -5,6 +5,7 @@
   --semantic-text-on-adaptive-contrast: var(--color-black);
   --semantic-surface-contrast: var(--color-black);
   --semantic-text-on-contrast: var(--color-white);
+  --semantic-decoration-highlight: var(--color-white);
 }
 
 @supports (color: color(display-p3 1 0 0)) {
@@ -39,4 +40,5 @@
 
   /* Borders */
   --color-subtle: var(--semantic-border-subtle);
+  --color-highlight: var(--semantic-decoration-highlight);
 }
