@@ -80,7 +80,8 @@ const reviews = [
     height: 304,
     alt: "Влад Кошенков: в целом круто сделано, супер дотошно, я не ожидал такого",
   },
-].map((review) => ({ review, order: Math.random() }))
+]
+  .map((review) => ({ review, order: Math.random() }))
   .sort((a, b) => a.order - b.order)
   .map(({ review }, index) => ({
     ...review,
@@ -89,7 +90,8 @@ const reviews = [
       "--review-bottom": index > 1 ? `${11 + (3 - index) * 15 + randomBetween(-1, 1)}%` : "auto",
       "--review-left": `${index % 2 ? randomBetween(24, 26) : randomBetween(6, 8)}%`,
       "--review-desktop-top": index < 2 ? `${12 + index * 10 + randomBetween(-2, 2)}%` : "auto",
-      "--review-desktop-bottom": index > 1 ? `${10 + (3 - index) * 10 + randomBetween(-2, 2)}%` : "auto",
+      "--review-desktop-bottom":
+        index > 1 ? `${10 + (3 - index) * 10 + randomBetween(-2, 2)}%` : "auto",
       "--review-desktop-left": `${index % 2 ? randomBetween(53, 57) : randomBetween(12, 16)}%`,
       "--review-rotation": `${randomBetween(-3, 3)}deg`,
     },
