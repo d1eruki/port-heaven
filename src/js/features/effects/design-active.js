@@ -1,85 +1,55 @@
 import { onReady } from "../../utils/onReady";
-import { isViewportBelow } from "../../utils/breakpoints";
+import { getBreakpointPx } from "../../utils/breakpoints";
 import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
+import { gsap } from "../../libraries/gsap-scroll";
 
 const setupDesignActive = () => {
-  const isMobile = () => isViewportBelow("md");
+  const scroller = document.getElementById(DOM_IDS.designInner);
+  if (!scroller) return;
 
-  const designSection = document.getElementById(DOM_IDS.design);
-  if (!designSection) return;
+  gsap.matchMedia().add(`(width < ${getBreakpointPx("lg")}px)`, () => {
+    const cards = Array.from(scroller.querySelectorAll(DOM_SELECTORS.designItems));
+    let frame = null;
 
-  const options = {
-    root: null,
-    rootMargin: "-45% 0% -45% 0%",
-    threshold: [0, 1],
-  };
+    const updateActiveCard = () => {
+      frame = null;
+      const bounds = scroller.getBoundingClientRect();
+      const centerX = bounds.left + scroller.clientWidth / 2;
+      let activeCard = null;
+      let minDistance = Infinity;
 
-  let trackedElements = new Set();
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.right <= bounds.left || rect.left >= bounds.right) return;
 
-  const designObserver = new IntersectionObserver((entries) => {
-    const mobile = isMobile();
-
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        trackedElements.add(entry.target);
-      } else {
-        trackedElements.delete(entry.target);
-        entry.target.classList.remove("design-active");
-      }
-    });
-
-    if (!mobile) {
-      trackedElements.forEach((el) => el.classList.remove("design-active"));
-      return;
-    }
-
-    let activeElement = null;
-    let minDistance = Infinity;
-    const centerY = window.innerHeight / 2;
-
-    trackedElements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      const elementCenterY = rect.top + rect.height / 2;
-      const distance = Math.abs(elementCenterY - centerY);
-
-      if (distance < minDistance) {
-        minDistance = distance;
-        activeElement = el;
-      }
-    });
-
-    trackedElements.forEach((el) => {
-      if (el === activeElement) {
-        if (!el.classList.contains("design-active")) {
-          el.classList.add("design-active");
+        const distance = Math.abs(rect.left + rect.width / 2 - centerX);
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeCard = card;
         }
-      } else {
-        if (el.classList.contains("design-active")) {
-          el.classList.remove("design-active");
-        }
-      }
-    });
-  }, options);
-
-  const observerCallback = () => {
-    const designs = designSection.querySelectorAll(DOM_SELECTORS.designItems);
-
-    if (designs.length > 0) {
-      designs.forEach((a) => {
-        designObserver.observe(a);
       });
-    } else {
-      const anyA = designSection.querySelectorAll("a");
-      if (anyA.length > 0) {
-        anyA.forEach((a) => designObserver.observe(a));
-      }
-    }
-  };
 
-  const mutationObserver = new MutationObserver(observerCallback);
-  mutationObserver.observe(designSection, { childList: true, subtree: true });
+      cards.forEach((card) => {
+        card.classList.toggle("design-active", card === activeCard);
+      });
+    };
 
-  observerCallback();
+    const scheduleUpdate = () => {
+      if (frame === null) frame = requestAnimationFrame(updateActiveCard);
+    };
+
+    const resizeObserver = new ResizeObserver(scheduleUpdate);
+    resizeObserver.observe(scroller);
+    scroller.addEventListener("scroll", scheduleUpdate, { passive: true });
+    updateActiveCard();
+
+    return () => {
+      scroller.removeEventListener("scroll", scheduleUpdate);
+      resizeObserver.disconnect();
+      if (frame !== null) cancelAnimationFrame(frame);
+      cards.forEach((card) => card.classList.remove("design-active"));
+    };
+  });
 };
 
 export const initDesignActive = () => onReady(setupDesignActive);
