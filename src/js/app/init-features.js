@@ -57,14 +57,17 @@ export const initFeatures = async () => {
         { initHorizontalScroll },
         { initProgressBar },
         { initSectionSnap },
+        { initReviews },
       ] = await Promise.all([
         import("../features/effects/creative-parallax"),
         import("../features/navigation/horizontal-scroll"),
         import("../features/navigation/progress-bar"),
         import("../features/navigation/section-snap"),
+        import("../features/effects/reviews"),
       ]);
 
       onReady(initCreativeParallax);
+      onReady(initReviews);
       initHorizontalScroll();
       initProgressBar();
       initSectionSnap();
