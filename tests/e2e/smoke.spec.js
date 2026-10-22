@@ -104,31 +104,39 @@ const readSectionVisualProgress = (section) =>
   });
 
 const positionBeforeSecondProject = async (page) => {
+  await page.waitForLoadState("networkidle");
   await page.evaluate(() => document.fonts.ready);
   // Удержание указателя не даёт автодоводке сработать во время подготовки позиции.
   await page.mouse.move(0, 0);
   await page.mouse.down();
 
-  const metrics = await page.evaluate(() => {
-    const project = document.querySelectorAll("[data-project-snap]")[1];
-    if (!project) return null;
-
-    const target = Math.round(project.getBoundingClientRect().top + window.scrollY);
-    const start = target - 100;
-    window.scrollTo(0, start);
-
-    return { start, target };
-  });
-
-  expect(metrics).not.toBeNull();
-  await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(metrics.start);
+  let metrics;
   await expect
-    .poll(() =>
-      page
+    .poll(async () => {
+      metrics = await page
         .locator("[data-project-snap]")
         .nth(1)
-        .evaluate((element) => Math.abs(element.getBoundingClientRect().top - 100)),
-    )
+        .evaluate((project) => {
+          // Положение в документе не зависит от текущего смещения ScrollSmoother.
+          let documentTop = 0;
+          let element = project;
+          while (element) {
+            documentTop += element.offsetTop;
+            element = element.offsetParent;
+          }
+
+          const target = Math.round(documentTop);
+          const start = target - 100;
+          const scrollError = Math.abs(window.scrollY - start);
+          const visualError = Math.abs(project.getBoundingClientRect().top - 100);
+
+          // Восстановление прокрутки после reload может закончиться позже загрузки страницы.
+          if (scrollError > 1) window.scrollTo(0, start);
+
+          return { start, target, error: Math.max(scrollError, visualError) };
+        });
+      return metrics.error;
+    })
     .toBeLessThan(5);
 
   return metrics;
@@ -139,8 +147,8 @@ const scrollAndWaitForScrollToSettle = async (page, snapTarget) => {
   let settledY = 0;
   let stableSamples = 0;
 
-  await page.evaluate(() => window.scrollBy(0, 20));
   await page.mouse.up();
+  await page.mouse.wheel(0, 20);
   if (snapTarget !== undefined) {
     await expect
       .poll(() => page.evaluate((target) => Math.abs(window.scrollY - target), snapTarget))
