@@ -21,9 +21,7 @@ export const initScrollSmoother = () => {
     content: "#smooth-content",
     smooth: 1.1,
     normalizeScroll:
-      ScrollTrigger.isTouch === 1
-        ? { allowNestedScroll: true, debounce: true }
-        : false,
+      ScrollTrigger.isTouch === 1 ? { allowNestedScroll: true, debounce: true } : false,
     effects: "[data-hero-parallax]",
   });
 

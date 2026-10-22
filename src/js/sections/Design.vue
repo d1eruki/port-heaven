@@ -16,7 +16,7 @@
       <div class="min-w-0 max-lg:-mx-10 max-lg:h-0 max-lg:min-h-0 max-lg:flex-1 effects:lg:h-full">
         <div
           ref="designScroller"
-          class="grid w-full min-w-0 gap-2 will-change-transform max-lg:h-full max-lg:auto-cols-[85%] max-lg:grid-flow-col max-lg:grid-rows-[minmax(0,1fr)] max-lg:gap-10 max-lg:overflow-x-auto max-lg:overscroll-x-contain max-lg:scroll-px-10 max-lg:snap-x max-lg:snap-mandatory max-lg:px-10 max-lg:*:snap-start max-lg:*:snap-always lg:gap-0 lg:overflow-x-hidden effects:lg:h-full effects:lg:auto-cols-[25%] effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:lg:min-h-dvh no-effects:lg:auto-rows-[calc((100dvh---spacing(15))/2)] no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
+          class="grid w-full min-w-0 gap-2 will-change-transform max-lg:h-full max-lg:snap-x max-lg:snap-mandatory max-lg:scroll-px-10 max-lg:auto-cols-[85%] max-lg:grid-flow-col max-lg:grid-rows-[minmax(0,1fr)] max-lg:gap-10 max-lg:overflow-x-auto max-lg:overscroll-x-contain max-lg:px-10 max-lg:*:snap-start max-lg:*:snap-always lg:gap-0 lg:overflow-x-hidden effects:lg:h-full effects:lg:auto-cols-[25%] effects:lg:grid-flow-col effects:lg:grid-rows-2 no-effects:lg:min-h-dvh no-effects:lg:auto-rows-[calc((100dvh---spacing(15))/2)] no-effects:lg:grid-cols-3 no-effects:xl:grid-cols-4"
           id="design-inner"
           @scroll.passive="updateScrollPosition"
         >
