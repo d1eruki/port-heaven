@@ -12,6 +12,11 @@
     overflow-wrap: break-word;*/
   }
 
+  html.effects,
+  html.effects * {
+    scrollbar-width: none;
+  }
+
   html.effects::-webkit-scrollbar,
   html.effects *::-webkit-scrollbar {
     display: none;

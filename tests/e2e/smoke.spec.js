@@ -340,7 +340,7 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   expect(consoleErrors).toEqual([]);
 });
 
-test("theme and locale controls update the page", async ({ page }) => {
+test("theme and locale controls update the page", async ({ page, isMobile }) => {
   await page.goto("/");
 
   const root = page.locator("html");
@@ -349,8 +349,17 @@ test("theme and locale controls update the page", async ({ page }) => {
 
   await expect(root).toHaveAttribute("data-theme", "light");
 
-  await heroImage.hover();
+  if (isMobile) {
+    await heroImage.tap();
+  } else {
+    await heroImage.hover();
+  }
   await expect(heroImage).not.toHaveAttribute("src", defaultHeroImageSrc);
+
+  if (isMobile) {
+    await heroImage.tap();
+    await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
+  }
 
   await page.getByRole("button", { name: "темная тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "dark");

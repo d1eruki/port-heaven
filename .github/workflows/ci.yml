@@ -11,12 +11,14 @@ permissions:
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      pages: ${{ steps.pages.outputs.matrix }}
 
     steps:
       - name: Check out repository
@@ -40,8 +42,15 @@ jobs:
       - name: Run integrity tests
         run: npm run test:integrity
 
+      - name: Test Lighthouse reporting and page discovery
+        run: node --test scripts/check-lighthouse.test.mjs
+
       - name: Build
         run: npm run build
+
+      - name: Discover all built pages
+        id: pages
+        run: node scripts/check-lighthouse.mjs --list-pages
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium webkit
@@ -60,6 +69,8 @@ jobs:
     needs: verify
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       pages: write
       id-token: write
@@ -74,3 +85,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  lighthouse:
+    name: Audit published pages
+    needs: [verify, deploy]
+    uses: ./.github/workflows/lighthouse.yml
+    with:
+      url: ${{ needs.deploy.outputs.url }}
+      pages: ${{ needs.verify.outputs.pages }}

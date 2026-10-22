@@ -32,8 +32,9 @@
         fetchpriority="high"
         decoding="sync"
         loading="eager"
-        @mouseover="isHeroHovered = true"
-        @mouseout="isHeroHovered = false"
+        @pointerenter="onHeroPointerEnter"
+        @pointerleave="isHeroHovered = false"
+        @click="toggleHeroImage"
       />
     </div>
   </section>
@@ -57,11 +58,16 @@ const props = defineProps({
   },
 });
 const isHeroHovered = ref(false);
+const isHeroTapped = ref(false);
+const isMobile = ref(false);
 const heroTitleRef = ref(null);
 let heroTitleFit;
 let mobileMedia;
 
 const syncHeroTitleFit = () => {
+  isMobile.value = mobileMedia?.matches ?? false;
+  isHeroHovered.value = false;
+  isHeroTapped.value = false;
   heroTitleFit?.unsubscribe();
   heroTitleFit = null;
 
@@ -72,6 +78,16 @@ const syncHeroTitleFit = () => {
     maxSize: Number.POSITIVE_INFINITY,
     multiLine: false,
   });
+};
+
+const onHeroPointerEnter = (event) => {
+  if (!isMobile.value && event.pointerType === "mouse") {
+    isHeroHovered.value = true;
+  }
+};
+
+const toggleHeroImage = () => {
+  if (isMobile.value) isHeroTapped.value = !isHeroTapped.value;
 };
 
 onMounted(() => {
@@ -88,10 +104,12 @@ onBeforeUnmount(() => {
 });
 
 const heroImageSrc = computed(() => {
+  const showTongue = isMobile.value ? isHeroTapped.value : isHeroHovered.value;
+
   if (props.currentTheme === "dark") {
-    return isHeroHovered.value ? heroCharacterDarkHoverImage : heroCharacterDarkImage;
+    return showTongue ? heroCharacterDarkHoverImage : heroCharacterDarkImage;
   }
 
-  return isHeroHovered.value ? heroCharacterLightHoverImage : heroCharacterLightImage;
+  return showTongue ? heroCharacterLightHoverImage : heroCharacterLightImage;
 });
 </script>

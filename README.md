@@ -1,151 +1,75 @@
 # Port Heaven
 
-## Description
+Personal portfolio showcasing frontend skills and experiments.
 
-Port Heaven is a personal portfolio project to showcase existing frontend skills and experiments.
+## Stack
 
-## Technologies
+- Vue 3, Vite, Tailwind CSS v4 and PostCSS
+- Vue I18n and Typograf for localization and typography
+- GSAP and Vanilla Tilt for animation; VueUse, Reka UI, Number Flow and Fitty for UI utilities
+- Iconify for icons; Prettier, ESLint and Playwright for development checks
 
-### Vite
+## Getting started
 
-Vite is used for the development server and production build.
+Use Node.js 24.22.1 or a newer Node.js 24 release; `.nvmrc` pins the project version.
 
-Packages involved:
+```bash
+git clone git@github.com:d1eruki/port-heaven.git
+cd port-heaven
+nvm install
+nvm use
+npm install
+npm start
+```
 
-- `vite` — development server, production bundler, and production preview server
-- `@vitejs/plugin-vue` — Vue 3 Single File Component support and HMR
+The dev server runs at http://localhost:8080. If you do not use nvm, select a compatible
+Node.js version before installing dependencies.
 
-Production JS, CSS, chunks, and imported assets use content hashes in their filenames for safer
-browser caching. Project assets are imported through Vite from `src/assets`; avoid literal
-`assets/...` paths for local files so unused assets are not copied into production builds.
+## Commands
 
-Production images and imported `.mp4`, `.webm`, and `.ogg` videos are optimized by a local Vite
-plugin before their content hashes are calculated. Videos keep their format and audio, are scaled
-down to fit within 1280 × 1280 without upscaling, and are replaced only when the result is smaller.
-The original files in `src/assets` remain unchanged; only emitted `dist` assets are compressed.
-Developer controls are available in the local dev server but hidden in production builds.
+- `npm start` — start the dev server with HMR
+- `npm run build` — create a production build in `dist`
+- `npm run serve:dist` — preview that build at http://127.0.0.1:4173
+- `npm run format:check` / `npm run lint` — check formatting and code
+- `npm run test:integrity` — check project integrity
+- `npm run test:e2e` — test the production build with Playwright
 
-Кнопка «перетасовать» в локальном режиме разработчика сохраняет выбранную раскладку
-в `src/js/data/creative-layout.json`. После обновления страницы используется та же
-раскладка. Чтобы она стала общей для посетителей GitHub Pages, включите этот файл
-в коммит и опубликуйте сайт обычным способом. Опубликованный сайт не изменяет файл;
-при изменении ширины экрана раскладка адаптируется к устройству посетителя.
+## Assets and developer controls
 
-### PostCSS
+Import project assets from `src/assets` through Vite. Production builds optimize images
+and videos without changing the originals and use content hashes for browser caching.
+Developer controls are available only in the local dev server.
 
-PostCSS is used together with Tailwind CSS v4 via `@tailwindcss/postcss` and Vite's built-in CSS
-pipeline.
+The shuffle button saves the layout to `src/js/data/creative-layout.json`.
+To publish it for visitors, commit the file and deploy the site.
 
-### Tailwind CSS
+## Translation
 
-Utility-first CSS framework wired through PostCSS.
-
-### Vue 3
-
-Progressive JavaScript framework for building the UI.
-
-Packages involved:
-
-- `vue` — Vue 3 core
-- `@vue/compiler-sfc` — compiler for Single File Components
-- `@vitejs/plugin-vue` — Vite integration for `.vue` files
-
-### i18n
-
-- `vue-i18n` — internationalization
-- `typograf` — applies typography rules to locale strings during the Vite build
-
-English locale strings are generated from `src/locales/ru.json`.
-Source locale files remain unchanged and readable. A local Vite plugin processes their strings with
-Typograf before bundling them, so the Typograf library is not shipped to the browser.
-
-Create `.env.local`:
+English strings in `src/locales/en.json` are generated from `src/locales/ru.json`.
+Add your key to `.env.local`:
 
 ```bash
 OPENAI_API_KEY=your_api_key
 ```
 
-Then run:
+Translate missing or stale strings:
 
 ```bash
 npm run translate:en
 ```
 
-The script updates only missing or stale strings in `src/locales/en.json` and stores source
-hashes in `src/locales/.en.meta.json`. Use `npm run translate:en:check` to preview which keys
-would be translated without calling the API.
-
-Optional model override:
+Use `npm run translate:en:check` to preview changes without calling the API.
+The script tracks source hashes in `src/locales/.en.meta.json`. To override the model:
 
 ```bash
 OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
 ```
 
-### Icons
+Typograf processes locale strings at build time; source locale files remain unchanged.
 
-- `@iconify/tailwind4` — Iconify integration for Tailwind CSS v4
-- `@iconify-json/ic` — Iconify icon set (Material Icons)
-- `@iconify-json/simple-icons` — Iconify icon set (brand icons)
+## Deployment and Lighthouse
 
-### UI Utilities
-
-- `@vueuse/core` — reactive browser state, preferences, and observer lifecycle utilities
-- `gsap` — smooth scrolling, scroll triggers, and animation timelines
-- `@number-flow/vue` — accessible animated statistics in Vue components
-- `reka-ui` — accessible tooltip primitives and collision-aware positioning for section navigation
-- `fitty` — responsive text fitting for the footer wordmark
-- `vanilla-tilt` — tilt/hover 3D effect
-
-### Developer Tooling
-
-- `prettier` + `prettier-plugin-tailwindcss` — code formatting
-
-## Scripts
-
-Available npm scripts:
-
-- `npm start` — start dev server at http://localhost:8080 with HMR
-- `npm run serve:dist` — preview the existing production build at http://127.0.0.1:4173
-- `npm run build` — production build
-- `npm run test:e2e` — build and test the production `dist` output with Playwright
-
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone git@github.com:d1eruki/port-heaven.git
-cd port-heaven
-```
-
-2. Install dependencies:
-
-   Use Node.js 24.21.0 LTS or a newer Node.js 24 release. The project `.nvmrc` pins the
-   currently verified LTS patch. If you use nvm, install and select it first:
-
-```bash
-nvm install
-nvm use
-```
-
-Then install the dependencies:
-
-```bash
-npm install
-```
-
-## Usage
-
-To run the site locally:
-
-```bash
-npm start
-```
-
-The app will be available at http://localhost:8080
-
-To create a production build:
-
-```bash
-npm run build
-```
+A push to `master` deploys the site to GitHub Pages after GitHub Actions checks pass.
+Lighthouse then audits the pages using phone, tablet and desktop profiles.
+The summary is available in GitHub Actions; full reports are saved as `lighthouse-*` artifacts.
+Low scores do not roll back the deployment.

@@ -1,0 +1,54 @@
+name: Lighthouse site audit
+
+on:
+  workflow_call:
+    inputs:
+      url:
+        description: Published site root from the deployment
+        required: true
+        type: string
+      pages:
+        description: Page matrix discovered in the deployed build
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: ${{ matrix.path }} — phone, tablet and desktop
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix: ${{ fromJSON(inputs.pages) }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+      - name: Install audit tools outside the project
+        run: npm install --prefix "$RUNNER_TEMP/port-heaven-lighthouse" --no-package-lock --no-audit --no-fund lighthouse@13.5.0
+      - name: Locate Chrome
+        run: |
+          echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
+          google-chrome --version
+      - name: Audit the published page
+        env:
+          LIGHTHOUSE_SITE_URL: ${{ inputs.url }}
+          LIGHTHOUSE_PAGE_PATH: ${{ matrix.path }}
+          LIGHTHOUSE_MODULES: ${{ runner.temp }}/port-heaven-lighthouse/node_modules
+          LIGHTHOUSE_REPORTS: ${{ runner.temp }}/port-heaven-lighthouse-reports/${{ matrix.id }}
+        run: node scripts/check-lighthouse.mjs
+      - name: Save HTML, JSON and summary reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lighthouse-${{ matrix.id }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/port-heaven-lighthouse-reports/${{ matrix.id }}
+          retention-days: 14
+          if-no-files-found: error
