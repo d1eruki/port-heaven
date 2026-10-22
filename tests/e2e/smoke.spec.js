@@ -104,6 +104,11 @@ const readSectionVisualProgress = (section) =>
   });
 
 const positionBeforeSecondProject = async (page) => {
+  await page.evaluate(() => document.fonts.ready);
+  // Удержание указателя не даёт автодоводке сработать во время подготовки позиции.
+  await page.mouse.move(0, 0);
+  await page.mouse.down();
+
   const metrics = await page.evaluate(() => {
     const project = document.querySelectorAll("[data-project-snap]")[1];
     if (!project) return null;
@@ -117,16 +122,30 @@ const positionBeforeSecondProject = async (page) => {
 
   expect(metrics).not.toBeNull();
   await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(metrics.start);
+  await expect
+    .poll(() =>
+      page
+        .locator("[data-project-snap]")
+        .nth(1)
+        .evaluate((element) => Math.abs(element.getBoundingClientRect().top - 100)),
+    )
+    .toBeLessThan(5);
 
   return metrics;
 };
 
-const scrollAndWaitForScrollToSettle = async (page) => {
+const scrollAndWaitForScrollToSettle = async (page, snapTarget) => {
   let previousY;
   let settledY = 0;
   let stableSamples = 0;
 
   await page.evaluate(() => window.scrollBy(0, 20));
+  await page.mouse.up();
+  if (snapTarget !== undefined) {
+    await expect
+      .poll(() => page.evaluate((target) => Math.abs(window.scrollY - target), snapTarget))
+      .toBeLessThan(50);
+  }
   await expect
     .poll(
       async () => {
@@ -295,7 +314,7 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   await expect(page.locator("#projects")).toBeVisible();
   await expect(page.locator("#design")).toBeVisible();
   await expect(page.locator("#creatives")).toBeVisible();
-  await expect(page.locator("#pricing")).toBeVisible();
+  await expect(page.locator("#pricing")).toHaveCount(0);
   await expect(page.locator("#reviews")).toBeVisible();
   await expect(page.locator("footer#footer")).toBeVisible();
   await expectRootLayoutFitsViewport(page);
@@ -305,9 +324,6 @@ test("loads core portfolio sections without console errors", async ({ page }) =>
   ).toHaveCount(1);
   await expect(
     page.locator("#design").getByRole("heading", { name: "Мобильный клиент Varwin", level: 3 }),
-  ).toHaveCount(1);
-  await expect(
-    page.locator("#pricing").getByRole("heading", { name: "Цены", level: 2 }),
   ).toHaveCount(1);
   await expect(
     page.locator("#reviews").getByRole("heading", { name: "Отзывы", level: 2 }),
@@ -399,7 +415,6 @@ test("section dot navigation targets the explicit section nav", async ({ page })
     "коммерческие проекты",
     "макеты",
     "креативы",
-    "цены",
     "отзывы",
     "связь",
   ];
@@ -409,7 +424,6 @@ test("section dot navigation targets the explicit section nav", async ({ page })
     "commercial projects",
     "layouts",
     "creatives",
-    "pricing",
     "reviews",
     "contact",
   ];
@@ -477,7 +491,7 @@ test("project cards snap only in enhanced desktop mode", async ({ page }, testIn
   await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
 
   const desktop = await positionBeforeSecondProject(page);
-  const desktopY = await scrollAndWaitForScrollToSettle(page);
+  const desktopY = await scrollAndWaitForScrollToSettle(page, desktop.target);
   expect(Math.abs(desktopY - desktop.target)).toBeLessThan(50);
 
   const projectPanel = page.locator("[data-project-panel]");
@@ -588,14 +602,7 @@ test("mobile viewport keeps core controls working", async ({ page }) => {
   await page.getByRole("button", { name: "темная тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "dark");
 
-  for (const sectionId of [
-    "#projects",
-    "#design",
-    "#creatives",
-    "#pricing",
-    "#reviews",
-    "#footer",
-  ]) {
+  for (const sectionId of ["#projects", "#design", "#creatives", "#reviews", "#footer"]) {
     await page.locator(sectionId).scrollIntoViewIfNeeded();
     await expect(page.locator(sectionId)).toBeVisible();
   }
