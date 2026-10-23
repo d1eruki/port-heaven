@@ -73,14 +73,29 @@ test("checked-in translations can seed the cache and rule changes invalidate cac
 });
 
 test("special labels and non-Russian strings bypass translation", async () => {
+  const source = {
+    "lang-toggle": "english",
+    brand: "Varwin XRMS",
+    metric: "50/50",
+    seo: { title: "пространство порт хэвен" },
+  };
+  const cached = await prepareTranslations({
+    source,
+    translate: async () => assert.fail("protected copy must not call the API"),
+  });
+  cached.target.seo.title = "port haven space";
   const result = await prepareTranslations({
-    source: { "lang-toggle": "english", brand: "Varwin XRMS", metric: "50/50" },
+    source,
+    target: cached.target,
+    meta: cached.meta,
+    cached,
     translate: async () => assert.fail("protected copy must not call the API"),
   });
   assert.deepEqual(result.target, {
     "lang-toggle": "русский",
     brand: "Varwin XRMS",
     metric: "50/50",
+    seo: { title: "port heaven space" },
   });
 });
 
