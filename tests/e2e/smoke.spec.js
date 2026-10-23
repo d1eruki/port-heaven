@@ -345,24 +345,39 @@ test("theme and locale controls update the page", async ({ page, isMobile }) => 
 
   const root = page.locator("html");
   const heroImage = page.locator("#hero img");
+  const tongue = page.locator('#hero svg image[href*="hero-mouth-tongue"]');
   const defaultHeroImageSrc = await heroImage.getAttribute("src");
 
   await expect(root).toHaveAttribute("data-theme", "light");
+  await expect(tongue).toHaveAttribute("opacity", "0");
 
   if (isMobile) {
     await heroImage.tap();
   } else {
     await heroImage.hover();
   }
-  await expect(heroImage).not.toHaveAttribute("src", defaultHeroImageSrc);
+  await expect(tongue).toHaveAttribute("opacity", "1");
+  await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
 
   if (isMobile) {
     await heroImage.tap();
-    await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
+  } else {
+    await page.mouse.move(0, 0);
   }
+  await expect(tongue).toHaveAttribute("opacity", "0");
+  await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
 
   await page.getByRole("button", { name: "темная тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "dark");
+  await expect(heroImage).not.toHaveAttribute("src", defaultHeroImageSrc);
+  const darkHeroImageSrc = await heroImage.getAttribute("src");
+  if (isMobile) {
+    await heroImage.tap();
+  } else {
+    await heroImage.hover();
+  }
+  await expect(tongue).toHaveAttribute("opacity", "1");
+  await expect(heroImage).toHaveAttribute("src", darkHeroImageSrc);
 
   await page.getByRole("button", { name: "english" }).click();
   await expect(root).toHaveAttribute("lang", "en");
@@ -870,15 +885,23 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
   await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
 });
 
-
-test("production serves responsive images, WOFF2 and small favicons", async ({ page }) => {
+test("production serves responsive images, automatic overlays, WOFF2 and small favicons", async ({
+  page,
+}) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   const hero = page.locator("#hero img");
-  await expect.poll(() => hero.evaluate((element) => element.currentSrc)).toMatch(/\.(?:avif|webp)(?:[?#]|$)/);
-  const resources = await page.evaluate(() => performance.getEntriesByType("resource").map((entry) => entry.name));
+  await expect
+    .poll(() => hero.evaluate((element) => element.currentSrc))
+    .toMatch(/\.avif(?:[?#]|$)/);
+  await expect(hero).toHaveAttribute("src", /\.webp(?:[?#]|$)/);
+  await expect(page.locator('#hero picture source[type="image/avif"]')).toHaveCount(1);
+  await expect(page.locator('#hero picture source[type="image/webp"]')).toHaveCount(1);
+  const resources = await page.evaluate(() =>
+    performance.getEntriesByType("resource").map((entry) => entry.name),
+  );
   expect(resources.some((url) => url.includes(".woff2"))).toBe(true);
   expect(resources.some((url) => /\.ttf(?:[?#]|$)/.test(url))).toBe(false);
   const favicon = await page.locator('link[rel="icon"]').getAttribute("href");
@@ -890,9 +913,53 @@ test("production serves responsive images, WOFF2 and small favicons", async ({ p
     return result;
   }, favicon);
   expect(dimensions).toEqual({ width: 64, height: 64 });
+
+  // Ordinary SVG-image imports use the same automatic production conversion.
+  await setEffectsMode(page, "on");
+  await page.reload();
+  const overlays = page.locator("#hero svg image");
+  await expect(overlays).toHaveCount(2);
+  for (const overlay of await overlays.all()) {
+    const href = await overlay.getAttribute("href");
+    expect(href).toMatch(/\.avif$/);
+    const response = await page.request.get(href);
+    expect(response.ok()).toBe(true);
+    expect(response.headers()["content-type"]).toMatch(/^image\/(?:avif|webp)/);
+    const loaded = await page.evaluate(async (url) => {
+      const image = new Image();
+      image.src = url;
+      await image.decode();
+      return { width: image.naturalWidth, height: image.naturalHeight };
+    }, href);
+    expect(loaded).toEqual({
+      width: Number(await overlay.getAttribute("width")),
+      height: Number(await overlay.getAttribute("height")),
+    });
+  }
 });
 
-test("desktop effects follow viewport changes without duplicate cursors or glare", async ({ page, isMobile }) => {
+test("AVIF errors recover to WebP for the hero and SVG overlays", async ({ page }) => {
+  await setEffectsMode(page, "on");
+  await page.route(/\.avif(?:[?#]|$)/, (route) => route.abort());
+  await page.goto("/");
+  const hero = page.locator("#hero img");
+  await expect.poll(() => hero.evaluate((image) => image.currentSrc)).toMatch(/\.webp(?:[?#]|$)/);
+  await expect
+    .poll(() => hero.evaluate((image) => image.complete && image.naturalWidth > 0))
+    .toBe(true);
+  const overlays = page.locator("#hero svg image");
+  await expect(overlays).toHaveCount(2);
+  for (const overlay of await overlays.all()) {
+    await expect(overlay).toHaveAttribute("href", /\.webp(?:[?#]|$)/);
+    const href = await overlay.getAttribute("href");
+    expect((await page.request.get(href)).ok()).toBe(true);
+  }
+});
+
+test("desktop effects follow viewport changes without duplicate cursors or glare", async ({
+  page,
+  isMobile,
+}) => {
   test.skip(isMobile, "A fine pointer is required for the desktop cursor");
   await setEffectsMode(page, "on");
   await page.setViewportSize({ width: 1280, height: 800 });
@@ -910,7 +977,9 @@ test("desktop effects follow viewport changes without duplicate cursors or glare
   }
 });
 
-test("automatic video pauses outside the viewport and respects a manual pause", async ({ page }) => {
+test("automatic video pauses outside the viewport and respects a manual pause", async ({
+  page,
+}) => {
   await setEffectsMode(page, "on");
   await page.goto("/");
   await expectVideoEffectsMode(page, true);
@@ -928,7 +997,10 @@ test("automatic video pauses outside the viewport and respects a manual pause", 
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(false);
 });
 
-test("one failed optional module does not disable unrelated effects", async ({ page, isMobile }) => {
+test("one failed optional module does not disable unrelated effects", async ({
+  page,
+  isMobile,
+}) => {
   test.skip(isMobile, "A fine pointer is required for the desktop cursor");
   await setEffectsMode(page, "on");
   let blockedRequests = 0;

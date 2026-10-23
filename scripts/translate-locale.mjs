@@ -9,7 +9,10 @@ const RULES_VERSION = 1;
 const cyrillicPattern = /[\u0400-\u04ff]/;
 const protectedTextPattern =
   /https?:\/\/[^\s]+|\{[^{}]+\}|[A-Za-z][A-Za-z0-9]*(?:[./-][A-Za-z0-9]+)*|\d+(?:[.,:/-]\d+)*(?:[%+])?|\n/g;
-const fixedTranslations = { "lang-toggle": "русский" };
+const fixedTranslations = {
+  "lang-toggle": "русский",
+  "seo.title": "port heaven space",
+};
 
 const hashText = (text) => createHash("sha256").update(text).digest("hex");
 const contextHash = hashText(JSON.stringify({ model: MODEL, rules: RULES_VERSION }));
