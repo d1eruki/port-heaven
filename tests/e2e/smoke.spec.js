@@ -345,24 +345,39 @@ test("theme and locale controls update the page", async ({ page, isMobile }) => 
 
   const root = page.locator("html");
   const heroImage = page.locator("#hero img");
+  const tongue = page.locator('#hero svg image[href*="hero-mouth-tongue"]');
   const defaultHeroImageSrc = await heroImage.getAttribute("src");
 
   await expect(root).toHaveAttribute("data-theme", "light");
+  await expect(tongue).toHaveAttribute("opacity", "0");
 
   if (isMobile) {
     await heroImage.tap();
   } else {
     await heroImage.hover();
   }
-  await expect(heroImage).not.toHaveAttribute("src", defaultHeroImageSrc);
+  await expect(tongue).toHaveAttribute("opacity", "1");
+  await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
 
   if (isMobile) {
     await heroImage.tap();
-    await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
+  } else {
+    await page.mouse.move(0, 0);
   }
+  await expect(tongue).toHaveAttribute("opacity", "0");
+  await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
 
   await page.getByRole("button", { name: "темная тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "dark");
+  await expect(heroImage).not.toHaveAttribute("src", defaultHeroImageSrc);
+  const darkHeroImageSrc = await heroImage.getAttribute("src");
+  if (isMobile) {
+    await heroImage.tap();
+  } else {
+    await heroImage.hover();
+  }
+  await expect(tongue).toHaveAttribute("opacity", "1");
+  await expect(heroImage).toHaveAttribute("src", darkHeroImageSrc);
 
   await page.getByRole("button", { name: "english" }).click();
   await expect(root).toHaveAttribute("lang", "en");
@@ -870,15 +885,18 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
   await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
 });
 
-
 test("production serves responsive images, WOFF2 and small favicons", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   const hero = page.locator("#hero img");
-  await expect.poll(() => hero.evaluate((element) => element.currentSrc)).toMatch(/\.(?:avif|webp)(?:[?#]|$)/);
-  const resources = await page.evaluate(() => performance.getEntriesByType("resource").map((entry) => entry.name));
+  await expect
+    .poll(() => hero.evaluate((element) => element.currentSrc))
+    .toMatch(/\.(?:avif|webp)(?:[?#]|$)/);
+  const resources = await page.evaluate(() =>
+    performance.getEntriesByType("resource").map((entry) => entry.name),
+  );
   expect(resources.some((url) => url.includes(".woff2"))).toBe(true);
   expect(resources.some((url) => /\.ttf(?:[?#]|$)/.test(url))).toBe(false);
   const favicon = await page.locator('link[rel="icon"]').getAttribute("href");
@@ -892,7 +910,10 @@ test("production serves responsive images, WOFF2 and small favicons", async ({ p
   expect(dimensions).toEqual({ width: 64, height: 64 });
 });
 
-test("desktop effects follow viewport changes without duplicate cursors or glare", async ({ page, isMobile }) => {
+test("desktop effects follow viewport changes without duplicate cursors or glare", async ({
+  page,
+  isMobile,
+}) => {
   test.skip(isMobile, "A fine pointer is required for the desktop cursor");
   await setEffectsMode(page, "on");
   await page.setViewportSize({ width: 1280, height: 800 });
@@ -910,7 +931,9 @@ test("desktop effects follow viewport changes without duplicate cursors or glare
   }
 });
 
-test("automatic video pauses outside the viewport and respects a manual pause", async ({ page }) => {
+test("automatic video pauses outside the viewport and respects a manual pause", async ({
+  page,
+}) => {
   await setEffectsMode(page, "on");
   await page.goto("/");
   await expectVideoEffectsMode(page, true);
@@ -928,7 +951,10 @@ test("automatic video pauses outside the viewport and respects a manual pause", 
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(false);
 });
 
-test("one failed optional module does not disable unrelated effects", async ({ page, isMobile }) => {
+test("one failed optional module does not disable unrelated effects", async ({
+  page,
+  isMobile,
+}) => {
   test.skip(isMobile, "A fine pointer is required for the desktop cursor");
   await setEffectsMode(page, "on");
   let blockedRequests = 0;
