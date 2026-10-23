@@ -6,4 +6,3 @@ export function onReady(fn, opts = { once: true }) {
     fn();
   }
 }
-export const domReady = new Promise((resolve) => onReady(resolve));

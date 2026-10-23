@@ -1,5 +1,5 @@
 import { gsap } from "../../libraries/gsap-scroll";
-import { onReady } from "../../utils/onReady";
+import { onReady } from "../../utils/on-ready";
 
 const setupAboutReveal = () => {
   const section = document.getElementById("about");

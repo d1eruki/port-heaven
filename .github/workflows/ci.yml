@@ -36,7 +36,7 @@ jobs:
       - name: Restore translations
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         id: translations
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6.1.0
         with:
           path: ${{ runner.temp }}/port-heaven-translations
           key: translations-v1-${{ hashFiles('src/locales/ru.json', 'src/locales/en.json', 'src/locales/.en.meta.json', 'scripts/translate-locale.mjs') }}
@@ -51,7 +51,7 @@ jobs:
 
       - name: Save translations
         if: github.event_name == 'push' && github.ref == 'refs/heads/master' && steps.translations.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6.1.0
         with:
           path: ${{ runner.temp }}/port-heaven-translations
           key: ${{ steps.translations.outputs.cache-primary-key }}
@@ -74,6 +74,13 @@ jobs:
       - name: Discover all built pages
         id: pages
         run: node scripts/check-lighthouse.mjs --list-pages
+
+      - name: Select Ubuntu package mirrors
+        run: |
+          printf '%s\n' \
+            'https://archive.ubuntu.com/ubuntu/ priority:1' \
+            'https://security.ubuntu.com/ubuntu/ priority:2' \
+            | sudo tee /etc/apt/apt-mirrors.txt
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium webkit

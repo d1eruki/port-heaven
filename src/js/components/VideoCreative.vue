@@ -1,3 +1,4 @@
+<!-- Видео с отложенной загрузкой, видимым автозапуском и сохранением ручного управления. -->
 <template>
   <div class="vanilla-tilt-creatives group h-fit overflow-hidden hover:z-100">
     <video
@@ -6,17 +7,19 @@
       :src="isSourceLoaded ? creativeSrc : undefined"
       muted
       controls
-      :autoplay="effectsEnabled"
+      :autoplay="shouldAutoplay"
       :loop="effectsEnabled"
       preload="auto"
+      @play="onPlay"
+      @pause="onPause"
       playsinline
     />
   </div>
 </template>
 
 <script setup>
-import { useIntersectionObserver } from "@vueuse/core";
-import { nextTick, onMounted, ref, watch } from "vue";
+import { useDocumentVisibility, useIntersectionObserver } from "@vueuse/core";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { effectsEnabled } from "../features/preferences/effects-toggle";
 
 defineProps({
@@ -25,46 +28,67 @@ defineProps({
 
 const videoEl = ref(null);
 const isSourceLoaded = ref(false);
+const isInViewport = ref(false);
+const isSourceReady = ref(false);
+const visibility = useDocumentVisibility();
+const playbackIntent = ref("auto");
+let expectedPlay = false;
+let expectedPause = false;
 
-const syncEffectsMode = () => {
+const shouldAutoplay = computed(() =>
+  effectsEnabled.value && isSourceReady.value && isInViewport.value &&
+  visibility.value === "visible" && playbackIntent.value === "auto",
+);
+
+const onPlay = () => {
+  if (expectedPlay) expectedPlay = false;
+  else if (!shouldAutoplay.value) playbackIntent.value = "playing";
+};
+
+const onPause = () => {
+  if (expectedPause) expectedPause = false;
+  else if (!videoEl.value?.ended) playbackIntent.value = "paused";
+};
+
+const syncPlayback = () => {
   const video = videoEl.value;
-  if (!video || !isSourceLoaded.value) return;
+  if (!video || !isSourceReady.value || playbackIntent.value === "playing") return;
 
-  if (effectsEnabled.value) video.play().catch(() => {});
-  else video.pause();
+  if (shouldAutoplay.value && video.paused) {
+    expectedPlay = true;
+    video.play().catch(() => { expectedPlay = false; });
+  } else if (!shouldAutoplay.value && !video.paused) {
+    expectedPause = true;
+    video.pause();
+  }
 };
 
 const loadVideo = async () => {
   if (isSourceLoaded.value) return;
-
   isSourceLoaded.value = true;
   await nextTick();
-
-  const video = videoEl.value;
-  if (!video) return;
-
-  video.load();
-  if (effectsEnabled.value) video.play().catch(() => {});
+  videoEl.value?.load();
+  isSourceReady.value = true;
+  syncPlayback();
 };
 
-const { isSupported, stop } = useIntersectionObserver(
-  videoEl,
-  (entries) => {
-    if (!entries.some((entry) => entry.isIntersecting)) return;
+// Loading may start near the viewport; playback requires actual visibility.
+const { isSupported, stop } = useIntersectionObserver(videoEl, (entries) => {
+  if (!entries.some((entry) => entry.isIntersecting)) return;
+  void loadVideo();
+  stop();
+}, { rootMargin: "300px 0px", threshold: 0.01 });
 
-    loadVideo();
-    stop();
-  },
-  {
-    rootMargin: "300px 0px",
-    threshold: 0.01,
-  },
-);
+useIntersectionObserver(videoEl, ([entry]) => {
+  isInViewport.value = entry?.isIntersecting ?? false;
+}, { threshold: 0.01 });
 
-watch(effectsEnabled, syncEffectsMode);
+watch([shouldAutoplay, playbackIntent], syncPlayback);
 
 onMounted(() => {
-  if (!isSupported.value) loadVideo();
-  else syncEffectsMode();
+  if (!isSupported.value) {
+    isInViewport.value = true;
+    void loadVideo();
+  }
 });
 </script>

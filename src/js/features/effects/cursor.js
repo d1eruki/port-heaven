@@ -5,6 +5,9 @@ import { effectsEnabled } from "../preferences/effects-toggle";
 export const initCursor = () => {
   if (!finePointer.value || !effectsEnabled.value) return;
 
+  const controller = new AbortController();
+  const listen = (target, event, handler, options = {}) =>
+    target.addEventListener(event, handler, { ...options, signal: controller.signal });
   const root = document.documentElement;
   root.classList.add("use-custom-cursor");
 
@@ -65,9 +68,9 @@ export const initCursor = () => {
   const onPointerMove = (e) => {
     moveTo(e.clientX, e.clientY);
   };
-  document.addEventListener("pointermove", onPointerMove, { passive: true });
+  listen(document, "pointermove", onPointerMove, { passive: true });
 
-  document.addEventListener(
+  listen(document, 
     "pointerenter",
     (e) => {
       moveTo(e.clientX, e.clientY);
@@ -77,7 +80,7 @@ export const initCursor = () => {
   );
 
   // Обновляем активность при смене ховера
-  document.addEventListener(
+  listen(document, 
     "pointerover",
     (e) => {
       if (!initialized) moveTo(e.clientX, e.clientY);
@@ -86,7 +89,7 @@ export const initCursor = () => {
     { passive: true },
   );
 
-  document.addEventListener(
+  listen(document, 
     "pointerout",
     (e) => {
       updateActive(e.relatedTarget || document.body);
@@ -94,7 +97,7 @@ export const initCursor = () => {
     { passive: true },
   );
 
-  document.addEventListener(
+  listen(document, 
     "mousemove",
     (e) => {
       if (!initialized) moveTo(e.clientX, e.clientY);
@@ -102,7 +105,7 @@ export const initCursor = () => {
     { passive: true, once: true },
   );
 
-  document.addEventListener(
+  listen(document, 
     "pointerleave",
     () => {
       cursor.style.opacity = "0";
@@ -110,7 +113,7 @@ export const initCursor = () => {
     { passive: true },
   );
 
-  document.addEventListener("visibilitychange", () => {
+  listen(document, "visibilitychange", () => {
     if (document.visibilityState === "visible" && initialized) {
       cursor.style.opacity = "1";
     } else {
@@ -118,14 +121,21 @@ export const initCursor = () => {
     }
   });
 
-  window.addEventListener("blur", () => {
+  listen(window, "blur", () => {
     cursor.style.opacity = "0";
   });
-  window.addEventListener("focus", () => {
+  listen(window, "focus", () => {
     if (initialized) cursor.style.opacity = "1";
   });
 
-  window.addEventListener("resize", () => {
+  listen(window, "resize", () => {
     if (initialized) render();
   });
+
+  return () => {
+    controller.abort();
+    if (rafId !== null) cancelAnimationFrame(rafId);
+    cursor.remove();
+    root.classList.remove("use-custom-cursor");
+  };
 };

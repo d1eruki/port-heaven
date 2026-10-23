@@ -1,3 +1,5 @@
+import { hashString } from "./hash-string";
+
 const HORIZONTAL_ANCHORS = [-3, 7, 18, 31, 44, 57, 70, 82];
 const STREAM_INTRO_HEIGHT = 112;
 const STREAM_ITEM_STEP = 14;
@@ -15,17 +17,6 @@ const PRIORITY_ANCHORS = {
   1: [18, 31, 44, 57, 70],
   2: HORIZONTAL_ANCHORS,
   3: HORIZONTAL_ANCHORS,
-};
-
-const hashString = (value) => {
-  let hash = 2166136261;
-
-  for (let index = 0; index < value.length; index += 1) {
-    hash ^= value.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-
-  return hash >>> 0;
 };
 
 const createRandom = (seed) => () => {

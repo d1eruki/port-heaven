@@ -46,4 +46,4 @@ export const initScrollSmoother = () => {
   return smoother;
 };
 
-export { gsap, ScrollSmoother, ScrollTrigger };
+export { gsap, ScrollTrigger };

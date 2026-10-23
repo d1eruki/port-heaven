@@ -1,5 +1,5 @@
 import { smoothScrollTop } from "../../utils/smooth-scroll";
-import { onReady } from "../../utils/onReady";
+import { onReady } from "../../utils/on-ready";
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
 
 export const initScrollToTop = () =>
