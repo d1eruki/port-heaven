@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -22,9 +22,11 @@ const createContext = () => {
     },
     addWatchFile() {},
     evaluate(code) {
-      const expression = code.replace("export default", "return").replace(
-        /import\.meta\.ROLLDOWN_FILE_URL_(\d+)/g, (_, index) => JSON.stringify(assets[Number(index)].name),
-      );
+      const expression = code
+        .replace("export default", "return")
+        .replace(/import\.meta\.ROLLDOWN_FILE_URL_(\d+)/g, (_, index) =>
+          JSON.stringify(assets[Number(index)].name),
+        );
       return Function(expression)();
     },
   };
@@ -42,7 +44,10 @@ test("media cache invalidates source, settings and versions and removes stale en
   const generate = () => Buffer.from(String(++calls));
   const create = (version) => createMediaCache({ directory, versions: { version } });
   const first = create(1);
-  await Promise.all([first.get(Buffer.from("a"), { width: 10 }, generate), first.get(Buffer.from("a"), { width: 10 }, generate)]);
+  await Promise.all([
+    first.get(Buffer.from("a"), { width: 10 }, generate),
+    first.get(Buffer.from("a"), { width: 10 }, generate),
+  ]);
   assert.equal(calls, 1);
   const second = create(1);
   await second.get(Buffer.from("a"), { width: 10 }, generate);
@@ -70,7 +75,9 @@ test("development reads original images and production emits bounded responsive 
     seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
     pixels[i] = seed >>> 24;
   }
-  const original = await sharp(pixels, { raw: { width: 512, height: 256, channels: 4 } }).png().toBuffer();
+  const original = await sharp(pixels, { raw: { width: 512, height: 256, channels: 4 } })
+    .png()
+    .toBuffer();
   await writeFile(file, original);
   const dev = optimizeMediaPlugin({ assetsRoot: root });
   dev.configResolved({ root, command: "serve" });
@@ -86,7 +93,11 @@ test("development reads original images and production emits bounded responsive 
   const image = context.evaluate(code);
   assert.equal(image.width, 512);
   assert.equal(image.height, 256);
-  assert.ok(image.sources.every((source) => source.srcset.split(", ").every((candidate) => /^[^\s]+ \d+w$/.test(candidate))));
+  assert.ok(
+    image.sources.every((source) =>
+      source.srcset.split(", ").every((candidate) => /^[^\s]+ \d+w$/.test(candidate)),
+    ),
+  );
   assert.ok(image.sources.some((source) => source.type === "image/webp"));
   assert.ok(image.sources.some((source) => source.type === "image/avif"));
   for (const asset of context.assets) {
@@ -102,7 +113,11 @@ test("development reads original images and production emits bounded responsive 
 test("production favicons are small square PNGs without changing their sources", async (t) => {
   const root = await temporaryDirectory(t);
   const file = path.join(root, "favicon-light.png");
-  const original = await sharp({ create: { width: 200, height: 201, channels: 4, background: "transparent" } }).png().toBuffer();
+  const original = await sharp({
+    create: { width: 200, height: 201, channels: 4, background: "transparent" },
+  })
+    .png()
+    .toBuffer();
   await writeFile(file, original);
   const plugin = optimizeMediaPlugin({ assetsRoot: root });
   plugin.configResolved({ root, command: "build" });
@@ -125,15 +140,20 @@ const fontTable = (font, name) => {
 
 test("WOFF2 production conversion preserves character mapping and variable axes", async (t) => {
   const root = await temporaryDirectory(t);
-  const fontsRoot = path.resolve("src/assets/fonts");
+  const fontsRoot = path.join(root, "src/assets/fonts");
   const file = path.join(fontsRoot, "Bounded-Variable.ttf");
-  const original = await readFile(file);
+  const sourceFile = path.resolve("src/assets/fonts/Bounded-Variable.ttf");
+  const original = await readFile(sourceFile);
+  await mkdir(fontsRoot, { recursive: true });
+  await writeFile(file, original);
   const plugin = optimizeFontsPlugin({ fontsRoot });
   assert.equal(plugin.apply, "build");
   plugin.configResolved({ root });
   const css = await readFile("src/styles/fonts.css", "utf8");
   const context = createContext();
-  const transformed = (await plugin.transform.call(context, css, path.resolve("src/styles/fonts.css"))).code;
+  const transformed = (
+    await plugin.transform.call(context, css, path.join(root, "src/styles/fonts.css"))
+  ).code;
   assert.ok(transformed.includes('format("woff2")'));
   assert.ok(!transformed.includes('format("truetype")'));
   const relative = transformed.match(/url\("([^"\n]+\.woff2)"\)/)[1];
@@ -144,4 +164,5 @@ test("WOFF2 production conversion preserves character mapping and variable axes"
   assert.deepEqual(fontTable(decoded, "cmap"), fontTable(original, "cmap"));
   assert.deepEqual(fontTable(decoded, "fvar"), fontTable(original, "fvar"));
   assert.equal(hash(await readFile(file)), hash(original));
+  assert.equal(hash(await readFile(sourceFile)), hash(original));
 });
