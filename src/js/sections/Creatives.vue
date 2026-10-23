@@ -59,6 +59,8 @@
           v-else
           :creative-alt="creative.alt"
           :creative-src="creative.src"
+          :image-sources="creative.sources"
+          :image-sizes="`(min-width: 1024px) ${creative.layoutWidth}vw, (min-width: 640px) calc((100vw - 7.5rem) / 3), calc((100vw - 5.75rem) / 2)`"
           :image-height="creative.height"
           :image-width="creative.width"
         />

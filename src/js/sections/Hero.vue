@@ -23,8 +23,18 @@
           </h1>
         </div>
       </div>
+      <picture class="contents">
+        <source
+          v-for="source in heroImage.sources"
+          :key="source.type"
+          :type="source.type"
+          :srcset="source.srcset"
+          sizes="(min-width: 1024px) 76.14svh, (min-width: 640px) 72.9svh, max(100vw, 69.66svh)"
+        />
       <img
-        :src="heroImageSrc"
+        :src="heroImage.src"
+        :width="heroImage.width"
+        :height="heroImage.height"
         class="relative z-2 h-[86svh] w-full self-center object-cover transition-opacity duration-300 sm:h-[90svh] sm:w-auto sm:max-w-none sm:object-contain lg:h-[94svh]"
         data-hero-parallax
         data-speed="0.5"
@@ -36,6 +46,7 @@
         @pointerleave="isHeroHovered = false"
         @click="toggleHeroImage"
       />
+      </picture>
     </div>
   </section>
 </template>
@@ -45,10 +56,10 @@ import fitty from "fitty";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { getBreakpointPx } from "../utils/breakpoints";
-import heroCharacterDarkImage from "../../assets/hero-character-dark.png";
-import heroCharacterDarkHoverImage from "../../assets/hero-character-dark-hover.png";
-import heroCharacterLightImage from "../../assets/hero-character-light.png";
-import heroCharacterLightHoverImage from "../../assets/hero-character-light-hover.png";
+import heroCharacterDarkImage from "../../assets/hero-character-dark.png?responsive";
+import heroCharacterDarkHoverImage from "../../assets/hero-character-dark-hover.png?responsive";
+import heroCharacterLightImage from "../../assets/hero-character-light.png?responsive";
+import heroCharacterLightHoverImage from "../../assets/hero-character-light-hover.png?responsive";
 
 const { t } = useI18n();
 const props = defineProps({
@@ -103,7 +114,7 @@ onBeforeUnmount(() => {
   heroTitleFit = null;
 });
 
-const heroImageSrc = computed(() => {
+const heroImage = computed(() => {
   const showTongue = isMobile.value ? isHeroTapped.value : isHeroHovered.value;
 
   if (props.currentTheme === "dark") {

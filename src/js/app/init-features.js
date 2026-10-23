@@ -1,7 +1,7 @@
 import { detectEffectCapabilities } from "../libraries/effect-capabilities";
-import { initScrollSmoother, ScrollTrigger } from "../libraries/gsap-scroll";
+import { initScrollSmoother, ScrollTrigger, gsap } from "../libraries/gsap-scroll";
 import { onReady } from "../utils/onReady";
-import { isViewportAtLeast } from "../utils/breakpoints";
+import { getBreakpointPx } from "../utils/breakpoints";
 
 import { applyEffectsMode } from "../features/preferences/effects-toggle";
 import {
@@ -28,13 +28,49 @@ const preserveScrollPosition = () => {
   enableNativeScrollRestoration();
 };
 
+const runFeature = async (name, load, initialize) => {
+  try {
+    return await initialize(await load());
+  } catch (error) {
+    console.error(`Failed to initialize ${name}:`, error);
+  }
+};
+
+const initDesktopEffects = () => {
+  const media = gsap.matchMedia();
+  media.add({
+    desktop: `(min-width: ${getBreakpointPx("lg")}px)`,
+    finePointer: "(pointer: fine)",
+  }, ({ conditions }) => {
+    if (!conditions.desktop) return;
+    let disposed = false;
+    const cleanups = [];
+    const activate = (initialize) => (module) => {
+      if (disposed) return;
+      const cleanup = initialize(module);
+      if (typeof cleanup === "function") cleanups.push(cleanup);
+    };
+
+    void runFeature("card tilt", () => import("../libraries/vanilla-tilt"),
+      activate((module) => module.initVanillaTilt()));
+    if (conditions.finePointer) {
+      void runFeature("cursor", () => import("../features/effects/cursor"),
+        activate((module) => module.initCursor()));
+    }
+    return () => {
+      disposed = true;
+      cleanups.forEach((cleanup) => cleanup());
+    };
+  });
+  if (import.meta.hot) import.meta.hot.dispose(() => media.revert());
+};
+
 export const initFeatures = async () => {
   enableNativeScrollRestoration();
   window.addEventListener("pagehide", preserveScrollPosition);
 
   const capabilities = detectEffectCapabilities();
   const { effectsOn } = applyEffectsMode(capabilities);
-  const screenLg = isViewportAtLeast("lg");
 
   if (effectsOn) initScrollSmoother();
 
@@ -44,44 +80,24 @@ export const initFeatures = async () => {
   initProjectPin();
   initCreativeHeadingPin();
 
-  try {
-    if (effectsOn) {
-      initAboutReveal();
-      initDesignActive();
-
-      const desktopModules = screenLg
-        ? Promise.all([import("../libraries/vanilla-tilt"), import("../features/effects/cursor")])
-        : null;
-      const [
-        { initCreativeParallax },
-        { initHorizontalScroll },
-        { initProgressBar },
-        { initSectionSnap },
-        { initReviews },
-      ] = await Promise.all([
-        import("../features/effects/creative-parallax"),
-        import("../features/navigation/horizontal-scroll"),
-        import("../features/navigation/progress-bar"),
-        import("../features/navigation/section-snap"),
-        import("../features/effects/reviews"),
-      ]);
-
-      onReady(initCreativeParallax);
-      onReady(initReviews);
-      initHorizontalScroll();
-      initProgressBar();
-      initSectionSnap();
-
-      if (desktopModules) {
-        const [{ initVanillaTilt }, { initCursor }] = await desktopModules;
-        onReady(initVanillaTilt);
-        onReady(initCursor);
-      }
-    } else {
-      await import("../../styles/no-effects.css");
-    }
-  } catch (e) {
-    console.error("Failed to load dynamic modules:", e);
+  if (effectsOn) {
+    initDesktopEffects();
+    await Promise.all([
+      runFeature("about reveal", () => ({}), () => initAboutReveal()),
+      runFeature("active design", () => ({}), () => initDesignActive()),
+      runFeature("creative parallax", () => import("../features/effects/creative-parallax"),
+        (module) => onReady(module.initCreativeParallax)),
+      runFeature("horizontal scroll", () => import("../features/navigation/horizontal-scroll"),
+        (module) => module.initHorizontalScroll()),
+      runFeature("progress bar", () => import("../features/navigation/progress-bar"),
+        (module) => module.initProgressBar()),
+      runFeature("section snap", () => import("../features/navigation/section-snap"),
+        (module) => module.initSectionSnap()),
+      runFeature("reviews", () => import("../features/effects/reviews"),
+        (module) => onReady(module.initReviews)),
+    ]);
+  } else {
+    await runFeature("no-effects styles", () => import("../../styles/no-effects.css"), () => {});
   }
 
   ScrollTrigger.refresh();

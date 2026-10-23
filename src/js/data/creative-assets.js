@@ -7,12 +7,12 @@ const creativeModules = import.meta.glob(
   },
 );
 
-const imageMetadata = import.meta.glob(
+const imageSources = import.meta.glob(
   "../../assets/creatives/priority-{1,2,3}/*.{avif,jpeg,jpg,png,webp}",
   {
     eager: true,
     import: "default",
-    query: "?metadata",
+    query: "?responsive",
   },
 );
 
@@ -21,10 +21,19 @@ export const creativeAssets = Object.entries(creativeModules)
   .map(([assetPath, src]) => {
     const [, priority, id] = assetPath.match(/\/priority-([123])\/([^/]+)\.[^.]+$/) ?? [];
 
+    if (!id || ![1, 2, 3].includes(Number(priority))) {
+      throw new Error(`Invalid creative asset path: ${assetPath}`);
+    }
     return {
       id,
       priority: Number(priority),
       src,
-      ...imageMetadata[assetPath],
+      ...imageSources[assetPath],
     };
   });
+
+const creativeIds = new Set();
+for (const creative of creativeAssets) {
+  if (creativeIds.has(creative.id)) throw new Error(`Duplicate creative ID: ${creative.id}`);
+  creativeIds.add(creative.id);
+}

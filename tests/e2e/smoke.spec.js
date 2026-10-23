@@ -175,7 +175,6 @@ const expectVideoEffectsMode = async (page, effectsOn) => {
   const video = page.locator("video");
   const attributeAssertion = effectsOn ? expect(video) : expect(video).not;
 
-  await attributeAssertion.toHaveAttribute("autoplay", "");
   await attributeAssertion.toHaveAttribute("loop", "");
   await expect(video).toHaveAttribute("controls", "");
 
@@ -205,6 +204,7 @@ const expectVideoEffectsMode = async (page, effectsOn) => {
   await expect(video).toHaveAttribute("src", /.+/);
   await expect.poll(() => video.evaluate((element) => Boolean(element.currentSrc))).toBe(true);
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(!effectsOn);
+  await attributeAssertion.toHaveAttribute("autoplay", "");
 };
 
 const openAnalyticsConsent = async (page) => {
@@ -868,4 +868,76 @@ test("effects control persists explicit off and on modes", async ({ page }) => {
 
   await expect(root).toHaveAttribute("data-effects-mode", secondMode);
   await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
+});
+
+
+test("production serves responsive images, WOFF2 and small favicons", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.evaluate(() => document.fonts.ready);
+  const hero = page.locator("#hero img");
+  await expect.poll(() => hero.evaluate((element) => element.currentSrc)).toMatch(/\.(?:avif|webp)(?:[?#]|$)/);
+  const resources = await page.evaluate(() => performance.getEntriesByType("resource").map((entry) => entry.name));
+  expect(resources.some((url) => url.includes(".woff2"))).toBe(true);
+  expect(resources.some((url) => /\.ttf(?:[?#]|$)/.test(url))).toBe(false);
+  const favicon = await page.locator('link[rel="icon"]').getAttribute("href");
+  const dimensions = await page.evaluate(async (url) => {
+    const response = await fetch(url);
+    const bitmap = await createImageBitmap(await response.blob());
+    const result = { width: bitmap.width, height: bitmap.height };
+    bitmap.close();
+    return result;
+  }, favicon);
+  expect(dimensions).toEqual({ width: 64, height: 64 });
+});
+
+test("desktop effects follow viewport changes without duplicate cursors or glare", async ({ page, isMobile }) => {
+  test.skip(isMobile, "A fine pointer is required for the desktop cursor");
+  await setEffectsMode(page, "on");
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
+  await expect(page.locator(".app-cursor")).toHaveCount(1);
+  const card = page.locator(".vanilla-tilt-creatives").first();
+  await expect(card.locator(".js-tilt-glare")).toHaveCount(1);
+  for (let i = 0; i < 2; i++) {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expect(page.locator(".app-cursor")).toHaveCount(0);
+    await expect(page.locator(".js-tilt-glare")).toHaveCount(0);
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await expect(page.locator(".app-cursor")).toHaveCount(1);
+    await expect(card.locator(".js-tilt-glare")).toHaveCount(1);
+  }
+});
+
+test("automatic video pauses outside the viewport and respects a manual pause", async ({ page }) => {
+  await setEffectsMode(page, "on");
+  await page.goto("/");
+  await expectVideoEffectsMode(page, true);
+  const video = page.locator("video");
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(true);
+  await expectVideoEffectsMode(page, true);
+  await video.evaluate((element) => element.pause());
+  await expect(video).not.toHaveAttribute("autoplay", "");
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await video.scrollIntoViewIfNeeded();
+  await expect(video).toBeInViewport();
+  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(true);
+  await video.evaluate((element) => element.play());
+  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(false);
+});
+
+test("one failed optional module does not disable unrelated effects", async ({ page, isMobile }) => {
+  test.skip(isMobile, "A fine pointer is required for the desktop cursor");
+  await setEffectsMode(page, "on");
+  let blockedRequests = 0;
+  await page.route("**/creative-parallax.*.js", (route) => {
+    blockedRequests += 1;
+    return route.abort();
+  });
+  await page.goto("/");
+  await expect.poll(() => blockedRequests).toBeGreaterThan(0);
+  await expect(page.locator(".app-cursor")).toHaveCount(1);
+  await expectVideoEffectsMode(page, true);
 });
