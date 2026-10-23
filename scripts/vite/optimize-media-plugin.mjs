@@ -260,7 +260,7 @@ export const optimizeMediaPlugin = ({ assetsRoot }) => {
       order: "post",
       async handler(html, context) {
         if (!isBuild || !context.bundle) return html;
-        const file = path.join(normalizedAssetsRoot, "favicon-light.png");
+        const file = path.join(normalizedAssetsRoot, "favicons", "favicon-light.png");
         const reference = emitted.get(file);
         if (!reference) return html;
         const target = getFileName(reference);

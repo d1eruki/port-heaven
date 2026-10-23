@@ -1,4 +1,5 @@
 import { creativeAssets } from "./creative-assets";
+import { hashString } from "../utils/hash-string";
 
 const DEFAULT_PRIORITY = 2;
 const VIDEO_SOURCE_PATTERN = /\.(?:mp4|webm|ogg)(?:[?#]|$)/i;
@@ -8,17 +9,6 @@ const normalizeCreative = (creative) => ({
   priority: creative.priority ?? DEFAULT_PRIORITY,
   type: creative.type ?? (VIDEO_SOURCE_PATTERN.test(creative.src) ? "video" : "image"),
 });
-
-const hashString = (value) => {
-  let hash = 2166136261;
-
-  for (let index = 0; index < value.length; index += 1) {
-    hash ^= value.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-
-  return hash >>> 0;
-};
 
 const getSeededSalt = (salt, seed) => (seed === 0 ? salt : `${salt}:${seed}`);
 
@@ -53,5 +43,3 @@ const distributePriorityCreatives = (seed) => {
 };
 
 export const createCreatives = (seed = 0) => distributePriorityCreatives(seed);
-
-export const creatives = createCreatives();

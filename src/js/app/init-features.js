@@ -1,6 +1,6 @@
 import { detectEffectCapabilities } from "../libraries/effect-capabilities";
 import { initScrollSmoother, ScrollTrigger, gsap } from "../libraries/gsap-scroll";
-import { onReady } from "../utils/onReady";
+import { onReady } from "../utils/on-ready";
 import { getBreakpointPx } from "../utils/breakpoints";
 
 import { applyEffectsMode } from "../features/preferences/effects-toggle";

@@ -1,4 +1,4 @@
-import { createCategorizedTags } from "./tagCategories.js";
+import { createCategorizedTags } from "./tag-categories.js";
 
 export const designs = [
   {

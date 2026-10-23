@@ -1,4 +1,4 @@
-import { onReady } from "../../utils/onReady";
+import { onReady } from "../../utils/on-ready";
 import { initSectionDots } from "./section-dots/init-section-dots";
 
 export const initSections = () => {

@@ -1,4 +1,4 @@
-import { onReady } from "../../utils/onReady";
+import { onReady } from "../../utils/on-ready";
 import { getBreakpointPx } from "../../utils/breakpoints";
 import { DOM_IDS, DOM_SELECTORS } from "../../dom/dom-selectors";
 import { gsap } from "../../libraries/gsap-scroll";

@@ -36,8 +36,8 @@ Node.js version before installing dependencies.
 
 ## Assets and developer controls
 
-Import project assets from `src/assets` through Vite. Production builds optimize images
-and videos without changing the originals and use content hashes for browser caching.
+Keep source media in `src/assets` and import it through Vite; `npm run build` creates the
+optimized web versions in `dist/assets` without changing the originals.
 Developer controls are available only in the local dev server.
 
 The shuffle button saves the layout to `src/js/data/creative-layout.json`.

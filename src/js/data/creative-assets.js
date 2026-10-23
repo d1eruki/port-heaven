@@ -16,10 +16,17 @@ const imageSources = import.meta.glob(
   },
 );
 
+// Keep layout identities stable when descriptive source filenames change.
+const creativeIdByFilename = {
+  "gogo-card-autumn-promotion": "Frame 6",
+  "vlad-birthday-lighthouse": "DRVLAD",
+};
+
 export const creativeAssets = Object.entries(creativeModules)
   .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath))
   .map(([assetPath, src]) => {
-    const [, priority, id] = assetPath.match(/\/priority-([123])\/([^/]+)\.[^.]+$/) ?? [];
+    const [, priority, filename] = assetPath.match(/\/priority-([123])\/([^/]+)\.[^.]+$/) ?? [];
+    const id = creativeIdByFilename[filename] ?? filename;
 
     if (!id || ![1, 2, 3].includes(Number(priority))) {
       throw new Error(`Invalid creative asset path: ${assetPath}`);

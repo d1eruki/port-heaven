@@ -56,10 +56,10 @@ import fitty from "fitty";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { getBreakpointPx } from "../utils/breakpoints";
-import heroCharacterDarkImage from "../../assets/hero-character-dark.png?responsive";
-import heroCharacterDarkHoverImage from "../../assets/hero-character-dark-hover.png?responsive";
-import heroCharacterLightImage from "../../assets/hero-character-light.png?responsive";
-import heroCharacterLightHoverImage from "../../assets/hero-character-light-hover.png?responsive";
+import heroCharacterDarkImage from "../../assets/hero/hero-character-dark.png?responsive";
+import heroCharacterDarkHoverImage from "../../assets/hero/hero-character-dark-hover.png?responsive";
+import heroCharacterLightImage from "../../assets/hero/hero-character-light.png?responsive";
+import heroCharacterLightHoverImage from "../../assets/hero/hero-character-light-hover.png?responsive";
 
 const { t } = useI18n();
 const props = defineProps({

@@ -1,4 +1,4 @@
-import { onReady } from "../../utils/onReady";
+import { onReady } from "../../utils/on-ready";
 import { DOM_SELECTORS } from "../../dom/dom-selectors";
 import { ScrollTrigger } from "../../libraries/gsap-scroll";
 

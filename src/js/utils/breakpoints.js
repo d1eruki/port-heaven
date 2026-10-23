@@ -29,5 +29,3 @@ export const getBreakpointPx = (name) => {
 
 export const isViewportAtLeast = (name, width = window.innerWidth) =>
   width >= getBreakpointPx(name);
-
-export const isViewportBelow = (name, width = window.innerWidth) => width < getBreakpointPx(name);

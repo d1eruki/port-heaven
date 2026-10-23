@@ -1,6 +1,6 @@
 import { useColorMode } from "@vueuse/core";
-import darkFaviconUrl from "../../../assets/favicon-dark.png";
-import lightFaviconUrl from "../../../assets/favicon-light.png";
+import darkFaviconUrl from "../../../assets/favicons/favicon-dark.png";
+import lightFaviconUrl from "../../../assets/favicons/favicon-light.png";
 import { useValidatedStorage } from "./storage";
 
 const root = document.documentElement;
