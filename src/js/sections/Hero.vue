@@ -29,8 +29,11 @@
         data-hero-parallax
         data-speed="0.5"
         @pointerenter="onHeroPointerEnter"
-        @pointerleave="isHeroHovered = false"
-        @click="toggleHeroImage"
+        @pointerleave="onHeroPointerLeave"
+        @pointerdown="onHeroPointerDown"
+        @pointermove="onHeroPointerMove"
+        @pointerup="onHeroPointerUp"
+        @pointercancel="cancelHeroPointer"
       >
         <div
           class="absolute top-1/2 left-1/2 aspect-3/4 w-[max(100%,calc(var(--hero-height)*3/4))] -translate-1/2"
@@ -125,6 +128,7 @@ const canBlink = computed(
 let heroTitleFit;
 let mobileMedia;
 let blinkTimer;
+let heroPointer;
 
 const stopBlinking = () => {
   window.clearTimeout(blinkTimer);
@@ -158,6 +162,7 @@ watch(canBlink, (enabled) => {
 });
 
 const syncHeroTitleFit = () => {
+  cancelHeroPointer();
   isMobile.value = mobileMedia?.matches ?? false;
   isHeroHovered.value = false;
   isHeroTapped.value = false;
@@ -179,8 +184,34 @@ const onHeroPointerEnter = (event) => {
   }
 };
 
-const toggleHeroImage = () => {
-  if (isMobile.value) isHeroTapped.value = !isHeroTapped.value;
+const cancelHeroPointer = () => {
+  heroPointer = null;
+};
+
+const onHeroPointerLeave = () => {
+  isHeroHovered.value = false;
+  cancelHeroPointer();
+};
+
+const onHeroPointerDown = (event) => {
+  cancelHeroPointer();
+  if (!isMobile.value || !event.isPrimary || event.button !== 0) return;
+  heroPointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
+};
+
+const onHeroPointerMove = (event) => {
+  if (heroPointer?.id !== event.pointerId) return;
+  // Match the scroll normalizer's drag threshold so scrolling never becomes a tap.
+  if (Math.abs(event.clientX - heroPointer.x) > 3 || Math.abs(event.clientY - heroPointer.y) > 3) {
+    cancelHeroPointer();
+  }
+};
+
+const onHeroPointerUp = (event) => {
+  onHeroPointerMove(event);
+  if (heroPointer?.id !== event.pointerId) return;
+  cancelHeroPointer();
+  isHeroTapped.value = !isHeroTapped.value;
 };
 
 onMounted(() => {
