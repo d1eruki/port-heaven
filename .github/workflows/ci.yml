@@ -78,9 +78,9 @@ jobs:
 
       - name: Select Ubuntu package mirrors
         run: |
-          printf '%s\n' \
-            'https://archive.ubuntu.com/ubuntu/ priority:1' \
-            'https://security.ubuntu.com/ubuntu/ priority:2' \
+          printf '%b\n' \
+            'https://archive.ubuntu.com/ubuntu/\tpriority:1' \
+            'https://security.ubuntu.com/ubuntu/\tpriority:2' \
             | sudo tee /etc/apt/apt-mirrors.txt
 
       - name: Install Playwright browsers
