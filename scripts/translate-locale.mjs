@@ -7,7 +7,8 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const MODEL = "gpt-5.4-mini";
 const RULES_VERSION = 1;
 const cyrillicPattern = /[\u0400-\u04ff]/;
-const protectedTextPattern = /https?:\/\/[^\s]+|\{[^{}]+\}|[A-Za-z][A-Za-z0-9]*(?:[./-][A-Za-z0-9]+)*|\d+(?:[.,:/-]\d+)*(?:[%+])?|\n/g;
+const protectedTextPattern =
+  /https?:\/\/[^\s]+|\{[^{}]+\}|[A-Za-z][A-Za-z0-9]*(?:[./-][A-Za-z0-9]+)*|\d+(?:[.,:/-]\d+)*(?:[%+])?|\n/g;
 const fixedTranslations = { "lang-toggle": "русский" };
 
 const hashText = (text) => createHash("sha256").update(text).digest("hex");
@@ -44,7 +45,11 @@ export const protectText = (text) => {
   return {
     value,
     restore(translated) {
-      if (typeof translated !== "string" || !translated.trim() || cyrillicPattern.test(translated)) {
+      if (
+        typeof translated !== "string" ||
+        !translated.trim() ||
+        cyrillicPattern.test(translated)
+      ) {
         throw new Error("Translation must contain non-empty English text");
       }
       const seen = new Set();
@@ -77,7 +82,8 @@ const buildSchema = (keys) => ({
 });
 
 const translateBatch = async (items) => {
-  if (!process.env.OPENAI_API_KEY) throw new Error("GitHub Actions secret OPENAI_API_KEY is required");
+  if (!process.env.OPENAI_API_KEY)
+    throw new Error("GitHub Actions secret OPENAI_API_KEY is required");
 
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
@@ -95,7 +101,9 @@ const translateBatch = async (items) => {
         "Tokens stand for protected product names, URLs, numbers, line breaks and interpolation variables.",
         "Preserve bracket wrappers. Use lowercase for translated prose. Do not add commentary.",
       ].join(" "),
-      input: JSON.stringify({ strings: Object.fromEntries(items.map(({ key, value }) => [key, value])) }),
+      input: JSON.stringify({
+        strings: Object.fromEntries(items.map(({ key, value }) => [key, value])),
+      }),
       text: {
         format: {
           type: "json_schema",
@@ -108,19 +116,29 @@ const translateBatch = async (items) => {
   });
 
   const payload = await response.json();
-  if (!response.ok) throw new Error(`OpenAI API request failed: ${payload?.error?.message || response.status}`);
-  if (payload.status !== "completed") throw new Error(`OpenAI response was ${payload.status || "incomplete"}`);
+  if (!response.ok)
+    throw new Error(`OpenAI API request failed: ${payload?.error?.message || response.status}`);
+  if (payload.status !== "completed")
+    throw new Error(`OpenAI response was ${payload.status || "incomplete"}`);
 
-  const outputText = payload.output_text || payload.output
-    ?.flatMap((item) => item.content || [])
-    .filter((content) => content.type === "output_text")
-    .map((content) => content.text)
-    .join("");
+  const outputText =
+    payload.output_text ||
+    payload.output
+      ?.flatMap((item) => item.content || [])
+      .filter((content) => content.type === "output_text")
+      .map((content) => content.text)
+      .join("");
   if (!outputText) throw new Error("OpenAI API response did not contain output text");
   return JSON.parse(outputText).translations;
 };
 
-export const prepareTranslations = async ({ source, target = {}, meta = {}, cached, translate = translateBatch }) => {
+export const prepareTranslations = async ({
+  source,
+  target = {},
+  meta = {},
+  cached,
+  translate = translateBatch,
+}) => {
   const items = collectStrings(source);
   const values = new Map();
   const hashes = {};
@@ -141,16 +159,21 @@ export const prepareTranslations = async ({ source, target = {}, meta = {}, cach
     const previous = [
       ...(cached?.meta?.contextHash === contextHash ? [cached] : []),
       ...(!meta.contextHash || meta.contextHash === contextHash ? [{ target, meta }] : []),
-    ].find((state) => state.meta?.hashes?.[item.key] === sourceHash &&
-      typeof getAtPath(state.target, item.path) === "string" &&
-      getAtPath(state.target, item.path).trim());
+    ].find(
+      (state) =>
+        state.meta?.hashes?.[item.key] === sourceHash &&
+        typeof getAtPath(state.target, item.path) === "string" &&
+        getAtPath(state.target, item.path).trim(),
+    );
 
     if (previous) values.set(item.key, getAtPath(previous.target, item.path));
     else pending.push({ ...item, protected: protectText(item.value) });
   }
 
   if (pending.length) {
-    const translated = await translate(pending.map(({ key, protected: protectedText }) => ({ key, value: protectedText.value })));
+    const translated = await translate(
+      pending.map(({ key, protected: protectedText }) => ({ key, value: protectedText.value })),
+    );
     for (const item of pending) {
       try {
         values.set(item.key, item.protected.restore(translated?.[item.key]));
@@ -162,10 +185,12 @@ export const prepareTranslations = async ({ source, target = {}, meta = {}, cach
 
   const rebuild = (value, prefix = []) => {
     if (typeof value === "string") return values.get(prefix.join("."));
-    if (Array.isArray(value)) return value.map((item, index) => rebuild(item, [...prefix, String(index)]));
-    if (value && typeof value === "object") return Object.fromEntries(
-      Object.entries(value).map(([key, item]) => [key, rebuild(item, [...prefix, key])]),
-    );
+    if (Array.isArray(value))
+      return value.map((item, index) => rebuild(item, [...prefix, String(index)]));
+    if (value && typeof value === "object")
+      return Object.fromEntries(
+        Object.entries(value).map(([key, item]) => [key, rebuild(item, [...prefix, key])]),
+      );
     return value;
   };
 
@@ -177,7 +202,8 @@ export const prepareTranslations = async ({ source, target = {}, meta = {}, cach
 };
 
 const main = async () => {
-  if (process.env.GITHUB_ACTIONS !== "true") throw new Error("Translation runs automatically in GitHub Actions");
+  if (process.env.GITHUB_ACTIONS !== "true")
+    throw new Error("Translation runs automatically in GitHub Actions");
   const cacheDir = process.env.TRANSLATION_CACHE_DIR;
   if (!cacheDir) throw new Error("TRANSLATION_CACHE_DIR is required");
   const cachePath = path.join(cacheDir, "state.json");
@@ -190,7 +216,9 @@ const main = async () => {
   await writeJson(path.join(rootDir, "src/locales/en.json"), result.target);
   await mkdir(cacheDir, { recursive: true });
   await writeJson(cachePath, { target: result.target, meta: result.meta });
-  console.info(`Translated ${result.translatedCount} changed string(s); other strings reused or protected.`);
+  console.info(
+    `Translated ${result.translatedCount} changed string(s); other strings reused or protected.`,
+  );
 };
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {

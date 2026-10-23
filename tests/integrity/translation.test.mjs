@@ -10,7 +10,10 @@ test("translation preserves nested arrays, scalar types and removes deleted keys
     source,
     target: { removed: "obsolete", projects: [{ text: ["old", "old", "removed"] }] },
     translate: async (items) => {
-      assert.deepEqual(items.map(({ key }) => key), ["projects.0.text.0", "projects.0.text.1"]);
+      assert.deepEqual(
+        items.map(({ key }) => key),
+        ["projects.0.text.0", "projects.0.text.1"],
+      );
       return { "projects.0.text.0": "first", "projects.0.text.1": "second" };
     },
   });
@@ -38,7 +41,10 @@ test("matching source hashes reuse translations without an API call", async () =
     source: { text: "Привет", list: ["Изменено"] },
     cached: first,
     translate: async (items) => {
-      assert.deepEqual(items.map(({ key }) => key), ["list.0"]);
+      assert.deepEqual(
+        items.map(({ key }) => key),
+        ["list.0"],
+      );
       return { "list.0": "changed" };
     },
   });
@@ -71,7 +77,11 @@ test("special labels and non-Russian strings bypass translation", async () => {
     source: { "lang-toggle": "english", brand: "Varwin XRMS", metric: "50/50" },
     translate: async () => assert.fail("protected copy must not call the API"),
   });
-  assert.deepEqual(result.target, { "lang-toggle": "русский", brand: "Varwin XRMS", metric: "50/50" });
+  assert.deepEqual(result.target, {
+    "lang-toggle": "русский",
+    brand: "Varwin XRMS",
+    metric: "50/50",
+  });
 });
 
 test("product names, URLs, variables, metrics and line breaks survive translation exactly", () => {
@@ -79,18 +89,29 @@ test("product names, URLs, variables, metrics and line breaks survive translatio
   const protectedText = protectText(source);
   const english = protectedText.value.replace("Проект", "project");
   assert.equal(protectedText.restore(english), source.replace("Проект", "project"));
-  assert.throws(() => protectedText.restore(english.replace("__PH_0__", "")), /lost a protected token/);
+  assert.throws(
+    () => protectedText.restore(english.replace("__PH_0__", "")),
+    /lost a protected token/,
+  );
   assert.throws(() => protectedText.restore(`${english} __PH_0__`), /Invalid protected token/);
   assert.throws(() => protectedText.restore(`${english} __PH_99__`), /Invalid protected token/);
 });
 
 test("missing or invalid translations reject the update instead of publishing partial copy", async () => {
-  await assert.rejects(prepareTranslations({
-    source: { text: "Текст" },
-    translate: async () => ({}),
-  }), /text: Translation must contain/);
-  await assert.rejects(prepareTranslations({
-    source: { text: "Текст" },
-    translate: async () => { throw new Error("API unavailable"); },
-  }), /API unavailable/);
+  await assert.rejects(
+    prepareTranslations({
+      source: { text: "Текст" },
+      translate: async () => ({}),
+    }),
+    /text: Translation must contain/,
+  );
+  await assert.rejects(
+    prepareTranslations({
+      source: { text: "Текст" },
+      translate: async () => {
+        throw new Error("API unavailable");
+      },
+    }),
+    /API unavailable/,
+  );
 });

@@ -129,9 +129,12 @@ export const optimizeMediaPlugin = ({ assetsRoot }) => {
   const preparedImages = new Map();
   const prepareImage = (resourcePath) => {
     if (!preparedImages.has(resourcePath)) {
-      preparedImages.set(resourcePath, readFile(resourcePath).then((content) =>
-        isBuild ? optimizeImage(content, resourcePath) : content,
-      ));
+      preparedImages.set(
+        resourcePath,
+        readFile(resourcePath).then((content) =>
+          isBuild ? optimizeImage(content, resourcePath) : content,
+        ),
+      );
     }
     return preparedImages.get(resourcePath);
   };

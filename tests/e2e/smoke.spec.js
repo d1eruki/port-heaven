@@ -799,6 +799,8 @@ for (const scenario of [
     await page.goto("/", { waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveClass(/no-effects/);
 
+    await page.locator("#projects").scrollIntoViewIfNeeded();
+    await expect(page.locator("#scroll-to-top")).toBeEnabled();
     await page.locator('[data-section-nav] button[data-target="#about"]').click();
     await expect.poll(() => page.evaluate(() => window.__navigationScrollBehavior)).toBe("instant");
     await expect(page.locator("#about")).toBeInViewport();
@@ -809,7 +811,9 @@ for (const scenario of [
   });
 }
 
-test("explicit effects on enables the cursor even with a reduced-motion preference", async ({ page }) => {
+test("explicit effects on enables the cursor even with a reduced-motion preference", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await setEffectsMode(page, "on");

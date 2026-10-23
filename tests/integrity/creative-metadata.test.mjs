@@ -17,10 +17,19 @@ test("gallery metadata covers square, landscape and portrait assets in developme
   const watched = [];
   const context = { addWatchFile: (file) => watched.push(file) };
 
-  for (const [width, height] of [[40, 40], [80, 45], [30, 60]]) {
+  for (const [width, height] of [
+    [40, 40],
+    [80, 45],
+    [30, 60],
+  ]) {
     const file = path.join(assetsRoot, `${width}-${height}.png`);
-    await sharp({ create: { width, height, channels: 4, background: "transparent" } }).png().toFile(file);
-    assert.deepEqual(metadataFromModule(await plugin.load.call(context, `${file}?metadata&import`)), { width, height });
+    await sharp({ create: { width, height, channels: 4, background: "transparent" } })
+      .png()
+      .toFile(file);
+    assert.deepEqual(
+      metadataFromModule(await plugin.load.call(context, `${file}?metadata&import`)),
+      { width, height },
+    );
     assert.equal(await plugin.load.call(context, `${file}?url`), null);
   }
   assert.equal(watched.length, 3);
@@ -31,15 +40,28 @@ test("metadata follows orientation and updates when an image changes", async (t)
   t.after(() => rm(assetsRoot, { recursive: true, force: true }));
   const file = path.join(assetsRoot, "oriented.jpg");
   await sharp({ create: { width: 80, height: 40, channels: 3, background: "white" } })
-    .jpeg().withMetadata({ orientation: 6 }).toFile(file);
+    .jpeg()
+    .withMetadata({ orientation: 6 })
+    .toFile(file);
   const plugin = optimizeMediaPlugin({ assetsRoot });
   plugin.configResolved({ command: "serve" });
   const context = { addWatchFile() {} };
-  assert.deepEqual(metadataFromModule(await plugin.load.call(context, `${file}?metadata`)), { width: 40, height: 80 });
+  assert.deepEqual(metadataFromModule(await plugin.load.call(context, `${file}?metadata`)), {
+    width: 40,
+    height: 80,
+  });
 
-  await writeFile(file, await sharp({ create: { width: 25, height: 50, channels: 3, background: "white" } }).jpeg().toBuffer());
+  await writeFile(
+    file,
+    await sharp({ create: { width: 25, height: 50, channels: 3, background: "white" } })
+      .jpeg()
+      .toBuffer(),
+  );
   plugin.watchChange(file);
-  assert.deepEqual(metadataFromModule(await plugin.load.call(context, `${file}?metadata`)), { width: 25, height: 50 });
+  assert.deepEqual(metadataFromModule(await plugin.load.call(context, `${file}?metadata`)), {
+    width: 25,
+    height: 50,
+  });
 });
 
 test("production dimensions describe the emitted image after resizing", async (t) => {
@@ -47,13 +69,20 @@ test("production dimensions describe the emitted image after resizing", async (t
   t.after(() => rm(assetsRoot, { recursive: true, force: true }));
   const file = path.join(assetsRoot, "2025-artem-y.webp");
   await sharp({ create: { width: 1500, height: 2121, channels: 3, background: "white" } })
-    .webp({ lossless: true }).toFile(file);
+    .webp({ lossless: true })
+    .toFile(file);
   const original = await readFile(file);
   const plugin = optimizeMediaPlugin({ assetsRoot });
   plugin.configResolved({ command: "build" });
   plugin.buildStart();
   let emitted;
-  const context = { addWatchFile() {}, emitFile(asset) { emitted = asset; return "asset-id"; } };
+  const context = {
+    addWatchFile() {},
+    emitFile(asset) {
+      emitted = asset;
+      return "asset-id";
+    },
+  };
   const dimensions = metadataFromModule(await plugin.load.call(context, `${file}?metadata`));
   await plugin.load.call(context, `${file}?url`);
   const actual = await sharp(emitted.source).metadata();
