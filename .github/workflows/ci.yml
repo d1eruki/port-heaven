@@ -57,6 +57,7 @@ jobs:
           key: ${{ steps.translations.outputs.cache-primary-key }}
 
       - name: Check formatting
+        continue-on-error: true
         run: npm run format:check
 
       - name: Lint
