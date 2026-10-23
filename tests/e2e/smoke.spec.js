@@ -1,4 +1,11 @@
 import { expect, test } from "@playwright/test";
+import Typograf from "typograf";
+import en from "../../src/locales/en.json" with { type: "json" };
+
+const typograf = new Typograf({ locale: ["ru", "en-US"] });
+const englishSeo = Object.fromEntries(
+  Object.entries(en.seo).map(([key, value]) => [key, typograf.execute(value)]),
+);
 
 const ANALYTICS_CONSENT_STORAGE_KEY = "analytics-consent";
 const ANALYTICS_TEST_BYPASS_KEY = "test-analytics-consent";
@@ -171,13 +178,7 @@ const scrollAndWaitForScrollToSettle = async (page, snapTarget) => {
   return settledY;
 };
 
-const expectVideoEffectsMode = async (page, effectsOn) => {
-  const video = page.locator("video");
-  const attributeAssertion = effectsOn ? expect(video) : expect(video).not;
-
-  await attributeAssertion.toHaveAttribute("loop", "");
-  await expect(video).toHaveAttribute("controls", "");
-
+const scrollVideoIntoView = async (video) => {
   await video.evaluate((element) => {
     const bounds = element.getBoundingClientRect();
     let documentTop = 0;
@@ -196,15 +197,32 @@ const expectVideoEffectsMode = async (page, effectsOn) => {
     .poll(() =>
       video.evaluate((element) => {
         const bounds = element.getBoundingClientRect();
-        return bounds.top < window.innerHeight && bounds.bottom > 0;
+        return Math.abs((bounds.top + bounds.bottom - window.innerHeight) / 2);
       }),
     )
-    .toBe(true);
+    .toBeLessThan(5);
+  await expect(video).toBeInViewport({ ratio: 0.5 });
+};
+
+const expectVideoPlaying = async (video) => {
+  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(false);
+  const time = await video.evaluate((element) => element.currentTime);
+  await expect.poll(() => video.evaluate((element) => element.currentTime)).not.toBe(time);
+};
+
+const expectVideoEffectsMode = async (page, effectsOn) => {
+  const video = page.locator("video");
+  const attributeAssertion = effectsOn ? expect(video) : expect(video).not;
+
+  await attributeAssertion.toHaveAttribute("loop", "");
+  await expect(video).toHaveAttribute("controls", "");
+  await scrollVideoIntoView(video);
 
   await expect(video).toHaveAttribute("src", /.+/);
   await expect.poll(() => video.evaluate((element) => Boolean(element.currentSrc))).toBe(true);
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(!effectsOn);
   await attributeAssertion.toHaveAttribute("autoplay", "");
+  if (effectsOn) await expectVideoPlaying(video);
 };
 
 const openAnalyticsConsent = async (page) => {
@@ -384,9 +402,16 @@ test("theme and locale controls update the page", async ({ page, isMobile }) => 
   await expect(page).toHaveTitle("port heaven space");
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     "content",
-    /^Design, interfaces, prototypes, motion, and other things I\smake\.$/,
+    englishSeo.description,
   );
-  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", "Preview");
+  await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+    "content",
+    englishSeo.description,
+  );
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute(
+    "content",
+    englishSeo.imageAlt,
+  );
   await expect(page.getByRole("heading", { name: /artem/i })).toBeVisible();
   await expect(page.getByRole("button", { name: "русский" })).toBeVisible();
 });
@@ -985,16 +1010,18 @@ test("automatic video pauses outside the viewport and respects a manual pause", 
   await expectVideoEffectsMode(page, true);
   const video = page.locator("video");
   await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(video).not.toBeInViewport();
+  await expect(video).not.toHaveAttribute("autoplay", "");
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(true);
   await expectVideoEffectsMode(page, true);
   await video.evaluate((element) => element.pause());
   await expect(video).not.toHaveAttribute("autoplay", "");
   await page.evaluate(() => window.scrollTo(0, 0));
-  await video.scrollIntoViewIfNeeded();
-  await expect(video).toBeInViewport();
+  await expect(video).not.toBeInViewport();
+  await scrollVideoIntoView(video);
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(true);
   await video.evaluate((element) => element.play());
-  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(false);
+  await expectVideoPlaying(video);
 });
 
 test("one failed optional module does not disable unrelated effects", async ({
