@@ -125,11 +125,32 @@ const optimizeVideo = async (content, resourcePath) => {
 
 export const optimizeMediaPlugin = ({ assetsRoot }) => {
   const normalizedAssetsRoot = `${path.resolve(assetsRoot)}${path.sep}`;
+  let isBuild = false;
+  const preparedImages = new Map();
+  const prepareImage = (resourcePath) => {
+    if (!preparedImages.has(resourcePath)) {
+      preparedImages.set(
+        resourcePath,
+        readFile(resourcePath).then((content) =>
+          isBuild ? optimizeImage(content, resourcePath) : content,
+        ),
+      );
+    }
+    return preparedImages.get(resourcePath);
+  };
 
   return {
     name: "port-heaven-optimize-media",
-    apply: "build",
     enforce: "pre",
+    configResolved(config) {
+      isBuild = config.command === "build";
+    },
+    buildStart() {
+      preparedImages.clear();
+    },
+    watchChange(id) {
+      preparedImages.delete(id.split("?", 1)[0]);
+    },
     async load(id) {
       const resourcePath = id.split("?", 1)[0];
       const extension = path.extname(resourcePath).toLowerCase();
@@ -140,10 +161,21 @@ export const optimizeMediaPlugin = ({ assetsRoot }) => {
         return null;
       }
 
-      const content = await readFile(resourcePath);
+      const metadataRequested = new URLSearchParams(id.slice(resourcePath.length)).has("metadata");
+      if (metadataRequested) {
+        if (!supportedImageExtensions.has(extension)) return null;
+        this.addWatchFile(resourcePath);
+        const image = sharp(await prepareImage(resourcePath));
+        const metadata = await image.metadata();
+        const { width, height } = metadata.autoOrient;
+        if (!width || !height) throw new Error(`Missing image dimensions: ${resourcePath}`);
+        return `export default ${JSON.stringify({ width, height })};`;
+      }
+      if (!isBuild) return null;
+
       const optimized = supportedVideoExtensions.has(extension)
-        ? await optimizeVideo(content, resourcePath)
-        : await optimizeImage(content, resourcePath);
+        ? await optimizeVideo(await readFile(resourcePath), resourcePath)
+        : await prepareImage(resourcePath);
       const referenceId = this.emitFile({
         type: "asset",
         name: path.basename(resourcePath),

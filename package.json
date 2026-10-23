@@ -18,8 +18,6 @@
     "start": "vite",
     "serve:dist": "vite preview",
     "build": "vite build",
-    "translate:en": "node scripts/translate-locale.mjs",
-    "translate:en:check": "node scripts/translate-locale.mjs --dry-run",
     "lint": "eslint .",
     "test:integrity": "node --test tests/integrity/*.test.mjs",
     "test:e2e": "playwright test",

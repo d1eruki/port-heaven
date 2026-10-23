@@ -14,37 +14,6 @@ export const initCreativeParallax = () => {
   const breakpointLg = getBreakpointPx("lg");
   const media = gsap.matchMedia();
 
-  media.add(`(max-width: ${breakpointLg - 0.02}px)`, () => {
-    const animations = Array.from(items, (item) => {
-      const depth = getDepth(item);
-
-      return gsap.fromTo(
-        item,
-        {
-          y: () => window.innerHeight * 0.04 * depth,
-        },
-        {
-          y: () => -window.innerHeight * 0.04 * depth,
-          ease: "none",
-          scrollTrigger: {
-            trigger: item,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8,
-            invalidateOnRefresh: true,
-          },
-        },
-      );
-    });
-
-    return () => {
-      animations.forEach((animation) => {
-        animation.scrollTrigger?.kill();
-        animation.kill();
-      });
-    };
-  });
-
   media.add(`(min-width: ${breakpointLg}px)`, () => {
     const animations = Array.from(items, (item) => {
       const depth = getDepth(item);
