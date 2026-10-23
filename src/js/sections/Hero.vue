@@ -131,16 +131,23 @@ const stopBlinking = () => {
   isBlinking.value = false;
 };
 
+const blink = (remaining) => {
+  if (!canBlink.value) return;
+  isBlinking.value = true;
+  blinkTimer = window.setTimeout(() => {
+    isBlinking.value = false;
+    if (!canBlink.value) return;
+    if (remaining > 1) {
+      blinkTimer = window.setTimeout(() => blink(remaining - 1), 120);
+    } else {
+      scheduleBlink();
+    }
+  }, 120);
+};
+
 const scheduleBlink = () => {
   blinkTimer = window.setTimeout(
-    () => {
-      if (!canBlink.value) return;
-      isBlinking.value = true;
-      blinkTimer = window.setTimeout(() => {
-        isBlinking.value = false;
-        if (canBlink.value) scheduleBlink();
-      }, 120);
-    },
+    () => blink(Math.random() < 0.25 ? 2 : 1),
     3000 + Math.random() * 3000,
   );
 };
