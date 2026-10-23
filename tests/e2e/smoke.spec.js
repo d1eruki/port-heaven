@@ -104,11 +104,28 @@ const setEffectsMode = async (page, mode) => {
   }, mode);
 };
 
+const seedEffectsMode = (page, baseURL, mode) =>
+  page.context().setStorageState({
+    cookies: [],
+    origins: [
+      { origin: new URL(baseURL).origin, localStorage: [{ name: "effects-mode", value: mode }] },
+    ],
+  });
+
 const readSectionVisualProgress = (section) =>
   section.evaluate((element) => {
     const distance = element.offsetHeight - window.innerHeight;
     return distance > 0 ? -element.getBoundingClientRect().top / distance : 0;
   });
+
+const scrollToSectionMiddle = async (section) => {
+  await section.page().waitForLoadState("networkidle");
+  await section.evaluate(async (element) => {
+    await document.fonts.ready;
+    window.scrollTo(0, element.offsetTop + (element.offsetHeight - window.innerHeight) * 0.5);
+  });
+  await expect.poll(() => readSectionVisualProgress(section)).toBeCloseTo(0.5, 1);
+};
 
 const positionBeforeSecondProject = async (page) => {
   await page.waitForLoadState("networkidle");
@@ -179,35 +196,58 @@ const scrollAndWaitForScrollToSettle = async (page, snapTarget) => {
 };
 
 const scrollVideoIntoView = async (video) => {
-  await video.evaluate((element) => {
-    const bounds = element.getBoundingClientRect();
-    let documentTop = 0;
-    let current = element;
-
-    while (current) {
-      documentTop += current.offsetTop;
-      current = current.offsetParent;
-    }
-
-    const centeredTop = documentTop - (window.innerHeight - bounds.height) / 2;
-    window.scrollTo(0, Math.max(0, centeredTop));
-  });
-
   await expect
     .poll(() =>
       video.evaluate((element) => {
         const bounds = element.getBoundingClientRect();
-        return Math.abs((bounds.top + bounds.bottom - window.innerHeight) / 2);
+        let documentTop = 0;
+        let current = element;
+        while (current) {
+          documentTop += current.offsetTop;
+          current = current.offsetParent;
+        }
+        const target = Math.max(0, documentTop - (window.innerHeight - bounds.height) / 2);
+        if (Math.abs(window.scrollY - target) > 1) window.scrollTo(0, target);
+        const visibleHeight = Math.min(bounds.bottom, window.innerHeight) - Math.max(bounds.top, 0);
+        return bounds.height > 0 && visibleHeight >= bounds.height / 2;
       }),
     )
-    .toBeLessThan(5);
+    .toBe(true);
   await expect(video).toBeInViewport({ ratio: 0.5 });
+};
+
+const scrollVideoOutOfView = async (video) => {
+  await expect
+    .poll(() =>
+      video.evaluate((element) => {
+        window.scrollTo(0, 0);
+        const bounds = element.getBoundingClientRect();
+        return bounds.top >= window.innerHeight || bounds.bottom <= 0;
+      }),
+    )
+    .toBe(true);
+  await expect(video).not.toBeInViewport();
 };
 
 const expectVideoPlaying = async (video) => {
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(false);
-  const time = await video.evaluate((element) => element.currentTime);
-  await expect.poll(() => video.evaluate((element) => element.currentTime)).not.toBe(time);
+  const start = await video.evaluate((element) => ({
+    time: element.currentTime,
+    frames: window.__portHeavenMediaDiagnostics.videos.get(element)?.frames ?? 0,
+  }));
+  await expect
+    .poll(() =>
+      video.evaluate(
+        (element, initial) => ({
+          paused: element.paused,
+          timeAdvanced: element.currentTime !== initial.time,
+          framesAdvanced:
+            (window.__portHeavenMediaDiagnostics.videos.get(element)?.frames ?? 0) > initial.frames,
+        }),
+        start,
+      ),
+    )
+    .toEqual({ paused: false, timeAdvanced: true, framesAdvanced: true });
 };
 
 const expectVideoEffectsMode = async (page, effectsOn) => {
@@ -241,6 +281,56 @@ const openAnalyticsConsent = async (page) => {
 };
 
 test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    const diagnostics = { events: [], playErrors: [], videos: new WeakMap() };
+    window.__portHeavenMediaDiagnostics = diagnostics;
+
+    const record = (event) => {
+      const video = event.target;
+      if (!(video instanceof HTMLVideoElement)) return;
+      if (event.type === "loadstart" && !diagnostics.videos.has(video)) {
+        const state = { frames: 0 };
+        diagnostics.videos.set(video, state);
+        const frame = () => {
+          state.frames += 1;
+          video.requestVideoFrameCallback(frame);
+        };
+        video.requestVideoFrameCallback(frame);
+      }
+      diagnostics.events.push({
+        event: event.type,
+        at: performance.now(),
+        src: video.currentSrc,
+        paused: video.paused,
+        autoplay: video.autoplay,
+        currentTime: video.currentTime,
+        frames: diagnostics.videos.get(video)?.frames ?? 0,
+        readyState: video.readyState,
+        networkState: video.networkState,
+        visibility: document.visibilityState,
+        top: video.getBoundingClientRect().top,
+        mediaError: video.error?.message,
+      });
+      if (diagnostics.events.length > 200) diagnostics.events.shift();
+    };
+
+    for (const event of [
+      "loadstart",
+      "loadeddata",
+      "canplay",
+      "play",
+      "playing",
+      "pause",
+      "waiting",
+      "stalled",
+      "suspend",
+      "ended",
+      "error",
+      "emptied",
+    ])
+      document.addEventListener(event, record, true);
+  });
+
   await page.addInitScript(
     ({ bypassKey, storageKey }) => {
       if (sessionStorage.getItem(bypassKey) !== "true") {
@@ -265,6 +355,32 @@ test.beforeEach(async ({ page }) => {
       body: "",
     }),
   );
+});
+
+test.afterEach(async ({ page }, testInfo) => {
+  if (testInfo.status === testInfo.expectedStatus) return;
+  const media = await page
+    .evaluate(() => {
+      const diagnostics = window.__portHeavenMediaDiagnostics;
+      return {
+        events: diagnostics?.events,
+        playErrors: diagnostics?.playErrors,
+        videos: [...document.querySelectorAll("video")].map((video) => ({
+          src: video.currentSrc,
+          paused: video.paused,
+          currentTime: video.currentTime,
+          frames: diagnostics?.videos.get(video)?.frames ?? 0,
+          readyState: video.readyState,
+          networkState: video.networkState,
+          mediaError: video.error?.message,
+        })),
+      };
+    })
+    .catch((error) => ({ unavailable: error.message }));
+  await testInfo.attach("media-events", {
+    body: JSON.stringify(media, null, 2),
+    contentType: "application/json",
+  });
 });
 
 test("analytics starts only after consent and restores the accepted choice", async ({ page }) => {
@@ -378,12 +494,36 @@ test("theme and locale controls update the page", async ({ page, isMobile }) => 
   await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
 
   if (isMobile) {
+    // Reproduce the extra click emitted by the scroll normalizer after Safari's tap.
+    await heroImage.evaluate((element) => element.click());
+    await expect(tongue).toHaveAttribute("opacity", "1");
+  }
+
+  if (isMobile) {
     await heroImage.tap();
   } else {
     await page.mouse.move(0, 0);
   }
   await expect(tongue).toHaveAttribute("opacity", "0");
   await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
+
+  if (isMobile) {
+    await heroImage.evaluate((element) => {
+      const pointer = {
+        bubbles: true,
+        pointerId: 1,
+        pointerType: "touch",
+        isPrimary: true,
+        button: 0,
+        clientX: 100,
+        clientY: 100,
+      };
+      element.dispatchEvent(new PointerEvent("pointerdown", pointer));
+      element.dispatchEvent(new PointerEvent("pointermove", { ...pointer, clientY: 140 }));
+      element.dispatchEvent(new PointerEvent("pointerup", { ...pointer, clientY: 140 }));
+    });
+    await expect(tongue).toHaveAttribute("opacity", "0");
+  }
 
   await page.getByRole("button", { name: "темная тема" }).click();
   await expect(root).toHaveAttribute("data-theme", "dark");
@@ -767,18 +907,15 @@ test("manual effects mode overrides browser capability detection", async ({ page
 
   await page.waitForLoadState("networkidle");
   await page.evaluate(() => document.fonts.ready);
-  // Как и в проверке автодоводки, удерживаем указатель во время подготовки позиции.
-  // Здесь проверяется параллакс, поэтому автодоводка не должна менять прокрутку.
-  await page.mouse.move(0, 0);
-  await page.mouse.down();
-  try {
-    const heroOffset = await readHeroParallaxOffset(page);
-    await page.evaluate(() => window.scrollTo(0, 500));
-    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(500);
-    await expect.poll(() => readHeroParallaxOffset(page)).toBeGreaterThan(heroOffset + 100);
-  } finally {
-    await page.mouse.up();
-  }
+  const heroOffset = await readHeroParallaxOffset(page);
+  await expect
+    .poll(async () => {
+      // Keep the measured position while automatic section snapping is active.
+      await page.evaluate(() => window.scrollTo(0, 500));
+      const scrollY = await page.evaluate(() => Math.round(window.scrollY));
+      return scrollY === 500 ? readHeroParallaxOffset(page) : heroOffset;
+    })
+    .toBeGreaterThan(heroOffset + 100);
 
   const designLayout = await page.locator("#design-inner").evaluate((element) => {
     const bounds = element.getBoundingClientRect();
@@ -863,50 +1000,62 @@ test("explicit effects on enables the cursor even with a reduced-motion preferen
   await expect(page.locator(".app-cursor")).toHaveCount(hasFinePointer ? 1 : 0);
 });
 
-test("effects control persists explicit off and on modes", async ({ page }) => {
+for (const scenario of [
+  {
+    initialMode: "auto",
+    targetMode: "off",
+    action: "выключить эффекты",
+    nextAction: "включить эффекты",
+  },
+  {
+    initialMode: "off",
+    targetMode: "on",
+    action: "включить эффекты",
+    nextAction: "выключить эффекты",
+  },
+]) {
+  test(`effects control saves ${scenario.targetMode} and preserves the section position`, async ({
+    page,
+    baseURL,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await mockWebGl(page, "hardware");
+    if (scenario.initialMode !== "auto") await seedEffectsMode(page, baseURL, scenario.initialMode);
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+
+    const root = page.locator("html");
+    await expect(root).toHaveAttribute("data-effects-mode", scenario.initialMode);
+    await expect(page.getByRole("button", { name: scenario.action })).toBeVisible();
+    const designSection = page.locator("#design");
+    await scrollToSectionMiddle(designSection);
+
+    await Promise.all([
+      page.waitForNavigation({ waitUntil: "domcontentloaded" }),
+      page.getByRole("button", { name: scenario.action }).click(),
+    ]);
+
+    await expect(root).toHaveAttribute("data-effects-mode", scenario.targetMode);
+    await expect(page.getByRole("button", { name: scenario.nextAction })).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
+  });
+}
+
+test("reloading a saved effects mode preserves the section position", async ({ page, baseURL }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await mockWebGl(page, "hardware");
+  await seedEffectsMode(page, baseURL, "on");
   await page.goto("/");
 
   const root = page.locator("html");
-  await expect(root).toHaveAttribute("data-effects-mode", "auto");
-  const effectsInitiallyOn = await root.evaluate((element) =>
-    element.classList.contains("effects"),
-  );
-  const firstAction = effectsInitiallyOn ? "выключить эффекты" : "включить эффекты";
-  const secondAction = effectsInitiallyOn ? "включить эффекты" : "выключить эффекты";
-  const firstMode = effectsInitiallyOn ? "off" : "on";
-  const secondMode = effectsInitiallyOn ? "on" : "off";
-  await expect(page.getByRole("button", { name: firstAction })).toBeVisible();
-
+  await expect(root).toHaveAttribute("data-effects-mode", "on");
   const designSection = page.locator("#design");
-
-  await designSection.evaluate((section) => {
-    window.scrollTo(0, section.offsetTop + (section.offsetHeight - window.innerHeight) * 0.5);
-  });
-  await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
-
-  await Promise.all([
-    page.waitForNavigation(),
-    page.getByRole("button", { name: firstAction }).click(),
-  ]);
-
-  await expect(root).toHaveAttribute("data-effects-mode", firstMode);
-  await expect(page.getByRole("button", { name: secondAction })).toBeVisible();
-  await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
-
-  await Promise.all([
-    page.waitForNavigation(),
-    page.getByRole("button", { name: secondAction }).click(),
-  ]);
-
-  await expect(root).toHaveAttribute("data-effects-mode", secondMode);
-  await expect(page.getByRole("button", { name: firstAction })).toBeVisible();
-  await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
+  await scrollToSectionMiddle(designSection);
 
   await page.reload();
 
-  await expect(root).toHaveAttribute("data-effects-mode", secondMode);
+  await expect(root).toHaveAttribute("data-effects-mode", "on");
+  await expect(page.getByRole("button", { name: "выключить эффекты" })).toBeVisible();
   await expect.poll(() => readSectionVisualProgress(designSection)).toBeCloseTo(0.5, 1);
 });
 
@@ -1009,19 +1158,26 @@ test("automatic video pauses outside the viewport and respects a manual pause", 
   await page.goto("/");
   await expectVideoEffectsMode(page, true);
   const video = page.locator("video");
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await expect(video).not.toBeInViewport();
+  await scrollVideoOutOfView(video);
   await expect(video).not.toHaveAttribute("autoplay", "");
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(true);
   await expectVideoEffectsMode(page, true);
   await video.evaluate((element) => element.pause());
   await expect(video).not.toHaveAttribute("autoplay", "");
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await expect(video).not.toBeInViewport();
+  await scrollVideoOutOfView(video);
   await scrollVideoIntoView(video);
   await expect.poll(() => video.evaluate((element) => element.paused)).toBe(true);
-  await video.evaluate((element) => element.play());
+  await video.evaluate((element) => {
+    // WebKit on Linux can keep the play promise pending while presenting frames.
+    void element.play().catch((error) => {
+      window.__portHeavenMediaDiagnostics.playErrors.push({
+        name: error.name,
+        message: error.message,
+      });
+    });
+  });
   await expectVideoPlaying(video);
+  expect(await page.evaluate(() => window.__portHeavenMediaDiagnostics.playErrors)).toEqual([]);
 });
 
 test("one failed optional module does not disable unrelated effects", async ({

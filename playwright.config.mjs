@@ -8,12 +8,14 @@ const distServerCommand = process.env.CI
 export default defineConfig({
   testDir: "./tests/e2e",
   timeout: 30_000,
+  retries: 0,
   expect: {
     timeout: 5_000,
   },
   use: {
     baseURL: distServerUrl,
-    trace: "on-first-retry",
+    trace: { mode: "retain-on-failure", screenshots: false },
+    screenshot: "only-on-failure",
   },
   webServer: {
     command: distServerCommand,

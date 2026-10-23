@@ -14,12 +14,13 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  verify:
+  prepare:
+    name: Prepare shared translations
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     outputs:
-      pages: ${{ steps.pages.outputs.matrix }}
-
+      locale: ${{ steps.locale.outputs.artifact-id }}
+      playwright-image: ${{ steps.playwright.outputs.image }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -27,11 +28,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
-          node-version-file: ".nvmrc"
-          cache: "npm"
+          node-version-file: .nvmrc
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Select the Playwright image from the lockfile
+        id: playwright
+        run: |
+          node --input-type=module <<'NODE' >> "$GITHUB_OUTPUT"
+          import { readFileSync } from "node:fs";
+          const lock = JSON.parse(readFileSync("package-lock.json", "utf8"));
+          const version = lock.packages["node_modules/@playwright/test"].version;
+          console.log(`image=mcr.microsoft.com/playwright:v${version}-noble`);
+          NODE
 
       - name: Restore translations
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -56,48 +63,152 @@ jobs:
           path: ${{ runner.temp }}/port-heaven-translations
           key: ${{ steps.translations.outputs.cache-primary-key }}
 
+      - name: Share the prepared English locale
+        id: locale
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: prepared-english-locale
+          path: src/locales/en.json
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 1
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
       - name: Check formatting
         continue-on-error: true
         run: npm run format:check
-
       - name: Lint
         run: npm run lint
 
+  integrity:
+    name: Integrity and Lighthouse reporting tests
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Download the prepared English locale
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          artifact-ids: ${{ needs.prepare.outputs.locale }}
+          path: src/locales
+      - name: Install dependencies
+        id: install
+        run: npm ci
       - name: Run integrity tests
         run: npm run test:integrity
-
       - name: Test Lighthouse reporting and page discovery
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: node --test scripts/check-lighthouse.test.mjs
 
+  build:
+    name: Build the site once
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      site: ${{ steps.site.outputs.artifact-id }}
+      pages: ${{ steps.pages.outputs.matrix }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Download the prepared English locale
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          artifact-ids: ${{ needs.prepare.outputs.locale }}
+          path: src/locales
+      - name: Install dependencies
+        run: npm ci
       - name: Build
         run: npm run build
-
       - name: Discover all built pages
         id: pages
         run: node scripts/check-lighthouse.mjs --list-pages
-
-      - name: Select Ubuntu package mirrors
-        run: |
-          printf '%b\n' \
-            'https://archive.ubuntu.com/ubuntu/\tpriority:1' \
-            'https://security.ubuntu.com/ubuntu/\tpriority:2' \
-            | sudo tee /etc/apt/apt-mirrors.txt
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium webkit
-
-      - name: Run smoke tests
-        run: npm run test:e2e
-
-      - name: Upload GitHub Pages artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: actions/upload-pages-artifact@v5.0.0
+      - name: Share the build for tests and deployment
+        id: site
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          path: ./dist
+          name: built-site
+          path: dist
+          include-hidden-files: true
+          if-no-files-found: error
+          overwrite: true
+          compression-level: 0
+          retention-days: 1
+
+  smoke:
+    name: Browser tests — ${{ matrix.project }}
+    needs: [prepare, build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    container:
+      image: ${{ needs.prepare.outputs.playwright-image }}
+      options: --init --shm-size=1g
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, webkit, mobile-safari]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Download the prepared English locale
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          artifact-ids: ${{ needs.prepare.outputs.locale }}
+          path: src/locales
+      - name: Download the build under test
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          artifact-ids: ${{ needs.build.outputs.site }}
+          path: dist
+      - name: Install dependencies
+        run: npm ci
+      - name: Run smoke tests
+        id: tests
+        env:
+          PLAYWRIGHT_PROJECT: ${{ matrix.project }}
+        run: npm run test:e2e -- --project="$PLAYWRIGHT_PROJECT"
+      - name: Save failed-test traces, screenshots and media events
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: browser-failures-${{ matrix.project }}-${{ github.run_attempt }}
+          path: test-results
+          if-no-files-found: ignore
+          retention-days: 7
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-    needs: verify
+    needs: [lint, integrity, build, smoke]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
@@ -108,19 +219,26 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
+      - name: Download the tested build
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          artifact-ids: ${{ needs.build.outputs.site }}
+          path: dist
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: dist
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6.0.0
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5.0.1
 
   lighthouse:
     name: Audit published pages
-    needs: [verify, deploy]
+    needs: [build, deploy]
     uses: ./.github/workflows/lighthouse.yml
     with:
       url: ${{ needs.deploy.outputs.url }}
-      pages: ${{ needs.verify.outputs.pages }}
+      pages: ${{ needs.build.outputs.pages }}
