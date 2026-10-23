@@ -1,8 +1,9 @@
 import { t } from "../../libraries/i18n";
-import { finePointer, reducedMotion } from "../preferences/motion";
+import { finePointer } from "../preferences/motion";
+import { effectsEnabled } from "../preferences/effects-toggle";
 
 export const initCursor = () => {
-  if (!finePointer.value || reducedMotion.value) return;
+  if (!finePointer.value || !effectsEnabled.value) return;
 
   const root = document.documentElement;
   root.classList.add("use-custom-cursor");

@@ -1,5 +1,5 @@
 import { getScrollSmoother } from "../libraries/gsap-scroll";
-import { reducedMotion } from "../features/preferences/motion";
+import { effectsEnabled } from "../features/preferences/effects-toggle";
 
 function normalizeTarget(target) {
   if (typeof target === "number") return Math.max(0, Math.round(target));
@@ -18,25 +18,25 @@ export function smoothScrollTo(target, opts = {}) {
   const baseY = normalizeTarget(target);
   const y = Math.max(0, baseY - (offset | 0));
 
-  const reduce = reducedMotion.value;
+  const animate = effectsEnabled.value;
   const smoother = getScrollSmoother();
 
   if (smoother) {
-    smoother.scrollTo(y, !reduce);
+    smoother.scrollTo(y, animate);
     return;
   }
 
-  window.scrollTo({ top: y, left: 0, behavior: reduce ? "auto" : "smooth" });
+  window.scrollTo({ top: y, left: 0, behavior: animate ? "smooth" : "instant" });
 }
 
 export function smoothScrollTop() {
-  const reduce = reducedMotion.value;
+  const animate = effectsEnabled.value;
   const smoother = getScrollSmoother();
 
   if (smoother) {
-    smoother.scrollTo(0, !reduce);
+    smoother.scrollTo(0, animate);
     return;
   }
 
-  window.scrollTo({ top: 0, left: 0, behavior: reduce ? "auto" : "smooth" });
+  window.scrollTo({ top: 0, left: 0, behavior: animate ? "smooth" : "instant" });
 }

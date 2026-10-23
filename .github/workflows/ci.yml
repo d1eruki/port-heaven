@@ -33,6 +33,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Restore translations
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        id: translations
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/port-heaven-translations
+          key: translations-v1-${{ hashFiles('src/locales/ru.json', 'src/locales/en.json', 'src/locales/.en.meta.json', 'scripts/translate-locale.mjs') }}
+          restore-keys: translations-v1-
+
+      - name: Translate changed copy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TRANSLATION_CACHE_DIR: ${{ runner.temp }}/port-heaven-translations
+        run: node scripts/translate-locale.mjs
+
+      - name: Save translations
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && steps.translations.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/port-heaven-translations
+          key: ${{ steps.translations.outputs.cache-primary-key }}
+
       - name: Check formatting
         run: npm run format:check
 

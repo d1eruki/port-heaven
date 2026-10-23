@@ -45,27 +45,8 @@ To publish it for visitors, commit the file and deploy the site.
 
 ## Translation
 
-English strings in `src/locales/en.json` are generated from `src/locales/ru.json`.
-Add your key to `.env.local`:
-
-```bash
-OPENAI_API_KEY=your_api_key
-```
-
-Translate missing or stale strings:
-
-```bash
-npm run translate:en
-```
-
-Use `npm run translate:en:check` to preview changes without calling the API.
-The script tracks source hashes in `src/locales/.en.meta.json`. To override the model:
-
-```bash
-OPENAI_TRANSLATION_MODEL=gpt-5.4-mini npm run translate:en
-```
-
-Typograf processes locale strings at build time; source locale files remain unchanged.
+Edit copy in `src/locales/ru.json`; English translations update automatically when deploying `master`.
+Set `OPENAI_API_KEY` in the repository's GitHub Actions secrets.
 
 ## Deployment and Lighthouse
 

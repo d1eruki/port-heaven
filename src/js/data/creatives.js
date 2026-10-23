@@ -2,41 +2,12 @@ import { creativeAssets } from "./creative-assets";
 
 const DEFAULT_PRIORITY = 2;
 const VIDEO_SOURCE_PATTERN = /\.(?:mp4|webm|ogg)(?:[?#]|$)/i;
-const CREATIVE_OVERRIDES = {
-  "2025-artem-y": {
-    alt: "Artem birthday creative",
-    width: 1500,
-    height: 2121,
-  },
-  saasoft: {
-    alt: "Saasoft creative layout",
-    width: 1080,
-    height: 900,
-  },
-  siyay: {
-    alt: "Siyay creative layout",
-    width: 2560,
-    height: 1440,
-  },
-  "varwin-opening": {
-    alt: "Varwin opening creative",
-    type: "video",
-  },
-};
-
-const normalizeCreative = (creative) => {
-  const normalized = {
-    ...creative,
-    ...CREATIVE_OVERRIDES[creative.id],
-  };
-
-  return {
-    ...normalized,
-    alt: normalized.alt ?? `Creative ${normalized.id.replaceAll("-", " ")}`,
-    priority: normalized.priority ?? DEFAULT_PRIORITY,
-    type: normalized.type ?? (VIDEO_SOURCE_PATTERN.test(normalized.src) ? "video" : "image"),
-  };
-};
+const normalizeCreative = (creative) => ({
+  ...creative,
+  alt: creative.alt ?? `Creative ${creative.id.replaceAll("-", " ")}`,
+  priority: creative.priority ?? DEFAULT_PRIORITY,
+  type: creative.type ?? (VIDEO_SOURCE_PATTERN.test(creative.src) ? "video" : "image"),
+});
 
 const hashString = (value) => {
   let hash = 2166136261;

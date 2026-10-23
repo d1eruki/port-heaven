@@ -778,6 +778,47 @@ test("manual effects off overrides available hardware", async ({ page }) => {
   await expectVideoEffectsMode(page, false);
 });
 
+for (const scenario of [
+  { name: "manual off", mode: "off", motion: "no-preference", hardware: "hardware" },
+  { name: "reduced motion", mode: "auto", motion: "reduce", hardware: "hardware" },
+  { name: "capability fallback", mode: "auto", motion: "no-preference", hardware: "unavailable" },
+]) {
+  test(`${scenario.name} uses instant section navigation`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: scenario.motion });
+    await mockWebGl(page, scenario.hardware);
+    await setEffectsMode(page, scenario.mode);
+    await page.addInitScript(() => {
+      const originalScrollTo = window.scrollTo;
+      window.scrollTo = function (...args) {
+        if (args[0] && typeof args[0] === "object") {
+          window.__navigationScrollBehavior = args[0].behavior;
+        }
+        return originalScrollTo.apply(this, args);
+      };
+    });
+    await page.goto("/", { waitUntil: "networkidle" });
+    await expect(page.locator("html")).toHaveClass(/no-effects/);
+
+    await page.locator('[data-section-nav] button[data-target="#about"]').click();
+    await expect.poll(() => page.evaluate(() => window.__navigationScrollBehavior)).toBe("instant");
+    await expect(page.locator("#about")).toBeInViewport();
+
+    await page.locator("#scroll-to-top").click();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    expect(await page.evaluate(() => window.__navigationScrollBehavior)).toBe("instant");
+  });
+}
+
+test("explicit effects on enables the cursor even with a reduced-motion preference", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await setEffectsMode(page, "on");
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
+  const hasFinePointer = await page.evaluate(() => matchMedia("(pointer: fine)").matches);
+  await expect(page.locator(".app-cursor")).toHaveCount(hasFinePointer ? 1 : 0);
+});
+
 test("effects control persists explicit off and on modes", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await mockWebGl(page, "hardware");
