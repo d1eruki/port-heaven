@@ -250,6 +250,25 @@ const expectVideoPlaying = async (video) => {
     .toEqual({ paused: false, timeAdvanced: true, framesAdvanced: true });
 };
 
+const expectVideoPaused = async (video) => {
+  let stableSamples = 0;
+  let previousTime;
+  await expect
+    .poll(
+      async () => {
+        const media = await video.evaluate((element) => ({
+          paused: element.paused,
+          time: element.currentTime,
+        }));
+        stableSamples = media.paused && media.time === previousTime ? stableSamples + 1 : 0;
+        previousTime = media.time;
+        return stableSamples;
+      },
+      { intervals: [100] },
+    )
+    .toBeGreaterThanOrEqual(3);
+};
+
 const expectVideoEffectsMode = async (page, effectsOn) => {
   const video = page.locator("video");
   const attributeAssertion = effectsOn ? expect(video) : expect(video).not;
@@ -260,9 +279,8 @@ const expectVideoEffectsMode = async (page, effectsOn) => {
 
   await expect(video).toHaveAttribute("src", /.+/);
   await expect.poll(() => video.evaluate((element) => Boolean(element.currentSrc))).toBe(true);
-  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(!effectsOn);
-  await attributeAssertion.toHaveAttribute("autoplay", "");
   if (effectsOn) await expectVideoPlaying(video);
+  else await expectVideoPaused(video);
 };
 
 const openAnalyticsConsent = async (page) => {
@@ -588,8 +606,16 @@ test("scroll to top returns from lower sections", async ({ page }) => {
 
   await expect(scrollToTop).toBeDisabled();
 
-  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
+  await expect
+    .poll(() =>
+      page.locator("#footer").evaluate((element) => {
+        // Lazy content and scroll pins can change the document height after navigation.
+        window.scrollTo(0, document.documentElement.scrollHeight);
+        const bounds = element.getBoundingClientRect();
+        return bounds.top < window.innerHeight && bounds.bottom > 0;
+      }),
+    )
+    .toBe(true);
   await expect(page.locator("#footer")).toBeInViewport();
   await expect(scrollToTop).toBeEnabled();
 
@@ -676,13 +702,14 @@ test("section dots show their labels on hover and keyboard focus", async ({ page
   await expect(tooltip).toBeVisible();
 });
 
-test("project cards snap only in enhanced desktop mode", async ({ page }, testInfo) => {
+test("enhanced desktop mode snaps project cards and pins scrolling content", async ({
+  page,
+}, testInfo) => {
   test.skip(testInfo.project.name === "mobile-safari", "Mobile WebKit has no mouse wheel API");
 
   await page.setViewportSize({ width: 1280, height: 800 });
+  await setEffectsMode(page, "on");
   await page.goto("/");
-  await page.evaluate(() => localStorage.setItem("effects-mode", "on"));
-  await page.reload();
 
   const root = page.locator("html");
   await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
@@ -762,26 +789,28 @@ test("project cards snap only in enhanced desktop mode", async ({ page }, testIn
       }),
     )
     .toBe(true);
-
-  await page.evaluate(() => localStorage.setItem("effects-mode", "off"));
-  await page.reload();
-  await expect(root).toHaveClass(/no-effects/);
-
-  const noEffects = await positionBeforeSecondProject(page);
-  const noEffectsY = await scrollAndWaitForScrollToSettle(page);
-  expect(noEffectsY).toBeGreaterThan(noEffects.start);
-  expect(Math.abs(noEffectsY - noEffects.target)).toBeGreaterThan(60);
-
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.evaluate(() => localStorage.setItem("effects-mode", "on"));
-  await page.reload();
-  await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
-
-  const mobile = await positionBeforeSecondProject(page);
-  const mobileY = await scrollAndWaitForScrollToSettle(page);
-  expect(mobileY).toBeGreaterThan(mobile.start);
-  expect(Math.abs(mobileY - mobile.target)).toBeGreaterThan(60);
 });
+
+for (const { title, mode, width, height } of [
+  { title: "effects off", mode: "off", width: 1280, height: 800 },
+  { title: "mobile width", mode: "on", width: 390, height: 844 },
+]) {
+  test(`project cards do not snap with ${title}`, async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === "mobile-safari", "Mobile WebKit has no mouse wheel API");
+
+    await page.setViewportSize({ width, height });
+    await setEffectsMode(page, mode);
+    await page.goto("/");
+    await expect(page.locator("html")).toHaveClass(
+      mode === "on" ? /(?:^|\s)effects(?:\s|$)/ : /no-effects/,
+    );
+
+    const position = await positionBeforeSecondProject(page);
+    const settledY = await scrollAndWaitForScrollToSettle(page);
+    expect(settledY).toBeGreaterThan(position.start);
+    expect(Math.abs(settledY - position.target)).toBeGreaterThan(60);
+  });
+}
 
 test("mobile viewport keeps core controls working", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -1175,15 +1204,16 @@ test("automatic video pauses outside the viewport and respects a manual pause", 
   await page.goto("/");
   await expectVideoEffectsMode(page, true);
   const video = page.locator("video");
-  await scrollVideoOutOfView(video);
-  await expect(video).not.toHaveAttribute("autoplay", "");
-  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(true);
-  await expectVideoEffectsMode(page, true);
+  for (let cycle = 0; cycle < 2; cycle++) {
+    await scrollVideoOutOfView(video);
+    await expectVideoPaused(video);
+    await expectVideoEffectsMode(page, true);
+  }
   await video.evaluate((element) => element.pause());
-  await expect(video).not.toHaveAttribute("autoplay", "");
+  await expectVideoPaused(video);
   await scrollVideoOutOfView(video);
   await scrollVideoIntoView(video);
-  await expect.poll(() => video.evaluate((element) => element.paused)).toBe(true);
+  await expectVideoPaused(video);
   await video.evaluate((element) => {
     // WebKit on Linux can keep the play promise pending while presenting frames.
     void element.play().catch((error) => {
