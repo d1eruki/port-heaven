@@ -907,16 +907,6 @@ test("manual effects mode overrides browser capability detection", async ({ page
 
   await page.waitForLoadState("networkidle");
   await page.evaluate(() => document.fonts.ready);
-  const heroOffset = await readHeroParallaxOffset(page);
-  await expect
-    .poll(async () => {
-      // Keep the measured position while automatic section snapping is active.
-      await page.evaluate(() => window.scrollTo(0, 500));
-      const scrollY = await page.evaluate(() => Math.round(window.scrollY));
-      return scrollY === 500 ? readHeroParallaxOffset(page) : heroOffset;
-    })
-    .toBeGreaterThan(heroOffset + 100);
-
   const designLayout = await page.locator("#design-inner").evaluate((element) => {
     const bounds = element.getBoundingClientRect();
     const columnRights = new Map();
@@ -938,6 +928,33 @@ test("manual effects mode overrides browser capability detection", async ({ page
   );
 
   await expectVideoEffectsMode(page, true);
+});
+
+test("manual effects mode enables parallax during section navigation", async ({
+  page,
+  isMobile,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await mockWebGl(page, "unavailable");
+  await setEffectsMode(page, "on");
+  await page.goto("/");
+
+  await expect(page.locator("html")).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
+  await expect(page.locator("html")).toHaveAttribute("data-effects-mode", "on");
+  await page.waitForLoadState("networkidle");
+  await page.evaluate(() => document.fonts.ready);
+  const heroOffset = await readHeroParallaxOffset(page);
+  const aboutButton = page
+    .locator("[data-section-nav]")
+    .getByRole("button", { name: "обо мне", exact: true });
+  if (isMobile) {
+    await aboutButton.tap();
+  } else {
+    await aboutButton.click();
+  }
+  await expect.poll(() => page.evaluate(() => location.hash)).toBe("#about");
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
+  await expect.poll(() => readHeroParallaxOffset(page)).toBeGreaterThan(heroOffset + 100);
 });
 
 test("manual effects off overrides available hardware", async ({ page }) => {
