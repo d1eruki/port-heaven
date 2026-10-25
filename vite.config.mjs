@@ -40,6 +40,7 @@ export default defineConfig({
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),
   },
   server: {
+    host: "0.0.0.0",
     port: 8080,
     strictPort: true,
   },

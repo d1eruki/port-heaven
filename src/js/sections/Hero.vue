@@ -8,12 +8,15 @@
   >
     <div class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center bg-canvas">
       <div
-        class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden px-10 text-hero lg:items-end lg:px-0 lg:pb-[12svh]"
+        class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-18 text-hero lg:justify-center lg:px-0 lg:pt-0 lg:pb-[12svh]"
       >
-        <div class="w-full text-center lg:w-auto">
+        <div
+          class="w-[calc(60svh-5rem)] shrink-0 origin-top-left translate-y-full -rotate-90 text-left lg:w-auto lg:translate-y-0 lg:rotate-0 lg:text-center"
+        >
           <h1
             ref="heroTitleRef"
-            class="inline-block w-max text-center text-hero-title leading-[0.75]"
+            :class="{ invisible: !isHeroTitleReady }"
+            class="inline-block w-max text-left text-hero-title leading-[0.75] lg:text-center"
           >
             <span
               v-for="(line, index) in t('brand.hero').split('\n')"
@@ -25,7 +28,7 @@
         </div>
       </div>
       <div
-        class="relative z-2 h-(--hero-height) w-full self-center overflow-hidden [--hero-height:86svh] sm:aspect-3/4 sm:w-auto sm:overflow-visible sm:[--hero-height:90svh] lg:[--hero-height:94svh]"
+        class="relative z-2 h-(--hero-height) w-full overflow-hidden [--hero-height:86svh] sm:aspect-3/4 sm:w-auto sm:self-center sm:overflow-visible sm:[--hero-height:90svh] lg:[--hero-height:94svh]"
         data-hero-parallax
         data-speed="0.5"
         @pointerenter="onHeroPointerEnter"
@@ -112,6 +115,7 @@ const isHeroTapped = ref(false);
 const isMobile = ref(false);
 const heroSectionRef = ref(null);
 const heroTitleRef = ref(null);
+const isHeroTitleReady = ref(false);
 const isBlinking = ref(false);
 const isClosedImageReady = ref(false);
 const isHeroVisible = useElementVisibility(heroSectionRef);
@@ -122,10 +126,10 @@ const canBlink = computed(
     effectsEnabled.value &&
     isHeroVisible.value &&
     documentVisibility.value === "visible" &&
-    isClosedImageReady.value &&
-    !showTongue.value,
+    isClosedImageReady.value,
 );
 let heroTitleFit;
+let isHeroTitleFontReady = false;
 let mobileMedia;
 let blinkTimer;
 let heroPointer;
@@ -169,13 +173,14 @@ const syncHeroTitleFit = () => {
   heroTitleFit?.unsubscribe();
   heroTitleFit = null;
 
-  if (!mobileMedia?.matches) return;
+  if (!isHeroTitleFontReady || !mobileMedia?.matches) return;
 
   heroTitleFit = fitty(heroTitleRef.value, {
     minSize: 1,
     maxSize: Number.POSITIVE_INFINITY,
     multiLine: false,
   });
+  heroTitleFit.fit({ sync: true });
 };
 
 const onHeroPointerEnter = (event) => {
@@ -214,11 +219,21 @@ const onHeroPointerUp = (event) => {
   isHeroTapped.value = !isHeroTapped.value;
 };
 
-onMounted(() => {
+onMounted(async () => {
   mobileMedia = window.matchMedia(`(width < ${getBreakpointPx("lg")}px)`);
   mobileMedia.addEventListener("change", syncHeroTitleFit);
   syncHeroTitleFit();
-  document.fonts.ready.then(() => heroTitleFit?.fit());
+
+  try {
+    await document.fonts.load('900 16px "Bounded"', t("brand.hero"));
+  } catch (error) {
+    console.warn("Hero title font could not be loaded; using the fallback font.", error);
+  }
+
+  if (!heroTitleRef.value) return;
+  isHeroTitleFontReady = true;
+  syncHeroTitleFit();
+  isHeroTitleReady.value = true;
 });
 
 onBeforeUnmount(() => {
