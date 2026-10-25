@@ -4,6 +4,11 @@
     "hero": "артем\nтресков"
   },
 
+  "heroClicker": {
+    "action": "кликнуть на персонажа",
+    "hint": "кликни"
+  },
+
   "navigation": {
     "label": "навигация по разделам",
     "sections": {
