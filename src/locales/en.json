@@ -3,6 +3,10 @@
     "logo": "dayruki",
     "hero": "artem\ntreskov"
   },
+  "heroClicker": {
+    "action": "click the character",
+    "hint": "click me"
+  },
   "navigation": {
     "label": "section navigation",
     "sections": {

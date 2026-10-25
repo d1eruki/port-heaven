@@ -1,18 +1,21 @@
 import review1 from "../../assets/reviews/review-1.jpg?responsive";
-import review2 from "../../assets/reviews/review-2.jpg?responsive";
 import review3 from "../../assets/reviews/review-3.jpg?responsive";
 import review4 from "../../assets/reviews/review-4.jpg?responsive";
+import review5 from "../../assets/reviews/review-5.png?responsive";
 
 export const createReviews = () => {
   const randomBetween = (min, max) => min + Math.random() * (max - min);
+  const positions = [
+    { top: 4, left: 16, desktopTop: 7, desktopLeft: 34 },
+    { top: 19, left: 2, desktopTop: 34, desktopLeft: 4 },
+    { bottom: 56, left: 30, desktopTop: 34, desktopLeft: 64 },
+    { bottom: 8, left: 7, desktopBottom: 9, desktopLeft: 16 },
+    { bottom: 23, left: 25, desktopBottom: 9, desktopLeft: 52 },
+  ];
   return [
     {
       ...review1,
       alt: "diemxn: шрифт имба, сайт уже хвалят, шеф вроде даже доволен",
-    },
-    {
-      ...review2,
-      alt: "diemxn: я ваще со всей графики которую ты сделал разъебываюсь",
     },
     {
       ...review3,
@@ -22,19 +25,24 @@ export const createReviews = () => {
       ...review4,
       alt: "Влад Кошенков: в целом круто сделано, супер дотошно, я не ожидал такого",
     },
+    {
+      ...review5,
+      alt: "Саша Багдоян: но реально кайфово, оч яркая страничка для детей вышла веселая",
+    },
   ]
     .map((review) => ({ review, order: Math.random() }))
     .sort((a, b) => a.order - b.order)
     .map(({ review }, index) => ({
       ...review,
       style: {
-        "--review-top": index < 2 ? `${12 + index * 15 + randomBetween(-1, 1)}%` : "auto",
-        "--review-bottom": index > 1 ? `${11 + (3 - index) * 15 + randomBetween(-1, 1)}%` : "auto",
-        "--review-left": `${index % 2 ? randomBetween(24, 26) : randomBetween(6, 8)}%`,
-        "--review-desktop-top": index < 2 ? `${12 + index * 10 + randomBetween(-2, 2)}%` : "auto",
+        "--review-top": positions[index].top == null ? "auto" : `${positions[index].top}%`,
+        "--review-bottom": positions[index].bottom == null ? "auto" : `${positions[index].bottom}%`,
+        "--review-left": `${positions[index].left}%`,
+        "--review-desktop-top":
+          positions[index].desktopTop == null ? "auto" : `${positions[index].desktopTop}%`,
         "--review-desktop-bottom":
-          index > 1 ? `${10 + (3 - index) * 10 + randomBetween(-2, 2)}%` : "auto",
-        "--review-desktop-left": `${index % 2 ? randomBetween(53, 57) : randomBetween(12, 16)}%`,
+          positions[index].desktopBottom == null ? "auto" : `${positions[index].desktopBottom}%`,
+        "--review-desktop-left": `${positions[index].desktopLeft}%`,
         "--review-rotation": `${randomBetween(-3, 3)}deg`,
       },
     }));

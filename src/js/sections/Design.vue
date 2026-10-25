@@ -7,7 +7,7 @@
   >
     <div
       id="design-viewport"
-      class="min-w-0 p-10 max-lg:flex max-lg:h-dvh max-lg:flex-col max-lg:gap-2 lg:p-15 effects:lg:h-dvh"
+      class="min-w-0 p-10 max-lg:flex max-lg:h-svh max-lg:flex-col max-lg:gap-2 lg:p-15 effects:lg:h-dvh"
     >
       <div class="grid min-w-0 shrink-0 gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:hidden">
         <h2 id="design-heading-mobile">{{ t("menu.designs.title") }}</h2>

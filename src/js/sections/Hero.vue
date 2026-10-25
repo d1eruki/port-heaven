@@ -1,4 +1,4 @@
-<!-- Первый экран с именем автора и изображением персонажа. -->
+<!-- Первый экран с именем автора и интерактивным персонажем-кликером. -->
 <template>
   <section
     ref="heroSectionRef"
@@ -8,12 +8,15 @@
   >
     <div class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center bg-canvas">
       <div
-        class="absolute inset-0 z-1 flex items-center justify-center overflow-hidden px-10 text-hero lg:items-end lg:px-0 lg:pb-[12svh]"
+        class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-26 text-hero lg:justify-center lg:px-0 lg:pt-0 lg:pb-[12svh]"
       >
-        <div class="w-full text-center lg:w-auto">
+        <div
+          class="w-[calc(60svh-5rem)] shrink-0 origin-top-left translate-y-full -rotate-90 text-left lg:w-auto lg:translate-y-0 lg:rotate-0 lg:text-center"
+        >
           <h1
             ref="heroTitleRef"
-            class="inline-block w-max text-center text-hero-title leading-[0.75]"
+            :class="{ invisible: !isHeroTitleReady }"
+            class="inline-block w-max text-left text-hero-title leading-[0.75] lg:text-center"
           >
             <span
               v-for="(line, index) in t('brand.hero').split('\n')"
@@ -25,18 +28,22 @@
         </div>
       </div>
       <div
-        class="relative z-2 h-(--hero-height) w-full self-center overflow-hidden [--hero-height:86svh] sm:aspect-3/4 sm:w-auto sm:overflow-visible sm:[--hero-height:90svh] lg:[--hero-height:94svh]"
+        class="relative z-2 h-(--hero-height) w-full overflow-hidden [--hero-height:86svh] sm:aspect-3/4 sm:w-auto sm:self-center sm:overflow-visible sm:[--hero-height:90svh] lg:[--hero-height:94svh]"
         data-hero-parallax
         data-speed="0.5"
-        @pointerenter="onHeroPointerEnter"
-        @pointerleave="onHeroPointerLeave"
-        @pointerdown="onHeroPointerDown"
-        @pointermove="onHeroPointerMove"
-        @pointerup="onHeroPointerUp"
-        @pointercancel="cancelHeroPointer"
       >
-        <div
-          class="absolute top-1/2 left-1/2 aspect-3/4 w-[max(100%,calc(var(--hero-height)*3/4))] -translate-1/2"
+        <button
+          type="button"
+          :disabled="!effectsEnabled"
+          :aria-label="t('heroClicker.action')"
+          class="absolute top-1/2 left-1/2 block aspect-3/4 w-[max(100%,calc(var(--hero-height)*3/4))] -translate-1/2 border-0 bg-transparent p-0 select-none enabled:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          @pointerenter="onHeroPointerEnter"
+          @pointerleave="onHeroPointerLeave"
+          @pointerdown="onHeroPointerDown"
+          @pointermove="onHeroPointerMove"
+          @pointerup="onHeroPointerUp"
+          @pointercancel="cancelHeroPointer"
+          @click="onHeroKeyboardClick"
         >
           <picture>
             <source
@@ -55,15 +62,16 @@
               fetchpriority="high"
               decoding="sync"
               loading="eager"
+              draggable="false"
             />
           </picture>
           <svg
+            v-if="effectsEnabled"
             viewBox="0 0 1086 1448"
             class="pointer-events-none absolute inset-0 h-full w-full"
             aria-hidden="true"
           >
             <image
-              v-if="effectsEnabled"
               :href="heroEyesClosedImage"
               x="438"
               y="232"
@@ -82,7 +90,13 @@
               :opacity="showTongue ? 1 : 0"
             />
           </svg>
-        </div>
+        </button>
+        <p
+          v-if="effectsEnabled && isMobile"
+          class="pointer-events-none absolute top-0 left-1/2 z-3 w-max max-w-[90%] -translate-x-1/2 text-center font-heading font-black text-primary tabular-nums max-sm:top-[14%] max-sm:left-[74%]"
+        >
+          {{ clicks === 0 ? t('heroClicker.hint') : clicks }}
+        </p>
       </div>
     </div>
   </section>
@@ -109,26 +123,49 @@ const props = defineProps({
 });
 const isHeroHovered = ref(false);
 const isHeroTapped = ref(false);
+const clicks = ref(0);
 const isMobile = ref(false);
 const heroSectionRef = ref(null);
 const heroTitleRef = ref(null);
+const isHeroTitleReady = ref(false);
 const isBlinking = ref(false);
 const isClosedImageReady = ref(false);
 const isHeroVisible = useElementVisibility(heroSectionRef);
 const documentVisibility = useDocumentVisibility();
-const showTongue = computed(() => (isMobile.value ? isHeroTapped.value : isHeroHovered.value));
+const showTongue = computed(
+  () => effectsEnabled.value && (isMobile.value ? isHeroTapped.value : isHeroHovered.value),
+);
 const canBlink = computed(
   () =>
     effectsEnabled.value &&
     isHeroVisible.value &&
     documentVisibility.value === "visible" &&
-    isClosedImageReady.value &&
-    !showTongue.value,
+    isClosedImageReady.value,
 );
 let heroTitleFit;
+let isHeroTitleFontReady = false;
 let mobileMedia;
 let blinkTimer;
 let heroPointer;
+
+const registerHeroClick = () => {
+  if (!effectsEnabled.value || !isMobile.value) return;
+  if (clicks.value < Number.MAX_SAFE_INTEGER) {
+    clicks.value += 1;
+  }
+};
+
+const onHeroKeyboardClick = (event) => {
+  if (event.isTrusted && event.detail === 0) registerHeroClick();
+};
+
+watch(effectsEnabled, (enabled) => {
+  if (enabled) return;
+  cancelHeroPointer();
+  isHeroHovered.value = false;
+  isHeroTapped.value = false;
+  isClosedImageReady.value = false;
+});
 
 const stopBlinking = () => {
   window.clearTimeout(blinkTimer);
@@ -151,7 +188,7 @@ const blink = (remaining) => {
 
 const scheduleBlink = () => {
   blinkTimer = window.setTimeout(
-    () => blink(Math.random() < 0.25 ? 2 : 1),
+    () => blink(Math.random() < 0.5 ? 2 : 1),
     3000 + Math.random() * 3000,
   );
 };
@@ -169,17 +206,18 @@ const syncHeroTitleFit = () => {
   heroTitleFit?.unsubscribe();
   heroTitleFit = null;
 
-  if (!mobileMedia?.matches) return;
+  if (!isHeroTitleFontReady || !mobileMedia?.matches) return;
 
   heroTitleFit = fitty(heroTitleRef.value, {
     minSize: 1,
     maxSize: Number.POSITIVE_INFINITY,
     multiLine: false,
   });
+  heroTitleFit.fit({ sync: true });
 };
 
 const onHeroPointerEnter = (event) => {
-  if (!isMobile.value && event.pointerType === "mouse") {
+  if (effectsEnabled.value && !isMobile.value && event.pointerType === "mouse") {
     isHeroHovered.value = true;
   }
 };
@@ -195,7 +233,7 @@ const onHeroPointerLeave = () => {
 
 const onHeroPointerDown = (event) => {
   cancelHeroPointer();
-  if (!isMobile.value || !event.isPrimary || event.button !== 0) return;
+  if (!effectsEnabled.value || !isMobile.value || !event.isPrimary || event.button !== 0) return;
   heroPointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
 };
 
@@ -211,14 +249,25 @@ const onHeroPointerUp = (event) => {
   onHeroPointerMove(event);
   if (heroPointer?.id !== event.pointerId) return;
   cancelHeroPointer();
-  isHeroTapped.value = !isHeroTapped.value;
+  if (isMobile.value) isHeroTapped.value = !isHeroTapped.value;
+  registerHeroClick();
 };
 
-onMounted(() => {
+onMounted(async () => {
   mobileMedia = window.matchMedia(`(width < ${getBreakpointPx("lg")}px)`);
   mobileMedia.addEventListener("change", syncHeroTitleFit);
   syncHeroTitleFit();
-  document.fonts.ready.then(() => heroTitleFit?.fit());
+
+  try {
+    await document.fonts.load('900 16px "Bounded"', t("brand.hero"));
+  } catch (error) {
+    console.warn("Hero title font could not be loaded; using the fallback font.", error);
+  }
+
+  if (!heroTitleRef.value) return;
+  isHeroTitleFontReady = true;
+  syncHeroTitleFit();
+  isHeroTitleReady.value = true;
 });
 
 onBeforeUnmount(() => {
