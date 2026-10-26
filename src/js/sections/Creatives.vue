@@ -3,7 +3,7 @@
   <section
     data-section="creatives"
     id="creatives"
-    class="relative min-h-svh lg:h-[var(--creative-stream-height)]"
+    class="relative min-h-svh max-lg:flex max-lg:flex-col max-lg:gap-10 max-lg:p-10 lg:h-[var(--creative-stream-height)]"
     :style="creativeSectionStyle"
   >
     <div
@@ -11,7 +11,7 @@
       class="contents lg:pointer-events-none lg:relative lg:z-20 lg:grid lg:h-dvh lg:w-full lg:place-items-center"
     >
       <div
-        class="pointer-events-none left-0 mx-10 mb-10 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:m-0 lg:w-fit lg:items-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-primary"
+        class="pointer-events-none left-0 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:w-fit lg:items-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-primary"
       >
         <h2>{{ t("menu.creatives.title") }}</h2>
         <MenuDescription
@@ -39,7 +39,7 @@
     <div
       data-creative-cloud
       aria-label="Creative work gallery"
-      class="w-full columns-2 gap-3 px-10 pb-10 sm:columns-3 sm:gap-5 lg:absolute lg:inset-0 lg:block lg:columns-auto lg:overflow-clip lg:p-0"
+      class="w-full columns-2 gap-3 sm:columns-3 sm:gap-5 lg:absolute lg:inset-0 lg:block lg:columns-auto lg:overflow-clip"
     >
       <div
         v-for="creative in creativeCloud"

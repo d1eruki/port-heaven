@@ -4,8 +4,7 @@
     "hero": "artem\ntreskov"
   },
   "heroClicker": {
-    "action": "click the character",
-    "hint": "click me"
+    "action": "click the character"
   },
   "navigation": {
     "label": "section navigation",
@@ -115,21 +114,13 @@
     },
     "varwinDotCom": {
       "title": "Varwin.com website",
-      "description": "A full refresh of varwin.com — redesign, UX optimization, and new sections.",
       "text": [
-        "Redesign of the Varwin XRMS download page to refresh the interface and improve conversion. I ran short interviews with marketing and users, formulated UX hypotheses, and designed a prototype. After testing and revisions, the final version was implemented in Bootstrap 4.",
-        "Design of the user project registry in the Varwin Education section. The section brought the community together and made it possible to share your work and explore projects by other users."
+        "Update of the Varwin XRMS download page: interviews, prototyping, and implementation in Bootstrap 4. Design of the Varwin Education registry for publishing and exploring user projects."
       ]
     },
     "xrms": {
       "title": "Varwin XRMS platform",
-      "description": "Varwin XRMS UI kit and prototypes for visualizing ideas and testing changes",
-      "text": "The main layout with components and prototypes, bringing together all the interface elements needed to visualize and test new features in the Varwin XRMS platform. The layout serves as a basis for discussion, testing, and implementing changes in the product.",
-      "stats": [
-        "Faster mockup design through ready-made components",
-        "Prototypes reduced revisions",
-        "The interface became visually consistent"
-      ]
+      "text": "Development of a Varwin XRMS UI kit and prototypes for discussing, testing, and implementing changes to the platform interface."
     }
   },
   "designs": {

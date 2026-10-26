@@ -1,7 +1,6 @@
 export const projects = [
   {
     titleKey: "projects.varwinDotCom.title",
-    descriptionKey: "projects.varwinDotCom.description",
     tags: [
       "Figma",
       "Bootstrap",
@@ -12,7 +11,7 @@ export const projects = [
       "Frontend",
       "Testing",
     ],
-    textKeys: ["projects.varwinDotCom.text[0]", "projects.varwinDotCom.text[1]"],
+    textKeys: ["projects.varwinDotCom.text[0]"],
     links: [
       {
         url: "https://www.figma.com/design/1ZqyEqlbGfuB5hPpoLRQHq/Edu-Website?node-id=6248-4815&t=IRW4BQuAYAiFV8KU-1",
@@ -30,7 +29,6 @@ export const projects = [
   },
   {
     titleKey: "projects.xrms.title",
-    descriptionKey: "projects.xrms.description",
     tags: [
       "Figma",
       { label: "Desktop", icon: "monitor" },
@@ -40,7 +38,6 @@ export const projects = [
       "UX/UI",
     ],
     textKeys: ["projects.xrms.text"],
-    statisticKeys: ["projects.xrms.stats[0]", "projects.xrms.stats[1]", "projects.xrms.stats[2]"],
     links: [
       {
         url: "https://www.figma.com/design/A1gPX0YvtGRoFDUwv6KJt1/Varwin-XRMS?node-id=3714-8686&t=FpdbmpnOhp966LPP-1",

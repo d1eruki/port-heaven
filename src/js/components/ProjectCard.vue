@@ -1,13 +1,14 @@
+<!-- Карточка проекта с названием, тегами, описанием и ссылками. -->
 <template>
   <div
     data-project-snap
-    class="min-h-svh w-full lg:bg-canvas"
+    class="w-full max-lg:flex max-lg:flex-col max-lg:rounded-4xl max-lg:bg-surface-subtle lg:min-h-svh lg:bg-canvas no-effects:max-lg:mb-10"
   >
-    <div class="flex min-h-svh flex-col justify-center gap-10 p-10 lg:p-15">
+    <div class="flex min-h-[calc(100svh-2rem)] flex-col justify-start gap-10 p-10 max-lg:flex-1 lg:min-h-svh lg:justify-center lg:p-15">
       <div class="flex flex-col gap-5">
         <h3 class="text-primary">{{ projectName }}</h3>
-        <p class="text-muted">{{ projectDescription }}</p>
         <TagsList
+          class="max-lg:[&_small]:bg-primary/5"
           :tags="projectTags"
           :show-icons="true"
         />
@@ -16,26 +17,12 @@
         <p
           v-for="(text, index) in projectText"
           :key="index"
-          class="text-primary"
+          class="text-primary max-lg:text-left"
         >
           {{ text }}
         </p>
       </div>
-      <ol
-        v-if="projectStatistic.length"
-        class="grid border-y border-subtle lg:grid-cols-3"
-        data-project-statistics
-      >
-        <li
-          v-for="(statistic, index) in projectStatistic"
-          :key="statistic"
-          class="grid gap-5 border-b border-subtle py-5 last:border-b-0 lg:border-r lg:border-b-0 lg:px-5 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
-        >
-          <small class="text-muted">/ {{ String(index + 1).padStart(2, "0") }}</small>
-          <p class="text-primary">{{ statistic }}</p>
-        </li>
-      </ol>
-      <div class="flex flex-wrap gap-0">
+      <div class="flex flex-wrap gap-0 max-lg:mt-auto max-lg:gap-2 max-lg:*:w-full">
         <Button
           v-for="(link, index) in projectLinks"
           :key="index"
@@ -58,20 +45,11 @@ const props = defineProps({
     required: true,
     default: "Default title",
   },
-  projectDescription: {
-    type: String,
-    required: true,
-    default: "Default description",
-  },
   projectTags: {
     type: Array,
     default: () => [],
   },
   projectText: {
-    type: Array,
-    default: () => [],
-  },
-  projectStatistic: {
     type: Array,
     default: () => [],
   },
