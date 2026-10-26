@@ -1,3 +1,4 @@
+<!-- Корневая страница портфолио с управлением, секциями и согласием на аналитику. -->
 <template>
   <AppControls />
 
@@ -6,7 +7,7 @@
       id="smooth-content"
       class="w-full max-w-full min-w-0"
     >
-      <main class="w-full max-w-full min-w-0">
+      <main class="w-full max-w-full min-w-0 max-lg:overflow-x-clip">
         <Hero :current-theme="currentTheme" />
 
         <header

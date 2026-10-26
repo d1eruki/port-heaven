@@ -11,12 +11,12 @@
         class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-26 text-hero lg:justify-center lg:px-0 lg:pt-0 lg:pb-[12svh]"
       >
         <div
-          class="w-[calc(60svh-5rem)] shrink-0 origin-top-left translate-y-full -rotate-90 text-left lg:w-auto lg:translate-y-0 lg:rotate-0 lg:text-center"
+          class="w-[calc(70svh-5rem)] shrink-0 origin-top-left translate-y-full -rotate-90 text-left lg:w-auto lg:translate-y-0 lg:rotate-0 lg:text-center"
         >
           <h1
             ref="heroTitleRef"
             :class="{ invisible: !isHeroTitleReady }"
-            class="inline-block w-max text-left text-hero-title leading-[0.75] lg:text-center"
+            class="inline-block w-max text-left text-hero-title leading-14 [text-box:trim-both_cap_alphabetic] lg:text-center lg:leading-none"
           >
             <span
               v-for="(line, index) in t('brand.hero').split('\n')"
@@ -33,10 +33,11 @@
         data-speed="0.5"
       >
         <button
+          ref="heroCharacterRef"
           type="button"
           :disabled="!effectsEnabled"
           :aria-label="t('heroClicker.action')"
-          class="absolute top-1/2 left-1/2 block aspect-3/4 w-[max(100%,calc(var(--hero-height)*3/4))] -translate-1/2 border-0 bg-transparent p-0 select-none enabled:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          class="absolute top-1/2 left-1/2 z-1 block aspect-3/4 w-[max(100%,calc(var(--hero-height)*3/4))] -translate-1/2 border-0 bg-transparent p-0 select-none enabled:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           @pointerenter="onHeroPointerEnter"
           @pointerleave="onHeroPointerLeave"
           @pointerdown="onHeroPointerDown"
@@ -63,6 +64,7 @@
               decoding="sync"
               loading="eager"
               draggable="false"
+              @load="isHeroImageReady = true"
             />
           </picture>
           <svg
@@ -91,11 +93,15 @@
             />
           </svg>
         </button>
+      </div>
+      <div
+        v-if="effectsEnabled && isMobile && clicks > 0"
+        class="pointer-events-none absolute inset-x-10 bottom-26 z-1 h-0"
+      >
         <p
-          v-if="effectsEnabled && isMobile"
-          class="pointer-events-none absolute top-0 left-1/2 z-3 w-max max-w-[90%] -translate-x-1/2 text-center font-heading font-black text-primary tabular-nums max-sm:top-[14%] max-sm:left-[74%]"
+          class="absolute bottom-0 left-full w-max origin-bottom-left -rotate-90 scale-200 text-center font-heading text-feature-stat leading-none font-black text-link/50 tabular-nums [text-box:trim-both_cap_alphabetic]"
         >
-          {{ clicks === 0 ? t('heroClicker.hint') : clicks }}
+          {{ clicks }}
         </p>
       </div>
     </div>
@@ -126,6 +132,8 @@ const isHeroTapped = ref(false);
 const clicks = ref(0);
 const isMobile = ref(false);
 const heroSectionRef = ref(null);
+const heroCharacterRef = ref(null);
+const isHeroImageReady = ref(false);
 const heroTitleRef = ref(null);
 const isHeroTitleReady = ref(false);
 const isBlinking = ref(false);
@@ -147,6 +155,41 @@ let isHeroTitleFontReady = false;
 let mobileMedia;
 let blinkTimer;
 let heroPointer;
+let introPulse;
+let hasPlayedIntroPulse = false;
+
+const canPlayIntroPulse = computed(
+  () =>
+    effectsEnabled.value &&
+    isMobile.value &&
+    isHeroImageReady.value &&
+    isHeroVisible.value &&
+    documentVisibility.value === "visible",
+);
+
+watch(
+  canPlayIntroPulse,
+  (enabled) => {
+    if (!enabled) {
+      introPulse?.cancel();
+      return;
+    }
+    if (hasPlayedIntroPulse || !heroCharacterRef.value?.animate) return;
+    hasPlayedIntroPulse = true;
+    introPulse = heroCharacterRef.value.animate(
+      [
+        { scale: "1", offset: 0 },
+        { scale: "1.04", offset: 0.18 },
+        { scale: "1", offset: 0.36 },
+        { scale: "1.025", offset: 0.52 },
+        { scale: "1", offset: 0.76 },
+        { scale: "1", offset: 1 },
+      ],
+      { duration: 900, easing: "ease-in-out", iterations: 1 },
+    );
+  },
+  { flush: "post" },
+);
 
 const registerHeroClick = () => {
   if (!effectsEnabled.value || !isMobile.value) return;
@@ -271,6 +314,7 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
+  introPulse?.cancel();
   stopBlinking();
   mobileMedia?.removeEventListener("change", syncHeroTitleFit);
   heroTitleFit?.unsubscribe();

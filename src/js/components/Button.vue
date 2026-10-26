@@ -75,6 +75,9 @@ const isLink = computed(() => Boolean(props.href));
 const buttonClasses = computed(() => [
   "font-heading",
   classesByVariantAndSize[props.variant][props.size],
+  props.variant === "primary"
+    ? "max-lg:w-fit max-lg:px-3 max-lg:py-2.5 max-lg:text-[length:var(--subtext)]"
+    : undefined,
   props.variant === "primary" ? primarySurfaceClasses : undefined,
   props.variant === "secondary" ? secondaryClassesByTone[props.tone] : undefined,
 ]);

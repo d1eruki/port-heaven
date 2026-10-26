@@ -7,7 +7,8 @@ export const initProjectPin = () => {
   const panel = section?.firstElementChild;
   if (!section || !panel) return;
 
-  gsap.matchMedia().add(`(min-width: ${getBreakpointPx("lg")}px)`, () => {
+  const media = gsap.matchMedia();
+  media.add(`(min-width: ${getBreakpointPx("lg")}px)`, () => {
     ScrollTrigger.create({
       id: "projects-pin",
       trigger: section,
@@ -18,4 +19,6 @@ export const initProjectPin = () => {
       invalidateOnRefresh: true,
     });
   });
+
+  if (import.meta.hot) import.meta.hot.dispose(() => media.revert());
 };

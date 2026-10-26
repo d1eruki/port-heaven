@@ -1,12 +1,13 @@
+<!-- Секция проектов с общей мобильной рамкой для шапки и списка работ. -->
 <template>
   <section
     data-section="projects"
     id="projects"
-    class="grid min-h-svh grid-cols-1 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0"
+    class="grid min-h-svh grid-cols-1 gap-10 px-10 pt-10 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0 lg:p-0"
   >
     <div
       data-project-panel
-      class="p-10 lg:h-dvh lg:p-15 lg:pr-0"
+      class="lg:h-dvh lg:p-15 lg:pr-0"
     >
       <div
         class="grid content-center gap-5 overflow-hidden rounded-4xl bg-inverse p-5 text-on-inverse lg:h-full lg:place-items-end lg:p-15 lg:text-end"
@@ -19,16 +20,18 @@
       </div>
     </div>
     <div>
-      <ProjectCard
+      <template
         v-for="project in translatedProjects"
         :key="project.titleKey"
-        :project-name="project.name"
-        :project-description="project.description"
-        :project-tags="project.tags"
-        :project-text="project.text"
-        :project-statistic="project.statistics"
-        :project-links="project.links"
-      />
+      >
+        <ProjectCard
+          class="effects:max-lg:sticky effects:max-lg:top-4"
+          :project-name="project.name"
+          :project-tags="project.tags"
+          :project-text="project.text"
+          :project-links="project.links"
+        />
+      </template>
     </div>
   </section>
 </template>
@@ -46,9 +49,7 @@ const translatedProjects = computed(() =>
   projects.map((project) => ({
     ...project,
     name: t(project.titleKey),
-    description: t(project.descriptionKey),
     text: project.textKeys.map((key) => t(key)),
-    statistics: (project.statisticKeys || []).map((key) => t(key)),
     links: project.links.map((link) => ({
       url: link.url,
       name: t(link.labelKey),
