@@ -496,6 +496,8 @@ test("theme and locale controls update the page", async ({ page, isMobile }) => 
   await page.goto("/");
 
   const root = page.locator("html");
+  const hero = page.locator("#hero");
+  const heroCount = hero.locator("p");
   const heroImage = page.locator("#hero img");
   const tongue = page.locator('#hero svg image[href*="hero-mouth-tongue"]');
   const defaultHeroImageSrc = await heroImage.getAttribute("src");
@@ -504,21 +506,24 @@ test("theme and locale controls update the page", async ({ page, isMobile }) => 
   await expect(tongue).toHaveAttribute("opacity", "0");
 
   if (isMobile) {
-    await heroImage.tap();
+    await hero.tap();
+    await expect(heroCount).toHaveText("1");
   } else {
     await heroImage.hover();
   }
-  await expect(tongue).toHaveAttribute("opacity", "1");
+  await expect(tongue).toHaveAttribute("opacity", isMobile ? "0" : "1");
   await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
 
   if (isMobile) {
     // Reproduce the extra click emitted by the scroll normalizer after Safari's tap.
-    await heroImage.evaluate((element) => element.click());
-    await expect(tongue).toHaveAttribute("opacity", "1");
+    await hero.evaluate((element) => element.click());
+    await expect(heroCount).toHaveText("1");
+    await expect(tongue).toHaveAttribute("opacity", "0");
   }
 
   if (isMobile) {
-    await heroImage.tap();
+    await hero.tap();
+    await expect(heroCount).toHaveText("2");
   } else {
     await page.mouse.move(0, 0);
   }
@@ -526,21 +531,21 @@ test("theme and locale controls update the page", async ({ page, isMobile }) => 
   await expect(heroImage).toHaveAttribute("src", defaultHeroImageSrc);
 
   if (isMobile) {
-    await heroImage.evaluate((element) => {
-      const pointer = {
-        bubbles: true,
-        pointerId: 1,
-        pointerType: "touch",
-        isPrimary: true,
-        button: 0,
-        clientX: 100,
-        clientY: 100,
-      };
-      element.dispatchEvent(new PointerEvent("pointerdown", pointer));
-      element.dispatchEvent(new PointerEvent("pointermove", { ...pointer, clientY: 140 }));
-      element.dispatchEvent(new PointerEvent("pointerup", { ...pointer, clientY: 140 }));
-    });
+    const pointer = {
+      pointerId: 1,
+      pointerType: "touch",
+      isPrimary: true,
+      button: 0,
+      clientX: 100,
+      clientY: 100,
+    };
+    await hero.dispatchEvent("pointerdown", pointer);
+    await expect(tongue).toHaveAttribute("opacity", "1");
+    await hero.dispatchEvent("pointermove", { ...pointer, clientY: 140 });
     await expect(tongue).toHaveAttribute("opacity", "0");
+    await hero.dispatchEvent("pointerup", { ...pointer, clientY: 140 });
+    await expect(tongue).toHaveAttribute("opacity", "0");
+    await expect(heroCount).toHaveText("2");
   }
 
   await page.getByRole("button", { name: "темная тема" }).click();
@@ -548,11 +553,12 @@ test("theme and locale controls update the page", async ({ page, isMobile }) => 
   await expect(heroImage).not.toHaveAttribute("src", defaultHeroImageSrc);
   const darkHeroImageSrc = await heroImage.getAttribute("src");
   if (isMobile) {
-    await heroImage.tap();
+    await hero.tap();
+    await expect(heroCount).toHaveText("3");
   } else {
     await heroImage.hover();
   }
-  await expect(tongue).toHaveAttribute("opacity", "1");
+  await expect(tongue).toHaveAttribute("opacity", isMobile ? "0" : "1");
   await expect(heroImage).toHaveAttribute("src", darkHeroImageSrc);
 
   await page.getByRole("button", { name: "english" }).click();
@@ -1138,7 +1144,7 @@ test("production serves responsive images, automatic overlays, WOFF2 and small f
   await setEffectsMode(page, "on");
   await page.reload();
   const overlays = page.locator("#hero svg image");
-  await expect(overlays).toHaveCount(2);
+  await expect(overlays).toHaveCount(5);
   for (const overlay of await overlays.all()) {
     const href = await overlay.getAttribute("href");
     expect(href).toMatch(/\.avif$/);
@@ -1168,7 +1174,7 @@ test("AVIF errors recover to WebP for the hero and SVG overlays", async ({ page 
     .poll(() => hero.evaluate((image) => image.complete && image.naturalWidth > 0))
     .toBe(true);
   const overlays = page.locator("#hero svg image");
-  await expect(overlays).toHaveCount(2);
+  await expect(overlays).toHaveCount(5);
   for (const overlay of await overlays.all()) {
     await expect(overlay).toHaveAttribute("href", /\.webp(?:[?#]|$)/);
     const href = await overlay.getAttribute("href");
