@@ -58,17 +58,16 @@
               aria-hidden="true"
             >
               <image :href="heroEyesWhiteImage" width="1086" height="1448" />
-              <g :transform="`translate(${gaze.x * 5} ${gaze.y * 4})`">
-                <image
-                  v-for="eye in heroEyes"
-                  :key="eye.name"
-                  :href="eye.src"
-                  :x="eye.x"
-                  :y="eye.y"
-                  :width="eye.width"
-                  :height="eye.height"
-                />
-              </g>
+              <image
+                v-for="eye in heroEyes"
+                :key="eye.name"
+                :href="eye.src"
+                :x="eye.x"
+                :y="eye.y"
+                :width="eye.width"
+                :height="eye.height"
+                :transform="`translate(${gaze.x * eye.travelX} ${gaze.y * eye.travelY})`"
+              />
             </svg>
             <picture class="relative block max-lg:pointer-events-none">
               <source
@@ -180,8 +179,26 @@ const isHeroVisible = useElementVisibility(heroSectionRef);
 const documentVisibility = useDocumentVisibility();
 // Положение радужек внутри экспортированного слоя Eyes из Figma.
 const heroEyes = [
-  { name: "left", src: heroIrisLeftImage, x: 468, y: 279.97265625, width: 23, height: 23 },
-  { name: "right", src: heroIrisRightImage, x: 528, y: 243.97265625, width: 27, height: 26 },
+  {
+    name: "left",
+    src: heroIrisLeftImage,
+    x: 469,
+    y: 279.97265625,
+    width: 21,
+    height: 21,
+    travelX: 3,
+    travelY: 2.5,
+  },
+  {
+    name: "right",
+    src: heroIrisRightImage,
+    x: 528,
+    y: 243.97265625,
+    width: 27,
+    height: 26,
+    travelX: 5,
+    travelY: 4,
+  },
 ];
 const gaze = ref({ x: 0, y: 0 });
 const canTrackEyes = computed(
