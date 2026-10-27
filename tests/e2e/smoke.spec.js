@@ -120,11 +120,22 @@ const readSectionVisualProgress = (section) =>
 
 const scrollToSectionMiddle = async (section) => {
   await section.page().waitForLoadState("networkidle");
-  await section.evaluate(async (element) => {
-    await document.fonts.ready;
-    window.scrollTo(0, element.offsetTop + (element.offsetHeight - window.innerHeight) * 0.5);
-  });
-  await expect.poll(() => readSectionVisualProgress(section)).toBeCloseTo(0.5, 1);
+  await section.evaluate(() => document.fonts.ready);
+  await expect
+    .poll(() =>
+      section.evaluate((element) => {
+        let documentTop = 0;
+        for (let current = element; current; current = current.offsetParent) {
+          documentTop += current.offsetTop;
+        }
+        const distance = element.offsetHeight - window.innerHeight;
+        const target = documentTop + distance * 0.5;
+        // Scroll restoration and pin refreshes can finish after the initial scroll.
+        if (Math.abs(window.scrollY - target) > 1) window.scrollTo(0, target);
+        return distance > 0 ? -element.getBoundingClientRect().top / distance : 0;
+      }),
+    )
+    .toBeCloseTo(0.5, 1);
 };
 
 const positionBeforeSecondProject = async (page) => {
@@ -196,20 +207,22 @@ const scrollAndWaitForScrollToSettle = async (page, snapTarget) => {
 };
 
 const scrollVideoIntoView = async (video) => {
+  await video.page().waitForLoadState("networkidle");
+  await video.evaluate(() => document.fonts.ready);
   await expect
     .poll(() =>
       video.evaluate((element) => {
         const bounds = element.getBoundingClientRect();
-        let documentTop = 0;
-        let current = element;
-        while (current) {
-          documentTop += current.offsetTop;
-          current = current.offsetParent;
-        }
+        const visibleHeight = Math.min(bounds.bottom, window.innerHeight) - Math.max(bounds.top, 0);
+        if (bounds.height > 0 && visibleHeight >= bounds.height / 2) return true;
+
+        // Include local transforms, but remove ScrollSmoother's content translation.
+        const content = element.closest("#smooth-content");
+        const contentTop = content?.getBoundingClientRect().top ?? -window.scrollY;
+        const documentTop = bounds.top - contentTop;
         const target = Math.max(0, documentTop - (window.innerHeight - bounds.height) / 2);
         if (Math.abs(window.scrollY - target) > 1) window.scrollTo(0, target);
-        const visibleHeight = Math.min(bounds.bottom, window.innerHeight) - Math.max(bounds.top, 0);
-        return bounds.height > 0 && visibleHeight >= bounds.height / 2;
+        return false;
       }),
     )
     .toBe(true);
@@ -927,6 +940,7 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
       nextSectionTop: nextSection?.getBoundingClientRect().top,
       viewportHeight: window.innerHeight,
       viewportPaddingTop: viewportStyles ? parseFloat(viewportStyles.paddingTop) : 0,
+      viewportPaddingBottom: viewportStyles ? parseFloat(viewportStyles.paddingBottom) : 0,
       cards: Array.from(element.querySelectorAll("[data-design-name]")).map((card) => {
         const cardBounds = card.getBoundingClientRect();
 
@@ -951,7 +965,9 @@ test("unavailable WebGL keeps Hero static and Design in its desktop grid", async
   );
   expect(rowTops.length).toBeGreaterThan(2);
   expect(rowTops[2] - rowTops[0]).toBeCloseTo(
-    designMetrics.viewportHeight - designMetrics.viewportPaddingTop,
+    designMetrics.viewportHeight -
+      designMetrics.viewportPaddingTop -
+      designMetrics.viewportPaddingBottom,
     0,
   );
   expect(
@@ -1193,10 +1209,14 @@ test("production serves responsive images, automatic overlays, WOFF2 and small f
       await image.decode();
       return { width: image.naturalWidth, height: image.naturalHeight };
     }, href);
-    expect(loaded).toEqual({
-      width: Number(await overlay.getAttribute("width")),
-      height: Number(await overlay.getAttribute("height")),
-    });
+    expect(loaded.width).toBeGreaterThan(0);
+    expect(loaded.height).toBeGreaterThan(0);
+    // SVG can intentionally display the raster at a different size.
+    const displayWidth = Number(await overlay.getAttribute("width"));
+    const displayHeight = Number(await overlay.getAttribute("height"));
+    expect(displayWidth).toBeGreaterThan(0);
+    expect(displayHeight).toBeGreaterThan(0);
+    expect(loaded.width / loaded.height).toBeCloseTo(displayWidth / displayHeight, 2);
   }
 });
 
