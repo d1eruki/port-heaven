@@ -3,8 +3,30 @@
   <footer
     data-section="footer"
     id="footer"
-    class="flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-5 overflow-hidden p-10 lg:p-15"
+    class="relative flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-5 overflow-hidden p-10 lg:p-15"
   >
+    <picture
+      class="pointer-events-none absolute top-10 right-10 block w-56 select-none lg:top-15 lg:right-15 lg:w-96"
+      aria-hidden="true"
+    >
+      <source
+        v-for="source in chromeWave.sources"
+        :key="source.type"
+        :type="source.type"
+        :srcset="source.srcset"
+        sizes="(min-width: 1024px) 384px, 224px"
+      />
+      <img
+        :src="chromeWave.src"
+        alt=""
+        :width="chromeWave.width"
+        :height="chromeWave.height"
+        loading="lazy"
+        decoding="async"
+        draggable="false"
+        class="block h-auto w-full -rotate-12"
+      />
+    </picture>
     <div class="max-w-full min-w-0 items-baseline gap-10 lg:flex">
       <a
         class="group relative w-auto font-heading text-link hover:text-link-hover"
@@ -64,6 +86,7 @@ import fitty from "fitty";
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import MenuDescription from "../components/MenuDescription.vue";
+import chromeWave from "../../assets/chrome/chrome-wave.png?responsive";
 
 const { t } = useI18n();
 

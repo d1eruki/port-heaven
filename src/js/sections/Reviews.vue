@@ -3,7 +3,7 @@
   <section
     id="reviews"
     data-section="reviews"
-    class="relative flex min-h-svh bg-canvas p-10 text-primary lg:p-15"
+    class="relative isolate flex min-h-svh bg-canvas p-10 text-primary lg:p-15"
   >
     <div
       class="relative isolate min-h-[max(32rem,140vw)] w-full flex-1 overflow-hidden rounded-4xl bg-surface-subtle sm:min-h-[110vw] lg:min-h-[max(36rem,80svh,36vw)]"
@@ -60,12 +60,35 @@
         </div>
       </div>
     </div>
+    <picture
+      class="pointer-events-none absolute top-0 right-0 z-1 block w-28 select-none lg:right-5 lg:w-52"
+      aria-hidden="true"
+    >
+      <source
+        v-for="source in chromeBlob.sources"
+        :key="source.type"
+        :type="source.type"
+        :srcset="source.srcset"
+        sizes="(min-width: 1024px) 208px, 112px"
+      />
+      <img
+        :src="chromeBlob.src"
+        alt=""
+        :width="chromeBlob.width"
+        :height="chromeBlob.height"
+        loading="lazy"
+        decoding="async"
+        draggable="false"
+        class="block h-auto w-full rotate-12"
+      />
+    </picture>
   </section>
 </template>
 
 <script setup>
 import { useI18n } from "vue-i18n";
 import background from "../../assets/reviews/background.png?responsive";
+import chromeBlob from "../../assets/chrome/chrome-blob.png?responsive";
 import { createReviews } from "../data/reviews";
 
 const { t } = useI18n();

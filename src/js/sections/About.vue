@@ -12,6 +12,28 @@
           <h2>{{ t("menu.about.title") }}</h2>
           <p>{{ t("menu.about.intro") }}</p>
         </div>
+        <picture
+          class="pointer-events-none absolute top-1/2 right-10 block w-36 -translate-y-1/2 select-none lg:right-15 lg:w-64"
+          aria-hidden="true"
+        >
+          <source
+            v-for="source in chromeLoop.sources"
+            :key="source.type"
+            :type="source.type"
+            :srcset="source.srcset"
+            sizes="(min-width: 1024px) 256px, 144px"
+          />
+          <img
+            :src="chromeLoop.src"
+            alt=""
+            :width="chromeLoop.width"
+            :height="chromeLoop.height"
+            loading="lazy"
+            decoding="async"
+            draggable="false"
+            class="block h-auto w-full -rotate-12"
+          />
+        </picture>
         <div class="grid gap-2">
           <p>{{ t("menu.about.hobbies.title") }}</p>
           <p class="text-muted">{{ t("menu.about.hobbies.text") }}</p>
@@ -49,6 +71,7 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import FeatureItem from "../components/FeatureItem.vue";
+import chromeLoop from "../../assets/chrome/chrome-loop.png?responsive";
 
 const { t } = useI18n();
 </script>
