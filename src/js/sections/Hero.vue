@@ -47,9 +47,6 @@
             type="button"
             :disabled="!effectsEnabled"
             :aria-label="t('heroClicker.action')"
-            :style="{
-              transform: `translate3d(${heroTilt.x * 10}px, ${heroTilt.y * 10}px, 0) rotate(${heroTilt.x * 2}deg)`,
-            }"
             class="absolute top-1/2 left-1/2 z-1 block aspect-3/4 w-[max(100%,calc(var(--hero-height)*3/4))] -translate-1/2 border-0 bg-transparent p-0 select-none enabled:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent max-lg:pointer-events-none"
             @pointerenter="onHeroPointerEnter"
             @pointerleave="onHeroPointerLeave"
@@ -187,17 +184,12 @@ const heroEyes = [
   { name: "right", src: heroIrisRightImage, x: 528, y: 243.97265625, width: 27, height: 26 },
 ];
 const gaze = ref({ x: 0, y: 0 });
-const heroTilt = ref({ x: 0, y: 0 });
-const orientationPermission = ref("unavailable");
 const canTrackEyes = computed(
   () =>
     effectsEnabled.value &&
     isHeroCharacterReady.value &&
     isHeroVisible.value &&
     documentVisibility.value === "visible",
-);
-const canTiltHero = computed(
-  () => canTrackEyes.value && isMobile.value && orientationPermission.value === "granted",
 );
 const showTongue = computed(
   () => effectsEnabled.value && (isMobile.value ? isHeroPressed.value : isHeroHovered.value),
@@ -221,78 +213,6 @@ let gazeTarget = { x: 0, y: 0 };
 let pendingGazePoint;
 let gazeTap;
 let lastGazeTime;
-let tiltFrame;
-let lastTiltTime;
-let tiltTarget = { x: 0, y: 0 };
-let tiltOrigin;
-let isHeroUnmounted = false;
-
-const resetHeroTilt = () => {
-  window.cancelAnimationFrame(tiltFrame);
-  tiltFrame = undefined;
-  lastTiltTime = undefined;
-  tiltOrigin = undefined;
-  tiltTarget = { x: 0, y: 0 };
-  heroTilt.value = { x: 0, y: 0 };
-};
-
-const animateHeroTilt = (time) => {
-  tiltFrame = undefined;
-  if (!canTiltHero.value) return;
-  const blend = 1 - Math.exp(-Math.min(time - (lastTiltTime ?? time - 16), 64) / 140);
-  lastTiltTime = time;
-  const x = heroTilt.value.x + (tiltTarget.x - heroTilt.value.x) * blend;
-  const y = heroTilt.value.y + (tiltTarget.y - heroTilt.value.y) * blend;
-  if (Math.hypot(tiltTarget.x - x, tiltTarget.y - y) < 0.001) {
-    heroTilt.value = { ...tiltTarget };
-    lastTiltTime = undefined;
-    return;
-  }
-  heroTilt.value = { x, y };
-  tiltFrame = window.requestAnimationFrame(animateHeroTilt);
-};
-
-const onHeroOrientation = (event) => {
-  if (!canTiltHero.value || !Number.isFinite(event.beta) || !Number.isFinite(event.gamma)) return;
-  const angle = window.screen.orientation?.angle ?? window.orientation ?? 0;
-  // Текущее положение телефона становится нейтральным после каждого возобновления.
-  if (!tiltOrigin || tiltOrigin.angle !== angle) {
-    resetHeroTilt();
-    tiltOrigin = { beta: event.beta, gamma: event.gamma, angle };
-  }
-  const radians = (angle * Math.PI) / 180;
-  const beta = ((event.beta - tiltOrigin.beta + 540) % 360) - 180;
-  const gamma = event.gamma - tiltOrigin.gamma;
-  const clamp = (value) => Math.max(-1, Math.min(1, value / 20));
-  tiltTarget = {
-    x: clamp(gamma * Math.cos(radians) + beta * Math.sin(radians)),
-    y: clamp(beta * Math.cos(radians) - gamma * Math.sin(radians)),
-  };
-  if (tiltFrame === undefined) tiltFrame = window.requestAnimationFrame(animateHeroTilt);
-};
-
-const requestHeroOrientation = async () => {
-  if (!effectsEnabled.value || !isMobile.value || orientationPermission.value !== "prompt") return;
-  orientationPermission.value = "pending";
-  try {
-    const permission = await window.DeviceOrientationEvent.requestPermission();
-    if (!isHeroUnmounted) orientationPermission.value = permission;
-  } catch {
-    if (!isHeroUnmounted) orientationPermission.value = "denied";
-  }
-};
-
-watch(canTiltHero, (enabled, _previous, onCleanup) => {
-  resetHeroTilt();
-  if (!enabled) return;
-  window.addEventListener("deviceorientation", onHeroOrientation, { passive: true });
-  window.addEventListener("blur", resetHeroTilt);
-  onCleanup(() => {
-    window.removeEventListener("deviceorientation", onHeroOrientation);
-    window.removeEventListener("blur", resetHeroTilt);
-    resetHeroTilt();
-  });
-});
 
 const resetGaze = () => {
   window.cancelAnimationFrame(gazeFrame);
@@ -563,15 +483,10 @@ const onHeroPointerUp = (event) => {
   onHeroPointerMove(event);
   if (heroPointer?.id !== event.pointerId) return;
   cancelHeroPointer();
-  if (event.isTrusted) void requestHeroOrientation();
   registerHeroClick();
 };
 
 onMounted(async () => {
-  if (window.isSecureContext && window.DeviceOrientationEvent) {
-    orientationPermission.value =
-      typeof window.DeviceOrientationEvent.requestPermission === "function" ? "prompt" : "granted";
-  }
   mobileMedia = window.matchMedia(`(width < ${getBreakpointPx("lg")}px)`);
   mobileMedia.addEventListener("change", syncHeroTitleFit);
   syncHeroTitleFit();
@@ -588,8 +503,6 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
-  isHeroUnmounted = true;
-  resetHeroTilt();
   stopHeroPulse();
   stopBlinking();
   mobileMedia?.removeEventListener("change", syncHeroTitleFit);
