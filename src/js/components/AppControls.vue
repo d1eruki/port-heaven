@@ -2,7 +2,7 @@
 <template>
   <div
     id="menu-dot"
-    class="fixed top-0 left-0 z-2147483647 flex min-h-svh w-10 items-center justify-center text-app-controls mix-blend-difference transition-opacity duration-300 ease-in-out lg:z-50 lg:w-15"
+    class="fixed top-0 left-[max(0px,calc((100%-var(--breakpoint-3xl))/2))] z-50 flex min-h-svh w-10 items-center justify-center text-app-controls mix-blend-difference transition-opacity duration-300 ease-in-out lg:w-15"
   >
     <TooltipProvider
       :delay-duration="0"
@@ -74,13 +74,13 @@
 
   <div
     id="progress-bar"
-    class="progress-bar fixed top-0 right-0 z-100 flex bg-progress-bar mix-blend-difference max-lg:w-[2px] max-lg:rounded-b-full"
+    class="progress-bar fixed top-0 right-[max(0px,calc((100%-var(--breakpoint-3xl))/2))] z-100 flex bg-progress-bar mix-blend-difference max-lg:w-[2px] max-lg:rounded-b-full"
   ></div>
 
   <div
     ref="menuRightRef"
     id="menu-right"
-    class="fixed top-0 right-0 z-200 flex min-h-svh w-10 items-center justify-center max-lg:invisible lg:w-15"
+    class="fixed top-0 right-[max(0px,calc((100%-var(--breakpoint-3xl))/2))] z-200 flex min-h-svh w-10 items-center justify-center max-lg:invisible lg:w-15"
   >
     <div class="flex w-fit rotate-90 items-center justify-center gap-5 whitespace-nowrap">
       <Button

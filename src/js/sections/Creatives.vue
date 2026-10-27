@@ -1,6 +1,7 @@
 <!-- Креативы с общей сохраняемой раскладкой и локальной кнопкой перетасовки. -->
 <template>
   <section
+    ref="creativeSectionRef"
     data-section="creatives"
     id="creatives"
     class="relative min-h-svh max-lg:flex max-lg:flex-col max-lg:gap-10 max-lg:p-10 lg:h-[var(--creative-stream-height)]"
@@ -60,7 +61,7 @@
           :creative-alt="creative.alt"
           :creative-src="creative.src"
           :image-sources="creative.sources"
-          :image-sizes="`(min-width: 1024px) ${creative.layoutWidth}vw, (min-width: 640px) calc((100vw - 7.5rem) / 3), calc((100vw - 5.75rem) / 2)`"
+          :image-sizes="`(min-width: 1024px) min(${creative.layoutWidth}vw, ${creative.layoutWidth / 100 * contentMaxWidth}px), (min-width: 640px) calc((100vw - 7.5rem) / 3), calc((100vw - 5.75rem) / 2)`"
           :image-height="creative.height"
           :image-width="creative.width"
         />
@@ -70,7 +71,7 @@
 </template>
 
 <script setup>
-import { useWindowSize } from "@vueuse/core";
+import { useElementSize, useWindowSize } from "@vueuse/core";
 import { computed, nextTick, onBeforeUnmount, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import Button from "../components/Button.vue";
@@ -82,9 +83,13 @@ import VideoCreative from "../components/VideoCreative.vue";
 import { devModeEnabled } from "../features/preferences/dev-mode";
 import { ScrollTrigger } from "../libraries/gsap-scroll";
 import { createCreativeCloudItem, getCreativeCloudHeight } from "../utils/creative-cloud-layout";
+import { getBreakpointPx } from "../utils/breakpoints";
 
 const { t } = useI18n();
-const { width: viewportWidth, height: viewportHeight } = useWindowSize();
+const creativeSectionRef = ref(null);
+const { width: contentWidth } = useElementSize(creativeSectionRef);
+const { height: viewportHeight } = useWindowSize();
+const contentMaxWidth = getBreakpointPx("3xl");
 const layoutSeed = ref(savedLayout.seed);
 const isSavingLayout = ref(false);
 const saveError = ref("");
@@ -96,7 +101,7 @@ const creativeCloud = computed(() =>
 const creativeSectionStyle = computed(() => ({
   "--creative-stream-height": `${getCreativeCloudHeight(
     creativeCloud.value,
-    viewportWidth.value / Math.max(viewportHeight.value, 1),
+    contentWidth.value / Math.max(viewportHeight.value, 1),
   )}dvh`,
 }));
 

@@ -5,7 +5,7 @@
   <div id="smooth-wrapper">
     <div
       id="smooth-content"
-      class="w-full max-w-full min-w-0"
+      class="mx-auto w-full max-w-(--breakpoint-3xl) min-w-0"
     >
       <main class="w-full max-w-full min-w-0 max-lg:overflow-x-clip">
         <Hero

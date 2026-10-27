@@ -47,7 +47,7 @@
       <MenuDescription :menu-desc="t('menu.footer.description')" />
     </div>
     <div
-      class="relative z-1 flex w-full justify-center lg:left-1/2 lg:w-screen lg:-translate-x-1/2"
+      class="relative z-1 flex w-full justify-center"
     >
       <div
         ref="footerLogoRef"
