@@ -1,5 +1,6 @@
 import { smoothScrollTo } from "../../../utils/smooth-scroll";
 import { DOM_SELECTORS } from "../../../dom/dom-selectors";
+import { ScrollTrigger } from "../../../libraries/gsap-scroll";
 import { attachSectionDotEvents } from "./events";
 
 export function initSectionDots(opts = {}) {
@@ -23,8 +24,9 @@ export function initSectionDots(opts = {}) {
   let activeId = "";
 
   function setActive(id) {
-    if (id === activeId) return;
-    activeId = id || "";
+    const nextActiveId = id === "hero" ? "" : id || "";
+    if (nextActiveId === activeId) return;
+    activeId = nextActiveId;
     for (const [secId, btn] of btnById) {
       btn.setAttribute("aria-current", String(secId === activeId));
     }
@@ -48,6 +50,19 @@ export function initSectionDots(opts = {}) {
   });
 
   if (!btnById.size) return console.warn("[section-dots] кнопки навигации не найдены");
+
+  const hero = sectionById.get("hero");
+  if (hero) {
+    ScrollTrigger.create({
+      trigger: hero,
+      start: `top center+=${cfg.centerBiasPx}px`,
+      end: `bottom center+=${cfg.centerBiasPx}px`,
+      onToggle: (self) => {
+        if (self.isActive) setActive("");
+      },
+      invalidateOnRefresh: true,
+    });
+  }
 
   attachSectionDotEvents({
     sections,
