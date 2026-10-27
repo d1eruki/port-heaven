@@ -633,13 +633,11 @@ test("scroll to top returns from lower sections", async ({ page }) => {
 
 test("section dot navigation targets the explicit section nav", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
   const sectionNav = page.locator("[data-section-nav]");
   const dots = sectionNav.locator("button.dot");
   const russianSectionLabels = [
-    "главная",
     "обо мне",
     "коммерческие проекты",
     "макеты",
@@ -648,7 +646,6 @@ test("section dot navigation targets the explicit section nav", async ({ page })
     "связь",
   ];
   const englishSectionLabels = [
-    "home",
     "about me",
     "commercial projects",
     "layouts",
@@ -659,6 +656,9 @@ test("section dot navigation targets the explicit section nav", async ({ page })
 
   await expect(page.getByRole("navigation", { name: "навигация по разделам" })).toBeVisible();
   await expect(dots).toHaveCount(russianSectionLabels.length);
+  await expect(sectionNav.locator('[data-target="#hero"]')).toHaveCount(0);
+  await expect(sectionNav.locator('[aria-current="true"]')).toHaveCount(0);
+  await expect(page.locator("#menu-dot")).toHaveCSS("opacity", "1");
   for (const label of russianSectionLabels) {
     await expect(sectionNav.getByRole("button", { name: label })).toBeVisible();
   }
@@ -684,11 +684,15 @@ test("section dot navigation targets the explicit section nav", async ({ page })
     "aria-current",
     "true",
   );
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(sectionNav.locator('[aria-current="true"]')).toHaveCount(0);
 });
 
-test("section dots show their labels on hover and keyboard focus", async ({ page }) => {
+test("desktop section dots show their labels on hover and keyboard focus", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.setViewportSize({ width: 390, height: 844 });
+  await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
 
   const sectionNav = page.locator("[data-section-nav]");
@@ -706,6 +710,38 @@ test("section dots show their labels on hover and keyboard focus", async ({ page
   await aboutDot.focus();
   await expect(tooltip).toContainText("обо мне");
   await expect(tooltip).toBeVisible();
+});
+
+test("mobile section labels appear only inside the active pill", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const sectionNav = page.locator("[data-section-nav]");
+  const aboutDot = sectionNav.getByRole("button", { name: "обо мне" });
+  const designDot = sectionNav.getByRole("button", { name: "макеты", exact: true });
+  const tooltip = page.locator("[data-section-tooltip]");
+
+  await expect(aboutDot.locator("small")).toHaveCSS("opacity", "0");
+  await expect(designDot.locator("small")).toHaveCSS("opacity", "0");
+  await aboutDot.focus();
+  await expect(tooltip).not.toBeVisible();
+  await expect(aboutDot.locator("small")).toHaveCSS("opacity", "0");
+
+  await aboutDot.click();
+  await expect(aboutDot).toHaveAttribute("aria-current", "true");
+  await expect(aboutDot.locator("small")).toHaveCSS("opacity", "1");
+  await expect(designDot.locator("small")).toHaveCSS("opacity", "0");
+  await expect(tooltip).not.toBeVisible();
+
+  await designDot.click();
+  await expect(designDot).toHaveAttribute("aria-current", "true");
+  await expect(designDot.locator("small")).toHaveCSS("opacity", "1");
+  await expect(aboutDot.locator("small")).toHaveCSS("opacity", "0");
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(sectionNav.locator('[aria-current="true"]')).toHaveCount(0);
+  await expect(designDot.locator("small")).toHaveCSS("opacity", "0");
 });
 
 test("enhanced desktop mode snaps project cards and pins scrolling content", async ({

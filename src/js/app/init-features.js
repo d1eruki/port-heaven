@@ -11,7 +11,6 @@ import {
 } from "../features/preferences/effects-scroll-restoration";
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
-import { initMenuDotToggler } from "../features/navigation/menu-dot-toggler";
 import { initCreativeHeadingPin } from "../features/navigation/creative-heading-pin";
 import { initProjectPin } from "../features/navigation/project-pin";
 import { initAboutReveal } from "../features/effects/about-reveal";
@@ -76,7 +75,6 @@ export const initFeatures = async () => {
 
   initSections();
   initScrollToTop();
-  initMenuDotToggler();
   initProjectPin();
   initCreativeHeadingPin();
 

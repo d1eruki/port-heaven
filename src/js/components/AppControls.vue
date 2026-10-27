@@ -2,7 +2,7 @@
 <template>
   <div
     id="menu-dot"
-    class="fixed top-0 left-0 z-2147483647 flex min-h-svh w-10 items-center justify-center text-app-controls mix-blend-difference transition-opacity duration-300 ease-in-out lg:pointer-events-none lg:z-50 lg:w-15 lg:opacity-0"
+    class="fixed top-0 left-0 z-2147483647 flex min-h-svh w-10 items-center justify-center text-app-controls mix-blend-difference transition-opacity duration-300 ease-in-out lg:z-50 lg:w-15"
   >
     <TooltipProvider
       :delay-duration="0"
@@ -11,7 +11,7 @@
       <nav
         ref="sectionNavRef"
         data-section-nav
-        class="flex w-fit flex-col gap-5 max-lg:invisible"
+        class="flex w-fit shrink-0 items-center gap-5 max-lg:-rotate-90 max-lg:flex-row-reverse lg:flex-col"
         :aria-label="t('navigation.label')"
       >
         <TooltipRoot
@@ -21,12 +21,13 @@
           <TooltipTrigger as-child>
             <button
               type="button"
-              class="dot group"
+              class="dot group max-lg:relative max-lg:flex max-lg:h-10 max-lg:w-auto max-lg:min-w-[var(--dot-size)] max-lg:shrink-0 max-lg:items-center max-lg:justify-center max-lg:rounded-full max-lg:focus-visible:outline-2 max-lg:focus-visible:outline-offset-2 max-lg:focus-visible:outline-current effects:max-lg:transition-all effects:max-lg:duration-300 effects:max-lg:ease-in-out"
               :data-target="`#${section.id}`"
               :aria-label="t(section.labelKey)"
               aria-current="false"
             >
               <svg
+                class="max-lg:absolute max-lg:size-[var(--dot-size)] max-lg:group-aria-current:opacity-0 effects:max-lg:transition-opacity effects:max-lg:duration-300 effects:max-lg:ease-in-out"
                 viewBox="0 0 20 20"
                 aria-hidden="true"
                 focusable="false"
@@ -38,6 +39,16 @@
                   r="6"
                 />
               </svg>
+              <span
+                aria-hidden="true"
+                class="flex h-2 min-w-[var(--dot-size)] items-center justify-center overflow-hidden rounded-full bg-current opacity-0 group-aria-current:h-8 group-aria-current:px-3 group-aria-current:opacity-100 lg:hidden effects:transition-all effects:duration-300 effects:ease-in-out"
+              >
+                <small
+                  class="max-w-0 overflow-hidden font-heading whitespace-nowrap text-[color:var(--semantic-text-on-adaptive-contrast)] opacity-0 group-aria-current:max-w-64 group-aria-current:opacity-100 effects:transition-all effects:duration-300 effects:ease-in-out"
+                >
+                  {{ t(section.labelKey) }}
+                </small>
+              </span>
             </button>
           </TooltipTrigger>
 
@@ -47,7 +58,7 @@
               side="right"
               :side-offset="12"
               :collision-padding="16"
-              class="z-2147483647 w-max max-w-70 origin-center effects:animate-[section-tooltip-pop_360ms_ease-out_both] effects:data-[state=closed]:animate-[section-tooltip-out_180ms_ease-in_both]"
+              class="z-2147483647 w-max max-w-70 origin-center max-lg:hidden effects:animate-[section-tooltip-pop_360ms_ease-out_both] effects:data-[state=closed]:animate-[section-tooltip-out_180ms_ease-in_both]"
             >
               <span
                 class="block origin-center rounded-full bg-section-tooltip px-5 py-3 leading-snug text-on-section-tooltip effects:animate-[section-tooltip-idle_3s_ease-in-out_infinite]"
@@ -147,7 +158,7 @@ const isDevelopment = import.meta.env.DEV;
 const { locale, t, tm } = useI18n();
 const sectionNavItems = computed(() =>
   Object.keys(tm("navigation.sections"))
-    .filter((id) => id !== "pricing")
+    .filter((id) => id !== "hero" && id !== "pricing")
     .map((id) => ({
       id,
       labelKey: `navigation.sections.${id}`,
