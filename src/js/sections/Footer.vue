@@ -17,6 +17,7 @@
         sizes="(min-width: 1024px) 384px, 224px"
       />
       <img
+        ref="chromeRef"
         :src="chromeWave.src"
         alt=""
         :width="chromeWave.width"
@@ -87,8 +88,11 @@ import { onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import MenuDescription from "../components/MenuDescription.vue";
 import chromeWave from "../../assets/chrome/chrome-wave.png?responsive";
+import { useChromeFloat } from "../features/effects/chrome-float";
 
 const { t } = useI18n();
+const chromeRef = ref(null);
+useChromeFloat(chromeRef, "wave");
 
 const footerLogoRef = ref(null);
 let footerLogoFit;

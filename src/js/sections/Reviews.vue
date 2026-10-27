@@ -72,6 +72,7 @@
         sizes="(min-width: 1024px) 208px, 112px"
       />
       <img
+        ref="chromeRef"
         :src="chromeBlob.src"
         alt=""
         :width="chromeBlob.width"
@@ -86,11 +87,15 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import background from "../../assets/reviews/background.png?responsive";
 import chromeBlob from "../../assets/chrome/chrome-blob.png?responsive";
 import { createReviews } from "../data/reviews";
+import { useChromeFloat } from "../features/effects/chrome-float";
 
 const { t } = useI18n();
 const reviews = createReviews();
+const chromeRef = ref(null);
+useChromeFloat(chromeRef, "blob");
 </script>

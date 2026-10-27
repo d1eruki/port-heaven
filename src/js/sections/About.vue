@@ -56,6 +56,7 @@
         sizes="(min-width: 1024px) 256px, 80px"
       />
       <img
+        ref="chromeRef"
         :src="chromeLoop.src"
         alt=""
         :width="chromeLoop.width"
@@ -70,9 +71,13 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import FeatureItem from "../components/FeatureItem.vue";
 import chromeLoop from "../../assets/chrome/chrome-loop.png?responsive";
+import { useChromeFloat } from "../features/effects/chrome-float";
 
 const { t } = useI18n();
+const chromeRef = ref(null);
+useChromeFloat(chromeRef, "loop");
 </script>
