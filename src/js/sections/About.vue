@@ -1,23 +1,24 @@
+<!-- Секция об авторе с вводным текстом и карточками показателей. -->
 <template>
   <section
     data-section="about"
     id="about"
-    class="relative z-3 flex min-h-svh p-10 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-10 after:bg-canvas after:content-[''] lg:p-15 lg:after:h-15"
+    class="relative z-3 flex min-h-svh p-section max-lg:pt-section-gap max-lg:pb-0"
   >
     <div
       class="relative isolate grid w-full flex-1 overflow-hidden rounded-4xl bg-surface-subtle text-primary before:pointer-events-none before:absolute before:inset-0 before:z-0 before:icon-[ic--baseline-star] before:block before:h-full before:w-full before:bg-current before:icon-pattern-checker before:text-icon-pattern before:opacity-20 before:content-[''] lg:grid-cols-2"
     >
-      <div class="relative z-1 flex flex-col justify-between gap-20 p-10 lg:p-15">
-        <div class="grid gap-5">
-          <h2>{{ t("menu.about.title") }}</h2>
+      <div class="relative z-1 flex flex-col justify-between gap-content p-panel">
+        <div class="grid gap-related">
+          <h2 class="text-left">{{ t("menu.about.title") }}</h2>
           <p>{{ t("menu.about.intro") }}</p>
         </div>
-        <div class="grid gap-2">
+        <div class="grid gap-related">
           <p>{{ t("menu.about.hobbies.title") }}</p>
           <p class="text-muted">{{ t("menu.about.hobbies.text") }}</p>
         </div>
       </div>
-      <div class="relative z-1 grid gap-2 p-2 lg:grid-cols-2">
+      <div class="relative z-1 grid gap-related p-panel lg:grid-cols-2">
         <FeatureItem
           data-about-feature
           is-counter

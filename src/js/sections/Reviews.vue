@@ -3,7 +3,7 @@
   <section
     id="reviews"
     data-section="reviews"
-    class="relative isolate flex min-h-svh bg-canvas p-10 text-primary lg:p-15"
+    class="relative isolate flex min-h-svh bg-canvas p-section text-primary max-lg:pt-section-gap max-lg:pb-0"
   >
     <div
       class="relative isolate min-h-[max(32rem,140vw)] w-full flex-1 overflow-hidden rounded-4xl bg-surface-subtle sm:min-h-[110vw] lg:min-h-[max(36rem,80svh,36vw)]"
@@ -27,8 +27,8 @@
         class="absolute -top-[20%] left-0 -z-10 h-[140%] w-full max-w-none object-cover lg:object-fill"
       />
       </picture>
-      <div class="pointer-events-none absolute inset-0 z-10 grid place-items-center px-5">
-        <h2 class="rounded-full bg-canvas px-5 py-3 text-center lowercase">
+      <div class="pointer-events-none absolute inset-0 z-10 grid place-items-center px-panel">
+        <h2 class="rounded-full bg-canvas px-panel py-3 text-center lowercase">
           {{ t("menu.reviews.title") }}
         </h2>
       </div>

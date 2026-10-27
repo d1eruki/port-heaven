@@ -20,13 +20,15 @@
           {{ t("notices.effectsDisabled") }}
         </header>
 
-        <About />
-        <Projects />
-        <Design />
-        <Creatives />
-        <Reviews />
+        <div class="flex min-w-0 flex-col lg:gap-section-gap">
+          <About />
+          <Projects />
+          <Design />
+          <Creatives />
+          <Reviews />
+        </div>
       </main>
-      <Footer />
+      <Footer class="lg:mt-section-gap" />
     </div>
   </div>
   <Notification

@@ -6,6 +6,12 @@
 @theme {
   --transition: all 0.25s;
 
+  --spacing-section: 2.5rem;
+  --spacing-section-gap: var(--spacing-content);
+  --spacing-panel: 1.25rem;
+  --spacing-content: 2.5rem;
+  --spacing-related: 1.25rem;
+
   --font-sans: Helvetica, Arial, sans-serif;
   --font-heading: "Bounded", sans-serif;
 
@@ -13,7 +19,6 @@
   --cursor-size-active: 35px;
   --cursor-size-label: 150px;
 
-  /* типографика */
   --text-hero-title: clamp(4rem, min(15vw, calc(var(--breakpoint-3xl) * 0.15)), 24rem);
   --text-pricing-title: clamp(5.5rem, 29vw, 8rem);
   --text-pricing-title-lg: clamp(8rem, 23vw, 22rem);
@@ -32,4 +37,11 @@
 :root {
   --parallax-offset: 0px;
   --parallax-scale: 1;
+
+  @variant lg {
+    --spacing-section: 3.75rem;
+    --spacing-section-gap: 3.75rem;
+    --spacing-panel: 2.5rem;
+    --spacing-content: 3.75rem;
+  }
 }

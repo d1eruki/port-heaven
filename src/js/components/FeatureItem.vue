@@ -1,9 +1,10 @@
+<!-- Карточка показателя с подписью и анимируемым числом. -->
 <template>
   <div
-    class="relative z-2 grid min-h-fit max-w-full min-w-0 grid-rows-[auto_1fr] gap-10 overflow-hidden rounded-3xl bg-canvas p-10 text-left lg:min-h-full"
+    class="relative z-2 grid min-h-fit max-w-full min-w-0 grid-rows-[auto_1fr] gap-content overflow-hidden rounded-3xl bg-canvas p-panel text-left lg:min-h-full"
   >
     <p class="min-w-0 wrap-anywhere">{{ title }}</p>
-    <div class="grid w-full max-w-full min-w-0 content-end gap-5 overflow-hidden">
+    <div class="grid w-full max-w-full min-w-0 content-end gap-related overflow-hidden">
       <span
         ref="counterRoot"
         class="inline-flex w-full max-w-full min-w-0 items-baseline gap-[0.1em] font-heading text-feature-stat font-black text-accent lg:font-bold"

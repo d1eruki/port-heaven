@@ -3,7 +3,7 @@
   <footer
     data-section="footer"
     id="footer"
-    class="relative flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-5 overflow-hidden p-10 lg:p-15"
+    class="relative isolate flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-content overflow-hidden p-section max-lg:pt-section-gap"
   >
     <picture
       class="pointer-events-none absolute top-10 right-10 block w-56 select-none lg:top-15 lg:right-15 lg:w-96"
@@ -27,7 +27,7 @@
         class="block h-auto w-full -rotate-12"
       />
     </picture>
-    <div class="max-w-full min-w-0 items-baseline gap-10 lg:flex">
+    <div class="flex max-w-full min-w-0 flex-col items-baseline gap-related lg:flex-row lg:gap-content">
       <a
         class="group relative w-auto font-heading text-link hover:text-link-hover"
         href="https://t.me/d1eruki"

@@ -4,18 +4,18 @@
     ref="creativeSectionRef"
     data-section="creatives"
     id="creatives"
-    class="relative min-h-svh max-lg:flex max-lg:flex-col max-lg:gap-10 max-lg:p-10 lg:h-[var(--creative-stream-height)]"
+    class="relative min-h-svh max-lg:flex max-lg:flex-col max-lg:gap-content max-lg:px-section max-lg:pt-section-gap lg:h-[var(--creative-stream-height)]"
     :style="creativeSectionStyle"
   >
     <div
       data-creatives-heading-pin
-      class="contents lg:pointer-events-none lg:relative lg:z-20 lg:grid lg:h-dvh lg:w-full lg:place-items-center"
+      class="contents lg:pointer-events-none lg:relative lg:z-20 lg:grid lg:h-dvh lg:w-full lg:place-items-center lg:p-section"
     >
       <div
-        class="pointer-events-none left-0 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:w-fit lg:items-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-primary"
+        class="pointer-events-none left-0 flex w-auto flex-col gap-related rounded-4xl bg-inverse p-panel text-on-inverse lg:w-fit lg:items-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-primary"
       >
-        <div class="grid max-w-full gap-5 lg:w-fit lg:self-center">
-          <h2>{{ t("menu.creatives.title") }}</h2>
+        <div class="grid max-w-full gap-related lg:w-fit lg:self-center">
+          <h2 class="text-left lg:text-center">{{ t("menu.creatives.title") }}</h2>
           <MenuDescription
             class="lg:justify-self-center lg:text-center lg:[contain:inline-size]"
             :menu-desc="t('menu.creatives.description')"
@@ -44,11 +44,11 @@
       ref="creativeGalleryRef"
       data-creative-cloud
       aria-label="Creative work gallery"
-      class="w-full overflow-clip max-lg:max-h-[var(--creative-reveal-height)] lg:absolute lg:inset-0 lg:block"
+      class="w-full overflow-clip max-lg:max-h-[var(--creative-reveal-height)] max-lg:rounded-4xl lg:absolute lg:inset-0 lg:block"
     >
       <div
         ref="creativeGalleryContentRef"
-        class="w-full columns-2 gap-3 sm:columns-3 sm:gap-5 lg:contents"
+        class="w-full columns-2 gap-0 sm:columns-3 lg:contents"
       >
         <div
           v-for="creative in creativeCloud"
@@ -57,7 +57,7 @@
           :data-depth="creative.depth"
           :data-drift-x="creative.driftX"
           :data-drift-y="creative.driftY"
-          class="relative mb-3 inline-block w-full break-inside-avoid hover:z-100! sm:mb-5 lg:absolute lg:top-[var(--creative-top)] lg:left-[var(--creative-left)] lg:z-[var(--creative-z-index)] lg:mb-0 lg:block lg:w-[var(--creative-width)] lg:rotate-[var(--creative-rotation)] lg:will-change-transform"
+          class="relative block w-full break-inside-avoid hover:z-100! lg:absolute lg:top-[var(--creative-top)] lg:left-[var(--creative-left)] lg:z-[var(--creative-z-index)] lg:w-[var(--creative-width)] lg:rotate-[var(--creative-rotation)] lg:will-change-transform"
           :style="creative.style"
         >
           <VideoCreative
@@ -69,7 +69,7 @@
             :creative-alt="creative.alt"
             :creative-src="creative.src"
             :image-sources="creative.sources"
-            :image-sizes="`(min-width: 1024px) min(${creative.layoutWidth}vw, ${creative.layoutWidth / 100 * contentMaxWidth}px), (min-width: 640px) calc((100vw - 7.5rem) / 3), calc((100vw - 5.75rem) / 2)`"
+            :image-sizes="`(min-width: 1024px) min(${creative.layoutWidth}vw, ${creative.layoutWidth / 100 * contentMaxWidth}px), (min-width: 640px) calc((100vw - 5rem) / 3), calc((100vw - 5rem) / 2)`"
             :image-height="creative.height"
             :image-width="creative.width"
           />
