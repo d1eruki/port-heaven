@@ -10,9 +10,9 @@
       <div class="relative z-1 flex flex-col justify-between gap-20 p-10 lg:p-15">
         <div class="grid gap-5">
           <h2>{{ t("menu.about.title") }}</h2>
-          <p class="max-w-150">{{ t("menu.about.intro") }}</p>
+          <p>{{ t("menu.about.intro") }}</p>
         </div>
-        <div class="grid max-w-150 gap-2">
+        <div class="grid gap-2">
           <p>{{ t("menu.about.hobbies.title") }}</p>
           <p class="text-muted">{{ t("menu.about.hobbies.text") }}</p>
         </div>

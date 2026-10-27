@@ -14,11 +14,13 @@
       <div
         class="pointer-events-none left-0 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:w-fit lg:items-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-primary"
       >
-        <h2>{{ t("menu.creatives.title") }}</h2>
-        <MenuDescription
-          class="lg:max-w-[23dvw]"
-          :menu-desc="t('menu.creatives.description')"
-        />
+        <div class="grid w-fit max-w-full self-center gap-5">
+          <h2>{{ t("menu.creatives.title") }}</h2>
+          <MenuDescription
+            class="justify-self-center text-center [contain:inline-size]"
+            :menu-desc="t('menu.creatives.description')"
+          />
+        </div>
         <Button
           v-if="devModeEnabled"
           size="compact"

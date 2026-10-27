@@ -27,7 +27,6 @@
             >
               <h2 id="design-heading">{{ t("menu.designs.title") }}</h2>
               <MenuDescription
-                class="lg:max-w-150"
                 :menu-desc="t('menu.designs.description')"
               />
             </div>

@@ -51,6 +51,10 @@
     font-size: var(--text-heading-sm);
   }
 
+  p {
+    max-inline-size: 65ch;
+  }
+
   p,
   a,
   button,

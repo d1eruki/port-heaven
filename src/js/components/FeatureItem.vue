@@ -2,7 +2,7 @@
   <div
     class="relative z-2 grid min-h-fit max-w-full min-w-0 grid-rows-[auto_1fr] gap-10 overflow-hidden rounded-3xl bg-canvas p-10 text-left lg:min-h-full"
   >
-    <p class="max-w-full min-w-0 wrap-anywhere">{{ title }}</p>
+    <p class="min-w-0 wrap-anywhere">{{ title }}</p>
     <div class="grid w-full max-w-full min-w-0 content-end gap-5 overflow-hidden">
       <span
         ref="counterRoot"
@@ -37,7 +37,7 @@
           {{ suffix }}
         </span>
       </span>
-      <p class="w-full max-w-full min-w-0 wrap-anywhere">{{ text }}</p>
+      <p class="w-full min-w-0 wrap-anywhere">{{ text }}</p>
     </div>
   </div>
 </template>

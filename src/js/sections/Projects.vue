@@ -14,7 +14,6 @@
       >
         <h2>{{ t("menu.projects.title") }}</h2>
         <MenuDescription
-          class="lg:max-w-150"
           :menu-desc="t('menu.projects.description')"
         />
       </div>
