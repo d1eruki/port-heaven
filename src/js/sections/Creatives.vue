@@ -1,4 +1,4 @@
-<!-- Креативы с общей сохраняемой раскладкой и локальной кнопкой перетасовки. -->
+<!-- Креативы с сохраняемой раскладкой и раскрытием галереи по высоте на мобильных экранах. -->
 <template>
   <section
     ref="creativeSectionRef"
@@ -14,10 +14,10 @@
       <div
         class="pointer-events-none left-0 flex w-auto flex-col gap-5 rounded-4xl bg-inverse p-5 text-on-inverse lg:w-fit lg:items-center lg:rounded-none lg:bg-transparent lg:p-0 lg:text-primary"
       >
-        <div class="grid w-fit max-w-full self-center gap-5">
+        <div class="grid max-w-full gap-5 lg:w-fit lg:self-center">
           <h2>{{ t("menu.creatives.title") }}</h2>
           <MenuDescription
-            class="justify-self-center text-center [contain:inline-size]"
+            class="lg:justify-self-center lg:text-center lg:[contain:inline-size]"
             :menu-desc="t('menu.creatives.description')"
           />
         </div>
@@ -40,40 +40,55 @@
       </div>
     </div>
     <div
+      id="creative-gallery"
+      ref="creativeGalleryRef"
       data-creative-cloud
       aria-label="Creative work gallery"
-      class="w-full columns-2 gap-3 sm:columns-3 sm:gap-5 lg:absolute lg:inset-0 lg:block lg:columns-auto lg:overflow-clip"
+      class="w-full overflow-clip max-lg:max-h-[var(--creative-reveal-height)] lg:absolute lg:inset-0 lg:block"
     >
       <div
-        v-for="creative in creativeCloud"
-        :key="creative.src"
-        data-creative-cloud-item
-        :data-depth="creative.depth"
-        :data-drift-x="creative.driftX"
-        :data-drift-y="creative.driftY"
-        class="relative mb-3 inline-block w-full break-inside-avoid hover:z-100! sm:mb-5 lg:absolute lg:top-[var(--creative-top)] lg:left-[var(--creative-left)] lg:z-[var(--creative-z-index)] lg:mb-0 lg:block lg:w-[var(--creative-width)] lg:rotate-[var(--creative-rotation)] lg:will-change-transform"
-        :style="creative.style"
+        ref="creativeGalleryContentRef"
+        class="w-full columns-2 gap-3 sm:columns-3 sm:gap-5 lg:contents"
       >
-        <VideoCreative
-          v-if="creative.type === 'video'"
-          :creative-src="creative.src"
-        />
-        <ImageCreative
-          v-else
-          :creative-alt="creative.alt"
-          :creative-src="creative.src"
-          :image-sources="creative.sources"
-          :image-sizes="`(min-width: 1024px) min(${creative.layoutWidth}vw, ${creative.layoutWidth / 100 * contentMaxWidth}px), (min-width: 640px) calc((100vw - 7.5rem) / 3), calc((100vw - 5.75rem) / 2)`"
-          :image-height="creative.height"
-          :image-width="creative.width"
-        />
+        <div
+          v-for="creative in creativeCloud"
+          :key="creative.src"
+          data-creative-cloud-item
+          :data-depth="creative.depth"
+          :data-drift-x="creative.driftX"
+          :data-drift-y="creative.driftY"
+          class="relative mb-3 inline-block w-full break-inside-avoid hover:z-100! sm:mb-5 lg:absolute lg:top-[var(--creative-top)] lg:left-[var(--creative-left)] lg:z-[var(--creative-z-index)] lg:mb-0 lg:block lg:w-[var(--creative-width)] lg:rotate-[var(--creative-rotation)] lg:will-change-transform"
+          :style="creative.style"
+        >
+          <VideoCreative
+            v-if="creative.type === 'video'"
+            :creative-src="creative.src"
+          />
+          <ImageCreative
+            v-else
+            :creative-alt="creative.alt"
+            :creative-src="creative.src"
+            :image-sources="creative.sources"
+            :image-sizes="`(min-width: 1024px) min(${creative.layoutWidth}vw, ${creative.layoutWidth / 100 * contentMaxWidth}px), (min-width: 640px) calc((100vw - 7.5rem) / 3), calc((100vw - 5.75rem) / 2)`"
+            :image-height="creative.height"
+            :image-width="creative.width"
+          />
+        </div>
       </div>
     </div>
+    <Button
+      v-if="hasMoreCreatives"
+      class="self-center lg:hidden"
+      aria-controls="creative-gallery"
+      @click="showMoreCreatives"
+    >
+      {{ t("buttons.showMore") }}
+    </Button>
   </section>
 </template>
 
 <script setup>
-import { useElementSize, useWindowSize } from "@vueuse/core";
+import { useElementSize, useMediaQuery, useWindowSize } from "@vueuse/core";
 import { computed, nextTick, onBeforeUnmount, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import Button from "../components/Button.vue";
@@ -92,6 +107,12 @@ const creativeSectionRef = ref(null);
 const { width: contentWidth } = useElementSize(creativeSectionRef);
 const { height: viewportHeight } = useWindowSize();
 const contentMaxWidth = getBreakpointPx("3xl");
+const isMobileGallery = useMediaQuery(`(width < ${getBreakpointPx("lg")}px)`);
+const creativeGalleryRef = ref(null);
+const creativeGalleryContentRef = ref(null);
+const { height: galleryHeight } = useElementSize(creativeGalleryRef);
+const { height: galleryContentHeight } = useElementSize(creativeGalleryContentRef);
+const revealedGalleryHeight = ref(0);
 const layoutSeed = ref(savedLayout.seed);
 const isSavingLayout = ref(false);
 const saveError = ref("");
@@ -100,12 +121,26 @@ const creativeCloud = computed(() =>
     createCreativeCloudItem(creative, index, layoutSeed.value),
   ),
 );
+const hasMoreCreatives = computed(
+  () => isMobileGallery.value && galleryContentHeight.value > galleryHeight.value + 1,
+);
 const creativeSectionStyle = computed(() => ({
+  "--creative-reveal-height": revealedGalleryHeight.value
+    ? `${revealedGalleryHeight.value}px`
+    : "100svh",
   "--creative-stream-height": `${getCreativeCloudHeight(
     creativeCloud.value,
     contentWidth.value / Math.max(viewportHeight.value, 1),
   )}dvh`,
 }));
+
+const showMoreCreatives = async () => {
+  if (!hasMoreCreatives.value) return;
+
+  revealedGalleryHeight.value = creativeGalleryRef.value.getBoundingClientRect().height * 2;
+  await nextTick();
+  ScrollTrigger.refresh();
+};
 
 const applyLayout = async ({ seed }) => {
   if (!Number.isSafeInteger(seed) || seed < 0) {

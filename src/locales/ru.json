@@ -173,6 +173,7 @@
 
   "buttons": {
     "open": "открыть",
+    "showMore": "показать ещё",
     "shuffleCreatives": "перетасовать",
     "toTop": "вверх"
   },

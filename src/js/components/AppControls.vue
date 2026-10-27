@@ -74,7 +74,7 @@
 
   <div
     id="progress-bar"
-    class="progress-bar fixed top-0 right-[max(0px,calc((100%-var(--breakpoint-3xl))/2))] z-100 flex bg-progress-bar mix-blend-difference max-lg:w-[2px] max-lg:rounded-b-full"
+    class="progress-bar fixed top-0 right-0 z-100 flex bg-progress-bar mix-blend-difference max-lg:w-[2px] max-lg:rounded-b-full"
   ></div>
 
   <div

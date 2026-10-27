@@ -15,14 +15,14 @@
     <div class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center bg-canvas">
       <div
         ref="heroNameRef"
-        class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-26 text-hero max-lg:invisible lg:justify-center lg:px-0 lg:pt-0 lg:pb-[12svh]"
+        class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-26 text-hero max-lg:invisible lg:justify-center lg:px-15 lg:pt-0 lg:pb-[12svh]"
       >
         <div
           class="w-[calc(70svh-5rem)] shrink-0 origin-top-left translate-y-full -rotate-90 text-left lg:w-auto lg:translate-y-0 lg:rotate-0 lg:text-center"
         >
           <h1
             ref="heroTitleRef"
-            class="inline-block w-max text-left text-hero-title leading-14 [text-box:trim-both_cap_alphabetic] lg:text-center lg:leading-48"
+            class="inline-block w-max text-left text-hero-title leading-[normal] [text-box:trim-both_cap_alphabetic] lg:text-center"
           >
             <span
               v-for="(line, index) in t('brand.hero').split('\n')"
