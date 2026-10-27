@@ -21,13 +21,13 @@
           <TooltipTrigger as-child>
             <button
               type="button"
-              class="dot group max-lg:relative max-lg:flex max-lg:h-10 max-lg:w-auto max-lg:min-w-[var(--dot-size)] max-lg:shrink-0 max-lg:items-center max-lg:justify-center max-lg:rounded-full max-lg:focus-visible:outline-2 max-lg:focus-visible:outline-offset-2 max-lg:focus-visible:outline-current effects:max-lg:transition-all effects:max-lg:duration-300 effects:max-lg:ease-in-out"
+              class="dot group max-lg:relative max-lg:flex max-lg:h-10 max-lg:w-auto max-lg:min-w-[var(--dot-size)] max-lg:shrink-0 max-lg:items-center max-lg:justify-center max-lg:rounded-full max-lg:focus-visible:outline-2 max-lg:focus-visible:outline-offset-2 max-lg:focus-visible:outline-current"
               :data-target="`#${section.id}`"
               :aria-label="t(section.labelKey)"
               aria-current="false"
             >
               <svg
-                class="max-lg:absolute max-lg:size-[var(--dot-size)] max-lg:group-aria-current:opacity-0 effects:max-lg:transition-opacity effects:max-lg:duration-300 effects:max-lg:ease-in-out"
+                class="max-lg:absolute max-lg:size-[var(--dot-size)] max-lg:group-aria-current:opacity-0 effects:max-lg:transition-opacity effects:max-lg:duration-450 effects:max-lg:ease-out"
                 viewBox="0 0 20 20"
                 aria-hidden="true"
                 focusable="false"
@@ -41,10 +41,10 @@
               </svg>
               <span
                 aria-hidden="true"
-                class="flex h-2 min-w-[var(--dot-size)] items-center justify-center overflow-hidden rounded-full bg-current opacity-0 group-aria-current:h-8 group-aria-current:px-3 group-aria-current:opacity-100 lg:hidden effects:transition-all effects:duration-300 effects:ease-in-out"
+                class="grid h-2 min-w-[var(--dot-size)] grid-cols-[0fr] items-center justify-center overflow-hidden rounded-full bg-current opacity-0 group-aria-current:h-8 group-aria-current:grid-cols-[1fr] group-aria-current:px-3 group-aria-current:opacity-100 lg:hidden effects:transition-[grid-template-columns,height,padding,opacity] effects:duration-450 effects:ease-out"
               >
                 <small
-                  class="max-w-0 overflow-hidden font-heading whitespace-nowrap text-[color:var(--semantic-text-on-adaptive-contrast)] opacity-0 group-aria-current:max-w-64 group-aria-current:opacity-100 effects:transition-all effects:duration-300 effects:ease-in-out"
+                  class="min-w-0 overflow-hidden font-heading whitespace-nowrap text-[color:var(--semantic-text-on-adaptive-contrast)] opacity-0 group-aria-current:opacity-100 effects:transition-opacity effects:duration-450 effects:ease-out"
                 >
                   {{ t(section.labelKey) }}
                 </small>
