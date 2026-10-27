@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, readdir, realpath, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import sharp from "sharp";
 import wawoff2 from "wawoff2";
-import { build } from "vite";
+import { build, createServer } from "vite";
 import { createMediaCache } from "../../scripts/vite/media-cache.mjs";
 import { optimizeMediaPlugin } from "../../scripts/vite/optimize-media-plugin.mjs";
 import { optimizeFontsPlugin } from "../../scripts/vite/optimize-fonts-plugin.mjs";
@@ -338,4 +338,68 @@ test("WOFF2 production conversion preserves character mapping and variable axes"
   assert.deepEqual(fontTable(decoded, "fvar"), fontTable(original, "fvar"));
   assert.equal(hash(await readFile(file)), hash(original));
   assert.equal(hash(await readFile(sourceFile)), hash(original));
+});
+
+test("font preload uses TTF in development and shares the CSS WOFF2 asset in production", async (t) => {
+  const root = await realpath(await temporaryDirectory(t));
+  const fontsRoot = path.join(root, "src/assets/fonts");
+  await mkdir(fontsRoot, { recursive: true });
+  await writeFile(
+    path.join(fontsRoot, "Bounded-Variable.ttf"),
+    await readFile("src/assets/fonts/Bounded-Variable.ttf"),
+  );
+  const html = `<!doctype html><html><head>
+    <link rel="preload" href="/src/assets/fonts/Bounded-Variable.ttf" as="font" type="font/ttf" crossorigin>
+    </head><body><script type="module" src="/entry.js"></script></body></html>`;
+  await writeFile(path.join(root, "index.html"), html);
+  await writeFile(path.join(root, "entry.js"), 'import "./style.css";');
+  await writeFile(path.join(root, "style.css"), '@import "./src/styles/fonts.css";');
+  await mkdir(path.join(root, "src/styles"), { recursive: true });
+  await writeFile(
+    path.join(root, "src/styles/fonts.css"),
+    await readFile("src/styles/fonts.css", "utf8"),
+  );
+
+  const server = await createServer({
+    configFile: false,
+    root,
+    plugins: [optimizeFontsPlugin({ fontsRoot })],
+    server: { middlewareMode: true },
+    logLevel: "silent",
+  });
+  try {
+    const development = await server.transformIndexHtml("/", html);
+    assert.match(development, /href="\/src\/assets\/fonts\/Bounded-Variable\.ttf"/);
+    assert.match(development, /type="font\/ttf"/);
+  } finally {
+    await server.close();
+  }
+
+  for (const base of ["./", "/port-heaven/"]) {
+    const { output } = await build({
+      configFile: false,
+      root,
+      base,
+      plugins: [optimizeFontsPlugin({ fontsRoot })],
+      logLevel: "silent",
+      build: { write: false, assetsInlineLimit: 0 },
+    });
+    const builtHtml = Buffer.from(
+      output.find((asset) => asset.fileName === "index.html").source,
+    ).toString("utf8");
+    const css = Buffer.from(
+      output.find((asset) => asset.fileName.endsWith(".css")).source,
+    ).toString("utf8");
+    const preload = builtHtml.match(/<link\b(?=[^>]*\brel="preload")[^>]*>/)[0];
+    const href = preload.match(/\bhref="([^"]+)"/)[1];
+    assert.match(css, /\.woff2/, `Expected a WOFF2 URL in built CSS: ${css}`);
+    const cssUrl = css.match(/url\(["']?([^"')]+\.woff2)["']?\)/)[1];
+    const htmlUrl = `https://example.test/${base === "./" ? "nested/" : "port-heaven/"}index.html`;
+    const cssFile = output.find((asset) => asset.fileName.endsWith(".css")).fileName;
+    assert.equal(new URL(href, htmlUrl).href, new URL(cssUrl, new URL(cssFile, htmlUrl)).href);
+    assert.match(preload, /type="font\/woff2"/);
+    assert.match(preload, /\bcrossorigin\b/);
+    assert.equal(output.filter((asset) => asset.fileName.endsWith(".woff2")).length, 1);
+    assert.ok(output.every((asset) => !asset.fileName.endsWith(".ttf")));
+  }
 });

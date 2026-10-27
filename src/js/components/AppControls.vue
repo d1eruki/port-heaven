@@ -9,8 +9,9 @@
       :skip-delay-duration="0"
     >
       <nav
+        ref="sectionNavRef"
         data-section-nav
-        class="flex w-fit flex-col gap-5"
+        class="flex w-fit flex-col gap-5 max-lg:invisible"
         :aria-label="t('navigation.label')"
       >
         <TooltipRoot
@@ -66,8 +67,9 @@
   ></div>
 
   <div
+    ref="menuRightRef"
     id="menu-right"
-    class="fixed top-0 right-0 z-200 flex min-h-svh w-10 items-center justify-center lg:w-15"
+    class="fixed top-0 right-0 z-200 flex min-h-svh w-10 items-center justify-center max-lg:invisible lg:w-15"
   >
     <div class="flex w-fit rotate-90 items-center justify-center gap-5 whitespace-nowrap">
       <Button
@@ -164,6 +166,12 @@ const devModeToggleLabel = computed(() =>
 );
 const heroElement = ref(null);
 const isHeroVisible = ref(true);
+const menuRightRef = ref(null);
+const sectionNavRef = ref(null);
+
+defineExpose({
+  getIntroTargets: () => ({ menu: menuRightRef.value, dots: sectionNavRef.value }),
+});
 
 useIntersectionObserver(
   heroElement,

@@ -4,19 +4,25 @@
     ref="heroSectionRef"
     data-section="hero"
     id="hero"
-    class="relative z-0 min-h-svh w-full min-w-0 overflow-visible bg-canvas"
+    class="relative z-0 min-h-svh w-full min-w-0 overflow-visible bg-canvas max-lg:select-none max-lg:[-webkit-touch-callout:none]"
+    @pointerdown="onHeroPointerDown"
+    @pointermove="onHeroPointerMove"
+    @pointerup="onHeroPointerUp"
+    @pointercancel="cancelHeroPointer"
+    @pointerleave="cancelHeroPointer"
+    @contextmenu="onHeroContextMenu"
   >
     <div class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center bg-canvas">
       <div
-        class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-26 text-hero lg:justify-center lg:px-0 lg:pt-0 lg:pb-[12svh]"
+        ref="heroNameRef"
+        class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-26 text-hero max-lg:invisible lg:justify-center lg:px-0 lg:pt-0 lg:pb-[12svh]"
       >
         <div
           class="w-[calc(70svh-5rem)] shrink-0 origin-top-left translate-y-full -rotate-90 text-left lg:w-auto lg:translate-y-0 lg:rotate-0 lg:text-center"
         >
           <h1
             ref="heroTitleRef"
-            :class="{ invisible: !isHeroTitleReady }"
-            class="inline-block w-max text-left text-hero-title leading-14 [text-box:trim-both_cap_alphabetic] lg:text-center lg:leading-none"
+            class="inline-block w-max text-left text-hero-title leading-14 [text-box:trim-both_cap_alphabetic] lg:text-center lg:leading-48"
           >
             <span
               v-for="(line, index) in t('brand.hero').split('\n')"
@@ -32,67 +38,89 @@
         data-hero-parallax
         data-speed="0.5"
       >
-        <button
-          ref="heroCharacterRef"
-          type="button"
-          :disabled="!effectsEnabled"
-          :aria-label="t('heroClicker.action')"
-          class="absolute top-1/2 left-1/2 z-1 block aspect-3/4 w-[max(100%,calc(var(--hero-height)*3/4))] -translate-1/2 border-0 bg-transparent p-0 select-none enabled:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          @pointerenter="onHeroPointerEnter"
-          @pointerleave="onHeroPointerLeave"
-          @pointerdown="onHeroPointerDown"
-          @pointermove="onHeroPointerMove"
-          @pointerup="onHeroPointerUp"
-          @pointercancel="cancelHeroPointer"
-          @click="onHeroKeyboardClick"
+        <div
+          ref="heroPulseRef"
+          class="absolute inset-0 max-lg:invisible"
         >
-          <picture>
-            <source
-              v-for="source in heroImage.sources"
-              :key="source.type"
-              :type="source.type"
-              :srcset="source.srcset"
-              sizes="(min-width: 1024px) 76.14svh, (min-width: 640px) 72.9svh, max(100vw, 69.66svh)"
-            />
-            <img
-              :src="heroImage.src"
-              :width="heroImage.width"
-              :height="heroImage.height"
-              class="block h-auto w-full"
-              alt=""
-              fetchpriority="high"
-              decoding="sync"
-              loading="eager"
-              draggable="false"
-              @load="isHeroImageReady = true"
-            />
-          </picture>
-          <svg
-            v-if="effectsEnabled"
-            viewBox="0 0 1086 1448"
-            class="pointer-events-none absolute inset-0 h-full w-full"
-            aria-hidden="true"
+          <button
+            ref="heroCharacterRef"
+            type="button"
+            :disabled="!effectsEnabled"
+            :aria-label="t('heroClicker.action')"
+            :style="{
+              transform: `translate3d(${heroTilt.x * 10}px, ${heroTilt.y * 10}px, 0) rotate(${heroTilt.x * 2}deg)`,
+            }"
+            class="absolute top-1/2 left-1/2 z-1 block aspect-3/4 w-[max(100%,calc(var(--hero-height)*3/4))] -translate-1/2 border-0 bg-transparent p-0 select-none enabled:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent max-lg:pointer-events-none"
+            @pointerenter="onHeroPointerEnter"
+            @pointerleave="onHeroPointerLeave"
+            @click="onHeroKeyboardClick"
           >
-            <image
-              :href="heroEyesClosedImage"
-              x="438"
-              y="232"
-              width="142"
-              height="91"
-              :opacity="canBlink && isBlinking ? 1 : 0"
-              @load="isClosedImageReady = true"
-              @error="isClosedImageReady = false"
-            />
-            <image
-              :href="heroMouthTongueImage"
-              x="500"
-              y="312"
-              width="64"
-              height="60"
-              :opacity="showTongue ? 1 : 0"
-            />
-          </svg>
-        </button>
+            <svg
+              viewBox="0 0 1086 1448"
+              class="pointer-events-none absolute inset-0 h-full w-full"
+              aria-hidden="true"
+            >
+              <image :href="heroEyesWhiteImage" width="1086" height="1448" />
+              <g :transform="`translate(${gaze.x * 5} ${gaze.y * 4})`">
+                <image
+                  v-for="eye in heroEyes"
+                  :key="eye.name"
+                  :href="eye.src"
+                  :x="eye.x"
+                  :y="eye.y"
+                  :width="eye.width"
+                  :height="eye.height"
+                />
+              </g>
+            </svg>
+            <picture class="relative block max-lg:pointer-events-none">
+              <source
+                v-for="source in heroImage.sources"
+                :key="source.type"
+                :type="source.type"
+                :srcset="source.srcset"
+                sizes="(min-width: 1024px) 76.14svh, (min-width: 640px) 72.9svh, max(100vw, 69.66svh)"
+              />
+              <img
+                :src="heroImage.src"
+                :width="heroImage.width"
+                :height="heroImage.height"
+                class="block h-auto w-full"
+                alt=""
+                fetchpriority="high"
+                decoding="sync"
+                loading="eager"
+                draggable="false"
+                @load="isHeroImageReady = true"
+              />
+            </picture>
+            <svg
+              v-if="effectsEnabled"
+              viewBox="0 0 1086 1448"
+              class="pointer-events-none absolute inset-0 h-full w-full"
+              aria-hidden="true"
+            >
+              <image
+                :href="heroEyesClosedImage"
+                x="438"
+                y="232"
+                width="142"
+                height="91"
+                :opacity="canBlink && isBlinking ? 1 : 0"
+                @load="isClosedImageReady = true"
+                @error="isClosedImageReady = false"
+              />
+              <image
+                :href="heroMouthTongueImage"
+                x="500"
+                y="312"
+                width="64"
+                height="60"
+                :opacity="showTongue ? 1 : 0"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
       <div
         v-if="effectsEnabled && isMobile && clicks > 0"
@@ -101,7 +129,7 @@
         <p
           class="absolute bottom-0 left-full w-max origin-bottom-left -rotate-90 scale-200 text-center font-heading text-feature-stat leading-none font-black text-link/50 tabular-nums [text-box:trim-both_cap_alphabetic]"
         >
-          {{ clicks }}
+          {{ clicks === 67 ? "сикс севен" : clicks }}
         </p>
       </div>
     </div>
@@ -114,13 +142,18 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useDocumentVisibility, useElementVisibility } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import { getBreakpointPx } from "../utils/breakpoints";
+import { gsap } from "../libraries/gsap-scroll";
 import { effectsEnabled } from "../features/preferences/effects-toggle";
 import heroCharacterDarkImage from "../../assets/hero/hero-character-dark.png?responsive";
 import heroCharacterLightImage from "../../assets/hero/hero-character-light.png?responsive";
 import heroEyesClosedImage from "../../assets/hero/hero-eyes-closed.png";
+import heroEyesWhiteImage from "../../assets/hero/hero-eyes-white.png";
+import heroIrisLeftImage from "../../assets/hero/hero-iris-left.png";
+import heroIrisRightImage from "../../assets/hero/hero-iris-right.png";
 import heroMouthTongueImage from "../../assets/hero/hero-mouth-tongue.png";
 
 const { t } = useI18n();
+const emit = defineEmits(["intro-ready"]);
 const props = defineProps({
   currentTheme: {
     type: String,
@@ -128,71 +161,298 @@ const props = defineProps({
   },
 });
 const isHeroHovered = ref(false);
-const isHeroTapped = ref(false);
+const isHeroPressed = ref(false);
 const clicks = ref(0);
 const isMobile = ref(false);
 const heroSectionRef = ref(null);
 const heroCharacterRef = ref(null);
+const heroNameRef = ref(null);
+const heroPulseRef = ref(null);
 const isHeroImageReady = ref(false);
 const heroTitleRef = ref(null);
 const isHeroTitleReady = ref(false);
+const isHeroCharacterRevealed = ref(false);
+const isHeroCharacterAppeared = ref(false);
+const isHeroCharacterReady = computed(
+  () => isHeroCharacterRevealed.value && isHeroImageReady.value,
+);
+const hasHeroInteraction = ref(false);
 const isBlinking = ref(false);
 const isClosedImageReady = ref(false);
 const isHeroVisible = useElementVisibility(heroSectionRef);
 const documentVisibility = useDocumentVisibility();
+// Положение радужек внутри экспортированного слоя Eyes из Figma.
+const heroEyes = [
+  { name: "left", src: heroIrisLeftImage, x: 468, y: 279.97265625, width: 23, height: 23 },
+  { name: "right", src: heroIrisRightImage, x: 528, y: 243.97265625, width: 27, height: 26 },
+];
+const gaze = ref({ x: 0, y: 0 });
+const heroTilt = ref({ x: 0, y: 0 });
+const orientationPermission = ref("unavailable");
+const canTrackEyes = computed(
+  () =>
+    effectsEnabled.value &&
+    isHeroCharacterReady.value &&
+    isHeroVisible.value &&
+    documentVisibility.value === "visible",
+);
+const canTiltHero = computed(
+  () => canTrackEyes.value && isMobile.value && orientationPermission.value === "granted",
+);
 const showTongue = computed(
-  () => effectsEnabled.value && (isMobile.value ? isHeroTapped.value : isHeroHovered.value),
+  () => effectsEnabled.value && (isMobile.value ? isHeroPressed.value : isHeroHovered.value),
 );
 const canBlink = computed(
   () =>
     effectsEnabled.value &&
+    isHeroCharacterReady.value &&
     isHeroVisible.value &&
     documentVisibility.value === "visible" &&
     isClosedImageReady.value,
 );
 let heroTitleFit;
-let isHeroTitleFontReady = false;
 let mobileMedia;
 let blinkTimer;
 let heroPointer;
 let introPulse;
 let hasPlayedIntroPulse = false;
+let gazeFrame;
+let gazeTarget = { x: 0, y: 0 };
+let pendingGazePoint;
+let gazeTap;
+let lastGazeTime;
+let tiltFrame;
+let lastTiltTime;
+let tiltTarget = { x: 0, y: 0 };
+let tiltOrigin;
+let isHeroUnmounted = false;
+
+const resetHeroTilt = () => {
+  window.cancelAnimationFrame(tiltFrame);
+  tiltFrame = undefined;
+  lastTiltTime = undefined;
+  tiltOrigin = undefined;
+  tiltTarget = { x: 0, y: 0 };
+  heroTilt.value = { x: 0, y: 0 };
+};
+
+const animateHeroTilt = (time) => {
+  tiltFrame = undefined;
+  if (!canTiltHero.value) return;
+  const blend = 1 - Math.exp(-Math.min(time - (lastTiltTime ?? time - 16), 64) / 140);
+  lastTiltTime = time;
+  const x = heroTilt.value.x + (tiltTarget.x - heroTilt.value.x) * blend;
+  const y = heroTilt.value.y + (tiltTarget.y - heroTilt.value.y) * blend;
+  if (Math.hypot(tiltTarget.x - x, tiltTarget.y - y) < 0.001) {
+    heroTilt.value = { ...tiltTarget };
+    lastTiltTime = undefined;
+    return;
+  }
+  heroTilt.value = { x, y };
+  tiltFrame = window.requestAnimationFrame(animateHeroTilt);
+};
+
+const onHeroOrientation = (event) => {
+  if (!canTiltHero.value || !Number.isFinite(event.beta) || !Number.isFinite(event.gamma)) return;
+  const angle = window.screen.orientation?.angle ?? window.orientation ?? 0;
+  // Текущее положение телефона становится нейтральным после каждого возобновления.
+  if (!tiltOrigin || tiltOrigin.angle !== angle) {
+    resetHeroTilt();
+    tiltOrigin = { beta: event.beta, gamma: event.gamma, angle };
+  }
+  const radians = (angle * Math.PI) / 180;
+  const beta = ((event.beta - tiltOrigin.beta + 540) % 360) - 180;
+  const gamma = event.gamma - tiltOrigin.gamma;
+  const clamp = (value) => Math.max(-1, Math.min(1, value / 20));
+  tiltTarget = {
+    x: clamp(gamma * Math.cos(radians) + beta * Math.sin(radians)),
+    y: clamp(beta * Math.cos(radians) - gamma * Math.sin(radians)),
+  };
+  if (tiltFrame === undefined) tiltFrame = window.requestAnimationFrame(animateHeroTilt);
+};
+
+const requestHeroOrientation = async () => {
+  if (!effectsEnabled.value || !isMobile.value || orientationPermission.value !== "prompt") return;
+  orientationPermission.value = "pending";
+  try {
+    const permission = await window.DeviceOrientationEvent.requestPermission();
+    if (!isHeroUnmounted) orientationPermission.value = permission;
+  } catch {
+    if (!isHeroUnmounted) orientationPermission.value = "denied";
+  }
+};
+
+watch(canTiltHero, (enabled, _previous, onCleanup) => {
+  resetHeroTilt();
+  if (!enabled) return;
+  window.addEventListener("deviceorientation", onHeroOrientation, { passive: true });
+  window.addEventListener("blur", resetHeroTilt);
+  onCleanup(() => {
+    window.removeEventListener("deviceorientation", onHeroOrientation);
+    window.removeEventListener("blur", resetHeroTilt);
+    resetHeroTilt();
+  });
+});
+
+const resetGaze = () => {
+  window.cancelAnimationFrame(gazeFrame);
+  gazeFrame = undefined;
+  pendingGazePoint = undefined;
+  gazeTap = undefined;
+  lastGazeTime = undefined;
+  gazeTarget = { x: 0, y: 0 };
+  gaze.value = { x: 0, y: 0 };
+};
+
+const animateGaze = (time) => {
+  gazeFrame = undefined;
+  if (!canTrackEyes.value) return;
+  if (pendingGazePoint) {
+    if (!isPointerInsideHero(pendingGazePoint)) {
+      resetGaze();
+      return;
+    }
+    const bounds = heroCharacterRef.value.getBoundingClientRect();
+    const scale = bounds.width / 1086;
+    if (scale <= 0) {
+      resetGaze();
+      return;
+    }
+    const x = (pendingGazePoint.clientX - bounds.left - 509 * scale) / (260 * scale);
+    const y = (pendingGazePoint.clientY - bounds.top - 277 * scale) / (260 * scale);
+    const distance = Math.max(1, Math.hypot(x, y));
+    gazeTarget = { x: x / distance, y: y / distance };
+    pendingGazePoint = undefined;
+  }
+  const blend = 1 - Math.exp(-Math.min(time - (lastGazeTime ?? time - 16), 64) / 65);
+  lastGazeTime = time;
+  const x = gaze.value.x + (gazeTarget.x - gaze.value.x) * blend;
+  const y = gaze.value.y + (gazeTarget.y - gaze.value.y) * blend;
+  if (Math.hypot(gazeTarget.x - x, gazeTarget.y - y) < 0.005) {
+    gaze.value = { ...gazeTarget };
+    lastGazeTime = undefined;
+    return;
+  }
+  gaze.value = { x, y };
+  gazeFrame = window.requestAnimationFrame(animateGaze);
+};
+
+const lookAtPointer = (event) => {
+  pendingGazePoint = { clientX: event.clientX, clientY: event.clientY };
+  if (gazeFrame === undefined) gazeFrame = window.requestAnimationFrame(animateGaze);
+};
+
+const isPointerInsideHero = (event) => {
+  const bounds = heroSectionRef.value.getBoundingClientRect();
+  return (
+    event.clientX >= bounds.left &&
+    event.clientX <= bounds.right &&
+    event.clientY >= bounds.top &&
+    event.clientY <= bounds.bottom
+  );
+};
+
+const onGazePointerDown = (event) => {
+  gazeTap = undefined;
+  if (event.pointerType === "mouse" || !event.isPrimary || event.button !== 0) return;
+  if (isPointerInsideHero(event)) {
+    gazeTap = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  }
+};
+
+const onGazePointerMove = (event) => {
+  if (event.pointerType === "mouse") {
+    lookAtPointer(event);
+  } else if (gazeTap?.id === event.pointerId) {
+    if (Math.abs(event.clientX - gazeTap.x) > 3 || Math.abs(event.clientY - gazeTap.y) > 3) {
+      gazeTap = undefined;
+    }
+  }
+};
+
+const onGazePointerUp = (event) => {
+  onGazePointerMove(event);
+  if (gazeTap?.id !== event.pointerId) return;
+  gazeTap = undefined;
+  if (isPointerInsideHero(event)) lookAtPointer(event);
+};
+
+const onGazePointerLeave = (event) => {
+  // После тапа pointerleave тоже приходит: сохраняем выбранное направление взгляда.
+  if (event.pointerType === "mouse" && event.target === document.documentElement) resetGaze();
+};
+
+watch(canTrackEyes, (enabled, _previous, onCleanup) => {
+  resetGaze();
+  if (!enabled) {
+    cancelHeroPointer();
+    return;
+  }
+  const options = { passive: true, capture: true };
+  const listeners = [
+    [window, "pointerdown", onGazePointerDown],
+    [window, "pointermove", onGazePointerMove],
+    [window, "pointerup", onGazePointerUp],
+    [window, "pointercancel", resetGaze],
+    [window, "blur", onHeroBlur],
+    [window, "resize", resetGaze],
+    [document.documentElement, "pointerleave", onGazePointerLeave],
+  ];
+  for (const [target, type, listener] of listeners) target.addEventListener(type, listener, options);
+  onCleanup(() => {
+    for (const [target, type, listener] of listeners) target.removeEventListener(type, listener, options);
+    resetGaze();
+  });
+});
+
+watch(
+  [isHeroTitleReady, isHeroImageReady],
+  ([titleReady, imageReady]) => {
+    if (titleReady && imageReady) emit("intro-ready");
+  },
+  { flush: "post" },
+);
 
 const canPlayIntroPulse = computed(
   () =>
     effectsEnabled.value &&
     isMobile.value &&
-    isHeroImageReady.value &&
+    isHeroCharacterAppeared.value &&
     isHeroVisible.value &&
-    documentVisibility.value === "visible",
+    documentVisibility.value === "visible" &&
+    !hasHeroInteraction.value,
 );
+
+const stopHeroPulse = () => {
+  introPulse?.kill();
+  introPulse = undefined;
+  if (heroPulseRef.value) gsap.set(heroPulseRef.value, { clearProps: "transform" });
+};
 
 watch(
   canPlayIntroPulse,
   (enabled) => {
-    if (!enabled) {
-      introPulse?.cancel();
-      return;
-    }
-    if (hasPlayedIntroPulse || !heroCharacterRef.value?.animate) return;
+    stopHeroPulse();
+    if (!enabled || !heroPulseRef.value) return;
+    introPulse = gsap.timeline({
+      delay: hasPlayedIntroPulse ? 10 : 0,
+      repeat: -1,
+      repeatDelay: 9.1,
+      defaults: { ease: "sine.inOut" },
+    })
+      .to(heroPulseRef.value, { scale: 1.04, duration: 0.162 })
+      .to(heroPulseRef.value, { scale: 1, duration: 0.162 })
+      .to(heroPulseRef.value, { scale: 1.025, duration: 0.144 })
+      .to(heroPulseRef.value, { scale: 1, duration: 0.216 })
+      .to(heroPulseRef.value, { scale: 1, duration: 0.216 });
     hasPlayedIntroPulse = true;
-    introPulse = heroCharacterRef.value.animate(
-      [
-        { scale: "1", offset: 0 },
-        { scale: "1.04", offset: 0.18 },
-        { scale: "1", offset: 0.36 },
-        { scale: "1.025", offset: 0.52 },
-        { scale: "1", offset: 0.76 },
-        { scale: "1", offset: 1 },
-      ],
-      { duration: 900, easing: "ease-in-out", iterations: 1 },
-    );
   },
   { flush: "post" },
 );
 
 const registerHeroClick = () => {
   if (!effectsEnabled.value || !isMobile.value) return;
+  hasHeroInteraction.value = true;
   if (clicks.value < Number.MAX_SAFE_INTEGER) {
     clicks.value += 1;
   }
@@ -206,7 +466,7 @@ watch(effectsEnabled, (enabled) => {
   if (enabled) return;
   cancelHeroPointer();
   isHeroHovered.value = false;
-  isHeroTapped.value = false;
+  isHeroPressed.value = false;
   isClosedImageReady.value = false;
 });
 
@@ -245,11 +505,11 @@ const syncHeroTitleFit = () => {
   cancelHeroPointer();
   isMobile.value = mobileMedia?.matches ?? false;
   isHeroHovered.value = false;
-  isHeroTapped.value = false;
+  isHeroPressed.value = false;
   heroTitleFit?.unsubscribe();
   heroTitleFit = null;
 
-  if (!isHeroTitleFontReady || !mobileMedia?.matches) return;
+  if (!mobileMedia?.matches || !heroTitleRef.value) return;
 
   heroTitleFit = fitty(heroTitleRef.value, {
     minSize: 1,
@@ -267,17 +527,28 @@ const onHeroPointerEnter = (event) => {
 
 const cancelHeroPointer = () => {
   heroPointer = null;
+  isHeroPressed.value = false;
 };
 
 const onHeroPointerLeave = () => {
   isHeroHovered.value = false;
+};
+
+const onHeroContextMenu = (event) => {
+  if (isMobile.value) event.preventDefault();
+};
+
+const onHeroBlur = () => {
   cancelHeroPointer();
+  resetGaze();
 };
 
 const onHeroPointerDown = (event) => {
   cancelHeroPointer();
   if (!effectsEnabled.value || !isMobile.value || !event.isPrimary || event.button !== 0) return;
+  hasHeroInteraction.value = true;
   heroPointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  isHeroPressed.value = true;
 };
 
 const onHeroPointerMove = (event) => {
@@ -292,11 +563,15 @@ const onHeroPointerUp = (event) => {
   onHeroPointerMove(event);
   if (heroPointer?.id !== event.pointerId) return;
   cancelHeroPointer();
-  if (isMobile.value) isHeroTapped.value = !isHeroTapped.value;
+  if (event.isTrusted) void requestHeroOrientation();
   registerHeroClick();
 };
 
 onMounted(async () => {
+  if (window.isSecureContext && window.DeviceOrientationEvent) {
+    orientationPermission.value =
+      typeof window.DeviceOrientationEvent.requestPermission === "function" ? "prompt" : "granted";
+  }
   mobileMedia = window.matchMedia(`(width < ${getBreakpointPx("lg")}px)`);
   mobileMedia.addEventListener("change", syncHeroTitleFit);
   syncHeroTitleFit();
@@ -308,17 +583,33 @@ onMounted(async () => {
   }
 
   if (!heroTitleRef.value) return;
-  isHeroTitleFontReady = true;
-  syncHeroTitleFit();
+  heroTitleFit?.fit({ sync: true });
   isHeroTitleReady.value = true;
 });
 
 onBeforeUnmount(() => {
-  introPulse?.cancel();
+  isHeroUnmounted = true;
+  resetHeroTilt();
+  stopHeroPulse();
   stopBlinking();
   mobileMedia?.removeEventListener("change", syncHeroTitleFit);
   heroTitleFit?.unsubscribe();
   heroTitleFit = null;
+});
+
+defineExpose({
+  getIntroTargets: () => ({
+    section: heroSectionRef.value,
+    name: heroNameRef.value,
+    character: heroPulseRef.value,
+  }),
+  revealCharacter: () => {
+    isHeroCharacterRevealed.value = true;
+  },
+  completeIntro: () => {
+    isHeroCharacterRevealed.value = true;
+    isHeroCharacterAppeared.value = true;
+  },
 });
 
 const heroImage = computed(() =>
