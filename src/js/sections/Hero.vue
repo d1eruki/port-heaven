@@ -15,14 +15,14 @@
     <div class="relative isolate flex min-h-svh w-full min-w-0 items-end justify-center bg-canvas">
       <div
         ref="heroNameRef"
-        class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-26 text-hero max-lg:invisible lg:justify-center lg:px-0 lg:pt-0 lg:pb-[12svh]"
+        class="absolute inset-0 z-1 flex items-end justify-start overflow-hidden px-10 pt-10 pb-26 text-hero max-lg:invisible lg:justify-center lg:px-15 lg:pt-0 lg:pb-[12svh]"
       >
         <div
           class="w-[calc(70svh-5rem)] shrink-0 origin-top-left translate-y-full -rotate-90 text-left lg:w-auto lg:translate-y-0 lg:rotate-0 lg:text-center"
         >
           <h1
             ref="heroTitleRef"
-            class="inline-block w-max text-left text-hero-title leading-14 [text-box:trim-both_cap_alphabetic] lg:text-center lg:leading-48"
+            class="inline-block w-max text-left text-hero-title leading-[normal] [text-box:trim-both_cap_alphabetic] lg:text-center"
           >
             <span
               v-for="(line, index) in t('brand.hero').split('\n')"
@@ -58,17 +58,16 @@
               aria-hidden="true"
             >
               <image :href="heroEyesWhiteImage" width="1086" height="1448" />
-              <g :transform="`translate(${gaze.x * 5} ${gaze.y * 4})`">
-                <image
-                  v-for="eye in heroEyes"
-                  :key="eye.name"
-                  :href="eye.src"
-                  :x="eye.x"
-                  :y="eye.y"
-                  :width="eye.width"
-                  :height="eye.height"
-                />
-              </g>
+              <image
+                v-for="eye in heroEyes"
+                :key="eye.name"
+                :href="eye.src"
+                :x="eye.x"
+                :y="eye.y"
+                :width="eye.width"
+                :height="eye.height"
+                :transform="`translate(${gaze.x * eye.travelX} ${gaze.y * eye.travelY})`"
+              />
             </svg>
             <picture class="relative block max-lg:pointer-events-none">
               <source
@@ -180,8 +179,26 @@ const isHeroVisible = useElementVisibility(heroSectionRef);
 const documentVisibility = useDocumentVisibility();
 // Положение радужек внутри экспортированного слоя Eyes из Figma.
 const heroEyes = [
-  { name: "left", src: heroIrisLeftImage, x: 468, y: 279.97265625, width: 23, height: 23 },
-  { name: "right", src: heroIrisRightImage, x: 528, y: 243.97265625, width: 27, height: 26 },
+  {
+    name: "left",
+    src: heroIrisLeftImage,
+    x: 469,
+    y: 279.97265625,
+    width: 21,
+    height: 21,
+    travelX: 3,
+    travelY: 2.5,
+  },
+  {
+    name: "right",
+    src: heroIrisRightImage,
+    x: 528,
+    y: 243.97265625,
+    width: 27,
+    height: 26,
+    travelX: 5,
+    travelY: 4,
+  },
 ];
 const gaze = ref({ x: 0, y: 0 });
 const canTrackEyes = computed(

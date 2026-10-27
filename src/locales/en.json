@@ -167,6 +167,7 @@
   },
   "buttons": {
     "open": "open",
+    "showMore": "show more",
     "shuffleCreatives": "shuffle",
     "toTop": "top"
   },

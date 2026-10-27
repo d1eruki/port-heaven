@@ -3,9 +3,32 @@
   <footer
     data-section="footer"
     id="footer"
-    class="flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-5 overflow-hidden p-10 lg:p-15"
+    class="relative isolate flex min-h-svh w-full max-w-full min-w-0 flex-col justify-end gap-content overflow-hidden p-section max-lg:pt-section-gap"
   >
-    <div class="max-w-full min-w-0 items-baseline gap-10 lg:flex">
+    <picture
+      class="pointer-events-none absolute top-10 right-10 block w-56 select-none lg:top-15 lg:right-15 lg:w-96"
+      aria-hidden="true"
+    >
+      <source
+        v-for="source in chromeWave.sources"
+        :key="source.type"
+        :type="source.type"
+        :srcset="source.srcset"
+        sizes="(min-width: 1024px) 384px, 224px"
+      />
+      <img
+        ref="chromeRef"
+        :src="chromeWave.src"
+        alt=""
+        :width="chromeWave.width"
+        :height="chromeWave.height"
+        loading="lazy"
+        decoding="async"
+        draggable="false"
+        class="block h-auto w-full -rotate-12"
+      />
+    </picture>
+    <div class="flex max-w-full min-w-0 flex-col items-baseline gap-related lg:flex-row lg:gap-content">
       <a
         class="group relative w-auto font-heading text-link hover:text-link-hover"
         href="https://t.me/d1eruki"
@@ -47,7 +70,7 @@
       <MenuDescription :menu-desc="t('menu.footer.description')" />
     </div>
     <div
-      class="relative z-1 flex w-full justify-center lg:left-1/2 lg:w-screen lg:-translate-x-1/2"
+      class="relative z-1 flex w-full justify-center"
     >
       <div
         ref="footerLogoRef"
@@ -64,8 +87,12 @@ import fitty from "fitty";
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import MenuDescription from "../components/MenuDescription.vue";
+import chromeWave from "../../assets/chrome/chrome-wave.png?responsive";
+import { useChromeFloat } from "../features/effects/chrome-float";
 
 const { t } = useI18n();
+const chromeRef = ref(null);
+useChromeFloat(chromeRef, "wave");
 
 const footerLogoRef = ref(null);
 let footerLogoFit;

@@ -71,7 +71,7 @@ export const createCreativeCloudItem = (creative, index, seed = 0) => {
       "--creative-left": `${left}%`,
       "--creative-rotation": `${rotation}deg`,
       "--creative-top": `${top}dvh`,
-      "--creative-width": `${width}vw`,
+      "--creative-width": `${width}%`,
       "--creative-z-index": layer.zIndex,
     },
   };

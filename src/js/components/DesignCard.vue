@@ -5,16 +5,16 @@
     :data-design-name="designName"
     target="_blank"
     rel="noopener noreferrer"
-    class="group w-full min-w-0 shrink-0 overflow-hidden rounded-4xl text-primary max-lg:min-h-0 lg:hover:bg-design-card-active lg:hover:text-on-design-card-active lg:hover:z-51 max-lg:[&.design-active]:bg-design-card-active max-lg:[&.design-active]:text-on-design-card-active"
+    class="group w-full min-w-0 shrink-0 overflow-hidden rounded-4xl text-primary max-lg:min-h-0 max-lg:bg-canvas effects:max-lg:transition-colors effects:max-lg:duration-300 effects:max-lg:ease-in-out lg:hover:bg-design-card-active lg:hover:text-on-design-card-active lg:hover:z-51 max-lg:[&.design-active]:bg-design-card-active max-lg:[&.design-active]:text-on-design-card-active"
   >
     <div
-      class="anim-extrude relative z-10 grid gap-5 p-5 max-lg:flex max-lg:h-full max-lg:min-h-0 max-lg:flex-col max-lg:overflow-y-auto lg:p-15 lg:h-full lg:grid-rows-[50%] lg:items-center no-effects:lg:hover:transform-none"
+      class="anim-extrude relative z-10 grid gap-related p-panel max-lg:flex max-lg:h-full max-lg:min-h-0 max-lg:flex-col max-lg:overflow-y-auto lg:h-full lg:grid-rows-[50%] lg:items-center no-effects:lg:hover:transform-none"
     >
-      <h3 class="flex gap-3 text-heading-sm">
+      <h3 class="flex gap-3 text-left text-heading-sm">
         {{ designName }}
       </h3>
       <div
-        class="flex flex-col gap-5 self-end max-lg:flex-1 max-lg:self-stretch lg:grid lg:items-end"
+        class="flex flex-col gap-related self-end max-lg:flex-1 max-lg:self-stretch lg:grid lg:items-end"
       >
         <TagsList
           :tags="designTags"

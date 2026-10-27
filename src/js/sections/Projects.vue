@@ -3,35 +3,31 @@
   <section
     data-section="projects"
     id="projects"
-    class="grid min-h-svh grid-cols-1 gap-10 px-10 pt-10 lg:auto-rows-fr lg:grid-cols-2 lg:gap-0 lg:p-0"
+    class="grid min-h-svh grid-cols-1 gap-content p-section max-lg:pt-section-gap max-lg:pb-0 lg:auto-rows-fr lg:py-0 lg:grid-cols-2"
   >
     <div
       data-project-panel
-      class="lg:h-dvh lg:p-15 lg:pr-0"
+      class="lg:h-dvh lg:py-section"
     >
       <div
-        class="grid content-center gap-5 overflow-hidden rounded-4xl bg-inverse p-5 text-on-inverse lg:h-full lg:place-items-end lg:p-15 lg:text-end"
+        class="grid content-center gap-related overflow-hidden rounded-4xl bg-inverse p-panel text-on-inverse lg:h-full lg:place-items-end lg:text-end"
       >
-        <h2>{{ t("menu.projects.title") }}</h2>
+        <h2 class="text-left lg:text-end">{{ t("menu.projects.title") }}</h2>
         <MenuDescription
-          class="lg:max-w-150"
           :menu-desc="t('menu.projects.description')"
         />
       </div>
     </div>
-    <div>
-      <template
+    <div class="no-effects:max-lg:flex no-effects:max-lg:flex-col no-effects:max-lg:gap-content">
+      <ProjectCard
         v-for="project in translatedProjects"
         :key="project.titleKey"
-      >
-        <ProjectCard
-          class="effects:max-lg:sticky effects:max-lg:top-4"
-          :project-name="project.name"
-          :project-tags="project.tags"
-          :project-text="project.text"
-          :project-links="project.links"
-        />
-      </template>
+        class="effects:max-lg:sticky effects:max-lg:top-4"
+        :project-name="project.name"
+        :project-tags="project.tags"
+        :project-text="project.text"
+        :project-links="project.links"
+      />
     </div>
   </section>
 </template>

@@ -1,5 +1,11 @@
+import { nextTick } from "vue";
 import { detectEffectCapabilities } from "../libraries/effect-capabilities";
-import { initScrollSmoother, ScrollTrigger, gsap } from "../libraries/gsap-scroll";
+import {
+  getScrollSmoother,
+  initScrollSmoother,
+  ScrollTrigger,
+  gsap,
+} from "../libraries/gsap-scroll";
 import { onReady } from "../utils/on-ready";
 import { getBreakpointPx } from "../utils/breakpoints";
 
@@ -65,15 +71,19 @@ const initDesktopEffects = () => {
 };
 
 export const initFeatures = async () => {
+  const initialHash = location.hash;
+  const hasSavedPosition = hasPendingEffectsScrollPosition();
   enableNativeScrollRestoration();
   window.addEventListener("pagehide", preserveScrollPosition);
+
+  await new Promise((resolve) => onReady(resolve));
 
   const capabilities = detectEffectCapabilities();
   const { effectsOn } = applyEffectsMode(capabilities);
 
+  await nextTick();
   if (effectsOn) initScrollSmoother();
 
-  initSections();
   initScrollToTop();
   initProjectPin();
   initCreativeHeadingPin();
@@ -98,6 +108,32 @@ export const initFeatures = async () => {
     await runFeature("no-effects styles", () => import("../../styles/no-effects.css"), () => {});
   }
 
+  await document.fonts?.ready?.catch(() => {});
+  await nextTick();
+  await new Promise(requestAnimationFrame);
   ScrollTrigger.refresh();
   await restoreEffectsScrollPosition();
+
+  // При перезагрузке сохраняем место чтения; при открытии ссылки применяем её якорь.
+  if (!hasSavedPosition && initialHash) {
+    let targetId;
+    try {
+      targetId = decodeURIComponent(initialHash.slice(1));
+    } catch {
+      targetId = initialHash.slice(1);
+    }
+    const target = document.getElementById(targetId);
+    if (target) {
+      const smoother = getScrollSmoother();
+      if (smoother) smoother.scrollTo(target, false, "top top");
+      else window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY,
+        behavior: "instant",
+      });
+    }
+  }
+
+  getScrollSmoother()?.scrollTop(window.scrollY);
+  ScrollTrigger.update();
+  initSections();
 };

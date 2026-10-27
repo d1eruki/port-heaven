@@ -5,7 +5,7 @@
   <div id="smooth-wrapper">
     <div
       id="smooth-content"
-      class="w-full max-w-full min-w-0"
+      class="mx-auto w-full max-w-(--breakpoint-3xl) min-w-0"
     >
       <main class="w-full max-w-full min-w-0 max-lg:overflow-x-clip">
         <Hero
@@ -20,13 +20,15 @@
           {{ t("notices.effectsDisabled") }}
         </header>
 
-        <About />
-        <Projects />
-        <Design />
-        <Creatives />
-        <Reviews />
+        <div class="flex min-w-0 flex-col lg:gap-section-gap">
+          <About />
+          <Projects />
+          <Design />
+          <Creatives />
+          <Reviews />
+        </div>
       </main>
-      <Footer />
+      <Footer class="lg:mt-section-gap" />
     </div>
   </div>
   <Notification

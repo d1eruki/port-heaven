@@ -2,18 +2,18 @@
 <template>
   <div
     data-project-snap
-    class="w-full max-lg:flex max-lg:flex-col max-lg:rounded-4xl max-lg:bg-surface-subtle lg:min-h-svh lg:bg-canvas no-effects:max-lg:mb-10"
+    class="w-full overflow-hidden max-lg:flex max-lg:flex-col max-lg:rounded-4xl max-lg:bg-surface-subtle lg:min-h-svh lg:bg-canvas"
   >
-    <div class="flex min-h-[calc(100svh-2rem)] flex-col justify-start gap-10 p-10 max-lg:flex-1 lg:min-h-svh lg:justify-center lg:p-15">
-      <div class="flex flex-col gap-5">
-        <h3 class="text-primary">{{ projectName }}</h3>
+    <div class="flex min-h-[calc(100svh-2rem)] flex-col justify-start gap-content p-panel max-lg:flex-1 lg:min-h-svh lg:justify-center">
+      <div class="flex flex-col gap-related">
+        <h3 class="text-left text-primary">{{ projectName }}</h3>
         <TagsList
           class="max-lg:[&_small]:bg-primary/5"
           :tags="projectTags"
           :show-icons="true"
         />
       </div>
-      <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-related">
         <p
           v-for="(text, index) in projectText"
           :key="index"
@@ -22,7 +22,7 @@
           {{ text }}
         </p>
       </div>
-      <div class="flex flex-wrap gap-0 max-lg:mt-auto max-lg:gap-2 max-lg:*:w-full">
+      <div class="flex flex-wrap gap-0 max-lg:mt-auto max-lg:gap-related max-lg:*:w-full">
         <Button
           v-for="(link, index) in projectLinks"
           :key="index"
