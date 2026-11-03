@@ -38,7 +38,6 @@
   /* Icons */
   --color-icon-pattern: var(--semantic-icon-pattern);
 
-  /* Borders */
-  --color-subtle: var(--semantic-border-subtle);
+  /* Decorations */
   --color-highlight: var(--semantic-decoration-highlight);
 }

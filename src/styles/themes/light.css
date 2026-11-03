@@ -11,8 +11,8 @@
   /* Text */
   --semantic-text-primary: var(--color-black);
   --semantic-text-hero: var(--color-black);
-  --semantic-text-action-secondary: var(--color-neutral-500);
-  --semantic-text-muted: var(--color-neutral-500);
+  --semantic-text-action-secondary: var(--color-neutral-400);
+  --semantic-text-muted: var(--color-neutral-400);
   --semantic-text-link: var(--color-neutral-400);
   --semantic-text-link-hover: var(--color-black);
   --semantic-text-on-accent: var(--color-white);
@@ -21,9 +21,6 @@
   /* Icons */
   --semantic-icon-pattern: var(--color-neutral-200);
 
-  /* Borders */
-  --semantic-border-subtle: var(--color-neutral-300);
-
   /* Decorations */
-  --semantic-decoration-subtle: var(--color-neutral-500);
+  --semantic-decoration-subtle: var(--color-neutral-400);
 }
