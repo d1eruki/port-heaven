@@ -93,19 +93,23 @@
       <dialog
         ref="previewDialog"
         :aria-label="t('menu.creatives.preview')"
-        class="fixed inset-0 m-0 h-dvh max-h-none w-dvw max-w-none overflow-x-hidden overflow-y-auto overscroll-none bg-transparent outline-none backdrop:bg-transparent"
+        class="fixed inset-0 m-0 h-dvh max-h-none w-dvw max-w-none overflow-x-hidden overflow-y-auto overscroll-none bg-transparent outline-none [-webkit-tap-highlight-color:transparent] backdrop:bg-transparent"
         autofocus
         @cancel.prevent="closePreview"
+        @click="handlePreviewTap"
         @close="resetPreview"
+        @pointerdown="handlePreviewPointerDown"
+        @touchstart.passive="startPreviewTouch"
+        @touchmove.stop.passive="movePreviewTouch"
+        @touchcancel="ignorePreviewTap = true"
       >
         <div class="relative flex min-h-full flex-col justify-center py-11">
           <button
             ref="previewBackdrop"
             type="button"
-            class="absolute inset-0 bg-(--semantic-surface-contrast) [-webkit-tap-highlight-color:transparent] focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-(--semantic-text-on-contrast)"
+            class="absolute inset-0 bg-(--semantic-surface-contrast) focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-(--semantic-text-on-contrast)"
             :class="{ 'opacity-0': isPreviewPreparing }"
             :aria-label="t('buttons.close')"
-            @click="closePreview"
           />
           <picture
             v-if="previewCreative"
@@ -171,6 +175,8 @@ const previewMotionTiming = {
 let previewOrigin = null;
 let previewAnimations = [];
 let isClosingPreview = false;
+let previewTouchStart = null;
+let ignorePreviewTap = false;
 const creativeGalleryRef = ref(null);
 const creativeGalleryContentRef = ref(null);
 const { height: galleryHeight } = useElementSize(creativeGalleryRef);
@@ -287,12 +293,43 @@ const closePreview = () => {
   else animatePreview(false);
 };
 
+const handlePreviewPointerDown = (event) => {
+  if (event.pointerType !== "touch") ignorePreviewTap = false;
+};
+
+const startPreviewTouch = ({ touches }) => {
+  ignorePreviewTap = touches.length > 1;
+  previewTouchStart = touches[0];
+};
+
+// Stop touchmove from reaching the page scroll lock while allowing Safari to zoom and pan.
+const movePreviewTouch = ({ touches }) => {
+  const touch = touches[0];
+  if (
+    touches.length > 1 ||
+    (touch &&
+      previewTouchStart &&
+      Math.hypot(
+        touch.clientX - previewTouchStart.clientX,
+        touch.clientY - previewTouchStart.clientY,
+      ) > 8)
+  ) {
+    ignorePreviewTap = true;
+  }
+};
+
+const handlePreviewTap = (event) => {
+  if (!ignorePreviewTap || event.detail === 0) closePreview();
+};
+
 const resetPreview = () => {
   if (previewDialog.value.open) return;
 
   clearPreviewAnimations();
   isPageScrollLocked.value = false;
   previewOrigin = null;
+  previewTouchStart = null;
+  ignorePreviewTap = false;
   isPreviewPreparing.value = false;
   previewCreative.value = null;
 };
