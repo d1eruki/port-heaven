@@ -50,6 +50,7 @@
     },
     "creatives": {
       "title": "creatives",
+      "preview": "creative preview",
       "description": "A selection of visuals I generate, assemble, and refine. It includes client work and personal experiments — everything where I could play with the idea, atmosphere, and style."
     },
     "pricing": {
@@ -167,6 +168,8 @@
   },
   "buttons": {
     "open": "open",
+    "openCreative": "open image full screen: {image}",
+    "close": "close",
     "showMore": "show more",
     "shuffleCreatives": "shuffle",
     "toTop": "top"
