@@ -4,7 +4,7 @@
     ref="heroSectionRef"
     data-section="hero"
     id="hero"
-    class="relative z-0 min-h-svh w-full min-w-0 overflow-visible bg-canvas max-lg:select-none max-lg:[-webkit-touch-callout:none]"
+    class="relative z-0 min-h-svh w-full min-w-0 overflow-visible max-lg:select-none max-lg:[-webkit-touch-callout:none]"
     @pointerdown="onHeroPointerDown"
     @pointermove="onHeroPointerMove"
     @pointerup="onHeroPointerUp"
