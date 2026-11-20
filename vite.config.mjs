@@ -12,6 +12,28 @@ const require = createRequire(import.meta.url);
 const tailwindDefaultTheme = require("tailwindcss/defaultTheme");
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
+const privateIpv4 = /^(?:10\.|172\.(?:1[6-9]|2\d|3[01])\.|192\.168\.)/;
+const virtualInterface =
+  /^(?:utun|tun|tap|wg|tailscale|docker|veth|virbr|vmnet|vboxnet|br-|bridge)/i;
+
+const devServerUrlsPlugin = () => ({
+  name: "port-heaven-dev-server-urls",
+  configureServer(server) {
+    server.printUrls = () => {
+      const { local, network, networkInterfaceNames } = server.resolvedUrls ?? {};
+      const localUrl = local?.[0];
+      const mobileUrl = network?.find(
+        (url, index) =>
+          privateIpv4.test(new URL(url).hostname) &&
+          !virtualInterface.test(networkInterfaceNames?.[index] ?? ""),
+      );
+
+      if (localUrl) server.config.logger.info(`  ➜  Local:   ${localUrl}`);
+      if (mobileUrl) server.config.logger.info(`  ➜  Mobile:  ${mobileUrl}`);
+    };
+  },
+});
+
 const relativeEntryAssetUrlsPlugin = () => ({
   name: "port-heaven-relative-entry-asset-urls",
   apply: "build",
@@ -24,6 +46,7 @@ const relativeEntryAssetUrlsPlugin = () => ({
 export default defineConfig({
   base: "./",
   plugins: [
+    devServerUrlsPlugin(),
     creativeLayoutPlugin({
       layoutFile: path.join(projectRoot, "src/js/data/creative-layout.json"),
     }),
