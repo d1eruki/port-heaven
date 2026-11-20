@@ -4,10 +4,7 @@ import { getBreakpointPx } from "../../utils/breakpoints";
 
 export const initSectionSnap = () => {
   const sections = Array.from(document.querySelectorAll(DOM_SELECTORS.sections));
-  const projects = Array.from(document.querySelectorAll(DOM_SELECTORS.projectSnap));
   if (!sections.length) return;
-
-  const targets = [...sections, ...projects];
 
   gsap.matchMedia().add(`(min-width: ${getBreakpointPx("lg")}px)`, () => {
     ScrollTrigger.create({
@@ -23,7 +20,7 @@ export const initSectionSnap = () => {
 
           const points = [
             ...new Set(
-              targets.map((element) =>
+              sections.map((element) =>
                 gsap.utils.clamp(0, 1, smoother.offset(element, "top top") / maxScroll),
               ),
             ),
