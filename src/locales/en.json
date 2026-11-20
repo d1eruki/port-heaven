@@ -109,9 +109,20 @@
   "projects": {
     "buttons": {
       "design": "design",
+      "landingDesign": "landing page design",
+      "promoDesign": "promo page design",
+      "promoSite": "promo site",
       "site": "site",
       "downloadPage": "download page",
       "projectRegistry": "project registry"
+    },
+    "bloxels": {
+      "title": "Bloxels",
+      "text": "Landing page prototype for an educational 3D game builder, with dedicated paths for schools, parents, and children. The Loot a Cat campaign features a responsive layout and a color picker for the plush character before visitors continue to the preorder form."
+    },
+    "medved": {
+      "title": "MEDVED",
+      "text": "Website redesign and development for a St. Petersburg producer of mead, cider, and perry. The new site spans 11 pages, including a drinks catalog and a section for bars and restaurants. The homepage features layered illustrations and an animated carousel with product renders."
     },
     "varwinDotCom": {
       "title": "Varwin.com website",

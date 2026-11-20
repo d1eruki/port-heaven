@@ -43,6 +43,8 @@ const props = defineProps({
 const tagIconClassByName = {
   figma: "icon-[simple-icons--figma]",
   bootstrap: "icon-[simple-icons--bootstrap]",
+  vue: "icon-[simple-icons--vuedotjs]",
+  "tailwind css": "icon-[simple-icons--tailwindcss]",
   "ux/ui": "icon-[ic--baseline-web]",
   design: "icon-[ic--baseline-palette]",
   adaptive: "icon-[ic--baseline-devices]",

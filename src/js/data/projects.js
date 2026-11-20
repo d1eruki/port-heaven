@@ -1,5 +1,42 @@
 export const projects = [
   {
+    titleKey: "projects.bloxels.title",
+    tags: ["Figma", "Redesign", "Prototype", "Frontend", "Tailwind CSS"],
+    textKeys: ["projects.bloxels.text"],
+    links: [
+      {
+        url: "https://www.figma.com/design/5DkY0DJqEQl1Lot6sXqbee/",
+        labelKey: "projects.buttons.landingDesign",
+      },
+      {
+        url: "https://www.figma.com/design/wuRM0H0RuBDNn9z16w0OcB/",
+        labelKey: "projects.buttons.promoDesign",
+      },
+      {
+        url: "https://app.bloxels.ru/cat-plush/",
+        labelKey: "projects.buttons.promoSite",
+      },
+    ],
+  },
+  {
+    titleKey: "projects.medved.title",
+    tags: [
+      "Redesign",
+      "Frontend",
+      { label: "Adaptive", icon: "phone" },
+      "Vue",
+      "Tailwind CSS",
+      "Testing",
+    ],
+    textKeys: ["projects.medved.text"],
+    links: [
+      {
+        url: "https://medved.beer/",
+        labelKey: "projects.buttons.site",
+      },
+    ],
+  },
+  {
     titleKey: "projects.varwinDotCom.title",
     tags: [
       "Figma",
