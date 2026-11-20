@@ -6,7 +6,7 @@
     class="relative z-3 flex min-h-svh p-section max-lg:pt-section-gap max-lg:pb-0"
   >
     <div
-      class="relative isolate grid w-full flex-1 overflow-hidden rounded-4xl bg-surface-subtle text-primary before:pointer-events-none before:absolute before:inset-0 before:z-0 before:icon-[ic--baseline-star] before:block before:h-full before:w-full before:bg-current before:icon-pattern-checker before:text-icon-pattern before:opacity-20 before:content-[''] lg:grid-cols-2"
+      class="relative isolate grid w-full flex-1 overflow-hidden rounded-4xl bg-surface-subtle text-primary before:pointer-events-none before:absolute before:inset-0 before:z-0 before:icon-[ic--baseline-star] before:block before:size-full before:bg-current before:icon-pattern-checker before:text-icon-pattern before:opacity-20 lg:grid-cols-2"
     >
       <div class="relative z-1 flex flex-col justify-between gap-content p-panel">
         <div class="grid gap-related">

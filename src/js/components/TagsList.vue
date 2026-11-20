@@ -6,7 +6,7 @@
       class="flex"
     >
       <small
-        class="flex gap-1 rounded-4xl bg-chip px-2 py-1.5 text-[length:var(--paragraph)] text-on-chip"
+        class="flex gap-1 rounded-4xl bg-chip px-2 py-1.5 text-(length:--paragraph) text-on-chip"
         :class="
           interactiveContrast
             ? 'group-hover:bg-chip-active group-hover:text-on-chip-active group-[.design-active]:bg-chip-active group-[.design-active]:text-on-chip-active'
@@ -43,6 +43,8 @@ const props = defineProps({
 const tagIconClassByName = {
   figma: "icon-[simple-icons--figma]",
   bootstrap: "icon-[simple-icons--bootstrap]",
+  vue: "icon-[simple-icons--vuedotjs]",
+  "tailwind css": "icon-[simple-icons--tailwindcss]",
   "ux/ui": "icon-[ic--baseline-web]",
   design: "icon-[ic--baseline-palette]",
   adaptive: "icon-[ic--baseline-devices]",

@@ -3,7 +3,7 @@
   <section
     id="reviews"
     data-section="reviews"
-    class="relative isolate flex min-h-svh bg-canvas p-section text-primary max-lg:pt-section-gap max-lg:pb-0"
+    class="relative isolate flex min-h-svh p-section text-primary max-lg:pt-section-gap max-lg:pb-0"
   >
     <div
       class="relative isolate grid min-h-[max(32rem,140vw)] w-full flex-1 grid-cols-1 grid-rows-[1fr_1fr_auto_1fr_1fr] items-center justify-items-center gap-related overflow-hidden rounded-4xl bg-surface-subtle px-panel py-content sm:min-h-[110vw] lg:min-h-[max(36rem,80svh,36vw)] lg:grid-cols-3 lg:grid-rows-[1fr_auto_1fr] lg:gap-panel"
@@ -24,7 +24,7 @@
           height="600"
           loading="lazy"
           decoding="async"
-          class="absolute -top-[20%] left-0 -z-10 h-[140%] w-full max-w-none object-cover lg:object-fill"
+          class="absolute top-[-20%] left-0 -z-10 h-[140%] w-full max-w-none object-cover lg:object-fill"
         />
       </picture>
       <div
@@ -56,7 +56,7 @@
             :height="review.height"
             loading="lazy"
             decoding="async"
-            class="block h-auto w-full rotate-[var(--review-rotation)] rounded-xl shadow-xl"
+            class="block h-auto w-full rotate-(--review-rotation) rounded-xl shadow-xl"
           />
         </picture>
       </div>

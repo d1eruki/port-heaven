@@ -2,6 +2,8 @@
 
 Personal portfolio showcasing frontend skills and experiments.
 
+Version `9.35.0`.
+
 ## Stack
 
 - Vue 3, Vite, Tailwind CSS v4 and PostCSS

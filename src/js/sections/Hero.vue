@@ -4,7 +4,7 @@
     ref="heroSectionRef"
     data-section="hero"
     id="hero"
-    class="relative z-0 min-h-svh w-full min-w-0 overflow-visible bg-canvas max-lg:select-none max-lg:[-webkit-touch-callout:none]"
+    class="relative z-0 min-h-svh w-full min-w-0 overflow-visible max-lg:select-none max-lg:[-webkit-touch-callout:none]"
     @pointerdown="onHeroPointerDown"
     @pointermove="onHeroPointerMove"
     @pointerup="onHeroPointerUp"
@@ -54,7 +54,7 @@
           >
             <svg
               viewBox="0 0 1086 1448"
-              class="pointer-events-none absolute inset-0 h-full w-full"
+              class="pointer-events-none absolute inset-0 size-full"
               aria-hidden="true"
             >
               <image :href="heroEyesWhiteImage" width="1086" height="1448" />
@@ -93,7 +93,7 @@
             <svg
               v-if="effectsEnabled"
               viewBox="0 0 1086 1448"
-              class="pointer-events-none absolute inset-0 h-full w-full"
+              class="pointer-events-none absolute inset-0 size-full"
               aria-hidden="true"
             >
               <image
