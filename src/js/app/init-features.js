@@ -18,7 +18,6 @@ import {
 import { initSections } from "../features/navigation/sections";
 import { initScrollToTop } from "../features/navigation/scroll-to-top";
 import { initCreativeHeadingPin } from "../features/navigation/creative-heading-pin";
-import { initProjectPin } from "../features/navigation/project-pin";
 import { initAboutReveal } from "../features/effects/about-reveal";
 import { initDesignActive } from "../features/effects/design-active";
 
@@ -95,7 +94,6 @@ export const initFeatures = async () => {
   if (effectsOn) initScrollSmoother();
 
   initScrollToTop();
-  initProjectPin();
   initCreativeHeadingPin();
 
   if (effectsOn) {

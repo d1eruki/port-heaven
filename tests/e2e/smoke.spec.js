@@ -138,74 +138,6 @@ const scrollToSectionMiddle = async (section) => {
     .toBeCloseTo(0.5, 1);
 };
 
-const positionBeforeSecondProject = async (page) => {
-  await page.waitForLoadState("networkidle");
-  await page.evaluate(() => document.fonts.ready);
-  // Удержание указателя не даёт автодоводке сработать во время подготовки позиции.
-  await page.mouse.move(0, 0);
-  await page.mouse.down();
-
-  let metrics;
-  await expect
-    .poll(async () => {
-      metrics = await page
-        .locator("[data-project-snap]")
-        .nth(1)
-        .evaluate((project) => {
-          // Положение в документе не зависит от текущего смещения ScrollSmoother.
-          let documentTop = 0;
-          let element = project;
-          while (element) {
-            documentTop += element.offsetTop;
-            element = element.offsetParent;
-          }
-
-          const target = Math.round(documentTop);
-          const start = target - 100;
-          const scrollError = Math.abs(window.scrollY - start);
-          const visualError = Math.abs(project.getBoundingClientRect().top - 100);
-
-          // Восстановление прокрутки после reload может закончиться позже загрузки страницы.
-          if (scrollError > 1) window.scrollTo(0, start);
-
-          return { start, target, error: Math.max(scrollError, visualError) };
-        });
-      return metrics.error;
-    })
-    .toBeLessThan(5);
-
-  return metrics;
-};
-
-const scrollAndWaitForScrollToSettle = async (page, snapTarget) => {
-  let previousY;
-  let settledY = 0;
-  let stableSamples = 0;
-
-  await page.mouse.up();
-  await page.mouse.wheel(0, 20);
-  if (snapTarget !== undefined) {
-    await expect
-      .poll(() => page.evaluate((target) => Math.abs(window.scrollY - target), snapTarget))
-      .toBeLessThan(50);
-  }
-  await expect
-    .poll(
-      async () => {
-        const currentY = await page.evaluate(() => Math.round(window.scrollY));
-        stableSamples =
-          previousY !== undefined && Math.abs(currentY - previousY) <= 1 ? stableSamples + 1 : 0;
-        previousY = currentY;
-        settledY = currentY;
-        return stableSamples;
-      },
-      { intervals: [100], timeout: 5_000 },
-    )
-    .toBeGreaterThanOrEqual(4);
-
-  return settledY;
-};
-
 const scrollVideoIntoView = async (video) => {
   await video.page().waitForLoadState("networkidle");
   await video.evaluate(() => document.fonts.ready);
@@ -774,30 +706,11 @@ test("mobile section labels appear only inside the active pill", async ({ page }
   await expect(designDot.locator("small")).toHaveCSS("opacity", "0");
 });
 
-test("enhanced desktop mode snaps project cards and pins scrolling content", async ({
-  page,
-}, testInfo) => {
-  test.skip(testInfo.project.name === "mobile-safari", "Mobile WebKit has no mouse wheel API");
-
+test("enhanced desktop mode pins scrolling content", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await setEffectsMode(page, "on");
   await page.goto("/");
-
-  const root = page.locator("html");
-  await expect(root).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
-
-  const desktop = await positionBeforeSecondProject(page);
-  const desktopY = await scrollAndWaitForScrollToSettle(page, desktop.target);
-  expect(Math.abs(desktopY - desktop.target)).toBeLessThan(50);
-
-  const projectPanel = page.locator("[data-project-panel]");
-  await page.evaluate(() => {
-    const projects = document.querySelector("#projects");
-    window.scrollTo(0, projects.offsetTop + 400);
-  });
-  await expect
-    .poll(() => projectPanel.evaluate((element) => Math.abs(element.getBoundingClientRect().top)))
-    .toBeLessThan(10);
+  await expect(page.locator("html")).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
 
   const designSection = page.locator("#design");
   const designInner = page.locator("#design-inner");
@@ -863,26 +776,100 @@ test("enhanced desktop mode snaps project cards and pins scrolling content", asy
     .toBe(true);
 });
 
-for (const { title, mode, width, height } of [
-  { title: "effects off", mode: "off", width: 1280, height: 800 },
-  { title: "mobile width", mode: "on", width: 390, height: 844 },
-]) {
-  test(`project cards do not snap with ${title}`, async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name === "mobile-safari", "Mobile WebKit has no mouse wheel API");
-
-    await page.setViewportSize({ width, height });
+for (const mode of ["on", "off"]) {
+  test(`desktop projects expand one at a time with effects ${mode}`, async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
     await setEffectsMode(page, mode);
-    await page.goto("/");
-    await expect(page.locator("html")).toHaveClass(
-      mode === "on" ? /(?:^|\s)effects(?:\s|$)/ : /no-effects/,
+    await page.goto("/#projects");
+
+    const section = page.locator("#projects");
+    const intro = section.getByRole("heading", { level: 2 });
+    const strips = section.locator("button[aria-expanded]");
+    const bloxels = section.getByRole("button", { name: "Блоксели" });
+    const medved = section.getByRole("button", { name: "МЁДВЕДЬ" });
+    const width = (button) => button.evaluate((element) => element.parentElement.clientWidth);
+
+    await expect(strips).toHaveCount(3);
+    await expect(strips.first()).toHaveAccessibleName("Varwin");
+    await expect(section.locator('button[aria-expanded="true"]')).toHaveCount(0);
+    await expect(section.locator("button + span").first()).toHaveCSS("writing-mode", "vertical-rl");
+    await expect(intro).toBeInViewport();
+    const stripWidth = await width(bloxels);
+    const alignment = await section.locator("[data-project-panel]").evaluate((element) => {
+      const intro = element.getBoundingClientRect();
+      const firstStrip = element.nextElementSibling.querySelector("button").getBoundingClientRect();
+      const track = element.parentElement.getBoundingClientRect();
+      return {
+        dividerCenter: (intro.right + firstStrip.left) / 2,
+        trackCenter: (track.left + track.right) / 2,
+      };
+    });
+    expect(alignment.dividerCenter).toBeCloseTo(alignment.trackCenter, 1);
+    for (const strip of await strips.all()) {
+      expect(await width(strip)).toBe(stripWidth);
+    }
+
+    await bloxels.click();
+    await expect(bloxels).toHaveAttribute("aria-expanded", "true");
+    await expect(section.getByRole("link", { name: "дизайн лендинга" })).toBeInViewport();
+    await expect(section.getByRole("heading", { name: "Лендинг платформы" })).toBeInViewport();
+    await expect(section.getByRole("heading", { name: /Промо .Лутай кота/ })).toBeInViewport();
+    await expect.poll(() => width(bloxels)).toBeGreaterThan(stripWidth * 3);
+    await expect(intro).not.toBeInViewport();
+
+    await medved.click();
+    await expect(section.locator('button[aria-expanded="true"]')).toHaveCount(1);
+    await expect(medved).toHaveAttribute("aria-expanded", "true");
+    await expect.poll(() => width(bloxels)).toBe(stripWidth);
+    await expect(section.getByRole("link", { name: "дизайн лендинга" })).not.toBeInViewport();
+    const bloxelsPanelId = await bloxels.getAttribute("aria-controls");
+    await expect(section.locator(`#${bloxelsPanelId}`)).toHaveAttribute("inert", "");
+    await expect(section.getByRole("heading", { name: "МЁДВЕДЬ" })).toHaveCSS(
+      "writing-mode",
+      "horizontal-tb",
     );
 
-    const position = await positionBeforeSecondProject(page);
-    const settledY = await scrollAndWaitForScrollToSettle(page);
-    expect(settledY).toBeGreaterThan(position.start);
-    expect(Math.abs(settledY - position.target)).toBeGreaterThan(60);
+    await medved.press("Escape");
+    await expect(section.locator('button[aria-expanded="true"]')).toHaveCount(0);
+    await expect.poll(() => width(medved)).toBe(stripWidth);
+    await expect(intro).toBeInViewport();
+
+    const varwinButton = section.getByRole("button", { name: "Varwin", exact: true });
+    await varwinButton.click();
+    const varwin = section.getByRole("heading", { name: "Varwin", exact: true });
+    await expect(varwin).toBeInViewport();
+    const varwinPanelId = await varwinButton.getAttribute("aria-controls");
+    const varwinPanel = section.locator(`#${varwinPanelId}`);
+    await expect(varwinPanel.locator("p")).toHaveCount(3);
+    await expect(
+      varwinPanel.getByRole("heading", { name: "Страница скачивания Varwin XRMS" }),
+    ).toBeInViewport();
+    await expect(
+      varwinPanel.getByRole("heading", { name: "Реестр проектов Varwin Education" }),
+    ).toBeInViewport();
+    await expect(
+      varwinPanel.getByRole("heading", { name: "Платформа Varwin XRMS" }),
+    ).toBeInViewport();
+    await expect(varwinPanel.getByRole("link")).toHaveCount(4);
+    await expect(varwinPanel.getByText("Desktop", { exact: true })).toBeVisible();
+    await expect(varwinPanel.getByText("Adaptive", { exact: true })).toBeVisible();
   });
 }
+
+test("mobile projects remain a vertical list", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/#projects");
+  const section = page.locator("#projects");
+
+  await expect(section.locator("button[aria-expanded]")).toHaveCount(0);
+  const headings = section.getByRole("heading", { level: 3 });
+  await expect(headings).toHaveCount(3);
+  await expect(headings.first()).toHaveAccessibleName("Varwin");
+  await expect(section.locator("img")).toHaveCount(0);
+  await expect
+    .poll(() => section.evaluate((element) => element.scrollWidth <= window.innerWidth))
+    .toBe(true);
+});
 
 test("mobile viewport keeps core controls working", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });

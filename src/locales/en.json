@@ -108,7 +108,8 @@
 
   "projects": {
     "buttons": {
-      "design": "design",
+      "websiteDesign": "website design",
+      "xrmsDesign": "XRMS design",
       "landingDesign": "landing page design",
       "promoDesign": "promo page design",
       "promoSite": "promo site",
@@ -118,21 +119,33 @@
     },
     "bloxels": {
       "title": "Bloxels",
-      "text": "Landing page prototype for an educational 3D game builder, with dedicated paths for schools, parents, and children. The Loot a Cat campaign features a responsive layout and a color picker for the plush character before visitors continue to the preorder form."
+      "landing": {
+        "title": "Platform landing page",
+        "text": "Landing page prototype for an educational 3D game builder, with dedicated paths for schools, parents, and children."
+      },
+      "promo": {
+        "title": "Loot a Cat campaign",
+        "text": "Responsive layout and a color picker for the plush character before visitors continue to the preorder form."
+      }
     },
     "medved": {
       "title": "MEDVED",
       "text": "Website redesign and development for a St. Petersburg producer of mead, cider, and perry. The new site spans 11 pages, including a drinks catalog and a section for bars and restaurants. The homepage features layered illustrations and an animated carousel with product renders."
     },
-    "varwinDotCom": {
-      "title": "Varwin.com website",
-      "text": [
-        "Update of the Varwin XRMS download page: interviews, prototyping, and implementation in Bootstrap 4. Design of the Varwin Education registry for publishing and exploring user projects."
-      ]
-    },
-    "xrms": {
-      "title": "Varwin XRMS platform",
-      "text": "Development of a Varwin XRMS UI kit and prototypes for discussing, testing, and implementing changes to the platform interface."
+    "varwin": {
+      "title": "Varwin",
+      "download": {
+        "title": "Varwin XRMS download page",
+        "text": "Interviews, prototyping, and implementation of the updated download page in Bootstrap 4."
+      },
+      "registry": {
+        "title": "Varwin Education project registry",
+        "text": "Design of a registry for publishing and exploring user projects."
+      },
+      "xrms": {
+        "title": "Varwin XRMS platform",
+        "text": "Development of a Varwin XRMS UI kit and prototypes for discussing, testing, and implementing changes to the platform interface."
+      }
     }
   },
   "designs": {
