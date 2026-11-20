@@ -790,6 +790,7 @@ for (const mode of ["on", "off"]) {
     const width = (button) => button.evaluate((element) => element.parentElement.clientWidth);
 
     await expect(strips).toHaveCount(3);
+    await expect(strips.first()).toHaveAccessibleName("Varwin");
     await expect(section.locator('button[aria-expanded="true"]')).toHaveCount(0);
     await expect(section.locator("button + span").first()).toHaveCSS("writing-mode", "vertical-rl");
     await expect(intro).toBeInViewport();
@@ -821,7 +822,8 @@ for (const mode of ["on", "off"]) {
     await expect(medved).toHaveAttribute("aria-expanded", "true");
     await expect.poll(() => width(bloxels)).toBe(stripWidth);
     await expect(section.getByRole("link", { name: "дизайн лендинга" })).not.toBeInViewport();
-    await expect(section.locator("#commercial-project-0")).toHaveAttribute("inert", "");
+    const bloxelsPanelId = await bloxels.getAttribute("aria-controls");
+    await expect(section.locator(`#${bloxelsPanelId}`)).toHaveAttribute("inert", "");
     await expect(section.getByRole("heading", { name: "МЁДВЕДЬ" })).toHaveCSS(
       "writing-mode",
       "horizontal-tb",
@@ -832,10 +834,12 @@ for (const mode of ["on", "off"]) {
     await expect.poll(() => width(medved)).toBe(stripWidth);
     await expect(intro).toBeInViewport();
 
-    await section.getByRole("button", { name: "Varwin", exact: true }).click();
+    const varwinButton = section.getByRole("button", { name: "Varwin", exact: true });
+    await varwinButton.click();
     const varwin = section.getByRole("heading", { name: "Varwin", exact: true });
     await expect(varwin).toBeInViewport();
-    const varwinPanel = section.locator("#commercial-project-2");
+    const varwinPanelId = await varwinButton.getAttribute("aria-controls");
+    const varwinPanel = section.locator(`#${varwinPanelId}`);
     await expect(varwinPanel.locator("p")).toHaveCount(3);
     await expect(
       varwinPanel.getByRole("heading", { name: "Страница скачивания Varwin XRMS" }),
@@ -858,8 +862,9 @@ test("mobile projects remain a vertical list", async ({ page }) => {
   const section = page.locator("#projects");
 
   await expect(section.locator("button[aria-expanded]")).toHaveCount(0);
-  await expect(section.getByRole("heading", { level: 3 })).toHaveCount(3);
-  await expect(section.getByRole("heading", { name: "Varwin", exact: true })).toBeVisible();
+  const headings = section.getByRole("heading", { level: 3 });
+  await expect(headings).toHaveCount(3);
+  await expect(headings.first()).toHaveAccessibleName("Varwin");
   await expect(section.locator("img")).toHaveCount(0);
   await expect
     .poll(() => section.evaluate((element) => element.scrollWidth <= window.innerWidth))
