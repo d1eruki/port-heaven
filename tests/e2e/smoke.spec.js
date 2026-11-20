@@ -283,11 +283,28 @@ const expectVideoPaused = async (video) => {
 };
 
 const expectVideoEffectsMode = async (page, effectsOn) => {
-  const video = page.locator("video");
+  const video = page.locator("#creative-gallery video");
   const attributeAssertion = effectsOn ? expect(video) : expect(video).not;
 
   await attributeAssertion.toHaveAttribute("loop", "");
   await expect(video).toHaveAttribute("controls", "");
+  const reveal = page.locator('button[aria-controls="creative-gallery"]');
+  let expanded = false;
+  while (
+    (await reveal.isVisible()) &&
+    (await video.evaluate((element) => {
+      const gallery = element.closest("#creative-gallery");
+      return element.getBoundingClientRect().bottom > gallery.getBoundingClientRect().bottom;
+    }))
+  ) {
+    await reveal.click();
+    expanded = true;
+  }
+  if (expanded) {
+    await video.evaluate((element) =>
+      element.scrollIntoView({ block: "center", behavior: "instant" }),
+    );
+  }
   await scrollVideoIntoView(video);
 
   await expect(video).toHaveAttribute("src", /.+/);

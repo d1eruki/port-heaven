@@ -2,7 +2,7 @@
 
 Personal portfolio showcasing frontend skills and experiments.
 
-Версия `0.9.18`.
+Версия `0.9.19`.
 
 ## Stack
 

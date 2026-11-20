@@ -56,8 +56,18 @@ const initDesktopEffects = () => {
       if (typeof cleanup === "function") cleanups.push(cleanup);
     };
 
-    void runFeature("card tilt", () => import("../libraries/vanilla-tilt"),
-      activate((module) => module.initVanillaTilt()));
+    const loadTilt = async () => {
+      const module = await import("../libraries/vanilla-tilt");
+      // The gallery switches between buttons and static cards at the breakpoint.
+      await new Promise(requestAnimationFrame);
+      await nextTick();
+      return module;
+    };
+    void runFeature(
+      "card tilt",
+      loadTilt,
+      activate((module) => module.initVanillaTilt()),
+    );
     if (conditions.finePointer) {
       void runFeature("cursor", () => import("../features/effects/cursor"),
         activate((module) => module.initCursor()));
