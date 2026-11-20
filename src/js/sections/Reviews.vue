@@ -24,7 +24,7 @@
           height="600"
           loading="lazy"
           decoding="async"
-          class="absolute -top-[20%] left-0 -z-10 h-[140%] w-full max-w-none object-cover lg:object-fill"
+          class="absolute top-[-20%] left-0 -z-10 h-[140%] w-full max-w-none object-cover lg:object-fill"
         />
       </picture>
       <div
@@ -56,7 +56,7 @@
             :height="review.height"
             loading="lazy"
             decoding="async"
-            class="block h-auto w-full rotate-[var(--review-rotation)] rounded-xl shadow-xl"
+            class="block h-auto w-full rotate-(--review-rotation) rounded-xl shadow-xl"
           />
         </picture>
       </div>

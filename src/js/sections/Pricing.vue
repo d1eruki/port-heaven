@@ -34,7 +34,7 @@
               {{ plan.description }}
             </p>
             <div class="flex w-full min-w-0 items-baseline gap-2">
-              <span class="flex-none text-[var(--paragraph)] text-on-accent/60">{{
+              <span class="flex-none text-(length:--paragraph) text-on-accent/60">{{
                 t("pricing.pricePrefix")
               }}</span>
               <strong
@@ -53,7 +53,7 @@
             <ul class="grid gap-3.5">
               <li
                 v-if="plan.includes"
-                class="flex min-w-0 items-center gap-5 leading-snug font-black text-[var(--paragraph)] text-on-accent"
+                class="flex min-w-0 items-center gap-5 text-(length:--paragraph) leading-snug font-black text-on-accent"
               >
                 <span
                   class="block size-2 flex-none rounded-full bg-on-accent"
@@ -63,7 +63,7 @@
               </li>
               <li
                 v-else
-                class="invisible flex min-w-0 items-center gap-5 leading-snug font-black text-[var(--paragraph)] text-on-accent"
+                class="invisible flex min-w-0 items-center gap-5 text-(length:--paragraph) leading-snug font-black text-on-accent"
                 aria-hidden="true"
               >
                 <span class="block size-2 flex-none rounded-full bg-on-accent"></span>
@@ -72,7 +72,7 @@
               <li
                 v-for="feature in plan.features"
                 :key="feature"
-                class="flex min-w-0 items-center gap-5 leading-snug text-[var(--paragraph)] text-on-accent/75"
+                class="flex min-w-0 items-center gap-5 text-(length:--paragraph) leading-snug text-on-accent/75"
               >
                 <span
                   class="block size-2 flex-none rounded-full bg-on-accent"

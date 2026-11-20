@@ -54,7 +54,7 @@
           >
             <svg
               viewBox="0 0 1086 1448"
-              class="pointer-events-none absolute inset-0 h-full w-full"
+              class="pointer-events-none absolute inset-0 size-full"
               aria-hidden="true"
             >
               <image :href="heroEyesWhiteImage" width="1086" height="1448" />
@@ -93,7 +93,7 @@
             <svg
               v-if="effectsEnabled"
               viewBox="0 0 1086 1448"
-              class="pointer-events-none absolute inset-0 h-full w-full"
+              class="pointer-events-none absolute inset-0 size-full"
               aria-hidden="true"
             >
               <image

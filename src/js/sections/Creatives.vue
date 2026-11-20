@@ -4,7 +4,7 @@
     ref="creativeSectionRef"
     data-section="creatives"
     id="creatives"
-    class="relative min-h-svh max-lg:flex max-lg:flex-col max-lg:gap-content max-lg:px-section max-lg:pt-section-gap lg:h-[var(--creative-stream-height)]"
+    class="relative min-h-svh max-lg:flex max-lg:flex-col max-lg:gap-content max-lg:px-section max-lg:pt-section-gap lg:h-(--creative-stream-height)"
     :style="creativeSectionStyle"
   >
     <div
@@ -17,7 +17,7 @@
         <div class="grid max-w-full gap-related lg:w-fit lg:self-center">
           <h2 class="text-left lg:text-center">{{ t("menu.creatives.title") }}</h2>
           <MenuDescription
-            class="lg:justify-self-center lg:text-center lg:[contain:inline-size]"
+            class="lg:justify-self-center lg:text-center lg:contain-[inline-size]"
             :menu-desc="t('menu.creatives.description')"
           />
         </div>
@@ -44,7 +44,7 @@
       ref="creativeGalleryRef"
       data-creative-cloud
       aria-label="Creative work gallery"
-      class="w-full overflow-clip max-lg:max-h-[var(--creative-reveal-height)] max-lg:rounded-4xl lg:absolute lg:inset-0 lg:block"
+      class="w-full overflow-clip max-lg:max-h-(--creative-reveal-height) max-lg:rounded-4xl lg:absolute lg:inset-0 lg:block"
     >
       <div
         ref="creativeGalleryContentRef"
@@ -57,7 +57,7 @@
           :data-depth="creative.depth"
           :data-drift-x="creative.driftX"
           :data-drift-y="creative.driftY"
-          class="relative block w-full break-inside-avoid hover:z-100! lg:absolute lg:top-[var(--creative-top)] lg:left-[var(--creative-left)] lg:z-[var(--creative-z-index)] lg:w-[var(--creative-width)] lg:rotate-[var(--creative-rotation)] lg:will-change-transform"
+          class="relative block w-full break-inside-avoid hover:z-100! lg:absolute lg:top-(--creative-top) lg:left-(--creative-left) lg:z-(--creative-z-index) lg:w-(--creative-width) lg:rotate-(--creative-rotation) lg:will-change-transform"
           :style="creative.style"
         >
           <VideoCreative
