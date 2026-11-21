@@ -2,7 +2,7 @@
 <template>
   <div
     ref="card"
-    class="relative overflow-hidden rounded-4xl bg-surface-subtle max-lg:flex max-lg:w-full max-lg:flex-col lg:shrink-0 lg:grow-(--project-growth) lg:basis-(--strip-width) lg:overflow-clip lg:bg-[color-mix(in_srgb,var(--semantic-surface-contrast)_93%,var(--semantic-text-on-contrast))] lg:[--project-growth:0] lg:[--project-preview:0] effects:max-lg:sticky effects:max-lg:top-4"
+    class="relative overflow-hidden rounded-4xl bg-surface-subtle max-lg:flex max-lg:w-full max-lg:flex-col lg:shrink-0 lg:grow-(--project-growth) lg:basis-(--strip-width) lg:overflow-clip lg:bg-[color-mix(in_srgb,var(--semantic-surface-subtle),var(--semantic-surface-contrast)_calc(var(--project-growth)*100%))] lg:[--project-growth:0] lg:[--project-preview:0] effects:max-lg:sticky effects:max-lg:top-4"
   >
     <img
       v-if="desktop && projectCover"
@@ -14,6 +14,11 @@
       decoding="async"
       class="pointer-events-none absolute inset-y-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 opacity-(--project-preview) brightness-[calc(0.4-0.275*var(--project-growth))]"
     />
+    <div
+      v-else-if="desktop"
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 bg-accent opacity-[calc(var(--project-preview)*(1-var(--project-growth)))]"
+    ></div>
     <button
       v-if="desktop"
       type="button"
@@ -21,7 +26,7 @@
       :class="
         expanded
           ? 'top-2 right-2 size-11 rounded-full text-(--semantic-text-on-contrast)'
-          : 'inset-0 size-full rounded-4xl text-accent'
+          : 'inset-0 size-full rounded-4xl text-primary'
       "
       :aria-expanded="expanded"
       :aria-controls="panelId"
@@ -40,7 +45,12 @@
     <span
       v-if="desktop"
       aria-hidden="true"
-      class="pointer-events-none absolute top-1/2 left-[calc(var(--strip-width)/2)] z-20 translate-x-[calc(-50%-var(--project-growth)*(50%+var(--strip-width)/2))] -translate-y-1/2 rotate-180 font-heading text-[min(var(--text-heading-sm),3.5svh)] leading-none font-black whitespace-nowrap text-accent lowercase [writing-mode:vertical-rl]"
+      class="pointer-events-none absolute top-1/2 left-[calc(var(--strip-width)/2)] z-20 translate-x-[calc(-50%-var(--project-growth)*(50%+var(--strip-width)/2))] -translate-y-1/2 rotate-180 font-heading text-[min(var(--text-heading-sm),3.5svh)] leading-none font-black whitespace-nowrap lowercase [writing-mode:vertical-rl]"
+      :class="
+        projectCover
+          ? 'text-accent'
+          : 'text-[color-mix(in_srgb,var(--semantic-accent),var(--semantic-text-on-accent)_calc(var(--project-preview)*100%))]'
+      "
       >{{ projectName }}</span
     >
     <div
@@ -131,7 +141,6 @@ let previewAnimation;
 watch(
   [hovered, () => props.expanded, () => props.desktop, effectsEnabled],
   ([isHovered, expanded, desktop, effects]) => {
-    if (!props.projectCover) return;
     previewAnimation?.kill();
     if (!desktop) hovered.value = false;
 
