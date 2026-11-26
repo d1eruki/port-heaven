@@ -715,24 +715,22 @@ test("enhanced desktop mode pins scrolling content", async ({ page, browserName,
   };
   await page.setViewportSize({ width: 1280, height: 800 });
   await setEffectsMode(page, "on");
-  await page.goto("/");
+  await page.goto("/#design");
   await expect(page.locator("html")).toHaveClass(/(?:^|\s)effects(?:\s|$)/);
 
   const designSection = page.locator("#design");
   const designInner = page.locator("#design-inner");
-  const designMetrics = await page.evaluate(() => {
-    const design = document.querySelector("#design");
-    const inner = document.querySelector("#design-inner");
-    const distance = inner.scrollWidth - inner.parentElement.clientWidth;
-    window.scrollTo(0, design.offsetTop);
-    return {
-      start: design.offsetTop,
-      step: Math.min(400, distance / 4),
-    };
-  });
+  await expect(page.locator('[data-section-nav] [data-target="#design"]')).toHaveAttribute(
+    "aria-current",
+    "true",
+  );
   await expect
     .poll(() => designSection.evaluate((element) => Math.abs(element.getBoundingClientRect().top)))
     .toBeLessThan(2);
+  const designMetrics = await designInner.evaluate((inner) => ({
+    start: window.scrollY,
+    step: Math.min(400, (inner.scrollWidth - inner.parentElement.clientWidth) / 4),
+  }));
   const initialDesignLeft = await designInner.evaluate(
     (element) => element.getBoundingClientRect().left,
   );
