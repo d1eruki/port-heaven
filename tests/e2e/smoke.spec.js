@@ -710,7 +710,7 @@ test("enhanced desktop mode pins scrolling content", async ({ page, browserName,
   // Headless Linux mobile WebKit can omit the scroll event from window.scrollTo.
   const notifyProgrammaticScroll = async () => {
     if (browserName === "webkit" && isMobile && process.platform === "linux") {
-      await page.evaluate(() => window.dispatchEvent(new Event("scroll")));
+      await page.evaluate(() => document.dispatchEvent(new Event("scroll", { bubbles: true })));
     }
   };
   await page.setViewportSize({ width: 1280, height: 800 });
