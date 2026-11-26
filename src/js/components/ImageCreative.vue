@@ -1,4 +1,4 @@
-<!-- Изображение креатива с адаптивными форматами и кнопкой просмотра на мобильных экранах. -->
+<!-- Изображение креатива с адаптивными форматами и кнопкой просмотра из галереи. -->
 <template>
   <component
     :is="previewLabel ? 'button' : 'div'"
@@ -6,7 +6,7 @@
     :type="previewLabel ? 'button' : undefined"
     :aria-label="previewLabel || undefined"
     :aria-haspopup="previewLabel ? 'dialog' : undefined"
-    @click="previewLabel && emit('preview', $event)"
+    @click="previewLabel && emit('preview', $event, image)"
   >
     <picture class="contents">
       <source
@@ -17,7 +17,8 @@
         :sizes="imageSizes"
       />
       <img
-        class="h-auto w-full transition-all duration-1000 ease-in-out"
+        ref="image"
+        class="h-auto w-full transition-all duration-1000 ease-in-out effects:max-lg:transform-gpu"
         :src="creativeSrc"
         :alt="creativeAlt"
         :width="imageWidth"
@@ -30,6 +31,8 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 defineProps({
   creativeSrc: { type: String, required: true },
   creativeAlt: { type: String, required: true },
@@ -41,4 +44,5 @@ defineProps({
 });
 
 const emit = defineEmits(["preview"]);
+const image = ref(null);
 </script>

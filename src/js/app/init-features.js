@@ -57,7 +57,6 @@ const initDesktopEffects = () => {
 
     const loadTilt = async () => {
       const module = await import("../libraries/vanilla-tilt");
-      // The gallery switches between buttons and static cards at the breakpoint.
       await new Promise(requestAnimationFrame);
       await nextTick();
       return module;
