@@ -707,9 +707,9 @@ test("mobile section labels appear only inside the active pill", async ({ page }
 });
 
 test("enhanced desktop mode pins scrolling content", async ({ page, browserName, isMobile }) => {
-  // Headless Linux mobile WebKit can omit the scroll event from window.scrollTo.
+  // Headless mobile WebKit can omit the scroll event from window.scrollTo.
   const notifyProgrammaticScroll = async () => {
-    if (browserName === "webkit" && isMobile && process.platform === "linux") {
+    if (browserName === "webkit" && isMobile) {
       await page.evaluate(() => document.dispatchEvent(new Event("scroll", { bubbles: true })));
     }
   };
