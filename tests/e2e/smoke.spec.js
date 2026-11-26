@@ -708,9 +708,9 @@ test("mobile section labels appear only inside the active pill", async ({ page }
 
 test("enhanced desktop mode pins scrolling content", async ({ page, browserName, isMobile }) => {
   // Headless Linux mobile WebKit can omit the scroll event from window.scrollTo.
-  const notifyScrollByKeyboard = async () => {
+  const notifyProgrammaticScroll = async () => {
     if (browserName === "webkit" && isMobile && process.platform === "linux") {
-      await page.keyboard.press("ArrowDown");
+      await page.evaluate(() => window.dispatchEvent(new Event("scroll")));
     }
   };
   await page.setViewportSize({ width: 1280, height: 800 });
@@ -740,7 +740,7 @@ test("enhanced desktop mode pins scrolling content", async ({ page, browserName,
   await expect
     .poll(() => page.evaluate(() => Math.round(window.scrollY)))
     .toBe(Math.round(designMetrics.start + designMetrics.step));
-  await notifyScrollByKeyboard();
+  await notifyProgrammaticScroll();
   await expect
     .poll(async () => {
       const currentLeft = await designInner.evaluate(
@@ -756,7 +756,7 @@ test("enhanced desktop mode pins scrolling content", async ({ page, browserName,
     const distance = inner.scrollWidth - inner.parentElement.clientWidth;
     window.scrollTo(0, design.offsetTop + distance);
   });
-  await notifyScrollByKeyboard();
+  await notifyProgrammaticScroll();
   await expect
     .poll(() =>
       designInner
@@ -774,7 +774,7 @@ test("enhanced desktop mode pins scrolling content", async ({ page, browserName,
     const creatives = document.querySelector("#creatives");
     window.scrollTo(0, creatives.offsetTop + 400);
   });
-  await notifyScrollByKeyboard();
+  await notifyProgrammaticScroll();
   await expect
     .poll(() =>
       creativeHeading.evaluate((element) => {
