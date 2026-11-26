@@ -865,6 +865,214 @@ for (const mode of ["on", "off"]) {
   });
 }
 
+for (const mode of ["on", "off"]) {
+  test(`desktop creative gallery opens and restores its layout with effects ${mode}`, async ({
+    page,
+    isMobile,
+  }) => {
+    test.skip(isMobile, "Desktop creative layout");
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await setEffectsMode(page, mode);
+    await page.goto("/#creatives");
+
+    const gallery = page.locator("#creative-gallery");
+    const thumbnail = gallery.getByRole("button").nth(10);
+    const neighbour = gallery.getByRole("button", { includeHidden: true }).nth(11);
+    const dialog = page.getByRole("dialog");
+    const preview = dialog.locator("img");
+    const frame = dialog.locator("[data-image-preview-frame]");
+    const glare = frame.locator(".js-tilt-glare-inner");
+    await page.waitForLoadState("networkidle");
+    await expect
+      .poll(() =>
+        thumbnail.evaluate((element) => {
+          const bounds = element.getBoundingClientRect();
+          const targetY = window.innerHeight * 0.4;
+          const offset = bounds.y - targetY;
+          const contentTop = element.closest("#smooth-content")?.getBoundingClientRect().top;
+          const scrollTop = contentTop === undefined ? window.scrollY : -contentTop;
+          if (Math.abs(offset) > 10) window.scrollTo(0, scrollTop + offset);
+          return Math.abs(offset);
+        }),
+      )
+      .toBeLessThanOrEqual(10);
+    await expect(thumbnail).toBeInViewport();
+    await expect(neighbour).toBeInViewport();
+    const initialThumbnail = await thumbnail.boundingBox();
+    const thumbnailAngle = await thumbnail.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).getPropertyValue("--creative-rotation")),
+    );
+    const neighbourPosition = () =>
+      neighbour.evaluate((element) => {
+        const card = element.getBoundingClientRect();
+        const track = element.closest("[data-creative-cloud-item]").getBoundingClientRect();
+        return { x: card.x - track.x, y: card.y - track.y };
+      });
+    const initialNeighbour = await neighbourPosition();
+
+    if (mode === "on") {
+      await thumbnail.hover({ position: { x: 40, y: 35 } });
+      await expect
+        .poll(() => thumbnail.evaluate((element) => getComputedStyle(element).transform))
+        .toMatch(/matrix3d/);
+      await thumbnail.evaluate(async (element) => {
+        await Promise.allSettled(element.getAnimations().map(({ finished }) => finished));
+      });
+      expect((await thumbnail.boundingBox()).width).toBeLessThan(initialThumbnail.width * 1.15);
+    }
+
+    await thumbnail.focus();
+    await page.keyboard.press("Enter");
+    await expect(dialog).toBeVisible();
+    await expect
+      .poll(async () => {
+        const { x, y, width, height } = await preview.boundingBox();
+        const viewport = page.viewportSize();
+        return Math.hypot(x + width / 2 - viewport.width / 2, y + height / 2 - viewport.height / 2);
+      })
+      .toBeLessThan(2);
+    await expect
+      .poll(async () => (await preview.boundingBox()).width)
+      .toBeGreaterThan(initialThumbnail.width * 1.25);
+    if (mode === "on") {
+      await expect
+        .poll(async () => {
+          const { x, y } = await neighbourPosition();
+          return Math.hypot(x - initialNeighbour.x, y - initialNeighbour.y);
+        })
+        .toBeGreaterThan(20);
+    }
+
+    await expect
+      .poll(() =>
+        gallery.locator("[data-creative-cloud-item]").evaluateAll(
+          (items) =>
+            items.filter((item) => {
+              const { opacity, visibility } = getComputedStyle(item);
+              if (opacity === "0" || visibility === "hidden") return false;
+              const { left, right, top, bottom } = item.firstElementChild.getBoundingClientRect();
+              return right > 0 && bottom > 0 && left < innerWidth && top < innerHeight;
+            }).length,
+        ),
+      )
+      .toBe(0);
+
+    if (mode === "on") {
+      await expect(glare).toHaveCount(1);
+      const { width, height } = await preview.boundingBox();
+      await preview.hover({ position: { x: width * 0.7, y: height * 0.7 } });
+      await expect
+        .poll(() => glare.evaluate((element) => Number(getComputedStyle(element).opacity)))
+        .toBeGreaterThan(0);
+      expect(Math.abs(thumbnailAngle)).toBeGreaterThan(0);
+      await preview.click();
+      const closingAngle = await frame.evaluate((element) => {
+        const [animation] = element.getAnimations();
+        animation.pause();
+        animation.currentTime = animation.effect.getComputedTiming().endTime - 1;
+        const transform = new DOMMatrixReadOnly(getComputedStyle(element).transform);
+        animation.play();
+        return (Math.atan2(transform.b, transform.a) * 180) / Math.PI;
+      });
+      expect(closingAngle).toBeCloseTo(thumbnailAngle, 1);
+    } else {
+      await expect(glare).toHaveCount(0);
+      await page.keyboard.press("Escape");
+    }
+    await expect(dialog).toBeHidden();
+    await expect(thumbnail).toBeFocused();
+    await expect
+      .poll(async () => {
+        const { x, y } = await neighbourPosition();
+        return Math.hypot(x - initialNeighbour.x, y - initialNeighbour.y);
+      })
+      .toBeLessThan(2);
+  });
+}
+
+test("mobile creative preview stays open during a gesture and closes on tap", async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(!isMobile, "Touch input is required");
+  await setEffectsMode(page, "on");
+  await page.goto("/#creatives");
+
+  const thumbnail = page.locator("#creative-gallery").getByRole("button").first();
+  const dialog = page.getByRole("dialog");
+  const preview = dialog.locator("img");
+  const title = await thumbnail.locator("img").getAttribute("alt");
+  await thumbnail.tap();
+  await expect(preview).toHaveAttribute("alt", title);
+  await expect(dialog.locator(".js-tilt-glare")).toHaveCount(0);
+  await expect
+    .poll(async () => Math.round((await preview.boundingBox()).width))
+    .toBe(page.viewportSize().width);
+
+  await expect.poll(() => preview.evaluate((element) => element.getAnimations().length)).toBe(0);
+  const pendingAnimations = await preview.evaluate((element) => {
+    const touchStart = new Event("touchstart", { bubbles: true });
+    Object.defineProperty(touchStart, "touches", { value: [{}, {}] });
+    element.dispatchEvent(touchStart);
+    element.dispatchEvent(new MouseEvent("click", { bubbles: true, detail: 1 }));
+    return element.getAnimations().length;
+  });
+  expect(pendingAnimations).toBe(0);
+  await expect(dialog).toBeVisible();
+
+  await preview.tap();
+  await expect(dialog).toBeHidden();
+});
+
+test("mobile creative preview returns within the clipped gallery", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "Touch input is required");
+  await setEffectsMode(page, "on");
+  await page.goto("/#creatives");
+  await page.waitForLoadState("networkidle");
+
+  const gallery = page.locator("#creative-gallery");
+  const thumbnail = gallery.getByRole("img", { name: "Creative 2025 artem y" });
+  const dialog = page.getByRole("dialog");
+  const preview = dialog.locator("img");
+
+  await thumbnail.evaluate((element) => {
+    const gallery = element.closest("#creative-gallery");
+    const thumb = element.getBoundingClientRect();
+    const galleryTop = gallery.getBoundingClientRect().top;
+    gallery.style.setProperty(
+      "--creative-reveal-height",
+      `${thumb.top - galleryTop + thumb.height * 0.7}px`,
+    );
+    window.scrollTo(0, scrollY + gallery.getBoundingClientRect().bottom - innerHeight * 0.68);
+  });
+  const bounds = await thumbnail.boundingBox();
+  const galleryBounds = await gallery.boundingBox();
+  const bottom = galleryBounds.y + galleryBounds.height;
+  expect(bounds.y).toBeGreaterThan(0);
+  expect(bounds.y + bounds.height).toBeGreaterThan(bottom + 10);
+
+  const x = bounds.x + bounds.width / 2;
+  await page.touchscreen.tap(x, (bounds.y + bottom) / 2);
+  await expect(preview).toBeVisible();
+  await expect.poll(() => preview.evaluate((element) => element.getAnimations().length)).toBe(0);
+  await preview.tap();
+
+  const closing = await preview.evaluate(
+    (element, { x, bottom }) => {
+      const [animation] = element.getAnimations();
+      animation.pause();
+      animation.currentTime = animation.effect.getComputedTiming().endTime - 1;
+      const above = document.elementFromPoint(x, bottom - 6) === element;
+      const below = document.elementFromPoint(x, bottom + 6) === element;
+      animation.play();
+      return { above, below };
+    },
+    { x, bottom },
+  );
+  expect(closing).toEqual({ above: true, below: false });
+  await expect(dialog).toBeHidden();
+});
+
 test("mobile projects remain a vertical list", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/#projects");

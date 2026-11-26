@@ -53,31 +53,47 @@
         <div
           v-for="creative in creativeCloud"
           :key="creative.src"
-          data-creative-cloud-item
+          :data-creative-cloud-item="creative.id"
           :data-depth="creative.depth"
           :data-drift-x="creative.driftX"
           :data-drift-y="creative.driftY"
           class="relative block w-full break-inside-avoid hover:z-100! lg:absolute lg:top-(--creative-top) lg:left-(--creative-left) lg:z-(--creative-z-index) lg:w-(--creative-width) lg:rotate-(--creative-rotation) lg:will-change-transform"
+          :class="{
+            'lg:opacity-0': creative.id === visiblePreviewId,
+            'lg:invisible':
+              previewOffsets &&
+              creative.id !== visiblePreviewId &&
+              !previewOffsets.has(creative.id),
+          }"
           :style="creative.style"
         >
-          <VideoCreative
-            v-if="creative.type === 'video'"
-            :creative-src="creative.src"
-          />
-          <ImageCreative
-            v-else
-            class="max-lg:[-webkit-tap-highlight-color:transparent] max-lg:focus:outline-none max-lg:focus-visible:outline-2 max-lg:focus-visible:-outline-offset-2 max-lg:focus-visible:outline-primary"
-            :creative-alt="creative.alt"
-            :creative-src="creative.src"
-            :image-sources="creative.sources"
-            :image-sizes="getGalleryImageSizes(creative)"
-            :image-height="creative.height"
-            :image-width="creative.width"
-            :preview-label="
-              isMobileGallery ? t('buttons.openCreative', { image: creative.alt }) : ''
+          <div
+            class="contents lg:block lg:translate-x-[var(--creative-scatter-x,0px)] lg:translate-y-[var(--creative-scatter-y,0px)]"
+            :class="
+              effectsEnabled &&
+              'lg:transition-[translate] lg:duration-500 lg:ease-[cubic-bezier(0.25,0.7,0.25,1)]'
             "
-            @preview="openPreview(creative, $event)"
-          />
+            :style="previewOffsets?.get(creative.id)"
+          >
+            <VideoCreative
+              v-if="creative.type === 'video'"
+              :creative-src="creative.src"
+            />
+            <ImageCreative
+              v-else
+              class="focus:outline-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary max-lg:[-webkit-tap-highlight-color:transparent]"
+              :creative-alt="creative.alt"
+              :creative-src="creative.src"
+              :image-sources="creative.sources"
+              :image-sizes="getGalleryImageSizes(creative)"
+              :image-height="creative.height"
+              :image-width="creative.width"
+              :preview-label="
+                isMobileGallery ? t('buttons.openCreative', { image: creative.alt }) : creative.alt
+              "
+              @preview="(event, image) => openPreview(creative, event, image)"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -89,63 +105,28 @@
     >
       {{ t("buttons.showMore") }}
     </Button>
-    <Teleport to="body">
-      <dialog
-        ref="previewDialog"
-        :aria-label="t('menu.creatives.preview')"
-        class="fixed inset-0 m-0 h-dvh max-h-none w-dvw max-w-none overflow-x-hidden overflow-y-auto overscroll-none bg-transparent outline-none [-webkit-tap-highlight-color:transparent] backdrop:bg-transparent"
-        autofocus
-        @cancel.prevent="closePreview"
-        @click="handlePreviewTap"
-        @close="resetPreview"
-        @pointerdown="handlePreviewPointerDown"
-        @touchstart.passive="startPreviewTouch"
-        @touchmove.stop.passive="movePreviewTouch"
-        @touchcancel="ignorePreviewTap = true"
-      >
-        <div class="relative flex min-h-full flex-col justify-center py-11">
-          <button
-            ref="previewBackdrop"
-            type="button"
-            class="absolute inset-0 bg-(--semantic-surface-contrast) focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-(--semantic-text-on-contrast)"
-            :class="{ 'opacity-0': isPreviewPreparing }"
-            :aria-label="t('buttons.close')"
-          />
-          <picture
-            v-if="previewCreative"
-            class="contents"
-          >
-            <source
-              v-for="source in previewCreative.sources"
-              :key="source.type"
-              :type="source.type"
-              :srcset="source.srcset"
-              :sizes="isPreviewFullSize ? '100vw' : getGalleryImageSizes(previewCreative)"
-            />
-            <img
-              ref="previewImage"
-              class="relative h-auto w-full shrink-0 origin-top-left"
-              :class="{ invisible: isPreviewPreparing }"
-              :src="previewCreative.src"
-              :alt="previewCreative.alt"
-              :width="previewCreative.width"
-              :height="previewCreative.height"
-            />
-          </picture>
-        </div>
-      </dialog>
-    </Teleport>
+    <ImagePreview
+      ref="imagePreview"
+      :label="t('menu.creatives.preview')"
+      :close-label="t('buttons.close')"
+      :is-mobile="isMobileGallery"
+      @shown="showPreview"
+      @closing="restorePreviewLayout"
+      @restoring="visiblePreviewId = null"
+      @closed="resetPreview"
+    />
   </section>
 </template>
 
 <script setup>
-import { useElementSize, useMediaQuery, useScrollLock, useWindowSize } from "@vueuse/core";
+import { useElementSize, useMediaQuery, useWindowSize } from "@vueuse/core";
 import { computed, nextTick, onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import Button from "../components/Button.vue";
 import { createCreatives } from "../data/creatives";
 import savedLayout from "../data/creative-layout.json";
 import ImageCreative from "../components/ImageCreative.vue";
+import ImagePreview from "../components/ImagePreview.vue";
 import MenuDescription from "../components/MenuDescription.vue";
 import VideoCreative from "../components/VideoCreative.vue";
 import { devModeEnabled } from "../features/preferences/dev-mode";
@@ -157,26 +138,12 @@ import { getBreakpointPx } from "../utils/breakpoints";
 const { t } = useI18n();
 const creativeSectionRef = ref(null);
 const { width: contentWidth } = useElementSize(creativeSectionRef);
-const { height: viewportHeight } = useWindowSize();
+const { width: viewportWidth, height: viewportHeight } = useWindowSize();
 const contentMaxWidth = getBreakpointPx("3xl");
 const isMobileGallery = useMediaQuery(`(width < ${getBreakpointPx("lg")}px)`);
-const previewDialog = ref(null);
-const previewBackdrop = ref(null);
-const previewImage = ref(null);
-const previewCreative = shallowRef(null);
-const isPreviewPreparing = ref(false);
-const isPreviewFullSize = ref(false);
-const isPageScrollLocked = useScrollLock(document.documentElement);
-const previewMotionTiming = {
-  duration: 360,
-  easing: "cubic-bezier(0.25, 0.7, 0.25, 1)",
-  fill: "both",
-};
-let previewOrigin = null;
-let previewAnimations = [];
-let isClosingPreview = false;
-let previewTouchStart = null;
-let ignorePreviewTap = false;
+const imagePreview = ref(null);
+const visiblePreviewId = ref(null);
+const previewOffsets = shallowRef(null);
 const creativeGalleryRef = ref(null);
 const creativeGalleryContentRef = ref(null);
 const { height: galleryHeight } = useElementSize(creativeGalleryRef);
@@ -206,143 +173,76 @@ const creativeSectionStyle = computed(() => ({
 const getGalleryImageSizes = (creative) =>
   `(min-width: 1024px) min(${creative.layoutWidth}vw, ${(creative.layoutWidth / 100) * contentMaxWidth}px), (min-width: 640px) calc((100vw - 5rem) / 3), calc((100vw - 5rem) / 2)`;
 
-const clearPreviewAnimations = () => {
-  for (const animation of previewAnimations) animation.cancel();
-  previewAnimations = [];
-};
+const spreadPreviewNeighbours = (selectedId) => {
+  if (isMobileGallery.value) return;
 
-const finishPreviewMotion = (opening) => {
-  if (opening) {
-    clearPreviewAnimations();
-    isPreviewFullSize.value = true;
-  } else {
-    previewDialog.value.close();
-  }
-};
-
-const animatePreview = (opening) => {
-  const image = previewImage.value;
-  const backdrop = previewBackdrop.value;
-  if (!effectsEnabled.value || !image || !previewOrigin?.isConnected) {
-    finishPreviewMotion(opening);
+  const offsets = new Map();
+  if (!effectsEnabled.value) {
+    previewOffsets.value = offsets;
     return;
   }
 
-  // Read the current frame before cancelling so a quick dismissal continues from it.
-  const currentTransform = getComputedStyle(image).transform;
-  const currentOpacity = getComputedStyle(backdrop).opacity;
-  clearPreviewAnimations();
+  const width = document.documentElement.clientWidth;
+  const height = document.documentElement.clientHeight;
+  // Allow the scroll position to finish settling after the dialog takes focus.
+  const margin = height * 0.2;
+  for (const item of creativeGalleryRef.value.querySelectorAll("[data-creative-cloud-item]")) {
+    const id = item.dataset.creativeCloudItem;
+    if (id === selectedId) continue;
 
-  const thumbnail = previewOrigin.getBoundingClientRect();
-  const fullSize = image.getBoundingClientRect();
-  if (!thumbnail.width || !thumbnail.height || !fullSize.width || !fullSize.height) {
-    finishPreviewMotion(opening);
-    return;
+    const { left, right, top, bottom } = item.getBoundingClientRect();
+    if (right <= 0 || left >= width || bottom <= 0 || top >= height) continue;
+
+    const direction = Math.atan2(
+      (top + bottom) / (2 * height) - 0.5,
+      (left + right) / (2 * width) - 0.5,
+    );
+    const x = Math.cos(direction);
+    const y = Math.sin(direction);
+    const horizontalTravel = ((x < 0 ? right : width - left) + margin) / Math.abs(x);
+    const verticalTravel = ((y < 0 ? bottom : height - top) + margin) / Math.abs(y);
+    const travel = Math.min(horizontalTravel, verticalTravel);
+
+    // Convert viewport movement into the rotated card's local coordinates.
+    const angle =
+      (Number.parseFloat(item.style.getPropertyValue("--creative-rotation")) * Math.PI) / 180;
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+    offsets.set(id, {
+      "--creative-scatter-x": `${(x * cos + y * sin) * travel}px`,
+      "--creative-scatter-y": `${(y * cos - x * sin) * travel}px`,
+    });
   }
-
-  const thumbnailTransform = `translate(${thumbnail.x - fullSize.x}px, ${thumbnail.y - fullSize.y}px) scale(${thumbnail.width / fullSize.width}, ${thumbnail.height / fullSize.height})`;
-  const imageAnimation = image.animate(
-    {
-      transform: opening ? [thumbnailTransform, "none"] : [currentTransform, thumbnailTransform],
-    },
-    previewMotionTiming,
-  );
-  const backdropAnimation = backdrop.animate(
-    { opacity: opening ? [0, 1] : [currentOpacity, 0] },
-    previewMotionTiming,
-  );
-  previewAnimations = [imageAnimation, backdropAnimation];
-  imageAnimation.onfinish = () => {
-    if (previewAnimations[0] === imageAnimation) finishPreviewMotion(opening);
-  };
+  previewOffsets.value = offsets;
 };
 
-const openPreview = async (creative, event) => {
-  if (!isMobileGallery.value || previewCreative.value) return;
+watch([viewportWidth, viewportHeight], () => {
+  if (previewOffsets.value) spreadPreviewNeighbours(visiblePreviewId.value);
+});
 
-  const origin = event.currentTarget;
-  if (event.detail === 0) origin.focus({ preventScroll: true });
-  previewOrigin = origin;
-  isClosingPreview = false;
-  isPreviewPreparing.value = effectsEnabled.value;
-  isPreviewFullSize.value = !isPreviewPreparing.value;
-  previewCreative.value = creative;
-  previewDialog.value.showModal();
-  previewDialog.value.scrollTop = 0;
-  isPageScrollLocked.value = true;
-  if (!isPreviewPreparing.value) return;
-
-  await nextTick();
-  const image = previewImage.value;
-  const decoded = await image?.decode().then(
-    () => true,
-    () => false,
-  );
-  if (!previewDialog.value?.open || previewImage.value !== image || isClosingPreview) return;
-
-  if (decoded) animatePreview(true);
-  else isPreviewFullSize.value = true;
-  isPreviewPreparing.value = false;
+const openPreview = (creative, event, image) => {
+  const trigger = event.currentTarget;
+  if (event.detail === 0) trigger.focus({ preventScroll: true });
+  const origin = isMobileGallery.value ? trigger : image;
+  void imagePreview.value.open(creative, origin, getGalleryImageSizes(creative), {
+    rotation: creative.style["--creative-rotation"],
+    clipContainer: isMobileGallery.value ? creativeGalleryRef.value : null,
+  });
 };
 
-const closePreview = () => {
-  if (!previewDialog.value.open || isClosingPreview) return;
-
-  isClosingPreview = true;
-  if (isPreviewPreparing.value) previewDialog.value.close();
-  else animatePreview(false);
+const showPreview = (creative) => {
+  visiblePreviewId.value = creative.id;
+  spreadPreviewNeighbours(creative.id);
 };
 
-const handlePreviewPointerDown = (event) => {
-  if (event.pointerType !== "touch") ignorePreviewTap = false;
-};
-
-const startPreviewTouch = ({ touches }) => {
-  ignorePreviewTap = touches.length > 1;
-  previewTouchStart = touches[0];
-};
-
-// Stop touchmove from reaching the page scroll lock while allowing Safari to zoom and pan.
-const movePreviewTouch = ({ touches }) => {
-  const touch = touches[0];
-  if (
-    touches.length > 1 ||
-    (touch &&
-      previewTouchStart &&
-      Math.hypot(
-        touch.clientX - previewTouchStart.clientX,
-        touch.clientY - previewTouchStart.clientY,
-      ) > 8)
-  ) {
-    ignorePreviewTap = true;
-  }
-};
-
-const handlePreviewTap = (event) => {
-  if (!ignorePreviewTap || event.detail === 0) closePreview();
+const restorePreviewLayout = () => {
+  previewOffsets.value = null;
 };
 
 const resetPreview = () => {
-  if (previewDialog.value.open) return;
-
-  clearPreviewAnimations();
-  isPageScrollLocked.value = false;
-  previewOrigin = null;
-  previewTouchStart = null;
-  ignorePreviewTap = false;
-  isPreviewPreparing.value = false;
-  previewCreative.value = null;
+  restorePreviewLayout();
+  visiblePreviewId.value = null;
 };
-
-watch(isMobileGallery, (isMobile) => {
-  if (!isMobile && previewDialog.value?.open) previewDialog.value.close();
-});
-
-watch(effectsEnabled, (enabled) => {
-  if (!enabled && previewAnimations.length) finishPreviewMotion(!isClosingPreview);
-});
-
-onBeforeUnmount(clearPreviewAnimations);
 
 const showMoreCreatives = async () => {
   if (!hasMoreCreatives.value) return;
