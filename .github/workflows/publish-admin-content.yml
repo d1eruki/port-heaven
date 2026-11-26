@@ -1,0 +1,97 @@
+name: Publish admin content
+
+on:
+  workflow_dispatch:
+    inputs:
+      publication:
+        description: Publication ID
+        required: true
+        type: string
+
+concurrency:
+  group: port-heaven-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      ADMIN_API_URL: ${{ vars.ADMIN_API_URL }}
+      PUBLICATION_ID: ${{ inputs.publication }}
+    steps:
+      - name: Check out the latest publication branch
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Apply the draft
+        env:
+          PUBLISH_WORKFLOW_SECRET: ${{ secrets.PUBLISH_WORKFLOW_SECRET }}
+        run: |
+          node scripts/generate-content-manifest.mjs
+          node scripts/apply-admin-publication.mjs apply
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the site
+        run: npm run build
+
+      - name: Commit the validated content
+        run: |
+          git add -- content-manifest.json
+          if [ -d src/assets/admin-content ]; then
+            git add -- src/assets/admin-content
+          fi
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "chore(content): publish ${PUBLICATION_ID}"
+            if ! git push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"; then
+              echo ADMIN_PUBLICATION_FAILURE=conflict >> "$GITHUB_ENV"
+              exit 1
+            fi
+          elif [ "$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | cut -f 1)" != "$(git rev-parse HEAD)" ]; then
+            echo ADMIN_PUBLICATION_FAILURE=conflict >> "$GITHUB_ENV"
+            exit 1
+          fi
+
+      - name: Upload the validated site
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: dist
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6.0.0
+
+      - name: Deploy the validated site
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1
+
+      - name: Report the deployment
+        if: always()
+        env:
+          PUBLISH_WORKFLOW_SECRET: ${{ secrets.PUBLISH_WORKFLOW_SECRET }}
+          DEPLOYMENT_OUTCOME: ${{ steps.deployment.outcome }}
+        run: |
+          if [ "$DEPLOYMENT_OUTCOME" = success ]; then
+            node scripts/apply-admin-publication.mjs succeeded
+          else
+            node scripts/apply-admin-publication.mjs failed
+          fi

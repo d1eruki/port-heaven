@@ -1,7 +1,10 @@
+/* global __ADMIN_REVIEW_TEXT__ */
 import review1 from "../../assets/reviews/review-1.jpg?responsive";
 import review3 from "../../assets/reviews/review-3.jpg?responsive";
 import review4 from "../../assets/reviews/review-4.jpg?responsive";
 import review5 from "../../assets/reviews/review-5.png?responsive";
+
+const adminText = typeof __ADMIN_REVIEW_TEXT__ === "undefined" ? {} : __ADMIN_REVIEW_TEXT__;
 
 export const createReviews = () => {
   const positions = [
@@ -13,19 +16,24 @@ export const createReviews = () => {
   return [
     {
       ...review1,
-      alt: "diemxn: шрифт имба, сайт уже хвалят, шеф вроде даже доволен",
+      alt: adminText["review-1"] ?? "diemxn: шрифт имба, сайт уже хвалят, шеф вроде даже доволен",
     },
     {
       ...review3,
-      alt: "Иван Нестеров: хотел у тебя часы купить, чтоб ты обучалку провёл",
+      alt:
+        adminText["review-3"] ?? "Иван Нестеров: хотел у тебя часы купить, чтоб ты обучалку провёл",
     },
     {
       ...review4,
-      alt: "Влад Кошенков: в целом круто сделано, супер дотошно, я не ожидал такого",
+      alt:
+        adminText["review-4"] ??
+        "Влад Кошенков: в целом круто сделано, супер дотошно, я не ожидал такого",
     },
     {
       ...review5,
-      alt: "Саша Багдоян: но реально кайфово, оч яркая страничка для детей вышла веселая",
+      alt:
+        adminText["review-5"] ??
+        "Саша Багдоян: но реально кайфово, оч яркая страничка для детей вышла веселая",
     },
   ]
     .map((review) => ({ review, order: Math.random() }))
