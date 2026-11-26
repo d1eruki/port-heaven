@@ -1,0 +1,1535 @@
+{
+  "schemaVersion": 1,
+  "fields": [
+    {
+      "key": "ru.brand.logo",
+      "section": "Первый экран",
+      "group": "Тексты",
+      "label": "Brand / Название в логотипе",
+      "type": "text",
+      "value": "дайруки",
+      "sourceValue": "дайруки"
+    },
+    {
+      "key": "ru.brand.hero",
+      "section": "Первый экран",
+      "group": "Тексты",
+      "label": "Brand / Имя на первом экране",
+      "type": "text",
+      "value": "артем\nтресков",
+      "sourceValue": "артем\nтресков"
+    },
+    {
+      "key": "ru.heroClicker.action",
+      "section": "Первый экран",
+      "group": "Тексты",
+      "label": "Hero Clicker / Действие",
+      "type": "text",
+      "value": "кликнуть на персонажа",
+      "sourceValue": "кликнуть на персонажа"
+    },
+    {
+      "key": "ru.navigation.label",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Navigation / Label",
+      "type": "text",
+      "value": "навигация по разделам",
+      "sourceValue": "навигация по разделам"
+    },
+    {
+      "key": "ru.navigation.sections.hero",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Sections / Имя на первом экране",
+      "type": "text",
+      "value": "главная",
+      "sourceValue": "главная"
+    },
+    {
+      "key": "ru.navigation.sections.about",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Sections / About",
+      "type": "text",
+      "value": "обо мне",
+      "sourceValue": "обо мне"
+    },
+    {
+      "key": "ru.navigation.sections.projects",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Sections / Projects",
+      "type": "text",
+      "value": "коммерческие проекты",
+      "sourceValue": "коммерческие проекты"
+    },
+    {
+      "key": "ru.navigation.sections.design",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Sections / Design",
+      "type": "text",
+      "value": "макеты",
+      "sourceValue": "макеты"
+    },
+    {
+      "key": "ru.navigation.sections.creatives",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Sections / Creatives",
+      "type": "text",
+      "value": "креативы",
+      "sourceValue": "креативы"
+    },
+    {
+      "key": "ru.navigation.sections.pricing",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Sections / Pricing",
+      "type": "text",
+      "value": "цены",
+      "sourceValue": "цены"
+    },
+    {
+      "key": "ru.navigation.sections.reviews",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Sections / Reviews",
+      "type": "text",
+      "value": "отзывы",
+      "sourceValue": "отзывы"
+    },
+    {
+      "key": "ru.navigation.sections.footer",
+      "section": "Общие элементы",
+      "group": "Навигация",
+      "label": "Sections / Footer",
+      "type": "text",
+      "value": "связь",
+      "sourceValue": "связь"
+    },
+    {
+      "key": "ru.menu.about.title",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "About / Заголовок",
+      "type": "text",
+      "value": "Обо мне",
+      "sourceValue": "Обо мне"
+    },
+    {
+      "key": "ru.menu.about.intro",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "About / Вступление",
+      "type": "text",
+      "value": "Делаю дизайн, который решает задачи, повышает конверсии и выглядит круто. Работаю на стыке веб-дизайна, продукта и фронтенда, учитываю метрики, MVP и ограничения разработки. Превращаю цели бизнеса в понятные интерфейсы.",
+      "sourceValue": "Делаю дизайн, который решает задачи, повышает конверсии и выглядит круто. Работаю на стыке веб-дизайна, продукта и фронтенда, учитываю метрики, MVP и ограничения разработки. Превращаю цели бизнеса в понятные интерфейсы."
+    },
+    {
+      "key": "ru.menu.about.experience.title",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "Experience / Заголовок",
+      "type": "text",
+      "value": "Коммерческий опыт",
+      "sourceValue": "Коммерческий опыт"
+    },
+    {
+      "key": "ru.menu.about.experience.text",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "Experience / Текст",
+      "type": "text",
+      "value": "Проектировал интерфейсы, собирал UI-киты и интерактивные прототипы, верстал на CSS, фреймворках и конструкторах.",
+      "sourceValue": "Проектировал интерфейсы, собирал UI-киты и интерактивные прототипы, верстал на CSS, фреймворках и конструкторах."
+    },
+    {
+      "key": "ru.menu.about.projects.title",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "Projects / Заголовок",
+      "type": "text",
+      "value": "Реализованные проекты",
+      "sourceValue": "Реализованные проекты"
+    },
+    {
+      "key": "ru.menu.about.projects.text",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "Projects / Текст",
+      "type": "text",
+      "value": "Запустил проекты от лендингов до сложных веб-платформ в сферах VR, e-learning и маркетинга.",
+      "sourceValue": "Запустил проекты от лендингов до сложных веб-платформ в сферах VR, e-learning и маркетинга."
+    },
+    {
+      "key": "ru.menu.about.balance.title",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "Balance / Заголовок",
+      "type": "text",
+      "value": "Баланс в работе",
+      "sourceValue": "Баланс в работе"
+    },
+    {
+      "key": "ru.menu.about.balance.text",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "Balance / Текст",
+      "type": "text",
+      "value": "Визуал и логика. Люблю, когда интерфейс не только хорошо выглядит, но ещё понятно устроен и реально работает.",
+      "sourceValue": "Визуал и логика. Люблю, когда интерфейс не только хорошо выглядит, но ещё понятно устроен и реально работает."
+    },
+    {
+      "key": "ru.menu.about.hobbies.title",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "Hobbies / Заголовок",
+      "type": "text",
+      "value": "Хобби",
+      "sourceValue": "Хобби"
+    },
+    {
+      "key": "ru.menu.about.hobbies.text",
+      "section": "Обо мне",
+      "group": "Тексты раздела",
+      "label": "Hobbies / Текст",
+      "type": "text",
+      "value": "В свободное время продолжаю развиваться в дизайне и пробую новые направления. Для баланса — фильмы, немного игр, зал и хорошие места.",
+      "sourceValue": "В свободное время продолжаю развиваться в дизайне и пробую новые направления. Для баланса — фильмы, немного игр, зал и хорошие места."
+    },
+    {
+      "key": "ru.menu.projects.title",
+      "section": "Проекты",
+      "group": "Тексты раздела",
+      "label": "Projects / Заголовок",
+      "type": "text",
+      "value": "коммерческие проекты",
+      "sourceValue": "коммерческие проекты"
+    },
+    {
+      "key": "ru.menu.projects.description",
+      "section": "Проекты",
+      "group": "Тексты раздела",
+      "label": "Projects / Описание",
+      "type": "text",
+      "value": "Реальные коммерческие кейсы, доведённые до результата. Здесь то, что было не просто придумано, а запущено и работает вживую.",
+      "sourceValue": "Реальные коммерческие кейсы, доведённые до результата. Здесь то, что было не просто придумано, а запущено и работает вживую."
+    },
+    {
+      "key": "ru.menu.designs.title",
+      "section": "Макеты",
+      "group": "Тексты раздела",
+      "label": "Designs / Заголовок",
+      "type": "text",
+      "value": "макеты",
+      "sourceValue": "макеты"
+    },
+    {
+      "key": "ru.menu.designs.description",
+      "section": "Макеты",
+      "group": "Тексты раздела",
+      "label": "Designs / Описание",
+      "type": "text",
+      "value": "Концепты и прототипы без реализации: учебные, фриланс-проекты и личные эксперименты. Здесь важна идея, структура и подача, а не код.",
+      "sourceValue": "Концепты и прототипы без реализации: учебные, фриланс-проекты и личные эксперименты. Здесь важна идея, структура и подача, а не код."
+    },
+    {
+      "key": "ru.menu.creatives.title",
+      "section": "Креативы",
+      "group": "Тексты раздела",
+      "label": "Creatives / Заголовок",
+      "type": "text",
+      "value": "креативы",
+      "sourceValue": "креативы"
+    },
+    {
+      "key": "ru.menu.creatives.preview",
+      "section": "Креативы",
+      "group": "Тексты раздела",
+      "label": "Creatives / Preview",
+      "type": "text",
+      "value": "просмотр креатива",
+      "sourceValue": "просмотр креатива"
+    },
+    {
+      "key": "ru.menu.creatives.description",
+      "section": "Креативы",
+      "group": "Тексты раздела",
+      "label": "Creatives / Описание",
+      "type": "text",
+      "value": "Подборка визуалов, которые я генерирую, собираю и дорабатываю. Здесь и заказные работы, и личные эксперименты — всё, где можно было поиграть с идеей, атмосферой и стилем.",
+      "sourceValue": "Подборка визуалов, которые я генерирую, собираю и дорабатываю. Здесь и заказные работы, и личные эксперименты — всё, где можно было поиграть с идеей, атмосферой и стилем."
+    },
+    {
+      "key": "ru.menu.pricing.title",
+      "section": "Стоимость",
+      "group": "Тексты раздела",
+      "label": "Pricing / Заголовок",
+      "type": "text",
+      "value": "Цены",
+      "sourceValue": "Цены"
+    },
+    {
+      "key": "ru.menu.pricing.description",
+      "section": "Стоимость",
+      "group": "Тексты раздела",
+      "label": "Pricing / Описание",
+      "type": "text",
+      "value": "Цены описание.",
+      "sourceValue": "Цены описание."
+    },
+    {
+      "key": "ru.menu.reviews.title",
+      "section": "Отзывы",
+      "group": "Тексты раздела",
+      "label": "Reviews / Заголовок",
+      "type": "text",
+      "value": "Отзывы",
+      "sourceValue": "Отзывы"
+    },
+    {
+      "key": "ru.menu.footer.title",
+      "section": "Подвал",
+      "group": "Тексты раздела",
+      "label": "Footer / Заголовок",
+      "type": "text",
+      "value": "связь",
+      "sourceValue": "связь"
+    },
+    {
+      "key": "ru.menu.footer.description",
+      "section": "Подвал",
+      "group": "Тексты раздела",
+      "label": "Footer / Описание",
+      "type": "text",
+      "value": "Если проект расплывчатый, но чувствуешь, что в нём что-то есть. Помогу поймать суть и оформить её в нормальный вид.",
+      "sourceValue": "Если проект расплывчатый, но чувствуешь, что в нём что-то есть. Помогу поймать суть и оформить её в нормальный вид."
+    },
+    {
+      "key": "ru.pricing.plans.base.description",
+      "section": "Стоимость",
+      "group": "Base",
+      "label": "Base / Описание",
+      "type": "text",
+      "value": "Для быстрого макета лендинга под понятный оффер.",
+      "sourceValue": "Для быстрого макета лендинга под понятный оффер."
+    },
+    {
+      "key": "ru.pricing.plans.base.duration",
+      "section": "Стоимость",
+      "group": "Base",
+      "label": "Base / Duration",
+      "type": "text",
+      "value": "5–7 рабочих дней",
+      "sourceValue": "5–7 рабочих дней"
+    },
+    {
+      "key": "ru.pricing.plans.base.features.0",
+      "section": "Стоимость",
+      "group": "Base",
+      "label": "Features / 0",
+      "type": "text",
+      "value": "Мудборд и визуальное направление",
+      "sourceValue": "Мудборд и визуальное направление"
+    },
+    {
+      "key": "ru.pricing.plans.base.features.1",
+      "section": "Стоимость",
+      "group": "Base",
+      "label": "Features / 1",
+      "type": "text",
+      "value": "Структура лендинга до 5 блоков",
+      "sourceValue": "Структура лендинга до 5 блоков"
+    },
+    {
+      "key": "ru.pricing.plans.base.features.2",
+      "section": "Стоимость",
+      "group": "Base",
+      "label": "Features / 2",
+      "type": "text",
+      "value": "Desktop-макет главной страницы",
+      "sourceValue": "Desktop-макет главной страницы"
+    },
+    {
+      "key": "ru.pricing.plans.base.features.3",
+      "section": "Стоимость",
+      "group": "Base",
+      "label": "Features / 3",
+      "type": "text",
+      "value": "1 созвон и 1 круг правок",
+      "sourceValue": "1 созвон и 1 круг правок"
+    },
+    {
+      "key": "ru.pricing.plans.advanced.description",
+      "section": "Стоимость",
+      "group": "Advanced",
+      "label": "Advanced / Описание",
+      "type": "text",
+      "value": "Для лендинга, где важны сценарий, адаптив и прототип.",
+      "sourceValue": "Для лендинга, где важны сценарий, адаптив и прототип."
+    },
+    {
+      "key": "ru.pricing.plans.advanced.duration",
+      "section": "Стоимость",
+      "group": "Advanced",
+      "label": "Advanced / Duration",
+      "type": "text",
+      "value": "10–14 рабочих дней",
+      "sourceValue": "10–14 рабочих дней"
+    },
+    {
+      "key": "ru.pricing.plans.advanced.features.0",
+      "section": "Стоимость",
+      "group": "Advanced",
+      "label": "Features / 0",
+      "type": "text",
+      "value": "Анализ ЦА и портрет пользователя",
+      "sourceValue": "Анализ ЦА и портрет пользователя"
+    },
+    {
+      "key": "ru.pricing.plans.advanced.features.1",
+      "section": "Стоимость",
+      "group": "Advanced",
+      "label": "Features / 1",
+      "type": "text",
+      "value": "Вайрфреймы до 8 блоков",
+      "sourceValue": "Вайрфреймы до 8 блоков"
+    },
+    {
+      "key": "ru.pricing.plans.advanced.features.2",
+      "section": "Стоимость",
+      "group": "Advanced",
+      "label": "Features / 2",
+      "type": "text",
+      "value": "Адаптивы desktop / tablet / mobile",
+      "sourceValue": "Адаптивы desktop / tablet / mobile"
+    },
+    {
+      "key": "ru.pricing.plans.advanced.features.3",
+      "section": "Стоимость",
+      "group": "Advanced",
+      "label": "Features / 3",
+      "type": "text",
+      "value": "Кликабельный прототип и mini UI-kit",
+      "sourceValue": "Кликабельный прототип и mini UI-kit"
+    },
+    {
+      "key": "ru.pricing.plans.advanced.features.4",
+      "section": "Стоимость",
+      "group": "Advanced",
+      "label": "Features / 4",
+      "type": "text",
+      "value": "2 созвона и 2 круга правок",
+      "sourceValue": "2 созвона и 2 круга правок"
+    },
+    {
+      "key": "ru.pricing.plans.pro.description",
+      "section": "Стоимость",
+      "group": "Pro",
+      "label": "Pro / Описание",
+      "type": "text",
+      "value": "Для продукта или кампании, где нужно проверить гипотезы.",
+      "sourceValue": "Для продукта или кампании, где нужно проверить гипотезы."
+    },
+    {
+      "key": "ru.pricing.plans.pro.duration",
+      "section": "Стоимость",
+      "group": "Pro",
+      "label": "Pro / Duration",
+      "type": "text",
+      "value": "3–4 недели",
+      "sourceValue": "3–4 недели"
+    },
+    {
+      "key": "ru.pricing.plans.pro.features.0",
+      "section": "Стоимость",
+      "group": "Pro",
+      "label": "Features / 0",
+      "type": "text",
+      "value": "Гипотезы и сценарии тестирования",
+      "sourceValue": "Гипотезы и сценарии тестирования"
+    },
+    {
+      "key": "ru.pricing.plans.pro.features.1",
+      "section": "Стоимость",
+      "group": "Pro",
+      "label": "Features / 1",
+      "type": "text",
+      "value": "User flow и карта ключевых экранов",
+      "sourceValue": "User flow и карта ключевых экранов"
+    },
+    {
+      "key": "ru.pricing.plans.pro.features.2",
+      "section": "Стоимость",
+      "group": "Pro",
+      "label": "Features / 2",
+      "type": "text",
+      "value": "Дизайн-система: токены, стили, компоненты",
+      "sourceValue": "Дизайн-система: токены, стили, компоненты"
+    },
+    {
+      "key": "ru.pricing.plans.pro.features.3",
+      "section": "Стоимость",
+      "group": "Pro",
+      "label": "Features / 3",
+      "type": "text",
+      "value": "До 12 экранов или блоков интерфейса",
+      "sourceValue": "До 12 экранов или блоков интерфейса"
+    },
+    {
+      "key": "ru.pricing.plans.pro.features.4",
+      "section": "Стоимость",
+      "group": "Pro",
+      "label": "Features / 4",
+      "type": "text",
+      "value": "UX-тест, handoff и 3 круга правок",
+      "sourceValue": "UX-тест, handoff и 3 круга правок"
+    },
+    {
+      "key": "ru.pricing.pricePrefix",
+      "section": "Стоимость",
+      "group": "Общие тексты",
+      "label": "Pricing / Price Prefix",
+      "type": "text",
+      "value": "от",
+      "sourceValue": "от"
+    },
+    {
+      "key": "ru.pricing.currency",
+      "section": "Стоимость",
+      "group": "Общие тексты",
+      "label": "Pricing / Currency",
+      "type": "text",
+      "value": "₽",
+      "sourceValue": "₽"
+    },
+    {
+      "key": "ru.pricing.includes",
+      "section": "Стоимость",
+      "group": "Общие тексты",
+      "label": "Pricing / Includes",
+      "type": "text",
+      "value": "Всё из {plan}, плюс:",
+      "sourceValue": "Всё из {plan}, плюс:"
+    },
+    {
+      "key": "ru.pricing.action",
+      "section": "Стоимость",
+      "group": "Общие тексты",
+      "label": "Pricing / Действие",
+      "type": "text",
+      "value": "обсудить проект в телеге",
+      "sourceValue": "обсудить проект в телеге"
+    },
+    {
+      "key": "ru.projects.buttons.websiteDesign",
+      "section": "Проекты",
+      "group": "Кнопки карточек",
+      "label": "Buttons / Website Design",
+      "type": "text",
+      "value": "дизайн сайта",
+      "sourceValue": "дизайн сайта"
+    },
+    {
+      "key": "ru.projects.buttons.xrmsDesign",
+      "section": "Проекты",
+      "group": "Кнопки карточек",
+      "label": "Buttons / Xrms Design",
+      "type": "text",
+      "value": "дизайн XRMS",
+      "sourceValue": "дизайн XRMS"
+    },
+    {
+      "key": "ru.projects.buttons.landingDesign",
+      "section": "Проекты",
+      "group": "Кнопки карточек",
+      "label": "Buttons / Landing Design",
+      "type": "text",
+      "value": "дизайн лендинга",
+      "sourceValue": "дизайн лендинга"
+    },
+    {
+      "key": "ru.projects.buttons.promoDesign",
+      "section": "Проекты",
+      "group": "Кнопки карточек",
+      "label": "Buttons / Promo Design",
+      "type": "text",
+      "value": "дизайн промо",
+      "sourceValue": "дизайн промо"
+    },
+    {
+      "key": "ru.projects.buttons.promoSite",
+      "section": "Проекты",
+      "group": "Кнопки карточек",
+      "label": "Buttons / Promo Site",
+      "type": "text",
+      "value": "сайт промо",
+      "sourceValue": "сайт промо"
+    },
+    {
+      "key": "ru.projects.buttons.site",
+      "section": "Проекты",
+      "group": "Кнопки карточек",
+      "label": "Buttons / Site",
+      "type": "text",
+      "value": "сайт",
+      "sourceValue": "сайт"
+    },
+    {
+      "key": "ru.projects.buttons.downloadPage",
+      "section": "Проекты",
+      "group": "Кнопки карточек",
+      "label": "Buttons / Download Page",
+      "type": "text",
+      "value": "страница скачивания",
+      "sourceValue": "страница скачивания"
+    },
+    {
+      "key": "ru.projects.buttons.projectRegistry",
+      "section": "Проекты",
+      "group": "Кнопки карточек",
+      "label": "Buttons / Project Registry",
+      "type": "text",
+      "value": "реестр проектов",
+      "sourceValue": "реестр проектов"
+    },
+    {
+      "key": "ru.projects.bloxels.title",
+      "section": "Проекты",
+      "group": "Блоксели",
+      "label": "Bloxels / Заголовок",
+      "type": "text",
+      "value": "Блоксели",
+      "sourceValue": "Блоксели"
+    },
+    {
+      "key": "ru.projects.bloxels.landing.title",
+      "section": "Проекты",
+      "group": "Блоксели",
+      "label": "Landing / Заголовок",
+      "type": "text",
+      "value": "Лендинг платформы",
+      "sourceValue": "Лендинг платформы"
+    },
+    {
+      "key": "ru.projects.bloxels.landing.text",
+      "section": "Проекты",
+      "group": "Блоксели",
+      "label": "Landing / Текст",
+      "type": "text",
+      "value": "Веб-прототип лендинга образовательного конструктора 3D-игр с отдельными сценариями для школ, родителей и детей.",
+      "sourceValue": "Веб-прототип лендинга образовательного конструктора 3D-игр с отдельными сценариями для школ, родителей и детей."
+    },
+    {
+      "key": "ru.projects.bloxels.promo.title",
+      "section": "Проекты",
+      "group": "Блоксели",
+      "label": "Promo / Заголовок",
+      "type": "text",
+      "value": "Промо «Лутай кота»",
+      "sourceValue": "Промо «Лутай кота»"
+    },
+    {
+      "key": "ru.projects.bloxels.promo.text",
+      "section": "Проекты",
+      "group": "Блоксели",
+      "label": "Promo / Текст",
+      "type": "text",
+      "value": "Адаптивная вёрстка и выбор цвета плюшевого персонажа перед переходом к форме предзаказа.",
+      "sourceValue": "Адаптивная вёрстка и выбор цвета плюшевого персонажа перед переходом к форме предзаказа."
+    },
+    {
+      "key": "ru.projects.medved.title",
+      "section": "Проекты",
+      "group": "МЁДВЕДЬ",
+      "label": "Medved / Заголовок",
+      "type": "text",
+      "value": "МЁДВЕДЬ",
+      "sourceValue": "МЁДВЕДЬ"
+    },
+    {
+      "key": "ru.projects.medved.text",
+      "section": "Проекты",
+      "group": "МЁДВЕДЬ",
+      "label": "Medved / Текст",
+      "type": "text",
+      "value": "Редизайн и разработка сайта петербургского производителя медовухи, сидра и пуаре. В новой версии — 11 страниц, включая каталог напитков и раздел для баров и ресторанов. Для главной подготовлены многослойные иллюстрации и анимированный слайдер с рендерами продукции.",
+      "sourceValue": "Редизайн и разработка сайта петербургского производителя медовухи, сидра и пуаре. В новой версии — 11 страниц, включая каталог напитков и раздел для баров и ресторанов. Для главной подготовлены многослойные иллюстрации и анимированный слайдер с рендерами продукции."
+    },
+    {
+      "key": "ru.projects.varwin.title",
+      "section": "Проекты",
+      "group": "Varwin",
+      "label": "Varwin / Заголовок",
+      "type": "text",
+      "value": "Varwin",
+      "sourceValue": "Varwin"
+    },
+    {
+      "key": "ru.projects.varwin.download.title",
+      "section": "Проекты",
+      "group": "Varwin",
+      "label": "Download / Заголовок",
+      "type": "text",
+      "value": "Страница скачивания Varwin XRMS",
+      "sourceValue": "Страница скачивания Varwin XRMS"
+    },
+    {
+      "key": "ru.projects.varwin.download.text",
+      "section": "Проекты",
+      "group": "Varwin",
+      "label": "Download / Текст",
+      "type": "text",
+      "value": "Интервью, прототипирование и реализация обновлённой страницы скачивания на Bootstrap 4.",
+      "sourceValue": "Интервью, прототипирование и реализация обновлённой страницы скачивания на Bootstrap 4."
+    },
+    {
+      "key": "ru.projects.varwin.registry.title",
+      "section": "Проекты",
+      "group": "Varwin",
+      "label": "Registry / Заголовок",
+      "type": "text",
+      "value": "Реестр проектов Varwin Education",
+      "sourceValue": "Реестр проектов Varwin Education"
+    },
+    {
+      "key": "ru.projects.varwin.registry.text",
+      "section": "Проекты",
+      "group": "Varwin",
+      "label": "Registry / Текст",
+      "type": "text",
+      "value": "Проектирование реестра для публикации и просмотра пользовательских проектов.",
+      "sourceValue": "Проектирование реестра для публикации и просмотра пользовательских проектов."
+    },
+    {
+      "key": "ru.projects.varwin.xrms.title",
+      "section": "Проекты",
+      "group": "Varwin",
+      "label": "Xrms / Заголовок",
+      "type": "text",
+      "value": "Платформа Varwin XRMS",
+      "sourceValue": "Платформа Varwin XRMS"
+    },
+    {
+      "key": "ru.projects.varwin.xrms.text",
+      "section": "Проекты",
+      "group": "Varwin",
+      "label": "Xrms / Текст",
+      "type": "text",
+      "value": "Разработка UI-кита и прототипов Varwin XRMS для обсуждения, тестирования и внедрения изменений в интерфейс платформы.",
+      "sourceValue": "Разработка UI-кита и прототипов Varwin XRMS для обсуждения, тестирования и внедрения изменений в интерфейс платформы."
+    },
+    {
+      "key": "ru.designs.varwinMobile.title",
+      "section": "Макеты",
+      "group": "Мобильный клиент Varwin",
+      "label": "Varwin Mobile / Заголовок",
+      "type": "text",
+      "value": "Мобильный клиент Varwin",
+      "sourceValue": "Мобильный клиент Varwin"
+    },
+    {
+      "key": "ru.designs.varwinMobile.text",
+      "section": "Макеты",
+      "group": "Мобильный клиент Varwin",
+      "label": "Varwin Mobile / Текст",
+      "type": "text",
+      "value": "Интерфейс мобильного приложения Varwin — для запуска проектов со смартфона или шлема.",
+      "sourceValue": "Интерфейс мобильного приложения Varwin — для запуска проектов со смартфона или шлема."
+    },
+    {
+      "key": "ru.designs.subscout.title",
+      "section": "Макеты",
+      "group": "Subscout",
+      "label": "Subscout / Заголовок",
+      "type": "text",
+      "value": "Subscout",
+      "sourceValue": "Subscout"
+    },
+    {
+      "key": "ru.designs.subscout.text",
+      "section": "Макеты",
+      "group": "Subscout",
+      "label": "Subscout / Текст",
+      "type": "text",
+      "value": "Мобильное приложение для добавления и отслеживания подписок пользователя на платные сервисы.",
+      "sourceValue": "Мобильное приложение для добавления и отслеживания подписок пользователя на платные сервисы."
+    },
+    {
+      "key": "ru.designs.baikal.title",
+      "section": "Макеты",
+      "group": "Пора в поход",
+      "label": "Baikal / Заголовок",
+      "type": "text",
+      "value": "Пора в поход",
+      "sourceValue": "Пора в поход"
+    },
+    {
+      "key": "ru.designs.baikal.text",
+      "section": "Макеты",
+      "group": "Пора в поход",
+      "label": "Baikal / Текст",
+      "type": "text",
+      "value": "Обновление лэндинга для туристического клуба «Пора в поход», который предлагает путевку на Байкал.",
+      "sourceValue": "Обновление лэндинга для туристического клуба «Пора в поход», который предлагает путевку на Байкал."
+    },
+    {
+      "key": "ru.designs.pioner.title",
+      "section": "Макеты",
+      "group": "Пионер",
+      "label": "Pioner / Заголовок",
+      "type": "text",
+      "value": "Пионер",
+      "sourceValue": "Пионер"
+    },
+    {
+      "key": "ru.designs.pioner.text",
+      "section": "Макеты",
+      "group": "Пионер",
+      "label": "Pioner / Текст",
+      "type": "text",
+      "value": "Обновление лэндинга для завода силовых машин.",
+      "sourceValue": "Обновление лэндинга для завода силовых машин."
+    },
+    {
+      "key": "ru.designs.admaster.title",
+      "section": "Макеты",
+      "group": "AdMaster",
+      "label": "Admaster / Заголовок",
+      "type": "text",
+      "value": "AdMaster",
+      "sourceValue": "AdMaster"
+    },
+    {
+      "key": "ru.designs.admaster.text",
+      "section": "Макеты",
+      "group": "AdMaster",
+      "label": "Admaster / Текст",
+      "type": "text",
+      "value": "Дизайн адаптивного лендинга для AdMaster — платформы управления интернет-рекламой для медиaиздателей.",
+      "sourceValue": "Дизайн адаптивного лендинга для AdMaster — платформы управления интернет-рекламой для медиaиздателей."
+    },
+    {
+      "key": "ru.designs.0xprocessing.title",
+      "section": "Макеты",
+      "group": "0x processing",
+      "label": "0xprocessing / Заголовок",
+      "type": "text",
+      "value": "0x processing",
+      "sourceValue": "0x processing"
+    },
+    {
+      "key": "ru.designs.0xprocessing.text",
+      "section": "Макеты",
+      "group": "0x processing",
+      "label": "0xprocessing / Текст",
+      "type": "text",
+      "value": "Разработка лендинга для 0x Processing — сервиса криптоплатежей для маркетплейсов цифровых товаров.",
+      "sourceValue": "Разработка лендинга для 0x Processing — сервиса криптоплатежей для маркетплейсов цифровых товаров."
+    },
+    {
+      "key": "ru.designs.stuff.title",
+      "section": "Макеты",
+      "group": "Стафф",
+      "label": "Stuff / Заголовок",
+      "type": "text",
+      "value": "Стафф",
+      "sourceValue": "Стафф"
+    },
+    {
+      "key": "ru.designs.stuff.text",
+      "section": "Макеты",
+      "group": "Стафф",
+      "label": "Stuff / Текст",
+      "type": "text",
+      "value": "Разработка лендинга для Стафф — кадрового и рекрутингового агенства.",
+      "sourceValue": "Разработка лендинга для Стафф — кадрового и рекрутингового агенства."
+    },
+    {
+      "key": "ru.designs.robogrid.title",
+      "section": "Макеты",
+      "group": "Robogrid",
+      "label": "Robogrid / Заголовок",
+      "type": "text",
+      "value": "Robogrid",
+      "sourceValue": "Robogrid"
+    },
+    {
+      "key": "ru.designs.robogrid.text",
+      "section": "Макеты",
+      "group": "Robogrid",
+      "label": "Robogrid / Текст",
+      "type": "text",
+      "value": "Разработка дашборда для RoboGrid — системы анализа поломок, загрузки отделов и эффективности работы роботов.",
+      "sourceValue": "Разработка дашборда для RoboGrid — системы анализа поломок, загрузки отделов и эффективности работы роботов."
+    },
+    {
+      "key": "ru.designs.analyticalPlatform.title",
+      "section": "Макеты",
+      "group": "Платформа аналитики",
+      "label": "Analytical Platform / Заголовок",
+      "type": "text",
+      "value": "Платформа аналитики",
+      "sourceValue": "Платформа аналитики"
+    },
+    {
+      "key": "ru.designs.analyticalPlatform.text",
+      "section": "Макеты",
+      "group": "Платформа аналитики",
+      "label": "Analytical Platform / Текст",
+      "type": "text",
+      "value": "Интерфейс для анализа результатов A/B-тестов с удобной фильтрацией и сравнением метрик.",
+      "sourceValue": "Интерфейс для анализа результатов A/B-тестов с удобной фильтрацией и сравнением метрик."
+    },
+    {
+      "key": "ru.designs.mooozik.title",
+      "section": "Макеты",
+      "group": "Mooozik",
+      "label": "Mooozik / Заголовок",
+      "type": "text",
+      "value": "Mooozik",
+      "sourceValue": "Mooozik"
+    },
+    {
+      "key": "ru.designs.mooozik.text",
+      "section": "Макеты",
+      "group": "Mooozik",
+      "label": "Mooozik / Текст",
+      "type": "text",
+      "value": "Mooozik — нидерландский музыкальный стартап, который производит уникальные музыкальные треки, предназначенные исключительно для коров",
+      "sourceValue": "Mooozik — нидерландский музыкальный стартап, который производит уникальные музыкальные треки, предназначенные исключительно для коров"
+    },
+    {
+      "key": "ru.buttons.open",
+      "section": "Общие элементы",
+      "group": "Кнопки",
+      "label": "Buttons / Open",
+      "type": "text",
+      "value": "открыть",
+      "sourceValue": "открыть"
+    },
+    {
+      "key": "ru.buttons.openCreative",
+      "section": "Общие элементы",
+      "group": "Кнопки",
+      "label": "Buttons / Open Creative",
+      "type": "text",
+      "value": "открыть изображение на весь экран: {image}",
+      "sourceValue": "открыть изображение на весь экран: {image}"
+    },
+    {
+      "key": "ru.buttons.close",
+      "section": "Общие элементы",
+      "group": "Кнопки",
+      "label": "Buttons / Close",
+      "type": "text",
+      "value": "закрыть",
+      "sourceValue": "закрыть"
+    },
+    {
+      "key": "ru.buttons.showMore",
+      "section": "Общие элементы",
+      "group": "Кнопки",
+      "label": "Buttons / Show More",
+      "type": "text",
+      "value": "показать ещё",
+      "sourceValue": "показать ещё"
+    },
+    {
+      "key": "ru.buttons.shuffleCreatives",
+      "section": "Общие элементы",
+      "group": "Кнопки",
+      "label": "Buttons / Shuffle Creatives",
+      "type": "text",
+      "value": "перетасовать",
+      "sourceValue": "перетасовать"
+    },
+    {
+      "key": "ru.buttons.toTop",
+      "section": "Общие элементы",
+      "group": "Кнопки",
+      "label": "Buttons / To Top",
+      "type": "text",
+      "value": "вверх",
+      "sourceValue": "вверх"
+    },
+    {
+      "key": "ru.notices.effectsDisabled",
+      "section": "Общие элементы",
+      "group": "Уведомления",
+      "label": "Notices / Effects Disabled",
+      "type": "text",
+      "value": "Визуальные эффекты отключены. Изменить режим можно в меню.",
+      "sourceValue": "Визуальные эффекты отключены. Изменить режим можно в меню."
+    },
+    {
+      "key": "ru.privacy.analytics.title",
+      "section": "Общие элементы",
+      "group": "Конфиденциальность",
+      "label": "Analytics / Заголовок",
+      "type": "text",
+      "value": "аналитика",
+      "sourceValue": "аналитика"
+    },
+    {
+      "key": "ru.privacy.analytics.text",
+      "section": "Общие элементы",
+      "group": "Конфиденциальность",
+      "label": "Analytics / Текст",
+      "type": "text",
+      "value": "Разрешить Яндекс Метрику, чтобы понимать, какие разделы портфолио смотрят чаще?",
+      "sourceValue": "Разрешить Яндекс Метрику, чтобы понимать, какие разделы портфолио смотрят чаще?"
+    },
+    {
+      "key": "ru.privacy.analytics.accept",
+      "section": "Общие элементы",
+      "group": "Конфиденциальность",
+      "label": "Analytics / Accept",
+      "type": "text",
+      "value": "разрешить аналитику",
+      "sourceValue": "разрешить аналитику"
+    },
+    {
+      "key": "ru.privacy.analytics.decline",
+      "section": "Общие элементы",
+      "group": "Конфиденциальность",
+      "label": "Analytics / Decline",
+      "type": "text",
+      "value": "не разрешать",
+      "sourceValue": "не разрешать"
+    },
+    {
+      "key": "ru.seo.title",
+      "section": "Общие элементы",
+      "group": "Поисковая выдача",
+      "label": "Seo / Заголовок",
+      "type": "text",
+      "value": "пространство порт хэвен",
+      "sourceValue": "пространство порт хэвен"
+    },
+    {
+      "key": "ru.seo.description",
+      "section": "Общие элементы",
+      "group": "Поисковая выдача",
+      "label": "Seo / Описание",
+      "type": "text",
+      "value": "Дизайн, интерфейсы, прототипы, анимации и другие штуки, которые я делаю.",
+      "sourceValue": "Дизайн, интерфейсы, прототипы, анимации и другие штуки, которые я делаю."
+    },
+    {
+      "key": "ru.seo.imageAlt",
+      "section": "Общие элементы",
+      "group": "Поисковая выдача",
+      "label": "Seo / Image Alt",
+      "type": "text",
+      "value": "Превью",
+      "sourceValue": "Превью"
+    },
+    {
+      "key": "ru.lang-toggle",
+      "section": "Общие элементы",
+      "group": "Настройки отображения",
+      "label": "Lang toggle",
+      "type": "text",
+      "value": "english",
+      "sourceValue": "english"
+    },
+    {
+      "key": "ru.theme-toggle.light",
+      "section": "Общие элементы",
+      "group": "Настройки отображения",
+      "label": "Theme toggle / Light",
+      "type": "text",
+      "value": "светлая тема",
+      "sourceValue": "светлая тема"
+    },
+    {
+      "key": "ru.theme-toggle.dark",
+      "section": "Общие элементы",
+      "group": "Настройки отображения",
+      "label": "Theme toggle / Dark",
+      "type": "text",
+      "value": "темная тема",
+      "sourceValue": "темная тема"
+    },
+    {
+      "key": "ru.effects-toggle.enable",
+      "section": "Общие элементы",
+      "group": "Настройки отображения",
+      "label": "Effects toggle / Enable",
+      "type": "text",
+      "value": "включить эффекты",
+      "sourceValue": "включить эффекты"
+    },
+    {
+      "key": "ru.effects-toggle.disable",
+      "section": "Общие элементы",
+      "group": "Настройки отображения",
+      "label": "Effects toggle / Disable",
+      "type": "text",
+      "value": "выключить эффекты",
+      "sourceValue": "выключить эффекты"
+    },
+    {
+      "key": "ru.dev-mode-toggle.enable",
+      "section": "Общие элементы",
+      "group": "Настройки отображения",
+      "label": "Dev mode toggle / Enable",
+      "type": "text",
+      "value": "включить режим разработчика",
+      "sourceValue": "включить режим разработчика"
+    },
+    {
+      "key": "ru.dev-mode-toggle.disable",
+      "section": "Общие элементы",
+      "group": "Настройки отображения",
+      "label": "Dev mode toggle / Disable",
+      "type": "text",
+      "value": "выключить режим разработчика",
+      "sourceValue": "выключить режим разработчика"
+    },
+    {
+      "key": "ru.contacts.telegram",
+      "section": "Подвал",
+      "group": "Контакты",
+      "label": "Contacts / Telegram",
+      "type": "text",
+      "value": "телега",
+      "sourceValue": "телега"
+    },
+    {
+      "key": "ru.contacts.behance",
+      "section": "Подвал",
+      "group": "Контакты",
+      "label": "Contacts / Behance",
+      "type": "text",
+      "value": "беханс",
+      "sourceValue": "беханс"
+    },
+    {
+      "key": "image.project.bloxels.cover",
+      "section": "Проекты",
+      "group": "Блоксели",
+      "label": "Обложка",
+      "type": "image",
+      "value": "src/assets/projects/bloxels.webp",
+      "sourceValue": "src/assets/projects/bloxels.webp"
+    },
+    {
+      "key": "image.project.medved.cover",
+      "section": "Проекты",
+      "group": "МЁДВЕДЬ",
+      "label": "Обложка",
+      "type": "image",
+      "value": "src/assets/projects/medved.webp",
+      "sourceValue": "src/assets/projects/medved.webp"
+    },
+    {
+      "key": "image.review.review-1",
+      "section": "Отзывы",
+      "group": "diemxn",
+      "label": "Скриншот отзыва",
+      "type": "image",
+      "value": "src/assets/reviews/review-1.jpg",
+      "sourceValue": "src/assets/reviews/review-1.jpg"
+    },
+    {
+      "key": "text.review.review-1.alt",
+      "section": "Отзывы",
+      "group": "diemxn",
+      "label": "Описание изображения",
+      "type": "text",
+      "value": "diemxn: шрифт имба, сайт уже хвалят, шеф вроде даже доволен",
+      "sourceValue": "diemxn: шрифт имба, сайт уже хвалят, шеф вроде даже доволен"
+    },
+    {
+      "key": "image.review.review-3",
+      "section": "Отзывы",
+      "group": "Иван Нестеров",
+      "label": "Скриншот отзыва",
+      "type": "image",
+      "value": "src/assets/reviews/review-3.jpg",
+      "sourceValue": "src/assets/reviews/review-3.jpg"
+    },
+    {
+      "key": "text.review.review-3.alt",
+      "section": "Отзывы",
+      "group": "Иван Нестеров",
+      "label": "Описание изображения",
+      "type": "text",
+      "value": "Иван Нестеров: хотел у тебя часы купить, чтоб ты обучалку провёл",
+      "sourceValue": "Иван Нестеров: хотел у тебя часы купить, чтоб ты обучалку провёл"
+    },
+    {
+      "key": "image.review.review-4",
+      "section": "Отзывы",
+      "group": "Влад Кошенков",
+      "label": "Скриншот отзыва",
+      "type": "image",
+      "value": "src/assets/reviews/review-4.jpg",
+      "sourceValue": "src/assets/reviews/review-4.jpg"
+    },
+    {
+      "key": "text.review.review-4.alt",
+      "section": "Отзывы",
+      "group": "Влад Кошенков",
+      "label": "Описание изображения",
+      "type": "text",
+      "value": "Влад Кошенков: в целом круто сделано, супер дотошно, я не ожидал такого",
+      "sourceValue": "Влад Кошенков: в целом круто сделано, супер дотошно, я не ожидал такого"
+    },
+    {
+      "key": "image.review.review-5",
+      "section": "Отзывы",
+      "group": "Саша Багдоян",
+      "label": "Скриншот отзыва",
+      "type": "image",
+      "value": "src/assets/reviews/review-5.png",
+      "sourceValue": "src/assets/reviews/review-5.png"
+    },
+    {
+      "key": "text.review.review-5.alt",
+      "section": "Отзывы",
+      "group": "Саша Багдоян",
+      "label": "Описание изображения",
+      "type": "text",
+      "value": "Саша Багдоян: но реально кайфово, оч яркая страничка для детей вышла веселая",
+      "sourceValue": "Саша Багдоян: но реально кайфово, оч яркая страничка для детей вышла веселая"
+    },
+    {
+      "key": "image.creative.2022-daniil-b",
+      "section": "Креативы",
+      "group": "2022 daniil b",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/2022-daniil-b.webp",
+      "sourceValue": "src/assets/creatives/priority-1/2022-daniil-b.webp"
+    },
+    {
+      "key": "image.creative.2024-artem-y",
+      "section": "Креативы",
+      "group": "2024 artem y",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/2024-artem-y.webp",
+      "sourceValue": "src/assets/creatives/priority-1/2024-artem-y.webp"
+    },
+    {
+      "key": "image.creative.2024-kirill-p",
+      "section": "Креативы",
+      "group": "2024 kirill p",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/2024-kirill-p.webp",
+      "sourceValue": "src/assets/creatives/priority-1/2024-kirill-p.webp"
+    },
+    {
+      "key": "image.creative.2024-vlad-l",
+      "section": "Креативы",
+      "group": "2024 vlad l",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/2024-vlad-l.webp",
+      "sourceValue": "src/assets/creatives/priority-1/2024-vlad-l.webp"
+    },
+    {
+      "key": "image.creative.2025-artem-y",
+      "section": "Креативы",
+      "group": "2025 artem y",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/2025-artem-y.webp",
+      "sourceValue": "src/assets/creatives/priority-1/2025-artem-y.webp"
+    },
+    {
+      "key": "image.creative.Frame 6",
+      "section": "Креативы",
+      "group": "Gogo card autumn promotion",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/gogo-card-autumn-promotion.png",
+      "sourceValue": "src/assets/creatives/priority-1/gogo-card-autumn-promotion.png"
+    },
+    {
+      "key": "image.creative.news06-eng-square",
+      "section": "Креативы",
+      "group": "News06 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/news06-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-1/news06-eng-square.png"
+    },
+    {
+      "key": "image.creative.ozon-astana",
+      "section": "Креативы",
+      "group": "Ozon astana",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/ozon-astana.webp",
+      "sourceValue": "src/assets/creatives/priority-1/ozon-astana.webp"
+    },
+    {
+      "key": "image.creative.ozon-cat",
+      "section": "Креативы",
+      "group": "Ozon cat",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/ozon-cat.webp",
+      "sourceValue": "src/assets/creatives/priority-1/ozon-cat.webp"
+    },
+    {
+      "key": "image.creative.saasoft",
+      "section": "Креативы",
+      "group": "Saasoft",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/saasoft.webp",
+      "sourceValue": "src/assets/creatives/priority-1/saasoft.webp"
+    },
+    {
+      "key": "image.creative.siyay",
+      "section": "Креативы",
+      "group": "Siyay",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/siyay.webp",
+      "sourceValue": "src/assets/creatives/priority-1/siyay.webp"
+    },
+    {
+      "key": "image.creative.youtube-cloud-in-a-jar",
+      "section": "Креативы",
+      "group": "Youtube cloud in a jar",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-1/youtube-cloud-in-a-jar.webp",
+      "sourceValue": "src/assets/creatives/priority-1/youtube-cloud-in-a-jar.webp"
+    },
+    {
+      "key": "image.creative.2023-serega-greb",
+      "section": "Креативы",
+      "group": "2023 serega greb",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/2023-serega-greb.webp",
+      "sourceValue": "src/assets/creatives/priority-2/2023-serega-greb.webp"
+    },
+    {
+      "key": "image.creative.2024-lyosha-g",
+      "section": "Креативы",
+      "group": "2024 lyosha g",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/2024-lyosha-g.webp",
+      "sourceValue": "src/assets/creatives/priority-2/2024-lyosha-g.webp"
+    },
+    {
+      "key": "image.creative.2024-serega-g",
+      "section": "Креативы",
+      "group": "2024 serega g",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/2024-serega-g.webp",
+      "sourceValue": "src/assets/creatives/priority-2/2024-serega-g.webp"
+    },
+    {
+      "key": "image.creative.2025-egor-v",
+      "section": "Креативы",
+      "group": "2025 egor v",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/2025-egor-v.webp",
+      "sourceValue": "src/assets/creatives/priority-2/2025-egor-v.webp"
+    },
+    {
+      "key": "image.creative.2025-lev-g",
+      "section": "Креативы",
+      "group": "2025 lev g",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/2025-lev-g.webp",
+      "sourceValue": "src/assets/creatives/priority-2/2025-lev-g.webp"
+    },
+    {
+      "key": "image.creative.2025-rostislav",
+      "section": "Креативы",
+      "group": "2025 rostislav",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/2025-rostislav.webp",
+      "sourceValue": "src/assets/creatives/priority-2/2025-rostislav.webp"
+    },
+    {
+      "key": "image.creative.kerber-2026-vanya-n",
+      "section": "Креативы",
+      "group": "Kerber 2026 vanya n",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/kerber-2026-vanya-n.webp",
+      "sourceValue": "src/assets/creatives/priority-2/kerber-2026-vanya-n.webp"
+    },
+    {
+      "key": "image.creative.news01-eng-square",
+      "section": "Креативы",
+      "group": "News01 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/news01-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-2/news01-eng-square.png"
+    },
+    {
+      "key": "image.creative.news03-eng-square",
+      "section": "Креативы",
+      "group": "News03 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/news03-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-2/news03-eng-square.png"
+    },
+    {
+      "key": "image.creative.news04-eng-square",
+      "section": "Креативы",
+      "group": "News04 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/news04-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-2/news04-eng-square.png"
+    },
+    {
+      "key": "image.creative.news07-eng-square",
+      "section": "Креативы",
+      "group": "News07 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/news07-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-2/news07-eng-square.png"
+    },
+    {
+      "key": "image.creative.news08-eng-square",
+      "section": "Креативы",
+      "group": "News08 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/news08-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-2/news08-eng-square.png"
+    },
+    {
+      "key": "image.creative.ozon-blankets",
+      "section": "Креативы",
+      "group": "Ozon blankets",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/ozon-blankets.webp",
+      "sourceValue": "src/assets/creatives/priority-2/ozon-blankets.webp"
+    },
+    {
+      "key": "image.creative.ulyana",
+      "section": "Креативы",
+      "group": "Ulyana",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/ulyana.webp",
+      "sourceValue": "src/assets/creatives/priority-2/ulyana.webp"
+    },
+    {
+      "key": "image.creative.vanya-d",
+      "section": "Креативы",
+      "group": "Vanya d",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/vanya-d.webp",
+      "sourceValue": "src/assets/creatives/priority-2/vanya-d.webp"
+    },
+    {
+      "key": "image.creative.DRVLAD",
+      "section": "Креативы",
+      "group": "Vlad birthday lighthouse",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/vlad-birthday-lighthouse.png",
+      "sourceValue": "src/assets/creatives/priority-2/vlad-birthday-lighthouse.png"
+    },
+    {
+      "key": "image.creative.youtube-birthday-100k",
+      "section": "Креативы",
+      "group": "Youtube birthday 100k",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-2/youtube-birthday-100k.webp",
+      "sourceValue": "src/assets/creatives/priority-2/youtube-birthday-100k.webp"
+    },
+    {
+      "key": "image.creative.2023-anton-p",
+      "section": "Креативы",
+      "group": "2023 anton p",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-3/2023-anton-p.webp",
+      "sourceValue": "src/assets/creatives/priority-3/2023-anton-p.webp"
+    },
+    {
+      "key": "image.creative.2024-anton-p",
+      "section": "Креативы",
+      "group": "2024 anton p",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-3/2024-anton-p.webp",
+      "sourceValue": "src/assets/creatives/priority-3/2024-anton-p.webp"
+    },
+    {
+      "key": "image.creative.2024-vitaliy-n",
+      "section": "Креативы",
+      "group": "2024 vitaliy n",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-3/2024-vitaliy-n.webp",
+      "sourceValue": "src/assets/creatives/priority-3/2024-vitaliy-n.webp"
+    },
+    {
+      "key": "image.creative.2025-tanya-p",
+      "section": "Креативы",
+      "group": "2025 tanya p",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-3/2025-tanya-p.webp",
+      "sourceValue": "src/assets/creatives/priority-3/2025-tanya-p.webp"
+    },
+    {
+      "key": "image.creative.nastya-ch",
+      "section": "Креативы",
+      "group": "Nastya ch",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-3/nastya-ch.webp",
+      "sourceValue": "src/assets/creatives/priority-3/nastya-ch.webp"
+    },
+    {
+      "key": "image.creative.news02-eng-square",
+      "section": "Креативы",
+      "group": "News02 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-3/news02-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-3/news02-eng-square.png"
+    },
+    {
+      "key": "image.creative.news05-eng-square",
+      "section": "Креативы",
+      "group": "News05 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-3/news05-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-3/news05-eng-square.png"
+    },
+    {
+      "key": "image.creative.news09-eng-square",
+      "section": "Креативы",
+      "group": "News09 eng square",
+      "label": "Изображение",
+      "type": "image",
+      "value": "src/assets/creatives/priority-3/news09-eng-square.png",
+      "sourceValue": "src/assets/creatives/priority-3/news09-eng-square.png"
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+name: Publish admin content
+
+on:
+  workflow_dispatch:
+    inputs:
+      publication:
+        description: Publication ID
+        required: true
+        type: string
+
+concurrency:
+  group: port-heaven-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions: {}
+
+env:
+  ADMIN_API_URL: ${{ vars.ADMIN_API_URL }}
+  PUBLICATION_ID: ${{ inputs.publication }}
+
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      revision: ${{ steps.snapshot.outputs.revision }}
+      media: ${{ steps.snapshot.outputs.media }}
+      failure: ${{ steps.failure.outputs.reason }}
+    steps:
+      - name: Check out trusted source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.ref_name }}
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+      - name: Fetch the authorized draft
+        id: snapshot
+        env:
+          PUBLISH_WORKFLOW_SECRET: ${{ secrets.PUBLISH_WORKFLOW_SECRET }}
+        run: |
+          export PUBLICATION_STAGE_DIR="$RUNNER_TEMP/admin-input"
+          node scripts/generate-content-manifest.mjs
+          node scripts/apply-admin-publication.mjs apply
+          echo "revision=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          if [ -d "$PUBLICATION_STAGE_DIR/assets" ]; then echo "media=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Capture the failure reason
+        if: failure()
+        id: failure
+        run: |
+          if [ "${ADMIN_PUBLICATION_FAILURE:-}" = conflict ]; then echo "reason=conflict" >> "$GITHUB_OUTPUT"; fi
+      - name: Encrypt the unpublished input
+        env:
+          PUBLISH_ARTIFACT_KEY: ${{ secrets.PUBLISH_ARTIFACT_KEY }}
+        run: node scripts/apply-admin-publication.mjs seal input "$RUNNER_TEMP/admin-input" "$RUNNER_TEMP/admin-input-encrypted"
+      - name: Store the publication input
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: admin-publication-input
+          path: ${{ runner.temp }}/admin-input-encrypted
+          if-no-files-found: error
+          retention-days: 1
+
+  build:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Check out the selected revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ needs.prepare.outputs.revision }}
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Download publication input
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: admin-publication-input
+          path: ${{ runner.temp }}/admin-input-encrypted
+      - name: Decrypt publication input
+        env:
+          PUBLISH_ARTIFACT_KEY: ${{ secrets.PUBLISH_ARTIFACT_KEY }}
+        run: node scripts/apply-admin-publication.mjs open input "$RUNNER_TEMP/admin-input-encrypted" "$RUNNER_TEMP/admin-input"
+      - name: Install dependencies
+        run: npm ci
+      - name: Decode and sanitize new images
+        if: needs.prepare.outputs.media == 'true'
+        run: |
+          node scripts/apply-admin-publication.mjs sanitize "$RUNNER_TEMP/admin-input/assets"
+          mkdir -p src/assets/admin-content
+          cp "$RUNNER_TEMP/admin-input/assets/"* src/assets/admin-content/
+      - name: Build the site
+        run: |
+          cp "$RUNNER_TEMP/admin-input/content-manifest.json" .
+          npm run build
+      - name: Encrypt validated images
+        if: needs.prepare.outputs.media == 'true'
+        env:
+          PUBLISH_ARTIFACT_KEY: ${{ secrets.PUBLISH_ARTIFACT_KEY }}
+        run: node scripts/apply-admin-publication.mjs seal media "$RUNNER_TEMP/admin-input" "$RUNNER_TEMP/admin-media-encrypted"
+      - name: Upload validated images
+        if: needs.prepare.outputs.media == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: admin-validated-media
+          path: ${{ runner.temp }}/admin-media-encrypted
+          if-no-files-found: error
+          retention-days: 1
+      - name: Package and encrypt the validated site
+        env:
+          PUBLISH_ARTIFACT_KEY: ${{ secrets.PUBLISH_ARTIFACT_KEY }}
+        run: |
+          test -z "$(find dist \( -type l -o -type f -links +1 \) -print -quit)"
+          mkdir -p "$RUNNER_TEMP/admin-site"
+          tar --directory dist --exclude=.git --exclude=.github --exclude='.[^/]*' -cf "$RUNNER_TEMP/admin-site/artifact.tar" .
+          node scripts/apply-admin-publication.mjs seal site "$RUNNER_TEMP/admin-site" "$RUNNER_TEMP/admin-site-encrypted"
+      - name: Upload the encrypted site
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: admin-validated-site
+          path: ${{ runner.temp }}/admin-site-encrypted
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    needs: [prepare, build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      failure: ${{ steps.commit.outputs.reason }}
+    steps:
+      - name: Check out the selected revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ needs.prepare.outputs.revision }}
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+      - name: Download the authorized manifest
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: admin-publication-input
+          path: ${{ runner.temp }}/admin-input-encrypted
+      - name: Download validated media
+        if: needs.prepare.outputs.media == 'true'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: admin-validated-media
+          path: ${{ runner.temp }}/admin-media-encrypted
+      - name: Decrypt publication files
+        env:
+          PUBLISH_ARTIFACT_KEY: ${{ secrets.PUBLISH_ARTIFACT_KEY }}
+          HAS_MEDIA: ${{ needs.prepare.outputs.media }}
+        run: |
+          node scripts/apply-admin-publication.mjs open input "$RUNNER_TEMP/admin-input-encrypted" "$RUNNER_TEMP/admin-input"
+          if [ "$HAS_MEDIA" = true ]; then
+            node scripts/apply-admin-publication.mjs open media "$RUNNER_TEMP/admin-media-encrypted" "$RUNNER_TEMP/admin-media"
+          fi
+      - name: Commit the validated content
+        id: commit
+        shell: bash
+        run: |
+          cp "$RUNNER_TEMP/admin-input/content-manifest.json" content-manifest.json
+          git add -- content-manifest.json
+          if [ -d "$RUNNER_TEMP/admin-input/assets" ]; then
+            mkdir -p src/assets/admin-content
+            for file in "$RUNNER_TEMP/admin-input/assets/"*; do
+              name="${file##*/}"
+              [[ "$name" =~ ^[a-f0-9-]{36}\.(jpg|png|webp)$ ]]
+              validated="$RUNNER_TEMP/admin-media/assets/$name"
+              test -f "$validated" && test ! -L "$validated"
+              test ! -e "src/assets/admin-content/$name"
+              cp "$validated" "src/assets/admin-content/$name"
+              git add -- "src/assets/admin-content/$name"
+            done
+          fi
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "chore(content): publish ${PUBLICATION_ID}"
+            if ! git push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"; then
+              echo reason=conflict >> "$GITHUB_OUTPUT"
+              exit 1
+            fi
+          elif [ "$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | cut -f 1)" != "$(git rev-parse HEAD)" ]; then
+            echo reason=conflict >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+      - name: Download the encrypted site
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: admin-validated-site
+          path: ${{ runner.temp }}/admin-site-encrypted
+      - name: Decrypt the site archive after the commit
+        env:
+          PUBLISH_ARTIFACT_KEY: ${{ secrets.PUBLISH_ARTIFACT_KEY }}
+        run: node scripts/apply-admin-publication.mjs open site "$RUNNER_TEMP/admin-site-encrypted" "$RUNNER_TEMP/admin-site"
+      - name: Upload the GitHub Pages artifact
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/admin-site/artifact.tar
+          if-no-files-found: error
+          retention-days: 1
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: Deploy the validated site
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  report:
+    if: always() && github.ref == 'refs/heads/master'
+    needs: [prepare, build, publish]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Check out trusted reporting code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+      - name: Report the deployment
+        env:
+          PUBLISH_WORKFLOW_SECRET: ${{ secrets.PUBLISH_WORKFLOW_SECRET }}
+          DEPLOYMENT_OUTCOME: ${{ needs.publish.result }}
+          ADMIN_PUBLICATION_FAILURE: ${{ needs.prepare.outputs.failure || needs.publish.outputs.failure }}
+        run: |
+          if [ "$DEPLOYMENT_OUTCOME" = success ]; then
+            node scripts/apply-admin-publication.mjs succeeded
+          else
+            node scripts/apply-admin-publication.mjs failed
+          fi
