@@ -242,3 +242,25 @@ jobs:
     with:
       url: ${{ needs.deploy.outputs.url }}
       pages: ${{ needs.build.outputs.pages }}
+
+  content-manifest:
+    name: Refresh admin content manifest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: deploy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the published source revision
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+      - name: Commit updated manifest
+        run: |
+          node scripts/generate-content-manifest.mjs
+          if git diff --quiet -- content-manifest.json; then exit 0; fi
+          git -c user.name=github-actions[bot] -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -m "chore: refresh admin content manifest" -- content-manifest.json
+          git push origin HEAD:refs/heads/master
